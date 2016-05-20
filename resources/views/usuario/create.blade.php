@@ -12,7 +12,7 @@
 	<style>
 
 		.modal-backdrop.in{
-			//z-index: -2;
+			z-index: 1;
 		}
 	</style>
 <!-- 	<link rel="stylesheet" href="css/jquery.bxslider.css">
@@ -49,23 +49,27 @@
 					<div class="col-sm-12 text-center">
 						<!-- {!!Form::submit('Registrar',['class'=>'btn btn-lg btn-primary'])!!} -->
 						<!-- <a href="#confirmation" class="btn btn-lg btn-primary" data-toggle="modal">REGISTRAR</a> -->
-						<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#confirmation">
+						<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#confirmation" onclick="ventana()">
 						  REGISTRAR
 						</button>
 						<!-- style="z-index:2; padding-top:100px;" -->
 						<!-- <button type="submit" class="btn btn-lg btn-primary">Registrar</button> -->
-						<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="confirmationLabel" style="padding-top:100px;position: relative;z-index: 5;">
-							<div class="modal-dialog" role="document" style="z-index: 5;">
+						<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="confirmationLabel" data-keyboard="false" data-backdrop="static" style="position:relative">
+							<div class="modal-dialog" role="document">
 								<div class="modal-content">
 									<!-- Header de la ventana -->
 									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" onclick="cerrarventana()">&times;</span></button>
 										<h4 class="modal-title">CONFIRMAR REGISTRO DE USUARIO</h4>
 									</div>
 									<!-- Contenido de la ventana -->
 									<div class="modal-body">
 										<p>¿Desea confirmar el registro del usuario?</p>
 									</div>
+									<div class="modal-footer">
+								        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Close</button>
+								        <button type="submit" class="btn btn-primary">Confirmar</button>
+							      	</div>
 								</div>
 							</div>
 						</div>
@@ -87,7 +91,14 @@
 	<script src="js/jquery.bxslider.min.js"></script>
 	Mis Scripts
 	<script src="js/MisScripts.js"></script> -->
-
+	<script>
+		function ventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 1;
+		}
+		function cerrarventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 3;
+		}
+  	</script>
 
 </body>
 </html>

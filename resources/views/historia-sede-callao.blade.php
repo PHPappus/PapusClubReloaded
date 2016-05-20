@@ -9,7 +9,12 @@
 	<link rel="stylesheet" href="css/font-awesome.css">
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/MisEstilos.css">
-	
+	<style>
+
+		.modal-backdrop.in{
+			z-index: 1;
+		}
+	</style>
 </head>
 
 <body>
@@ -67,31 +72,6 @@
 			</div>
 		</div>
 	</div>
-		<div class="container">
-			<!-- Button trigger modal -->
-			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-			  Launch demo modal
-			</button>
-
-			<!-- Modal -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="z-index: 4; position:relative;>
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-			      </div>
-			      <div class="modal-body">
-			        ...
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			        <button type="button" class="btn btn-primary">Save changes</button>
-			      </div>
-			    </div>
-			  </div>
-			</div>
-		</div>
 
 		<div class="container">
 			<div class="row">
@@ -105,6 +85,31 @@
 			<br/>
 			<br/>
 		</div>
+		<div class="container">
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="ventana()">
+			  Launch demo modal
+			</button>
+
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cerrarventana()"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+			      </div>
+			      <div class="modal-body">
+			        ...
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Close</button>
+			        <button type="button" class="btn btn-primary">Save changes</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
 			
 	</div>
 @stop
@@ -115,7 +120,14 @@
   <script src="js/jquery.bxslider.min.js"></script>
   <!-- Mis Scripts -->
   <script src="js/MisScripts.js"></script>    
-
+  <script>
+		function ventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 1;
+		}
+		function cerrarventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 3;
+		}
+  </script>
   
 
 </body>

@@ -5,15 +5,14 @@
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/jquery.bxslider.css">
 	<link rel="stylesheet" href="css/font-awesome.css">
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="css/MisEstilos.css">
-	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
-	
+	<!-- {!!Html::style('css/jquery.dataTables.min.css')!!} -->
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css">
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-registros')
 @section('content')
 <!---Cuerpo -->
 <main class="main">
@@ -28,24 +27,33 @@
 				</div>
 			</div>	
 		</div>
-		<div class="container">
-			<table class="table table-bordered table-hover text-center">
-					<thead>
-						<th>Nombre</th>
-						<th>Correo</th>
-						<th>Contraseña</th>
-						<th>Perfil</th>
-					</thead>
-					@foreach($users as $user)
-						<tbody>
-							<td>{{$user->name}}</td>
-							<td>{{$user->email}}</td>
-							<td>{{$user->password}}</td>
-							<td>{{$user->perfil_id}}</td>
-						</tbody>
-					@endforeach
-				</table>		
+		
+		<div class="table-responsive">
+				<div class="container">
+					<table id="example" class="table table-bordered display">
+							<thead>
+								<tr class="active">
+									<th>Nombre</th>
+									<th>Correo</th>
+									<th>Contraseña</th>
+									<th>Perfil</th>
+								</tr>
+							</thead>	
+							<tbody>
+								@foreach($users as $user)
+								<tr>
+									<td>{{$user->name}}</td>
+									<td>{{$user->email}}</td>
+									<td>{{$user->password}}</td>
+									<td>{{$user->perfil_id}}</td>
+								</tr>
+								@endforeach
+							</tbody>
+							
+						</table>	
+				</div>		
 		</div>
+		
 		<div class="container">
 			<div class="form-group">
 				<div class="col-sm-12 text-center">
@@ -63,7 +71,21 @@
 	<script src="js/jquery.bxslider.min.js"></script>
 	<!-- Mis Scripts -->
 	<script src="js/MisScripts.js"></script>
-
-
+	<!-- {!!Html::script('js/jquery.dataTables.min.js')!!} -->
+	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
+	<<!-- script>
+		function registrarNuevoUsuario(){
+			location.href="usuario/create";
+		}
+	</script> -->
+	<script>
+		$(document).ready(function() {
+		   $('#example').DataTable( {
+		       "language": {
+		           "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+		       }
+		  	});
+  		});
+	</script>
 </body>
 </html>

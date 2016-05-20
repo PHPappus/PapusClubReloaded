@@ -110,6 +110,7 @@
 				<br/><br/>
 				
 				<div class="form-group">
+					<div class="col-sm-8"> </div>
 					<a href="/sedes/index" class="btn btn-info">Aceptar</a>				
 				</div>
 

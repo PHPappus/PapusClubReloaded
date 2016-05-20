@@ -14,6 +14,7 @@ class User extends Model implements AuthenticatableContract,
                                     CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword;
+    use SoftDeletes;
     /**
      * The database table used by the model.
      *
@@ -31,10 +32,15 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
+    protected $dates = ['deleted_at'];
     protected $hidden = ['password', 'remember_token'];
     public function setPasswordAttribute($valor){
         if(!empty($valor)){
             $this->attributes['password'] = \Hash::make($valor);
         }
+    }
+    public function perfil_id()
+    {
+        return $this->belongsTo('papusclub\Perfil');
     }
 }
