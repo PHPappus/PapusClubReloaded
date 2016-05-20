@@ -55,7 +55,11 @@
 						<!-- Opción MANTENIMIENTO -->
 						<li><a href="#">PERFIL</a></li>
 						<!-- Opción MANTENIMIENTO -->
-						<li><a href="#">TARIFARIO</a></li>
+						<li><a href="#">TARIFARIO</a>
+							<ul>
+								@yield('tarifario')						
+							</ul>						
+						</li>
 						<!-- Opción TRÁMITES -->
 						<li><a href="#">TRÁMITES</a></li>
 					</ul>

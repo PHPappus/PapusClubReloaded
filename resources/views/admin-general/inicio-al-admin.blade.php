@@ -13,7 +13,16 @@
 </head>
 <body>
 @extends('layouts.headerandfooter-al-admin')
+
+
+@section('tarifario')
+	@foreach ($tarifarios as $tarifario)			
+		<a href="#">{{ $tarifario->nombre}}</a>
+	@endforeach
+@endsection
+	
 @section('content')
+
 <!---Cuerpo -->
 
 <main class="main">
@@ -72,8 +81,7 @@
 	 		
 							<a class="informes col-sm-3 text-center" href="#" title="informes">
 								<img alt="informes" src="images/person.png">INFORMES ASOCIADOS
-							</a>
-	 					
+							</a>	 					
 				</div>
 			</div>
 				
