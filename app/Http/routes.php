@@ -74,6 +74,7 @@ Route::group(['middleware' => ['auth', 'adminpagos']], function () {
 });
 
 
+
 //Administrador general
 Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::resource('admin-general','AdminGeneralController');
@@ -121,3 +122,5 @@ Route::get('token',function(){
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/prueba', 'FrontController@prueba');

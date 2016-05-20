@@ -39,9 +39,8 @@ function registrarAmbiente(){
 function modificarAmbiente(){
 	location.href="modificar-ambiente";
 }
-
 function registrarNuevoUsuario(){
-	location.href="usuario/create";
+			location.href="usuario/create";
 }
 
 function anularReservaAmbiente(){

@@ -29,7 +29,16 @@
 			<form method="POST" action="/sedes/new/sede" class="form-horizontal form-border">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			
-				<br/><br/>
+				<br/>
+				<br/>
+				<div class="col-sm-4"></div>
+				<div class="">
+			  		<font color="red"> 
+			  			(*) Dato Obligatorio
+			  		</font>		  			
+				</div>			
+			  	</br>
+			  	</br>
 				
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
@@ -101,22 +110,22 @@
 			    	</div>
 			  	</div>
 
-			  	<div class="form-group">
-			  		<div class="text-center">
-			  			<font color="red"> 
-			  				*Dato Obligatorio
-			  			</font>		  			
-			  		</div>
-			  	</div>
 			  	
-				<div class="row">
-					<div class="col-sm-6 text-right">
+			  	</br>
+			  	</br>
+				<div class="btn-inline">
+					<div class="btn-group col-sm-7"></div>
+					
+					<div class="btn-group ">
 						<input class="btn btn-success" type="submit" value="Confirmar">
 					</div>
-					<div class="col-sm-6 text-left">
+					<div class="btn-group">
 						<a href="/sedes/index" class="btn btn-danger">Cancelar</a>
 					</div>
 				</div>
+				</br>
+				</br>
+
 			</form>
 		</div>
 	</div>		

@@ -102,17 +102,23 @@
 			  	</div>
 					<!-- FIN FIN FIN  -->
 				
-				<br/>
-				<br/>
-				
+			
+				</br>
+			  	</br>
 				<div class="btn-inline">
-					<div class="btn-group">
+					<div class="btn-group col-sm-7"></div>
+					
+					<div class="btn-group ">
 						<input class="btn btn-success" type="submit" value="Confirmar">
 					</div>
-					<div class="btngroup">
+					<div class="btn-group">
 						<a href="/sedes/index" class="btn btn-danger">Cancelar</a>
 					</div>
 				</div>
+				</br>
+				</br>
+
+
 			</form>
 		</div>
 	</div>		

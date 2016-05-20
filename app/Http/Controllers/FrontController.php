@@ -50,5 +50,8 @@ class FrontController extends Controller
     public function registrar_precio_especial_membresia_1_al(){
         return view('registrar-precio-especial-membresia-1-al');
     }
+    public function prueba(){
+        return view('prueba');
+    }
     
 }
