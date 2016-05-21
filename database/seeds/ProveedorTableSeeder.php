@@ -22,6 +22,17 @@ class ProveedorTableSeeder extends Seeder
         	'estado' => '1', 
         	'id_tipo_proveedor' => '13', 
         	]);
-
+		
+		Proveedor::insert([            
+        	'nombre_proveedor' => 'SILSA', 
+        	'ruc' => '20100362598', 
+        	'telefono' => '6144600', 
+        	'correo' => 'silsa@gmail.com', 
+        	'direccion' => 'Cal. los Negocios Nro. 467', 
+        	'nombre_responsable' => 'Silvia Saravia', 
+        	'estado' => '1', 
+        	'id_tipo_proveedor' => '10', 
+        	]);
+		
     }
 }

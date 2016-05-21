@@ -51,7 +51,7 @@
 						<!-- Opción Eventos -->
 						<li><a href="#">SERVICIO</a></li>
 						<!-- Opción TRAMITES -->
-						<li><a href="#">PRODUCTO</a></li>
+						<li><a href="{!!URL::to('/producto/index')!!}">PRODUCTO</a></li>
 						<!-- Opción MANTENIMIENTO -->
 						<li><a href="#">PERFIL</a></li>
 						<!-- Opción MANTENIMIENTO -->

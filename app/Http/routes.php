@@ -96,6 +96,14 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('proveedor/{id}/edit', 'ProveedorController@update');
 	Route::get('proveedor/{id}/delete', 'ProveedorController@destroy');
 	Route::get('proveedor/{id}/show', 'ProveedorController@show');
+	//MANTENIMIENTO DE PRODUCTOS
+	Route::get('producto/index', 'ProductoController@index');
+	Route::get('producto/new', 'ProductoController@create');
+	Route::post('producto/new/producto', 'ProductoController@store');
+	Route::get('producto/{id}', 'ProductoController@edit');
+	Route::post('producto/{id}/edit', 'ProductoController@update');
+	Route::get('producto/{id}/delete', 'ProductoController@destroy');
+	Route::get('producto/{id}/show', 'ProductoController@show');
 });
 
 /*Route::get('sede-a','SedesController@index');

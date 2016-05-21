@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>PROVEEDOR</title>
+	<title>PRODUCTO</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +19,7 @@
 		<div class="row">
 			<div class="col-sm-12 text-left">
 				<br/><br/>
-				<p class="lead"><strong>PROVEEDORES</strong></p>
+				<p class="lead"><strong>PRODUCTOS</strong></p>
 				<br/>
 			</div>
 			
@@ -28,7 +28,7 @@
 	<div class="container">
 		<div class="form-group">
 			<div class="col-sm-16 text-right">
-				<a class="btn btn-info" href="{{url('/proveedor/new')}}" title="Registrar Proveedor" ><i class="glyphicon glyphicon-plus" ></i> </a>	
+				<a class="btn btn-info" href="{{url('/producto/new')}}" title="Registrar Producto" ><i class="glyphicon glyphicon-plus" ></i> </a>	
 			</div>
 		</div>
 		<br/>
@@ -38,34 +38,32 @@
 			<div class="container">
 				<table class="table table-bordered table-hover text-center display" id="example">
 						<thead class="active" data-sortable="true">
-							<th><div align=center>PROVEEDOR</div> </th>
-							<th><div align=center>RUC</div></th>
-							<th><div align=center>DIRECCION</div></th>
-							<th><div align=center>TELÉFONO</div></th>
+							<th><div align=center>PRODUCTO</div></th>
+							<th><div align=center>DESCRIPCION</div></th>
+							<th><div align=center>TIPO</div></th>							
 							<th><div align=center>DETALLE</div></th>
 							<th><div align=center>EDITAR</div></th>
 							<th><div align=center>ELIMINAR</div></th>
 						</thead>
 
-									
+												
 						<tbody>
-							@foreach($proveedores as $proveedor)			
+						@foreach($productos as $producto)
 							<tr>
-								<td>{{ $proveedor->nombre_proveedor }}</td>
-								<td>{{ $proveedor->ruc }}</td>
-	 							<td>{{ $proveedor->direccion }}</td>
-								<td>{{ $proveedor->telefono }}</td>
+								<td>{{ $producto->nombre }}</td>
+								<td>{{ $producto->descripcion }}</td>	 							
+								<td>{{ $producto->id_tipo_producto }}</td>
 								<td>
-					              <a class="btn btn-info" href="{{url('/proveedor/'.$proveedor->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+					              <a class="btn btn-info" href="{{url('/producto/'.$producto->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 					            </td>
 								<td>
-					              <a class="btn btn-info" href="{{url('/proveedor/'.$proveedor->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+					              <a class="btn btn-info" href="{{url('/producto/'.$producto->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 					            </td>
 					            <td>
-					              <a class="btn btn-info" href="{{url('/proveedor/'.$proveedor->id.'/delete')}}" title="Eliminar" ><i class="glyphicon glyphicon-remove"></i></a>
+					              <a class="btn btn-info" href="{{url('/producto/'.$producto->id.'/delete')}}" title="Eliminar" ><i class="glyphicon glyphicon-remove"></i></a>
 					            </td>
-					        </tr>
-				        	@endforeach    
+				            </tr>
+						@endforeach
 						</tbody>						
 						
 				</table>			

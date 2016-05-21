@@ -13,7 +13,7 @@ class CreateMaestroProveedorTable extends Migration
     public function up()
     {
         //
-        Schema::create('Maestro_Proveedor',function (Blueprint $table){
+        Schema::create('maestro_proveedor',function (Blueprint $table){
             //Estos son los atributos que estaban en el caso de uso
             $table->increments('id');
             $table->string('nombre_proveedor');
@@ -36,6 +36,6 @@ class CreateMaestroProveedorTable extends Migration
     public function down()
     {
         //
-        Schema::drop('Maestro_Proveedor');
+        Schema::drop('maestro_proveedor');
     }
 }
