@@ -58,6 +58,8 @@
 						<li><a href="#">TARIFARIO</a></li>
 						<!-- Opción TRÁMITES -->
 						<li><a href="#">TRÁMITES</a></li>
+						<!-- Opción Eventos -->
+						<li><a href="{!!URL::to('/proveedor/index')!!}">PROVEEDOR</a></li>
 					</ul>
 				</nav>
 			</div>
