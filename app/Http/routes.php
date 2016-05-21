@@ -80,6 +80,16 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::resource('admin-general','AdminGeneralController');
 	Route::get('cuenta-a','AdminGeneralController@cuenta');
 	Route::get('postulante-al-admin','AdminGeneralController@postulante');
+
+	//MANTENIMIENTO DE MEMBRESIA
+	Route::get('membresia/','MembresiaController@index');
+	Route::get('membresia/new','MembresiaController@create');
+	Route::get('membresia/{membresia}/','MembresiaController@show');
+	Route::post('membresia/new/save','MembresiaController@store');
+	Route::get('membresia/{membresia}/editar','MembresiaController@edit');
+	Route::patch('membresia/{membresia}/edit','MembresiaController@update');
+
+
 	//MANTENIMIENTO DE SEDES
 	Route::get('sedes/index', 'SedesController@index');
 	Route::get('sedes/new', 'SedesController@create');

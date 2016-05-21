@@ -14,12 +14,6 @@
 <body>
 @extends('layouts.headerandfooter-al-admin')
 
-
-@section('tarifario')
-	@foreach ($tarifarios as $tarifario)			
-		<a href="#">{{ $tarifario->nombre}}</a>
-	@endforeach
-@endsection
 	
 @section('content')
 

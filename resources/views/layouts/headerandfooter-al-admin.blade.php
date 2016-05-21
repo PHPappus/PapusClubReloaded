@@ -55,13 +55,9 @@
 						<!-- Opción MANTENIMIENTO -->
 						<li><a href="#">PERFIL</a></li>
 						<!-- Opción MANTENIMIENTO -->
-						<li><a href="#">TARIFARIO</a>
-							<ul>
-								@yield('tarifario')						
-							</ul>						
-						</li>
+						<li><a href="{{url('/membresia')}}">MEMBRESIA</a></li>
 						<!-- Opción TRÁMITES -->
-						<li><a href="#">TRÁMITES</a></li>
+						<!--<li><a href="#">TRÁMITES</a></li>-->
 					</ul>
 				</nav>
 			</div>

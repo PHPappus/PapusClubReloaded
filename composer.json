@@ -22,7 +22,10 @@
         ],
         "psr-4": {
             "papusclub\\": "app/"
-        }
+        },
+        "files":[
+            "app/Helper.php"
+        ]
     },
     "autoload-dev": {
         "classmap": [
