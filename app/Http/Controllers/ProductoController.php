@@ -34,8 +34,7 @@ class ProductoController extends Controller
     	
         $producto->save();	    
         
-        $productos = Producto::all();
-        return view('admin-general.producto.index', compact('productos'));
+        return redirect('producto/index');
     }
 	
 	//Muestra el formulario para poder modificar un producto
@@ -46,7 +45,7 @@ class ProductoController extends Controller
     }
 
     //Se guarda la informacion modificada del producto en la BD
-    public function update(EditProductoRequest $request, $id)
+    public function update(StoreProductoRequest $request, $id)
     {
         $input = $request->all();
         $producto = Producto::find($id);
@@ -58,8 +57,7 @@ class ProductoController extends Controller
         
         $producto->save();
         
-        $productos = Producto::all();
-        return view('admin-general.producto.index', compact('productos'));
+        return redirect('producto/index');
 
     }
 

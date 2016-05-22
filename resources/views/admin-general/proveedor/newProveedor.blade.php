@@ -28,7 +28,20 @@
 		<div class="container">
 			<form method="POST" action="/proveedor/new/proveedor" class="form-horizontal form-border">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
-			
+
+				<div class="col-sm-4"></div>
+				<div class="">
+			  		
+		  			@if ($errors->any())
+		  				<ul class="alert alert-danger">
+		  					@foreach ($errors->all() as $error)
+		  						<li>{{$error}}</li>
+		  					@endforeach
+		  				</ul>
+		  			@endif
+			  		
+				</div>						  	
+
 				<br/>
 				<br/>
 				<div class="col-sm-4"></div>
@@ -43,50 +56,50 @@
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="nombre_proveedor" name="nombre_proveedor" placeholder="Nombre del Proveedor" required>
+			      		<input type="text" class="form-control" id="nombre_proveedor" name="nombre_proveedor" placeholder="Nombre del Proveedor" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="telefonoInput" class="col-sm-4 control-label">RUC</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="ruc" name="ruc" placeholder="RUC" pattern="[0-9]{11}" title="Número de 11 dígitos" required>
+			      		<input type="text" class="form-control" id="ruc" name="ruc" placeholder="RUC" pattern="[0-9]{11}" title="Número de 11 dígitos" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
-			    	<label for="contactoInput" class="col-sm-4 control-label">Dirección</label>
+			    	<label for="direccionInput" class="col-sm-4 control-label">Dirección</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección" required>
+			      		<input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección" >
 			    	</div>
 			  	</div>	  	
 
 			  	<div class="form-group required">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">Teléfono</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" pattern="[0-9]{7,13}" required>
+			      		<input type="text" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" pattern="[0-9]{7,13}" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="capacidadSocioInput" class="col-sm-4 control-label">Correo</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+			      		<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" >
 			    	</div>
 			  	</div>
 			  	
 			  	<div class="form-group required">
 			    	<label for="departamentoInput" class="col-sm-4 control-label">Nombre del Responsable</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text"  class="form-control" id="nombre-responsable" name="nombre_responsable" placeholder="Nombre del Responsable" required>				
+			      		<input type="text"  class="form-control" id="nombre-responsable" name="nombre_responsable" placeholder="Nombre del Responsable" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
-			    	<label for="provinciaInput" class="col-sm-4 control-label">Estado</label>
+			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
 			    	<div class="col-sm-5">
 			    	
-			      		<select class="form-control" id="estado" name="estado" required>
+			      		<select class="form-control" id="estado" name="estado" >
 						<!-- Las opciones se deberían extraer de la tabla configuracion-->
 						<option value="1" selected>Activo</option>
 						<option value="0" >Inactivo</option>				

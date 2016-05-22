@@ -43,14 +43,14 @@
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del Producto" required>
+			      		<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del Producto" >
 			    	</div>
 			  	</div>			  	
 
 			  	<div class="form-group required">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" required>
+			      		<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" >
 			    	</div>
 			  	</div>	  				  	
 
@@ -58,7 +58,7 @@
 			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
 			    	<div class="col-sm-5">
 			    	
-			      		<select class="form-control" id="estado" name="estado" required>
+			      		<select class="form-control" id="estado" name="estado" >
 						<!-- Las opciones se deberían extraer de la tabla configuracion-->
 						<option value="1" selected>Activo</option>
 						<option value="0" >Inactivo</option>									
@@ -71,7 +71,7 @@
 			    	<label for="tipoProductoInput" class="col-sm-4 control-label">Tipo de Producto</label>
 			    	<div class="col-sm-5">
 			    	
-			      		<select class="form-control" id="id_tipo_producto" name="id_tipo_producto" required>
+			      		<select class="form-control" id="id_tipo_producto" name="id_tipo_producto" >
 						<!-- Las opciones se deberían extraer de la tabla configuracion-->
 						<option value=null selected >Seleccionar tipo...</option>
 						<option value="1" >Ropa</option>

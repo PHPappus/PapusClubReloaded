@@ -26,6 +26,7 @@ class ProveedorController extends Controller
     public function store(StoreProveedorRequest $request)
     {    	
     	$input = $request->all();
+        
         $proveedor = new Proveedor();
     	$proveedor->nombre_proveedor = $input['nombre_proveedor'];
 		$proveedor->ruc = $input['ruc'];
@@ -36,7 +37,7 @@ class ProveedorController extends Controller
 		$proveedor->estado = $input['estado'];
     	
         $proveedor->save();	    
-        return back();
+        return redirect('proveedor/index');
     }
 	
 	//Muestra el formulario para poder modificar un proveedor
@@ -47,7 +48,7 @@ class ProveedorController extends Controller
     }
 
     //Se guarda la informacion modificada del proveedor en la BD
-    public function update(EditProveedorRequest $request, $id)
+    public function update(StoreProveedorRequest $request, $id)
     {
         $input = $request->all();
         $proveedor = Proveedor::find($id);
@@ -62,8 +63,7 @@ class ProveedorController extends Controller
 
         $proveedor->save();
         
-        $proveedores = Proveedor::all();
-        return view('admin-general.proveedor.index', compact('proveedores'));
+        return redirect('proveedor/index');
 
     }
 
