@@ -137,6 +137,5 @@
 	<!-- Mis Scripts -->
 	<script src="/js/MisScripts.js"></script>
 
-
-</body>
+</body>	
 </html>

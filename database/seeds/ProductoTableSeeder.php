@@ -74,5 +74,33 @@ class ProductoTableSeeder extends Seeder
             'estado' => '1', 
             'id_tipo_producto' => '4', 
             ]);
+		
+		Producto::insert([            
+            'nombre' => 'Llavero PapusClub', 
+            'descripcion' => 'Llavero de plástico con logo de PapusClub',             
+            'estado' => '1', 
+            'id_tipo_producto' => '4', 
+            ]);
+		
+		Producto::insert([            
+            'nombre' => 'Pin PapusClub', 
+            'descripcion' => 'Pin de metal con logo de PapusClub',             
+            'estado' => '1', 
+            'id_tipo_producto' => '4', 
+            ]);
+			
+		Producto::insert([            
+            'nombre' => 'Bolsa Grande PapusClub', 
+            'descripcion' => 'Bolsa grande de tela con logo de PapusClub',             
+            'estado' => '1', 
+            'id_tipo_producto' => '4', 
+            ]);
+			
+		Producto::insert([            
+            'nombre' => 'Bolsa Pequeña PapusClub', 
+            'descripcion' => 'Bolsa pequeña de tela con logo de PapusClub',             
+            'estado' => '1', 
+            'id_tipo_producto' => '4', 
+            ]);
     }
 }

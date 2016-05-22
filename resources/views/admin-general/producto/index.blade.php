@@ -60,7 +60,7 @@
 					              <a class="btn btn-info" href="{{url('/producto/'.$producto->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 					            </td>
 					            <td>
-					              <a class="btn btn-info" href="{{url('/producto/'.$producto->id.'/delete')}}" title="Eliminar" ><i class="glyphicon glyphicon-remove"></i></a>
+					              <a class="btn btn-info"  title="Eliminar" data-href="{{url('/producto/'.$producto->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
 					            </td>
 				            </tr>
 						@endforeach
@@ -91,4 +91,34 @@
   		});
 	</script>
 </body>
+
+	<!-- Modal -->
+	<div id="modalEliminar" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Confirmar</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>¿Está seguro que desea eliminar el producto?</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-danger btn-ok">Confirmar</a>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
+	<!-- Modal Event-->
+	<script>
+		$('#modalEliminar').on('show.bs.modal', function(e) {
+   			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+		});
+	</script>
+
 </html>

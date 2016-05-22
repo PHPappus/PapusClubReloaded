@@ -14,7 +14,7 @@ class ProveedorController extends Controller
 {
     //Muestra la lista de proveedores que se encuentran en BD, estas se pueden modificar, cambiar el estado, ver mas detalle o registrar un nuevo proveedor
     public function index() {
-		$proveedores = Proveedor::all();
+		$proveedores = Proveedor::all()->where('estado', 1);
         return view('admin-general.proveedor.index', compact('proveedores'));
 	}	
 
