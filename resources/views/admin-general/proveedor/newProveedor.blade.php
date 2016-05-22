@@ -19,7 +19,7 @@
 <main class="main">
 	<div class="content" style="max-width: 100%;">
 		<!-- Utilizando Bootstrap -->
-		<br/><br/>
+		<br/><br/>	
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
 					<strong>REGISTRAR PROVEEDOR</strong>

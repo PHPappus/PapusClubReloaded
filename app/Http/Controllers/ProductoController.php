@@ -34,7 +34,7 @@ class ProductoController extends Controller
     	
         $producto->save();	    
         
-        return redirect('producto/index');
+        return redirect('producto/index')->with('stored', 'Se registró el producto correctamente.');
     }
 	
 	//Muestra el formulario para poder modificar un producto
@@ -57,7 +57,7 @@ class ProductoController extends Controller
         
         $producto->save();
         
-        return redirect('producto/index');
+        return redirect('producto/index')->with('stored', 'Se actualizó el producto correctamente.');
 
     }
 

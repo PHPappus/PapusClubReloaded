@@ -89,7 +89,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('sedes/{id}/delete', 'SedesController@destroy');
 	Route::get('sedes/{id}/show', 'SedesController@show');
 	//MANTENIMIENTO DE PROVEEDORES
-	Route::get('proveedor/index/', 'ProveedorController@index');
+	Route::get('proveedor/index', 'ProveedorController@index');
 	Route::get('proveedor/new', 'ProveedorController@create');
 	Route::post('proveedor/new/proveedor', 'ProveedorController@store');
 	Route::get('proveedor/{id}', 'ProveedorController@edit');

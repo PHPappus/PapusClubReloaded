@@ -25,6 +25,15 @@
 			
 		</div>
 	</div>
+
+	<!-- Mensaje de éxito luego de registrar -->
+	@if (session('stored'))
+		<div class="alert alert-success fade in">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>¡Éxito!</strong> {{session('stored')}}
+		</div>
+	@endif
+
 	<div class="container">
 		<div class="form-group">
 			<div class="col-sm-16 text-right">

@@ -37,7 +37,7 @@ class ProveedorController extends Controller
 		$proveedor->estado = $input['estado'];
     	
         $proveedor->save();	        
-        return redirect('proveedor/index');
+        return redirect('proveedor/index')->with('stored', 'Se registró el proveedor correctamente.');
         
     }
 	
@@ -64,7 +64,7 @@ class ProveedorController extends Controller
 
         $proveedor->save();
         
-        return redirect('proveedor/index');
+        return redirect('proveedor/index')->with('stored', 'Se actualizó el proveedor correctamente.');
 
     }
 
