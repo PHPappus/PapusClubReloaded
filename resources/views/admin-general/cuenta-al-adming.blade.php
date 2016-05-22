@@ -42,7 +42,7 @@
 					<div role="tabpanel">
 						<ul class="nav nav-pills nav-tabs" role="tablist">
 							<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Datos Básicos</a></li>
-							<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Ubicación</a></li>
+							<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab" >Ubicación </a></li>
 							<li role="presentation"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Educación/Trabajo</a></li>
 							<li role="presentation"><a href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab">Familiares</a></li>
 							<li role="presentation"><a href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab">Invitados</a></li>

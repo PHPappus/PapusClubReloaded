@@ -24,7 +24,7 @@ class CreateSedesTable extends Migration
             $table->string('nombre_contacto');
             $table->integer('capacidad_maxima');
             $table->integer('capacidad_socio');
-            $table->boolean('estado');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
