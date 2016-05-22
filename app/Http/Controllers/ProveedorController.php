@@ -36,8 +36,9 @@ class ProveedorController extends Controller
 		$proveedor->nombre_responsable = $input['nombre_responsable'];
 		$proveedor->estado = $input['estado'];
     	
-        $proveedor->save();	    
+        $proveedor->save();	        
         return redirect('proveedor/index');
+        
     }
 	
 	//Muestra el formulario para poder modificar un proveedor

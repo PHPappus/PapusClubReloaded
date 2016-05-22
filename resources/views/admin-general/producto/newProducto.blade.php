@@ -28,7 +28,21 @@
 		<div class="container">
 			<form method="POST" action="/producto/new/producto" class="form-horizontal form-border">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
-			
+				
+				<div class="col-sm-4"></div>
+				<div class="">
+			  		
+		  			@if ($errors->any())
+		  				<ul class="alert alert-danger fade in">
+		  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  					@foreach ($errors->all() as $error)
+		  						<li>{{$error}}</li>
+		  					@endforeach
+		  				</ul>
+		  			@endif
+			  		
+				</div>
+
 				<br/>
 				<br/>
 				<div class="col-sm-4"></div>

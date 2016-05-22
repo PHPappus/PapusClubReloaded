@@ -24,8 +24,9 @@
 			</div>
 			
 		</div>
-	</div>
-	<div class="container">
+	</div>	
+
+	<div class="container">		
 		<div class="form-group">
 			<div class="col-sm-16 text-right">
 				<a class="btn btn-info" href="{{url('/proveedor/new')}}" title="Registrar Proveedor" ><i class="glyphicon glyphicon-plus" ></i> </a>	

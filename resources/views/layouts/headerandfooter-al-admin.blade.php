@@ -50,8 +50,14 @@
 						</li>
 						<!-- Opción Eventos -->
 						<li><a href="#">SERVICIO</a></li>
-						<!-- Opción TRAMITES -->
-						<li><a href="{!!URL::to('/producto/index')!!}">PRODUCTO</a></li>
+						<!-- Opción TRAMITES -->						
+						<li><a href="{!!URL::to('/producto/index')!!}">PRODUCTO<span class="despliegue">▼</span></a>
+							<ul>
+								<li><a href="{!!URL::to('/producto/index')!!}">PRODUCTOS</a></li>
+								<li><a href="#">TIPOS DE PRODUCTOS</a></li>
+								<li><a href="#">VENTAS DE PRODUCTOS</a></li>
+							</ul>
+						</li>
 						<!-- Opción MANTENIMIENTO -->
 						<li><a href="#">PERFIL</a></li>
 						<!-- Opción MANTENIMIENTO -->

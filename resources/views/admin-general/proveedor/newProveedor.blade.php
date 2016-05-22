@@ -33,14 +33,15 @@
 				<div class="">
 			  		
 		  			@if ($errors->any())
-		  				<ul class="alert alert-danger">
+		  				<ul class="alert alert-danger fade in">
+		  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 		  					@foreach ($errors->all() as $error)
 		  						<li>{{$error}}</li>
 		  					@endforeach
 		  				</ul>
 		  			@endif
 			  		
-				</div>						  	
+				</div>
 
 				<br/>
 				<br/>
