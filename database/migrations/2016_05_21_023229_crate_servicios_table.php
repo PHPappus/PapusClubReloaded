@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMaestroProductoTable extends Migration
+class CrateServiciosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,12 @@ class CreateMaestroProductoTable extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('maestro_Producto',function (Blueprint $table){
-            //Estos son los atributos que estaban en el caso de uso
+        Schema::create('servicios', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
             $table->string('descripcion');
-            $table->integer('estado');
-            $table->integer('id_tipo_producto'); //¿Esta dentro de la tabla de configuracion?
+            $table->string('tipo_servicio');            
+            $table->boolean('estado');
             $table->timestamps();
         });
     }
@@ -31,9 +29,6 @@ class CreateMaestroProductoTable extends Migration
      */
     public function down()
     {
-        //
-
-        Schema::drop('maestro_Producto');
-
+        Schema::drop('servicios');
     }
 }

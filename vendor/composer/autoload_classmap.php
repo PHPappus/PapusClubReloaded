@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'CrateServiciosTable' => $baseDir . '/database/migrations/2016_05_21_023229_crate_servicios_table.php',
     'CreateMaestroProductoTable' => $baseDir . '/database/migrations/2016_05_21_152952_create_maestro_producto_table.php',
     'CreateMaestroProveedorTable' => $baseDir . '/database/migrations/2016_05_06_042135_create_maestro_proveedor_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
@@ -14,6 +15,7 @@ return array(
     'CreateTarifaMembresiaTable' => $baseDir . '/database/migrations/2016_05_20_175024_create_tarifa_membresia_table.php',
     'CreateTarifarioTable' => $baseDir . '/database/migrations/2016_05_20_202043_create_tarifario_table.php',
     'CreateTipoMembresiaTable' => $baseDir . '/database/migrations/2016_05_20_171328_create_tipo_membresia_table.php',
+    'CreateSorteoTable' => $baseDir . '/database/migrations/2016_05_20_005933_create_sorteo_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
@@ -524,6 +526,7 @@ return array(
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
     'SedeTableSeeder' => $baseDir . '/database/seeds/SedeTableSeeder.php',
     'TarifarioTableSeeder' => $baseDir . '/database/seeds/TarifarioTableSeeder.php',
+    'SorteoTableSeeder' => $baseDir . '/database/seeds/SorteoTableSeeder.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'TestUserTableSeeder' => $baseDir . '/database/seeds/TestUserTableSeeder.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
