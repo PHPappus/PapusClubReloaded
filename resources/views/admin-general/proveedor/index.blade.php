@@ -29,6 +29,8 @@
 
 	<!-- Mensaje de éxito luego de registrar -->
 	@if (session('stored'))
+		<script>$("#modalSuccess").modal("show");</script>
+		
 		<div class="alert alert-success fade in">
 				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 				<strong>¡Éxito!</strong> {{session('stored')}}
@@ -72,7 +74,7 @@
 					              	<a class="btn btn-info" href="{{url('/proveedor/'.$proveedor->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 					            </td>
 					            <td>
-					              	<a class="btn btn-info"  title="Eliminar" data-href="{{url('/proveedor/'.$proveedor->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>             
+					              	<a class="btn btn-info"  title="Eliminar" data-href="{{url('/proveedor/'.$proveedor->id.'/delete')}}" data-toggle="modal" data-target="#modalDelete"><i class="glyphicon glyphicon-remove"></i></a>             
 					            </td>
 					        </tr>
 				        	@endforeach    
@@ -106,7 +108,7 @@
 </body>
 
 	<!-- Modal -->
-	<div id="modalEliminar" class="modal fade" role="dialog">
+	<div id="modalDelete" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
 
 	    <!-- Modal content-->
@@ -129,9 +131,29 @@
 
 	<!-- Modal Event-->
 	<script>
-		$('#modalEliminar').on('show.bs.modal', function(e) {
+		$('#modalDelete').on('show.bs.modal', function(e) {
    			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 		});
 	</script>
 	
+	<!-- Modal Success -->
+	<div id="modalSuccess" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">¡Éxito!</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>{{session('stored')}}</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>           
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
 </html>
