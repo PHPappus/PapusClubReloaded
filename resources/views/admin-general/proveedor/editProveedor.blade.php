@@ -9,7 +9,12 @@
 	{!!Html::style('../css/font-awesome.css')!!}
 	{!!Html::style('../css/bootstrap.css')!!}
 	{!!Html::style('../css/MisEstilos.css')!!}
-	
+	<style>
+
+		.modal-backdrop.in{
+			z-index: 1;
+		}
+	</style>
 </head>
 
 <body>
@@ -92,15 +97,35 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-success" type="submit" value="Confirmar">
+						<input type="button" class="btn btn-success " data-toggle="modal" data-target="#confirmation" value="Guardar" onclick="ventana()">
 					</div>
 					<div class="btn-group">
-						<a href="/proveedor/index" class="btn btn-danger">Cancelar</a>
+						<a href="/proveedor/index" class="btn btn-default">Cancelar</a>
 					</div>
 				</div>
 				</br>
-				</br>
+				</br>	
 
+				<!-- Ventana Modal de Confirmación -->											
+				<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" data-backdrop="static">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<!-- Header de la ventana -->
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" onclick="cerrarventana()">&times;</span></button>
+								<h4 class="modal-title">EDITAR PROVEEDOR</h4>
+							</div>
+							<!-- Contenido de la ventana -->
+							<div class="modal-body">
+								<p>¿Desea guardar los cambios realizados?</p>
+							</div>
+							<div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cerrar</button>
+						        <button type="submit" class="btn btn-primary">Confirmar</button>
+					      	</div>
+						</div>
+					</div>
+				</div>				
 
 			</form>
 		</div>
@@ -112,7 +137,14 @@
 	{!!Html::script('../js/jquery.bxslider.min.js')!!}
 	{!!Html::script('../js/MisScripts.js')!!}
 
-
+	<script>
+		function ventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 1;
+		}
+		function cerrarventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 3;
+		}
+  	</script>
 
 </body>
 </html>

@@ -104,7 +104,7 @@
 </body>
 
 	<!-- Modal Delete -->
-	<div id="modalDelete" class="modal fade" role="dialog">
+	<div id="modalDelete" class="modal fade" role="dialog"  data-backdrop="static">
 	  <div class="modal-dialog">
 
 	    <!-- Modal content-->
