@@ -61,7 +61,7 @@
 		  	<div class="form-group required">
 		    	<label for="sedeInput" class="col-sm-4 control-label">SEDE</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="sedeInput" name="sede" value="{{$actividad->ambiente->sede->nombre}}""  required readonly>
+		      		<input type="text" class="form-control" id="sedeInput" name="sede" value="{{$actividad->ambiente->sede->nombre}}"  required readonly>
 		    	</div>
 		  	</div>
 

@@ -151,6 +151,8 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('actividad/{id}/edit', 'ActividadController@update');
 	Route::get('ambiente/{id}/delete', 'AmbienteController@destroy');
 	Route::get('actividad/{id}/show', 'ActividadController@show');
+
+});
 	
 
 /*Route::get('sede-a','SedesController@index');
