@@ -41,10 +41,8 @@ class SedesController extends Controller
         $sede->nombre_contacto = $input['nombre_contacto'];
         $sede->capacidad_maxima = $input['capacidad_maxima'];
         $sede->capacidad_socio = $input['capacidad_socio'];
-        $sede->estado = true;
-
         $sede->save();
-        return back();
+        return redirect('sedes/index');
     
     }
 
@@ -71,16 +69,8 @@ class SedesController extends Controller
         $sede->nombre_contacto = $input['nombre_contacto'];
         $sede->capacidad_maxima = $input['capacidad_maxima'];
         $sede->capacidad_socio = $input['capacidad_socio'];
-        
-        if($request['estado']==null){
-            $sede->estado = false;
-        }
-        else {
-            $sede->estado = true;    
-        }
-
         $sede->save();
-        return back();
+        return redirect('sedes/index');
 
     }
 
@@ -88,8 +78,7 @@ class SedesController extends Controller
     public function destroy($id)    
     {
         $sede = Sede::find($id);
-        $sede->estado = false;
-        $sede->save();
+        $sede->delete();
         return back();
     }
 
