@@ -32,6 +32,8 @@ class CreateMaestroProductoTable extends Migration
     public function down()
     {
         //
-        Schema::drop('maestro_producto');
+
+        Schema::drop('maestro_Producto');
+
     }
 }

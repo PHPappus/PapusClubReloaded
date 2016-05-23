@@ -21,8 +21,7 @@ class SedeTableSeeder extends Seeder
         	'referencia' => 'Alt. Comisaria La Punta', 
         	'nombre_contacto' => 'Francisco Beingolea', 
         	'capacidad_maxima' => 10000, 
-        	'capacidad_socio' => 50, 
-        	'estado' => true 
+        	'capacidad_socio' => 50 
         	]);
     }
 }

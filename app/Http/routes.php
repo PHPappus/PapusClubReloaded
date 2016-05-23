@@ -80,6 +80,15 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::resource('admin-general','AdminGeneralController');
 	Route::get('cuenta-a','AdminGeneralController@cuenta');
 	Route::get('postulante-al-admin','AdminGeneralController@postulante');
+
+	//MANTENIMIENTO DE MEMBRESIA
+	Route::get('membresia/','MembresiaController@index');
+	Route::get('membresia/new','MembresiaController@create');
+	Route::get('membresia/{membresia}/','MembresiaController@show');
+	Route::post('membresia/new/save','MembresiaController@store');
+	Route::get('membresia/{membresia}/editar','MembresiaController@edit');
+	Route::patch('membresia/{membresia}/edit','MembresiaController@update');
+
 	//MANTENIMIENTO DE SEDES
 	Route::get('sedes/index', 'SedesController@index');
 	Route::get('sedes/new', 'SedesController@create');
@@ -88,6 +97,17 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('sedes/{id}/edit', 'SedesController@update');
 	Route::get('sedes/{id}/delete', 'SedesController@destroy');
 	Route::get('sedes/{id}/show', 'SedesController@show');
+
+	
+	// Mantenimiento de Servicios LOL
+	Route::get('servicios/index', 'ServiciosController@index');	
+	Route::get('servicios/new', 'ServiciosController@create');
+	Route::post('servicios/new/servicio', 'ServiciosController@store');
+	Route::get('servicios/{id}', 'ServiciosController@edit');
+	Route::post('servicios/{id}/edit', 'ServiciosController@update');
+	Route::get('servicios/{id}/delete', 'ServiciosController@destroy');
+	Route::get('servicios/{id}/show', 'ServiciosController@show');
+	
 	//MANTENIMIENTO DE PROVEEDORES
 	Route::get('proveedor/index', 'ProveedorController@index');
 	Route::get('proveedor/new', 'ProveedorController@create');
@@ -104,7 +124,36 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('producto/{id}/edit', 'ProductoController@update');
 	Route::get('producto/{id}/delete', 'ProductoController@destroy');
 	Route::get('producto/{id}/show', 'ProductoController@show');
+
+
+	
+	//MANTENIMIENTO DE SORTEO
+	Route::post('agregar_sorteo','SorteoController@store');
+	Route::get('mostrar_sorteo','SorteoController@showSorteo');
+	Route::post('modificar_sorteo/{id}/update', 'SorteoController@update');
+	Route::get('modificar_sorteo/{id}','SorteoController@showEditSorteo');
+	
+	//MANTENIMIENTO DE AMBIENTES
+	Route::get('ambiente/index', 'AmbienteController@index');
+	Route::get('ambiente/search', 'AmbienteController@search');/*PAra buscar el ambiente y seleccionarlo para ACtividad*/	
+	Route::get('ambiente/new', 'AmbienteController@create');
+	Route::post('ambiente/new/ambiente', 'AmbienteController@store');
+	Route::get('ambiente/{id}', 'AmbienteController@edit');
+	Route::post('ambiente/{id}/edit', 'AmbienteController@update');
+	Route::get('ambiente/{id}/delete', 'AmbienteController@destroy');
+	Route::get('ambiente/{id}/show', 'AmbienteController@show');
+	Route::get('ambiente/{id}/select', 'AmbienteController@select');/*Para el seleccionar ambiente desde  Actividad*/
+	///MANTENIMIENTO DE ACTIVIDADES
+	Route::get('actividad/index', 'ActividadController@index');
+	Route::get('actividad/new', 'ActividadController@create');
+	Route::post('actividad/new/actividad', 'ActividadController@store');
+	Route::get('actividad/{id}', 'ActividadController@edit');
+	Route::post('actividad/{id}/edit', 'ActividadController@update');
+	Route::get('ambiente/{id}/delete', 'AmbienteController@destroy');
+	Route::get('actividad/{id}/show', 'ActividadController@show');
+
 });
+	
 
 /*Route::get('sede-a','SedesController@index');
 Route::get('newsede-a','SedesController@create');

@@ -3,8 +3,8 @@
 namespace papusclub\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use papusclub\Http\Requests;
+
 
 class adminGeneralController extends Controller
 {
@@ -41,5 +41,4 @@ class adminGeneralController extends Controller
     {
         return view('postulante-al-admin');
     }
-
 }

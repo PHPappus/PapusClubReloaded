@@ -9,6 +9,12 @@
 	{!!Html::style('../css/font-awesome.css')!!}
 	{!!Html::style('../css/bootstrap.css')!!}
 	{!!Html::style('../css/MisEstilos.css')!!}
+	<style>
+
+		.modal-backdrop.in{
+			z-index: 1;
+		}
+	</style>
 	
 </head>
 
@@ -94,13 +100,8 @@
 			      		<input type="comment" class="form-control" id="referenciaInput" name="referencia" value="{{$sede->referencia}}">
 			    	</div>
 			  	</div>
-			  	<div class="form-group">
-			    	<label for="activoInput" class="col-sm-4 control-label ">Activo</label>
-			    	<div class="col-sm-3">
-			      		<input type="checkbox"  class="checkbox" id="activoInput" name="estado" @if($sede['estado'] == true) checked @endif>
-			    	</div>	    	
-			  	</div>
-					<!-- FIN FIN FIN  -->
+			  	
+			  		<!-- FIN FIN FIN  -->
 				
 			
 				</br>
@@ -109,15 +110,47 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-success" type="submit" value="Confirmar">
+						<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Guardar">
 					</div>
 					<div class="btn-group">
-						<a href="/sedes/index" class="btn btn-danger">Cancelar</a>
+						<a href="/sedes/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>
 				</br>
 
+				<!-- VENTANA EMERGENTE INiCiO -->
+			  	 <div class="form-group">
+					<div class="col-sm-12 text-center">
+						
+						<!-- style="z-index:2; padding-top:100px;"
+						 --><!-- <button type="submit" class="btn btn-lg btn-primary">Registrar</button> -->
+						<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="confirmationLabel" data-keyboard="false" data-backdrop="static" style="position:relative">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<!-- Header de la ventana -->
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" onclick="cerrarventana()">&times;</span></button>
+										<h4 class="modal-title">EDITAR SEDE</h4>
+									</div>
+									<!-- Contenido de la ventana -->
+									<div class="modal-body">
+										<p>¿Desea guardar los cambios realizados?</p>
+									</div>
+									<div class="modal-footer">
+								        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cerrar</button>
+								        <button type="submit" class="btn btn-primary">Confirmar</button>
+							      	</div>
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>
+
+
+			  	
+			  	<!-- VENTANA EMERGENTE FIN -->
+			  	
 
 			</form>
 		</div>
@@ -128,7 +161,14 @@
 	{!!Html::script('../js/bootstrap.js')!!}
 	{!!Html::script('../js/jquery.bxslider.min.js')!!}
 	{!!Html::script('../js/MisScripts.js')!!}
-
+	<script>
+		function ventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 1;
+		}
+		function cerrarventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 3;
+		}
+  	</script>
 
 
 </body>
