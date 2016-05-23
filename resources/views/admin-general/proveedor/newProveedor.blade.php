@@ -29,9 +29,10 @@
 			<form method="POST" action="/proveedor/new/proveedor" class="form-horizontal form-border">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
+				<!-- Mensajes de error de validación del Request -->
 				<div class="col-sm-4"></div>
 				<div class="">
-			  		
+
 		  			@if ($errors->any())
 		  				<ul class="alert alert-danger fade in">
 		  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
