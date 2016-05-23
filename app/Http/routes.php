@@ -88,6 +88,39 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('sedes/{id}/edit', 'SedesController@update');
 	Route::get('sedes/{id}/delete', 'SedesController@destroy');
 	Route::get('sedes/{id}/show', 'SedesController@show');
+	
+	// Mantenimiento de Servicios LOL
+	Route::get('servicios/index', 'ServiciosController@index');	
+	Route::get('servicios/new', 'ServiciosController@create');
+	Route::post('servicios/new/servicio', 'ServiciosController@store');
+	Route::get('servicios/{id}', 'ServiciosController@edit');
+	Route::post('servicios/{id}/edit', 'ServiciosController@update');
+	Route::get('servicios/{id}/delete', 'ServiciosController@destroy');
+	Route::get('servicios/{id}/show', 'ServiciosController@show');
+	
+	//MANTENIMIENTO DE PROVEEDORES
+	Route::get('proveedor/index/', 'ProveedorController@index');
+	Route::get('proveedor/new', 'ProveedorController@create');
+	Route::post('proveedor/new/proveedor', 'ProveedorController@store');
+	Route::get('proveedor/{id}', 'ProveedorController@edit');
+	Route::post('proveedor/{id}/edit', 'ProveedorController@update');
+	Route::get('proveedor/{id}/delete', 'ProveedorController@destroy');
+	Route::get('proveedor/{id}/show', 'ProveedorController@show');
+	//MANTENIMIENTO DE PRODUCTOS
+	Route::get('producto/index', 'ProductoController@index');
+	Route::get('producto/new', 'ProductoController@create');
+	Route::post('producto/new/producto', 'ProductoController@store');
+	Route::get('producto/{id}', 'ProductoController@edit');
+	Route::post('producto/{id}/edit', 'ProductoController@update');
+	Route::get('producto/{id}/delete', 'ProductoController@destroy');
+	Route::get('producto/{id}/show', 'ProductoController@show');
+	
+	//MANTENIMIENTO DE SORTEO
+	Route::post('agregar_sorteo','SorteoController@store');
+	Route::get('mostrar_sorteo','SorteoController@showSorteo');
+	Route::post('modificar_sorteo/{id}/update', 'SorteoController@update');
+	Route::get('modificar_sorteo/{id}','SorteoController@showEditSorteo');
+	
 });
 
 /*Route::get('sede-a','SedesController@index');
