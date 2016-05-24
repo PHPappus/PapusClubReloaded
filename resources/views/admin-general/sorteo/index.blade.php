@@ -14,7 +14,7 @@
 </head>
 
 <body>
-@extends('layouts.headerandfooter_after_login')
+@extends('layouts.headerandfooter-al-admin')
 @section('content')
 	<div class="content" style="max-width: 100%;">
 	<div class="container" id="ruta-navegacion">	
