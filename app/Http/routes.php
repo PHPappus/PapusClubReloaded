@@ -125,13 +125,15 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('producto/{id}/delete', 'ProductoController@destroy');
 	Route::get('producto/{id}/show', 'ProductoController@show');
 
-
-	
 	//MANTENIMIENTO DE SORTEO
-	Route::post('agregar_sorteo','SorteoController@store');
-	Route::get('mostrar_sorteo','SorteoController@showSorteo');
-	Route::post('modificar_sorteo/{id}/update', 'SorteoController@update');
-	Route::get('modificar_sorteo/{id}','SorteoController@showEditSorteo');
+	Route::get('sorteo/index','SorteoController@index');
+	Route::get('sorteo/new','SorteoController@create');	
+	Route::post('sorteo/new/sorteo','SorteoController@store');	
+	Route::get('sorteo/{id}','SorteoController@edit');
+
+	Route::post('sorteo/{id}/edit', 'SorteoController@update');
+
+	Route::get('sorteo/editSorteo/{id}','SorteoController@showEditSorteo');
 	
 	//MANTENIMIENTO DE AMBIENTES
 	Route::get('ambiente/index', 'AmbienteController@index');
