@@ -39,10 +39,23 @@
 								<li><a href="postulante-al-admin" title="ir a postulante" target="_self">POSTULANTE</a></li>
 							</ul>
 						</li>
-						<li><a href="{!!URL::to('/sedes/index')!!}">SEDE</a></li>
-						<li><a href="#">AMBIENTE</a></li>
-						<li><a href="#">BUNGALOW</a></li>
-						<li><a href="#">ACTIVIDAD</a></li>
+						
+						<li><a href="{!!URL::to('/sedes/index')!!}">SEDE<span class="despliegue">▼</span></a>
+							<ul>
+								<li><a href="{!!URL::to('/sedes/new')!!}" title="ir a agregar sede" target="_self">AGREGAR</a></li>
+							</ul>
+						</li>
+						<li><a href="{!!URL::to('/ambiente/index')!!}">AMBIENTE<span class="despliegue">▼</span></a>
+						<ul>
+								<li><a href="{!!URL::to('/ambiente/new')!!}" title="ir a agregar sede" target="_self">AGREGAR</a></li>
+							</ul>
+						</li>
+						
+						<li><a href="{!!URL::to('/actividad/index')!!}">ACTIVIDAD<span class="despliegue">▼</span></a>
+						<ul>
+								<li><a href="{!!URL::to('/actividad/new')!!}" title="ir a agregar sede" target="_self">AGREGAR</a></li>
+							</ul>
+						</li>
 						<!-- Opción Actividades -->
 						<li><a href="#">TALLER<span class="despliegue">▼</span></a>
 							<ul>
@@ -50,14 +63,23 @@
 						</li>
 						<!-- Opción Eventos -->
 						<li><a href="#">SERVICIO</a></li>
-						<!-- Opción TRAMITES -->
-						<li><a href="#">PRODUCTO</a></li>
+						<!-- Opción TRAMITES -->						
+						<li><a href="{!!URL::to('/producto/index')!!}">PRODUCTO<span class="despliegue">▼</span></a>
+							<ul>
+								<li><a href="{!!URL::to('/producto/index')!!}">PRODUCTOS</a></li>
+								<li><a href="#">TIPOS DE PRODUCTOS</a></li>
+								<li><a href="#">VENTAS DE PRODUCTOS</a></li>
+							</ul>
+						</li>
 						<!-- Opción MANTENIMIENTO -->
 						<li><a href="#">PERFIL</a></li>
 						<!-- Opción MANTENIMIENTO -->
 						<li><a href="{{url('/membresia')}}">MEMBRESIA</a></li>
 						<!-- Opción TRÁMITES -->
-						<!--<li><a href="#">TRÁMITES</a></li>-->
+						<li><a href="#">TRÁMITES</a></li>
+						<!-- Opción Eventos -->
+						<li><a href="{!!URL::to('/proveedor/index')!!}">PROVEEDOR</a></li>
+
 					</ul>
 				</nav>
 			</div>
