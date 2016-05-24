@@ -100,13 +100,7 @@
 			    	</div>
 			  	</div>
 
-			  	<div class="form-group">
-			    	<label for="activoInput" class="col-sm-4 control-label ">Activo</label>
-			    	<div class="col-sm-3">
-			      		<input type="checkbox"  class="checkbox" id="activoInput" name="estado" @if($sede['estado'] == true) checked @endif disabled>
-			    	</div>	    	
-			  	</div>
-									
+			  						
 				<br/><br/>
 				
 				<div class="form-group">
