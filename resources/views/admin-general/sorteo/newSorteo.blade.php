@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,7 @@
 	
 </head>
 <body>
-@extends('layouts.headerandfooter_after_login')
+@extends('layouts.headerandfooter-al-admin')
 @section('content')
 <!---Cuerpo -->
 <main class="main">
@@ -23,9 +24,6 @@
 		<br/><br/>
 		
 		<div class="container">
-
-		
-
 			<div class="col-sm-12 text-left lead">
 					<strong>AGREGAR SORTEO</strong>
 			</div>		
@@ -33,29 +31,50 @@
 		<div class="container">
 			<form method="POST" action="/sorteo/new/sorteo" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				<div class="col-sm-4"></div>
+				<div class="">
+			  		
+		  			@if ($errors->any())
+		  				<ul class="alert alert-danger fade in">
+		  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  					@foreach ($errors->all() as $error)
+		  						<li>{{$error}}</li>
+		  					@endforeach
+		  				</ul>
+		  			@endif
+			  		
+				</div>
 				<br/><br/>
-				<div class="form-group">
+				<div class="col-sm-4"></div>
+				<div class="">
+			  		<font color="red"> 
+			  			(*) Dato Obligatorio
+			  		</font>		  			
+				</div>			
+			  	</br>
+			  	</br>
+				<div class="form-group required">
 					<label for="" class="control-label col-sm-5">NOMBRE DEL SORTEO:</label>
 					<div class="col-sm-7">
 						<input type="text" class="form-control" id="nombre_sorteo" name="nombre_sorteo" required style="max-width: 250px" >
 					</div>
 				</div>				
 
-				<div class="form-group">
+				<div class="form-group required">
 					<label for="" class="control-label col-sm-5">DESCRIPCION:</label>
 					<div class="col-sm-7">
 						<input type="text" class="form-control" id="descripcion" name="descripcion" required style="max-width: 250px" >
 					</div>
 				</div>
 				
-				<div class="form-group">
+				<div class="form-group ">
 					<label for="" class="control-label col-sm-5">FECHA ABIERTO:</label>
 					<div class="col-sm-7">
 						<input class="datepicker" type="text" id="dpd1" readonly="true" name="fecha_abierto" >						
 					</div>					
 				</div>
 				
-				<div class="form-group">
+				<div class="form-group ">
 					<label for="" class="control-label col-sm-5">FECHA CERRADO:</label>
 					<div class="col-sm-7">
 						<input class="datepicker" type="text" id="dpd2" readonly="true" name="fecha_cerrado" >						
@@ -115,7 +134,9 @@
 	</script>
 	<script>
 		$(function(){
-			$('.datepicker').datepicker();
+			$('.datepicker').datepicker({
+				format: 'dd/mm/yyyy'
+			});
 		});
 	</script>
 </body>

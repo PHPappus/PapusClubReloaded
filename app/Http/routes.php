@@ -130,10 +130,9 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('sorteo/new','SorteoController@create');	
 	Route::post('sorteo/new/sorteo','SorteoController@store');	
 	Route::get('sorteo/{id}','SorteoController@edit');
-
 	Route::post('sorteo/{id}/edit', 'SorteoController@update');
-
 	Route::get('sorteo/editSorteo/{id}','SorteoController@showEditSorteo');
+	Route::get('sorteo/{id}/delete', 'SorteoController@destroy');
 	
 	//MANTENIMIENTO DE AMBIENTES
 	Route::get('ambiente/index', 'AmbienteController@index');

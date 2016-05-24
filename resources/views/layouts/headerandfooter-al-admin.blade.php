@@ -106,9 +106,9 @@
 				</ul>
 				<ul class="terminos-condiciones">
 						<li><a href="#" title="Terminos y Condiciones">TÉRMINOS Y CONDICIONES</a></li>
-						<li><span><img class="PointImg" src="images/punto.png" width="3px" height="3px"></img></span></li>
+						<li><span><img class="PointImg" src="../images/punto.png" width="3px" height="3px"></img></span></li>
 						<li><a href="#" title="Privacidad">PRIVACIDAD</a></li>
-						<li><span><img class="PointImg" src="images/punto.png" width="3px" height="3px"></img></span></li>
+						<li><span><img class="PointImg" src="../images/punto.png" width="3px" height="3px"></img></span></li>
 				</ul>
 					
 			</div>
