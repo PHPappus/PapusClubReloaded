@@ -36,7 +36,7 @@
 							<ul>
 								<li><a href="#" title="ir a socio" target="_self">SOCIO</a></li>
 								<li><a href="#" title="ir a trabajador" target="_self">TRABAJADOR</a></li>
-								<li><a href="postulante-al-admin" title="ir a postulante" target="_self">POSTULANTE</a></li>
+								<li><a href="{!!URL::to('/postulante/index')!!}" title="ir a postulante" target="_self">POSTULANTE</a></li>
 							</ul>
 						</li>
 						
@@ -106,9 +106,9 @@
 				</ul>
 				<ul class="terminos-condiciones">
 						<li><a href="#" title="Terminos y Condiciones">TÉRMINOS Y CONDICIONES</a></li>
-						<li><span><img class="PointImg" src="images/punto.png" width="3px" height="3px"></img></span></li>
+						<li><span><img class="PointImg" src="../images/punto.png" width="3px" height="3px"></img></span></li>
 						<li><a href="#" title="Privacidad">PRIVACIDAD</a></li>
-						<li><span><img class="PointImg" src="images/punto.png" width="3px" height="3px"></img></span></li>
+						<li><span><img class="PointImg" src="../images/punto.png" width="3px" height="3px"></img></span></li>
 				</ul>
 					
 			</div>

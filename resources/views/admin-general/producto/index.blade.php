@@ -25,6 +25,17 @@
 			
 		</div>
 	</div>
+
+	<!-- Mensaje de éxito luego de registrar -->
+	@if (session('stored'))
+		<script>$("#modalSuccess").modal("show");</script>
+		
+		<div class="alert alert-success fade in">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>¡Éxito!</strong> {{session('stored')}}
+		</div>
+	@endif
+
 	<div class="container">
 		<div class="form-group">
 			<div class="col-sm-16 text-right">
@@ -121,4 +132,24 @@
 		});
 	</script>
 
+	<!-- Modal Success -->
+	<div id="modalSuccess" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">¡Éxito!</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>{{session('stored')}}</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>           
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
 </html>

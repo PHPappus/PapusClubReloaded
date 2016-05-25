@@ -14,9 +14,7 @@ class ProductoController extends Controller
 {
     //Muestra la lista de productos que se encuentran en BD, estas se pueden modificar, cambiar el estado, ver mas detalle o registrar un nuevo producto
     public function index() {
-
 		$productos = Producto::all()->where('estado', 1);
-
         return view('admin-general.producto.index', compact('productos'));
 	}	
 
@@ -36,7 +34,7 @@ class ProductoController extends Controller
     	
         $producto->save();	    
         
-        return redirect('producto/index');
+        return redirect('producto/index')->with('stored', 'Se registró el producto correctamente.');
     }
 	
 	//Muestra el formulario para poder modificar un producto
@@ -59,7 +57,7 @@ class ProductoController extends Controller
         
         $producto->save();
         
-        return redirect('producto/index');
+        return redirect('producto/index')->with('stored', 'Se actualizó el producto correctamente.');
 
     }
 

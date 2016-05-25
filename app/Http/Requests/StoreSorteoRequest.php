@@ -26,8 +26,8 @@ class StoreSorteoRequest extends Request
         return [
             'nombre_sorteo'          =>  'required|max:100|string',
             'descripcion'       =>  'required|max:100|string',            
-            'fecha_abierto'      =>  'required|date',            
-            'fecha_cerrado'      =>  'required|date',                        
+            'fecha_abierto'      =>  'required|string',            
+            'fecha_cerrado'      =>  'required|string',                        
         ];
     }
 }

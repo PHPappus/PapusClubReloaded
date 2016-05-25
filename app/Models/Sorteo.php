@@ -3,13 +3,13 @@
 namespace papusclub\Models;
 
 use Illuminate\Database\Eloquent\Model;
-//use Illuminate\Database\Eloquent\SoftDeletes
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Sorteo extends Model
 {
-	//use SoftDeletes;
+	use SoftDeletes;
 
     protected $table='sorteo';
-    //protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];
     
 }
