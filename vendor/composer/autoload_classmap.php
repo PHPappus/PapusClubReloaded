@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-<<<<<<< HEAD
     'ActividadTableSeeder' => $baseDir . '/database/seeds/ActividadTableSeeder.php',
     'AddFkToActividadesTable' => $baseDir . '/database/migrations/2016_05_22_172234_add_fk_to_actividades_table.php',
     'AddFkToAmbientesTable' => $baseDir . '/database/migrations/2016_05_20_163117_add_fk_to_ambientes_table.php',
@@ -16,17 +15,12 @@ return array(
     'CreateAmbientesTable' => $baseDir . '/database/migrations/2016_05_20_163007_create_ambientes_table.php',
     'CreateMaestroProductoTable' => $baseDir . '/database/migrations/2016_05_21_152952_create_maestro_producto_table.php',
     'CreateMaestroProveedorTable' => $baseDir . '/database/migrations/2016_05_06_042135_create_maestro_proveedor_table.php',
-    'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
-    'CreatePerfilsTable' => $baseDir . '/database/migrations/2016_05_17_022327_create_perfils_table.php',
-    'CreateSedesTable' => $baseDir . '/database/migrations/2016_05_06_144850_create_sedes_table.php',
-    'CreateSorteoTable' => $baseDir . '/database/migrations/2016_05_20_005933_create_sorteo_table.php',
-=======
     'CreateMultaTable' => $baseDir . '/database/migrations/2016_05_24_220332_create_multa_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePerfilsTable' => $baseDir . '/database/migrations/2016_05_17_022327_create_perfils_table.php',
     'CreateSedesTable' => $baseDir . '/database/migrations/2016_05_06_144850_create_sedes_table.php',
+    'CreateSorteoTable' => $baseDir . '/database/migrations/2016_05_20_005933_create_sorteo_table.php',
     'CreateTallerTable' => $baseDir . '/database/migrations/2016_05_23_000724_create_taller_table.php',
->>>>>>> oso
     'CreateTarifaMembresiaTable' => $baseDir . '/database/migrations/2016_05_20_175024_create_tarifa_membresia_table.php',
     'CreateTarifaTallerTable' => $baseDir . '/database/migrations/2016_05_23_002208_create_tarifa_taller_table.php',
     'CreateTarifarioTable' => $baseDir . '/database/migrations/2016_05_20_202043_create_tarifario_table.php',
