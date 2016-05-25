@@ -45,7 +45,7 @@ class SorteoController extends Controller
         $sorteo->fecha_cerrado=$carbon->createFromFormat('d-m-Y', $date)->toDateString();
         
         $sorteo->save();
-        return redirect('sorteo/index');
+        return redirect('sorteo/index')->with('stored', 'Se registró el producto correctamente.');
     }
 
        public function edit($id)
@@ -75,6 +75,13 @@ class SorteoController extends Controller
         $sorteo->fecha_cerrado=$carbon->createFromFormat('d-m-Y', $date)->toDateString();       
 
         $sorteo->save();
-        return redirect('sorteo/index');
+        return redirect('sorteo/index')->with('stored', 'Se actualizó el producto correctamente.');
+    }
+
+    public function destroy($id)
+    {
+        $sorteo=Sorteo::find($id);
+        $sorteo->delete();
+        return back();
     }
 }
