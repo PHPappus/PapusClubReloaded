@@ -89,6 +89,18 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('membresia/{membresia}/editar','MembresiaController@edit');
 	Route::patch('membresia/{membresia}/edit','MembresiaController@update');
 
+
+
+	//MANTENIMIENTO DE MULTAS
+
+	Route::get('multa/','MultaController@index');
+	Route::get('multa/new','MultaController@create');
+	Route::get('multa/{multa}/','MultaController@show');
+	Route::post('multa/new/save','MultaController@store');
+	Route::get('multa/{multa}/editar','MultaController@edit');
+	Route::patch('multa/{multa}/edit','MultaController@update');
+
+
 	//MANTENIMIENTO DE SEDES
 	Route::get('sedes/index', 'SedesController@index');
 	Route::get('sedes/new', 'SedesController@create');
@@ -97,6 +109,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('sedes/{id}/edit', 'SedesController@update');
 	Route::get('sedes/{id}/delete', 'SedesController@destroy');
 	Route::get('sedes/{id}/show', 'SedesController@show');
+
 
 	
 	// Mantenimiento de Servicios LOL
@@ -152,6 +165,13 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('actividad/{id}/edit', 'ActividadController@update');
 	Route::get('ambiente/{id}/delete', 'AmbienteController@destroy');
 	Route::get('actividad/{id}/show', 'ActividadController@show');
+
+	//MANTENIMIENTO DE TALLERES
+	Route::get('talleres/','TallerController@index');
+	Route::get('talleres/new','TallerController@create');
+
+	
+
 
 });
 	
