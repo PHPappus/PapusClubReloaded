@@ -10,8 +10,7 @@ class Postulante extends Model
     protected $table = 'postulante';
     protected $fillable = 
     ['ruc', 
-    'direccion', 
-    'carnet_extranjeria', 
+    'direccion',  
     'pais_nacimiento', 
     'lugar_nacimiento', 
     'colegio_primario', 

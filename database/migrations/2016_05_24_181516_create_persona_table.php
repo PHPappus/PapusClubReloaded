@@ -14,7 +14,9 @@ class CreatePersonaTable extends Migration
     {
         Schema::create('persona', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('doc_identidad'); //si es una empresa la que se registra este campo queda vacio
+            $table->string('nacionalidad');//determina si guardo carnet de extranjeria o DNI
+            $table->string('doc_identidad'); //si es una empresa la que se registra este campo queda vacio
+            $table->string('carnet_extranjeria');// en caso lo tenga
             $table->string('nombre');       
             $table->string('ap_paterno');
             $table->string('ap_materno');       

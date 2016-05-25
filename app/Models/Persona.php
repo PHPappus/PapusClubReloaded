@@ -9,7 +9,9 @@ class Persona extends Model
     use SoftDeletes;
     protected $table = 'persona';
     protected $fillable = 
-    ['doc_identidad', 
+    ['nacionalidad',
+    'doc_identidad', 
+    'carnet_extranjeria',
     'nombre', 
     'ap_paterno', 
     'ap_materno', 

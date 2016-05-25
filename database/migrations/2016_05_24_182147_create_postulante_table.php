@@ -27,7 +27,6 @@ class CreatePostulanteTable extends Migration
             $table->string('direccion');
 
             //en caso sea extranjero
-            $table->string('carnet_extranjeria');// en caso lo tenga
             $table->string('pais_nacimiento'); //Esto deermina el pais Peru
             $table->string('lugar_nacimiento'); //esto es una cadena Av. SiempreViva 123
             
