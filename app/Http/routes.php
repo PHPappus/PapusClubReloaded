@@ -81,6 +81,13 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('cuenta-a','AdminGeneralController@cuenta');
 	Route::get('postulante-al-admin','AdminGeneralController@postulante');
 
+	//MANTENIMIENTO DE POSTULANTE
+	Route::get('postulante/index','PostulanteController@index');
+	Route::get('postulante/search','PostulanteController@buscar');
+	Route::get('postulante/new','PostulanteController@registrar');
+	//MANTENIMIENTO DE TRABAJADOR
+	//MANTENIMIENTO DE SOCIO
+
 	//MANTENIMIENTO DE MEMBRESIA
 	Route::get('membresia/','MembresiaController@index');
 	Route::get('membresia/new','MembresiaController@create');

@@ -36,7 +36,7 @@
 							<ul>
 								<li><a href="#" title="ir a socio" target="_self">SOCIO</a></li>
 								<li><a href="#" title="ir a trabajador" target="_self">TRABAJADOR</a></li>
-								<li><a href="postulante-al-admin" title="ir a postulante" target="_self">POSTULANTE</a></li>
+								<li><a href="{!!URL::to('/postulante/index')!!}" title="ir a postulante" target="_self">POSTULANTE</a></li>
 							</ul>
 						</li>
 						

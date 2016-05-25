@@ -17,7 +17,10 @@
 
 <body>
 @extends('layouts.headerandfooter-al-admin')
+
 @section('content')	
+
+	<!--<div class="content" style="max-width: 100%;">-->
 	<div class="container" id="ruta-navegacion">	
 		<!-- Utilizando Bootstrap -->
 		<br/><br/>		
