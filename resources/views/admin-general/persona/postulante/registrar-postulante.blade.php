@@ -9,8 +9,19 @@
 
 <!--Aqui viene la magia-->
 
+<style>
+	#map-canvas{
+		height: 500px;
+		width: 500px;
+		margin: 0px;
+		padding: 0px;
+	}
+</style>
 
 
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&libraries=places"></script>
 
 
 
@@ -146,42 +157,32 @@
 							</div>
 
 							<div role="tabpanel" class="tab-pane" id="seccion6">
-								<form action="registrar-postulante_submit" method="get" accept-charset="utf-8">
-									
-									<div class="form-group">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Longitud:</label>
-											</div>
-											<div class="col-sm-6">
-												<input type="text" disabled="true" class="form-control" id="txtboxlongitud" name="longitud" placeholder="Longitud" style="max-width: 250px" required>
-											</div>	
+								<div class="container">
+									{{Form::open(array('url'=>'/vendor/add', 'files' => true))}}
+										<div class="form-group">
+											<label for="">Title</label>
+											<input type="text" name="form-control input-sm" name="title">
 										</div>
-									</div>
 
-									<div class="form-group">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Latitud:</label>
-											</div>
-											<div class="col-sm-6">
-												<input type="text" disabled="true" class="form-control" id="txtboxlatitud" name="latitud" placeholder="Latitud" style="max-width: 250px" required>
-											</div>	
+										<div class="form-group">
+											<label for="">Map</label>
+											<input type="text" id="searchmap">
+											<div id="map-canvas"></div>
 										</div>
-									</div>
 
-									<div class="form-group">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Lugar:</label>
-											</div>
-											<div class="col-sm-6">
-											</div>	
+										<div class="form-group">
+											<label for="">Lat</label>
+											<input type="text" class="form-control input-sm" name="lat" id="lat">
 										</div>
-									</div>
 
-								</form>
-                                          
+										<div class="form-group">
+											<label for="">Lng</label>
+											<input type="text" class="form-control input-sm" name="lng" id="lng">
+										</div>
+
+										<button class="btn btn-sm btn-danger">Save</button>
+									{{Form::close()}}
+								</div>      
 							</div>
 
 
@@ -191,6 +192,8 @@
 				</div>
 			</form>
 		</div>
+
+
 @stop
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -206,6 +209,60 @@
 	{!!Html::script('js/MisScripts.js')!!}
 
 	{!!Html::script('js/bootstrap-datepicker.js')!!}
+
+
+	<script>
+
+	function initialize(){
+		
+		
+		var map= new google.maps.Map(document.getElementById('map-canvas'), {
+			center:{
+				lat:27.72,
+				lng:85.36
+			},
+			zoom:15
+		});
+
+		var marker= new google.maps.Marker({
+			position:{
+				lat:27.72,
+				lng:85.36
+			},
+			map: map,
+			draggable:true
+		});
+
+		var searchBox = new google.maps.places.SearchBox(document.getElementById('searchmap'));
+
+		google.maps.event.addListener(searchBox,'places_changed', function(){
+
+			var places = searchBox.getPlaces();
+			var bounds = new google.maps.LatLngBounds();
+
+			for(i=0;place=places[i];i++){
+				bounds.extend(place.geometry.location);
+				marker.setPosition(place.geometry.location); //set marker position new
+			}
+
+			map.fitBounds(bounds);
+			map.setZoom(15);
+		});
+
+		google.maps.event.addListener(marker,'position_changed',function(){
+
+			var lat=marker.getPosition().lat();
+			var lng=marker.getPosition()-lng();
+
+			$('#lat').val(lat);
+			$('#lat').val(lng);
+
+
+		});
+
+	}
+	google.maps.event.addDomListener(window,"load",initialize);	
+	</script>
 
 
 
