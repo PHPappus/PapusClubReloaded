@@ -53,7 +53,7 @@
 									<td>{{$sorteo->fecha_abierto}}</td>
 									<td>{{$sorteo->fecha_cerrado}}</td>		
 									<td>
-					              	<a class="btn btn-info" href="{{url('modificar_sorteo/'.$sorteo->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+					              	<a class="btn btn-info" href="{{url('/sorteo/'.$sorteo->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 					            </td>
 								</tr>
 							</form>
@@ -75,5 +75,16 @@
 	<script src="js/jquery.bxslider.min.js"></script>
 	<!-- Mis Scripts -->
 	<script src="js/MisScripts.js"></script>
+	
+	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
+	<script>
+		$(document).ready(function() {
+		   $('#example').DataTable( {
+		       "language": {
+		           "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+		       }
+		  	});
+  		});
+	</script>
 </body>
 </html>

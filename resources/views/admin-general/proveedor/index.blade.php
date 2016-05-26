@@ -48,7 +48,7 @@
 
 		<div class="table-responsive">
 			<div class="container">
-				<table class="table table-bordered table-hover text-center display" id="example">
+				<table class="table table-bordered table-hover text-center">
 						<thead class="active" data-sortable="true">
 							<th><div align=center>PROVEEDOR</div> </th>
 							<th><div align=center>RUC</div></th>
