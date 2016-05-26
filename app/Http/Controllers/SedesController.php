@@ -41,10 +41,8 @@ class SedesController extends Controller
         $sede->nombre_contacto = $input['nombre_contacto'];
         $sede->capacidad_maxima = $input['capacidad_maxima'];
         $sede->capacidad_socio = $input['capacidad_socio'];
-        $sede->estado = true;
-
         $sede->save();
-        return back();
+        return redirect('sedes/index')->with('stored', 'Se registró la sede correctamente.');
     
     }
 
@@ -71,25 +69,29 @@ class SedesController extends Controller
         $sede->nombre_contacto = $input['nombre_contacto'];
         $sede->capacidad_maxima = $input['capacidad_maxima'];
         $sede->capacidad_socio = $input['capacidad_socio'];
-        
-        if($request['estado']==null){
-            $sede->estado = false;
-        }
-        else {
-            $sede->estado = true;    
-        }
-
         $sede->save();
-        return back();
+        return redirect('sedes/index');
 
     }
 
     //Se cambia el estado de una sede a inactiva
     public function destroy($id)    
     {
-        $sede = Sede::find($id);
-        $sede->estado = false;
-        $sede->save();
+        $sede = Sede::find($id);        
+        $ambientes = $sede->ambientes;
+        
+        if($ambientes->count()) {
+            foreach ($ambientes as $ambiente) {
+                $actividades = $ambiente->actividades;
+                if($actividades->count()){
+                    foreach ($actividades as $actividad) {
+                        $actividad->delete();
+                    }    
+                }
+                $ambiente->delete();
+            }
+        }
+        $sede->delete();
         return back();
     }
 

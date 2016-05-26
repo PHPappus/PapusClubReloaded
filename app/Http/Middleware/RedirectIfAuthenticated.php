@@ -22,19 +22,19 @@ class RedirectIfAuthenticated
         if (Auth::guard($guard)->check()) {
             switch (\Auth::user()->perfil_id) {
                 case '1':
-                    return '/socio';
+                    return redirect('/socio');
                     break;
                 case '2':
-                    return '/admin-general';
+                    return redirect('/admin-general');
                     break;
                 case '3':
-                    return '/admin-pagos';
+                    return redirect('/admin-pagos');
                     break;
                 case '4':
-                    return '/admin-registros';
+                    return redirect('/admin-registros');
                     break;
                 case '5':
-                    return '/gerente';
+                    return redirect('/gerente');
                     break;
                 default:
                     return redirect('/');
