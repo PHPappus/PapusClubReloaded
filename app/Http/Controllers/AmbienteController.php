@@ -44,7 +44,7 @@ class AmbienteController extends Controller
         $ambiente->tipo_ambiente= $input['tipo_ambiente'];
         $ambiente->ubicacion= $input['ubicacion'];
         $ambiente->save();
-        return redirect('ambiente/index');
+        return redirect('ambiente/index')->with('stored', 'Se registró el ambiente correctamente.');
     }
     //Muestra el formulario para poder modificar un ambiente
     public function edit($id)
@@ -73,6 +73,13 @@ class AmbienteController extends Controller
     public function destroy($id)    
     {
         $ambiente = Ambiente::find($id);
+        $actividades = $ambiente->actividades;
+
+        if($actividades->count()){
+            foreach ($actividades as $actividad) {
+                $actividad->delete();
+            }
+        }
         $ambiente->delete();
         return back();
     }

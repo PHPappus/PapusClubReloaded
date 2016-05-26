@@ -42,7 +42,7 @@ class ActividadController extends Controller
         $actividad->descripcion= $input['descripcion'];
         $actividad->a_realizarse_en=now()->addDay(); 
         $actividad->save();
-        return redirect('actividad/index');
+        return redirect('actividad/index')->with('stored', 'Se registró la actividad correctamente.');
     }
     //Muestra el formulario para poder modificar una actividad
     public function edit($id)
