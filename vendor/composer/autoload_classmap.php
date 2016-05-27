@@ -12,9 +12,14 @@ return array(
     'AddFkToMaestroPersona' => $baseDir . '/database/migrations/2016_05_24_201138_add_fk_to_maestro_persona.php',
     'AddFkToMaestroPostulante' => $baseDir . '/database/migrations/2016_05_24_200234_add_fk_to_maestro_postulante.php',
     'AmbienteTableSeeder' => $baseDir . '/database/seeds/AmbienteTableSeeder.php',
+<<<<<<< HEAD
+=======
+    'ConfiguracionTableSeeder' => $baseDir . '/database/seeds/ConfiguracionTableSeeder.php',
+>>>>>>> mjjj
     'CrateServiciosTable' => $baseDir . '/database/migrations/2016_05_21_023229_crate_servicios_table.php',
     'CreateActividadesTable' => $baseDir . '/database/migrations/2016_05_22_171858_create_actividades_table.php',
     'CreateAmbientesTable' => $baseDir . '/database/migrations/2016_05_20_163007_create_ambientes_table.php',
+    'CreateConfiguracionTable' => $baseDir . '/database/migrations/2016_05_26_194248_create_configuracion_table.php',
     'CreateMaestroProductoTable' => $baseDir . '/database/migrations/2016_05_21_152952_create_maestro_producto_table.php',
     'CreateMaestroProveedorTable' => $baseDir . '/database/migrations/2016_05_06_042135_create_maestro_proveedor_table.php',
     'CreateMultaTable' => $baseDir . '/database/migrations/2016_05_24_220332_create_multa_table.php',

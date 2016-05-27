@@ -266,9 +266,14 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'AddFkToMaestroPersona' => __DIR__ . '/../..' . '/database/migrations/2016_05_24_201138_add_fk_to_maestro_persona.php',
         'AddFkToMaestroPostulante' => __DIR__ . '/../..' . '/database/migrations/2016_05_24_200234_add_fk_to_maestro_postulante.php',
         'AmbienteTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AmbienteTableSeeder.php',
+<<<<<<< HEAD
+=======
+        'ConfiguracionTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ConfiguracionTableSeeder.php',
+>>>>>>> mjjj
         'CrateServiciosTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_21_023229_crate_servicios_table.php',
         'CreateActividadesTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_22_171858_create_actividades_table.php',
         'CreateAmbientesTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_20_163007_create_ambientes_table.php',
+        'CreateConfiguracionTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_26_194248_create_configuracion_table.php',
         'CreateMaestroProductoTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_21_152952_create_maestro_producto_table.php',
         'CreateMaestroProveedorTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_06_042135_create_maestro_proveedor_table.php',
         'CreateMultaTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_24_220332_create_multa_table.php',
