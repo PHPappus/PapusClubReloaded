@@ -50,7 +50,7 @@
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" >
 			    	</div>
 			  	</div>
 
@@ -157,7 +157,6 @@
 	<script src="/js/jquery.bxslider.min.js"></script>
 	<!-- Mis Scripts -->
 	<script src="/js/MisScripts.js"></script>
-
 
 
 

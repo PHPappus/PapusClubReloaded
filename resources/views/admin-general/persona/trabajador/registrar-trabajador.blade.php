@@ -312,7 +312,7 @@
 		}
   	</script>
 
-  	<script>
+  	<!--<script>
 		function inputLimiter(e,allow) {
 		    var AllowableCharacters = '';
 
@@ -333,4 +333,4 @@
 		        return true;
 		    }
 		} 
-  	</script>
+  	</script>-->
