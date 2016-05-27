@@ -41,20 +41,20 @@
 						</li>
 						
 						<li><a href="{!!URL::to('/sedes/index')!!}">SEDE<span class="despliegue">▼</span></a>
-							<ul>
+							<!-- <ul>
 								<li><a href="{!!URL::to('/sedes/new')!!}" title="ir a agregar sede" target="_self">AGREGAR</a></li>
-							</ul>
+							</ul> -->
 						</li>
 						<li><a href="{!!URL::to('/ambiente/index')!!}">AMBIENTE<span class="despliegue">▼</span></a>
-						<ul>
+						<!-- <ul>
 								<li><a href="{!!URL::to('/ambiente/new')!!}" title="ir a agregar sede" target="_self">AGREGAR</a></li>
-							</ul>
+							</ul> -->
 						</li>
 						
 						<li><a href="{!!URL::to('/actividad/index')!!}">ACTIVIDAD<span class="despliegue">▼</span></a>
-						<ul>
+						<!-- <ul>
 								<li><a href="{!!URL::to('/actividad/new')!!}" title="ir a agregar sede" target="_self">AGREGAR</a></li>
-							</ul>
+							</ul> -->
 						</li>
 						<!-- Opción Actividades -->
 						<li><a href="#">TALLER<span class="despliegue">▼</span></a>

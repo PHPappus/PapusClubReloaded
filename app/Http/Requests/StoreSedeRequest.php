@@ -30,7 +30,7 @@ class StoreSedeRequest extends Request
             'provincia'      =>  'required|max:100|string',
             'distrito'      =>  'required|max:100|string',
             'direccion'         =>  'required|max:100|string',
-            'referencia'         =>  'required|max:100|string',
+            'referencia'         =>  'max:100|string',
             'nombre_contacto'         =>  'required|max:100|string',
             'capacidad_maxima'      =>  'integer|min:1',
             'capacidad_socio'      =>  'integer|min:1',
