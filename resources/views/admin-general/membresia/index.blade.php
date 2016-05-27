@@ -25,14 +25,6 @@
 			
 		</div>
 	</div>
-	<div class="container">
-		<div class="form-group">
-			<div class="col-sm-16 text-right">
-				<a class="btn btn-info" href="{{url('/membresia/new')}}" title="Registrar Membresia" ><i class="glyphicon glyphicon-plus" ></i> </a>	
-			</div>
-		</div>
-		<br/>
-	</div>
 
 		<div class="table-responsive">
 			<div class="container">
@@ -40,7 +32,7 @@
 						<thead class="active">
 							<th><div align=center>TIPO</div> </th>
 							<th><div align=center>INVITADOS</div></th>
-							<th><div align=center>U.M</div></th>
+							<th><div align=center>MONEDA</div></th>
 							<th><div align=center>MONTO</div></th>
 							<th><div align=center>CONSULTAR</div></th>
 							<th><div align=center>ELIMINAR</div></th>
@@ -65,6 +57,14 @@
 				</table>			
 			</div>		
 		</div>
+		<div class="container">
+			<div class="form-group">
+				<div class="col-sm-8 text-right">
+					<a class="btn btn-info" href="{{url('/membresia/new')}}" title="Registrar Membresia" >Agregar</a>	
+				</div>
+			</div>
+			<br/>
+		</div>		
 	
 
 		
