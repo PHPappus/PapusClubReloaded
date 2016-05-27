@@ -18,8 +18,7 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-12 text-left">
-				<br/><br/>
+			<div class="col-sm-12 text-left">				
 				<p class="lead"><strong>PROVEEDORES</strong></p>
 				<br/>
 			</div>

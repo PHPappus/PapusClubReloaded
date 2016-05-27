@@ -28,7 +28,7 @@ class StoreProveedorRequest extends Request
             'ruc'               =>  'required|numeric',            
             'direccion'         =>  'required|string|max:255',
             'telefono'          =>  'required|numeric',
-            'correo'            =>  'required|string|max:255',            
+            'correo'            =>  'required|email|max:255',            
             'nombre_responsable' =>  'required|string|max:255',
             'estado'            =>  'required|integer'
         ];

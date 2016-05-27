@@ -86,7 +86,7 @@
 			  	<div class="form-group required">
 			    	<label for="capacidadSocioInput" class="col-sm-4 control-label">Correo</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" >
+			      		<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo">
 			    	</div>
 			  	</div>
 			  	

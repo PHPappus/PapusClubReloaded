@@ -18,7 +18,6 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 text-left">
-				<br/><br/>
 				<p class="lead"><strong>PRODUCTOS</strong></p>
 				<br/>
 			</div>
