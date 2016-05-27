@@ -71,7 +71,7 @@
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre de la actividad" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre de la actividad" >
 			    	</div>
 			  	</div>
 
@@ -96,7 +96,7 @@
 			  	<div class="form-group required">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">DESCRIPCIÓN</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" >
 			    	</div>
 			  	</div>
 			  	<div class="form-group required">
@@ -114,7 +114,7 @@
 			  	<div class="form-group required">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" class="form-control" id="capacidadInput" name="capacidad_maxima" placeholder="Capacidad Maxima" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="capacidadInput" name="capacidad_maxima" placeholder="Capacidad Maxima" >
 			    	</div>
 			  	</div>	  	
 			  	
