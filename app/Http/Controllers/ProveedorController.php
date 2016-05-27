@@ -34,7 +34,7 @@ class ProveedorController extends Controller
 		$proveedor->telefono = $input['telefono'];
 		$proveedor->correo = $input['correo'];
 		$proveedor->nombre_responsable = $input['nombre_responsable'];
-		$proveedor->estado = $input['estado'];
+		$proveedor->estado = 1;
     	
         $proveedor->save();	        
         return redirect('proveedor/index')->with('stored', 'Se registró el proveedor correctamente.');

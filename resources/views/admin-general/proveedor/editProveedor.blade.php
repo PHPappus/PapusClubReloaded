@@ -113,7 +113,7 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-success" data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Guardar">
+						<input class="btn btn-success" data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Aceptar">
 					</div>
 					<div class="btn-group">
 						<a href="/proveedor/index" class="btn btn-danger">Cancelar</a>

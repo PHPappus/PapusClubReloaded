@@ -37,54 +37,55 @@
 		</div>
 	@endif
 
+		
+	<div class="table-responsive">
+		<div class="container">
+			<table class="table table-bordered table-hover text-center display" id="example">
+					<thead class="active" data-sortable="true">
+						<th><div align=center>PROVEEDOR</div> </th>
+						<th><div align=center>RUC</div></th>
+						<th><div align=center>DIRECCION</div></th>
+						<th><div align=center>TELÉFONO</div></th>
+						<th><div align=center>DETALLE</div></th>
+						<th><div align=center>EDITAR</div></th>
+						<th><div align=center>ELIMINAR</div></th>
+					</thead>
+
+								
+					<tbody>
+						@foreach($proveedores as $proveedor)			
+						<tr>
+							<td>{{ $proveedor->nombre_proveedor }}</td>
+							<td>{{ $proveedor->ruc }}</td>
+ 							<td>{{ $proveedor->direccion }}</td>
+							<td>{{ $proveedor->telefono }}</td>
+							<td>
+				              	<a class="btn btn-info" href="{{url('/proveedor/'.$proveedor->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+				            </td>
+							<td>
+				              	<a class="btn btn-info" href="{{url('/proveedor/'.$proveedor->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+				            </td>
+				            <td>
+				              	<a class="btn btn-info"  title="Eliminar" data-href="{{url('/proveedor/'.$proveedor->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>             
+				            </td>
+				        </tr>
+			        	@endforeach    
+					</tbody>						
+					
+			</table>			
+		</div>		
+	</div>
+	
+
+	<br/>
 	<div class="container">		
 		<div class="form-group">
 			<div class="col-sm-16 text-right">
-				<a class="btn btn-info" href="{{url('/proveedor/new')}}" title="Registrar Proveedor" ><i class="glyphicon glyphicon-plus" ></i> </a>	
+				<a class="btn btn-info" href="{{url('/proveedor/new')}}" title="Registrar Proveedor" >Agregar Proveedor<i class="glyphicon" ></i> </a>	
 			</div>
 		</div>
 		<br/>
 	</div>
-
-		<div class="table-responsive">
-			<div class="container">
-				<table class="table table-bordered table-hover text-center">
-						<thead class="active" data-sortable="true">
-							<th><div align=center>PROVEEDOR</div> </th>
-							<th><div align=center>RUC</div></th>
-							<th><div align=center>DIRECCION</div></th>
-							<th><div align=center>TELÉFONO</div></th>
-							<th><div align=center>DETALLE</div></th>
-							<th><div align=center>EDITAR</div></th>
-							<th><div align=center>ELIMINAR</div></th>
-						</thead>
-
-									
-						<tbody>
-							@foreach($proveedores as $proveedor)			
-							<tr>
-								<td>{{ $proveedor->nombre_proveedor }}</td>
-								<td>{{ $proveedor->ruc }}</td>
-	 							<td>{{ $proveedor->direccion }}</td>
-								<td>{{ $proveedor->telefono }}</td>
-								<td>
-					              	<a class="btn btn-info" href="{{url('/proveedor/'.$proveedor->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-					            </td>
-								<td>
-					              	<a class="btn btn-info" href="{{url('/proveedor/'.$proveedor->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
-					            </td>
-					            <td>
-					              	<a class="btn btn-info"  title="Eliminar" data-href="{{url('/proveedor/'.$proveedor->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>             
-					            </td>
-					        </tr>
-				        	@endforeach    
-						</tbody>						
-						
-				</table>			
-			</div>		
-		</div>
-	
-
 		
 
 

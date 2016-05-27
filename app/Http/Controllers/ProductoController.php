@@ -29,7 +29,7 @@ class ProductoController extends Controller
         $producto = new Producto();
     	$producto->nombre = $input['nombre'];
 		$producto->descripcion = $input['descripcion'];
-		$producto->estado = $input['estado'];
+		$producto->estado = 1;
 		$producto->id_tipo_producto = $input['id_tipo_producto'];		
     	
         $producto->save();	    

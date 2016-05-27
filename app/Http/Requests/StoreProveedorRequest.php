@@ -24,7 +24,7 @@ class StoreProveedorRequest extends Request
     public function rules()
     {
          return [            
-            'nombre_proveedor'   =>  'required|string|max:255',
+            'nombre_proveedor'   =>  array('required','Regex:/[A-Za-z .]/'),
             'ruc'               =>  'required|numeric',            
             'direccion'         =>  'required|string|max:255',
             'telefono'          =>  'required|numeric',
