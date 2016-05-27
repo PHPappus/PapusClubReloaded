@@ -266,10 +266,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'AddFkToMaestroPersona' => __DIR__ . '/../..' . '/database/migrations/2016_05_24_201138_add_fk_to_maestro_persona.php',
         'AddFkToMaestroPostulante' => __DIR__ . '/../..' . '/database/migrations/2016_05_24_200234_add_fk_to_maestro_postulante.php',
         'AmbienteTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AmbienteTableSeeder.php',
-<<<<<<< HEAD
-=======
         'ConfiguracionTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ConfiguracionTableSeeder.php',
->>>>>>> mjjj
         'CrateServiciosTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_21_023229_crate_servicios_table.php',
         'CreateActividadesTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_22_171858_create_actividades_table.php',
         'CreateAmbientesTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_20_163007_create_ambientes_table.php',
