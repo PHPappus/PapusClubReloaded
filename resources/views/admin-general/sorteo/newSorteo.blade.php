@@ -9,8 +9,8 @@
 	<link rel="stylesheet" href="../css/jquery.bxslider.css">
 	<link rel="stylesheet" href="../ss/font-awesome.css">
 	<link rel="stylesheet" href="../css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="../css/MisEstilos.css">
 	<link rel="stylesheet" type="text/css" href="../css/datepicker.css">
+	<link rel="stylesheet" type="text/css" href="../css/MisEstilos.css">	
 	
 	
 </head>
@@ -70,14 +70,14 @@
 				<div class="form-group ">
 					<label for="" class="control-label col-sm-5">FECHA ABIERTO:</label>
 					<div class="col-sm-7">
-						<input class="datepicker" type="text" id="dpd1" readonly="true" name="fecha_abierto" >						
+						<input class="datepicker" type="text" id="fecha_abierto" readonly="true" name="fecha_abierto"   >						
 					</div>					
 				</div>
 				
 				<div class="form-group ">
 					<label for="" class="control-label col-sm-5">FECHA CERRADO:</label>
 					<div class="col-sm-7">
-						<input class="datepicker" type="text" id="dpd2" readonly="true" name="fecha_cerrado" >						
+						<input class="datepicker" type="text" id="fecha_cerrado" readonly="true" name="fecha_cerrado"  >						
 					</div>
 				</div>
 				
@@ -86,7 +86,7 @@
 				<br/>
 				<div class="form-group">
 					<div class="col-sm-6 text-center">
-						<input type="submit" value="Confirmar">	
+						<input class="btn btn-success"" type="submit" value="Confirmar">	
 					</div>
 					<div class="col-sm-6 text-center">
 						<a href="/sorteo/index" class="btn btn-danger">Cancelar</a>
@@ -106,7 +106,19 @@
 	<script src="../js/MisScripts.js"></script>
 	<script type="text/javascript" src="../js/bootstrap-datepicker.js"></script>
 
-	<script>
+	<!-- <script>
+		var dateToday = new Date();
+		var dates = $("#fecha_abierto, #fecha_cerrado").datepicker({
+	    defaultDate: "+1w",
+	    changeMonth: true,
+	    numberOfMonths: 3,
+	    minDate: dateToday,
+	    onSelect: function(selectedDate) {
+	        var option = this.id == "fecha_abierto" ? "minDate" : "maxDate",
+	            instance = $(this).data("datepicker"),
+	            date = $.datepicker.parseDate(instance.settings.dateFormat || $.datepicker._defaults.dateFormat, selectedDate, instance.settings);
+	        dates.not(this).datepicker("option", option, date);
+	    }
 		var nowTemp = new Date();
 		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
  
@@ -130,14 +142,32 @@
   			}
 		}).on('changeDate', function(ev) {
   			checkout.hide();
-		}).data('datepicker');		
-	</script>
-	<script>
+		}).data('datepicker');	
+	</script> -->
+	<!-- beforeShowDay: function(date){
+					//INEFICIENTE
+					//fecha de hoy
+					var today = new Date();
+					var dd = today.getDate();
+					var mm = today.getMonth();
+					var yyyy = today.getFullYear();
+					//fecha a poner
+					var currDate = date.getDate();
+					return false;
+				}-->
+	<script type="text/javascript">
+		var disabled_dates = ["23.03.2016","21.03.2016"];
 		$(function(){
 			$('.datepicker').datepicker({
-				format: 'dd/mm/yyyy'
+				format: 'dd/mm/yyyy',				
+				autoclose:true,
+				startDate: '-3d',
+				beforeShowDay:function($date){
+					return false;
+				}
 			});
 		});
+		
 	</script>
 </body>
 </html>

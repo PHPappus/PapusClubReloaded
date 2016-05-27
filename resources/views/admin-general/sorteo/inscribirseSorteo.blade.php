@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SORTEOS</title>
+	<title>INSCRIPCION SORTEOS</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,14 +23,13 @@
 		<br/><br/>		
 			<div class="row">
 				<a class="btn btn-link text-left withoutpadding" href="/">INICIO <span class="glyphicon glyphicon-chevron-right"></span></a>
-				<button class="btn btn-link text-left withoutpadding" href="#">MANTENIMIENTO <span class="glyphicon glyphicon-chevron-right"></span></button>				
-				<label class="text-left withoutpadding">SORTEOS</button></label>
+				<label class="text-left withoutpadding">INSCRIPCION SORTEOS</button></label>
 			</div>
 		<br/>
 	</div>
 	<div class="container">
 		<div class="col-sm-12 text-left lead">
-				<strong>SORTEOS</strong>
+				<strong>SORTEOS ABIERTOS</strong>
 		</div>		
 	</div>
 	<!-- Mensaje de éxito luego de registrar -->
@@ -50,33 +49,21 @@
 					<th><div align=center>FECHA INICIO DE SORTEO</div></th>
 					<th><div align=center>FECHA FIN DE SORTEO</div></th>
 					<th><div align=center>DESCRIPCION</div></th>
-					<th><div align=center>MODIFICAR</div></th>
-					<th><div align=center>ELIMINAR</div></th>
 				</thead>	
 				<tbody>													
 					@foreach($sorteos as $sorteo)	
-					
 						<tr>									
 							<td>{{$sorteo->nombre_sorteo}}</td>
 							<td>{{$sorteo->fecha_abierto}}</td>
 							<td>{{$sorteo->fecha_cerrado}}</td>	
-							<td>{{$sorteo->descripcion}}</td>
-							<td>
-			              		<a class="btn btn-info" href="{{url('/sorteo/'.$sorteo->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
-			              	</td>
-			              	<td>
-					            <a class="btn btn-info"  title="Eliminar" data-href="{{url('/sorteo/'.$sorteo->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
-					        </td>			            	
+							<td>{{$sorteo->descripcion}}</td>										            	
 						</tr>
 					</form>
 					 @endforeach
 				</tbody>			
 			</table>						
 		</div>	
-	</div>
-	<div align="center" style="padding:20px">
-		<a class="btn btn-info" href="{{url('/sorteo/new')}}" > Agregar Sorteo</a>	
-	</div>				
+	</div>			
 @stop
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	{!!Html::script('js/bootstrap.js')!!}
