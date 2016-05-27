@@ -25,9 +25,11 @@ class StoreActividadRequest extends Request
     {
         return [
             'nombre'            =>  'required|max:100|string',
+            'sede_id'           => 'required',
+            'ambiente_id'           => 'required',
             'tipo_actividad'     =>  'required|max:100|string',
-            'capacidad_maxima'  =>  'integer|min:1',
-            'descripcion'         =>  'required|max:100|string',   
+            'capacidad_maxima'  =>  'required|integer|min:1',
+            'descripcion'         =>  'max:100|string',   
         ];
     }
 }

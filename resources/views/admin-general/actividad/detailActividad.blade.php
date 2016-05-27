@@ -91,7 +91,7 @@
 			  	<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
 					<div class="btn-group">
-						<a href="/actividad/index" class="btn btn-info">Aceptar</a>
+						<a href="/actividad/index" class="btn btn-info">Regresar</a>
 					</div>
 				</div>
 			
