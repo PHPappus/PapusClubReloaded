@@ -50,8 +50,7 @@
 					            	<td>
 					              	<a class="btn btn-info" href="#" title="Eliminar" ><i class="glyphicon glyphicon-remove"></i></a>
 					            	</td>
-					            </tr>				            
-						
+					            </tr>				            		
 							@endforeach
 						</tbody>
 				</table>			
