@@ -64,6 +64,12 @@
 							</ul>
 						</li>
 						
+						<li><a href="{!!URL::to('/multa')!!}">MULTA<span class="despliegue">▼</span></a>
+							<!-- <ul>
+								<li><a href="{!!URL::to('/sedes/new')!!}" title="ir a agregar sede" target="_self">AGREGAR</a></li>
+							</ul> -->
+						</li>
+
 						<li><a href="{!!URL::to('/sedes/index')!!}">SEDE<span class="despliegue">▼</span></a>
 							<!-- <ul>
 								<li><a href="{!!URL::to('/sedes/new')!!}" title="ir a agregar sede" target="_self">AGREGAR</a></li>

@@ -68,10 +68,10 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-success" type="submit" value="Confirmar">
+						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
-						<a href="/multa/" class="btn btn-danger">Cancelar</a>
+						<a href="/multa/" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>

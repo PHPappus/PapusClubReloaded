@@ -25,7 +25,14 @@
 			
 		</div>
 	</div>
-	
+	@if (session('stored'))
+				<script>$("#modalSuccess").modal("show");</script>
+				
+				<div class="alert alert-success fade in">
+						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						<strong>¡Éxito!</strong> {{session('stored')}}
+				</div>
+	@endif
 
 		<div class="table-responsive">
 			<div class="container">
@@ -33,7 +40,7 @@
 						<thead class="active">
 							
 							<th><div align=center>DESCRIPCIÓN</div> </th>
-							<th><div align=center>U.M</div></th>
+							<th><div align=center>MONEDA</div></th>
 							<th><div align=center>MONTO PENALIDAD</div></th>
 							<th><div align=center>CONSULTAR</div></th>
 							<th><div align=center>ELIMINAR</div></th>
@@ -88,4 +95,55 @@
   		});
 	</script>
 </body>
+
+	<!-- Modal -->
+	<div id="modalEliminar" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Confirmar</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>¿Está seguro que desea eliminar el proveedor?</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-danger btn-ok">Confirmar</a>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
+	<!-- Modal Event-->
+	<script>
+		$('#modalEliminar').on('show.bs.modal', function(e) {
+   			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+		});
+	</script>
+	
+	<!-- Modal Success -->
+	<div id="modalSuccess" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">¡Éxito!</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>{{session('stored')}}</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>           
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
 </html>
