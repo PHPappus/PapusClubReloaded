@@ -73,7 +73,12 @@ class ServiciosController extends Controller
     public function destroy($id)    
     {
         $servicio = Servicio::find($id);
-        $servicio->estado = false;
+        if ($servicio->estado == false){
+            $servicio->estado = true ;
+        }else{
+            $servicio->estado = false ;
+        }
+
         $servicio->save();
         return back();
     }

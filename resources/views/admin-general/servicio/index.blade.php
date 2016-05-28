@@ -45,9 +45,10 @@
 							<th><div align=center>NOMBRE</div></th>
 							<th><div align=center>DESCRIPCION</div></th>
 							<th><div align=center>TIPO SERVICIO</div></th>
+							<th><div align=center>ESTADO</div></th>
 							<th><div align=center>DETALLE</div></th>
 							<th><div align=center>EDITAR</div></th>
-							<th><div align=center>ELIMINAR</div></th>
+							<th><div align=center>CAMBIAR ESTADO</div></th>
 						</thead>
 
 							
@@ -57,6 +58,11 @@
 								<td>{{ $servicio->nombre }}</td>
 								<td>{{ $servicio->descripcion }}</td>
 	 							<td>{{ $servicio->tipo_servicio }}</td>								
+	 							<td>
+	 							<?php if ($servicio->estado == 1)  echo "ACTIVO";
+									  else echo "INACTIVO";	?>
+	 						    <!--{{$servicio->estado }}-->	 						
+	 						    </td>						
 								<td>
 					              <a class="btn btn-info" href="{{url('/servicios/'.$servicio->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 					            </td>
@@ -64,7 +70,9 @@
 					              <a class="btn btn-info" href="{{url('/servicios/'.$servicio->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 					            </td>
 					            <td>
-					              <a class="btn btn-info" href="{{url('/servicios/'.$servicio->id.'/delete')}}" title="Eliminar" ><i class="glyphicon glyphicon-remove"></i></a>
+					              <a type="checkbox" class="btn btn-info" href="{{url('/servicios/'.$servicio->id.'/delete')}}" title="DESACTIVAR" >
+					              <i  class="glyphicon  glyphicon-unchecked unchecked"></i>
+					              </a>
 					            </td>
 					    		</tr>
 					    		@endforeach        
@@ -78,8 +86,8 @@
 	<br>
 	<div class="container" >
 		<div class="form-group" >
-			<div class="col-sm-16 text-center|">
-				<a class="btn btn-info"   href="{{url('/servicios/new')}}" title="Registrar Servicio" > Registrar Servicio <i class="glyphicon glyphicon-plus" ></i> </a>	
+			<div class="col-sm-16 text-center">
+				<a class="btn btn-primary"   href="{{url('/servicios/new')}}" title="Registrar Servicio" > Registrar Servicio <i class="glyphicon glyphicon-plus" ></i> </a>	
 			</div>
 		</div>
 		<br/>
