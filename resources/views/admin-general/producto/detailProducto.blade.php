@@ -77,7 +77,7 @@
 				
 				<div class="form-group">
 					<div class="col-sm-8"> </div>
-					<a href="/producto/index" class="btn btn-info">Aceptar</a>				
+					<a href="/producto/index" class="btn btn-info">Regresar</a>				
 				</div>
 
 			</form>

@@ -17,10 +17,7 @@
 
 <body>
 @extends('layouts.headerandfooter-al-admin')
-
 @section('content')	
-
-	<!--<div class="content" style="max-width: 100%;">-->
 	<div class="container" id="ruta-navegacion">	
 		<!-- Utilizando Bootstrap -->
 		<br/><br/>		
@@ -77,8 +74,8 @@
 			</table>						
 		</div>	
 	</div>
-	<div align="center">
-		<a class="btn btn-info" href="{{url('/sorteo/new')}}" ><i class="glyphicon glyphicon-pencil"></i></a>
+	<div align="center" style="padding:20px">
+		<a class="btn btn-info" href="{{url('/sorteo/new')}}" > Agregar Sorteo</a>	
 	</div>				
 @stop
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}

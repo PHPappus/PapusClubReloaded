@@ -62,7 +62,7 @@
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"   class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" >
 			    	</div>
 			  	</div>
 			  	<div class="form-group required">
@@ -85,19 +85,19 @@
 			  	<div class="form-group required">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" class="form-control" id="capacidadInput" name="capacidad_actual" placeholder="Capacidad Maxima" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="capacidadInput" name="capacidad_actual" placeholder="Capacidad Maxima" >
 			    	</div>
 			  	</div>	  	
 			  	<div class="form-group required">
 			    	<label for="numHabitacionInput" class="col-sm-4 control-label">NÚMERO DE HABITACIONES</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" class="form-control" id="numHabitacionInput" name="capacidad_actual" placeholder="Número de habitaciones" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="numHabitacionInput" name="capacidad_actual" placeholder="Número de habitaciones" >
 			    	</div>
 			  	</div>	
 			  	<div class="form-group required">
 			    	<label for="ubicacionInput" class="col-sm-4 control-label">UBICACIÓN</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="ubicacionInput" name="ubicacion" placeholder="Ubicacion" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"   class="form-control" id="ubicacionInput" name="ubicacion" placeholder="Ubicacion" >
 			    	</div>
 			  	</div>
 			  	</br>
@@ -118,7 +118,7 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-success" type="submit" value="Confirmar">
+						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
 						<a href="/ambiente/index" class="btn btn-info">Cancelar</a>

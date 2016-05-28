@@ -45,7 +45,7 @@
 			<div class="form-group ">
 		    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="nombreInput" name="nombre" value="{{$ambiente->nombre}}" >
+		      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" value="{{$ambiente->nombre}}" >
 		    	</div>
 		  	</div>
 		  	<div class="form-group ">
@@ -65,7 +65,7 @@
 		  	<div class="form-group ">
 		    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA</label>
 		    	<div class="col-sm-5">
-		      		<input type="number" class="form-control" id="capacidadInput" name="capacidad_actual" value="{{$ambiente->capacidad_actual}}" >
+		      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="capacidadInput" name="capacidad_actual" value="{{$ambiente->capacidad_actual}}" >
 		    	</div>
 		  	</div>	  	
 		  	<!-- <div class="form-group ">
@@ -77,7 +77,7 @@
 		  	<div class="form-group ">
 		    	<label for="ubicacionInput" class="col-sm-4 control-label">UBICACIÓN</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->ubicacion}}" >
+		      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->ubicacion}}" >
 		    	</div>
 		  	</div>
 		  	

@@ -18,7 +18,6 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 text-left">
-				<br/><br/>
 				<p class="lead"><strong>PRODUCTOS</strong></p>
 				<br/>
 			</div>
@@ -36,51 +35,53 @@
 		</div>
 	@endif
 
+	
+
+	<div class="table-responsive">
+		<div class="container">
+			<table class="table table-bordered table-hover text-center display" id="example">
+					<thead class="active" data-sortable="true">
+						<th><div align=center>PRODUCTO</div></th>
+						<th><div align=center>DESCRIPCION</div></th>
+						<th><div align=center>TIPO</div></th>							
+						<th><div align=center>DETALLE</div></th>
+						<th><div align=center>EDITAR</div></th>
+						<th><div align=center>ELIMINAR</div></th>
+					</thead>
+
+											
+					<tbody>
+					@foreach($productos as $producto)
+						<tr>
+							<td>{{ $producto->nombre }}</td>
+							<td>{{ $producto->descripcion }}</td>	 							
+							<td>{{ $producto->id_tipo_producto }}</td>
+							<td>
+				              <a class="btn btn-info" href="{{url('/producto/'.$producto->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+				            </td>
+							<td>
+				              <a class="btn btn-info" href="{{url('/producto/'.$producto->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+				            </td>
+				            <td>
+				              <a class="btn btn-info"  title="Eliminar" data-href="{{url('/producto/'.$producto->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
+				            </td>
+			            </tr>
+					@endforeach
+					</tbody>						
+					
+			</table>			
+		</div>		
+	</div>
+	
+	<br/>
 	<div class="container">
 		<div class="form-group">
 			<div class="col-sm-16 text-right">
-				<a class="btn btn-info" href="{{url('/producto/new')}}" title="Registrar Producto" ><i class="glyphicon glyphicon-plus" ></i> </a>	
+				<a class="btn btn-info" href="{{url('/producto/new')}}" title="Registrar Producto" >Agregar Producto<i class="glyphicon" ></i> </a>	
 			</div>
 		</div>
 		<br/>
 	</div>
-
-		<div class="table-responsive">
-			<div class="container">
-				<table class="table table-bordered table-hover text-center display" id="example">
-						<thead class="active" data-sortable="true">
-							<th><div align=center>PRODUCTO</div></th>
-							<th><div align=center>DESCRIPCION</div></th>
-							<th><div align=center>TIPO</div></th>							
-							<th><div align=center>DETALLE</div></th>
-							<th><div align=center>EDITAR</div></th>
-							<th><div align=center>ELIMINAR</div></th>
-						</thead>
-
-												
-						<tbody>
-						@foreach($productos as $producto)
-							<tr>
-								<td>{{ $producto->nombre }}</td>
-								<td>{{ $producto->descripcion }}</td>	 							
-								<td>{{ $producto->id_tipo_producto }}</td>
-								<td>
-					              <a class="btn btn-info" href="{{url('/producto/'.$producto->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-					            </td>
-								<td>
-					              <a class="btn btn-info" href="{{url('/producto/'.$producto->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
-					            </td>
-					            <td>
-					              <a class="btn btn-info"  title="Eliminar" data-href="{{url('/producto/'.$producto->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
-					            </td>
-				            </tr>
-						@endforeach
-						</tbody>						
-						
-				</table>			
-			</div>		
-		</div>
-	
 
 		
 

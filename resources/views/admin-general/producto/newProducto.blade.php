@@ -67,8 +67,8 @@
 			      		<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" >
 			    	</div>
 			  	</div>	  				  	
-
-			  	<div class="form-group required">
+			  	
+				<div hidden class="form-group required">
 			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
 			    	<div class="col-sm-5">
 			    	
@@ -80,7 +80,7 @@
 
 			    	</div>
 			  	</div>		
-			  	
+
 			  	<div class="form-group required">
 			    	<label for="tipoProductoInput" class="col-sm-4 control-label">Tipo de Producto</label>
 			    	<div class="col-sm-5">
@@ -103,7 +103,7 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-success" type="submit" value="Confirmar">
+						<input class="btn btn-success" type="submit" value="Aceptar">
 					</div>
 					<div class="btn-group">
 						<a href="/producto/index" class="btn btn-danger">Cancelar</a>

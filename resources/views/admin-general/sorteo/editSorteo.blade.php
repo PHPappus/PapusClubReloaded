@@ -14,7 +14,7 @@
 	
 </head>
 <body>
-@extends('layouts.headerandfooter_after_login')
+@extends('layouts.headerandfooter-al-admin')
 @section('content')
 <!---Cuerpo -->
 <main class="main">
@@ -34,6 +34,18 @@
 			<form method="POST" action="/sorteo/{{ $datos->id }}/edit" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<br/><br/>
+				<div class="">
+			  		
+		  			@if ($errors->any())
+		  				<ul class="alert alert-danger fade in">
+		  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  					@foreach ($errors->all() as $error)
+		  						<li>{{$error}}</li>
+		  					@endforeach
+		  				</ul>
+		  			@endif
+			  		
+				</div>
 				<div class="form-group">
 					<label for="" class="control-label col-sm-5">NOMBRE DEL SORTEO:</label>
 					<div class="col-sm-7">
@@ -67,7 +79,7 @@
 				<br/>
 				<div class="form-group">
 					<div class="col-sm-6 text-center">
-						<input type="submit" value="Confirmar">	
+						<input class="btn btn-success"" type="submit" value="Confirmar">	
 					</div>
 					<div class="col-sm-6 text-center">
 						<a href="/sorteo/index" class="btn btn-danger">Cancelar</a>

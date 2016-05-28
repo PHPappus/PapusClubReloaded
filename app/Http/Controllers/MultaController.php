@@ -48,7 +48,8 @@ class MultaController extends Controller
 
         $multa->save();
 
-        return back();
+        return redirect('multa')->with('stored', 'Se registró el producto correctamente.');
+        //return back();
     }
 
     public function edit (Multa $multa)

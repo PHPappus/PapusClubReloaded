@@ -86,7 +86,7 @@
 			  	<div class="form-group required">
 			    	<label for="capacidadSocioInput" class="col-sm-4 control-label">Correo</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" >
+			      		<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo">
 			    	</div>
 			  	</div>
 			  	
@@ -95,9 +95,9 @@
 			    	<div class="col-sm-5">			      		
 			      		<input type="text"  class="form-control" id="nombre-responsable" name="nombre_responsable" placeholder="Nombre del Responsable" >
 			    	</div>
-			  	</div>
+			  	</div>			  	
 
-			  	<div class="form-group required">
+			  	<div hidden class="form-group required">
 			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
 			    	<div class="col-sm-5">
 			    	
@@ -109,14 +109,14 @@
 						</select>						
 			    	</div>
 			  	</div>		
-			  	
+
 			  	</br>
 			  	</br>
 				<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-success" type="submit" value="Confirmar">
+						<input class="btn btn-success" type="submit" value="Aceptar">
 					</div>
 					<div class="btn-group">
 						<a href="/proveedor/index" class="btn btn-danger">Cancelar</a>
