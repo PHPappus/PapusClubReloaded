@@ -14,9 +14,10 @@ class CreateTipoMembresiaTable extends Migration
     {
         Schema::create('tipomembresia', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('tarifa_membresia_id')->unsigned()->index();
+            $table->integer('tarifa_membresia_id')->unsigned()->nullable();
             $table->integer('numMaxInvitados');
             $table->string('descripcion');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

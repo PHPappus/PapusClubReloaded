@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>CONSULTA DE MEMBRESIA</title>
+	<title>DETALLE DE MEMBRESIA</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +22,7 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>CONSULTA DE MEMBRESÍA</strong>
+					<strong>DETALLE DE MEMBRESÍA</strong>
 			</div>		
 		</div>
 
@@ -37,24 +37,24 @@
 				</div>				
 	    		
 			    <br>
-				<div class="form-group required">
+				<div class="form-group ">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" value="{{$membresia->descripcion}}" readonly required>
+			      		<input type="text" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" value="{{$membresia->descripcion}}" readonly >
 			    	</div>
 			  	</div>  	
 
-			  	<div class="form-group required">
+			  	<div class="form-group ">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">Número Máximo de Invitados</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" min ="0" class="form-control" id="numMaxInput" name="numMax" placeholder="Número máximo de Invitados" value="{{$membresia->numMaxInvitados}}" readonly required>
+			      		<input type="number" min ="0" class="form-control" id="numMaxInput" name="numMax" placeholder="Número máximo de Invitados" value="{{$membresia->numMaxInvitados}}" readonly >
 			    	</div>
 			  	</div>
 
-			  	<div class="form-group required">
+			  	<div class="form-group ">
 			    	<label for="capacidadSocioInput" class="col-sm-4 control-label">Tarifa (S/.)</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" min="0" step="any" class="form-control" id="tarifaInput" name="tarifa" placeholder="Tarifa" value="{{$membresia->tarifa->monto}}" readonly required>
+			      		<input type="number" min="0" step="any" class="form-control" id="tarifaInput" name="tarifa" placeholder="Tarifa" value="{{$membresia->tarifa->monto}}" readonly >
 			    	</div>
 			  	</div>
 
@@ -62,7 +62,7 @@
 			  	</br>
 				<div class="form-group">
 					<div class="col-sm-6"> </div>
-						<a class="btn btn-info" href="/membresia/" title="Editar" >Retornar <i class="glyphicon glyphicon-arrow-left"></i></a>			
+						<a class="btn btn-info" href="/membresia/" title="Editar" >Regresar <i class="glyphicon glyphicon-arrow-left"></i></a>			
 				</div>
 				</br>
 				</br>

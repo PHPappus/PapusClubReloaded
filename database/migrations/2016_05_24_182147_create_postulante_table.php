@@ -28,7 +28,7 @@ class CreatePostulanteTable extends Migration
 
             //en caso sea extranjero
             $table->string('pais_nacimiento'); //Esto deermina el pais Peru
-            $table->string('lugar_nacimiento'); //esto es una cadena Av. SiempreViva 123
+            $table->string('lugar_nacimiento'); //esto es una cadena Av. SiempreViva 123 
             
             //DATOS DE ESTUDIOS
             $table->string('colegio_primario');
