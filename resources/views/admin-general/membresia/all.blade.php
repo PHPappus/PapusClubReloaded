@@ -159,7 +159,7 @@
 	<!-- Modal Event-->
 	<!-- Modal Event-->
 	<script>
-		$('#modalActivar').on('show.bs.modal', function(e) {
+		$('#modalEliminar').on('show.bs.modal', function(e) {
    			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 		});
 	</script>
