@@ -124,13 +124,18 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 
 	
 	// Mantenimiento de Servicios LOL
+
 	Route::get('servicios/index', 'ServiciosController@index');	
 	Route::get('servicios/new', 'ServiciosController@create');
 	Route::post('servicios/new/servicio', 'ServiciosController@store');
 	Route::get('servicios/{id}', 'ServiciosController@edit');
 	Route::post('servicios/{id}/edit', 'ServiciosController@update');
 	Route::get('servicios/{id}/delete', 'ServiciosController@destroy');
-	Route::get('servicios/{id}/show', 'ServiciosController@show');
+	Route::get('servicios/{id}/show', 'ServiciosController@show');	
+
+	// Agregar Servicios a las sedes2
+		Route::get('sedes/{id}/agregarservicios', 'SedesController@agregarservicios');
+	
 	
 	//MANTENIMIENTO DE PROVEEDORES
 	Route::get('proveedor/index/', 'ProveedorController@index');

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use papusclub\Http\Requests;
 use papusclub\Models\Sede;
+use papusclub\Models\Servicio;
 use papusclub\Http\Requests\StoreSedeRequest;
 use papusclub\Http\Requests\EditSedeRequest;
 
@@ -101,4 +102,12 @@ class SedesController extends Controller
         $sede = Sede::find($id);
         return view('admin-general.sede.detailSede', compact('sede'));
     }
+
+    public function agregarservicios($id)
+    {
+        $sede = Sede::find($id);
+        $servicios = Servicio::all();        
+        return view('admin-general.sede.serviciosdesede', compact('sede', 'servicios'));
+    }
+    
 }
