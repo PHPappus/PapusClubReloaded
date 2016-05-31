@@ -3,9 +3,11 @@
 namespace papusclub\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TarifaMembresia extends Model
 {
+	use SoftDeletes;
     protected $table = 'tarifamembresia';
 
     protected $fillable=[
@@ -13,6 +15,7 @@ class TarifaMembresia extends Model
     'estado',
     'fecha_registro'
     ];
+    protected $dates = ['deleted_at'];
 
     public function tipo()
 	{
