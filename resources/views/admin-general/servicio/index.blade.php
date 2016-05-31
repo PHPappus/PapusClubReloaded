@@ -72,11 +72,11 @@
 					            <td>
 					              <a type="checkbox" class="btn btn-info" href="{{url('/servicios/'.$servicio->id.'/delete')}}" title="DESACTIVAR" >
 
-             <?php if ($servicio->estado == 1)  
-			         echo '<i  class="glyphicon  glyphicon-check"></i>';
-				else echo '<i  class="glyphicon  glyphicon-unchecked unchecked"></i>';	
-			 ?>
-					              
+					             <?php if ($servicio->estado == 1)  
+								         echo '<i  class="glyphicon  glyphicon-check"></i>';
+									else echo '<i  class="glyphicon  glyphicon-unchecked unchecked"></i>';	
+								 ?>
+										              
 					              </a>
 					            </td>
 					    		</tr>
