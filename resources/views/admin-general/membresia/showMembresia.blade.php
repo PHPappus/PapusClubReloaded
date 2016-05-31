@@ -29,12 +29,7 @@
 		<div class="container">
 			<form class="form-horizontal form-border">
 				<br/><br/>
-				<div class="form-group">
-					<div class="col-sm-11 text-right">
-						<a class="btn btn-info" href="{{url('/membresia/'.$membresia->id)}}/editar" title="Editar" >Editar <i class="glyphicon glyphicon-pencil"></i></a>	
-					</div>
-					<br/>
-				</div>				
+			
 	    		
 			    <br>
 				<div class="form-group ">
