@@ -24,9 +24,20 @@ class EditMembresiaRequest extends Request
     public function rules()
     {
         return [
-            'nombre' =>'required|max:30|string',
-            'numMax' =>'required|integer|min:0',
-            'tarifa' =>'required|min:0',
+            'nombre' =>'required|max:30|alpha',
+            'numMax' =>'required|integer|min:0|max:100',
+            'tarifa' =>'required|min:0|float',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'tarifa.float' => 'El campo tarifa debe ser un valor entero positivo',
+            'numMax.integer' => 'El campo número de invitados debe ser un valor entero',
+            'numMax.max'=>'El campo número de invitados no puede ser mayor a 100',
+            'numMax.min'=>'El campo número de invitados no puede ser menor a 0'
+
         ];
     }
 }

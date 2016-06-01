@@ -86,15 +86,23 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('postulante/search','PostulanteController@buscar');
 	Route::get('postulante/new','PostulanteController@registrar');
 	//MANTENIMIENTO DE TRABAJADOR
+	Route::get('trabajador/index','TrabajadorController@buscar');
+	Route::get('trabajador/search','TrabajadorController@buscar');
+	Route::get('trabajador/new','TrabajadorController@registrar');
+	Route::post('trabajador/new/save', 'TrabajadorController@store');
 	//MANTENIMIENTO DE SOCIO
 
 	//MANTENIMIENTO DE MEMBRESIA
 	Route::get('membresia/','MembresiaController@index');
+	Route::get('membresia/all','MembresiaController@indexAll');
 	Route::get('membresia/new','MembresiaController@create');
-	Route::get('membresia/{membresia}/','MembresiaController@show');
+	Route::get('membresia/{id}/','MembresiaController@show');
 	Route::post('membresia/new/save','MembresiaController@store');
-	Route::get('membresia/{membresia}/editar','MembresiaController@edit');
-	Route::patch('membresia/{membresia}/edit','MembresiaController@update');
+	Route::get('membresia/{id}/editar','MembresiaController@edit');
+	Route::get('membresia/{membresia}/delete', 'MembresiaController@destroy');
+	Route::get('membresia/{id}/activate','MembresiaController@activate');
+	Route::patch('membresia/{id}/edit','MembresiaController@update');
+
 
 
 

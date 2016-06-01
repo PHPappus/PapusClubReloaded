@@ -24,7 +24,7 @@ class StoreProductoRequest extends Request
     public function rules()
     {
          return [            
-            'nombre'   =>  array('required','Regex:/[A-Za-z .]/'),
+            'nombre'   =>  array('required','Regex:/[A-Za-z .-]/'),
             'descripcion'   =>  'required|string|max:255',            
             'estado'        =>  'required|integer',
             'id_tipo_producto'    =>  'required|integer'           

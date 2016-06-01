@@ -1,4 +1,28 @@
 <!--Cabecera- Se separará espacio para el input de busqueda antes de la cabecera de menu-->
+
+  	<script>
+		function inputLimiter(e,allow) {
+		    var AllowableCharacters = '';
+
+		    if (allow == 'Letters'){AllowableCharacters=' ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz';}
+		    if (allow == 'Numbers'){AllowableCharacters='1234567890';}
+		    if (allow == 'NameCharacters'){AllowableCharacters=' ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz-.\'_@';}
+		    if (allow == 'NameCharactersAndNumbers'){AllowableCharacters='1234567890 ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz-\'_@';}
+		    if (allow == 'Nulo'){AllowableCharacters='';} //sirve para colocarle a las fechas deben ser obligatoriamente ingresadas por el picker
+
+		    var k = document.all?parseInt(e.keyCode): parseInt(e.which);
+		    if (k!=13 && k!=8 && k!=0){
+		        if ((e.ctrlKey==false) && (e.altKey==false)) {
+		        return (AllowableCharacters.indexOf(String.fromCharCode(k))!=-1);
+		        } else {
+		        return true;
+		        }
+		    } else {
+		        return true;
+		    }
+		} 
+  	</script>
+
 <header class="header">
 		<div class="content clearfix">
 			<!--Input de buscador de la parte superior derecha-->
@@ -35,11 +59,17 @@
 						<li><a href="#">PERSONA<span class="despliegue">▼</span></a>
 							<ul>
 								<li><a href="#" title="ir a socio" target="_self">SOCIO</a></li>
-								<li><a href="#" title="ir a trabajador" target="_self">TRABAJADOR</a></li>
+								<li><a href="{!!URL::to('/trabajador/index')!!}" title="ir a trabajador" target="_self">TRABAJADOR</a></li>
 								<li><a href="{!!URL::to('/postulante/index')!!}" title="ir a postulante" target="_self">POSTULANTE</a></li>
 							</ul>
 						</li>
 						
+						<li><a href="{!!URL::to('/multa')!!}">MULTA<span class="despliegue">▼</span></a>
+							<!-- <ul>
+								<li><a href="{!!URL::to('/sedes/new')!!}" title="ir a agregar sede" target="_self">AGREGAR</a></li>
+							</ul> -->
+						</li>
+
 						<li><a href="{!!URL::to('/sedes/index')!!}">SEDE<span class="despliegue">▼</span></a>
 							<!-- <ul>
 								<li><a href="{!!URL::to('/sedes/new')!!}" title="ir a agregar sede" target="_self">AGREGAR</a></li>

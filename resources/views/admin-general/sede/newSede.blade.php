@@ -50,70 +50,70 @@
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="telefonoInput" class="col-sm-4 control-label">Teléfono</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" class="form-control" id="telefonoInput" name="telefono" placeholder="Teléfono" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="telefonoInput" name="telefono" placeholder="Teléfono" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="contactoInput" class="col-sm-4 control-label">Contacto</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="contactoInput" name="nombre_contacto" placeholder="Contacto" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="contactoInput" name="nombre_contacto" placeholder="Contacto" >
 			    	</div>
 			  	</div>	  	
 
 			  	<div class="form-group required">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad maxima</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" class="form-control" id="capacidadInput" name="capacidad_maxima" placeholder="Capacidad" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="capacidad_maxima" name="capacidad_maxima" placeholder="Capacidad" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="capacidadSocioInput" class="col-sm-4 control-label">Capacidad por socio</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" class="form-control" id="capacidadSocioInput" name="capacidad_socio" placeholder="Capacidad por Socio" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="capacidadSocioInput" name="capacidad_socio" placeholder="Capacidad por Socio" >
 			    	</div>
 			  	</div>
 			  	
 			  	<div class="form-group required">
 			    	<label for="departamentoInput" class="col-sm-4 control-label">Departamento</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="departamentoInput" name="departamento" placeholder="Departamento" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="departamentoInput" name="departamento" placeholder="Departamento" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="provinciaInput" class="col-sm-4 control-label">Provincia</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="provinciaInput" name="provincia" placeholder="Provincia" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="provinciaInput" name="provincia" placeholder="Provincia" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="distritoInput" class="col-sm-4 control-label">Distrito</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="distritoInput" name="distrito" placeholder="Distrito" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="distritoInput" name="distrito" placeholder="Distrito" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="direccionInput" class="col-sm-4 control-label">Dirección</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="direccionInput" name="direccion" placeholder="Dirección" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="direccionInput" name="direccion" placeholder="Dirección" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="referenciaInput" class="col-sm-4 control-label">Referencia </label>
 			    	<div class="col-sm-5">
-			      		<input type="comment" class="form-control" id="referenciaInput" name="referencia" placeholder="Referencia" >
+			      		<input type="comment"  onkeypress="return inputLimiter(event,'Letters')"   class="form-control" id="referenciaInput" name="referencia" placeholder="Referencia" >
 			    	</div>
 			  	</div>
 			  	</br>
@@ -157,7 +157,6 @@
 	<script src="/js/jquery.bxslider.min.js"></script>
 	<!-- Mis Scripts -->
 	<script src="/js/MisScripts.js"></script>
-
 
 
 

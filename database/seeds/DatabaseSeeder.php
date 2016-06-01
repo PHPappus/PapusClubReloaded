@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
 		$this->call(SorteoTableSeeder::class);
         $this->call(AmbienteTableSeeder::class);
         $this->call(ActividadTableSeeder::class);
+        $this->call(TipoPersonaTableSeeder::class);
+        $this->call(ConfiguracionTableSeeder::class);
 		
         Model::reguard();
     }
