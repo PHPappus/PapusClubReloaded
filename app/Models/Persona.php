@@ -15,6 +15,7 @@ class Persona extends Model
     'nombre', 
     'ap_paterno', 
     'ap_materno', 
+    'sexo',
     'fecha_nacimiento', 
     'correo', 
     'id_tipo_persona', 

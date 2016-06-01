@@ -39,7 +39,7 @@
 
 
 		<div class="container">
-			<form method="POST" action="/trabajador/new/save" class="form-horizontal form-border">
+			<form method="POST" action="/trabajador/new/trabajador" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<!-- VALIDACION CON FE INICIO -->
@@ -76,7 +76,7 @@
 												<label for="" class="control-label">Nombre:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombre" name="nombre" placeholder="Nombre" style="max-width: 250px"   required>
+												<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombre" name="nombre" placeholder="Nombre" style="max-width: 250px"   >
 											</div>	
 										</div>
 									</div>
@@ -87,7 +87,7 @@
 												<label for="" class="control-label">Apellido Paterno:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="ap_paterno" name="ap_paterno" placeholder="Apellido Paterno" style="max-width: 250px" required>
+												<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="ap_paterno" name="ap_paterno" placeholder="Apellido Paterno" style="max-width: 250px" >
 											</div>	
 										</div>
 									</div>
@@ -98,7 +98,7 @@
 												<label for="" class="control-label">Apellido Materno:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="ap_materno" name="ap_materno" placeholder="Apellido Materno" style="max-width: 250px" required>
+												<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="ap_materno" name="ap_materno" placeholder="Apellido Materno" style="max-width: 250px" >
 											</div>	
 										</div>
 									</div>
@@ -108,9 +108,13 @@
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Sexo:</label>
 											</div>
-											<div class="col-sm-6 text-left" >
-													<input type="radio" name="genero" value="Masculino" checked> Masculino
-													<input type="radio" name="genero" value="Femenino" style="margin-left: 35px;"> Femenino	
+											<div class="col-sm-6 text-left" style="float: right">											
+													<div>
+														{{ Form::radio('sex', 'masculino', true) }}Masculino
+													</div>
+													<div>
+														{{ Form::radio('sex', 'femenino') }}Femenino
+													</div>
 											</div>	
 										</div>
 									</div>
@@ -219,7 +223,7 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="correo"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" name="correo" placeholder="correo" style="max-width: 250pc; margin-top:0px;" required>
+												<input type="text" class="form-control" id="correo"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" name="correo" placeholder="correo" style="max-width: 250pc; margin-top:0px;">
 											</div>
 										</div>
 									</div>
@@ -230,18 +234,29 @@
 					
 				</div>
 				<br>
-			</form>
-			
-			  	<div class="btn-inline">
+				<div class="btn-inline">
 					<div class="btn-group col-sm-5"></div>
 					
 					<div class="btn-group ">
-						<input type="submit" class="btn btn-primary " value="Guardar">
+						<input class="btn btn-primary "  type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
 						<a href="/trabajador/search" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
+				<br>
+			</form>
+			
+<!-- 			  	<div class="btn-inline">
+					<div class="btn-group col-sm-5"></div>
+					
+					<div class="btn-group ">
+						<input class="btn btn-primary "  type="submit" value="Confirmar">
+					</div>
+					<div class="btn-group">
+						<a href="/trabajador/search" class="btn btn-info">Cancelar</a>
+					</div>
+				</div> -->
 		</div>
 			
 
@@ -267,7 +282,6 @@
 
 
 	<script>
-
 		var nowTemp = new Date();
 		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
  	
@@ -292,7 +306,6 @@
   			checkout.hide();
 		}).data('datepicker');		
 		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
-
 	
 	</script>
 	<script>

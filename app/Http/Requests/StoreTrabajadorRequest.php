@@ -27,10 +27,10 @@ class StoreTrabajadorRequest extends Request
             'nombre' =>  'required|max:100|string',
             'ap_paterno' => 'required|max:100|string',
             'ap_materno' => 'required|max:100|string',
-            'fecha_nacimiento' => 'required|string',
+            'fecha_nacimiento' => 'string',
             'doc_identidad'=> 'string',
             'carnet_extranjeria'=>'string',
-            'correo'=>'string'
+            'correo'=>'required|string'
         ];
     }
 }

@@ -5,6 +5,9 @@ namespace papusclub\Http\Controllers;
 use Illuminate\Http\Request;
 
 use papusclub\Http\Requests;
+use papusclub\Models\Persona;
+use papusclub\Http\Requests\StoreTrabajadorRequest;
+
 use papusclub\Models\Configuracion;
 
 class TrabajadorController extends Controller
@@ -23,23 +26,36 @@ class TrabajadorController extends Controller
     public function registrar()
     {
         $puestos = Configuracion::all()->where('grupo', 1);
-        return view('admin-general.persona.trabajador.registrar-trabajador',compact('puestos'));
+        return view('admin-general.persona.trabajador.newTrabajador',compact('puestos'));
     }
 
 
-    public function store(StoreTrabajadoRequest $request)
+    public function store(StoreTrabajadorRequest $request)
     {       
         $input = $request->all();
         $persona = new Persona();
 
         //$persona->nacionalidad = $input['nacionalidad'];
-        $persona->doc_identidad = $input['doc_identidad'];
-        $persona->carnet_extranjeria = $input['carnet_extranjeria'];
+
+        if ($input['carnet_extranjeria']='') {
+            $persona->doc_identidad ="";
+        }
+        else
+            $persona->doc_identidad = $input['doc_identidad'];
+
+        
+        if ($input['carnet_extranjeria']='') {
+            $persona->carnet_extranjeria ="";
+        }
+        else
+            $persona->carnet_extranjeria = $input['carnet_extranjeria'];
         $persona->ap_paterno = $input['ap_paterno'];
         $persona->ap_materno = $input['ap_materno'];
         $persona->fecha_nacimiento = $input['fecha_nacimiento'];
-        $persona->id_tipo_persona = $input['id_tipo_persona'];
-        $persona->id_usuario = $input['id_usuario'];     
+        $persona->id_tipo_persona = 1;
+        $persona->sexo=$input['sex'];
+
+        //$persona->id_usuario = $input['id_usuario'];     
         
         $persona->save();      
         
