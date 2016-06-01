@@ -17,57 +17,91 @@
 @section('content')
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-12 text-left">
+			<div class="col-sm-12 text-center">
 				<br/><br/>
-				<p class="lead"><strong>SEDES</strong></p>
+				<p class="lead"><strong>SEDE</strong></p>
 				<br/>
 			</div>
 			
 		</div>
 	</div>
-	<div class="container">
-		<div class="form-group">
-			<div class="col-sm-16 text-right">
-				<a class="btn btn-info" href="{{url('/sedes/new')}}" title="Registrar Sede" ><i class="glyphicon glyphicon-plus" ></i> </a>	
+
+	</br>
+	</br>
+		<!-- Mensaje de éxito luego de registrar -->
+		@if (session('stored'))
+			<script>$("#modalSuccess").modal("show");</script>
+			
+			<div class="alert alert-success fade in">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>¡Éxito!</strong> {{session('stored')}}
 			</div>
-		</div>
-		<br/>
-	</div>
+		@endif
+	
 
 		<div class="table-responsive">
 			<div class="container">
+				<!-- <table id="example" class="table table-bordered display"> -->
+				<!-- <form method="POST" action="/sedes/new/sede" > -->
 				<table class="table table-bordered table-hover text-center display" id="example">
-						<thead class="active">
-							<th><div align=center>SEDE</div> </th>
-							<th><div align=center>DEPARTAMENTO</div></th>
-							<th><div align=center>DIRECCION</div></th>
-							<th><div align=center>CAPACIDAD</div></th>
-							<th><div align=center>DETALLE</div></th>
-							<th><div align=center>EDITAR</div></th>
-							<th><div align=center>ELIMINAR</div></th>
+						
+						<thead>
+							<tr class="active">
+								<th><div align=center>SEDE</div> </th>
+								<th><div align=center>DEPARTAMENTO</div></th>
+								<th><div align=center>DIRECCION</div></th>
+								<th><div align=center>CAPACIDAD</div></th>
+								<th><div align=center>DETALLE</div></th>
+								<th><div align=center>EDITAR</div></th>
+								<th><div align=center>ELIMINAR</div></th>
+							</tr>
 						</thead>
 
-						@foreach($sedes as $sede)						
-							<tbody>
-								<td>{{ $sede->nombre }}</td>
-								<td>{{ $sede->distrito }}</td>
-	 							<td>{{ $sede->departamento }}</td>
-								<td>{{ $sede->capacidad_maxima }}</td>
-								<td>
-					              <a class="btn btn-info" href="{{url('/sedes/'.$sede->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-					            </td>
-								<td>
-					              <a class="btn btn-info" href="{{url('/sedes/'.$sede->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
-					            </td>
-					            <td>
-					              <a class="btn btn-info" href="{{url('/sedes/'.$sede->id.'/delete')}}" title="Eliminar" ><i class="glyphicon glyphicon-remove"></i></a>
-					            </td>
+						<tbody>
+							@foreach($sedes as $sede)						
+						    	<tr>
+									<td>{{ $sede->nombre }}</td>
+									<td>{{ $sede->distrito }}</td>
+			 						<td>{{ $sede->departamento }}</td>
+									<td>{{ $sede->capacidad_maxima }}</td>
+									<td>
+							        <a class="btn btn-info" href="{{url('/sedes/'.$sede->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+							        </td>
+									<td>
+							        <a class="btn btn-info" href="{{url('/sedes/'.$sede->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+							        </td>
+							        <td>
+							        <a class="btn btn-info"  title="Eliminar" data-href="{{url('/sedes/'.$sede->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>             
 					            
-							</tbody>						
-						@endforeach
-				</table>			
+							        </td>
+							            
+								</tr>
+							@endforeach
+						</tbody>						
+				</table>	
+
+				</br>
+				</br>
+				</br>
+				</br>
+				
+				<div class="btn-inline">
+					<!-- <form method="POST" action="/sedes/new/sede" >
+					<input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
+
+					<div class="btn-group col-sm-10"></div>
+					
+					<div class="btn-group ">
+						<a href="/sedes/new" class="btn btn-info" type="submit">Registrar Sede</a>
+
+					</div>
+					
+				</div>
+
 			</div>		
 		</div>
+
+		</br></br></br></br></br>
 	
 
 		
@@ -90,4 +124,55 @@
   		});
 	</script>
 </body>
+<!-- Modal -->
+	<div id="modalEliminar" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Confirmar</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>¿Está seguro que desea eliminar la sede?</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-danger btn-ok">Confirmar</a>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
+	<!-- Modal Event-->
+	<!-- Modal Event-->
+	<script>
+		$('#modalEliminar').on('show.bs.modal', function(e) {
+   			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+		});
+	</script>
+
+	
+	<!-- Modal Success -->
+	<div id="modalSuccess" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">¡Éxito!</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>{{session('stored')}}</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>           
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
 </html>
