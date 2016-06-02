@@ -26,7 +26,6 @@ class StoreAmbienteRequest extends Request
         return [
             'nombre'            =>  'required|max:100|string',
             'tipo_ambiente'     =>  'required|max:100|string',
-            //'sede_id'           =>  'required',
             'capacidad_actual'  =>  'integer|min:1',
             'ubicacion'         =>  'required|max:100|string',          
         ];
