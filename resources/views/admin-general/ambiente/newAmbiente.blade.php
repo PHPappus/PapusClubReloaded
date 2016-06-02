@@ -44,7 +44,18 @@
 				</div>
 
 				<!-- VALIDACION CON FE FIN  -->
-					<br/><br/>
+					<br/>
+				<br/>
+				<div class="form-group">
+			  		<div class="text-center">
+			  			<font color="red"> 
+			  				(*) Dato Obligatorio
+			  			</font>
+			  			
+			  		</div>
+			  	</div>
+				<br/>
+				
 
 					<!-- INICIO INICIO INICIO INICIO -->
 				<div class="form-group required">
@@ -97,19 +108,11 @@
 			  	<div class="form-group required">
 			    	<label for="ubicacionInput" class="col-sm-4 control-label">UBICACIÓN</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"   class="form-control" id="ubicacionInput" name="ubicacion" placeholder="Ubicacion" >
+			      		<textarea type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="ubicacionInput" name="ubicacion" placeholder="Ubicacion" ></textarea>
 			    	</div>
 			  	</div>
 			  	</br>
-			  	<div class="form-group">
-			  		<div class="text-right col-sm-4">
-			  			<font color="red"> 
-			  				(*) Dato Obligatorio
-			  			</font>
-			  			
-			  		</div>
-
-			  	</div>
+			  	
 			  	
 		  			<!-- FIN FIN FIN -->
 					

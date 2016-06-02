@@ -101,13 +101,9 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('membresia/{id}/editar','MembresiaController@edit');
 	Route::get('membresia/{membresia}/delete', 'MembresiaController@destroy');
 	Route::get('membresia/{id}/activate','MembresiaController@activate');
-	Route::patch('membresia/{id}/edit','MembresiaController@update');
-
-
-
+	Route::patch('membresia/{id}/edit','MembresiaController@update'); 
 
 	//MANTENIMIENTO DE MULTAS
-
 	Route::get('multa/','MultaController@index');
 	Route::get('multa/new','MultaController@create');
 	Route::get('multa/{multa}/','MultaController@show');
@@ -172,6 +168,14 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('ambiente/{id}/delete', 'AmbienteController@destroy');
 	Route::get('ambiente/{id}/show', 'AmbienteController@show');
 	Route::get('ambiente/{id}/select', 'AmbienteController@select');/*Para el seleccionar ambiente desde  Actividad*/
+	
+	//RESERVA DE AMBIENTES
+	Route::get('reservar-ambiente/reservar-bungalow', 'ReservarAmbienteController@reservarBungalow'); // REservar Bungalows
+	Route::get('reservar-ambiente/reservar-otros-ambientes', 'ReservarAmbienteController@reservarOtrosAmbientes'); // REservar otros ambientes distinto de bungalows
+	Route::get('reservar-ambiente/{id}/confirmacion-reserva-bungalow', 'ReservarAmbienteController@storeBungalow');//confirmacion para la reserva del bungalos
+	Route::get('reservar-ambiente/{id}/confirmacion-reserva-otro-ambiente', 'ReservarAmbienteController@storeOtroTipoAmbiente');//confirmacion para la reserva de otros ambientes distintos de bungalows
+
+
 	///MANTENIMIENTO DE ACTIVIDADES
 	Route::get('actividad/index', 'ActividadController@index');
 	Route::get('actividad/new', 'ActividadController@create');
@@ -185,7 +189,8 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('talleres/','TallerController@index');
 	Route::get('talleres/new','TallerController@create');
 
-	
+	//RESERVAS
+
 
 
 });
