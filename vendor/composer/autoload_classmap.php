@@ -26,6 +26,7 @@ return array(
     'CreatePerfilsTable' => $baseDir . '/database/migrations/2016_05_17_022327_create_perfils_table.php',
     'CreatePersonaTable' => $baseDir . '/database/migrations/2016_05_24_181516_create_persona_table.php',
     'CreatePostulanteTable' => $baseDir . '/database/migrations/2016_05_24_182147_create_postulante_table.php',
+    'CreateReservasTable' => $baseDir . '/database/migrations/2016_06_02_014128_create_reservas_table.php',
     'CreateSedesTable' => $baseDir . '/database/migrations/2016_05_06_144850_create_sedes_table.php',
     'CreateSocioTable' => $baseDir . '/database/migrations/2016_05_29_003232_create_socio_table.php',
     'CreateSorteoTable' => $baseDir . '/database/migrations/2016_05_20_005933_create_sorteo_table.php',
