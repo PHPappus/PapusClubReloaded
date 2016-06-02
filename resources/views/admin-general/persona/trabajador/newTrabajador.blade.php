@@ -138,8 +138,8 @@
 												<label for="" class="control-label">Nacionalidad:</label>
 											</div>
 											<div class="col-sm-6 text-left" >
-													<input onclick="document.getElementById('doc_identidad').disabled = false; document.getElementById('carnet_extranjeria').disabled = true; document.getElementById('carnet_extranjeria').value = ''; document.getElementById('doc_identidad').required = true; document.getElementById('carnet_extranjeria').required = false;" type="radio" name="nacionalidad" value="Peruano" checked @{{$nac=per}}> Peruano  
-													<input onclick="document.getElementById('carnet_extranjeria').disabled = false; document.getElementById('doc_identidad').disabled = true; document.getElementById('doc_identidad').value = '';  document.getElementById('doc_identidad').required = false; document.getElementById('carnet_extranjeria').required = truess;" type="radio" name="nacionalidad" value="Extranjero" style="margin-left: 50px;"@{{$nac=otro}}> Extranjero	
+													<input onclick="document.getElementById('doc_identidad').disabled = false; document.getElementById('carnet_extranjeria').disabled = true; document.getElementById('carnet_extranjeria').value = ''; document.getElementById('doc_identidad').required = true; document.getElementById('carnet_extranjeria').required = false;" type="radio" name="nacionalidad" value="Peruano" checked @{{$nacionalidad=peruano}}> Peruano  
+													<input onclick="document.getElementById('carnet_extranjeria').disabled = false; document.getElementById('doc_identidad').disabled = true; document.getElementById('doc_identidad').value = '';  document.getElementById('doc_identidad').required = false; document.getElementById('carnet_extranjeria').required = truess;" type="radio" name="nacionalidad" value="Extranjero" style="margin-left: 50px;"@{{$nacionalidad=extranjero}}> Extranjero	
 											</div>	
 										</div>
 									</div>
@@ -197,7 +197,7 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_inic_contrato" placeholder="Fecha de inicio" style="max-width: 250px">
+												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_ini_contrato" placeholder="Fecha de inicio" style="max-width: 250px">
 											</div>	
 										</div>
 									</div>
@@ -210,7 +210,7 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_inic_contrato" placeholder="Fecha de fin" style="max-width: 250px">
+												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_fin_contrato" placeholder="Fecha de fin" style="max-width: 250px">
 											</div>
 										</div>
 									</div>
@@ -264,17 +264,7 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<!-- JQuery -->
-	{!!Html::script('js/jquery-1.11.3.min.js')!!}
-	<!-- Bootstrap -->
-	{!!Html::script('js/bootstrap.js')!!}
-	
-	<!-- BXSlider -->
-	{!!Html::script('js/jquery.bxslider.min.js')!!}
-	<!-- Mis Scripts -->
-	{!!Html::script('js/MisScripts.js')!!}
 
-	{!!Html::script('js/bootstrap-datepicker.js')!!}
 
 
 

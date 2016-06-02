@@ -78,7 +78,7 @@
 			  	<div class="form-group required">
 			    	<label for="fechaInicioInput" class="col-sm-4 control-label">FECHA INICIO(dd/mm/aaaa)</label>
 			    	<div class="col-sm-5">
-			      		<input type="date" class="form-control" id="fechaInicioInput" name="fecha">
+			      		<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" style="max-width: 250px">
 			      		
 			  	
 			    	</div>
@@ -161,6 +161,48 @@
 	<script src="../js/MisScripts.js"></script>
 
 
+	<script>
+		var nowTemp = new Date();
+		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+ 	
+		var checkin = $('#dpd1').datepicker({
+  			onRender: function(date) {
+    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
+  			}
+		}).on('changeDate', function(ev) {
+  			if (ev.date.valueOf() > checkout.date.valueOf()) {
+    			var newDate = new Date(ev.date)
+    			newDate.setDate(newDate.getDate() + 1);
+    			checkout.setValue(newDate);
+  			}
+ 			checkin.hide();
+  			$('#dpd2')[0].focus();
+		}).data('datepicker');
+		var checkout = $('#dpd2').datepicker({
+  			onRender: function(date) {
+    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+  			}
+		}).on('changeDate', function(ev) {
+  			checkout.hide();
+		}).data('datepicker');		
+		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
+	
+	</script>
+	<script>
+		$(function(){
+			$('.datepicker').datepicker({
+				format: 'dd/mm/yyyy'
+			});
+		});
+	</script>
 
+	<script>
+		function ventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 1;
+		}
+		function cerrarventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 3;
+		}
+  	</script>
 </body>
 </html>

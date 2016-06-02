@@ -35,6 +35,7 @@ return array(
     'CreateTarifarioTable' => $baseDir . '/database/migrations/2016_05_20_202043_create_tarifario_table.php',
     'CreateTipoMembresiaTable' => $baseDir . '/database/migrations/2016_05_20_171328_create_tipo_membresia_table.php',
     'CreateTipoPersonaTable' => $baseDir . '/database/migrations/2016_05_24_162230_create_tipo_persona_table.php',
+    'CreateTrabajadorTable' => $baseDir . '/database/migrations/2016_06_01_162428_create_trabajador_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',

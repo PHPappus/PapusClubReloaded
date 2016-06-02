@@ -289,6 +289,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'CreateTarifarioTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_20_202043_create_tarifario_table.php',
         'CreateTipoMembresiaTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_20_171328_create_tipo_membresia_table.php',
         'CreateTipoPersonaTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_24_162230_create_tipo_persona_table.php',
+        'CreateTrabajadorTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_01_162428_create_trabajador_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',

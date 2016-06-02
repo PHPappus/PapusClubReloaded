@@ -49,6 +49,17 @@
 
 	
 @stop
+<!-- JQuery -->
+	{!!Html::script('js/jquery-1.11.3.min.js')!!}
+	<!-- Bootstrap -->
+	{!!Html::script('js/bootstrap.js')!!}
+	
+	<!-- BXSlider -->
+	{!!Html::script('js/jquery.bxslider.min.js')!!}
+	<!-- Mis Scripts -->
+	{!!Html::script('js/MisScripts.js')!!}
+
+	{!!Html::script('js/bootstrap-datepicker.js')!!}
 
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
 	<script>
