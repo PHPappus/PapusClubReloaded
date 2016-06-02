@@ -18,7 +18,7 @@ class CreateReservasTable extends Migration
             $table->integer('sede_id')->unsigned()->nullable();
             $table->integer('ambiente_id')->unsigned()->nullable();
             $table->integer('persona_id')->unsigned()->nullable();
-            $table->doubleval('precio');
+            $table->double('precio');
             $table->string('estadoReserva');//es el estado en que se encuentra la reserva,no el registro reserva en la DB
             $table->softDeletes();
             $table->timestamps();
