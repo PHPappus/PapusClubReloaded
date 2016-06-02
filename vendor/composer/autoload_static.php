@@ -284,6 +284,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'CreateTallerTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_23_000724_create_taller_table.php',
         'CreateTarifaMembresiaTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_20_175024_create_tarifa_membresia_table.php',
         'CreateTarifaTallerTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_23_002208_create_tarifa_taller_table.php',
+        'CreateTarifarioServicio' => __DIR__ . '/../..' . '/database/migrations/2016_06_01_065631_create_tarifario_servicio.php',
         'CreateTarifarioTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_20_202043_create_tarifario_table.php',
         'CreateTipoMembresiaTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_20_171328_create_tipo_membresia_table.php',
         'CreateTipoPersonaTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_24_162230_create_tipo_persona_table.php',

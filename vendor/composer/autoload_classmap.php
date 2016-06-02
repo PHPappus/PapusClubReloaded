@@ -30,6 +30,7 @@ return array(
     'CreateTallerTable' => $baseDir . '/database/migrations/2016_05_23_000724_create_taller_table.php',
     'CreateTarifaMembresiaTable' => $baseDir . '/database/migrations/2016_05_20_175024_create_tarifa_membresia_table.php',
     'CreateTarifaTallerTable' => $baseDir . '/database/migrations/2016_05_23_002208_create_tarifa_taller_table.php',
+    'CreateTarifarioServicio' => $baseDir . '/database/migrations/2016_06_01_065631_create_tarifario_servicio.php',
     'CreateTarifarioTable' => $baseDir . '/database/migrations/2016_05_20_202043_create_tarifario_table.php',
     'CreateTipoMembresiaTable' => $baseDir . '/database/migrations/2016_05_20_171328_create_tipo_membresia_table.php',
     'CreateTipoPersonaTable' => $baseDir . '/database/migrations/2016_05_24_162230_create_tipo_persona_table.php',
