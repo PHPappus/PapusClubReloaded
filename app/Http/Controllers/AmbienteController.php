@@ -75,10 +75,12 @@ class AmbienteController extends Controller
         $ambiente = Ambiente::find($id);
         $actividades = $ambiente->actividades;
 
-        if($actividades->count()){
+        if($ambiente->actividades->count()){
+            /*
             foreach ($actividades as $actividad) {
                 $actividad->delete();
             }
+            */
         }
         $ambiente->delete();
         return back();
