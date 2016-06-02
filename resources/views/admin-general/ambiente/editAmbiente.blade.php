@@ -48,7 +48,7 @@
 		      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" value="{{$ambiente->nombre}}" >
 		    	</div>
 		  	</div>
-		  	<div class="form-group ">
+		  <!-- 	<div class="form-group ">
 		    	<label for="tipoAmbienteInput" class="col-sm-4 control-label">TIPO AMBIENTE</label>	
 		    	<div class="col-sm-5">
 			    	<select class="form-control" name="tipo_ambiente" style="max-width: 150px " readonly >
@@ -60,7 +60,14 @@
 							            <option value="Salon">Salón</option>
 					</select>
 				</div>
+		  	</div> -->
+		  	<div class="form-group ">
+		    	<label for="tipoAmbienteInput" class="col-sm-4 control-label">TIPO AMBIENTE</label>
+		    	<div class="col-sm-5">
+		      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" value="{{$ambiente->tipo_ambiente}}" readonly >
+		    	</div>
 		  	</div>
+
 
 		  	<div class="form-group ">
 		    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA</label>
