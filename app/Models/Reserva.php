@@ -10,10 +10,23 @@ class Reserva extends Model
     use SoftDeletes;
     protected $table = 'reservas';
     protected $fillable = 
-    ['valor', 
-    'grupo', 
-    'descripcion'
+    ['fecha_reserva', 
+    'precio', 
+    'estadoReserva'
     ];
     protected $dates = ['deleted_at'];
-
+    //funciones para las relaciones entre tablas
+    
+    public function ambiente(){
+        return $this->belongsTo('papusclub\Models\Ambiente');
+        
+    }
+    public function sede(){
+        return $this->belongsTo('papusclub\Models\Sede');
+        
+    }
+    public function persona(){
+        return $this->belongsTo('papusclub\Models\Persona');
+        
+    }
 }

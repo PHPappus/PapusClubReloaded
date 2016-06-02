@@ -12,7 +12,17 @@ class CreateReservasTable extends Migration
      */
     public function up()
     {
-        //
+       Schema::create('reservas', function (Blueprint $table) {
+            $table->increments('id');
+            $table->date('fecha_reserva');
+            $table->integer('sede_id')->unsigned()->nullable();
+            $table->integer('ambiente_id')->unsigned()->nullable();
+            $table->integer('persona_id')->unsigned()->nullable();
+            $table->doubleval('precio');
+            $table->string('estadoReserva');//es el estado en que se encuentra la reserva,no el registro reserva en la DB
+            $table->softDeletes();
+            $table->timestamps();
+        });
     }
 
     /**
