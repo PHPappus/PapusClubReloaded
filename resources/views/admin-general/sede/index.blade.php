@@ -43,6 +43,14 @@
 			<div class="container">
 				<!-- <table id="example" class="table table-bordered display"> -->
 				<!-- <form method="POST" action="/sedes/new/sede" > -->
+				<div class="form-group">
+			  		<div class="text-right">
+			  			<font color="black"> 
+			  				Filtra por todos los campos
+			  			</font>
+			  			
+			  		</div>
+			  	</div>
 				<table class="table table-bordered table-hover text-center display" id="example">
 						
 						<thead>

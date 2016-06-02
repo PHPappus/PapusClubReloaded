@@ -36,68 +36,76 @@
 			<form method="POST" action="/sedes/{{ $sede->id }}/edit" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<br/><br/>
-
-				<!-- INICIO INCIIO -->
 				<div class="form-group">
+			  		<div class="text-center">
+			  			<font color="red"> 
+			  				(*) Dato Obligatorio
+			  			</font>
+			  			
+			  		</div>
+			  	</div>
+				<br/>
+				<!-- INICIO INCIIO -->
+				<div class="form-group required">
 		    		<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 		    		<div class="col-sm-5">
 		      			<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="nombreInput" name="nombre" value="{{$sede->nombre}}" >
 		    		</div>
 		  		</div>
-			  	<div class="form-group">
+			  	<div class="form-group required">
 			    	<label for="telefonoInput" class="col-sm-4 control-label">Teléfono</label>
 			    	<div class="col-sm-5">
 			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="telefonoInput" name="telefono" value="{{$sede->telefono}}" >
 			    	</div>
 			  	</div>
 
-			  	<div class="form-group">
+			  	<div class="form-group required">
 			    	<label for="contactoInput" class="col-sm-4 control-label">Contacto</label>
 			    	<div class="col-sm-5">
 			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="contactoInput" name="nombre_contacto" value="{{$sede->nombre_contacto}}">
 			    	</div>
 			  	</div>	  	
-			  	<div class="form-group">
+			  	<div class="form-group required">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad maxima</label>
 			    	<div class="col-sm-5">
 			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="capacidadInput" name="capacidad_maxima" value="{{$sede->capacidad_maxima}}" >
 			    	</div>
 			  	</div>
-			  	<div class="form-group">
+			  	<div class="form-group required">
 			    	<label for="capacidadSocioInput" class="col-sm-4 control-label">Capacidad por socio</label>
 			    	<div class="col-sm-5">
 			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="capacidadSocioInput" name="capacidad_socio" value="{{$sede->capacidad_socio}}">
 			    	</div>
 			  	</div>
 			  	
-			  	<div class="form-group">
+			  	<div class="form-group required">
 			    	<label for="departamentoInput" class="col-sm-4 control-label">Departamento</label>
 			    	<div class="col-sm-5">
 			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="departamentoInput" name="departamento" value="{{$sede->departamento}}" readonly >
 			    	</div>
 			  	</div>
-			  	<div class="form-group">
+			  	<div class="form-group required">
 			    	<label for="provinciaInput" class="col-sm-4 control-label">Provincia</label>
 			    	<div class="col-sm-5">
 			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="provinciaInput" name="provincia" value="{{$sede->provincia}}" readonly >
 			    	</div>
 			  	</div>
-			  	<div class="form-group">
+			  	<div class="form-group required">
 			    	<label for="distritoInput" class="col-sm-4 control-label">Distrito</label>
 			    	<div class="col-sm-5">
 			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="distritoInput" name="distrito" value="{{$sede->distrito}}" readonly >
 			    	</div>
 			  	</div>
-			  	<div class="form-group">
+			  	<div class="form-group required">
 			    	<label for="direccionInput" class="col-sm-4 control-label">Dirección</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="direccionInput" name="direccion" value="{{$sede->direccion}}" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"  class="form-control" id="direccionInput" name="direccion" value="{{$sede->direccion}}" >
 			    	</div>
 			  	</div>
-			  	<div class="form-group">
+			  	<div class="form-group ">
 			    	<label for="referenciaInput" class="col-sm-4 control-label">Referencia </label>
 			    	<div class="col-sm-5">
-			      		<input type="comment"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="referenciaInput" name="referencia" value="{{$sede->referencia}}">
+			      		<input type="comment"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"  class="form-control" id="referenciaInput" name="referencia" value="{{$sede->referencia}}">
 			    	</div>
 			  	</div>
 			  	

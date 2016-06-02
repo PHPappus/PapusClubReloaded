@@ -39,6 +39,13 @@
 		@endif
 
 		<div class="container">
+			<div class="form-group">
+				<div class="text-right">
+					<font color="black"> 
+						Filtra por todos los campos
+					</font>
+				</div>
+		 	</div>
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active">
 						<tr>

@@ -38,11 +38,19 @@
 			<form method="POST" action="/ambiente/{{ $ambiente->id }}/edit" class="form-horizontal form-border">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<br/><br/>
-
+				<div class="form-group">
+			  		<div class="text-center">
+			  			<font color="red"> 
+			  				(*) Dato Obligatorio
+			  			</font>
+			  			
+			  		</div>
+			  	</div>
+				<br/>
 			<!-- INICIO INICIO INICIO INICIO -->
 			<!-- SE DEBE LEER DATA DE LA BD E INGRESARLOS -->
 
-			<div class="form-group ">
+			<div class="form-group required">
 		    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" value="{{$ambiente->nombre}}" >
@@ -61,15 +69,15 @@
 					</select>
 				</div>
 		  	</div> -->
-		  	<div class="form-group ">
-		    	<label for="tipoAmbienteInput" class="col-sm-4 control-label">TIPO AMBIENTE</label>
+		  	<div class="form-group required ">
+		    	<label for="tipoAmbienteInput " class="col-sm-4 control-label">TIPO AMBIENTE</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" value="{{$ambiente->tipo_ambiente}}" readonly >
 		    	</div>
 		  	</div>
 
 
-		  	<div class="form-group ">
+		  	<div class="form-group required">
 		    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="capacidadInput" name="capacidad_actual" value="{{$ambiente->capacidad_actual}}" >
@@ -81,10 +89,10 @@
 		      		<input type="number" class="form-control" id="capacidadDisponibleInput" name="capacidad_disponible" placeholder="Capacidad Disponible" readonly>
 		    	</div>
 		  	</div> -->
-		  	<div class="form-group ">
+		  	<div class="form-group required ">
 		    	<label for="ubicacionInput" class="col-sm-4 control-label">UBICACIÓN</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->ubicacion}}" >
+		      		<input type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->ubicacion}}" >
 		    	</div>
 		  	</div>
 		  	
