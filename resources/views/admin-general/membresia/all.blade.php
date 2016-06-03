@@ -44,7 +44,7 @@
 		<div class="container">
 			<div class="form-group">
 				<div class="col-sm-1 text-right">
-					<a class="btn btn-primary" href="{{url('/membresia/')}}" title="Registrar Membresia" >Ocultar Inhabilitados</a>	
+					<a class="btn btn-primary" href="{{url('/membresia/')}}" title="Ocultar" >Ocultar Inhabilitados</a>	
 				</div>
 			</div>
 			<br/>
@@ -145,7 +145,7 @@
 	        <h4 class="modal-title">Confirmar</h4>
 	      </div>
 	      <div class="modal-body">
-	        <p>¿Está seguro que desea eliminar la sede?</p>
+	        <p>¿Está seguro que desea eliminar esta Membresía?</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
