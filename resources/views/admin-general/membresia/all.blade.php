@@ -96,18 +96,23 @@
 					            </tr>				            		
 							@endforeach
 						</tbody>
-				</table>			
+				</table>
+				</br></br></br></br>
+				<div class="btn-inline">
+					<!-- <form method="POST" action="/sedes/new/sede" >
+					<input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
+
+					<div class="btn-group col-sm-10"></div>
+					
+					<div class="btn-group ">
+						<a href="{{url('/membresia/new')}}" class="btn btn-info" type="submit">Registrar Membresía</a>
+
+					</div>
+					
+				</div>							
 			</div>		
 		</div>
-		</br></br></br></br>
-		<div class="container">
-			<div class="form-group">
-				<div class="col-sm-10 text-right">
-					<a class="btn btn-info" href="{{url('/membresia/new')}}" title="Registrar Membresia" >Agregar</a>	
-				</div>
-			</div>
-			<br/>
-		</div>
+
 
 
 	

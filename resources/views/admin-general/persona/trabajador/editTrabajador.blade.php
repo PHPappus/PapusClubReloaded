@@ -209,7 +209,7 @@
 												<select class="form-control" id="puestoSelect" name="puestoSelect" style="max-width: 150px "   >
 													<option value="-1" default>Seleccione</option>
 														@foreach ($puestoslaborales as $variablePuesto)      
-										                	<option value="{{$variablePuesto->id}} @if($puesto->id==$variablePuesto->id) selected @endif >{{$variablePuesto->valor}}</option>
+										                	<option value="{{$variablePuesto->id}}" @if($puesto->id==$variablePuesto->id) selected @endif >{{$variablePuesto->valor}}</option>
 										                @endforeach
 												</select>
 											</div>
