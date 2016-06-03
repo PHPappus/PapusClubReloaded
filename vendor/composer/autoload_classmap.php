@@ -17,6 +17,7 @@ return array(
     'ConfiguracionTableSeeder' => $baseDir . '/database/seeds/ConfiguracionTableSeeder.php',
     'CrateServiciosTable' => $baseDir . '/database/migrations/2016_05_21_023229_crate_servicios_table.php',
     'CreateActividadesTable' => $baseDir . '/database/migrations/2016_05_22_171858_create_actividades_table.php',
+    'CreateAmbientesSorteoTable' => $baseDir . '/database/migrations/2016_06_03_114212_create_ambientesSorteo_table.php',
     'CreateAmbientesTable' => $baseDir . '/database/migrations/2016_05_20_163007_create_ambientes_table.php',
     'CreateConfiguracionTable' => $baseDir . '/database/migrations/2016_05_26_194248_create_configuracion_table.php',
     'CreateMaestroProductoTable' => $baseDir . '/database/migrations/2016_05_21_152952_create_maestro_producto_table.php',

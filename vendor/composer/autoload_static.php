@@ -271,6 +271,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'ConfiguracionTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ConfiguracionTableSeeder.php',
         'CrateServiciosTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_21_023229_crate_servicios_table.php',
         'CreateActividadesTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_22_171858_create_actividades_table.php',
+        'CreateAmbientesSorteoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_03_114212_create_ambientesSorteo_table.php',
         'CreateAmbientesTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_20_163007_create_ambientes_table.php',
         'CreateConfiguracionTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_26_194248_create_configuracion_table.php',
         'CreateMaestroProductoTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_21_152952_create_maestro_producto_table.php',
