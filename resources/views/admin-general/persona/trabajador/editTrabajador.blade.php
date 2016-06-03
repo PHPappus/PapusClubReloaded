@@ -207,9 +207,9 @@
 											</div>
 											<div class="col-sm-6">
 												<select class="form-control" id="puestoSelect" name="puestoSelect" style="max-width: 150px "   >
-													<option value="-1" default>Seleccione</option>
+													<option value="-1">Seleccione</option>
 														@foreach ($puestoslaborales as $variablePuesto)      
-										                	<option value="{{$variablePuesto->id}} @if($puesto->id==$variablePuesto->id) selected @endif >{{$variablePuesto->valor}}</option>
+										                	<option value="{{$variablePuesto->id}}" @if($puesto['id']==$variablePuesto->id) selected @endif >{{$variablePuesto->valor}}</option>
 										                @endforeach
 												</select>
 											</div>
@@ -224,7 +224,7 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_ini_contrato" placeholder="Fecha de inicio" style="max-width: 250px" value="{{$persona->fecha_ini_contrato}}" value="{{old('fecha_ini_contrato')}}">
+												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_ini_contrato" placeholder="Fecha de inicio" style="max-width: 250px" value="@if(empty($trabajador->fecha_ini_contrato)) $trabajador->fecha_fin_contrato @endif" value="{{old('fecha_ini_contrato')}}">
 											</div>	
 										</div>
 									</div>
@@ -237,7 +237,7 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_fin_contrato" placeholder="Fecha de fin" style="max-width: 250px" value="{{$persona->fecha_fin_contrato}}" value="{{old('fecha_fin_contrato')}}">
+												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_fin_contrato" placeholder="Fecha de fin" style="max-width: 250px" value="@if(empty($trabajador->fecha_ini_contrato)) $trabajador->fecha_fin_contrato @endif" value="{{old('fecha_fin_contrato')}}">
 											</div>
 										</div>
 									</div>
