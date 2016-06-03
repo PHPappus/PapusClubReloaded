@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>CONSULTA DE MULTA</title>
+	<title>DETALLE DE MULTA</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,25 +22,20 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>CONSULTA DE MULTA</strong>
+					<strong>DETALLE DE MULTA</strong>
 			</div>		
 		</div>
 
 		<div class="container">
 			<form class="form-horizontal form-border">
 				<br/><br/>
-				<div class="form-group">
-					<div class="col-sm-11 text-right">
-						<a class="btn btn-info" href="{{url('/multa/'.$multa->id)}}/editar" title="Editar" >Editar <i class="glyphicon glyphicon-pencil"></i></a>	
-					</div>
-					<br/>
-				</div>				
+							
 	    		
 			    <br>
-				<div class="form-group required">
+				<div class="form-group">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" value="{{$multa->descripcion}}" readonly required>
+			      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" value="{{$multa->descripcion}}" readonly>
 			    	</div>
 			  	</div>  	
 
@@ -69,7 +64,7 @@
 			  	</br>
 				<div class="form-group">
 					<div class="col-sm-6"> </div>
-						<a class="btn btn-info" href="/multa/" title="Editar" >Retornar <i class="glyphicon glyphicon-arrow-left"></i></a>			
+						<a class="btn btn-info" href="/multa/" title="Editar" >Regresar <i class="glyphicon glyphicon-arrow-left"></i></a>			
 				</div>
 				</br>
 				</br>

@@ -89,7 +89,7 @@
 		</br></br></br></br>
 		<div class="container">
 			<div class="form-group">
-				<div class="col-sm-10 text-right">
+				<div class="col-sm-7 text-right">
 					<a class="btn btn-info" href="{{url('/membresia/new')}}" title="Registrar Membresia" >Agregar</a>	
 				</div>
 			</div>
