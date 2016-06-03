@@ -28,7 +28,6 @@ class ActividadController extends Controller
     public function store(StoreActividadRequest $request)
     {
         $input = $request->all();
-        //return compact('input');
         $actividad = new Actividad();
         $actividad->nombre= $input['nombre'];
         //para agregar la actividades al ambiente
@@ -56,7 +55,6 @@ class ActividadController extends Controller
     public function update(EditActividadRequest $request, $id)
     {
         $input = $request->all();
-        //return compact('input');
         $actividad = Actividad::find($id);
 
         $actividad->nombre= $input['nombre'];

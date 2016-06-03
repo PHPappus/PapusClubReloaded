@@ -23,7 +23,7 @@ class SedesController extends Controller
     public function create()
     {
         //$mensaje = null;
-        return view('admin-general.sede.newSede'/*, compact('mensaje')*/);
+        return view('admin-general.sede.newSede');
     }
 
     //Se almacena la nueva sede que se ha registrado en la BD
@@ -44,13 +44,6 @@ class SedesController extends Controller
         $sede->capacidad_maxima = $input['capacidad_maxima'];
         $sede->capacidad_socio = $input['capacidad_socio'];
 
-        /*
-        foreach ($sedes as $sedeBuscada) {
-            $mensaje = "La sede ya se encuentra registrada.";
-            if($sedeBuscada->nombre == $sede->nombre || $sedeBuscada->direccion == $sede->direccion)
-                return view('admin-general.sede.newSede', compact('mensaje'));
-        }
-        */
         $sede->save();
         return redirect('sedes/index')->with('stored', 'Se registró la sede correctamente.');
     
@@ -91,17 +84,7 @@ class SedesController extends Controller
         $ambientes = $sede->ambientes;
         
         if($sede->ambientes->count() || $sede->actividades->count()) {
-            /*
-            foreach ($ambientes as $ambiente) {
-                $actividades = $ambiente->actividades;
-                if($actividades->count()){
-                    foreach ($actividades as $actividad) {
-                        $actividad->delete();
-                    }    
-                }
-                $ambiente->delete();
-            }
-            */
+            
         }
         else
             $sede->forceDelete();
