@@ -44,7 +44,7 @@
 		<div class="container">
 			<div class="form-group">
 				<div class="col-sm-1 text-right">
-					<a class="btn btn-primary" href="{{url('/membresia/all')}}" title="Registrar Membresia" >Mostrar Todos</a>	
+					<a class="btn btn-primary" href="{{url('/membresia/')}}" title="Registrar Membresia" >Ocultar Inhabilitados</a>	
 				</div>
 			</div>
 			<br/>
@@ -62,7 +62,7 @@
 							<th><div align=center>MONTO</div></th>
 							<th><div align=center>DETALLE</div></th>
 							<th><div align=center>EDITAR</div></th>
-							<th><div align=center>ELIMINAR</div></th>
+							<th><div align=center>ACTIVAR/ELIMINAR</div></th>
 						</thead>
 						<tbody>
 							@foreach($membresias as $membresia)						
@@ -71,15 +71,28 @@
 									<td>{{$membresia->numMaxInvitados}}</td>
 									<td>S/.</td>
 									<td>{{$membresia->tarifa->monto}}</td>
+									@if($membresia->trashed())
 									<td>
-					              	<a class="btn btn-info" href="{{url('/membresia/'.$membresia->id)}}/"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+					              		<a class="btn btn-info" href="{{url('/membresia/'.$membresia->id)}}/"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 					            	</td>
 					            	<td>
-							        <a class="btn btn-info" href="{{url('/membresia/'.$membresia->id)}}/editar" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+							        	<a class="btn btn-info" href="{{url('/membresia/'.$membresia->id)}}/editar" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 							        </td>
 					            	<td>
-							        <a class="btn btn-info"  title="Eliminar" data-href="{{url('/membresia/'.$membresia->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+										<a class="btn btn-info"  title="Activar" data-href="{{url('/membresia/'.$membresia->id.'/activate')}}" data-toggle="modal" data-target="#modalActivar"><i class="glyphicon glyphicon-ok"></i></a>
 					            	</td>
+									@else
+									<td>
+					              		<a class="btn btn-info" href="{{url('/membresia/'.$membresia->id)}}/"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+					            	</td>
+					            	<td>
+							        	<a class="btn btn-info" href="{{url('/membresia/'.$membresia->id)}}/editar" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+							        </td>
+					            	<td>
+										<a class="btn btn-info"  title="Eliminar" data-href="{{url('/membresia/'.$membresia->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+					            	</td>
+									@endif
+
 					            </tr>				            		
 							@endforeach
 						</tbody>
@@ -147,6 +160,36 @@
 	<!-- Modal Event-->
 	<script>
 		$('#modalEliminar').on('show.bs.modal', function(e) {
+   			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+		});
+	</script>
+
+		<!-- Modal -->
+	<div id="modalActivar" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Confirmar</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>¿Desea reactivarlo?</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-info btn-ok">Confirmar</a>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
+	<!-- Modal Event-->
+	<!-- Modal Event-->
+	<script>
+		$('#modalActivar').on('show.bs.modal', function(e) {
    			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 		});
 	</script>

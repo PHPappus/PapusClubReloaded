@@ -33,8 +33,7 @@ class StoreSedeRequest extends Request
             'referencia'         =>  'max:100|string',
             'nombre_contacto'         =>  'required|max:100|string',
             'capacidad_maxima'      =>  'integer|min:1',
-            'capacidad_socio'      =>  'integer|min:1',
-                        
+            'capacidad_socio'      =>  'integer|min:1|max:capacidad_maxima'
         ];
     }
 }

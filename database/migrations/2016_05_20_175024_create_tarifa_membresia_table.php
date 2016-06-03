@@ -18,6 +18,7 @@ class CreateTarifaMembresiaTable extends Migration
             $table->boolean('estado');
             $table->dateTime('fecha_registro');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

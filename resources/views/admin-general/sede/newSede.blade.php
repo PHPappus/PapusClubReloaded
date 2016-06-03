@@ -71,7 +71,7 @@
 			  	<div class="form-group required">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad maxima</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="capacidadInput" name="capacidad_maxima" placeholder="Capacidad" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="capacidad_maxima" name="capacidad_maxima" placeholder="Capacidad" >
 			    	</div>
 			  	</div>
 
