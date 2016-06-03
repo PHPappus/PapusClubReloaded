@@ -118,7 +118,7 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Guardar">
+						<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Confirmar">
 					</div>
 					<div class="btn-group">
 						<a href="/sedes/index" class="btn btn-info">Cancelar</a>
@@ -133,7 +133,7 @@
 						
 						<!-- style="z-index:2; padding-top:100px;"
 						 --><!-- <button type="submit" class="btn btn-lg btn-primary">Registrar</button> -->
-						<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="confirmationLabel" data-keyboard="false" data-backdrop="static" style="position:relative">
+						<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="confirmationLabel" data-keyboard="false" data-backdrop="static">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
 									<!-- Header de la ventana -->

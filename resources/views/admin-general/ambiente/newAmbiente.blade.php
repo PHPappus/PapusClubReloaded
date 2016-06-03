@@ -73,7 +73,7 @@
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"   class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"   class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" value="{{old('nombre')}}" >
 			    	</div>
 			  	</div>
 			  	<div class="form-group required">
@@ -96,19 +96,19 @@
 			  	<div class="form-group required">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="capacidadInput" name="capacidad_actual" placeholder="Capacidad Maxima" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="capacidadInput" name="capacidad_actual" placeholder="Capacidad Maxima" value="{{old('capacidad_actual')}}" >
 			    	</div>
 			  	</div>	  	
 			  	<div class="form-group required">
 			    	<label for="numHabitacionInput" class="col-sm-4 control-label">NÚMERO DE HABITACIONES</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="numHabitacionInput" name="capacidad_actual" placeholder="Número de habitaciones" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="numHabitacionInput" name="capacidad_actual" placeholder="Número de habitaciones" value="{{old('capacidad_actual')}}" >
 			    	</div>
 			  	</div>	
 			  	<div class="form-group required">
 			    	<label for="ubicacionInput" class="col-sm-4 control-label">UBICACIÓN</label>
 			    	<div class="col-sm-5">
-			      		<textarea type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="ubicacionInput" name="ubicacion" placeholder="Ubicacion" ></textarea>
+			      		<textarea type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="ubicacionInput" name="ubicacion" placeholder="Ubicacion" value="{{old('ubicacion')}}"></textarea>
 			    	</div>
 			  	</div>
 			  	</br>
