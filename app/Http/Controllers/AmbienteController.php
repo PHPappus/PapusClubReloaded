@@ -82,7 +82,9 @@ class AmbienteController extends Controller
             }
             */
         }
-        $ambiente->delete();
+        else
+            $ambiente->delete();
+        
         return back();
     }
 

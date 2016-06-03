@@ -93,7 +93,9 @@ class SedesController extends Controller
             }
             */
         }
-        $sede->delete();
+        else
+            $sede->forceDelete();
+        
         return back();
     }
 

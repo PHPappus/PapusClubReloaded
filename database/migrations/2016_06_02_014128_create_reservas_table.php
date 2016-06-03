@@ -16,6 +16,8 @@ class CreateReservasTable extends Migration
             $table->increments('id');
             $table->date('fecha_inicio_reserva');
             $table->date('fecha_fin_reserva');
+            $table->time('hora_inicio_reserva');
+            $table->time('hora_fin_reserva');
             $table->integer('sede_id')->unsigned()->nullable();
             $table->integer('ambiente_id')->unsigned()->nullable();
             $table->integer('persona_id')->unsigned()->nullable();
