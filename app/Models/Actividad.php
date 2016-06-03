@@ -14,7 +14,9 @@ class Actividad extends Model
     'tipo_actividad', 
     'capacidad_maxima', 
     'descripcion',
-    'a_realizarse_en'
+    'a_realizarse_en',
+    'cant_ambientes',
+    'estado',
     ];
     protected $dates = ['deleted_at'];
     //funciones para las relaciones entre tablas

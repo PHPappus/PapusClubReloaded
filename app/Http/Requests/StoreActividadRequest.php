@@ -27,7 +27,8 @@ class StoreActividadRequest extends Request
             'nombre'            =>  'required|max:100|string',
             'tipo_actividad'     =>  'required|max:100|string',
             'capacidad_maxima'  =>  'required|integer|min:1',
-            'descripcion'         =>  'max:100|string',   
+            'descripcion'         =>  'max:100|string',
+            'cant_ambientes'    => 'required|min:1',
         ];
     }
 }

@@ -40,7 +40,9 @@ class ActividadController extends Controller
         $actividad->capacidad_maxima= $input['capacidad_maxima'];
         $actividad->tipo_actividad= $input['tipo_actividad'];
         $actividad->descripcion= $input['descripcion'];
-        $actividad->a_realizarse_en=now()->addDay(); 
+        $actividad->cant_ambientes=$input['cant_ambientes'];
+        $actividad->a_realizarse_en=now()->addDay();
+        $actividad->estado=false; 
         $actividad->save();
         return redirect('actividad/index')->with('stored', 'Se registró la actividad correctamente.');
     }

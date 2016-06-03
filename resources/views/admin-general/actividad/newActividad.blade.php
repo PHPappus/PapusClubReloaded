@@ -119,7 +119,12 @@
 						</select>
 					</div>
 			  	</div>
-
+			  	<div class="form-group required">
+			    	<label for="cant_ambientesInput" class="col-sm-4 control-label">CANTIDAD DE AMBIENTES A USAR</label>
+			    	<div class="col-sm-5">
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="cant_ambientesInput" name="cant_ambientes" placeholder="Cantidad de ambientes" >
+			    	</div>
+			  	</div>
 			  	<div class="form-group required">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA</label>
 			    	<div class="col-sm-5">
