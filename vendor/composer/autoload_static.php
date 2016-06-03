@@ -267,6 +267,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'AddFkToPostulante' => __DIR__ . '/../..' . '/database/migrations/2016_05_24_200234_add_fk_to_postulante.php',
         'AddFkToSocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_29_004547_add_fk_to_socio_table.php',
         'AddFkToTipoMembresiaTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_29_004019_add_fk_to_tipo_membresia_table.php',
+        'AddFkToTrabajador' => __DIR__ . '/../..' . '/database/migrations/2016_06_02_175130_add_fk_to_trabajador.php',
         'AmbienteTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AmbienteTableSeeder.php',
         'ConfiguracionTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ConfiguracionTableSeeder.php',
         'CrateServiciosTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_21_023229_crate_servicios_table.php',

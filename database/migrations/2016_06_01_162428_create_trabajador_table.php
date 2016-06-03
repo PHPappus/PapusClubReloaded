@@ -13,7 +13,7 @@ class CreateTrabajadorTable extends Migration
     public function up()
     {
         Schema::create('trabajador', function (Blueprint $table) {
-            $table->integer('id');
+            $table->integer('id')->unsigned()->nullable();;
             $table->integer('puesto');
             $table->date('fecha_ini_contrato');
             $table->date('fecha_fin_contrato');

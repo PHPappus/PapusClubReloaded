@@ -11,6 +11,8 @@
 	{!!Html::style('css/MisEstilos.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
 	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
+	<!-- PARA DATA TABLE -->
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
 	
 </head>
 <body>
@@ -42,8 +44,73 @@
 		@endif
 
 		<div class="container">
-			<div><a class="btn btn-primary" href="{{url('/trabajador/search')}}">Consultar</a> <a class="btn btn-primary" href="{{url('/trabajador/new')}}">Registrar</a></div>
-			@yield('content-opcion')
+			<table class="table table-bordered table-hover text-center display" id="example">
+					<thead class="active">
+						<tr>
+							<th><DIV ALIGN=center>DOC IDENTIDAD</th>
+							<th><DIV ALIGN=center>NOMBRE</th>
+							<th><DIV ALIGN=center>APELLIDO PATERNO</th>
+							<th><DIV ALIGN=center>APELLIDO MATERNO</th>
+							<th><DIV ALIGN=center>NACIONALIDAD</th>
+							<th><DIV ALIGN=center>DETALLE</th>
+							<th><DIV ALIGN=center>EDITAR</th>
+							<th><DIV ALIGN=center>ELIMINAR</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+							@foreach($personas as $persona)						
+						    	<tr>
+						    		@if($persona->nacionalidad =="peruano")
+						    			<td>{{ $persona->doc_identidad }}</td>
+						    		
+						    		@else
+						    			<td>{{ $persona->carnet_extranjeria }}</td>
+						    		@endif
+									<td>{{ $persona->nombre }}</td>
+									<td>{{ $persona->ap_paterno }}</td>
+			 						<td>{{ $persona->ap_materno }}</td>
+			 						<td>{{ $persona->nacionalidad }}</td>
+									<td>
+							        <a class="btn btn-info" href="{{url('/trabajador/'.$persona->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+							        </td>
+									<td>
+							        <a class="btn btn-info" href="{{url('/trabajador/'.$persona->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+							        </td>
+							        <td>
+							        <a class="btn btn-info"  title="Eliminar" data-href="{{url('/trabajador/'.$persona->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a> 
+							        </td>
+							            
+								</tr>
+							@endforeach
+					</tbody>					
+												
+					
+			</table>		
+			</br>
+				</br>
+				</br>
+				</br>
+				
+				<div class="btn-inline">
+					<!-- <form method="POST" action="/sedes/new/sede" >
+					<input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
+
+					<div class="btn-group col-sm-10"></div>
+					
+					<div class="btn-group ">
+						<a href="{{url('/trabajador/new')}}" class="btn btn-info" type="submit">Registrar Trabajador</a>
+
+					</div>
+					
+				</div>
+
+
+
+
+
+			<!-- <div><a class="btn btn-primary" href="{{url('/trabajador/search')}}">Consultar</a> <a class="btn btn-primary" href="{{url('/trabajador/new')}}">Registrar</a></div>
+			@yield('content-opcion') -->
 		</div>
 	</div>
 
@@ -84,7 +151,7 @@
 	        <h4 class="modal-title">Confirmar</h4>
 	      </div>
 	      <div class="modal-body">
-	        <p>¿Está seguro que desea eliminar el producto?</p>
+	        <p>¿Está seguro que desea eliminar al Trabajador?</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

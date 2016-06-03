@@ -16,4 +16,9 @@ class Trabajador extends Model
     ];
     protected $dates = ['deleted_at'];
 
+	public function persona()
+    {
+        return Persona::find($this->id);
+    }
 }
+

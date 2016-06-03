@@ -4,7 +4,7 @@ namespace papusclub\Http\Requests;
 
 use papusclub\Http\Requests\Request;
 
-class StoreTrabajadorRequest extends Request
+class EditTrabajadorRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreTrabajadorRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**

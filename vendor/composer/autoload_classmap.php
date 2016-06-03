@@ -13,6 +13,7 @@ return array(
     'AddFkToPostulante' => $baseDir . '/database/migrations/2016_05_24_200234_add_fk_to_postulante.php',
     'AddFkToSocioTable' => $baseDir . '/database/migrations/2016_05_29_004547_add_fk_to_socio_table.php',
     'AddFkToTipoMembresiaTable' => $baseDir . '/database/migrations/2016_05_29_004019_add_fk_to_tipo_membresia_table.php',
+    'AddFkToTrabajador' => $baseDir . '/database/migrations/2016_06_02_175130_add_fk_to_trabajador.php',
     'AmbienteTableSeeder' => $baseDir . '/database/seeds/AmbienteTableSeeder.php',
     'ConfiguracionTableSeeder' => $baseDir . '/database/seeds/ConfiguracionTableSeeder.php',
     'CrateServiciosTable' => $baseDir . '/database/migrations/2016_05_21_023229_crate_servicios_table.php',

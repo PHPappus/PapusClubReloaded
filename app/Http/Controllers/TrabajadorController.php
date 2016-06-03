@@ -18,12 +18,24 @@ class TrabajadorController extends Controller
 
     public function index()
     {
-        return view('admin-general.persona.trabajador.index', compact('puestos'));
+        $personas=Persona::all();
+        return view('admin-general.persona.trabajador.index', compact('personas'));
     }
 
-    public function buscar()
+    public function show($id)
     {
-        return view('admin-general.persona.trabajador.buscar-trabajador');
+        $persona = Persona::find($id);
+        $carbon=new Carbon();
+        $persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d', $persona->fecha_nacimiento)->format('d/m/Y');
+
+        $trabajador=Trabajador::find($persona->id);
+        $trabajador->fecha_ini_contrato=$carbon->createFromFormat('Y-m-d',  $trabajador->fecha_ini_contrato)->format('d/m/Y');
+        $trabajador->fecha_fin_contrato=$carbon->createFromFormat('Y-m-d',  $trabajador->fecha_fin_contrato)->format('d/m/Y');
+
+        $puesto=Configuracion::find($trabajador->puesto);
+/*      $idpuesto=$trabajador->puesto;
+        $puesto=Configuracion::find('2');*/
+        return view('admin-general.persona.trabajador.detailTrabajador',compact('persona', 'trabajador','puesto'));
     }
 
     public function registrar()
@@ -31,7 +43,6 @@ class TrabajadorController extends Controller
         $puestos = Configuracion::all()->where('grupo', 1);
         return view('admin-general.persona.trabajador.newTrabajador',compact('puestos'));
     }
-
 
     public function store(StoreTrabajadorRequest $request)
     {       
@@ -41,18 +52,18 @@ class TrabajadorController extends Controller
 
         $persona->nacionalidad = $input['nacionalidad'];
 
-        if ($input['carnet_extranjeria']='') {
-            $persona->doc_identidad ="";
-        }
-        else
-            $persona->doc_identidad = $input['doc_identidad'];
-
-        
-        if ($input['carnet_extranjeria']='') {
+        if (empty($input['carnet_extranjeria'])) {
             $persona->carnet_extranjeria ="";
         }
         else
             $persona->carnet_extranjeria = $input['carnet_extranjeria'];
+
+        
+        if (empty($input['doc_identidad'])) {
+            $persona->doc_identidad ="";
+        }
+        else
+            $persona->doc_identidad = $input['doc_identidad'];
         
         $persona->nombre = trim($input['nombre']);
         $persona->ap_paterno = trim($input['ap_paterno']);
@@ -67,8 +78,8 @@ class TrabajadorController extends Controller
 
 
         $persona->id_tipo_persona = 1;
-        $persona->sexo=$input['sex'];
-
+        $persona->sexo=$input['sexo'];
+        $persona->correo=trim($input['correo']);
         $persona->save();
         $idPersona = $persona->id; //obtiene el id de la persona ingresada
         //Aqui hago el registro del trabajador una vez registraa la persona
@@ -77,20 +88,22 @@ class TrabajadorController extends Controller
         $trabajador->id=$idPersona;
         $trabajador->puesto=$input['puestoSelect'];
 
-/*
-        if ($input['fecha_ini_contrato']='') {
+
+
+        if (empty($input['fecha_ini_contrato'])) {
             $trabajador->fecha_ini_contrato="";
         }else{
             $fecha_ini_contrato = str_replace('/', '-', $input['fecha_ini_contrato']);      
             $trabajador->fecha_ini_contrato=$carbon->createFromFormat('d-m-Y', $fecha_ini_contrato)->toDateString();
         }
 
-        if ($input['fecha_fin_contrato']='') {
+        if (empty($input['fecha_fin_contrato'])) {
             $trabajador->fecha_fin_contrato="";
         }else{
             $fecha_fin_contrato = str_replace('/', '-', $input['fecha_fin_contrato']);      
             $trabajador->fecha_fin_contrato=$carbon->createFromFormat('d-m-Y', $fecha_fin_contrato)->toDateString();
-        }*/
+        }
+
 
         $trabajador->save();
 
@@ -98,6 +111,95 @@ class TrabajadorController extends Controller
         //$persona->id_usuario = $input['id_usuario'];     
         
         
-        return redirect('trabajador/search')->with('stored', 'Se registró el producto correctamente.');
+        return redirect('trabajador/index')->with('stored', 'Se registró el producto correctamente.');
+    }
+
+    public function edit($id){
+        $puestoslaborales = Configuracion::all()->where('grupo', 1);
+        $persona = Persona::find($id);
+        $carbon=new Carbon();
+        $persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d', $persona->fecha_nacimiento)->format('d/m/Y');
+
+        $trabajador=Trabajador::find($persona->id);
+        $trabajador->fecha_ini_contrato=$carbon->createFromFormat('Y-m-d',  $trabajador->fecha_ini_contrato)->format('d/m/Y');
+        $trabajador->fecha_fin_contrato=$carbon->createFromFormat('Y-m-d',  $trabajador->fecha_fin_contrato)->format('d/m/Y');
+
+        $puesto=Configuracion::find($trabajador->puesto);
+
+
+        return view('admin-general.persona.trabajador.editTrabajador',compact('persona', 'trabajador','puesto','puestoslaborales'));
+    }
+
+    public function update($id,StoreTrabajadorRequest $request){
+        $carbon=new Carbon(); 
+        $input = $request->all();
+        $persona = Persona::find($id);
+        $persona->nacionalidad = $input['nacionalidad'];
+
+        if (empty($input['carnet_extranjeria'])) {
+            $persona->carnet_extranjeria ="";
+        }
+        else
+            $persona->carnet_extranjeria = $input['carnet_extranjeria'];
+
+        
+        if (empty($input['doc_identidad'])) {
+            $persona->doc_identidad ="";
+        }
+        else
+            $persona->doc_identidad = $input['doc_identidad'];
+        
+        $persona->nombre = trim($input['nombre']);
+        $persona->ap_paterno = trim($input['ap_paterno']);
+        $persona->ap_materno = trim($input['ap_materno']);
+
+        if (empty($input['fecha_nacimiento'])) {
+            $persona->fecha_nacimiento ="";            
+        }else{
+            $fecha_nac = str_replace('/', '-', $input['fecha_nacimiento']);      
+            $persona->fecha_nacimiento=$carbon->createFromFormat('d-m-Y', $fecha_nac)->toDateString();
+        }
+
+
+        $persona->id_tipo_persona = 1;
+        $persona->sexo=$input['sexo'];
+        $persona->correo=trim($input['correo']);
+        $persona->save();
+
+        $trabajador=Trabajador::find($persona->id);
+        $trabajador->puesto=$input['puestoSelect'];
+
+
+
+        if (empty($input['fecha_ini_contrato'])) {
+            $trabajador->fecha_ini_contrato="";
+        }else{
+            $fecha_ini_contrato = str_replace('/', '-', $input['fecha_ini_contrato']);      
+            $trabajador->fecha_ini_contrato=$carbon->createFromFormat('d-m-Y', $fecha_ini_contrato)->toDateString();
+        }
+
+        if (empty($input['fecha_fin_contrato'])) {
+            $trabajador->fecha_fin_contrato="";
+        }else{
+            $fecha_fin_contrato = str_replace('/', '-', $input['fecha_fin_contrato']);      
+            $trabajador->fecha_fin_contrato=$carbon->createFromFormat('d-m-Y', $fecha_fin_contrato)->toDateString();
+        }
+
+
+        $trabajador->save();
+        
+        return redirect('trabajador/index');
+    }
+
+    public function destroy($id){
+
+        $persona = Persona::find($id);
+        $trabajador=Trabajador::find($persona->id);
+
+
+        $trabajador->forceDelete();;
+        $persona ->forceDelete();;
+        return back();
+
     }
 }

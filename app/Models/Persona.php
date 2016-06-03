@@ -24,6 +24,10 @@ class Persona extends Model
     protected $dates = ['deleted_at'];
     
     public function tipopersona(){
-        return $this->belongsTo('papusclub\Models\TipoPersona');
+        return $this->belongsTo('papusclub\Models\TipoPersona','id_tipo_persona');
+    }
+
+    public function trabajador(){
+        return $this->belongsTo('papusclub\Models\Trabajador','id');
     }
 }
