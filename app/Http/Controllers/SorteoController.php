@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use papusclub\Http\Requests;
 use papusclub\Models\Sorteo;
+use papusclub\Models\Ambiente;
 use papusclub\Http\Requests\EditSorteoRequest;
 use papusclub\Http\Requests\StoreSorteoRequest;
 
@@ -26,7 +27,9 @@ class SorteoController extends Controller
 
     public function create()
     {
-        return view('admin-general.sorteo.newSorteo');
+        $ambientes=Ambiente::all()->where('tipo',"Bungalow");
+        //$ambientes=Ambiente::all();
+        return view('admin-general.sorteo.newSorteo',['ambientes'=>$ambientes]);
     }
 
     public function store(StoreSorteoRequest $request)

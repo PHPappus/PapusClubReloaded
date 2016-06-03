@@ -16,7 +16,7 @@ class CreateAmbientesTable extends Migration
             $table->increments('id');
             $table->integer('sede_id')->unsigned()->nullable();
             $table->string('nombre');
-            $table->string('tipo_ambiente');
+            $table->string('tipo');
             $table->string('capacidad_actual');
             $table->string('ubicacion');
             $table->softDeletes();
