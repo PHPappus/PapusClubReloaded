@@ -61,14 +61,14 @@
 			  	<div class="form-group required">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">Número Máximo de Invitados</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="numMaxInput" name="numMax" placeholder="Número máximo de Invitados" value="{{old('numMax')}}" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="numMaxInput" name="numMax" placeholder="Número máximo de Invitados" value="{{old('numMax')}}" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="capacidadSocioInput" class="col-sm-4 control-label">Tarifa (S/.)</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  class="form-control" id="tarifaInput" name="tarifa" placeholder="Tarifa" value="{{old('tarifa')}}" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'DoubleFormat')" class="form-control" id="tarifaInput" name="tarifa" placeholder="Tarifa" value="{{old('tarifa')}}" >
 			    	</div>
 			  	</div>
 
