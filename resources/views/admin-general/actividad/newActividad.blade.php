@@ -46,7 +46,17 @@
 				</div>
 
 				<!-- VALIDACION CON FE FIN  -->
-					<br/><br/>
+				<br/><br/>
+				<div class="form-group">
+			  		<div class="text-center">
+			  			<font color="red"> 
+			  				(*) Dato Obligatorio
+			  			</font>
+			  			
+			  		</div>
+			  	</div>
+				<br/>
+				
 
 			  	<div class="form-group required">
 			    	<label for="ambienteInput" class="col-sm-4 control-label">AMBIENTE</label>
@@ -78,9 +88,8 @@
 			  	<div class="form-group required">
 			    	<label for="fechaInicioInput" class="col-sm-4 control-label">FECHA INICIO(dd/mm/aaaa)</label>
 			    	<div class="col-sm-5">
-			      		<input type="date" class="form-control" id="fechaInicioInput" name="fecha">
-			      		
-			  	
+			      		<!-- <input type="date" class="form-control" id="fechaInicioInput" name="fecha"> -->
+			      		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="fechaInicioInput" name="fecha" placeholder="Fecha Inicio" style="max-width: 250px">
 			    	</div>
 			  	</div>
 			 
@@ -96,7 +105,7 @@
 			  	<div class="form-group required">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">DESCRIPCIÓN</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" >
+			      		<textarea type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" ></textarea> 
 			    	</div>
 			  	</div>
 			  	<div class="form-group required">
@@ -121,16 +130,7 @@
 			  	
 			  	<!-- EL ESTADO SIEMPRE VA EN TRUE PARA EL REGISTRAR -->
 			  	
-			  	</br>
-			  	<div class="form-group">
-			  		<div class="text-right col-sm-4">
-			  			<font color="red"> 
-			  				(*) Dato Obligatorio
-			  			</font>
-			  			
-			  		</div>
-
-			  	</div>
+			  	
 			  	
 		  	<!-- FIN FIN FIN -->
 					
@@ -160,7 +160,45 @@
 	<!-- Mis Scripts -->
 	<script src="../js/MisScripts.js"></script>
 
+	<!-- Para Fechas INICIO -->
+	<script>
 
+		var nowTemp = new Date();
+		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+ 	
+		var checkin = $('#dpd1').datepicker({
+  			onRender: function(date) {
+    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
+  			}
+		}).on('changeDate', function(ev) {
+  			if (ev.date.valueOf() > checkout.date.valueOf()) {
+    			var newDate = new Date(ev.date)
+    			newDate.setDate(newDate.getDate() + 1);
+    			checkout.setValue(newDate);
+  			}
+ 			checkin.hide();
+  			$('#dpd2')[0].focus();
+		}).data('datepicker');
+		var checkout = $('#dpd2').datepicker({
+  			onRender: function(date) {
+    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+  			}
+		}).on('changeDate', function(ev) {
+  			checkout.hide();
+		}).data('datepicker');		
+		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
+
+	
+	</script>
+	<script>
+		$(function(){
+			$('.datepicker').datepicker({
+				format: 'dd/mm/yyyy'
+			});
+		});
+	</script>
+
+	<!-- Para Fecha FIN -->
 
 </body>
 </html>

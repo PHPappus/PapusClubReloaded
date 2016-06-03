@@ -44,9 +44,18 @@
 				</div>
 
 				<!-- VALIDACION CON FE FIN  -->
-			
 				<br/>
 				<br/>
+				<div class="form-group">
+			  		<div class="text-center">
+			  			<font color="red"> 
+			  				(*) Dato Obligatorio
+			  			</font>
+			  			
+			  		</div>
+			  	</div>
+				<br/>
+				
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
@@ -59,6 +68,7 @@
 			    	<div class="col-sm-5">
 			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="telefonoInput" name="telefono" placeholder="Teléfono" >
 			    	</div>
+
 			  	</div>
 
 			  	<div class="form-group required">
@@ -66,6 +76,8 @@
 			    	<div class="col-sm-5">
 			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="contactoInput" name="nombre_contacto" placeholder="Contacto" >
 			    	</div>
+			    	<a class="btn btn-info" name="buscarContacto" href="#"  title="Buscar" ><i name="buscarContacto" class="glyphicon glyphicon-search"></i></a>
+			    	<!-- deberia ir a una pantalla que liste todos los contactos posibles del Club  -->
 			  	</div>	  	
 
 			  	<div class="form-group required">
@@ -106,26 +118,19 @@
 			  	<div class="form-group required">
 			    	<label for="direccionInput" class="col-sm-4 control-label">Dirección</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="direccionInput" name="direccion" placeholder="Dirección" >
+			      		<textarea   type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"  class="form-control" id="direccionInput" name="direccion" placeholder="Dirección" ></textarea> 
 			    	</div>
 			  	</div>
 
-			  	<div class="form-group required">
+			  	<div class="form-group ">
 			    	<label for="referenciaInput" class="col-sm-4 control-label">Referencia </label>
 			    	<div class="col-sm-5">
-			      		<input type="comment"  onkeypress="return inputLimiter(event,'Letters')"   class="form-control" id="referenciaInput" name="referencia" placeholder="Referencia" >
+			      		<textarea  type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="referenciaInput" name="referencia" placeholder="Referencia" ></textarea> 
 			    	</div>
 			  	</div>
-			  	</br>
-			  	<div class="form-group">
-			  		<div class="text-right col-sm-4">
-			  			<font color="red"> 
-			  				(*) Dato Obligatorio
-			  			</font>
-			  			
-			  		</div>
 
-			  	</div>
+			  	</br>
+			  	
 			  	</br></br>
 			  	<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>

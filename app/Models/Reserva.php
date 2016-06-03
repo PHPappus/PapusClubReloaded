@@ -10,7 +10,12 @@ class Reserva extends Model
     use SoftDeletes;
     protected $table = 'reservas';
     protected $fillable = 
+<<<<<<< HEAD
     ['fecha_reserva', 
+=======
+    ['fecha_inicio_reserva',
+    'fecha_fin_reserva', 
+>>>>>>> c4b73e2d2c3d29c8742e35afebc1eb5633dc932a
     'precio', 
     'estadoReserva'
     ];

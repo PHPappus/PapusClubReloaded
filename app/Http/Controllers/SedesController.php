@@ -80,7 +80,8 @@ class SedesController extends Controller
         $sede = Sede::find($id);        
         $ambientes = $sede->ambientes;
         
-        if($ambientes->count()) {
+        if($sede->ambientes->count() || $sede->actividades->count()) {
+            /*
             foreach ($ambientes as $ambiente) {
                 $actividades = $ambiente->actividades;
                 if($actividades->count()){
@@ -90,8 +91,11 @@ class SedesController extends Controller
                 }
                 $ambiente->delete();
             }
+            */
         }
-        $sede->delete();
+        else
+            $sede->forceDelete();
+        
         return back();
     }
 
