@@ -24,10 +24,10 @@ class StoreAmbienteRequest extends Request
     public function rules()
     {
         return [
-            'nombre'            =>  'required|max:100|string',
+            'nombre'            =>  'required|max:100|string|unique:ambiente,nombre,NULL',
             'tipo_ambiente'     =>  'required|max:100|string',
             'capacidad_actual'  =>  'integer|min:1',
-            'ubicacion'         =>  'required|max:100|string',          
+            'ubicacion'         =>  'required|max:100|string|unique:ambiente,ubicacion,NULL',          
         ];
     }
 }
