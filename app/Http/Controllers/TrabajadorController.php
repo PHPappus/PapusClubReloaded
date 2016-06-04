@@ -22,7 +22,7 @@ class TrabajadorController extends Controller
 
     public function registrar()
     {
-        $puestos = Configuracion::all()->where('grupo', 1);
+        $puestos = Configuracion::where('grupo', 1)->get();
         return view('admin-general.persona.trabajador.registrar-trabajador',compact('puestos'));
     }
 
