@@ -19,10 +19,13 @@ class TipoMembresia extends Model
     public function tarifa()
 	{
 		return $this->belongsTo(TarifaMembresia::class,'tarifa_membresia_id');
+
+        //return $this->hasOne(TarifaMembresia::class,'tarifa_membresia_id');
 	}
 
     public function socio()
     {
         return $this->hasMany(Socio::class);
+        //return $this->belongsTo(Socio::class);
     }
 }

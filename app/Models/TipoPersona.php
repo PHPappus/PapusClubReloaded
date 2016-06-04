@@ -14,5 +14,8 @@ class TipoPersona extends Model
      'fecha_actualizacion'
     ];
     protected $dates = ['deleted_at'];
-
+    
+    public function persona(){
+        return $this->hasMany('papusclub\Models\TipoPersona');
+    }
 }
