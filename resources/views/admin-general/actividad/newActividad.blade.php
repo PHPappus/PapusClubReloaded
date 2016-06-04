@@ -203,7 +203,7 @@
 		});
 	</script>
 
-<<<<<<< HEAD
+
 	<script>
 		var nowTemp = new Date();
 		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
@@ -238,9 +238,9 @@
 			});
 		});
 	</script>
-=======
+
 	<!-- Para Fecha FIN -->
->>>>>>> JEFV
+
 
 	<script>
 		function ventana(){
