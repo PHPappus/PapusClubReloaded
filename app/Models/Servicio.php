@@ -11,5 +11,6 @@ class Servicio extends Model
     ['nombre', 
     'descripcion', 
     'tipo_servicio',     
+    'estado',     
     ];
 }

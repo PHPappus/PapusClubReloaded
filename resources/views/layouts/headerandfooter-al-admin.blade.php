@@ -93,7 +93,7 @@
 							</ul>					
 						</li>
 						<!-- Opción Eventos -->
-						<li><a href="#">SERVICIO</a></li>
+						<li><a href="{!!URL::to('/servicios/index')!!}">SERVICIO</a></li>
 						<!-- Opción TRAMITES -->						
 						<li><a href="{!!URL::to('/producto/index')!!}">PRODUCTO<span class="despliegue">▼</span></a>
 							<ul>
