@@ -41,14 +41,7 @@
 					<strong>Aviso</strong> {{session('eliminated')}}
 			</div>
 		@endif
-		<div class="container">
-			<div class="form-group">
-				<div class="col-sm-1 text-right">
-					<a class="btn btn-primary" href="{{url('/multa/all')}}" title="Registrar Multa" >Mostrar Todos</a>	
-				</div>
-			</div>
-			<br/>
-		</div>
+	
 		</br>
 		</br>
 
