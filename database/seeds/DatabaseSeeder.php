@@ -25,7 +25,10 @@ class DatabaseSeeder extends Seeder
         $this->call(ActividadTableSeeder::class);
         $this->call(TipoPersonaTableSeeder::class);
         $this->call(ConfiguracionTableSeeder::class);
-		
+        $this->call(PersonaTableSeeder::class);
+        $this->call(ReservasTableSeeder::class);
+        
+
         Model::reguard();
     }
 }

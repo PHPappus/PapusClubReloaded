@@ -25,4 +25,9 @@ class Ambiente extends Model
     public function actividades(){
         return $this->hasMany('papusclub\Models\Actividad');
     }
+
+    public function reservas()
+    {
+        return $this->hasMany('papusclub\Models\Reserva');
+    }
 }

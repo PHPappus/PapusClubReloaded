@@ -22,10 +22,7 @@ class Reserva extends Model
         return $this->belongsTo('papusclub\Models\Ambiente');
         
     }
-    public function sede(){
-        return $this->belongsTo('papusclub\Models\Sede');
-        
-    }
+    
     public function persona(){
         return $this->belongsTo('papusclub\Models\Persona');
         

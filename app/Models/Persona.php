@@ -25,4 +25,9 @@ class Persona extends Model
     public function tipopersona(){
         return $this->belongsTo('papusclub\Models\TipoPersona');
     }
+
+    public function reservas()
+    {
+        return $this->hasMany('papusclub\Models\Reserva');
+    }
 }
