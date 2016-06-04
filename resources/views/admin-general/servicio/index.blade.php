@@ -92,7 +92,7 @@
 	<div class="container" >
 		<div class="form-group" >
 			<div class="col-sm-16 text-center">
-				<a class="btn btn-primary"   href="{{url('/servicios/new')}}" title="Registrar Servicio" > Registrar Servicio <i class="glyphicon glyphicon-plus" ></i> </a>	
+				<a class="btn btn-info"   href="{{url('/servicios/new')}}" title="Registrar Servicio" > Registrar Servicio <i class="glyphicon glyphicon-plus" ></i> </a>	
 			</div>
 		</div>
 		<br/>
