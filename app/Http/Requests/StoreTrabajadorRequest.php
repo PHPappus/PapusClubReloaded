@@ -27,9 +27,9 @@ class StoreTrabajadorRequest extends Request
             'nombre' =>  'required|max:100|string',
             'ap_paterno' => 'required|max:100|string',
             'ap_materno' => 'required|max:100|string',
-            'fecha_nacimiento' => 'string',
-            'doc_identidad'=> 'required_if:nacionalidad,Peruano',
-            'carnet_extranjeria'=> 'required_if:nacionalidad,Extranjero',
+            'fecha_nacimiento' => 'required | string',
+            'doc_identidad'=> 'required_if:nacionalidad,peruano', //| unique:persona,doc_identidad,NULL',
+            'carnet_extranjeria'=> 'required_if:nacionalidad,extranjero',// | unique:persona,carnet_extranjeria,NULL',
             'correo'=>'required|string',
             'puestoSelect' => 'required|exists:configuracion,id'
         ];
