@@ -32,7 +32,6 @@ class AmbienteController extends Controller
     public function store(StoreAmbienteRequest $request)
     {
         $input = $request->all();
-        //return compact('input');
         $ambiente = new Ambiente();
         $ambiente->nombre= $input['nombre'];
         //para agregar el ambiente a la sede
@@ -60,7 +59,6 @@ class AmbienteController extends Controller
     public function update(EditAmbienteRequest $request, $id)
     {
         $input = $request->all();
-        //return compact('input');
         $ambiente = Ambiente::find($id);
 
         $ambiente->nombre= $input['nombre'];
@@ -79,11 +77,7 @@ class AmbienteController extends Controller
         $actividades = $ambiente->actividades;
 
         if($ambiente->actividades->count()){
-            /*
-            foreach ($actividades as $actividad) {
-                $actividad->delete();
-            }
-            */
+            
         }
         else
             $ambiente->delete();
