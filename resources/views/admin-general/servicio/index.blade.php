@@ -48,7 +48,7 @@
 							<th><div align=center>ESTADO</div></th>
 							<th><div align=center>DETALLE</div></th>
 							<th><div align=center>EDITAR</div></th>
-							<th><div align=center>CAMBIAR ESTADO</div></th>
+							<th><div align=center>ESTADO</div></th>
 						</thead>
 
 							
