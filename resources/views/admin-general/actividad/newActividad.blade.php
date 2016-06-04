@@ -112,10 +112,10 @@
 			    	<label for="tipoActividadInput" class="col-sm-4 control-label">TIPO DE ACTIVIDAD</label>	
 			    	<div class="col-sm-5">
 				    	<select class="form-control" id="tipoActividadInput" name="tipo_actividad" style="max-width: 150px "  >
-							                <option value="-1" default>Seleccione</option>
-							                <option value="fiesta">Fiesta</option>
-							                <option value="deportiva">Deportiva</option>
-							                <option value="reunion">Reunión</option>
+				    						<option value="-1" default>Seleccione</option>
+							               @foreach ($values as $value)      
+							                	<option value="{{$value->id}}">{{$value->valor}}</option>
+							                @endforeach
 						</select>
 					</div>
 			  	</div>
