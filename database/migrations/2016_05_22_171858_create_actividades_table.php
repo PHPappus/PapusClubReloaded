@@ -12,7 +12,7 @@ class CreateActividadesTable extends Migration
      */
     public function up()
     {
-        Schema::create('actividades', function (Blueprint $table) {
+        Schema::create('actividad', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('ambiente_id')->unsigned()->nullable();
             $table->string('nombre');
@@ -34,6 +34,6 @@ class CreateActividadesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('actividades');
+        Schema::drop('actividad');
     }
 }

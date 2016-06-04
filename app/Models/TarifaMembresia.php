@@ -20,6 +20,7 @@ class TarifaMembresia extends Model
     public function tipo()
 	{
 		return $this->hasMany(TipoMembresia::class);
+		//return $this->belongsTo(TipoMembresia::class);
 	}
 
 	public function addTipo(TipoMembresia $tipo)

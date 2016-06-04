@@ -84,7 +84,7 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Guardar">
+						<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Aceptar">
 					</div>
 					<div class="btn-group">
 						<a href="/membresia/" class="btn btn-info">Cancelar</a>

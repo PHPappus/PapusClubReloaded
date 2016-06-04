@@ -1,5 +1,19 @@
-@extends('admin-general.persona.trabajador.index')
+<!DOCTYPE html>
+<html>
+<head>
+	<title>POSTULANTE</title>
+	<meta charset="UTF-8">
 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{!!Html::style('css/jquery.bxslider.css')!!}
+	{!!Html::style('css/font-awesome.css')!!}
+	{!!Html::style('css/bootstrap.css')!!}
+	{!!Html::style('css/MisEstilos.css')!!}
+	{!!Html::style('css/datepicker.css')!!}
+	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
+	<!-- PARA DATA TABLE -->
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
+	
 	<style type="text/css" media="screen">
 		#dpd1{
 			width:300px;
@@ -19,19 +33,21 @@
 	</style>
 
 
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&libraries=places"></script>
+	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&libraries=places"></script>
 
+</head>
+<body>
 
-
-@section('content-opcion')
+@extends('layouts.headerandfooter-al-admin')
+@section('content')
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-left">
 				<br>
 				<br>
-					<p class="lead"><strong>REGISTRAR CUENTA</strong></p>
+					<p class="lead"><strong>DETALLE CUENTA</strong></p>
 			  	</div>
 				</div>
 			</div>	
@@ -39,22 +55,9 @@
 
 
 		<div class="container">
-			<form method="POST" action="/trabajador/new/save" class="form-horizontal form-border">
+			<form method="POST" action="/trabajador/{{$persona->id}}/edit" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
-				<!-- VALIDACION CON FE INICIO -->
-				<div class="col-sm-4"></div>
-				<div class="">
-		  			@if ($errors->any())
-		  				<ul class="alert alert-danger fade in">
-		  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-		  					@foreach ($errors->all() as $error)
-		  						<li>{{$error}}</li>
-		  					@endforeach
-		  				</ul>
-		  			@endif
-			  		
-				</div>
 
 				<div class="row">
 					<div class="col-sm-12 text-center">
@@ -67,16 +70,14 @@
 
 						<div class="tab-content">
 							<div role="tabpanel" class="tab-pane active" id="seccion1">	
-									<br>
-										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
-									<br>
+							<br>
 									<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Nombre:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombre" name="nombre" placeholder="Nombre" style="max-width: 250px"   required>
+												<input type="text" class="form-control" id="nombre" name="nombre" value="{{$persona->nombre}}" readonly  style="max-width: 250px"   >
 											</div>	
 										</div>
 									</div>
@@ -87,7 +88,7 @@
 												<label for="" class="control-label">Apellido Paterno:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="ap_paterno" name="ap_paterno" placeholder="Apellido Paterno" style="max-width: 250px" required>
+												<input type="text" class="form-control" id="ap_paterno" name="ap_paterno" value="{{$persona->ap_paterno}}" readonly style="max-width: 250px" >
 											</div>	
 										</div>
 									</div>
@@ -98,7 +99,7 @@
 												<label for="" class="control-label">Apellido Materno:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="ap_materno" name="ap_materno" placeholder="Apellido Materno" style="max-width: 250px" required>
+												<input type="text" class="form-control" id="ap_materno" name="ap_materno" value="{{$persona->ap_materno}}" readonly style="max-width: 250px" >
 											</div>	
 										</div>
 									</div>
@@ -108,9 +109,14 @@
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Sexo:</label>
 											</div>
-											<div class="col-sm-6 text-left" >
-													<input type="radio" name="genero" value="Masculino" checked> Masculino
-													<input type="radio" name="genero" value="Femenino" style="margin-left: 35px;"> Femenino	
+											<div class="col-sm-6 text-left" style="float: right">										
+													<div>
+														
+															{{ Form::radio('sexo', 'masculino', (($persona['sexo']=="masculino" )? true : false), ['disabled']) }}Masculino
+															</div>
+															<div>
+															{{ Form::radio('sexo', 'femenino', (($persona['sexo']=="femenino" )? true : false),['disabled']) }}Femenino
+													</div>
 											</div>	
 										</div>
 									</div>
@@ -122,7 +128,7 @@
 												<label for="" class="control-label">Fecha de Nacimiento:</label>
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" style="max-width: 250px">
+												<input  type="text" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{{$persona->fecha_nacimiento}}" readonly style="max-width: 250px">
 
 											</div>	
 										</div>
@@ -134,12 +140,12 @@
 												<label for="" class="control-label">Nacionalidad:</label>
 											</div>
 											<div class="col-sm-6 text-left" >
-													<input onclick="document.getElementById('doc_identidad').disabled = false; document.getElementById('carnet_extranjeria').disabled = true; document.getElementById('carnet_extranjeria').value = ''; document.getElementById('doc_identidad').required = true; document.getElementById('carnet_extranjeria').required = false;" type="radio" name="nacionalidad" value="Peruano" checked @{{$nac=per}}> Peruano  
-													<input onclick="document.getElementById('carnet_extranjeria').disabled = false; document.getElementById('doc_identidad').disabled = true; document.getElementById('doc_identidad').value = '';  document.getElementById('doc_identidad').required = false; document.getElementById('carnet_extranjeria').required = truess;" type="radio" name="nacionalidad" value="Extranjero" style="margin-left: 50px;"@{{$nac=otro}}> Extranjero	
+													<input  type="text" class="form-control" id="nacionalidad" name="nacionalidad" value="{{$persona->nacionalidad}}" readonly style="max-width: 250px">	
 											</div>	
 										</div>
 									</div>
 
+									@if($persona['nacionalidad']=="Peruano")
 									<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
@@ -147,40 +153,33 @@
 											</div>
 											<div class="col-sm-6">
 											<!--Se hace validacion para que acepte solo numeros pero que sea un texto-->
-												<input  type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="doc_identidad" name="doc_identidad" placeholder="DNI" maxlength="8" style="max-width: 250px" required>
+												<input  type="text" class="form-control" id="doc_identidad" name="doc_identidad" value="{{$persona->doc_identidad}}" readonly style="max-width: 250px">
 											</div>	
 										</div>
 									</div>
-
+									@else
 									<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Carnet de extranjeria:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" disabled="true" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="carnet_extranjeria" name="carnet_extranjeria" placeholder="Carnet de Extranjeria" maxlength="12" style="max-width: 250px" required>
+												<input type="text" class="form-control" id="carnet_extranjeria" name="carnet_extranjeria" value="{{$persona->carnet_identidad}}" readonly style="max-width: 250px">
 											</div>	
 										</div>
 									</div>
-
+									@endif
 							</div>
 
 							<div role="tabpanel" class="tab-pane" id="seccion2">
-									<br>
-									<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
-									<br>									
+									<br>								
 									<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Puesto:</label>
 											</div>
 											<div class="col-sm-6">
-												<select class="form-control" name="puestoSelect" style="max-width: 150px "   >
-													<option value="-1" default>Seleccione</option>
-														@foreach ($puestos as $puesto)      
-										                	<option value="{{$puesto->id}}">{{$puesto->valor}}</option>
-										                @endforeach
-												</select>
+												<input type="text" class="form-control" id="puesto" name="puesto" value="{{$puesto->valor}}" readonly style="max-width: 250px">
 											</div>
 										</div>
 									</div>
@@ -193,7 +192,7 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_inic_contrato" placeholder="Fecha de inicio" style="max-width: 250px">
+												<input type="text" class="form-control" id="fecha_ini_contrato" name="fecha_ini_contrato" value="@if (empty($trabajador->fecha_ini_contrato)) $trabajador->fecha_ini_contrato @endif" readonly style="max-width: 250px">
 											</div>	
 										</div>
 									</div>
@@ -206,7 +205,7 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_inic_contrato" placeholder="Fecha de fin" style="max-width: 250px">
+												<input type="text" class="form-control" id="fecha_fin_contrato" name="fecha_fin_contrato" value="@if(empty($trabajador->fecha_ini_contrato)) $trabajador->fecha_fin_contrato @endif" readonly style="max-width: 250px">
 											</div>
 										</div>
 									</div>
@@ -219,7 +218,7 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="correo"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" name="correo" placeholder="correo" style="max-width: 250pc; margin-top:0px;" required>
+												<input type="text" class="form-control" id="correo"  name="correo" value="{{$persona->correo}}" style="max-width: 250pc; margin-top:0px;" readonly>
 											</div>
 										</div>
 									</div>
@@ -230,18 +229,26 @@
 					
 				</div>
 				<br>
+				<div class="btn-inline">
+					<div class="btn-group col-sm-5"></div>
+
+					<div class="btn-group">
+						<a href="/trabajador/index" class="btn btn-info">Regresar</a>
+					</div>
+				</div>
+				<br>
 			</form>
 			
-			  	<div class="btn-inline">
+<!-- 			  	<div class="btn-inline">
 					<div class="btn-group col-sm-5"></div>
 					
 					<div class="btn-group ">
-						<input type="submit" class="btn btn-primary " value="Guardar">
+						<input class="btn btn-primary "  type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
 						<a href="/trabajador/search" class="btn btn-info">Cancelar</a>
 					</div>
-				</div>
+				</div> -->
 		</div>
 			
 
@@ -249,17 +256,7 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<!-- JQuery -->
-	{!!Html::script('js/jquery-1.11.3.min.js')!!}
-	<!-- Bootstrap -->
-	{!!Html::script('js/bootstrap.js')!!}
-	
-	<!-- BXSlider -->
-	{!!Html::script('js/jquery.bxslider.min.js')!!}
-	<!-- Mis Scripts -->
-	{!!Html::script('js/MisScripts.js')!!}
 
-	{!!Html::script('js/bootstrap-datepicker.js')!!}
 
 
 
@@ -267,7 +264,6 @@
 
 
 	<script>
-
 		var nowTemp = new Date();
 		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
  	
@@ -292,7 +288,6 @@
   			checkout.hide();
 		}).data('datepicker');		
 		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
-
 	
 	</script>
 	<script>

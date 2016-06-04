@@ -86,11 +86,22 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('postulante/search','PostulanteController@buscar');
 	Route::get('postulante/new','PostulanteController@registrar');
 	//MANTENIMIENTO DE TRABAJADOR
-	Route::get('trabajador/index','TrabajadorController@buscar');
-	Route::get('trabajador/search','TrabajadorController@buscar');
-	Route::get('trabajador/new','TrabajadorController@registrar');
-	Route::post('trabajador/new/save', 'TrabajadorController@store');
+	Route::get('trabajador/index','TrabajadorController@index');//ya
+	//Route::get('trabajador/search','TrabajadorController@buscar');//ya
+	Route::get('trabajador/new','TrabajadorController@registrar');//ya
+	Route::post('trabajador/new/trabajador', 'TrabajadorController@store');//ya
+	Route::get('trabajador/{id}','TrabajadorController@edit');//ya
+	Route::post('trabajador/{id}/edit', 'TrabajadorController@update');
+	Route::get('trabajador/{id}/delete', 'TrabajadorController@destroy');
+	Route::get('trabajador/{id}/show', 'TrabajadorController@show');//ya
+
+
 	//MANTENIMIENTO DE SOCIO
+	Route::get('Socio/','SocioAdminController@index');
+	Route::get('Socio/all','SocioAdminController@indexAll');
+	Route::get('Socio/{id}/','SocioAdminController@show');
+	Route::get('Socio/{socio}/delete', 'SocioAdminController@destroy');
+	Route::get('Socio/{id}/activate','SocioAdminController@activate');
 
 	//MANTENIMIENTO DE MEMBRESIA
 	Route::get('membresia/','MembresiaController@index');
@@ -105,11 +116,14 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 
 	//MANTENIMIENTO DE MULTAS
 	Route::get('multa/','MultaController@index');
+	Route::get('multa/all','MultaController@indexAll');
 	Route::get('multa/new','MultaController@create');
-	Route::get('multa/{multa}/','MultaController@show');
+	Route::get('multa/{id}/','MultaController@show');
 	Route::post('multa/new/save','MultaController@store');
-	Route::get('multa/{multa}/editar','MultaController@edit');
-	Route::patch('multa/{multa}/edit','MultaController@update');
+	Route::get('multa/{id}/editar','MultaController@edit');
+	Route::get('multa/{multa}/delete', 'MultaController@destroy');
+	Route::get('multa/{id}/activate','MultaController@activate');
+	Route::patch('multa/{id}/edit','MultaController@update');
 
 
 	//MANTENIMIENTO DE SEDES
@@ -124,13 +138,18 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 
 	
 	// Mantenimiento de Servicios LOL
+
 	Route::get('servicios/index', 'ServiciosController@index');	
 	Route::get('servicios/new', 'ServiciosController@create');
 	Route::post('servicios/new/servicio', 'ServiciosController@store');
 	Route::get('servicios/{id}', 'ServiciosController@edit');
 	Route::post('servicios/{id}/edit', 'ServiciosController@update');
 	Route::get('servicios/{id}/delete', 'ServiciosController@destroy');
-	Route::get('servicios/{id}/show', 'ServiciosController@show');
+	Route::get('servicios/{id}/show', 'ServiciosController@show');	
+
+	// Agregar Servicios a las sedes2
+		Route::get('sedes/{id}/agregarservicios', 'SedesController@agregarservicios');
+	
 	
 	//MANTENIMIENTO DE PROVEEDORES
 	Route::get('proveedor/index/', 'ProveedorController@index');

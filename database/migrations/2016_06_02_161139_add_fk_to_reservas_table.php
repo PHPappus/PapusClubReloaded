@@ -12,11 +12,14 @@ class AddFkToReservasTable extends Migration
      */
     public function up()
     {
-        Schema::table('reservas', function (Blueprint $table) {
+        Schema::table('reserva', function (Blueprint $table) {
+            $table->foreign('sede_id')
+                  ->references('id')
+                  ->on('sede');
             $table->foreign('ambiente_id')
                   ->references('id')
-                  ->on('ambientes');
-            $table->foreign('id_persona')
+                  ->on('ambiente');
+            $table->foreign('persona_id')
                   ->references('id')
                   ->on('persona');
 
@@ -30,9 +33,10 @@ class AddFkToReservasTable extends Migration
      */
     public function down()
     {
-        Schema::table('reservas', function (Blueprint $table) {
-            $table->dropForeign('reservas_ambiente_id_foreign');
-            $table->dropForeign('reservas_id_persona_foreign');
+        Schema::table('reserva', function (Blueprint $table) {
+            $table->dropForeign('reserva_sede_id_foreign');
+            $table->dropForeign('reserva_ambiente_id_foreign');
+            $table->dropForeign('reserva_persona_id_foreign');
         });
     }
 }

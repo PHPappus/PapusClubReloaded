@@ -12,7 +12,7 @@ class CreateReservasTable extends Migration
      */
     public function up()
     {
-       Schema::create('reservas', function (Blueprint $table) {
+       Schema::create('reserva', function (Blueprint $table) {
             $table->increments('id');
             $table->date('fecha_inicio_reserva');
             $table->date('fecha_fin_reserva');
@@ -34,6 +34,6 @@ class CreateReservasTable extends Migration
      */
     public function down()
     {
-         Schema::drop('reservas');
+         Schema::drop('reserva');
     }
 }
