@@ -18,6 +18,8 @@ class AmbienteController extends Controller
     {
         $ambientes = Ambiente::all();
         return view('admin-general.ambiente.index', compact('ambientes'));
+	//return view('admin-general.ambiente.index');
+    	//return view('admin-general.membresia.index');
     }
 
 
