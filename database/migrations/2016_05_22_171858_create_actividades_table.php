@@ -19,6 +19,8 @@ class CreateActividadesTable extends Migration
             $table->string('tipo_actividad');
             $table->string('capacidad_maxima');
             $table->string('descripcion');
+            $table->integer('cant_ambientes');
+            $table->boolean('estado');
             $table->dateTime('a_realizarse_en');
             $table->softDeletes();
             $table->timestamps();

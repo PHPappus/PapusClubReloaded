@@ -5,24 +5,29 @@ namespace papusclub\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Actividad extends Model
+class Reserva extends Model
 {
     use SoftDeletes;
-    protected $table = 'actividades';
+    protected $table = 'reservas';
     protected $fillable = 
-    ['nombre', 
-    'tipo_actividad', 
-    'capacidad_maxima', 
-    'descripcion',
-    'a_realizarse_en',
-    'cant_ambientes',
-    'estado',
+    ['fecha_inicio_reserva',
+    'fecha_fin_reserva', 
+    'precio', 
+    'estadoReserva'
     ];
     protected $dates = ['deleted_at'];
     //funciones para las relaciones entre tablas
     
     public function ambiente(){
         return $this->belongsTo('papusclub\Models\Ambiente');
+        
+    }
+    public function sede(){
+        return $this->belongsTo('papusclub\Models\Sede');
+        
+    }
+    public function persona(){
+        return $this->belongsTo('papusclub\Models\Persona');
         
     }
 }

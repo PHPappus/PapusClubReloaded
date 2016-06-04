@@ -17,7 +17,7 @@
 @section('content')
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-12 text-center">
+			<div class="col-sm-12 text-left">
 				<br/><br/>
 				<p class="lead"><strong>SEDE</strong></p>
 				<br/>
@@ -43,6 +43,14 @@
 			<div class="container">
 				<!-- <table id="example" class="table table-bordered display"> -->
 				<!-- <form method="POST" action="/sedes/new/sede" > -->
+				<div class="form-group">
+			  		<div class="text-right">
+			  			<font color="black"> 
+			  				Filtra por todos los campos
+			  			</font>
+			  			
+			  		</div>
+			  	</div>
 				<table class="table table-bordered table-hover text-center display" id="example">
 						
 						<thead>

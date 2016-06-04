@@ -4,7 +4,7 @@ namespace papusclub\Http\Requests;
 
 use papusclub\Http\Requests\Request;
 
-class EditActividadRequest extends Request
+class StoreReservaRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,8 @@ class EditActividadRequest extends Request
     public function rules()
     {
         return [
-            'nombre'            =>  'required|max:100|string',
-            'tipo_actividad'     =>  'required|max:100|string',
-            'capacidad_maxima'  =>  'integer|min:1',
-            'descripcion'         =>  'required|max:100|string',   
-            'cant_ambientes'    => 'required|min:1',
+            'estadoReserva'            =>  'required|max:100|string',
+            'precio'  =>  'required|double|min:1',
         ];
     }
 }

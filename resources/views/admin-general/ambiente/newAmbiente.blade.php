@@ -44,7 +44,18 @@
 				</div>
 
 				<!-- VALIDACION CON FE FIN  -->
-					<br/><br/>
+					<br/>
+				<br/>
+				<div class="form-group">
+			  		<div class="text-center">
+			  			<font color="red"> 
+			  				(*) Dato Obligatorio
+			  			</font>
+			  			
+			  		</div>
+			  	</div>
+				<br/>
+				
 
 					<!-- INICIO INICIO INICIO INICIO -->
 				<div class="form-group required">
@@ -62,7 +73,7 @@
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"   class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"   class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" value="{{old('nombre')}}" >
 			    	</div>
 			  	</div>
 			  	<div class="form-group required">
@@ -70,11 +81,9 @@
 			    	<div class="col-sm-5">
 				    	<select class="form-control" id="tipoAmbienteInput" name="tipo_ambiente" style="max-width: 150px "   >
 							                <option value="-1" default>Seleccione</option>
-							                <option value="Bungalow">Bungalow</option>
-							                <option value="Canchas">Canchas</option>
-							                <option value="Piscina">Piscina</option>
-							                <option value="Comedor">Comedor</option>
-							                <option value="Salon">Salón</option >
+							                @foreach ($values as $value)      
+							                	<option value="{{$value->id}}">{{$value->valor}}</option>
+							                @endforeach
 							                
 
 
@@ -85,31 +94,23 @@
 			  	<div class="form-group required">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="capacidadInput" name="capacidad_actual" placeholder="Capacidad Maxima" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="capacidadInput" name="capacidad_actual" placeholder="Capacidad Maxima" value="{{old('capacidad_actual')}}" >
 			    	</div>
 			  	</div>	  	
 			  	<div class="form-group required">
 			    	<label for="numHabitacionInput" class="col-sm-4 control-label">NÚMERO DE HABITACIONES</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="numHabitacionInput" name="capacidad_actual" placeholder="Número de habitaciones" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="numHabitacionInput" name="capacidad_actual" placeholder="Número de habitaciones" value="{{old('capacidad_actual')}}" >
 			    	</div>
 			  	</div>	
 			  	<div class="form-group required">
 			    	<label for="ubicacionInput" class="col-sm-4 control-label">UBICACIÓN</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"   class="form-control" id="ubicacionInput" name="ubicacion" placeholder="Ubicacion" >
+			      		<textarea type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="ubicacionInput" name="ubicacion" placeholder="Ubicacion" value="{{old('ubicacion')}}"></textarea>
 			    	</div>
 			  	</div>
 			  	</br>
-			  	<div class="form-group">
-			  		<div class="text-right col-sm-4">
-			  			<font color="red"> 
-			  				(*) Dato Obligatorio
-			  			</font>
-			  			
-			  		</div>
-
-			  	</div>
+			  	
 			  	
 		  			<!-- FIN FIN FIN -->
 					

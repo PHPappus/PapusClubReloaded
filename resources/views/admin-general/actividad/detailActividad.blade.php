@@ -69,8 +69,8 @@
 		  	<div class="form-group required">
 		    	<label for="descripcionInput" class="col-sm-4 control-label">DESCRIPCIÓN</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" value="{{$actividad->descripcion}}" required>
-		    	</div>
+		      		<textarea type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder ="{{$actividad->descripcion}}" required>
+		    	</div></textarea> 
 		  	</div>
 		  	<div class="form-group required">
 		    	<label for="tipoActividadInput" class="col-sm-4 control-label">TIPO DE ACTIVIDAD</label>	
