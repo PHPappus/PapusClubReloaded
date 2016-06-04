@@ -28,6 +28,18 @@
 		<div class="container">
 			<form method="POST" action="/membresia/new/save" class="form-horizontal form-border">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+				<div class="col-sm-4"></div>
+				<div class=""> 
+					@if ($errors->any())
+		  				<ul class="alert alert-danger fade in">
+		  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  					@foreach ($errors->all() as $error)
+		  						<li>{{$error}}</li>
+		  					@endforeach
+		  				</ul>
+		  			@endif
+				</div>
 			
 				<br/>
 				<br/>
@@ -38,26 +50,25 @@
 			  		</font>		  			
 				</div>			
 			  	</br>
-			  	</br>
 				
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" required>
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" value="{{old('nombre')}}" >
 			    	</div>
 			  	</div>  	
 
 			  	<div class="form-group required">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">Número Máximo de Invitados</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" min ="0" class="form-control" id="numMaxInput" name="numMax" placeholder="Número máximo de Invitados" required>
+			      		<input type="number" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="numMaxInput" name="numMax" placeholder="Número máximo de Invitados" value="{{old('numMax')}}" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="capacidadSocioInput" class="col-sm-4 control-label">Tarifa (S/.)</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" min="0" step="any" class="form-control" id="tarifaInput" name="tarifa" placeholder="Tarifa" required>
+			      		<input type="text"  class="form-control" id="tarifaInput" name="tarifa" placeholder="Tarifa" value="{{old('tarifa')}}" >
 			    	</div>
 			  	</div>
 
@@ -67,10 +78,10 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-success" type="submit" value="Confirmar">
+						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
-						<a href="/membresia/" class="btn btn-danger">Cancelar</a>
+						<a href="/membresia/" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>

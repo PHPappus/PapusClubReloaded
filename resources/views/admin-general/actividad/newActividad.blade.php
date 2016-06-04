@@ -9,12 +9,7 @@
 	{!!Html::style('../css/font-awesome.css')!!}
 	{!!Html::style('../css/bootstrap.css')!!}
 	{!!Html::style('../css/MisEstilos.css')!!}
-	<style>
 
-		.modal-backdrop.in{
-			z-index: 1;
-		}
-	</style>
 	
 </head>
 <body>
@@ -40,13 +35,14 @@
 				<!-- VALIDACION CON FE INICIO -->
 				<div class="col-sm-4"></div>
 				<div class=""> 
-					@if($errors->any())
-						<ul class="alert alert-danger">
-							@foreach($errors->all() as $error)
-								<li>{{$error}}</li>
-							@endforeach
-						</ul>
-					@endif
+					@if ($errors->any())
+		  				<ul class="alert alert-danger fade in">
+		  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  					@foreach ($errors->all() as $error)
+		  						<li>{{$error}}</li>
+		  					@endforeach
+		  				</ul>
+		  			@endif
 				</div>
 
 				<!-- VALIDACION CON FE FIN  -->
@@ -75,7 +71,7 @@
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre de la actividad" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre de la actividad" >
 			    	</div>
 			  	</div>
 
@@ -100,7 +96,7 @@
 			  	<div class="form-group required">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">DESCRIPCIÓN</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" >
 			    	</div>
 			  	</div>
 			  	<div class="form-group required">
@@ -118,7 +114,7 @@
 			  	<div class="form-group required">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" class="form-control" id="capacidadInput" name="capacidad_maxima" placeholder="Capacidad Maxima" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="capacidadInput" name="capacidad_maxima" placeholder="Capacidad Maxima" >
 			    	</div>
 			  	</div>	  	
 			  	
@@ -144,40 +140,13 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Guardar">
+						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
 						<a href="/actividad/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
-			<!-- VENTANA EMERGENTE INiCiO -->
-			  	 <div class="form-group">
-					<div class="col-sm-12 text-center">
-						
-						<!-- style="z-index:2; padding-top:100px;"
-						 --><!-- <button type="submit" class="btn btn-lg btn-primary">Registrar</button> -->
-						<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="confirmationLabel" data-keyboard="false" data-backdrop="static" style="position:relative">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-									<!-- Header de la ventana -->
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" onclick="cerrarventana()">&times;</span></button>
-										<h4 class="modal-title">EDITAR ACTIVIDAD</h4>
-									</div>
-									<!-- Contenido de la ventana -->
-									      	<div class="modal-body">
-										<p>¿Desea guardar los cambios realizados?</p>
-									</div>
-									<div class="modal-footer">
-								        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cerrar</button>
-								        <button type="submit" class="btn btn-primary">Confirmar</button>
-							      	</div>
-								</div>
-							</div>
-						</div>
-					</div>	
-				</div>
-			  	<!-- VENTANA EMERGENTE FIN -->
+			
 			</form>
 		</div>
 	</div>		
@@ -191,16 +160,7 @@
 	<!-- Mis Scripts -->
 	<script src="../js/MisScripts.js"></script>
 
-<script>
-		function ventana(){
-			document.getElementsByTagName('header')[0].style.zIndex = 1;
-		}
-		function cerrarventana(){
-			document.getElementsByTagName('header')[0].style.zIndex = 3;
-		}
 
-			
-  	</script>
 
 </body>
 </html>

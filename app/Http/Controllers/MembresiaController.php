@@ -19,13 +19,25 @@ class MembresiaController extends Controller
         return view('admin-general.membresia.index',compact('membresias'));
     }
 
+    public function indexAll()
+    {
+        $membresias = TipoMembresia::withTrashed()->get();
+        return view('admin-general.membresia.all',compact('membresias'));
+    }
+
     public function create()
     {
     	return view('admin-general.membresia.newMembresia');
     }
 
-    public function show(TipoMembresia $membresia)
+    //public function show(TipoMembresia $membresia)
+    //{
+     //   return view('admin-general.membresia.showMembresia',compact('membresia'));
+    //}
+
+    public function show($id)
     {
+        $membresia = TipoMembresia::withTrashed()->find($id);
         return view('admin-general.membresia.showMembresia',compact('membresia'));
     }
 
@@ -47,16 +59,19 @@ class MembresiaController extends Controller
         $membresia->numMaxInvitados=$input['numMax'];
         $tarifa->addTipo($membresia);
 
-        return back();
+        //return redirect()->action('MembresiaController@index', ['stored' => 'Se registró la sede correctamente.']);
+        return redirect('membresia')->with('stored', 'Se registró la sede correctamente.');
     }
 
-    public function edit (TipoMembresia $membresia)
+    public function edit ($id)
     {
+        $membresia = TipoMembresia::withTrashed()->find($id);
         return view('admin-general.membresia.editMembresia',compact('membresia'));
     }
 
-    public function update(EditMembresiaRequest $request, TipoMembresia $membresia)
+    public function update(EditMembresiaRequest $request, $id)
     {
+        $membresia = TipoMembresia::withTrashed()->find($id);
         $input = $request->all();
         
         $membresia->tarifa->update(['monto'=>$input['tarifa']]);
@@ -65,5 +80,26 @@ class MembresiaController extends Controller
                             'numMaxInvitados'=>$input['numMax']]);
 
         return Redirect::action('MembresiaController@index');
+    }
+
+    public function destroy(TipoMembresia $membresia)
+    {
+        if(count($membresia->socio))
+        {
+            $membresia->delete();
+            return redirect('membresia')->with('eliminated', 'Imposible de eliminar existe dependencia, se ha cambiado de estado a inhabilitado');
+        }
+        else
+        {
+            $membresia->forceDelete();
+            return back();
+        }
+    }
+
+    public function activate($id)
+    {
+        $membresia = TipoMembresia::withTrashed()->find($id);
+        $membresia->restore();
+        return back();
     }
 }

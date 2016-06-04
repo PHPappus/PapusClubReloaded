@@ -24,10 +24,10 @@ class StoreSorteoRequest extends Request
     public function rules()
     {
         return [
-            'nombre_sorteo'          =>  'required|max:100|string',
+            'nombre_sorteo'          =>  'required|alpha|max:100|string',
             'descripcion'       =>  'required|max:100|string',            
-            'fecha_abierto'      =>  'required|date',            
-            'fecha_cerrado'      =>  'required|date',                        
+            'fecha_abierto'      =>  'required|date_format:d/m/Y|after:today',            
+            'fecha_cerrado'      =>  'required|date_format:d/m/Y|after:fecha_abierto',                        
         ];
     }
 }

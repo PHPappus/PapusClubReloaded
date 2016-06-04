@@ -9,6 +9,12 @@
 	{!!Html::style('/css/font-awesome.css')!!}
 	{!!Html::style('/css/bootstrap.css')!!}
 	{!!Html::style('/css/MisEstilos.css')!!}
+	<style>
+
+		.modal-backdrop.in{
+			z-index: 1;
+		}
+	</style>
 	
 </head>
 <body>
@@ -29,7 +35,18 @@
 			<form method="POST" action="/membresia/{{$membresia->id}}/edit" class="form-horizontal form-border">
 			{{method_field('PATCH')}}
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
-			
+				
+				<div class="col-sm-4"></div>
+				<div class=""> 
+					@if ($errors->any())
+		  				<ul class="alert alert-danger fade in">
+		  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  					@foreach ($errors->all() as $error)
+		  						<li>{{$error}}</li>
+		  					@endforeach
+		  				</ul>
+		  			@endif
+				</div>
 				<br/>
 				<br/>
 				<div class="col-sm-4"></div>
@@ -39,26 +56,25 @@
 			  		</font>		  			
 				</div>			
 			  	</br>
-			  	</br>
 				
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" value="{{$membresia->descripcion}}" required>
+			      		<input type="text" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" value="{{$membresia->descripcion}}" required readonly>
 			    	</div>
 			  	</div>  	
 
 			  	<div class="form-group required">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">Número Máximo de Invitados</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" min ="0" class="form-control" id="numMaxInput" name="numMax" value="{{$membresia->numMaxInvitados}}" placeholder="Número máximo de Invitados" required>
+			      		<input type="number" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="numMaxInput" name="numMax" value="{{$membresia->numMaxInvitados}}" placeholder="Número máximo de Invitados" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="capacidadSocioInput" class="col-sm-4 control-label">Tarifa (S/.)</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" min="0" step="any" class="form-control" id="tarifaInput" name="tarifa" value="{{$membresia->tarifa->monto}}" placeholder="Tarifa" required>
+			      		<input type="text" class="form-control" id="tarifaInput" name="tarifa" value="{{$membresia->tarifa->monto}}" placeholder="Tarifa" >
 			    	</div>
 			  	</div>
 
@@ -68,14 +84,55 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-success" type="submit" value="Confirmar">
+						<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Guardar">
 					</div>
 					<div class="btn-group">
-						<a href="/membresia/" class="btn btn-danger">Cancelar</a>
+						<a href="/membresia/" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>
 				</br>
+
+
+			<!-- Modal -->
+				<div class = "modal fade" id = "confirmation" tabindex = "-1" role = "dialog" 
+				   aria-labelledby = "myModalLabel" aria-hidden = "true">
+				   
+				   <div class = "modal-dialog">
+				      <div class = "modal-content">
+				         
+				         <div class = "modal-header">
+				            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+				                  &times;
+				            </button>
+				            
+				            <h4 class = "modal-title" id = "myModalLabel">
+				               EDITAR MEMBRESIA
+				            </h4>
+				         </div>
+				         
+				         <div class = "modal-body">
+				            <p>¿Desea guardar los cambios realizados?</p>
+				         </div>
+				         
+				         <div class = "modal-footer">
+				            <button type = "button" class = "btn btn-default" data-dismiss = "modal" >
+				               Cerrar
+				            </button>
+				            
+				            <button type = "submit" class = "btn btn-primary">
+				               Confirmar
+				            </button>
+				         </div>
+				         
+				      </div><!-- /.modal-content -->
+				   </div><!-- /.modal-dialog -->
+				  
+				</div><!-- /.modal -->
+
+
+			  	
+			  	<!-- VENTANA EMERGENTE FIN -->
 
 			</form>
 		</div>
@@ -89,6 +146,15 @@
 	<script src="/js/jquery.bxslider.min.js"></script>
 	<!-- Mis Scripts -->
 	<script src="/js/MisScripts.js"></script>
+
+	<script>
+		function ventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 1;
+		}
+		function cerrarventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 3;
+		}
+  	</script>
 
 
 </body>

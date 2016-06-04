@@ -13,7 +13,7 @@ class CreateMaestroProductoTable extends Migration
     public function up()
     {
         //
-        Schema::create('maestro_Producto',function (Blueprint $table){
+        Schema::create('producto',function (Blueprint $table){
             //Estos son los atributos que estaban en el caso de uso
             $table->increments('id');
             $table->string('nombre');
@@ -33,7 +33,7 @@ class CreateMaestroProductoTable extends Migration
     {
         //
 
-        Schema::drop('maestro_Producto');
+        Schema::drop('producto');
 
     }
 }

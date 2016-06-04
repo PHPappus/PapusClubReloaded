@@ -9,12 +9,7 @@
 	{!!Html::style('/css/font-awesome.css')!!}
 	{!!Html::style('/css/bootstrap.css')!!}
 	{!!Html::style('/css/MisEstilos.css')!!}
-	<style>
-
-		.modal-backdrop.in{
-			z-index: 1;
-		}
-	</style>
+	
 	
 </head>
 <body>
@@ -38,13 +33,14 @@
 				<!-- VALIDACION CON FE INICIO -->
 				<div class="col-sm-4"></div>
 				<div class=""> 
-					@if($errors->any())
-						<ul class="alert alert-danger">
-							@foreach($errors->all() as $error)
-								<li>{{$error}}</li>
-							@endforeach
-						</ul>
-					@endif
+					@if ($errors->any())
+		  				<ul class="alert alert-danger fade in">
+		  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  					@foreach ($errors->all() as $error)
+		  						<li>{{$error}}</li>
+		  					@endforeach
+		  				</ul>
+		  			@endif
 				</div>
 
 				<!-- VALIDACION CON FE FIN  -->
@@ -54,70 +50,70 @@
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="telefonoInput" class="col-sm-4 control-label">Teléfono</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" class="form-control" id="telefonoInput" name="telefono" placeholder="Teléfono" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="telefonoInput" name="telefono" placeholder="Teléfono" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="contactoInput" class="col-sm-4 control-label">Contacto</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="contactoInput" name="nombre_contacto" placeholder="Contacto" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="contactoInput" name="nombre_contacto" placeholder="Contacto" >
 			    	</div>
 			  	</div>	  	
 
 			  	<div class="form-group required">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad maxima</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" class="form-control" id="capacidadInput" name="capacidad_maxima" placeholder="Capacidad" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="capacidad_maxima" name="capacidad_maxima" placeholder="Capacidad" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="capacidadSocioInput" class="col-sm-4 control-label">Capacidad por socio</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" class="form-control" id="capacidadSocioInput" name="capacidad_socio" placeholder="Capacidad por Socio" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="capacidadSocioInput" name="capacidad_socio" placeholder="Capacidad por Socio" >
 			    	</div>
 			  	</div>
 			  	
 			  	<div class="form-group required">
 			    	<label for="departamentoInput" class="col-sm-4 control-label">Departamento</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="departamentoInput" name="departamento" placeholder="Departamento" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="departamentoInput" name="departamento" placeholder="Departamento" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="provinciaInput" class="col-sm-4 control-label">Provincia</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="provinciaInput" name="provincia" placeholder="Provincia" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="provinciaInput" name="provincia" placeholder="Provincia" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="distritoInput" class="col-sm-4 control-label">Distrito</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="distritoInput" name="distrito" placeholder="Distrito" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="distritoInput" name="distrito" placeholder="Distrito" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="direccionInput" class="col-sm-4 control-label">Dirección</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="direccionInput" name="direccion" placeholder="Dirección" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="direccionInput" name="direccion" placeholder="Dirección" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="referenciaInput" class="col-sm-4 control-label">Referencia </label>
 			    	<div class="col-sm-5">
-			      		<input type="comment" class="form-control" id="referenciaInput" name="referencia" placeholder="Referencia" >
+			      		<input type="comment"  onkeypress="return inputLimiter(event,'Letters')"   class="form-control" id="referenciaInput" name="referencia" placeholder="Referencia" >
 			    	</div>
 			  	</div>
 			  	</br>
@@ -135,48 +131,13 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Guardar">
+						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
 						<a href="/sedes/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 
-
-			  	<!-- VENTANA EMERGENTE INiCiO -->
-			  	 <div class="form-group">
-					<div class="col-sm-12 text-center">
-						
-						<!-- style="z-index:2; padding-top:100px;"
-						 --><!-- <button type="submit" class="btn btn-lg btn-primary">Registrar</button> -->
-						<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="confirmationLabel" data-keyboard="false" data-backdrop="static" style="position:relative">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-									<!-- Header de la ventana -->
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" onclick="cerrarventana()">&times;</span></button>
-										<h4 class="modal-title">REGISTRO DE SEDE</h4>
-									</div>
-									<!-- Contenido de la ventana -->
-									<div class="modal-body">
-										<p>Se agrego la nueva sede exitosamente.</p>
-									</div>
-									<div class="modal-footer">
-								        <!-- <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cerrar</button> -->
-								        <button type="submit" class="btn btn-primary">Confirmar</button>
-							      	</div>
-								</div>
-							</div>
-						</div>
-					</div>	
-				</div>
-
-
-			  	
-			  	<!-- VENTANA EMERGENTE FIN -->
-			  	
-			  	
-				
 				</br>
 				</br>
 
@@ -197,15 +158,6 @@
 	<!-- Mis Scripts -->
 	<script src="/js/MisScripts.js"></script>
 
-
-	<script>
-		function ventana(){
-			document.getElementsByTagName('header')[0].style.zIndex = 1;
-		}
-		function cerrarventana(){
-			document.getElementsByTagName('header')[0].style.zIndex = 3;
-		}
-  	</script>
 
 
 

@@ -14,9 +14,7 @@ class ProductoController extends Controller
 {
     //Muestra la lista de productos que se encuentran en BD, estas se pueden modificar, cambiar el estado, ver mas detalle o registrar un nuevo producto
     public function index() {
-
-		$productos = Producto::all()->where('estado', 1);
-
+		$productos = Producto::all();
         return view('admin-general.producto.index', compact('productos'));
 	}	
 
@@ -31,7 +29,7 @@ class ProductoController extends Controller
         $producto = new Producto();
     	$producto->nombre = $input['nombre'];
 		$producto->descripcion = $input['descripcion'];
-		$producto->estado = $input['estado'];
+		$producto->estado = 1;
 		$producto->id_tipo_producto = $input['id_tipo_producto'];		
     	
         $producto->save();	    
@@ -76,7 +74,7 @@ class ProductoController extends Controller
     public function show($id)
     {
         $producto = Producto::find($id);
-        return view('admin-general.producto.detailproducto', compact('producto'));
+        return view('admin-general.producto.detailProducto', compact('producto'));
     }
 
 }

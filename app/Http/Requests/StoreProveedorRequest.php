@@ -24,12 +24,12 @@ class StoreProveedorRequest extends Request
     public function rules()
     {
          return [            
-            'nombre_proveedor'   =>  'required|string|max:255',
+            'nombre_proveedor'   =>  array('required','Regex:/[A-Za-z .-]/'),
             'ruc'               =>  'required|numeric',            
             'direccion'         =>  'required|string|max:255',
-            'telefono'          =>  'required|numeric',
-            'correo'            =>  'required|string|max:255',            
-            'nombre_responsable' =>  'required|string|max:255',
+            'telefono'          =>  'required|numeric|digits_between:7,9',
+            'correo'            =>  'required|email|max:255',            
+            'nombre_responsable' =>  array('required','Regex:/[A-Za-z .-]/'),
             'estado'            =>  'required|integer'
         ];
     }

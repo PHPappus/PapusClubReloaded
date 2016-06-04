@@ -5,10 +5,10 @@
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	{!!Html::style('/css/jquery.bxslider.css')!!}
-	{!!Html::style('/css/font-awesome.css')!!}
-	{!!Html::style('/css/bootstrap.css')!!}
-	{!!Html::style('/css/MisEstilos.css')!!}
+	{!!Html::style('../css/jquery.bxslider.css')!!}
+	{!!Html::style('../css/font-awesome.css')!!}
+	{!!Html::style('../css/bootstrap.css')!!}
+	{!!Html::style('../css/MisEstilos.css')!!}
 	
 </head>
 
@@ -48,7 +48,7 @@
 			    	<label for="estadoInput" class="col-sm-4 control-label ">Estado</label>
 			    	<div class="col-sm-3">			      					      	
 			      		
-			      		<select class="form-control" id="estado" name="estado" required readonly>
+			      		<select class="form-control" id="estado" name="estado" readonly>
 						<!-- Las opciones se deberían extraer de la tabla configuracion-->
 						<option value="1" @if($producto['estado'] == true) selected @endif >Activo</option>
 						<option value="0" @if($producto['estado'] == false) selected @endif>Inactivo</option>	
@@ -57,11 +57,11 @@
 			    	</div>	    	
 			  	</div>
 			  	
-			  	<div class="form-group required">
+			  	<div class="form-group ">
 			    	<label for="tipoProductoInput" class="col-sm-4 control-label" >Tipo de Producto</label>
 			    	<div class="col-sm-5">
 			    	
-			      		<select class="form-control" id="id_tipo_producto" name="id_tipo_producto" required readonly>
+			      		<select class="form-control" id="id_tipo_producto" name="id_tipo_producto"  readonly>
 						<!-- Las opciones se deberían extraer de la tabla configuracion-->
 						<option value=null >Seleccionar tipo...</option>
 						<option value="1" @if($producto['id_tipo_producto'] == 1) selected @endif >Ropa</option>
@@ -77,19 +77,17 @@
 				
 				<div class="form-group">
 					<div class="col-sm-8"> </div>
-					<a href="/producto/index" class="btn btn-info">Aceptar</a>				
+					<a href="/producto/index" class="btn btn-info">Regresar</a>				
 				</div>
 
 			</form>
 		</div>
 	</div>		
 @stop
-<!-- JQuery -->
-	{!!Html::script('/js/jquery-1.11.3.min.js')!!}
-	{!!Html::script('/js/bootstrap.js')!!}
-	{!!Html::script('/js/jquery.bxslider.min.js')!!}
-	{!!Html::script('/js/MisScripts.js')!!}
-
-
+	<!-- JQuery -->
+	{!!Html::script('../js/jquery-1.11.3.min.js')!!}
+	{!!Html::script('../js/bootstrap.js')!!}
+	{!!Html::script('../js/jquery.bxslider.min.js')!!}
+	{!!Html::script('../js/MisScripts.js')!!}
 </body>
 </html>
