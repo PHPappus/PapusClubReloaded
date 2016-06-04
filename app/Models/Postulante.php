@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 namespace papusclub\Models;
 
@@ -27,5 +27,11 @@ class Postulante extends Model
     'telefono_celular'
     ];
     protected $dates = ['deleted_at'];
+
+    public function persona()
+    {
+        //return Persona::find($this->id_postulante);
+        return $this->belongsTo(Persona::class,'id_postulante','id');
+    }
     
 }

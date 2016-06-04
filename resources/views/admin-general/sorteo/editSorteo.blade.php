@@ -46,33 +46,78 @@
 		  			@endif
 			  		
 				</div>
-				<div class="form-group">
-					<label for="" class="control-label col-sm-5">NOMBRE DEL SORTEO:</label>
-					<div class="col-sm-7">
-						<input type="text" class="form-control" id="nombre_sorteo" name="nombre_sorteo" required style="max-width: 250px" value="{{$datos->nombre_sorteo}}">
+				<br/><br/>
+				<div class="col-sm-4"></div>
+				<div class="">
+			  		<font color="red"> 
+			  			(*) Dato Obligatorio
+			  		</font>		  			
+				</div>			
+			  	</br>
+			  	</br>
+			  	@if(is_null(old('nombre_sorteo')))	
+					<div class="form-group required">
+						<label for="" class="control-label col-sm-5">NOMBRE DEL SORTEO:</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="nombre_sorteo" name="nombre_sorteo" required style="max-width: 250px" value="{{$datos->nombre_sorteo}}">
+						</div>
 					</div>
-				</div>				
+				@else
+					<div class="form-group required">
+						<label for="" class="control-label col-sm-5">NOMBRE DEL SORTEO:</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="nombre_sorteo" name="nombre_sorteo" required style="max-width: 250px" value="{{ old('nombre_sorteo') }}">
+						</div>
+					</div>
+				@endif		
 
-				<div class="form-group">
-					<label for="" class="control-label col-sm-5">DESCRIPCION:</label>
-					<div class="col-sm-7">
-						<input type="text" class="form-control" id="descripcion" name="descripcion" required style="max-width: 250px" value="{{$datos->descripcion}}">
+				@if(is_null(old('descripcion')))
+					<div class="form-group required">
+						<label for="" class="control-label col-sm-5">DESCRIPCION:</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="descripcion" name="descripcion" required style="max-width: 250px" value="{{$datos->descripcion}}">
+						</div>
 					</div>
-				</div>
-				
-				<div class="form-group">
-					<label for="" class="control-label col-sm-5">FECHA ABIERTO:</label>
-					<div class="col-sm-7">
-						<input class="datepicker" type="text" id="dpd1" readonly="true" name="fecha_abierto" value="{{$datos->fecha_abierto}}">						
-					</div>					
-				</div>
-				
-				<div class="form-group">
-					<label for="" class="control-label col-sm-5">FECHA CERRADO:</label>
-					<div class="col-sm-7">
-						<input class="datepicker" type="text" id="dpd2" readonly="true" name="fecha_cerrado" value="{{$datos->fecha_cerrado}}">						
+				@else
+					<div class="form-group required">
+						<label for="" class="control-label col-sm-5">DESCRIPCION:</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="descripcion" name="descripcion" required style="max-width: 250px" value="{{ old('descripcion') }}">
+						</div>
 					</div>
-				</div>
+				@endif	
+				
+				@if(is_null(old('fecha_abierto')))
+					<div class="form-group required">
+						<label for="" class="control-label col-sm-5">FECHA INICIO [dd/mm/aaaa]:</label>
+						<div class="col-sm-7">
+							<input class="datepicker" type="text" id="dpd1" readonly="true" name="fecha_abierto" value="{{$datos->fecha_abierto}}">					
+						</div>					
+					</div>
+				@else
+					<div class="form-group required">
+						<label for="" class="control-label col-sm-5">FECHA INICIO [dd/mm/aaaa]:</label>
+						<div class="col-sm-7">
+							<input class="datepicker" type="text" id="dpd1" readonly="true" name="fecha_abierto" value="{{ old('fecha_abierto') }}">					
+						</div>					
+					</div>
+				@endif
+
+				@if(is_null(old('fecha_cerrado')))
+					<div class="form-group required">
+						<label for="" class="control-label col-sm-5">FECHA FIN [dd/mm/aaaa]:</label>
+						<div class="col-sm-7">
+							<input class="datepicker" type="text" id="dpd2" readonly="true" name="fecha_cerrado" value="{{$datos->fecha_cerrado}}">						
+						</div>
+					</div>
+				@else
+					<div class="form-group required">
+						<label for="" class="control-label col-sm-5">FECHA FIN [dd/mm/aaaa]:</label>
+						<div class="col-sm-7">
+							<input class="datepicker" type="text" id="dpd2" readonly="true" name="fecha_cerrado" value="{{ old('fecha_cerrado') }}">						
+						</div>
+					</div>
+				@endif
 				
 				<br/>
 				<br/>
@@ -99,7 +144,7 @@
 	<script>
 		var nowTemp = new Date();
 		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
- 	
+ 
 		var checkin = $('#dpd1').datepicker({
   			onRender: function(date) {
     			return date.valueOf() < now.valueOf() ? 'disabled' : '';
@@ -121,8 +166,6 @@
 		}).on('changeDate', function(ev) {
   			checkout.hide();
 		}).data('datepicker');		
-
-		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
 	</script>
 	<script>
 		$(function(){

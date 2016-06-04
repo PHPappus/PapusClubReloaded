@@ -44,7 +44,7 @@
 		<div class="container">
 			<div class="form-group">
 				<div class="col-sm-1 text-right">
-					<a class="btn btn-primary" href="{{url('/membresia/all')}}" title="Registrar Membresia" >Mostrar Todos</a>	
+					<a class="btn btn-primary" href="{{url('/membresia/all')}}" title="Mostrar Todos" >Mostrar Todos</a>	
 				</div>
 			</div>
 			<br/>
@@ -83,18 +83,24 @@
 					            </tr>				            		
 							@endforeach
 						</tbody>
-				</table>			
-			</div>		
-		</div>
-		</br></br></br></br>
-		<div class="container">
-			<div class="form-group">
-				<div class="col-sm-7 text-right">
-					<a class="btn btn-info" href="{{url('/membresia/new')}}" title="Registrar Membresia" >Agregar</a>	
-				</div>
+				</table>
+				</br></br></br></br>
+				<div class="btn-inline">
+					<!-- <form method="POST" action="/sedes/new/sede" >
+					<input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
+
+					<div class="btn-group col-sm-10"></div>
+					
+					<div class="btn-group ">
+						<a href="{{url('/membresia/new')}}" class="btn btn-info" type="submit">Registrar Membresia</a>
+
+					</div>
+					
+				</div>							
 			</div>
-			<br/>
 		</div>
+
+
 
 
 	
@@ -132,7 +138,7 @@
 	        <h4 class="modal-title">Confirmar</h4>
 	      </div>
 	      <div class="modal-body">
-	        <p>¿Está seguro que desea eliminar la sede?</p>
+	        <p>¿Está seguro que desea eliminar esta Membresía?</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

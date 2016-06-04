@@ -26,7 +26,7 @@ class EditSorteoRequest extends Request
         return [
             'nombre_sorteo'          =>  'required|alpha|max:100|string',
             'descripcion'       =>  'required|max:100|string',            
-            'fecha_abierto'      =>  'required|date_format:d/m/Y|after:today',            
+            'fecha_abierto'      =>  'required|date_format:d/m/Y',            
             'fecha_cerrado'      =>  'required|date_format:d/m/Y|after:fecha_abierto'                       
         ];
     }

@@ -19,6 +19,16 @@ class Socio extends Model
 
     public function postulante()
     {
-    	return $this->belongsTo(TipoMembresia::class,'postulante_id');
+    	return $this->belongsTo(Postulante::class,'postulante_id','id_postulante');
+    }
+
+    public function isIndependent()
+    {
+        //$persona = $this->postulante->persona;
+        /*Aqui se harán las validaciones de si otras tablas están dependiendo de él como lo es las reservas, por el momento devolvere false diciendo que no es independiente de tal manera que se use softdelete*/
+        /*Comparar respecto a persona*/
+
+        return false;
+
     }
 }
