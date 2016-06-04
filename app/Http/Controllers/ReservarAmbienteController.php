@@ -15,7 +15,8 @@ class ReservarAmbienteController extends Controller
     public function reservarBungalow()
     {
         $sedes = Sede::all();
-        $ambientes = Ambiente::all();  
+        //$ambientes = Ambiente::all();
+        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();  
         return view('admin-general.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes'));
     }
      //Muestra la pantalla para realizar la reserva de un ambiente que no sea bungalow
@@ -23,7 +24,8 @@ class ReservarAmbienteController extends Controller
     {
 
         $sedes = Sede::all();
-        $ambientes = Ambiente::all(); 
+        //$ambientes = Ambiente::all(); 
+        $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->get();
         return view('admin-general.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes'));
     }
 
