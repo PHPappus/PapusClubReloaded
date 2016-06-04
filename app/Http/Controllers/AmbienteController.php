@@ -26,6 +26,7 @@ class AmbienteController extends Controller
     	$sedes = Sede::all();
         $values=(Configuracion::where('grupo','=','2')->get())->all();
         return view('admin-general.ambiente.newAmbiente', compact('sedes'),compact('values'));
+        
     }
     //Se almacena el nuevo ambiente que se ha registrado en la BD
     public function store(StoreAmbienteRequest $request)
