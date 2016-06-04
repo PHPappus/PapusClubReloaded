@@ -12,4 +12,7 @@ class Producto extends Model
      'descripcion',
      'estado',
      'id_tipo_producto'];
+
+     
+     
 }
