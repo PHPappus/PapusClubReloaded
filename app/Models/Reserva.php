@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Reserva extends Model
 {
     use SoftDeletes;
-    protected $table = 'reservas';
+    protected $table = 'reserva';
     protected $fillable = 
     ['fecha_inicio_reserva',
     'fecha_fin_reserva', 
