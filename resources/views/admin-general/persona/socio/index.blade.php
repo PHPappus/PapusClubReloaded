@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>POSTULANTE</title>
+	<title>SOCIO</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,31 +9,24 @@
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
-	{!!Html::style('css/datepicker.css')!!}
-	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
-	<!-- PARA DATA TABLE -->
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
-	
 </head>
 <body>
 @extends('layouts.headerandfooter-al-admin')
 
 @section('content')
-	
-
-
-	<div class="content" style="max-width: 100%;">
-		<!-- Utilizando Bootstrap -->
-		<br/><br/>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 text-left">
-					<p class="lead"><strong>TRABAJADOR</strong></p>
-				</div>
-			</div>	
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 text-left">
+				<br/><br/>
+				<p class="lead"><strong>SOCIOS</strong></p>
+				<br/>
+			</div>
+			
 		</div>
-
-			<!-- Mensaje de éxito luego de registrar -->
+	</div>
+		</br>
+		</br>
 		@if (session('stored'))
 			<script>$("#modalSuccess").modal("show");</script>
 			
@@ -42,56 +35,58 @@
 					<strong>¡Éxito!</strong> {{session('stored')}}
 			</div>
 		@endif
-
+		@if (session('eliminated'))			
+			<div class="alert alert-warning fade in">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>Aviso</strong> {{session('eliminated')}}
+			</div>
+		@endif
 		<div class="container">
-			<table class="table table-bordered table-hover text-center display" id="example">
-					<thead class="active">
-						<tr>
-							<th><DIV ALIGN=center>DOC IDENTIDAD</th>
-							<th><DIV ALIGN=center>NOMBRE</th>
-							<th><DIV ALIGN=center>APELLIDO PATERNO</th>
-							<th><DIV ALIGN=center>APELLIDO MATERNO</th>
-							<th><DIV ALIGN=center>NACIONALIDAD</th>
-							<th><DIV ALIGN=center>DETALLE</th>
-							<th><DIV ALIGN=center>EDITAR</th>
-							<th><DIV ALIGN=center>ELIMINAR</th>
-							
-						</tr>
-					</thead>
-					<tbody>
-							@foreach($personas as $persona)						
-						    	<tr>
-						    		@if($persona->nacionalidad =="peruano")
-						    			<td>{{ $persona->doc_identidad }}</td>
-						    		
-						    		@else
-						    			<td>{{ $persona->carnet_extranjeria }}</td>
-						    		@endif
-									<td>{{ $persona->nombre }}</td>
-									<td>{{ $persona->ap_paterno }}</td>
-			 						<td>{{ $persona->ap_materno }}</td>
-			 						<td>{{ $persona->nacionalidad }}</td>
+			<div class="form-group">
+				<div class="col-sm-1 text-right">
+					<a class="btn btn-primary" href="{{url('/Socio/all')}}" title="Mostrar Todos" >Mostrar Todos</a>	
+				</div>
+			</div>
+			<br/>
+		</div>
+		</br>
+		</br>
+
+		<div class="table-responsive">
+			<div class="container">
+				<table class="table table-bordered table-hover text-center display" id="example">
+						<thead class="active">
+							<th><div align=center>CARNET</div> </th>
+							<th><div align=center>MEMBRESÍA</div></th>
+							<th><div align=center>APELLIDO PATERNO</div></th>
+							<th><div align=center>APELLIDO MATERNO</div></th>
+							<th><div align=center>NOMBRES</div></th>
+							<th><div align=center>DETALLE</div></th>
+							<th><div align=center>EDITAR</div></th>
+							<th><div align=center>ELIMINAR</div></th>
+						</thead>
+						<tbody>
+							@foreach($socios as $socio)						
+								<tr>
+									<td>{{$socio->id}}</td>
+									<td>{{$socio->membresia->descripcion}}</td>
+									<td>{{$socio->postulante->persona->ap_paterno}}</td>
+									<td>{{$socio->postulante->persona->ap_materno}}</td>
+									<td>{{$socio->postulante->persona->nombre}}</td>
 									<td>
-							        <a class="btn btn-info" href="{{url('/trabajador/'.$persona->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+					              	<a class="btn btn-info" href="{{url('/Socio/'.$socio->id)}}/"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+					            	</td>
+					            	<td>
+							        <a class="btn btn-info" href="#" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 							        </td>
-									<td>
-							        <a class="btn btn-info" href="{{url('/trabajador/'.$persona->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
-							        </td>
-							        <td>
-							        <a class="btn btn-info"  title="Eliminar" data-href="{{url('/trabajador/'.$persona->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a> 
-							        </td>
-							            
-								</tr>
+					            	<td>
+							        <a class="btn btn-info"  title="Eliminar" data-href="{{url('/Socio/'.$socio->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+					            	</td>
+					            </tr>				            		
 							@endforeach
-					</tbody>					
-												
-					
-			</table>		
-			</br>
-				</br>
-				</br>
-				</br>
-				
+						</tbody>
+				</table>
+				</br></br></br></br>
 				<div class="btn-inline">
 					<!-- <form method="POST" action="/sedes/new/sede" >
 					<input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
@@ -99,34 +94,27 @@
 					<div class="btn-group col-sm-10"></div>
 					
 					<div class="btn-group ">
-						<a href="{{url('/trabajador/new')}}" class="btn btn-info" type="submit">Registrar Trabajador</a>
+						<a href="#" class="btn btn-info" type="submit">Registrar Socio</a>
 
 					</div>
 					
-				</div>
-
-
-
-
-
-			<!-- <div><a class="btn btn-primary" href="{{url('/trabajador/search')}}">Consultar</a> <a class="btn btn-primary" href="{{url('/trabajador/new')}}">Registrar</a></div>
-			@yield('content-opcion') -->
+				</div>								
+			</div>		
 		</div>
-	</div>
+
+
 
 	
+		</br></br></br></br></br>
+		
+
+
 @stop
-<!-- JQuery -->
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
-	<!-- Bootstrap -->
 	{!!Html::script('js/bootstrap.js')!!}
-	
-	<!-- BXSlider -->
 	{!!Html::script('js/jquery.bxslider.min.js')!!}
-	<!-- Mis Scripts -->
 	{!!Html::script('js/MisScripts.js')!!}
-
-	{!!Html::script('js/bootstrap-datepicker.js')!!}
+	<!-- {!!Html::script('js/jquery.dataTables.min.js')!!} -->
 
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
 	<script>
@@ -138,7 +126,7 @@
 		  	});
   		});
 	</script>
-</body>
+
 
 	<!-- Modal -->
 	<div id="modalEliminar" class="modal fade" role="dialog">
@@ -151,7 +139,7 @@
 	        <h4 class="modal-title">Confirmar</h4>
 	      </div>
 	      <div class="modal-body">
-	        <p>¿Está seguro que desea eliminar al Trabajador?</p>
+	        <p>¿Está seguro que desea eliminar a este Socio?</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -163,11 +151,14 @@
 	</div>
 
 	<!-- Modal Event-->
+	<!-- Modal Event-->
 	<script>
 		$('#modalEliminar').on('show.bs.modal', function(e) {
    			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 		});
 	</script>
+
+
 
 	<!-- Modal Success -->
 	<div id="modalSuccess" class="modal fade" role="dialog">
@@ -189,4 +180,5 @@
 
 	  </div>
 	</div>
+</body>
 </html>

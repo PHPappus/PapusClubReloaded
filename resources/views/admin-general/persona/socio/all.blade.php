@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>MEMBRESÍA</title>
+	<title>SOCIO</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +19,7 @@
 		<div class="row">
 			<div class="col-sm-12 text-left">
 				<br/><br/>
-				<p class="lead"><strong>MEMBRESÍAS</strong></p>
+				<p class="lead"><strong>SOCIOS</strong></p>
 				<br/>
 			</div>
 			
@@ -44,7 +44,7 @@
 		<div class="container">
 			<div class="form-group">
 				<div class="col-sm-1 text-right">
-					<a class="btn btn-primary" href="{{url('/membresia/all')}}" title="Mostrar Todos" >Mostrar Todos</a>	
+					<a class="btn btn-primary" href="{{url('/Socio/')}}" title="Ocultar" >Ocultar Inhabilitados</a>	
 				</div>
 			</div>
 			<br/>
@@ -56,30 +56,45 @@
 			<div class="container">
 				<table class="table table-bordered table-hover text-center display" id="example">
 						<thead class="active">
-							<th><div align=center>TIPO</div> </th>
-							<th><div align=center>INVITADOS</div></th>
-							<th><div align=center>MONEDA</div></th>
-							<th><div align=center>MONTO</div></th>
+							<th><div align=center>CARNET</div> </th>
+							<th><div align=center>MEMBRESÍA</div></th>
+							<th><div align=center>APELLIDO PATERNO</div></th>
+							<th><div align=center>APELLIDO MATERNO</div></th>
+							<th><div align=center>NOMBRES</div></th>
 							<th><div align=center>DETALLE</div></th>
 							<th><div align=center>EDITAR</div></th>
-							<th><div align=center>ELIMINAR</div></th>
+							<th><div align=center>ACTIVAR/ELIMINAR</div></th>
 						</thead>
 						<tbody>
-							@foreach($membresias as $membresia)						
+							@foreach($socios as $socio)						
 								<tr>
-									<td>{{$membresia->descripcion}}</td>
-									<td>{{$membresia->numMaxInvitados}}</td>
-									<td>S/.</td>
-									<td>{{$membresia->tarifa->monto}}</td>
+									<td>{{$socio->id}}</td>
+									<td>{{$socio->membresia->descripcion}}</td>
+									<td>{{$socio->postulante->persona->ap_paterno}}</td>
+									<td>{{$socio->postulante->persona->ap_materno}}</td>
+									<td>{{$socio->postulante->persona->nombre}}</td>
+									@if($socio->trashed())
 									<td>
-					              	<a class="btn btn-info" href="{{url('/membresia/'.$membresia->id)}}/"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+					              		<a class="btn btn-info" href="#"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 					            	</td>
 					            	<td>
-							        <a class="btn btn-info" href="{{url('/membresia/'.$membresia->id)}}/editar" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+							        	<a class="btn btn-info" href="#" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 							        </td>
 					            	<td>
-							        <a class="btn btn-info"  title="Eliminar" data-href="{{url('/membresia/'.$membresia->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+										<a class="btn btn-info"  title="Activar" data-href="{{url('/Socio/'.$socio->id.'/activate')}}" data-toggle="modal" data-target="#modalActivar"><i class="glyphicon glyphicon-ok"></i></a>
 					            	</td>
+									@else
+									<td>
+					              		<a class="btn btn-info" href="#"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+					            	</td>
+					            	<td>
+							        	<a class="btn btn-info" href="#" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+							        </td>
+					            	<td>
+										<a class="btn btn-info"  title="Eliminar" data-href="{{url('/Socio/'.$socio->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+					            	</td>
+									@endif
+
 					            </tr>				            		
 							@endforeach
 						</tbody>
@@ -92,14 +107,13 @@
 					<div class="btn-group col-sm-10"></div>
 					
 					<div class="btn-group ">
-						<a href="{{url('/membresia/new')}}" class="btn btn-info" type="submit">Registrar Membresia</a>
+						<a href="#" class="btn btn-info" type="submit">Registrar Socio</a>
 
 					</div>
 					
-				</div>							
-			</div>
+				</div>								
+			</div>		
 		</div>
-
 
 
 
@@ -138,7 +152,7 @@
 	        <h4 class="modal-title">Confirmar</h4>
 	      </div>
 	      <div class="modal-body">
-	        <p>¿Está seguro que desea eliminar esta Membresía?</p>
+	        <p>¿Está seguro que desea eliminar este Socio?</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -153,6 +167,36 @@
 	<!-- Modal Event-->
 	<script>
 		$('#modalEliminar').on('show.bs.modal', function(e) {
+   			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+		});
+	</script>
+
+		<!-- Modal -->
+	<div id="modalActivar" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Confirmar</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>¿Desea reactivarlo?</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-info btn-ok">Confirmar</a>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
+	<!-- Modal Event-->
+	<!-- Modal Event-->
+	<script>
+		$('#modalActivar').on('show.bs.modal', function(e) {
    			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 		});
 	</script>

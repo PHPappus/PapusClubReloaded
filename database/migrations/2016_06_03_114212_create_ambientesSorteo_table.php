@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSocioTable extends Migration
+class CreateAmbientesSorteoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,10 @@ class CreateSocioTable extends Migration
      */
     public function up()
     {
-        Schema::create('socio', function (Blueprint $table) {
-            $table->increments('id');
-            $table->boolean('estado');
-            $table->integer('tipo_membresia_id')->unsigned()->nullable();
-            $table->integer('postulante_id')->unsigned()->nullable();
-            $table->dateTime('fecha_ingreso');
+        Schema::create('ambientesSorteo',function (Blueprint $table){
+            //Estos son los atributos que estaban en el caso de uso
+            $table->integer('id_sorteo');
+            $table->integer('id_ambiente');            
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +28,6 @@ class CreateSocioTable extends Migration
      */
     public function down()
     {
-        Schema::drop('socio');
+        Schema::drop('ambientesSorteo');
     }
 }

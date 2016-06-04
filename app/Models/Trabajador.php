@@ -5,17 +5,20 @@ namespace papusclub\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class TipoPersona extends Model
+class Trabajador extends Model
 {
 	use SoftDeletes;
-    protected $table = 'tipopersona';
+    protected $table = 'trabajador';
     protected $fillable=
-    ['descripcion',
-     'fecha_actualizacion'
+    ['puesto',
+     'fecha_ini_contrato',
+     'fecha_fin_contrato'
     ];
     protected $dates = ['deleted_at'];
-    
-    public function persona(){
-        return $this->hasMany('papusclub\Models\TipoPersona');
+
+	public function persona()
+    {
+        return Persona::find($this->id);
     }
 }
+

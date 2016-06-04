@@ -8,6 +8,7 @@
 		    if (allow == 'Numbers'){AllowableCharacters='1234567890';}
 		    if (allow == 'NameCharacters'){AllowableCharacters=' ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz-.\'_@';}
 		    if (allow == 'NameCharactersAndNumbers'){AllowableCharacters='1234567890 ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz-\'_@';}
+		    if (allow == 'DoubleFormat'){AllowableCharacters='1234567890,.';}
 		    if (allow == 'Nulo'){AllowableCharacters='';} //sirve para colocarle a las fechas deben ser obligatoriamente ingresadas por el picker
 
 		    var k = document.all?parseInt(e.keyCode): parseInt(e.which);
@@ -58,7 +59,7 @@
 						<!-- Sedes -->
 						<li><a href="#">PERSONA<span class="despliegue">▼</span></a>
 							<ul>
-								<li><a href="#" title="ir a socio" target="_self">SOCIO</a></li>
+								<li><a href="{!!URL::to('/Socio')!!}" title="ir a socio" target="_self">SOCIO</a></li>
 								<li><a href="{!!URL::to('/trabajador/index')!!}" title="ir a trabajador" target="_self">TRABAJADOR</a></li>
 								<li><a href="{!!URL::to('/postulante/index')!!}" title="ir a postulante" target="_self">POSTULANTE</a></li>
 							</ul>
@@ -71,9 +72,9 @@
 						</li>
 
 						<li><a href="{!!URL::to('/sedes/index')!!}">SEDE<span class="despliegue">▼</span></a>
-							<!-- <ul>
-								<li><a href="{!!URL::to('/sedes/new')!!}" title="ir a agregar sede" target="_self">AGREGAR</a></li>
-							</ul> -->
+							<ul>
+								<li><a href="{!!URL::to('/sorteo/new')!!}" title="Mantenimiento Sorteo" target="_self">SORTEO</a></li>
+							</ul> 
 						</li>
 						<li><a href="{!!URL::to('/ambiente/index')!!}">AMBIENTE<span class="despliegue">▼</span></a>
 						<!-- <ul>

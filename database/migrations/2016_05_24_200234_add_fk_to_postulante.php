@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFkToMaestroPostulante extends Migration
+class AddFkToPostulante extends Migration
 {
     /**
      * Run the migrations.

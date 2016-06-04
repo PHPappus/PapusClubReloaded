@@ -1,5 +1,19 @@
-@extends('admin-general.persona.trabajador.index')
+<!DOCTYPE html>
+<html>
+<head>
+	<title>POSTULANTE</title>
+	<meta charset="UTF-8">
 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{!!Html::style('css/jquery.bxslider.css')!!}
+	{!!Html::style('css/font-awesome.css')!!}
+	{!!Html::style('css/bootstrap.css')!!}
+	{!!Html::style('css/MisEstilos.css')!!}
+	{!!Html::style('css/datepicker.css')!!}
+	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
+	<!-- PARA DATA TABLE -->
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
+	
 	<style type="text/css" media="screen">
 		#dpd1{
 			width:300px;
@@ -18,14 +32,23 @@
 		}
 	</style>
 
+		<style>
 
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&libraries=places"></script>
+		.modal-backdrop.in{
+			z-index: 1;
+		}
+	</style>
 
 
+	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&libraries=places"></script>
 
-@section('content-opcion')
+</head>
+<body>
+
+@extends('layouts.headerandfooter-al-admin')
+@section('content')
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-left">
@@ -39,7 +62,7 @@
 
 
 		<div class="container">
-			<form method="POST" action="/trabajador/new/save" class="form-horizontal form-border">
+			<form method="POST" action="/trabajador/{{ $trabajador->id }}/edit" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<!-- VALIDACION CON FE INICIO -->
@@ -76,7 +99,7 @@
 												<label for="" class="control-label">Nombre:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombre" name="nombre" placeholder="Nombre" style="max-width: 250px"   required>
+												<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombre" name="nombre" placeholder="Nombre" style="max-width: 250px" value="{{$persona->nombre}}" value="{{old('nombre')}}"  >
 											</div>	
 										</div>
 									</div>
@@ -87,7 +110,7 @@
 												<label for="" class="control-label">Apellido Paterno:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="ap_paterno" name="ap_paterno" placeholder="Apellido Paterno" style="max-width: 250px" required>
+												<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="ap_paterno" name="ap_paterno" placeholder="Apellido Paterno" style="max-width: 250px" value="{{$persona->ap_paterno}}" value="{{old('ap_paterno')}}">
 											</div>	
 										</div>
 									</div>
@@ -98,7 +121,7 @@
 												<label for="" class="control-label">Apellido Materno:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="ap_materno" name="ap_materno" placeholder="Apellido Materno" style="max-width: 250px" required>
+												<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="ap_materno" name="ap_materno" placeholder="Apellido Materno" style="max-width: 250px" value="{{$persona->ap_materno}}" value="{{old('ap_materno')}}">
 											</div>	
 										</div>
 									</div>
@@ -108,9 +131,14 @@
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Sexo:</label>
 											</div>
-											<div class="col-sm-6 text-left" >
-													<input type="radio" name="genero" value="Masculino" checked> Masculino
-													<input type="radio" name="genero" value="Femenino" style="margin-left: 35px;"> Femenino	
+											<div class="col-sm-6 text-left" style="float: right">											
+													<div>
+														
+															{{ Form::radio('sexo', 'masculino', (($persona['sexo']=="masculino" )? true : false)) }}Masculino
+															</div>
+															<div>
+															{{ Form::radio('sexo', 'femenino', (($persona['sexo']=="femenino" )? true : false)) }}Femenino
+													</div>
 											</div>	
 										</div>
 									</div>
@@ -122,7 +150,7 @@
 												<label for="" class="control-label">Fecha de Nacimiento:</label>
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" style="max-width: 250px">
+												<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" style="max-width: 250px" value="{{$persona->fecha_nacimiento}}" value="{{old('fecha_nacimiento')}}">
 
 											</div>	
 										</div>
@@ -134,8 +162,11 @@
 												<label for="" class="control-label">Nacionalidad:</label>
 											</div>
 											<div class="col-sm-6 text-left" >
-													<input onclick="document.getElementById('doc_identidad').disabled = false; document.getElementById('carnet_extranjeria').disabled = true; document.getElementById('carnet_extranjeria').value = ''; document.getElementById('doc_identidad').required = true; document.getElementById('carnet_extranjeria').required = false;" type="radio" name="nacionalidad" value="Peruano" checked @{{$nac=per}}> Peruano  
-													<input onclick="document.getElementById('carnet_extranjeria').disabled = false; document.getElementById('doc_identidad').disabled = true; document.getElementById('doc_identidad').value = '';  document.getElementById('doc_identidad').required = false; document.getElementById('carnet_extranjeria').required = truess;" type="radio" name="nacionalidad" value="Extranjero" style="margin-left: 50px;"@{{$nac=otro}}> Extranjero	
+													<input checked onchange="document.getElementById('doc_identidad').disabled = false; document.getElementById('carnet_extranjeria').disabled = true;" onclick=" document.getElementById('carnet_extranjeria').value = '';" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "Peruano") ? 'checked="true"' : '' }}/>Peruano&nbsp&nbsp&nbsp
+													<input onchange="document.getElementById('carnet_extranjeria').disabled = false; document.getElementById('doc_identidad').disabled = true;" onclick=" document.getElementById('doc_identidad').value = ''; " type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "Extranjero") ? 'checked="true"' : '' }}/>Extranjero
+
+<!-- 													<input onchange ="document.getElementById('doc_identidad').disabled = false; document.getElementById('carnet_extranjeria').disabled = true; document.getElementById('carnet_extranjeria').value = ''; document.getElementById('doc_identidad').required = true; document.getElementById('carnet_extranjeria').required = false;" type="radio" name="nacionalidad" value="Peruano" @{{$nacionalidad=peruano}} @if(old('nacionalidad')=="Peruano") checked @endif> Peruano  
+													<input onchange="document.getElementById('carnet_extranjeria').disabled = false; document.getElementById('doc_identidad').disabled = true; document.getElementById('doc_identidad').value = '';  document.getElementById('doc_identidad').required = false; document.getElementById('carnet_extranjeria').required = true;" type="radio" name="nacionalidad" value="Extranjero" style="margin-left: 50px;"@{{$nacionalidad=extranjero}} @if(old('nacionalidad')=="Extranjero") checked @endif> Extranjero	 -->
 											</div>	
 										</div>
 									</div>
@@ -147,7 +178,7 @@
 											</div>
 											<div class="col-sm-6">
 											<!--Se hace validacion para que acepte solo numeros pero que sea un texto-->
-												<input  type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="doc_identidad" name="doc_identidad" placeholder="DNI" maxlength="8" style="max-width: 250px" required>
+												<input  type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="doc_identidad" name="doc_identidad" placeholder="DNI" maxlength="8" style="max-width: 250px" value="{{$persona->doc_identidad}}" value="{{old('doc_identidad')}}"  >
 											</div>	
 										</div>
 									</div>
@@ -158,7 +189,7 @@
 												<label for="" class="control-label">Carnet de extranjeria:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" disabled="true" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="carnet_extranjeria" name="carnet_extranjeria" placeholder="Carnet de Extranjeria" maxlength="12" style="max-width: 250px" required>
+												<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="carnet_extranjeria" name="carnet_extranjeria" placeholder="Carnet de Extranjeria" maxlength="12" style="max-width: 250px" value="{{$persona->carnet_extranjeria}}" value="{{old('carnet_extranjeria')}}"  >
 											</div>	
 										</div>
 									</div>
@@ -175,10 +206,10 @@
 												<label for="" class="control-label">Puesto:</label>
 											</div>
 											<div class="col-sm-6">
-												<select class="form-control" name="puestoSelect" style="max-width: 150px "   >
+												<select class="form-control" id="puestoSelect" name="puestoSelect" style="max-width: 150px "   >
 													<option value="-1" default>Seleccione</option>
-														@foreach ($puestos as $puesto)      
-										                	<option value="{{$puesto->id}}">{{$puesto->valor}}</option>
+														@foreach ($puestoslaborales as $variablePuesto)      
+										                	<option value="{{$variablePuesto->id}}" @if($puesto->id==$variablePuesto->id) selected @endif >{{$variablePuesto->valor}}</option>
 										                @endforeach
 												</select>
 											</div>
@@ -193,7 +224,7 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_inic_contrato" placeholder="Fecha de inicio" style="max-width: 250px">
+												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_ini_contrato" placeholder="Fecha de inicio" style="max-width: 250px" value="{{$persona->fecha_ini_contrato}}" value="{{old('fecha_ini_contrato')}}">
 											</div>	
 										</div>
 									</div>
@@ -206,7 +237,7 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_inic_contrato" placeholder="Fecha de fin" style="max-width: 250px">
+												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_fin_contrato" placeholder="Fecha de fin" style="max-width: 250px" value="{{$persona->fecha_fin_contrato}}" value="{{old('fecha_fin_contrato')}}">
 											</div>
 										</div>
 									</div>
@@ -219,7 +250,7 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="correo"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" name="correo" placeholder="correo" style="max-width: 250pc; margin-top:0px;" required>
+												<input type="text" class="form-control" id="correo"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" name="correo" placeholder="correo" style="max-width: 250pc; margin-top:0px;" value="{{$persona->correo}}" value="{{old('correo')}}">
 											</div>
 										</div>
 									</div>
@@ -230,18 +261,54 @@
 					
 				</div>
 				<br>
+				<div class="btn-inline">
+					<div class="btn-group col-sm-5"></div>
+
+					<div class="btn-group ">
+						<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Aceptar">
+					</div>
+					<div class="btn-group">
+						<a href="/trabajador/index" class="btn btn-info">Cancelar</a>
+					</div>
+				</div>
+				<br>
+
+				
+				<!-- Ventana modal de Confirmación -->			  	
+				<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" data-backdrop="static">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<!-- Header de la ventana -->
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" onclick="cerrarventana()">&times;</span></button>
+								<h4 class="modal-title">EDITAR TRABAJADOR</h4>
+							</div>
+							<!-- Contenido de la ventana -->
+							<div class="modal-body">
+								<p>¿Desea guardar los cambios realizados?</p>
+							</div>
+							<div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cancelar</button>
+						        <button type="submit" class="btn btn-primary">Confirmar</button>
+					      	</div>
+						</div>
+					</div>
+				</div>
+
+
+				
 			</form>
 			
-			  	<div class="btn-inline">
+<!-- 			  	<div class="btn-inline">
 					<div class="btn-group col-sm-5"></div>
 					
 					<div class="btn-group ">
-						<input type="submit" class="btn btn-primary " value="Guardar">
+						<input class="btn btn-primary "  type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
 						<a href="/trabajador/search" class="btn btn-info">Cancelar</a>
 					</div>
-				</div>
+				</div> -->
 		</div>
 			
 
@@ -249,25 +316,33 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<!-- JQuery -->
-	{!!Html::script('js/jquery-1.11.3.min.js')!!}
-	<!-- Bootstrap -->
-	{!!Html::script('js/bootstrap.js')!!}
-	
-	<!-- BXSlider -->
-	{!!Html::script('js/jquery.bxslider.min.js')!!}
-	<!-- Mis Scripts -->
-	{!!Html::script('js/MisScripts.js')!!}
-
-	{!!Html::script('js/bootstrap-datepicker.js')!!}
 
 
+	<script type="text/javascript" src="../js/bootstrap-datepicker.js"></script>
+
+
+	<script type="text/javascript">
+		//var disabled_dates = ["23.03.2016","21.03.2016"];
+		$(function(){
+			$('.datepicker').datepicker({
+				format: 'dd/mm/yyyy',				
+				autoclose:true,
+				startDate: '-3d',
+				beforeShowDay:function($date){
+					return false;
+				}
+			});
+		});
+		
+	</script>
 
 
 
+</body>
+</html>
 
-	<script>
 
+<!-- 	<script>
 		var nowTemp = new Date();
 		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
  	
@@ -292,7 +367,6 @@
   			checkout.hide();
 		}).data('datepicker');		
 		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
-
 	
 	</script>
 	<script>
@@ -311,7 +385,7 @@
 			document.getElementsByTagName('header')[0].style.zIndex = 3;
 		}
   	</script>
-
+ -->
   	<!--<script>
 		function inputLimiter(e,allow) {
 		    var AllowableCharacters = '';
