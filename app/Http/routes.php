@@ -116,11 +116,14 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 
 	//MANTENIMIENTO DE MULTAS
 	Route::get('multa/','MultaController@index');
+	Route::get('multa/all','MultaController@indexAll');
 	Route::get('multa/new','MultaController@create');
-	Route::get('multa/{multa}/','MultaController@show');
+	Route::get('multa/{id}/','MultaController@show');
 	Route::post('multa/new/save','MultaController@store');
-	Route::get('multa/{multa}/editar','MultaController@edit');
-	Route::patch('multa/{multa}/edit','MultaController@update');
+	Route::get('multa/{id}/editar','MultaController@edit');
+	Route::get('multa/{multa}/delete', 'MultaController@destroy');
+	Route::get('multa/{id}/activate','MultaController@activate');
+	Route::patch('multa/{id}/edit','MultaController@update');
 
 
 	//MANTENIMIENTO DE SEDES

@@ -41,7 +41,14 @@
 					<strong>Aviso</strong> {{session('eliminated')}}
 			</div>
 		@endif
-	
+		<div class="container">
+			<div class="form-group">
+				<div class="col-sm-1 text-right">
+					<a class="btn btn-primary" href="{{url('/multa/')}}" title="Registrar Multa" >Ocultar Inhabilitados</a>	
+				</div>
+			</div>
+			<br/>
+		</div>
 		</br>
 		</br>
 
@@ -66,15 +73,27 @@
 									<td>{{$multa->descripcion}}</td>
 									<td>S/.</td>
 									<td>{{$multa->montoPenalidad}}</td>
+									@if($multa->trashed())
 									<td>
 					              	<a class="btn btn-info" href="{{url('/multa/'.$multa->id)}}/"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 					            	</td>
 					            	<td>
-							        <a class="btn btn-info" href="{{url('/multa/'.$multa->id)}}/editar" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+							        	<a class="btn btn-info" href="{{url('/multa/'.$multa->id)}}/editar" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+							        </td>
+							        <td>
+										<a class="btn btn-info"  title="Activar" data-href="{{url('/multa/'.$multa->id.'/activate')}}" data-toggle="modal" data-target="#modalActivar"><i class="glyphicon glyphicon-ok"></i></a>
+					            	</td>
+					            	@else
+					            	<td>
+					              		<a class="btn btn-info" href="{{url('/multa/'.$multa->id)}}/"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+					            	</td>
+					            	<td>
+							        	<a class="btn btn-info" href="{{url('/multa/'.$multa->id)}}/editar" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 							        </td>
 					            	<td>
-					              	<a class="btn btn-info" href="#" title="Eliminar" data-href="{{url('/multa/'.$multa->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+					              	<a class="btn btn-info" href="#" title="Eliminar" ><i class="glyphicon glyphicon-remove"></i></a>
 					            	</td>
+					            	@endif
 					            </tr>				            
 						
 							@endforeach
@@ -112,7 +131,7 @@
 		  	});
   		});
 	</script>
-</body>
+
 
 	<!-- Modal -->
 	<div id="modalEliminar" class="modal fade" role="dialog">
@@ -125,7 +144,7 @@
 	        <h4 class="modal-title">Confirmar</h4>
 	      </div>
 	      <div class="modal-body">
-	        <p>¿Está seguro que desea eliminar el proveedor?</p>
+	        <p>¿Está seguro que desea eliminar la multa?</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -143,6 +162,38 @@
 		});
 	</script>
 	
+		<!-- Modal -->
+	<div id="modalActivar" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Confirmar</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>¿Desea reactivarlo?</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-info btn-ok">Confirmar</a>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
+	<!-- Modal Event-->
+	<!-- Modal Event-->
+	<script>
+		$('#modalActivar').on('show.bs.modal', function(e) {
+   			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+		});
+	</script>
+
+
+
 	<!-- Modal Success -->
 	<div id="modalSuccess" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
@@ -164,4 +215,5 @@
 	  </div>
 	</div>
 
+</body>
 </html>
