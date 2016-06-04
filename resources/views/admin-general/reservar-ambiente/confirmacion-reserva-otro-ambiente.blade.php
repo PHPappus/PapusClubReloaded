@@ -22,12 +22,12 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>DETALLE AMBIENTE</strong>
+					<strong>DETALLE DE LA RESERVA </strong>
 			</div>		
 		</div>
 		<div class="container">
 			<!--@include('errors.503')-->		
-			<form method="POST" action="/ambiente/new/ambiente" class="form-horizontal form-border">
+			<form method="POST" action="/ambiente/new/ambiente" class="form-horizontal form-border"> <!-- DEBERIA EL ACTION DE REESRVAR =D -->
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<br/><br/>
 
@@ -62,7 +62,7 @@
 		  	<div class="form-group ">
 		    	<label for="ubicacionInput" class="col-sm-4 control-label">UBICACIÓN</label>
 		    	<div class="col-sm-5">
-		      		<textarea type="text" class="form-control" id="ubicacionInput" name="ubicacion" placeholder="{{$ambiente->ubicacion}}" readonly></textarea>
+		      		<input type="text" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->ubicacion}}" readonly>
 		    	</div>
 		  	</div>
 		  	<!-- <div class="form-group">
@@ -78,11 +78,20 @@
 		  	
 		  	
 	  	<!-- FIN FIN FIN -->
-				
-			<div class="form-group">
-					<div class="col-sm-8"> </div>
-					<a href="/ambiente/index" class="btn btn-info">Regresar</a>				
-			</div>
+
+			  	<div class="btn-inline">
+					<div class="btn-group col-sm-7"></div>
+					
+					<div class="btn-group ">
+						<input class="btn btn-primary" type="submit" value="Confirmar">
+					</div>
+					<div class="btn-group">
+						<a href="/reservar-ambiente/reservar-bungalow" class="btn btn-info">Cancelar</a> <!-- Regresa a la pantalla inicial de la reserva -->
+					</div>
+				</div>
+
+				</br>
+				</br>
 			</form>
 		</div>
 	</div>		
