@@ -18,7 +18,7 @@
 @section('content')
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-12 text-center">
+			<div class="col-sm-12 text-left">
 				<br/><br/>
 				<p class="lead"><strong>ACTIVIDAD</strong></p>
 				<br/>

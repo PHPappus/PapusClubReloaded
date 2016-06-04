@@ -22,6 +22,7 @@ class SedesController extends Controller
     //Muestra el formulario para poder registrar una nueva sede en BD
     public function create()
     {
+        //$mensaje = null;
         return view('admin-general.sede.newSede');
     }
 
@@ -29,6 +30,7 @@ class SedesController extends Controller
     public function store(StoreSedeRequest $request)
     {
         $input = $request->all();
+        $sedes = Sede::all();
 
         $sede = new Sede();
         $sede->nombre = $input['nombre'];
@@ -41,6 +43,7 @@ class SedesController extends Controller
         $sede->nombre_contacto = $input['nombre_contacto'];
         $sede->capacidad_maxima = $input['capacidad_maxima'];
         $sede->capacidad_socio = $input['capacidad_socio'];
+
         $sede->save();
         return redirect('sedes/index')->with('stored', 'Se registró la sede correctamente.');
     
@@ -81,17 +84,7 @@ class SedesController extends Controller
         $ambientes = $sede->ambientes;
         
         if($sede->ambientes->count() || $sede->actividades->count()) {
-            /*
-            foreach ($ambientes as $ambiente) {
-                $actividades = $ambiente->actividades;
-                if($actividades->count()){
-                    foreach ($actividades as $actividad) {
-                        $actividad->delete();
-                    }    
-                }
-                $ambiente->delete();
-            }
-            */
+            
         }
         else
             $sede->forceDelete();
