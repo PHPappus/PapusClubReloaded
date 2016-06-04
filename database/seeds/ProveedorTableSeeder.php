@@ -61,8 +61,8 @@ class ProveedorTableSeeder extends Seeder
         	'ruc' => '20555042532', 
         	'telefono' => '4463186', 
         	'correo' => 'infoventas@aquapoolperu.com', 
-        	'direccion' => 'Av. Rep?blica de Panam? 4298 - Surquillo', 
-        	'nombre_responsable' => 'Marina R?os', 
+        	'direccion' => "Av. República de Panamá 4298 - Surquillo", 
+        	'nombre_responsable' => 'Marina Ríos', 
         	'estado' => '1', 
         	'id_tipo_proveedor' => '4', 
         	]);
