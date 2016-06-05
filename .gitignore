@@ -5,3 +5,9 @@ Homestead.yaml
 Homestead.json
 .env
 storage/logs/laravel.log
+storage/logs/laravel.log
+*.log
+vendor/composer/autoload_classmap.php
+storage/logs/laravel.log
+vendor/composer/autoload_real.php
+vendor/composer/autoload_static.php
