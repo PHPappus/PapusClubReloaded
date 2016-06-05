@@ -13,8 +13,8 @@ class AddFkToMultaxpersonaTable extends Migration
     public function up()
     {
         Schema::table('multaxpersona', function (Blueprint $table) {
-            $table->('multa_id')->references->('id')->on('multa')->onDelete('cascade');
-            $table->('persona_id')->references->('id')->on('persona')->onDelete('cascade');
+            $table->foreign('multa_id')->references('id')->on('multa')->onDelete('cascade');
+            $table->foreign('persona_id')->references('id')->on('persona')->onDelete('cascade');
         });
     }
 
