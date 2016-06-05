@@ -42,8 +42,12 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('anular-reserva-ambiente-b-s','SocioController@anularReservaAmbienteB');
 	Route::get('pagos-s','SocioController@pagos');
 		//Socio.talleres
-	Route::get('talleres-s','SocioController@talleres');
-	Route::get('futbol-s','SocioController@futbol');
+	Route::get('talleres/index','TallerController@index');
+	Route::get('talleres/{id}/show','TallerController@show');
+	Route::get('talleres/{id}/confirm','TallerController@confirmInscription');
+	Route::post('talleres/{id}/confirm/save','TallerController@makeInscriptionToUser');
+	Route::get('talleres/{id}/delete', 'TallerController@removeInscriptionToUser');
+	Route::get('talleres/mis-inscripciones','TallerController@misinscripciones');
 		//Socio.bungalows
 	Route::get('bungalows-s','SocioController@bungalow');
 	Route::get('reserva-bungalows-s','SocioController@bungalowReserva');
