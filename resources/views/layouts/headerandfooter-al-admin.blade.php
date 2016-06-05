@@ -21,7 +21,7 @@
 		    } else {
 		        return true;
 		    }
-		} 
+		}
   	</script>
 
 <header class="header">
@@ -65,7 +65,7 @@
 								<li><a href="{!!URL::to('/postulante/index')!!}" title="ir a postulante" target="_self">POSTULANTE</a></li>
 							</ul>
 						</li>
-						
+
 						<li><a href="{!!URL::to('/multa')!!}">MULTA<span class="despliegue">▼</span></a>
 							<!-- <ul>
 								<li><a href="{!!URL::to('/sedes/new')!!}" title="ir a agregar sede" target="_self">AGREGAR</a></li>
@@ -75,7 +75,7 @@
 						<li><a href="{!!URL::to('/sedes/index')!!}">SEDE<span class="despliegue">▼</span></a>
 							<ul>
 								<li><a href="{!!URL::to('/sorteo/new')!!}" title="Mantenimiento Sorteo" target="_self">SORTEO</a></li>
-							</ul> 
+							</ul>
 						</li>
 						<li><a href="{!!URL::to('/ambiente/index')!!}">AMBIENTE<span class="despliegue">▼</span></a>
 							<ul>
@@ -83,7 +83,7 @@
 								<li><a href="{!!URL::to('/reservar-ambiente/reservar-otros-ambientes')!!}" title="ir a reserva de Otros Ambientes" target="_self">RESERVAR OTRO AMBIENTES</a></li>
 							</ul>
 						</li>
-						
+
 						<li><a href="{!!URL::to('/actividad/index')!!}">ACTIVIDAD<span class="despliegue">▼</span></a>
 						<!-- <ul>
 								<li><a href="{!!URL::to('/actividad/new')!!}" title="ir a agregar sede" target="_self">AGREGAR</a></li>
