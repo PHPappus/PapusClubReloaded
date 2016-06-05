@@ -3,19 +3,21 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFkToActividadesTable extends Migration
+class AddFkToFacturasTable extends Migration
 {
-   /**
+    /**
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::table('actividad', function (Blueprint $table) {
-            $table->foreign('ambiente_id')
+        Schema::table('factura', function (Blueprint $table) {
+            
+            $table->foreign('persona_id')
                   ->references('id')
-                  ->on('ambiente');
+                  ->on('persona');
+
         });
     }
 
@@ -26,8 +28,9 @@ class AddFkToActividadesTable extends Migration
      */
     public function down()
     {
-        Schema::table('actividad', function (Blueprint $table) {
-            $table->dropForeign('actividad_ambiente_id_foreign');
+        Schema::table('factura', function (Blueprint $table) {
+            
+            $table->dropForeign('factura_persona_id_foreign');
         });
     }
 }

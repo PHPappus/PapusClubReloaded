@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAmbientesTable extends Migration
+class CreateHistoricoInvitacionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,11 @@ class CreateAmbientesTable extends Migration
      */
     public function up()
     {
-        Schema::create('ambiente', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('historicoinvitacion', function (Blueprint $table) {
+            $table->integer('invitado_id')->unsigned()->nullable();
+            $table->dateTime('fecha_invitacion');
+            $table->integer('socio_id')->unsigned()->nullable();
             $table->integer('sede_id')->unsigned()->nullable();
-            $table->string('nombre');
-            $table->string('tipo_ambiente');
-            $table->string('capacidad_actual');
-            $table->string('ubicacion');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -31,6 +29,6 @@ class CreateAmbientesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ambiente');
+        Schema::drop('historicoinvitacion');
     }
 }

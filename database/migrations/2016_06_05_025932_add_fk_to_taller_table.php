@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFkToAmbientesTable extends Migration
+class AddFkToTallerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,8 @@ class AddFkToAmbientesTable extends Migration
      */
     public function up()
     {
-        Schema::table('ambiente', function (Blueprint $table) {
-            $table->foreign('sede_id')
-                  ->references('id')
-                  ->on('sede');
+        Schema::table('taller', function (Blueprint $table) {
+            $table->foreign('reserva_id')->references('id')->on('reserva')->onDelete('cascade');
         });
     }
 
@@ -26,8 +24,8 @@ class AddFkToAmbientesTable extends Migration
      */
     public function down()
     {
-        Schema::table('ambiente', function (Blueprint $table) {
-            $table->dropForeign('ambiente_sede_id_foreign');
+        Schema::table('taller', function (Blueprint $table) {
+            //
         });
     }
 }
