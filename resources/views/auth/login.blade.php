@@ -12,7 +12,7 @@
     {!!Html::style('css/MisEstilos.css')!!}
     <style type="text/css">
         body{
-             background: url("images/club-fondo_phixr.jpg") no-repeat center center fixed; 
+             background: url("../images/club-fondo_phixr.jpg") no-repeat center center fixed; 
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -49,11 +49,11 @@
                 <div class="panel-heading lead text-center" style="color: gray"><strong>P A P U S &nbsp C L U B &nbsp - &nbsp L O G I N &nbsp; <p class="glyphicon glyphicon-user"></p></strong></div>
                 <div class="panel-body">
                     <br/><br/><br/>
-                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                            <form class="form-horizontal" role="form" method="POST" action="{{ url('auth/login') }}">
                                 {!! csrf_field() !!}
 
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                    <label class="control-label col-sm-2 col-sm-offset-2 lead" style="color: black"><strong>Usuario:</strong></label>
+                                    <label class="control-label col-sm-2 col-sm-offset-2 lead" style="color: white"><strong>Usuario:</strong></label>
 
                                     <div class="col-md-5">
                                         <input type="email" class="form-control" name="email" placeholder="Ingresa tu correo" value="{{ old('email') }}">
@@ -67,7 +67,7 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                    <label class="control-label col-sm-2 col-sm-offset-2 lead" style="color: black"><strong>Contraseña:</strong></label>
+                                    <label class="control-label col-sm-2 col-sm-offset-2 lead" style="color: white"><strong>Contraseña:</strong></label>
 
                                     <div class="col-md-5">
                                         <input type="password" class="form-control" name="password" placeholder="Ingrese su contraseña">
@@ -90,7 +90,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-12">
+                                <div class="form-group">
                                     <div class="col-md-6 text-right">
                                         <button type="submit" class="btn btn-lg btn-primary">
                                             <i class="fa fa-btn fa-sign-in"></i> Login
@@ -99,19 +99,19 @@
                                     <div class="col-sm-6 text-left">
                                             <a href="{{URL::previous()}}" class="btn btn-lg btn-primary" role="button" style="height: 45px">Regresar</a>
                                     </div>
-
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12  text-right">
+                                        <a class="btn btn-link login-links" href="{{ url('/password/reset') }}"><strong>¿No recuerdas tu contraseña?</strong></a>          
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12 text-right">
+                                        <a class="btn btn-link login-links" href="#"><strong>Crear Contraseña (Nuevo Asociado)</strong></a>
+                                    </div>  
                                 </div>
                             </form>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 col-sm-offset-8 text-center">
-                                <a class="btn btn-link login-links" href="{{ url('/password/reset') }}"><strong>¿No recuerdas tu contraseña?</strong></a>          
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 col-sm-offset-8 text-center">
-                                <a class="btn btn-link login-links" href="#"><strong>Crear Contraseña (Nuevo Asociado)</strong></a>
-                            </div>  
                         </div>
                         <br/>
                         <br/>                               
