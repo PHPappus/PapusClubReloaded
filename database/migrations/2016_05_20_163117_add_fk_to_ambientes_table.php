@@ -12,10 +12,10 @@ class AddFkToAmbientesTable extends Migration
      */
     public function up()
     {
-        Schema::table('ambientes', function (Blueprint $table) {
+        Schema::table('ambiente', function (Blueprint $table) {
             $table->foreign('sede_id')
                   ->references('id')
-                  ->on('sedes');
+                  ->on('sede');
         });
     }
 
@@ -26,8 +26,8 @@ class AddFkToAmbientesTable extends Migration
      */
     public function down()
     {
-        Schema::table('ambientes', function (Blueprint $table) {
-            $table->dropForeign('ambientes_sede_id_foreign');
+        Schema::table('ambiente', function (Blueprint $table) {
+            $table->dropForeign('ambiente_sede_id_foreign');
         });
     }
 }

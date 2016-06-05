@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>CUENTA-AL-SOCIO</title>
+	<title>CUENTA</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/jquery.bxslider.css">
-	<link rel="stylesheet" href="css/font-awesome.css">
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/datepicker.css">
-	<link rel="stylesheet" type="text/css" href="css/MisEstilos.css">
-	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
+	{!!Html::style('css/jquery.bxslider.css')!!}
+	{!!Html::style('css/font-awesome.css')!!}
+	{!!Html::style('css/bootstrap.css')!!}
+	{!!Html::style('css/MisEstilos.css')!!}
+	{!!Html::style('css/datepicker.css')!!}
+	
 </head>
 <body>
-@extends('layouts.headerandfooter-al-socio')
+
+
+@extends('layouts.headerandfooter-al-'.$perfil)
 @section('content')
 <!---Cuerpo -->
 <main class="main">
@@ -42,7 +44,7 @@
 					<div role="tabpanel">
 						<ul class="nav nav-pills nav-tabs" role="tablist">
 							<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Datos Básicos</a></li>
-							<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Ubicación</a></li>
+							<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab" >Ubicación </a></li>
 							<li role="presentation"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Educación/Trabajo</a></li>
 							<li role="presentation"><a href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab">Familiares</a></li>
 							<li role="presentation"><a href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab">Invitados</a></li>
@@ -877,16 +879,20 @@
 		</div>
 	</div>		
 @stop
-<!-- JQuery -->
-	<script src="js/jquery-1.11.3.min.js"></script>
+	<!-- JQuery -->
+	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	<!-- Bootstrap -->
-	<script type="text/javascript" src="js/bootstrap.js"></script>
+	{!!Html::script('js/bootstrap.js')!!}
 	<!-- BXSlider -->
-	<script src="js/jquery.bxslider.min.js"></script>
+	{!!Html::script('js/jquery.bxslider.min.js')!!}
 	<!-- Mis Scripts -->
-	<script src="js/MisScripts.js"></script>
+	{!!Html::script('js/MisScripts.js')!!}
+	
+	<!-- DataTable -->
+	{!!Html::script('js/jquery.dataTables.js')!!}
 
-	<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+	{!!Html::script('js/bootstrap-datepicker.js')!!}
+
 	<script>
 		var nowTemp = new Date();
 		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);

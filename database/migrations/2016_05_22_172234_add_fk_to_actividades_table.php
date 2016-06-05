@@ -12,10 +12,10 @@ class AddFkToActividadesTable extends Migration
      */
     public function up()
     {
-        Schema::table('actividades', function (Blueprint $table) {
+        Schema::table('actividad', function (Blueprint $table) {
             $table->foreign('ambiente_id')
                   ->references('id')
-                  ->on('ambientes');
+                  ->on('ambiente');
         });
     }
 
@@ -26,8 +26,8 @@ class AddFkToActividadesTable extends Migration
      */
     public function down()
     {
-        Schema::table('actividades', function (Blueprint $table) {
-            $table->dropForeign('actividades_ambiente_id_foreign');
+        Schema::table('actividad', function (Blueprint $table) {
+            $table->dropForeign('actividad_ambiente_id_foreign');
         });
     }
 }

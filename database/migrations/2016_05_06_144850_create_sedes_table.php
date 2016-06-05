@@ -12,7 +12,7 @@ class CreateSedesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sedes', function (Blueprint $table) {
+        Schema::create('sede', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
             $table->string('telefono');
@@ -36,6 +36,6 @@ class CreateSedesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('sedes');
+        Schema::drop('sede');
     }
 }
