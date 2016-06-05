@@ -15,7 +15,7 @@ class AddFkToTallerUserTable extends Migration
         Schema::table('taller_user', function (Blueprint $table) {
             $table->foreign('taller_id')
                   ->references('id')
-                  ->on('talleres')->onDelete('cascade');
+                  ->on('taller')->onDelete('cascade');
             $table->foreign('user_id')
                   ->references('id')
                   ->on('users')->onDelete('cascade');

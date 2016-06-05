@@ -546,6 +546,7 @@ return array(
     'PHP_Token_YIELD' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD_FROM' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PerfilTableSeeder' => $baseDir . '/database/seeds/PerfilTableSeeder.php',
+    'PersonaTableSeeder' => $baseDir . '/database/seeds/PersonaTableSeeder.php',
     'ProductoTableSeeder' => $baseDir . '/database/seeds/ProductoTableSeeder.php',
     'ProveedorTableSeeder' => $baseDir . '/database/seeds/ProveedorTableSeeder.php',
     'ReservasTableSeeder' => $baseDir . '/database/seeds/ReservasTableSeeder.php',
