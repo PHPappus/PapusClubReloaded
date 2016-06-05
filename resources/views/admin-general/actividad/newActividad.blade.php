@@ -167,44 +167,6 @@
 
 	<!-- Para Fechas INICIO -->
 	<script>
-
-		var nowTemp = new Date();
-		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
- 	
-		var checkin = $('#dpd1').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
-  			}
-		}).on('changeDate', function(ev) {
-  			if (ev.date.valueOf() > checkout.date.valueOf()) {
-    			var newDate = new Date(ev.date)
-    			newDate.setDate(newDate.getDate() + 1);
-    			checkout.setValue(newDate);
-  			}
- 			checkin.hide();
-  			$('#dpd2')[0].focus();
-		}).data('datepicker');
-		var checkout = $('#dpd2').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-  			}
-		}).on('changeDate', function(ev) {
-  			checkout.hide();
-		}).data('datepicker');		
-		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
-
-	
-	</script>
-	<script>
-		$(function(){
-			$('.datepicker').datepicker({
-				format: 'dd/mm/yyyy'
-			});
-		});
-	</script>
-
-<<<<<<< HEAD
-	<script>
 		var nowTemp = new Date();
 		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
  	
@@ -238,9 +200,8 @@
 			});
 		});
 	</script>
-=======
+
 	<!-- Para Fecha FIN -->
->>>>>>> JEFV
 
 	<script>
 		function ventana(){
