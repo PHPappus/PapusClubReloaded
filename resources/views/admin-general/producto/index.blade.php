@@ -39,6 +39,14 @@
 
 	<div class="table-responsive">
 		<div class="container">
+			<div class="form-group">
+			  		<div class="text-right">
+			  			<font color="black"> 
+			  				Filtra por todos los campos
+			  			</font>
+			  			
+			  		</div>
+			</div>
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active" data-sortable="true">
 						<th><div align=center>PRODUCTO</div></th>
@@ -77,7 +85,7 @@
 	<div class="container">
 		<div class="form-group">
 			<div class="col-sm-16 text-right">
-				<a class="btn btn-info" href="{{url('/producto/new')}}" title="Registrar Producto" >Agregar Producto<i class="glyphicon" ></i> </a>	
+				<a class="btn btn-info" href="{{url('/producto/new')}}" title="Registrar Producto" >Registrar Producto<i class="glyphicon" ></i> </a>	
 			</div>
 		</div>
 		<br/>

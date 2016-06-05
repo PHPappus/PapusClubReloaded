@@ -46,12 +46,14 @@
 
 				<br/>
 				<br/>
-				<div class="col-sm-4"></div>
-				<div class="">
-			  		<font color="red"> 
-			  			(*) Dato Obligatorio
-			  		</font>		  			
-				</div>			
+				<div class="form-group">
+			  		<div class="text-center">
+			  			<font color="red"> 
+			  				(*) Dato Obligatorio
+			  			</font>
+			  			
+			  		</div>
+			  	</div>
 			  	</br>
 			  	</br>
 				
@@ -116,10 +118,10 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-success" type="submit" value="Aceptar">
+						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
-						<a href="/proveedor/index" class="btn btn-danger">Cancelar</a>
+						<a href="/proveedor/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>
