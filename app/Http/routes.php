@@ -179,7 +179,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('sorteo/{id}/edit', 'SorteoController@update');
 	Route::get('sorteo/editSorteo/{id}','SorteoController@showEditSorteo');
 	Route::get('sorteo/{id}/delete', 'SorteoController@destroy');
-	
+
 	//MANTENIMIENTO DE AMBIENTES
 	Route::get('ambiente/index', 'AmbienteController@index');
 	Route::get('ambiente/search', 'AmbienteController@search');/*PAra buscar el ambiente y seleccionarlo para ACtividad*/	
@@ -190,7 +190,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('ambiente/{id}/delete', 'AmbienteController@destroy');
 	Route::get('ambiente/{id}/show', 'AmbienteController@show');
 	Route::get('ambiente/{id}/select', 'AmbienteController@select');/*Para el seleccionar ambiente desde  Actividad*/
-	
+
 	//RESERVA DE AMBIENTES
 	Route::get('reservar-ambiente/reservar-bungalow', 'ReservarAmbienteController@reservarBungalow'); // REservar Bungalows
 	Route::get('reservar-ambiente/reservar-otros-ambientes', 'ReservarAmbienteController@reservarOtrosAmbientes'); // REservar otros ambientes distinto de bungalows
@@ -204,7 +204,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('actividad/new/actividad', 'ActividadController@store');
 	Route::get('actividad/{id}', 'ActividadController@edit');
 	Route::post('actividad/{id}/edit', 'ActividadController@update');
-	Route::get('ambiente/{id}/delete', 'AmbienteController@destroy');
+	Route::get('actividad/{id}/delete', 'AmbienteController@destroy');
 	Route::get('actividad/{id}/show', 'ActividadController@show');
 
 	//MANTENIMIENTO DE TALLERES
