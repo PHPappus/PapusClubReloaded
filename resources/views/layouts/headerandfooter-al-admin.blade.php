@@ -1,4 +1,4 @@
-<!--Cabecera- Se separará espacio para el input de busqueda antes de la cabecera de menu-->
+ <!--Cabecera- Se separará espacio para el input de busqueda antes de la cabecera de menu-->
 
   	<script>
 		function inputLimiter(e,allow) {
@@ -52,7 +52,8 @@
 					<ul>
 						<li><a href="#">{!!Auth::user()->name!!}  <span class="glyphicon glyphicon-user"></span></a>
 								<ul>
-									<li><a href="{!!URL::to('/cuenta-a')!!}" title="ir a ver curso 1" target="_self">CUENTA</a></li>
+									<li><a href="{!!URL::to('/cuenta')!!}" title="Ir a cuenta" target="_self">MI CUENTA</a></li>
+									<li><a href="{!!URL::to('/password/change')!!}" title="Cambiar contraseña" target="_self">CAMBIAR MI CONTRASEÑA</a></li>
 									<li><a href="{!!URL::to('/logout')!!}" title="LOGOUT" target="_self">LOGOUT</a></li>
 								</ul>
 						</li>
@@ -77,9 +78,10 @@
 							</ul> 
 						</li>
 						<li><a href="{!!URL::to('/ambiente/index')!!}">AMBIENTE<span class="despliegue">▼</span></a>
-						<!-- <ul>
-								<li><a href="{!!URL::to('/ambiente/new')!!}" title="ir a agregar sede" target="_self">AGREGAR</a></li>
-							</ul> -->
+							<ul>
+								<li><a href="{!!URL::to('/reservar-ambiente/reservar-bungalow')!!}" title="ir a reserva de Bungalow" target="_self">RESERVAR BUNGALOW</a></li>
+								<li><a href="{!!URL::to('/reservar-ambiente/reservar-otros-ambientes')!!}" title="ir a reserva de Otros Ambientes" target="_self">RESERVAR OTRO AMBIENTES</a></li>
+							</ul>
 						</li>
 						
 						<li><a href="{!!URL::to('/actividad/index')!!}">ACTIVIDAD<span class="despliegue">▼</span></a>
@@ -93,7 +95,7 @@
 							</ul>					
 						</li>
 						<!-- Opción Eventos -->
-						<li><a href="#">SERVICIO</a></li>
+						<li><a href="{!!URL::to('/servicios/index')!!}">SERVICIO</a></li>
 						<!-- Opción TRAMITES -->						
 						<li><a href="{!!URL::to('/producto/index')!!}">PRODUCTO<span class="despliegue">▼</span></a>
 							<ul>
@@ -127,21 +129,20 @@
 	<div class="content clearfix">
 		<div class="footer-1">
 			<div class="logofoot">
-				<img alt="Papus Club" src="../images/logo-min.png" title="Papus Club">				
+				<img alt="Papus Club" src="{!!URL::to('images/logo-min.png')!!}" title="Papus Club">	
 			</div>
 			<div class="contacto">
 				<ul class="info">
 						<li><a href="#" title="telefono">(51) 1 523 4910</a></li>
-						<li><span><img class="PointImg" src="../images/punto.png" width="3px" height="3px"></img></span></li>
+						<li><span><img class="PointImg" src="{!!URL::to('/images/punto.png')!!}" width="3px" height="3px"></img></span></li>
 						<li><a href="#" title="e-mail">papus@clubpapus.org.pe</a></li>
 				</ul>
 				<ul class="terminos-condiciones">
 						<li><a href="#" title="Terminos y Condiciones">TÉRMINOS Y CONDICIONES</a></li>
-						<li><span><img class="PointImg" src="../images/punto.png" width="3px" height="3px"></img></span></li>
+						<li><span><img class="PointImg" src="{!!URL::to('/images/punto.png')!!}" width="3px" height="3px"></img></span></li>
 						<li><a href="#" title="Privacidad">PRIVACIDAD</a></li>
-						<li><span><img class="PointImg" src="../images/punto.png" width="3px" height="3px"></img></span></li>
-				</ul>
-					
+						<li><span><img class="PointImg" src="{!!URL::to('/images/punto.png')!!}" width="3px" height="3px"></img></span></li>
+				</ul>			
 			</div>
 		</div>
 	</div>
