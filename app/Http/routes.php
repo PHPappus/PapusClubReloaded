@@ -27,27 +27,29 @@ Route::get('/{nombre}', function ($nombre) {
      return view($nombre);
 });*/
 
-Route::resource('usuario','UsuarioController');
 
-Route::resource('log','LogController');
-Route::get('logout','LogController@logout');
+Route::group(['middleware' => ['auth']], function () {
+	Route::get('cuenta','UsuarioController@cuenta');
+	Route::get('password/change','UsuarioController@changepassword');
+	Route::post('password/change','UsuarioController@confirmchangepassword');
+});
+
 
 
 //Socio
 Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::resource('socio','SocioController');
-	Route::get('cuenta-s','SocioController@cuenta');
 	Route::get('ambientes-s','SocioController@ambientes');
 	Route::get('anular-reserva-ambiente-s','SocioController@anularReservaAmbiente');
 	Route::get('anular-reserva-ambiente-b-s','SocioController@anularReservaAmbienteB');
 	Route::get('pagos-s','SocioController@pagos');
 		//Socio.talleres
-	Route::get('talleres/index','TallerController@index');
-	Route::get('talleres/{id}/show','TallerController@show');
-	Route::get('talleres/{id}/confirm','TallerController@confirmInscription');
-	Route::post('talleres/{id}/confirm/save','TallerController@makeInscriptionToUser');
-	Route::get('talleres/{id}/delete', 'TallerController@removeInscriptionToUser');
-	Route::get('talleres/mis-inscripciones','TallerController@misinscripciones');
+	Route::get('talleres/index','InscriptionTallerController@index');
+	Route::get('talleres/{id}/show','InscriptionTallerController@show');
+	Route::get('talleres/{id}/confirm','InscriptionTallerController@confirmInscription');
+	Route::post('talleres/{id}/confirm/save','InscriptionTallerController@makeInscriptionToUser');
+	Route::get('talleres/{id}/delete', 'InscriptionTallerController@removeInscriptionToUser');
+	Route::get('talleres/mis-inscripciones','InscriptionTallerController@misinscripciones');
 		//Socio.bungalows
 	Route::get('bungalows-s','SocioController@bungalow');
 	Route::get('reserva-bungalows-s','SocioController@bungalowReserva');
@@ -58,8 +60,8 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 
 //Administrados de registros
 Route::group(['middleware' => ['auth', 'adminregistros']], function () {
+	Route::resource('usuario','UsuarioController');
 	Route::resource('admin-registros','AdminRegistrosController');
-	Route::get('cuenta-ar','AdminRegistrosController@cuenta');
 	Route::get('ambientes-ar','AdminRegistrosController@ambientes');
 	Route::get('registrar-ambiente','AdminRegistrosController@registrar');
 	Route::get('modificar-ambiente','AdminRegistrosController@modificar');
@@ -68,13 +70,11 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 //Gerente
 Route::group(['middleware' => ['auth', 'gerente']], function () {
 	Route::resource('gerente','GerenteController');
-	Route::get('cuenta-g','GerenteController@cuenta');
 });
 
 //Administrados de pagos
 Route::group(['middleware' => ['auth', 'adminpagos']], function () {
 	Route::resource('admin-pagos','AdminPagosController');
-	Route::get('cuenta-ap','AdminPagosController@cuenta');
 });
 
 
@@ -82,7 +82,6 @@ Route::group(['middleware' => ['auth', 'adminpagos']], function () {
 //Administrador general
 Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::resource('admin-general','AdminGeneralController');
-	Route::get('cuenta-a','AdminGeneralController@cuenta');
 	Route::get('postulante-al-admin','AdminGeneralController@postulante');
 
 	//MANTENIMIENTO DE POSTULANTE

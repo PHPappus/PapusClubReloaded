@@ -52,7 +52,8 @@
 					<ul>
 						<li><a href="#">{!!Auth::user()->name!!}  <span class="glyphicon glyphicon-user"></span></a>
 								<ul>
-									<li><a href="{!!URL::to('/cuenta-a')!!}" title="ir a ver curso 1" target="_self">CUENTA</a></li>
+									<li><a href="{!!URL::to('/cuenta')!!}" title="Ir a cuenta" target="_self">MI CUENTA</a></li>
+									<li><a href="{!!URL::to('/password/change')!!}" title="Cambiar contraseña" target="_self">CAMBIAR MI CONTRASEÑA</a></li>
 									<li><a href="{!!URL::to('/logout')!!}" title="LOGOUT" target="_self">LOGOUT</a></li>
 								</ul>
 						</li>

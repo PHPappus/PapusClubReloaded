@@ -4,7 +4,7 @@ namespace papusclub\Http\Requests;
 
 use papusclub\Http\Requests\Request;
 
-class UserCreateRequest extends Request
+class MakeInscriptionToUserRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class UserCreateRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|max:100',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:8|confirmed',
-            'password_confirmation' => 'required|min:8',
+            'password'=> 'required',
         ];
     }
 }
