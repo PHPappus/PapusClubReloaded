@@ -13,7 +13,7 @@ class CreateFamiliarxsocioTable extends Migration
     public function up()
     {
         Schema::create('familiarxsocio', function (Blueprint $table) {
-            $table->integeger('socio_id')->unsigned()->nullable();
+            $table->integer('socio_id')->unsigned()->nullable();
             $table->integer('persona_id')->unsigned()->nullable();
             $table->integer('tipo_relacion_id')->unsigned()->nullable();
             $table->softDeletes();

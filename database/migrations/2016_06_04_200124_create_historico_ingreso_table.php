@@ -16,7 +16,7 @@ class CreateHistoricoIngresoTable extends Migration
             $table->integer('persona_id')->unsigned()->nullable();
             $table->integer('sede_id')->unsigned()->nullable();
             $table->dateTime('fecha');
-            $table->softDeltes();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

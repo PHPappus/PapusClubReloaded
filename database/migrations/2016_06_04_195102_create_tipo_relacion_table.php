@@ -17,7 +17,7 @@ class CreateTipoRelacionTable extends Migration
             $table->string('puesto');
             $table->dateTime('fecha_inicio_contrato');
             $table->dateTime('fecha_fin_contrato');
-            $table->softDeletes()
+            $table->softDeletes();
             $table->timestamps();
         });
     }
