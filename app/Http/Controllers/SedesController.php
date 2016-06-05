@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use papusclub\Http\Requests;
 use papusclub\Models\Sede;
+use papusclub\Models\Servicio;
 use papusclub\Http\Requests\StoreSedeRequest;
 use papusclub\Http\Requests\EditSedeRequest;
 
@@ -22,6 +23,7 @@ class SedesController extends Controller
     //Muestra el formulario para poder registrar una nueva sede en BD
     public function create()
     {
+        //$mensaje = null;
         return view('admin-general.sede.newSede');
     }
 
@@ -29,6 +31,7 @@ class SedesController extends Controller
     public function store(StoreSedeRequest $request)
     {
         $input = $request->all();
+        $sedes = Sede::all();
 
         $sede = new Sede();
         $sede->nombre = $input['nombre'];
@@ -41,6 +44,7 @@ class SedesController extends Controller
         $sede->nombre_contacto = $input['nombre_contacto'];
         $sede->capacidad_maxima = $input['capacidad_maxima'];
         $sede->capacidad_socio = $input['capacidad_socio'];
+
         $sede->save();
         return redirect('sedes/index')->with('stored', 'Se registró la sede correctamente.');
     
@@ -80,18 +84,12 @@ class SedesController extends Controller
         $sede = Sede::find($id);        
         $ambientes = $sede->ambientes;
         
-        if($ambientes->count()) {
-            foreach ($ambientes as $ambiente) {
-                $actividades = $ambiente->actividades;
-                if($actividades->count()){
-                    foreach ($actividades as $actividad) {
-                        $actividad->delete();
-                    }    
-                }
-                $ambiente->delete();
-            }
+        if($sede->ambientes->count() || $sede->actividades->count()) {
+            
         }
-        $sede->delete();
+        else
+            $sede->forceDelete();
+        
         return back();
     }
 
@@ -101,4 +99,12 @@ class SedesController extends Controller
         $sede = Sede::find($id);
         return view('admin-general.sede.detailSede', compact('sede'));
     }
+
+    public function agregarservicios($id)
+    {
+        $sede = Sede::find($id);
+        $servicios = Servicio::all();        
+        return view('admin-general.sede.serviciosdesede', compact('sede', 'servicios'));
+    }
+    
 }

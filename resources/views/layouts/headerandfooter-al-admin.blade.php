@@ -1,4 +1,4 @@
-<!--Cabecera- Se separará espacio para el input de busqueda antes de la cabecera de menu-->
+ <!--Cabecera- Se separará espacio para el input de busqueda antes de la cabecera de menu-->
 
   	<script>
 		function inputLimiter(e,allow) {
@@ -77,9 +77,10 @@
 							</ul> 
 						</li>
 						<li><a href="{!!URL::to('/ambiente/index')!!}">AMBIENTE<span class="despliegue">▼</span></a>
-						<!-- <ul>
-								<li><a href="{!!URL::to('/ambiente/new')!!}" title="ir a agregar sede" target="_self">AGREGAR</a></li>
-							</ul> -->
+							<ul>
+								<li><a href="{!!URL::to('/reservar-ambiente/reservar-bungalow')!!}" title="ir a reserva de Bungalow" target="_self">RESERVAR BUNGALOW</a></li>
+								<li><a href="{!!URL::to('/reservar-ambiente/reservar-otros-ambientes')!!}" title="ir a reserva de Otros Ambientes" target="_self">RESERVAR OTRO AMBIENTES</a></li>
+							</ul>
 						</li>
 						
 						<li><a href="{!!URL::to('/actividad/index')!!}">ACTIVIDAD<span class="despliegue">▼</span></a>
@@ -93,7 +94,7 @@
 							</ul>					
 						</li>
 						<!-- Opción Eventos -->
-						<li><a href="#">SERVICIO</a></li>
+						<li><a href="{!!URL::to('/servicios/index')!!}">SERVICIO</a></li>
 						<!-- Opción TRAMITES -->						
 						<li><a href="{!!URL::to('/producto/index')!!}">PRODUCTO<span class="despliegue">▼</span></a>
 							<ul>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use papusclub\Http\Requests;
 use papusclub\Models\Ambiente;
 use papusclub\Models\Sede;
+use papusclub\Models\Configuracion;
 use papusclub\Http\Requests\StoreAmbienteRequest;
 use papusclub\Http\Requests\EditAmbienteRequest;
 
@@ -15,7 +16,7 @@ class AmbienteController extends Controller
     //Muestra la lista de sedes que se encuentran en BD, estas se pueden modificar, cambiar el estado, ver mas detalle o registrar una nueva sede
     public function index()
     {
-        $ambientes = Ambiente::all();	
+        $ambientes = Ambiente::all();
         return view('admin-general.ambiente.index', compact('ambientes'));
     }
 
@@ -23,13 +24,14 @@ class AmbienteController extends Controller
     public function create()
     {
     	$sedes = Sede::all();
-        return view('admin-general.ambiente.newAmbiente', compact('sedes'));
+        $values=(Configuracion::where('grupo','=','2')->get())->all();
+        return view('admin-general.ambiente.newAmbiente', compact('sedes'),compact('values'));
+        
     }
     //Se almacena el nuevo ambiente que se ha registrado en la BD
     public function store(StoreAmbienteRequest $request)
     {
         $input = $request->all();
-        //return compact('input');
         $ambiente = new Ambiente();
         $ambiente->nombre= $input['nombre'];
         //para agregar el ambiente a la sede
@@ -57,7 +59,6 @@ class AmbienteController extends Controller
     public function update(EditAmbienteRequest $request, $id)
     {
         $input = $request->all();
-        //return compact('input');
         $ambiente = Ambiente::find($id);
 
         $ambiente->nombre= $input['nombre'];
@@ -75,12 +76,12 @@ class AmbienteController extends Controller
         $ambiente = Ambiente::find($id);
         $actividades = $ambiente->actividades;
 
-        if($actividades->count()){
-            foreach ($actividades as $actividad) {
-                $actividad->delete();
-            }
+        if($ambiente->actividades->count()){
+            
         }
-        $ambiente->delete();
+        else
+            $ambiente->delete();
+        
         return back();
     }
 
@@ -97,7 +98,8 @@ class AmbienteController extends Controller
     public function select($id)
     {
         $ambiente = Ambiente::find($id);
-        return view('admin-general.actividad.newActividad', compact('ambiente'));
+        $values=Configuracion::where('grupo','=','3')->get();
+        return view('admin-general.actividad.newActividad', compact('ambiente'),compact('values'));
     }
      public function search()
     {
