@@ -22,6 +22,17 @@ class Socio extends Model
     	return $this->belongsTo(Postulante::class,'postulante_id','id_postulante');
     }
 
+    public function carnets()
+    {
+        return $this->hasMany(Carnet::class);
+    }
+
+    public function carnet_actual()
+    {
+        $match = ['socio_id'=>$this->id];
+        return Carnet::where($match);
+    }
+
     public function isIndependent()
     {
         //$persona = $this->postulante->persona;

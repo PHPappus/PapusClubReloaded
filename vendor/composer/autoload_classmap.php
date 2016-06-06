@@ -9,6 +9,7 @@ return array(
     'ActividadTableSeeder' => $baseDir . '/database/seeds/ActividadTableSeeder.php',
     'AddFkToActividadesTable' => $baseDir . '/database/migrations/2016_05_22_172234_add_fk_to_actividades_table.php',
     'AddFkToAmbientesTable' => $baseDir . '/database/migrations/2016_05_20_163117_add_fk_to_ambientes_table.php',
+    'AddFkToCarnet' => $baseDir . '/database/migrations/2016_06_06_163738_add_fk_to_carnet.php',
     'AddFkToCarnetxsocioTable' => $baseDir . '/database/migrations/2016_06_05_031359_add_fk_to_carnetxsocio_table.php',
     'AddFkToFacturasTable' => $baseDir . '/database/migrations/2016_06_04_202818_add_fk_to_facturas_table.php',
     'AddFkToFamiliarxsocioTable' => $baseDir . '/database/migrations/2016_06_04_213338_add_fk_to_familiarxsocio_table.php',

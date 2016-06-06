@@ -94,7 +94,7 @@
 					<div class="btn-group col-sm-10"></div>
 					
 					<div class="btn-group ">
-						<a href="#" class="btn btn-info" type="submit">Registrar Socio</a>
+						<a href="{{url('/postulante/index')}}" class="btn btn-info" type="submit">Registrar Socio</a>
 
 					</div>
 					
