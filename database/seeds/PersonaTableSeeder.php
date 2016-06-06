@@ -2,10 +2,9 @@
 
 use Illuminate\Database\Seeder;
 use papusclub\Models\Persona;
-<<<<<<< HEAD
+
 use Carbon\Carbon;
-=======
->>>>>>> f7c58d4daa6493e9ee87d89ab9d6648a33687f15
+
 
 class PersonaTableSeeder extends Seeder
 {
