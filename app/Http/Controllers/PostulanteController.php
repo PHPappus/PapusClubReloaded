@@ -2,6 +2,9 @@
 
 namespace papusclub\Http\Controllers;
 
+use papusclub\Models\Postulante;
+
+
 use Illuminate\Http\Request;
 
 use papusclub\Http\Requests;
@@ -10,7 +13,8 @@ class PostulanteController extends Controller
 {
     public function index()
     {
-        return view('admin-general.persona.postulante.index');
+        $postulantes = Postulante::all();
+        return view('admin-general.persona.postulante.index',compact('postulantes'));
     }
 
     public function buscar()

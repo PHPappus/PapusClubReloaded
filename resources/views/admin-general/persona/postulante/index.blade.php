@@ -28,16 +28,41 @@
 				</div>
 			</div>	
 		</div>
-		<div class="container">
-			<div><a class="btn btn-primary" href="{{url('/postulante/search')}}">Consultar</a> <a class="btn btn-primary" href="{{url('/postulante/new')}}">Registrar</a></div>
-			@yield('content-opcion')
 
-			<br/><br/>
-			<div class="row">
-				<div class="col-sm-12 text-center">
-							<button class="btn btn-lg btn-primary" onclick="guardar_cambios_cuenta()">Guardar</button>	
-				</div>
-			</div>
+		<div class="table-responsive">
+			<div class="container">
+				<table class="table table-bordered table-hover text-center display" id="example">
+						<thead class="active">
+							<th><div align=center>APELLIDO PATERNO</div></th>
+							<th><div align=center>APELLIDO MATERNO</div></th>
+							<th><div align=center>NOMBRES</div></th>
+						</thead>
+						<tbody>
+							@foreach($postulantes as $postulante)						
+								<tr>
+									<td>{{$postulante->persona->ap_paterno}}</td>
+									<td>{{$postulante->persona->ap_materno}}</td>
+									<td>{{$postulante->persona->nombre}}</td>
+					            </tr>				            		
+							@endforeach
+						</tbody>
+				</table>
+				</br></br></br></br>
+				<div class="btn-inline">
+					<!-- <form method="POST" action="/sedes/new/sede" >
+					<input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
+
+					<div class="btn-group col-sm-10"></div>
+					
+					<div class="btn-group ">
+						<a href="#" class="btn btn-info" type="submit">Registrar postulante</a>
+
+					</div>
+					
+				</div>								
+			</div>		
 		</div>
+
+
 	</div>		
 @stop

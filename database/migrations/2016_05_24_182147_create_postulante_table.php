@@ -33,7 +33,7 @@ class CreatePostulanteTable extends Migration
             //DATOS DE ESTUDIOS
             $table->string('colegio_primario');
             $table->string('colegio_secundario');
-            $table->string('univeridad');
+            $table->string('universidad');
             $table->string('profesion');
 
             //DATOS DE EMPLEO
