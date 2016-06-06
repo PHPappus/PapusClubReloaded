@@ -8,13 +8,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Actividad extends Model
 {
     use SoftDeletes;
-    protected $table = 'actividades';
+    protected $table = 'actividad';
     protected $fillable = 
     ['nombre', 
     'tipo_actividad', 
     'capacidad_maxima', 
     'descripcion',
-    'a_realizarse_en'
+    'a_realizarse_en',
+    'cant_ambientes',
+    'estado',
     ];
     protected $dates = ['deleted_at'];
     //funciones para las relaciones entre tablas

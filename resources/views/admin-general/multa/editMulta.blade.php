@@ -9,6 +9,12 @@
 	{!!Html::style('/css/font-awesome.css')!!}
 	{!!Html::style('/css/bootstrap.css')!!}
 	{!!Html::style('/css/MisEstilos.css')!!}
+	<style>
+
+		.modal-backdrop.in{
+			z-index: 1;
+		}
+	</style>
 	
 </head>
 <body>
@@ -30,6 +36,18 @@
 			{{method_field('PATCH')}}
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			
+				<div class="col-sm-4"></div>
+				<div class=""> 
+					@if ($errors->any())
+		  				<ul class="alert alert-danger fade in">
+		  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  					@foreach ($errors->all() as $error)
+		  						<li>{{$error}}</li>
+		  					@endforeach
+		  				</ul>
+		  			@endif
+				</div>
+
 				<br/>
 				<br/>
 				<div class="col-sm-4"></div>
@@ -58,7 +76,7 @@
 			  	<div class="form-group required">
 			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="estadoInput" name="estado" placeholder="Estado" value="{{$multa->estado}}" required>
+			      		<input type="text" class="form-control" id="estadoInput" name="estado" placeholder="Estado" value="{{$multa->estado}}" readonly required>
 			    	</div>
 			  	</div> 
 
@@ -75,14 +93,50 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-success" type="submit" value="Confirmar">
+						<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Guardar">
 					</div>
 					<div class="btn-group">
-						<a href="/multa/" class="btn btn-danger">Cancelar</a>
+						<a href="/multa/" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>
 				</br>
+
+					<div class = "modal fade" id = "confirmation" tabindex = "-1" role = "dialog" 
+				   aria-labelledby = "myModalLabel" aria-hidden = "true">
+				   
+				   <div class = "modal-dialog">
+				      <div class = "modal-content">
+				         
+				         <div class = "modal-header">
+				            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+				                  &times;
+				            </button>
+				            
+				            <h4 class = "modal-title" id = "myModalLabel">
+				               EDITAR MULTA
+				            </h4>
+				         </div>
+				         
+				         <div class = "modal-body">
+				            <p>¿Desea guardar los cambios realizados?</p>
+				         </div>
+				         
+				         <div class = "modal-footer">
+				            <button type = "button" class = "btn btn-default" data-dismiss = "modal" >
+				               Cerrar
+				            </button>
+				            
+				            <button type = "submit" class = "btn btn-primary">
+				               Confirmar
+				            </button>
+				         </div>
+				         
+				      </div><!-- /.modal-content -->
+				   </div><!-- /.modal-dialog -->
+				  
+				</div><!-- /.modal -->
+
 
 			</form>
 		</div>
@@ -97,6 +151,14 @@
 	<!-- Mis Scripts -->
 	<script src="/js/MisScripts.js"></script>
 
+	<script>
+		function ventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 1;
+		}
+		function cerrarventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 3;
+		}
+  	</script>
 
 </body>
 </html>

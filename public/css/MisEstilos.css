@@ -1,3 +1,6 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+}
 .header{
     position: relative;  
     z-index: 3; 
@@ -77,7 +80,8 @@
 .menu ul li {
     padding: 0;
     font-size: 15px;
-    font-family: pf_beausans_probbook;
+    /* font-family: pf_beausans_probbook; */
+    font-family: 'Open Sans', sans-serif;
     text-transform: capitalize;
     border: thin;
 }
@@ -152,6 +156,7 @@
     margin-bottom: 20px;
     position: relative;
     z-index: 2;
+    min-height: 800px;
 }
 
 .items ul {
@@ -170,7 +175,8 @@
     text-align: center;
 }
 .items li, .noticias li #s6 h2 {
-    font-family: HelveticaNeueW01-75Bold;
+    /* font-family: HelveticaNeueW01-75Bold; */
+    font-family: 'Open Sans', sans-serif;
 }
 
 .items li a {
@@ -196,7 +202,7 @@
 
 .footer{/*Pie de pagina*/
     position: relative;
-    z-index: -1;/*2*/
+    z-index: 2;/*2*/
 }
 
 .footer .logofoot {/*Pie de pagina*/
@@ -224,7 +230,8 @@
     list-style: none;
     display: inline-block;
     vertical-align: middle;
-    font-family: Arial,Helvetica,sans-serif;
+    /* font-family: Arial,Helvetica,sans-serif; */
+    font-family: 'Open Sans', sans-serif;
     font-size: 12px;
     margin: 0 5px;
 }
@@ -239,7 +246,8 @@
 .footer .contacto .terminos-condiciones li {/*Pie de pagina*/
     display: inline-block;
     vertical-align: middle;
-    font-family: Arial,Helvetica,sans-serif;
+    /* font-family: Arial,Helvetica,sans-serif; */
+    font-family: 'Open Sans', sans-serif;
     font-size: 11px;
     margin-right: 10px;
 }

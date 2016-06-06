@@ -18,6 +18,8 @@ class ActividadTableSeeder extends Seeder
         	'capacidad_maxima' => '100', 
         	'descripcion' => 'Final PapusCup', 
         	'ambiente_id' => 1,
+            'cant_ambientes'=>1,
+            'estado'=>true,
             'a_realizarse_en'=>Carbon::create(2016, 12, 12, 8, 0, 0)
         	]);
     }

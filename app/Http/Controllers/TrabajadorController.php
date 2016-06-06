@@ -8,6 +8,7 @@ use papusclub\Http\Requests;
 use papusclub\Models\Persona;
 use papusclub\Models\Trabajador;
 use papusclub\Http\Requests\StoreTrabajadorRequest;
+use papusclub\Http\Requests\EditTrabajadorRequest;
 
 use papusclub\Models\Configuracion;
 
@@ -26,11 +27,21 @@ class TrabajadorController extends Controller
     {
         $persona = Persona::find($id);
         $carbon=new Carbon();
-        $persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d', $persona->fecha_nacimiento)->format('d/m/Y');
+        if((strtotime($persona['fecha_nacimiento']) == 0))
+            $persona->fecha_nacimiento=NULL;
+        else
+            $persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d', $persona->fecha_nacimiento)->format('d/m/Y');
 
         $trabajador=Trabajador::find($persona->id);
-        $trabajador->fecha_ini_contrato=$carbon->createFromFormat('Y-m-d',  $trabajador->fecha_ini_contrato)->format('d/m/Y');
-        $trabajador->fecha_fin_contrato=$carbon->createFromFormat('Y-m-d',  $trabajador->fecha_fin_contrato)->format('d/m/Y');
+        if((strtotime($trabajador['fecha_ini_contrato']) == 0)) 
+            $trabajador->fecha_ini_contrato=NULL;
+        else
+            $trabajador->fecha_ini_contrato=$carbon->createFromFormat('Y-m-d',  $trabajador->fecha_ini_contrato)->format('d/m/Y');
+        
+        if((strtotime($trabajador['fecha_fin_contrato']) == 0)) 
+            $trabajador->fecha_fin_contrato=NULL;
+        else
+            $trabajador->fecha_fin_contrato=$carbon->createFromFormat('Y-m-d',  $trabajador->fecha_fin_contrato)->format('d/m/Y');
 
         $puesto=Configuracion::find($trabajador->puesto);
 /*      $idpuesto=$trabajador->puesto;
@@ -40,7 +51,7 @@ class TrabajadorController extends Controller
 
     public function registrar()
     {
-        $puestos = Configuracion::all()->where('grupo', 1);
+        $puestos = Configuracion::where('grupo',1)->get();
         return view('admin-general.persona.trabajador.newTrabajador',compact('puestos'));
     }
 
@@ -130,7 +141,7 @@ class TrabajadorController extends Controller
         return view('admin-general.persona.trabajador.editTrabajador',compact('persona', 'trabajador','puesto','puestoslaborales'));
     }
 
-    public function update($id,StoreTrabajadorRequest $request){
+    public function update(StoreTrabajadorRequest $request,$id ){
         $carbon=new Carbon(); 
         $input = $request->all();
         $persona = Persona::find($id);
@@ -187,8 +198,8 @@ class TrabajadorController extends Controller
 
 
         $trabajador->save();
-        
-        return redirect('trabajador/index');
+            
+        return redirect('trabajador/index')->with('stored', 'Se modificó el trabajador correctamente.');
     }
 
     public function destroy($id){
@@ -197,8 +208,8 @@ class TrabajadorController extends Controller
         $trabajador=Trabajador::find($persona->id);
 
 
-        $trabajador->forceDelete();;
-        $persona ->forceDelete();;
+        $trabajador->forceDelete();
+        $persona ->forceDelete();
         return back();
 
     }
