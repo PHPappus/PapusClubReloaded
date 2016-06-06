@@ -59,14 +59,14 @@
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del Producto" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombre" name="nombre" placeholder="Nombre del Producto" value="{{old('nombre')}}">
 			    	</div>
 			  	</div>			  	
 
 			  	<div class="form-group required">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" >
+			      		<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción"  value="{{old('descripcion')}}">
 			    	</div>
 			  	</div>	  				  	
 			  	
