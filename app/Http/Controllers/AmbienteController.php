@@ -24,7 +24,7 @@ class AmbienteController extends Controller
     public function create()
     {
     	$sedes = Sede::all();
-        $values=(Configuracion::where('grupo','=','2')->get())->all();
+        $values=Configuracion::where('grupo','=','2')->get();
         return view('admin-general.ambiente.newAmbiente', compact('sedes'),compact('values'));
         
     }
