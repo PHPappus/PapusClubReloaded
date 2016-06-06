@@ -6,7 +6,6 @@
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="../css/jquery.bxslider.css">
 	<link rel="stylesheet" href="../ss/font-awesome.css">
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="../css/datepicker.css">
@@ -80,6 +79,11 @@
 						<input class="datepicker" type="text" id="fecha_cerrado" readonly="true" name="fecha_cerrado"  value="{{ old('fecha_cerrado') }}" >						
 					</div>
 				</div>
+				<div class="input-group input-daterange">
+				    <input type="text" class="form-control" value="2012-04-05">
+				    <span class="input-group-addon">to</span>
+				    <input type="text" class="form-control" value="2012-04-19">
+				</div>
 				<br/>
 				<br/>
 				<div class="btn-inline">
@@ -99,18 +103,20 @@
 	</div>		
 @stop
 <!-- JQuery -->
-	<script src="../js/jquery-1.11.3.min.js"></script>
+	<script src="../js/jquery-1.12.4.min.js"></script>
 	<!-- Bootstrap -->
 	<script type="text/javascript" src="../js/bootstrap.js"></script>
 	<!-- BXSlider -->
-	<script src="../js/jquery.bxslider.min.js"></script>
-	<!-- Mis Scripts -->
-	<script src="../js/MisScripts.js"></script>
-	<script type="text/javascript" src="../js/bootstrap-datepicker.js"></script>
 
+	<!-- Mis Scripts -->
+
+	<script type="text/javascript" src="../js/bootstrap-datepicker.js"></script>
+	<script type="text/javascript" src="../locales/bootstrap-datepicker.es.min.js"></script>
+
+	
 	<script>
-		var nowTemp = new Date();
-		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+			var nowTemp = new Date();
+			var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
  
 		var checkin = $('#fecha_abierto').datepicker({
   			onRender: function(date) {
@@ -132,12 +138,15 @@
   			}
 		}).on('changeDate', function(ev) {
   			checkout.hide();
-		}).data('datepicker');		
-	</script>
+		}).data('datepicker');	
+	</script>	
 	<script>
 		$(function(){
 			$('.datepicker').datepicker({
-				format: 'dd/mm/yyyy'
+				format: "dd/mm/yyyy",
+		        language: "es",
+		        autoclose: true,
+		        //beforeShowDay:function (date){return false}
 			});
 		});
 	</script>
