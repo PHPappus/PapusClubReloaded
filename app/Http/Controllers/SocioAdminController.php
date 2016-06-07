@@ -30,6 +30,8 @@ class SocioAdminController extends Controller
     {
         $socio = Socio::withTrashed()->find($id);
         $carbon=new Carbon();
+        $socio->carnet_actual()->fecha_emision=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_emision)->format('d/m/Y');
+        $socio->carnet_actual()->fecha_vencimiento=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_vencimiento)->format('d/m/Y');
         $socio->postulante->persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d',$socio->postulante->persona->fecha_nacimiento)->format('d/m/Y');
         return view('admin-general.persona.socio.showSocio',compact('socio'));
     }
@@ -63,12 +65,12 @@ class SocioAdminController extends Controller
             /*Fecha de emision*/
             $fecha_emision = new DateTime("now");
             $fecha_vencimiento = $fecha_emision;
-            $fecha_emision=$fecha_emision->format('Y-m-d H:i:s');
+            $fecha_emision=$fecha_emision->format('Y-m-d');
             $carnet->fecha_emision = $fecha_emision;
             /*Fecha de vencimiento*/
             $intervalo = new DateInterval('P'.$anio->valor.'Y');
             $fecha_vencimiento->add($intervalo);
-            $fecha_vencimiento=$fecha_vencimiento->format('Y-m-d H:i:s');
+            $fecha_vencimiento=$fecha_vencimiento->format('Y-m-d');
             $carnet->fecha_vencimiento = $fecha_vencimiento;
             $socio->addCarnet($carnet);
         }
