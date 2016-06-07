@@ -13,7 +13,7 @@ class CreateCarnetTable extends Migration
     public function up()
     {
         Schema::create('carnet', function (Blueprint $table) {
-            $table->increments('id')->unsigned()->nullable();
+            $table->increments('id')->unsigned();
             $table->integer('nro_carnet');
             $table->dateTime('fecha_emision');
             $table->boolean('estado');
