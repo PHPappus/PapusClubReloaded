@@ -25,10 +25,7 @@ return array(
     'AddFkToReservaxactividadTable' => $baseDir . '/database/migrations/2016_06_04_203308_add_fk_to_reservaxactividad_table.php',
     'AddFkToSocioTable' => $baseDir . '/database/migrations/2016_05_29_004547_add_fk_to_socio_table.php',
     'AddFkToTallerTable' => $baseDir . '/database/migrations/2016_06_05_025932_add_fk_to_taller_table.php',
-<<<<<<< HEAD
-=======
     'AddFkToTallerUserTable' => $baseDir . '/database/migrations/2016_06_05_081850_add_fk_to_taller_user_table.php',
->>>>>>> a73ca00c03aad5127c2b8470d69641056dc30777
     'AddFkToTarifaActividadTable' => $baseDir . '/database/migrations/2016_06_04_203241_add_fk_to_tarifa_actividad_table.php',
     'AddFkToTarifaAmbientextipoPersonaTable' => $baseDir . '/database/migrations/2016_06_04_203453_add_fk_to_tarifa_ambientextipo_persona_table.php',
     'AddFkToTarifaTallerTable' => $baseDir . '/database/migrations/2016_06_05_030720_add_fk_to_tarifa_taller_table.php',
@@ -68,10 +65,7 @@ return array(
     'CreateSocioTable' => $baseDir . '/database/migrations/2016_05_29_003232_create_socio_table.php',
     'CreateSorteoTable' => $baseDir . '/database/migrations/2016_05_20_005933_create_sorteo_table.php',
     'CreateTallerTable' => $baseDir . '/database/migrations/2016_05_23_000724_create_taller_table.php',
-<<<<<<< HEAD
-=======
     'CreateTallerUserTable' => $baseDir . '/database/migrations/2016_06_05_081701_create_taller_user_table.php',
->>>>>>> a73ca00c03aad5127c2b8470d69641056dc30777
     'CreateTarifaActividadTable' => $baseDir . '/database/migrations/2016_06_04_173507_create_tarifa_actividad_table.php',
     'CreateTarifaAmbientextipoPersonaTable' => $baseDir . '/database/migrations/2016_06_04_173633_create_tarifa_ambientextipo_persona_table.php',
     'CreateTarifaMembresiaTable' => $baseDir . '/database/migrations/2016_05_20_175024_create_tarifa_membresia_table.php',
