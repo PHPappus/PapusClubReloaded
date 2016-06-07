@@ -50,7 +50,7 @@
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active" data-sortable="true">
 						<th><div align=center>PRODUCTO</div></th>
-						<th><div align=center>DESCRIPCION</div></th>
+						<th><div align=center>PRECIO</div></th>
 						<th><div align=center>TIPO</div></th>							
 						<th><div align=center>DETALLE</div></th>
 						<th><div align=center>EDITAR</div></th>
@@ -62,7 +62,7 @@
 					@foreach($productos as $producto)
 						<tr>
 							<td>{{ $producto->nombre }}</td>
-							<td>{{ $producto->descripcion }}</td>	 							
+							<td>{{ $producto->precioproducto->first()['precio'] }}</td>			
 							<td>{{ $producto->tipo_producto }}</td>
 							<td>
 				              <a class="btn btn-info" href="{{url('/producto/'.$producto->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>

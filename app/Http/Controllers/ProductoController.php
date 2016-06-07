@@ -15,7 +15,7 @@ class ProductoController extends Controller
 {
     //Muestra la lista de productos que se encuentran en BD, estas se pueden modificar, cambiar el estado, ver mas detalle o registrar un nuevo producto
     public function index() {
-		$productos = Producto::all();
+		$productos = Producto::all();        
         return view('admin-general.producto.index', compact('productos'));
 	}	
 
@@ -94,7 +94,9 @@ class ProductoController extends Controller
     public function destroy($id)    
     {
         $producto = Producto::find($id);
-        //$producto->estado = false;
+        
+        $producto->PrecioProducto->first()->estado = 0;
+        $producto->PrecioProducto->first()->delete();
         $producto->delete();
         return back();
     }
@@ -103,7 +105,9 @@ class ProductoController extends Controller
     public function show($id)
     {
         $producto = Producto::find($id);
-        return view('admin-general.producto.detailProducto', compact('producto'));
+        $precio = PrecioProducto::where('producto_id', '=', $id)
+                                    ->where('estado', '=', 1)->first();
+        return view('admin-general.producto.detailProducto', compact('producto'), compact('precio'));
     }
 
 }

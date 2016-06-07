@@ -810,6 +810,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PerfilTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PerfilTableSeeder.php',
         'PersonaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PersonaTableSeeder.php',
+        'PrecioProductoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PrecioProductoTableSeeder.php',
         'ProductoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductoTableSeeder.php',
         'ProveedorTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProveedorTableSeeder.php',
         'ReservasTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ReservasTableSeeder.php',
