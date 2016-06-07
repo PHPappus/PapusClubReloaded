@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SERVICIO OFRECIDOS</title>
+	<title>SERVICIO EXTRAS OFRECIDOS</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +19,7 @@
 		<div class="row">
 			<div class="col-sm-12 text-left">
 				<br/><br/>
-				<p class="lead"><strong>SERVICIOS</strong></p>
+				<p class="lead"><strong>SERVICIOS EXTRAS</strong></p>
 				<br/>
 			</div>
 			

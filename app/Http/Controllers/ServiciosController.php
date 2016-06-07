@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use papusclub\Http\Requests;
 use papusclub\Models\Servicio;
 use papusclub\Models\Sede;
+use papusclub\Models\TipoPersona;
+use papusclub\Models\Configuracion;
 use papusclub\Http\Requests\StoreServicioRequest;
 use papusclub\Http\Requests\EditServicioRequest;
 
@@ -23,7 +25,9 @@ class ServiciosController extends Controller
     public function create()
     {
         $sedes_todas = Sede::all();
-        return view('admin-general.servicio.newServicio',compact('sedes_todas'));
+        $values=Configuracion::where('grupo','=','4')->get();
+        $tiposPersonas = TipoPersona::all();
+        return view('admin-general.servicio.newServicio',compact('sedes_todas','values','tiposPersonas'));
     }
 
     public function store(StoreServicioRequest $request)
