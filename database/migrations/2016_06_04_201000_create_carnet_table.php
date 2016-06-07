@@ -17,7 +17,7 @@ class CreateCarnetTable extends Migration
             $table->integer('socio_id')->unsigned();
             $table->integer('nro_carnet');
             $table->dateTime('fecha_emision'); //es fecha de actualización también
-            $table->boolean('estado');
+            $table->boolean('estado')->default(true);
             $table->dateTime('fecha_vencimiento'); // 8 años
             $table->softDeletes();
             $table->timestamps();

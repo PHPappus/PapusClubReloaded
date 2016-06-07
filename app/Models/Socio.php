@@ -11,6 +11,10 @@ class Socio extends Model
 
     protected $table='socio';
     protected $dates = ['deleted_at'];
+    protected $fillable = 
+    ['estado', 
+    'fecha_ingreso'
+    ];
 
     public function membresia()
     {
