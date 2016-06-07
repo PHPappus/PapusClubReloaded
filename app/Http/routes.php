@@ -206,13 +206,19 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('actividad/{id}/edit', 'ActividadController@update');
 	Route::get('actividad/{id}/delete', 'ActividadController@destroy');
 	Route::get('actividad/{id}/show', 'ActividadController@show');
-
+	//INSCRIPCION DE ACTIVIDADES
+	Route::get('inscripcion-actividad/inscripcion-actividades', 'InscripcionActividadController@inscripcionActividad'); // REservar
+	Route::get('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades', 'InscripcionActividadController@storeInscripcionActividad');
+	
 	//MANTENIMIENTO DE TALLERES
 	Route::get('talleres/','TallerController@index');
 	Route::get('talleres/new','TallerController@create');
 
 	//RESERVAS
 
+	
+	//MATENIMIENTO DE PAGOS
+	Route::get('pagos/pago-seleccionar-socio/','PagosController@seleccionarSocio');
 
 
 });

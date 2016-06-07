@@ -160,6 +160,7 @@
 	{!!Html::script('js/jquery-1.12.4.min.js')!!}
 	{!!Html::script('js/bootstrap.js')!!}
 	{!!Html::script('js/bootstrap-datepicker-sirve.js')!!}
+	{!!Html::script('locales/bootstrap-datepicker.es.min.js')!!}
 	
 	<script>
 
@@ -193,7 +194,8 @@
 	<script>
 		$(function(){
 			$('.datepicker').datepicker({
-				format: 'dd/mm/yyyy'
+				format: 'dd/mm/yyyy', 
+				language: 'es'
 			});
 			$('.datepicker').on('changeDate', function(ev){
 			    $(this).datepicker('hide');
