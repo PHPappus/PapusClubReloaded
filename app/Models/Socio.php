@@ -11,6 +11,10 @@ class Socio extends Model
 
     protected $table='socio';
     protected $dates = ['deleted_at'];
+    protected $fillable = 
+    ['estado', 
+    'fecha_ingreso'
+    ];
 
     public function membresia()
     {
@@ -20,6 +24,17 @@ class Socio extends Model
     public function postulante()
     {
     	return $this->belongsTo(Postulante::class,'postulante_id','id_postulante');
+    }
+
+    public function carnets()
+    {
+        return $this->hasMany(Carnet::class);
+    }
+
+    public function carnet_actual()
+    {
+        $match = ['socio_id'=>$this->id];
+        return Carnet::where($match);
     }
 
     public function isIndependent()

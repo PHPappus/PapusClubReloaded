@@ -14,10 +14,11 @@ class CreateCarnetTable extends Migration
     {
         Schema::create('carnet', function (Blueprint $table) {
             $table->increments('id')->unsigned();
+            $table->integer('socio_id')->unsigned();
             $table->integer('nro_carnet');
-            $table->dateTime('fecha_emision');
-            $table->boolean('estado');
-            $table->dateTime('fecha_vencimiento');
+            $table->dateTime('fecha_emision'); //es fecha de actualización también
+            $table->boolean('estado')->default(true);
+            $table->dateTime('fecha_vencimiento'); // 8 años
             $table->softDeletes();
             $table->timestamps();
         });

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTarifaMembresiaTable extends Migration
+class CreateProvinciasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,12 @@ class CreateTarifaMembresiaTable extends Migration
      */
     public function up()
     {
-        Schema::create('tarifamembresia', function (Blueprint $table) {
+        Schema::create('provincia', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('monto');
-            $table->boolean('estado')->default(true);
-            $table->dateTime('fecha_registro');
+            $table->string('nombre');
+            $table->integer('departamento_id');
+            $table->softDeletes();            
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -29,6 +28,6 @@ class CreateTarifaMembresiaTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tarifamembresia');
+        Schema::drop('provincia');
     }
 }

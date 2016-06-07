@@ -157,8 +157,6 @@
 													<input checked onchange="document.getElementById('doc_identidad').disabled = false; document.getElementById('carnet_extranjeria').disabled = true;" onclick=" document.getElementById('carnet_extranjeria').value = '';" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : '' }}/>Peruano&nbsp&nbsp&nbsp
 													<input onchange="document.getElementById('carnet_extranjeria').disabled = false; document.getElementById('doc_identidad').disabled = true;" onclick=" document.getElementById('doc_identidad').value = ''; " type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "extranjero") ? 'checked="true"' : '' }}/>Extranjero
 
-<!-- 													<input onchange ="document.getElementById('doc_identidad').disabled = false; document.getElementById('carnet_extranjeria').disabled = true; document.getElementById('carnet_extranjeria').value = ''; document.getElementById('doc_identidad').required = true; document.getElementById('carnet_extranjeria').required = false;" type="radio" name="nacionalidad" value="Peruano" @{{$nacionalidad=peruano}} @if(old('nacionalidad')=="Peruano") checked @endif> Peruano  
-													<input onchange="document.getElementById('carnet_extranjeria').disabled = false; document.getElementById('doc_identidad').disabled = true; document.getElementById('doc_identidad').value = '';  document.getElementById('doc_identidad').required = false; document.getElementById('carnet_extranjeria').required = true;" type="radio" name="nacionalidad" value="Extranjero" style="margin-left: 50px;"@{{$nacionalidad=extranjero}} @if(old('nacionalidad')=="Extranjero") checked @endif> Extranjero	 -->
 											</div>	
 										</div>
 									</div>
@@ -170,7 +168,7 @@
 											</div>
 											<div class="col-sm-6">
 											<!--Se hace validacion para que acepte solo numeros pero que sea un texto-->
-												<input  type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="doc_identidad" name="doc_identidad" placeholder="DNI" maxlength="8" style="max-width: 250px" value="{{old('doc_identidad')}}"  >
+												<input  type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="doc_identidad" name="doc_identidad" placeholder="DNI" maxlength="8" style="max-width: 250px" value="{{old('doc_identidad')}}" {{ (old('nacionalidad') == "extranjero") ? 'disabled="true"' : '' }}  >
 											</div>	
 										</div>
 									</div>
@@ -181,7 +179,7 @@
 												<label for="" class="control-label">Carnet de extranjeria:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="carnet_extranjeria" name="carnet_extranjeria" placeholder="Carnet de Extranjeria" maxlength="12" style="max-width: 250px" value="{{old('carnet_extranjeria')}}"  >
+												<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="carnet_extranjeria" name="carnet_extranjeria" placeholder="Carnet de Extranjeria" maxlength="12" style="max-width: 250px" value="{{old('carnet_extranjeria')}}" {{ (old('nacionalidad') == "peruano") ? 'disabled="true"' : '' }}  {{ (old('nacionalidad') == "") ? 'disabled="true"' : '' }} >
 											</div>	
 										</div>
 									</div>
@@ -242,28 +240,27 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="correo"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" name="correo" placeholder="correo" style="max-width: 250pc; margin-top:0px;" value="{{old('correo')}}">
+												<input type="text" class="form-control" id="correo"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" name="correo" placeholder="correo" style="max-width: 250pc; margin-top:0px;" value="{{old('correo')}}" >
 											</div>
 										</div>
 									</div>
+									<div class="form-group required" >
+										<div class="btn-group col-sm-5" ></div>
+										
+										<div class="btn-group">
+											<input class="btn btn-primary "  type="submit" value="Confirmar">
+										</div>
+										<div class="btn-group">
+											<a href="/trabajador/index" class="btn btn-info">Cancelar</a>
+										</div>
+									</div>
+								<br>
 							</div>
 
 						</div>
 					</div>
 					
 				</div>
-				<br>
-				<div class="btn-inline">
-					<div class="btn-group col-sm-5"></div>
-					
-					<div class="btn-group ">
-						<input class="btn btn-primary "  type="submit" value="Confirmar">
-					</div>
-					<div class="btn-group">
-						<a href="/trabajador/index" class="btn btn-info">Cancelar</a>
-					</div>
-				</div>
-				<br>
 			</form>
 			
 <!-- 			  	<div class="btn-inline">
@@ -303,6 +300,17 @@
 		
 	</script>
 
+	<script>
+	    $(document).ready(function(){
+	        if($(#doc_identidad).attr("disabled")=="true"){
+	            $(#carnet_extranjeria).attr("disabled","false");
+	        }
+	        else{
+	            $(#carnet_extranjeria).attr("disabled","false");
+	        }
+	    });
+
+	</script>
 
 
 <!-- 	<script>
