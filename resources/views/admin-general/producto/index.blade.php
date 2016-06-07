@@ -63,7 +63,7 @@
 						<tr>
 							<td>{{ $producto->nombre }}</td>
 							<td>{{ $producto->descripcion }}</td>	 							
-							<td>{{ $producto->id_tipo_producto }}</td>
+							<td>{{ $producto->tipo_producto }}</td>
 							<td>
 				              <a class="btn btn-info" href="{{url('/producto/'.$producto->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 				            </td>

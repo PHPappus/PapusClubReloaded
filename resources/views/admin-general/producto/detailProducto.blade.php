@@ -61,13 +61,13 @@
 			    	<label for="tipoProductoInput" class="col-sm-4 control-label" >Tipo de Producto</label>
 			    	<div class="col-sm-5">
 			    	
-			      		<select class="form-control" id="id_tipo_producto" name="id_tipo_producto"  readonly>
+			      		<select class="form-control" id="tipo_producto" name="tipo_producto"  readonly>
 						<!-- Las opciones se deberían extraer de la tabla configuracion-->
 						<option value=null >Seleccionar tipo...</option>
-						<option value="1" @if($producto['id_tipo_producto'] == 1) selected @endif >Ropa</option>
-						<option value="2" @if($producto['id_tipo_producto'] == 2) selected @endif>Accesorios</option>									
-						<option value="3" @if($producto['id_tipo_producto'] == 3) selected @endif>Útiles de Oficina</option>
-						<option value="4" @if($producto['id_tipo_producto'] == 4) selected @endif>Souvenirs</option>
+						<option value="1" @if($producto['tipo_producto'] == 1) selected @endif >Ropa</option>
+						<option value="2" @if($producto['tipo_producto'] == 2) selected @endif>Accesorios</option>									
+						<option value="3" @if($producto['tipo_producto'] == 3) selected @endif>Útiles de Oficina</option>
+						<option value="4" @if($producto['tipo_producto'] == 4) selected @endif>Souvenirs</option>
 						</select>						
 						
 			    	</div>
