@@ -17,7 +17,7 @@ class CarnetTableSeeder extends Seeder
         	'nro_carnet'=>20160001,
         	'fecha_emision'=>'2008-06 18:03:30',
         	'estado'=>false,
-        	'fecha_vencimiento'=>'2016-06 18:03:30']);
+        	'fecha_vencimiento'=>'2016-06-08 18:03:30']);
 
 
         Carnet::create([

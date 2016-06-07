@@ -25,8 +25,6 @@
 			
 		</div>
 	</div>
-		</br>
-		</br>
 		@if (session('stored'))
 			<script>$("#modalSuccess").modal("show");</script>
 			
@@ -61,45 +59,53 @@
 							<th><div align=center>APELLIDO PATERNO</div></th>
 							<th><div align=center>APELLIDO MATERNO</div></th>
 							<th><div align=center>NOMBRES</div></th>
+							<th><div align=center>ESTADO</div></th>
 							<th><div align=center>DETALLE</div></th>
 							<th><div align=center>EDITAR</div></th>
-							<th><div align=center>ACTIVAR/ELIMINAR</div></th>
+							<th><div align=center>ESTADO</div></th>
 						</thead>
 						<tbody>
 							@foreach($socios as $socio)						
 								<tr>
-									<td>{{$socio->id}}</td>
+									<td>{{$socio->carnet_actual()->nro_carnet}}</td>
 									<td>{{$socio->membresia->descripcion}}</td>
 									<td>{{$socio->postulante->persona->ap_paterno}}</td>
 									<td>{{$socio->postulante->persona->ap_materno}}</td>
 									<td>{{$socio->postulante->persona->nombre}}</td>
+									<td>{{$socio->estado()}}</td>
 									@if($socio->trashed())
 									<td>
-					              		<a class="btn btn-info" href="#"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+					              		<a class="btn btn-info" href="{{url('/Socio/'.$socio->id)}}/"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 					            	</td>
 					            	<td>
 							        	<a class="btn btn-info" href="#" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 							        </td>
 					            	<td>
-										<a class="btn btn-info"  title="Activar" data-href="{{url('/Socio/'.$socio->id.'/activate')}}" data-toggle="modal" data-target="#modalActivar"><i class="glyphicon glyphicon-ok"></i></a>
+										<a class="btn btn-info"  title="Habilitar" data-href="{{url('/Socio/'.$socio->id.'/activate')}}" data-toggle="modal" data-target="#modalActivar"><i class="glyphicon-unchecked unchecked"></i></a>
 					            	</td>
 									@else
 									<td>
-					              		<a class="btn btn-info" href="#"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+					              		<a class="btn btn-info" href="{{url('/Socio/'.$socio->id)}}/"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 					            	</td>
 					            	<td>
 							        	<a class="btn btn-info" href="#" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 							        </td>
-					            	<td>
-										<a class="btn btn-info"  title="Eliminar" data-href="{{url('/Socio/'.$socio->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
-					            	</td>
+							        @if(strcmp($socio->estado(), $socio->vigente())==0)
+						            	<td>
+											<a class="btn btn-info"  title="Deshabilitar" data-href="{{url('/Socio/'.$socio->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-check"></i></a>
+						            	</td>
+					            	@else
+						            	<td>
+											<a class="btn btn-info"  title="Habilitar" data-href="{{url('/Socio/'.$socio->id.'/activate')}}" data-toggle="modal" data-target="#modalActivar"><i class="glyphicon-unchecked unchecked"></i></a>
+						            	</td>					            	
+					            	@endif
 									@endif
 
 					            </tr>				            		
 							@endforeach
 						</tbody>
 				</table>
-				</br></br></br></br>
+				</br></br></br>
 				<div class="btn-inline">
 					<!-- <form method="POST" action="/sedes/new/sede" >
 					<input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
