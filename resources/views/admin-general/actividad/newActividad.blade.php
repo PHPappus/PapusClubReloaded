@@ -157,15 +157,11 @@
 	</div>		
 @stop
 <!-- JQuery -->
-	<script src="../js/jquery-1.11.3.min.js"></script>
-	<!-- Bootstrap -->
-	<script type="text/javascript" src="../js/bootstrap.js"></script>
-	<!-- BXSlider -->
-	<script src="../js/jquery.bxslider.min.js"></script>
-	<!-- Mis Scripts -->
-	<script src="../js/MisScripts.js"></script>
-
-	<!-- Para Fechas INICIO -->
+	{!!Html::script('js/jquery-1.12.4.min.js')!!}
+	{!!Html::script('js/bootstrap.js')!!}
+	{!!Html::script('js/bootstrap-datepicker-sirve.js')!!}
+	{!!Html::script('locales/bootstrap-datepicker.es.min.js')!!}
+	
 	<script>
 
 		var nowTemp = new Date();
@@ -198,48 +194,15 @@
 	<script>
 		$(function(){
 			$('.datepicker').datepicker({
-				format: 'dd/mm/yyyy'
+				format: 'dd/mm/yyyy', 
+				language: 'es'
+			});
+			$('.datepicker').on('changeDate', function(ev){
+			    $(this).datepicker('hide');
 			});
 		});
 	</script>
 
-
-	<script>
-		var nowTemp = new Date();
-		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
- 	
-		var checkin = $('#dpd1').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
-  			}
-		}).on('changeDate', function(ev) {
-  			if (ev.date.valueOf() > checkout.date.valueOf()) {
-    			var newDate = new Date(ev.date)
-    			newDate.setDate(newDate.getDate() + 1);
-    			checkout.setValue(newDate);
-  			}
- 			checkin.hide();
-  			$('#dpd2')[0].focus();
-		}).data('datepicker');
-		var checkout = $('#dpd2').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-  			}
-		}).on('changeDate', function(ev) {
-  			checkout.hide();
-		}).data('datepicker');		
-		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
-	
-	</script>
-	<script>
-		$(function(){
-			$('.datepicker').datepicker({
-				format: 'dd/mm/yyyy'
-			});
-		});
-	</script>
-
-	<!-- Para Fecha FIN -->
 
 
 	<script>

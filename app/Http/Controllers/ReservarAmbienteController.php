@@ -38,7 +38,7 @@ class ReservarAmbienteController extends Controller
         return view('admin-general.reservar-ambiente.confirmacion-reserva-bungalow',compact('ambiente'));
     }
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
-    public function storeOtroTipoAmbiente($id)
+    public function storeOtroTipoAmbiente($id, )
     {
 
         $user_id = Auth::user()->id();
