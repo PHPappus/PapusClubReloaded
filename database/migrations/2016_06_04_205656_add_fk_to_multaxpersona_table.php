@@ -26,7 +26,7 @@ class AddFkToMultaxpersonaTable extends Migration
     public function down()
     {
         Schema::table('multaxpersona', function (Blueprint $table) {
-            $table->dropForeign('multaxpersona_multaa_id_foreign');
+            $table->dropForeign('multaxpersona_multa_id_foreign');
             $table->dropForeign('multaxpersona_persona_id_foreign');
         });
     }

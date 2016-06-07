@@ -27,7 +27,7 @@ class AddFkToTarifaTallerTable extends Migration
     {
         Schema::table('tarifataller', function (Blueprint $table) {
             $table->dropForeign('tarifataller_taller_id_foreign');
-            $table->dropForeign('tarifataller_tipopersona_id_foreign');
+            $table->dropForeign('tarifataller_tipo_persona_id_foreign');
         });
     }
 }

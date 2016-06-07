@@ -25,7 +25,7 @@ class AddFkToTallerTable extends Migration
     public function down()
     {
         Schema::table('taller', function (Blueprint $table) {
-            //
+            $table->dropForeign('taller_reserva_id_foreign');
         });
     }
 }

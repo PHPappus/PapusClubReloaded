@@ -26,7 +26,7 @@ class AddFkToCarnetxsocioTable extends Migration
     public function down()
     {
         Schema::table('carnetxsocio', function (Blueprint $table) {
-            $table->dropForeign('carnetxsocio_carnet_foreign');
+            $table->dropForeign('carnetxsocio_carnet_id_foreign');
             $table->dropForeign('carnetxsocio_socio_id_foreign');
         });
     }
