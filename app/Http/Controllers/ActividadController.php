@@ -31,6 +31,7 @@ class ActividadController extends Controller
     {
         $input = $request->all();
         $actividad = new Actividad();
+        $carbon=new Carbon(); 
         $actividad->nombre= $input['nombre'];
         //para agregar la actividades al ambiente
         if($request['ambienteSelec'] != -1){
@@ -42,7 +43,14 @@ class ActividadController extends Controller
         $actividad->tipo_actividad= $input['tipo_actividad'];
         $actividad->descripcion= $input['descripcion'];
         $actividad->cant_ambientes=$input['cant_ambientes'];
-        $actividad->a_realizarse_en=now()->addDay();
+        
+        if (empty($input['a_realizarse_en'])) {
+                    $actividad->a_realizarse_en="";
+                }else{
+                    $a_realizarse_en = str_replace('/', '-', $input['a_realizarse_en']);      
+                    $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+                }
+
         $actividad->estado=false; 
         $actividad->save();
         return redirect('actividad/index')->with('stored', 'Se registró la actividad correctamente.');
