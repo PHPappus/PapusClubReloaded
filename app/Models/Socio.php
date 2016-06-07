@@ -16,6 +16,7 @@ class Socio extends Model
     'fecha_ingreso'
     ];
 
+
     public function membresia()
     {
     	return $this->belongsTo(TipoMembresia::class,'tipo_membresia_id');
@@ -33,8 +34,60 @@ class Socio extends Model
 
     public function carnet_actual()
     {
-        $match = ['socio_id'=>$this->id];
-        return Carnet::where($match);
+        $match = ['socio_id'=>$this->id,'estado'=>true];
+        $ormatch = ['socio_id'=>$this->id];
+        $carnet=Carnet::withTrashed()->where($match)->first();
+        if($carnet==null)
+            $carnet=Carnet::withTrashed()->where($ormatch)->first();
+        return $carnet;
+    }
+
+    public function estado()
+    {
+        if($this->estado)
+        {
+            $carnet = $this->carnet_actual();
+            if($carnet->estado)
+            {
+                if($carnet->fecha_emision<$carnet->fecha_vencimiento)
+                {
+                    $respuesta =$this->vigente();
+                }
+                else
+                {
+                    $respuesta =$this->vencido();
+                }
+            }
+            else
+            {
+                $respuesta=$this->carnet_inhabilitado();
+            }
+        }
+        else
+        {
+            $respuesta = $this->inhabilitado();
+        }
+        return $respuesta;
+    }
+
+    public function vigente()
+    {
+        return 'Vigente';
+    }
+
+    public function vencido()
+    {
+        return 'Carnet vencido';
+    }
+
+    public function carnet_inhabilitado()
+    {
+        return 'Carnet inhabilitado';
+    }
+
+    public function inhabilitado()
+    {
+        return 'Socio inhabilitado';
     }
 
     public function isIndependent()
@@ -42,8 +95,11 @@ class Socio extends Model
         //$persona = $this->postulante->persona;
         /*Aqui se harán las validaciones de si otras tablas están dependiendo de él como lo es las reservas, por el momento devolvere false diciendo que no es independiente de tal manera que se use softdelete*/
         /*Comparar respecto a persona*/
-
         return false;
+    }
 
+    public function addCarnet(Carnet $carnet)
+    {
+        return $this->carnets()->save($carnet);
     }
 }

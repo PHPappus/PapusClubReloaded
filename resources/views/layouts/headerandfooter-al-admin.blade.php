@@ -43,7 +43,7 @@
 				<div class="logo">
 					<div class="edit-logo">
 						<a href="{!!URL::to('/admin-general')!!}" title="Logo oficial de Papus Club">
-							<img src="../images/logo.png" alt="Logo Papus Club" href="/">
+							<img src="{!!URL::to('/images/logo.png')!!}" alt="Logo Papus Club" href="/">
 						</a>
 					</div>
 				</div>
