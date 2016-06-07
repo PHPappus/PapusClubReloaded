@@ -8,6 +8,7 @@ use papusclub\Http\Requests;
 use papusclub\Models\Ambiente;
 use papusclub\Models\Sede;
 use papusclub\Models\Reserva;
+use papusclub\Http\Requests\StoreReservaAmbiente;
 
 
 class ReservarAmbienteController extends Controller
@@ -38,7 +39,7 @@ class ReservarAmbienteController extends Controller
         return view('admin-general.reservar-ambiente.confirmacion-reserva-bungalow',compact('ambiente'));
     }
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
-    public function storeOtroTipoAmbiente($id, )
+    public function storeOtroTipoAmbiente($id, StoreReservaAmbiente $request)
     {
 
         $user_id = Auth::user()->id();
