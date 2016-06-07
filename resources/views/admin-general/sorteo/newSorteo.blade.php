@@ -79,13 +79,7 @@
 						<input class="datepicker" type="text" id="fecha_cerrado" readonly="true" name="fecha_cerrado"  value="{{ old('fecha_cerrado') }}" >						
 					</div>
 				</div>
-				<div class="input-group input-daterange">
-				    <input type="text" class="form-control" value="2012-04-05">
-				    <span class="input-group-addon">to</span>
-				    <input type="text" class="form-control" value="2012-04-19">
-				</div>
-				<br/>
-				<br/>
+				
 				<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
 					
@@ -110,35 +104,39 @@
 
 	<!-- Mis Scripts -->
 
-	<script type="text/javascript" src="../js/bootstrap-datepicker.js"></script>
-	<script type="text/javascript" src="../locales/bootstrap-datepicker.es.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap-datepicker-sirve.js"></script>
+
 
 	
+	
 	<script>
-			var nowTemp = new Date();
-			var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
- 
-		var checkin = $('#fecha_abierto').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
-  			}
-		}).on('changeDate', function(ev) {
-  			if (ev.date.valueOf() > checkout.date.valueOf()) {
-    			var newDate = new Date(ev.date)
-    			newDate.setDate(newDate.getDate() + 1);
-    			checkout.setValue(newDate);
-  			}
- 			checkin.hide();
-  			$('#fecha_cerrado')[0].focus();
-		}).data('datepicker');
+		$(document).ready(function(){
+				var nowTemp = new Date();		
+				var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+		 
+				var checkin = $('#fecha_abierto').datepicker({
+		  			onRender: function(date) {
+		    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
+		  			}
+				}).on('changeDate', function(ev) {
+		  			if (ev.date.valueOf() > checkout.date.valueOf()) {
+		    			var newDate = new Date(ev.date)
+		    			newDate.setDate(newDate.getDate() + 1);
+		    			checkout.setValue(newDate);
+		  			}
+		 			checkin.hide();
+		  			$('#fecha_cerrado')[0].focus();
+				}).data('datepicker');
 
-		var checkout = $('#fecha_cerrado').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-  			}
-		}).on('changeDate', function(ev) {
-  			checkout.hide();
-		}).data('datepicker');	
+				var checkout = $('#fecha_cerrado').datepicker({
+		  			onRender: function(date) {
+		    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+		  			}
+				}).on('changeDate', function(ev) {
+		  			checkout.hide();
+				}).data('datepicker');	
+		});
+			
 	</script>	
 	<script>
 		$(function(){

@@ -13,6 +13,7 @@ class AddFkToHistoricoInvitacionTable extends Migration
     public function up()
     {
         Schema::table('historicoinvitacion', function (Blueprint $table) {
+
             $table->foreign('invitado_id')->references('id')->on('persona')->onDelete('cascade');
             $table->foreign('socio_id')->references('id')->on('socio')->onDelete('cascade');
             $table->foreign('sede_id')->references('id')->on('sede')->onDelete('cascade');

@@ -16,6 +16,7 @@ class CreateDistritosTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->integer('provincia_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
