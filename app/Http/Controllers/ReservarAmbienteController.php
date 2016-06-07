@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use papusclub\Http\Requests;
 use papusclub\Models\Ambiente;
 use papusclub\Models\Sede;
+use papusclub\Models\Reserva;
 
 
 class ReservarAmbienteController extends Controller
@@ -40,7 +41,12 @@ class ReservarAmbienteController extends Controller
     public function storeOtroTipoAmbiente($id)
     {
 
+        $user_id = Auth::user()->id();
+        $usuario = User::findOrFail($user_id);
+        $persona = $usuario->persona;
+        $reserva = new Reserva();
         $ambiente = Ambiente::find($id); // de aqui sacare el id de la sede :S
+
         return view('admin-general.reservar-ambiente.confirmacion-reserva-otro-ambiente',compact('ambiente'));
     }
        

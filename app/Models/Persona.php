@@ -35,4 +35,9 @@ class Persona extends Model
     {
         return $this->hasMany('papusclub\Models\Reserva');
     }
+
+    public function usuario()
+    {
+        return $this->hasOne('papusclub\User');
+    }
 }

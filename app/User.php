@@ -43,4 +43,9 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->belongsTo('papusclub\Perfil');
     }
+
+    public function persona()
+    {
+        return $this->belongsTo('papusclub\Models\Persona');
+    }
 }

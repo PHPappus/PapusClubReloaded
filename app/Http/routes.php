@@ -201,7 +201,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('actividad/new/actividad', 'ActividadController@store');
 	Route::get('actividad/{id}', 'ActividadController@edit');
 	Route::post('actividad/{id}/edit', 'ActividadController@update');
-	Route::get('ambiente/{id}/delete', 'AmbienteController@destroy');
+	Route::get('actividad/{id}/delete', 'ActividadController@destroy');
 	Route::get('actividad/{id}/show', 'ActividadController@show');
 
 	//MANTENIMIENTO DE TALLERES
