@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use papusclub\Http\Requests;
 use papusclub\Models\Sede;
 use papusclub\Models\Servicio;
+use papusclub\Models\Departamento;
 use papusclub\Http\Requests\StoreSedeRequest;
 use papusclub\Http\Requests\EditSedeRequest;
 
@@ -24,7 +25,8 @@ class SedesController extends Controller
     public function create()
     {
         //$mensaje = null;
-        return view('admin-general.sede.newSede');
+        $departamentos=Departamento::lists('nombre','id');
+        return view('admin-general.sede.newSede',compact('departamentos'));
     }
 
     //Se almacena la nueva sede que se ha registrado en la BD
