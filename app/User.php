@@ -47,7 +47,8 @@ class User extends Model implements AuthenticatableContract,
     public function persona()
     {
         return $this->belongsTo('papusclub\Models\Persona');
-
+    }
+    
     public function talleres(){
         return $this->belongsToMany('papusclub\Models\Taller')->withPivot('precio');
     }

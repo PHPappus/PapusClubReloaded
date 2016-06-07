@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PersonaTableSeeder::class);
         $this->call(ReservasTableSeeder::class);
         $this->call(TestTallerTableSeeder::class);
-		$this->call(DepartamentoTableSeeder::class);
         Model::reguard();
     }
 }
