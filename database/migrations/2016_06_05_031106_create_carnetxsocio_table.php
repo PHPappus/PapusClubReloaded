@@ -13,8 +13,8 @@ class CreateCarnetxsocioTable extends Migration
     public function up()
     {
         Schema::create('carnetxsocio', function (Blueprint $table) {
-            $table->integer('carnet_id');
-            $table->integer('socio_id');
+            $table->integer('carnet_id')->unsigned()->nullable();
+            $table->integer('socio_id')->unsigned()->nullable();
             $table->dateTime('fecha_actualizacion');
             $table->softDeletes();
             $table->timestamps();

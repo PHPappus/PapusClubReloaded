@@ -47,10 +47,13 @@
 			  	</div>
 
 			  	<div class="form-group required">
-			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
+			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>			    	
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" required>
+			      		<!--input type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" required-->
+
+			      		<textarea id ="descripcionInput"  class="form-control" name="descripcion"  placeholder="Descripción" required rows="3" cols="50"></textarea>	
 			    	</div>
+			    	
 			  	</div>
 
 
@@ -59,7 +62,7 @@
 			    	<label for="tipo_servicioInput" class="col-sm-4 control-label">Tipo</label>
 			    	<div class="col-sm-5">
 			      			<select class="form-control" name="tipo_servicio"  required> 
-			      			 <option  value=""  disabled selected hidden >Please Choose</option>
+			      			 <option  value=""  disabled selected hidden >Elige una opción</option>
     						<option value="Deportivo">Deportivo</option>
     						<option value="Alquiler">Alquiler</option>  
     						</select>					
@@ -80,7 +83,7 @@
 			    	<div class="col-sm-5">
 			      			<select class="form-control" name="id_sede" 
 			      			placeholder="Elija Tipo Servicio" required> 
-			      			 <option value="" disabled selected hidden>Please Choose</option>
+			      			 <option value="" disabled selected hidden>Elige una opción</option>
 	      						@foreach($sedes_todas as $sedeXD)
 				 				<option value="{{$sedeXD->id}}"> {{$sedeXD->nombre}} </option>   @endforeach							
     						</select>					
@@ -102,20 +105,14 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-success" type="submit" value="Confirmar">
+						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
-						<a href="/servicios/index" class="btn btn-danger">Cancelar</a>
+						<a href="/servicios/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>
 				</br>
-
-
-
-
-
-
 
 			</form>
 		</div>

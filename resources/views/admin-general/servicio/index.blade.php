@@ -25,14 +25,18 @@
 			
 		</div>
 	</div>
-	<div class="container">
-		<div class="form-group">
-			<div class="col-sm-16 text-right">
-				<a class="btn btn-info" href="{{url('/servicios/new')}}" title="Registrar Servicio" > Registrar Nuevo Servicio <i class="glyphicon glyphicon-plus" ></i> </a>	
-			</div>
+	
+
+
+	@if (session('mensaje'))
+		<script>$("#modalSuccess").modal("show");</script>
+		
+		<div class="alert alert-success fade in">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				<strong>¡Éxito!</strong> {{session('mensaje')}}
 		</div>
-		<br/>
-	</div>
+	@endif
+
 
 		<div class="table-responsive">
 			<div class="container">
@@ -41,9 +45,10 @@
 							<th><div align=center>NOMBRE</div></th>
 							<th><div align=center>DESCRIPCION</div></th>
 							<th><div align=center>TIPO SERVICIO</div></th>
+							<th><div align=center>ESTADO</div></th>
 							<th><div align=center>DETALLE</div></th>
 							<th><div align=center>EDITAR</div></th>
-							<th><div align=center>ELIMINAR</div></th>
+							<th><div align=center>ESTADO</div></th>
 						</thead>
 
 							
@@ -53,6 +58,11 @@
 								<td>{{ $servicio->nombre }}</td>
 								<td>{{ $servicio->descripcion }}</td>
 	 							<td>{{ $servicio->tipo_servicio }}</td>								
+	 							<td>
+	 							<?php if ($servicio->estado == 1)  echo "ACTIVO";
+									  else echo "INACTIVO";	?>
+	 						    <!--{{$servicio->estado }}-->	 						
+	 						    </td>						
 								<td>
 					              <a class="btn btn-info" href="{{url('/servicios/'.$servicio->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 					            </td>
@@ -60,7 +70,14 @@
 					              <a class="btn btn-info" href="{{url('/servicios/'.$servicio->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 					            </td>
 					            <td>
-					              <a class="btn btn-info" href="{{url('/servicios/'.$servicio->id.'/delete')}}" title="Eliminar" ><i class="glyphicon glyphicon-remove"></i></a>
+					              <a type="checkbox" class="btn btn-info" href="{{url('/servicios/'.$servicio->id.'/delete')}}" title="DESACTIVAR" >
+
+					             <?php if ($servicio->estado == 1)  
+								         echo '<i  class="glyphicon  glyphicon-check"></i>';
+									else echo '<i  class="glyphicon  glyphicon-unchecked unchecked"></i>';	
+								 ?>
+										              
+					              </a>
 					            </td>
 					    		</tr>
 					    		@endforeach        
@@ -70,7 +87,16 @@
 				</table>			
 			</div>		
 		</div>
-	
+	<br>
+	<br>
+	<div class="container" >
+		<div class="form-group" >
+			<div class="col-sm-16 text-right">
+				<a class="btn btn-info"   href="{{url('/servicios/new')}}" title="Registrar Servicio" > Registrar Servicio  </a>	
+			</div>
+		</div>
+		<br/>
+	</div>
 
 		
 
@@ -92,4 +118,23 @@
   		});
 	</script>
 </body>
+	<div id="modalSuccess" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">¡Éxito!</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>{{session('mensaje')}}</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>           
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
 </html>

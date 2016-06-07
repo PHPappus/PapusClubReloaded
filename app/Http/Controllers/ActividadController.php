@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use papusclub\Http\Requests;
 use papusclub\Models\Ambiente;
 use papusclub\Models\Actividad;
+use papusclub\Models\Configuracion;
 use papusclub\Http\Requests\StoreActividadRequest;
 use papusclub\Http\Requests\EditActividadRequest;
 use Carbon\Carbon;
@@ -22,13 +23,13 @@ class ActividadController extends Controller
     {
     	/*PAra crear la ACtividad , primero se debe buscar el Ambiente*/
     	$ambientes = Ambiente::all();
-        return view('admin-general.ambiente.searchAmbiente', compact('ambientes'));
+        $values=Configuracion::where('grupo','=','3')->get();
+        return view('admin-general.ambiente.searchAmbiente', compact('ambientes'),compact('values'));
     	
     }
     public function store(StoreActividadRequest $request)
     {
         $input = $request->all();
-        //return compact('input');
         $actividad = new Actividad();
         $actividad->nombre= $input['nombre'];
         //para agregar la actividades al ambiente
@@ -40,7 +41,9 @@ class ActividadController extends Controller
         $actividad->capacidad_maxima= $input['capacidad_maxima'];
         $actividad->tipo_actividad= $input['tipo_actividad'];
         $actividad->descripcion= $input['descripcion'];
-        $actividad->a_realizarse_en=now()->addDay(); 
+        $actividad->cant_ambientes=$input['cant_ambientes'];
+        $actividad->a_realizarse_en=now()->addDay();
+        $actividad->estado=false; 
         $actividad->save();
         return redirect('actividad/index')->with('stored', 'Se registró la actividad correctamente.');
     }
@@ -54,7 +57,6 @@ class ActividadController extends Controller
     public function update(EditActividadRequest $request, $id)
     {
         $input = $request->all();
-        //return compact('input');
         $actividad = Actividad::find($id);
 
         $actividad->nombre= $input['nombre'];
