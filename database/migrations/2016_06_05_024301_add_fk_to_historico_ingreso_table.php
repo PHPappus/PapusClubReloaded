@@ -13,8 +13,9 @@ class AddFkToHistoricoIngresoTable extends Migration
     public function up()
     {
         Schema::table('historicoingreso', function (Blueprint $table) {
-            $table->foreign('persona_id')->refrences('id')->on('persona')->onDelete('cascade');
-            $table->foreign('sede_id')->refrences('id')->on('sede')->onDelete('cascade');
+
+            $table->foreign('persona_id')->references('id')->on('persona')->onDelete('cascade');
+            $table->foreign('sede_id')->references('id')->on('sede')->onDelete('cascade');
         });
     }
 

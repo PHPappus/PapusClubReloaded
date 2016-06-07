@@ -13,7 +13,8 @@ class CreateTipoRelacionTable extends Migration
     public function up()
     {
         Schema::create('tiporelacion', function (Blueprint $table) {
-            $table->increments('id')->unsigned()->nullable();
+
+            $table->increments('id')->unsigned();
             $table->string('puesto');
             $table->dateTime('fecha_inicio_contrato');
             $table->dateTime('fecha_fin_contrato');

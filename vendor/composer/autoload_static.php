@@ -279,6 +279,10 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'AddFkToReservaxactividadTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_203308_add_fk_to_reservaxactividad_table.php',
         'AddFkToSocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_29_004547_add_fk_to_socio_table.php',
         'AddFkToTallerTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_025932_add_fk_to_taller_table.php',
+<<<<<<< HEAD
+=======
+        'AddFkToTallerUserTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_081850_add_fk_to_taller_user_table.php',
+>>>>>>> a73ca00c03aad5127c2b8470d69641056dc30777
         'AddFkToTarifaActividadTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_203241_add_fk_to_tarifa_actividad_table.php',
         'AddFkToTarifaAmbientextipoPersonaTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_203453_add_fk_to_tarifa_ambientextipo_persona_table.php',
         'AddFkToTarifaTallerTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_030720_add_fk_to_tarifa_taller_table.php',
@@ -318,6 +322,10 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'CreateSocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_29_003232_create_socio_table.php',
         'CreateSorteoTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_20_005933_create_sorteo_table.php',
         'CreateTallerTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_23_000724_create_taller_table.php',
+<<<<<<< HEAD
+=======
+        'CreateTallerUserTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_081701_create_taller_user_table.php',
+>>>>>>> a73ca00c03aad5127c2b8470d69641056dc30777
         'CreateTarifaActividadTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_173507_create_tarifa_actividad_table.php',
         'CreateTarifaAmbientextipoPersonaTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_173633_create_tarifa_ambientextipo_persona_table.php',
         'CreateTarifaMembresiaTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_20_175024_create_tarifa_membresia_table.php',
@@ -798,6 +806,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PerfilTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PerfilTableSeeder.php',
+        'PersonaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PersonaTableSeeder.php',
         'ProductoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductoTableSeeder.php',
         'ProveedorTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProveedorTableSeeder.php',
         'ReservasTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ReservasTableSeeder.php',
@@ -841,6 +850,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'SorteoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/SorteoTableSeeder.php',
         'TarifarioTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifarioTableSeeder.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
+        'TestTallerTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TestTallerTableSeeder.php',
         'TestUserTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TestUserTableSeeder.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
         'TipoPersonaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TipoPersonaTableSeeder.php',
