@@ -208,8 +208,9 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('actividad/{id}/show', 'ActividadController@show');
 
 	//MANTENIMIENTO DE TALLERES
-	Route::get('talleres/','TallerController@index');
-	Route::get('talleres/new','TallerController@create');
+	Route::get('taller/','TallerController@index');
+	Route::get('taller/new','TallerController@create');
+	Route::get('taller/{id}/editar','TallerController@edit');
 
 	//RESERVAS
 

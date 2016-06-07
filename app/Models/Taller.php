@@ -3,14 +3,21 @@
 namespace papusclub\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Taller extends Model
 {
     protected $table = 'taller'; 
 
     protected $fillable=
-    ['descripcion',
-     'vacantes'
+    ['nombre',
+     'descripcion',
+     'vacantes',
+     'fecha_inicio_inscripciones',
+     'fecha_fin_inscripciones',
+     'fecha_inicio',
+     'fecha_fin',
+     'cantidad_sesiones'
     ];
 
     public function users(){

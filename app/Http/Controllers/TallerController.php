@@ -29,4 +29,11 @@ class TallerController extends Controller
     {
         return view('admin-general.taller.showTaller',compact('taller'));
     }
+
+    public function edit ($id)
+    {
+        //$taller = Taller::withTrashed()->find($id);
+        $taller = Taller::find($id);
+        return view('admin-general.taller.editTaller',compact('taller'));
+    }
 }

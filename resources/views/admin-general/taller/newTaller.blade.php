@@ -26,9 +26,22 @@
 			</div>		
 		</div>
 		<div class="container">
-			<form method="POST" action="/talleres/new/save" class="form-horizontal form-border">
+			<form method="POST" action="/taller/new/save" class="form-horizontal form-border">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			
+				<div class="col-sm-4"></div>
+				<div class=""> 
+					@if ($errors->any())
+		  				<ul class="alert alert-danger fade in">
+		  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  					@foreach ($errors->all() as $error)
+		  						<li>{{$error}}</li>
+		  					@endforeach
+		  				</ul>
+		  			@endif
+				</div>
+
+
 				<br/>
 				<br/>
 				<div class="col-sm-4"></div>
@@ -38,80 +51,74 @@
 			  		</font>		  			
 				</div>			
 			  	</br>
-			  	</br>
+			  	
 				
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" required>
+			      		<input type="text" class="form-control" id="dInput" name="descripcion" placeholder="Nombre">
 			    	</div>
-			  	</div>
+			  	</div> 
 
 			  	<div class="form-group required">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" required>
+			      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción">
 			    	</div>
-			  	</div>    	
+			  	</div>
 
-			  	<div class="form-group required">
+			  	<div class="form-group">
 			    	<label for="vacantesInput" class="col-sm-4 control-label">Vacantes</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" min ="0" class="form-control" id="vacantesInput" name="vacantes" placeholder="Vacantes" required>
+			      		<input type="number" min ="0" step="any" class="form-control" id="vacantesInput" name="vacantes" placeholder="Vacantes">
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
-			  		<label for="fechaInicioInsInput" class="col-sm-4 control-label">Fecha Inicio Inscripciones</label>
-			  		<div class="col-sm-5">
-			  			<input type="date" id="fechaInicioInsInput" name="fechaInicioIns"  placeholder="Fecha Inicio Inscripciones" required>
-			  		</div>
-			  	</div>
-
-			  	<div class="form-group required">
-			  		<label for="fechaFinInsInput" class="col-sm-4 control-label">Fecha Fin Inscripciones</label>
-			  		<div class="col-sm-5">
-			  			<input type="date" id="fechaFinInsInput" name="fechaFinIns"  placeholder="Fecha Fin Inscripciones" required>
-			  		</div>
-			  	</div>
-
-			  	<div class="form-group required">
-			  		<label for="fechaInicioInput" class="col-sm-4 control-label">Fecha Inicio</label>
-			  		<div class="col-sm-5">
-			  			<input type="date" id="fechaInicioInput" name="fechaInicio"  placeholder="Fecha Inicio" required>
-			  		</div>
-			  	</div>
-
-			  	<div class="form-group required">
-			    	<label for="cantSesionesInput" class="col-sm-4 control-label">Cantidad de Sesiones</label>
+			    	<label for="fecIniInsInput" class="col-sm-4 control-label">Fecha Inicio Inscripciones</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" min ="0" class="form-control" id="cantSesionesInput" name="cantSesiones" placeholder="Cantidad de Sesiones" required>
+			      		<input type="text" class="form-control" id="fecIniInsInput" name="fecIniIns" placeholder="Fecha Inicio Inscripciones">
 			    	</div>
 			  	</div>
 
-
 			  	<div class="form-group required">
-			  		<label for="fechaFinInput" class="col-sm-4 control-label">Fecha Fin</label>
-			  		<div class="col-sm-5">
-			  			<input type="date" id="fechaFinInput" name="fechaFin"  placeholder="Fecha Fin" required>
-			  		</div>
+			    	<label for="fecFinInsInput" class="col-sm-4 control-label">Fecha Fin Inscripciones</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" class="form-control" id="fecFinInsInput" name="fecFinIns" placeholder="Fecha Fin Inscripciones">
+			    	</div>
 			  	</div>
 
+			  	<div class="form-group required">
+			    	<label for="fecIniInput" class="col-sm-4 control-label">Fecha Inicio</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" class="form-control" id="fecIniInput" name="fecIni" placeholder="Fecha Inicio">
+			    	</div>
+			  	</div>
+
+			  	<div class="form-group required">
+			    	<label for="fecFinInsInput" class="col-sm-4 control-label">Fecha Fin</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" class="form-control" id="fecFinInput" name="fecFin" placeholder="Fecha Fin">
+			    	</div>
+			  	</div>
+
+			  	<div class="form-group">
+			    	<label for="cantSesInput" class="col-sm-4 control-label">Cantidad de Sesiones</label>
+			    	<div class="col-sm-5">
+			      		<input type="number" min ="0" step="any" class="form-control" id="cantSesInput" name="cantSes" placeholder="Cantidad de Sesiones">
+			    	</div>
+			  	</div>
 
 			  	</br>
 			  	</br>
 				<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
-
-					<div class="btn-group ">
-						<input class="btn btn-success" type="submit" value="Agregar Tarifa">
-					</div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-success" type="submit" value="Confirmar">
+						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
-						<a href="/talleres/" class="btn btn-danger">Cancelar</a>
+						<a href="/multa/" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>
