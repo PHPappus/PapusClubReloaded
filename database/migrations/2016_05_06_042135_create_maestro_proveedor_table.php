@@ -25,6 +25,7 @@ class CreateMaestroProveedorTable extends Migration
             $table->integer('estado');            
             $table->integer('id_tipo_proveedor');//Esta dentro de la tabla de configuracion
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

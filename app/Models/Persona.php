@@ -30,4 +30,8 @@ class Persona extends Model
     public function trabajador(){
         return $this->belongsTo('papusclub\Models\Trabajador','id');
     }
+
+    public function facturacion(){
+        return $this->hasMany('papusclub\Models\Facturacion');
+    }
 }
