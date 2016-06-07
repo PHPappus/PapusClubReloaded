@@ -13,4 +13,5 @@ class Departamento extends Model
     ['nombre'
     ];
     protected $dates = ['deleted_at'];
+
 }
