@@ -135,7 +135,18 @@
 			  	
 			  	<!-- EL ESTADO SIEMPRE VA EN TRUE PARA EL REGISTRAR -->
 			  	
-			  	
+
+			  	<!-- INICIO - Para INGRESaR LOS PRECIOS POR CADA TIPO D PERSONA -->
+			  	@foreach ($tipoPersonas as $tipoPersona)   
+				  	<!-- <div class="form-group required">
+				    	<label for="nombreInput" class="col-sm-4 control-label">{{$tipoPersona->descripcion}}</label>
+				     -->	<!-- <div class="col-sm-5">
+				      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre de la actividad" value="{{old('nombre')}}" >
+				    	</div> -->
+				  	<!-- </div> -->   						
+				@endforeach
+			  	<!-- FIN    - Para INGRESaR LOS PRECIOS POR CADA TIPO D PERSONA -->
+			  
 			  	
 		  	<!-- FIN FIN FIN -->
 					

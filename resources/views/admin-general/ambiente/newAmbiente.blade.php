@@ -85,6 +85,7 @@
 							                	<option value="{{$value->id}}">{{$value->valor}}</option>
 							                @endforeach
 							                
+							                
 
 
 						</select>
@@ -110,9 +111,14 @@
 			    	</div>
 			  	</div>
 			  	</br>
-			  	
-			  	
-		  			<!-- FIN FIN FIN -->
+			  	<!-- INICIO  PRECIO POR TIPO DE PERSONA -->
+
+				
+				
+				<!-- FIN     PRECIO POR TIPO DE PERSONA -->
+			  				  	
+
+			  	<!-- FIN FIN FIN -->
 					
 				</br></br>
 			  	<div class="btn-inline">
