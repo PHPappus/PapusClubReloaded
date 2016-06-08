@@ -98,7 +98,13 @@
 			   	</div>
 			   	<a class="btn btn-info" name="buscarContacto" href="#"  title="Buscar" ><i name="buscarSocio" class="glyphicon glyphicon-search"></i></a>
 			    	<!-- deberia ir a una pantalla que liste todos los contactos posibles del Club  -->
-			</div>	  
+			</div>	
+			<div class="form-group ">
+		    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
+		    	<div class="col-sm-5">
+		      		<input type="text" class="form-control" id="precioInput" onkeypress="return inputLimiter(event,'Numbers')" name="ubicacion" value="FALTA CALCULAR EL PRECIO" readonly>
+		    	</div>
+		  	</div>  
 		  	</br>
 		  	</br>
 		  	

@@ -89,13 +89,12 @@
 			   	<a class="btn btn-info" name="buscarSocio" href="{!!URL::to('/reservar-ambiente/searchSocio')!!}"  title="Buscar" ><i name="buscarSocio" class="glyphicon glyphicon-search"></i></a>
 			    	<!-- deberia ir a una pantalla que liste todos los contactos posibles del Club  -->
 			</div>	  
-		  	<!-- <div class="form-group">
-			    	<label for="activoInput" class="col-sm-4 control-label ">Activo</label>
-			    	<div class="col-sm-3">
-			      		<input type="checkbox"  class="checkbox" id="activoInput" name="estado" disabled >
-			    	</div>	    	
-			  	</div> -->
-		  	<!-- EL ESTADO SIEMPRE VA EN TRUE PARA EL REGISTRAR -->
+		  	<div class="form-group ">
+		    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
+		    	<div class="col-sm-5">
+		      		<input type="text" class="form-control" id="precioInput" onkeypress="return inputLimiter(event,'Numbers')" name="ubicacion" value="FALTA CALCULAR EL PRECIO" readonly>
+		    	</div>
+		  	</div>
 		  	
 		  	</br>
 		  	</br>

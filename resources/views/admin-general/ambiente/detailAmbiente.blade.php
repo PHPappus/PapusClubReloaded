@@ -62,7 +62,7 @@
 		  	<div class="form-group ">
 		    	<label for="ubicacionInput" class="col-sm-4 control-label">Ubicación</label>
 		    	<div class="col-sm-5">
-		      		<textarea type="text" class="form-control" id="ubicacionInput" name="ubicacion" placeholder="{{$ambiente->ubicacion}}" readonly></textarea>
+		      		<textarea type="text" class="form-control" id="ubicacionInput" name="ubicacion" style="resize: none" readonly>{{$ambiente->ubicacion}}</textarea>
 		    	</div>
 		  	</div>
 		  	<!-- <div class="form-group">
@@ -73,9 +73,32 @@
 			  	</div> -->
 		  	<!-- EL ESTADO SIEMPRE VA EN TRUE PARA EL REGISTRAR -->
 		  	
-		  	</br>
-		  	</br>
-		  	
+	<!-- INICIO  PRECIO POR TIPO DE PERSONA -->
+
+			  	<br/>
+			<div class="form-group "> 
+				<label for="precioTipo1" class="col-sm-4 control-label" width: 100px >Precios </label>
+			</div>
+			<div class="form-group required">
+			   	<label for="precioTipo1" class="col-sm-4 control-label">Trabajador</label>
+			   	<div class="col-sm-5">
+			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo1" name="precioTipo1" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" readonly="">
+			   	</div>
+			</div>	
+			<div class="form-group required">
+			   	<label for="precioTipo2" class="col-sm-4 control-label">Postulante</label>
+			   	<div class="col-sm-5">
+					<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo2" name="precioTipo2" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" readonly="">
+			   	</div>
+			</div>	
+			<div class="form-group required">
+			   	<label for="precioTipo3" class="col-sm-4 control-label">Socio</label>
+			   	<div class="col-sm-5">
+			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo3" name="precioTipo3" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" readonly="">
+			   	</div>
+			</div>	
+			  	
+			  	<!-- FIN     PRECIO POR TIPO DE PERSONA -->
 		  	
 	  	<!-- FIN FIN FIN -->
 				

@@ -129,18 +129,32 @@
 		  	</div>	  	
 		  	
 		  	
-		  	<!-- EL ESTADO SIEMPRE VA EN TRUE PARA EL REGISTRAR -->
-		  	
-		  	<!-- </br>
-		  	<div class="form-group">
-		  		<div class="text-right col-sm-4">
-		  			<font color="red"> 
-		  				(*) Dato Obligatorio
-		  			</font>
-		  			
-		  		</div>
+		  		<!-- INICIO  PRECIO POR TIPO DE PERSONA -->
 
-		  	</div>
+			  <br/>
+			<div class="form-group "> 
+				<label for="precioTipo1" class="col-sm-4 control-label" width: 100px >Precios </label>
+			</div>
+			<div class="form-group required">
+			   	<label for="precioTipo1" class="col-sm-4 control-label">Trabajador</label>
+			   	<div class="col-sm-5">
+			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo1" name="precioTipo1" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" >
+			   	</div>
+			</div>	
+			<div class="form-group required">
+			   	<label for="precioTipo2" class="col-sm-4 control-label">Postulante</label>
+			   	<div class="col-sm-5">
+					<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo2" name="precioTipo2" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" >
+			   	</div>
+			</div>	
+			<div class="form-group required">
+			   	<label for="precioTipo3" class="col-sm-4 control-label">Socio</label>
+			   	<div class="col-sm-5">
+			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo3" name="precioTipo3" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" >
+			   	</div>
+			</div>	
+			  	
+			  	<!-- FIN     PRECIO POR TIPO DE PERSONA -->
  -->		  	
 	  	<!-- FIN FIN FIN -->
 				

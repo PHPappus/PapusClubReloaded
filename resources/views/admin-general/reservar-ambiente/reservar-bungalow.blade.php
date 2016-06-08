@@ -154,7 +154,7 @@
 					<td>{{ $ambiente->capacidad_actual }}</td>
 
 					<td>
-					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/new-reserva-bungalow')}}"  title="Detalle" ><i class="glyphicon glyphicon-remove"></i></a>
+					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/new-reserva-bungalow')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
 
 
 			        </td>
