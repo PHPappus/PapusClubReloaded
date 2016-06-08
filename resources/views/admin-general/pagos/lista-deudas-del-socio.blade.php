@@ -49,10 +49,10 @@
 					<tbody>
 							<!-- @foreach($socios as $socio)	 -->					
 						    	<td>
-							        <a class="btn btn-info" href="{{url('/actividad/'.$actividad->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-							        </td>
-									<td>
-							        <a class="btn btn-info" href="{{url('/actividad/'.$actividad->id.'')}}" title="Registrar Pago" ><i class="glyphicon glyphicon-pencil"></i></a>
+							        <a class="btn btn-info" href="#"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+							    </td>
+								<td>
+							        <a class="btn btn-info" href="#" title="Registrar Pago" ><i class="glyphicon glyphicon-pencil"></i></a>
 							    </td>
 							<!-- @endforeach -->
 					</tbody>					
