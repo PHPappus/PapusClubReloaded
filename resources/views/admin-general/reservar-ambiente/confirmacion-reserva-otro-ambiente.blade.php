@@ -75,9 +75,9 @@
 			   	 	</div>
  -->
 			   	 	<div class="input-group">
-			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" style="max-width: 250px">
+			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio_reserva" placeholder="Fecha Inicio" style="max-width: 250px">
 			   		<span class="input-group-addon">-</span>
-			   		<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_fin" placeholder="Fecha Fin" style="max-width: 250px">
+			   		<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd2" name="fecha_fin_reserva" placeholder="Fecha Fin" style="max-width: 250px">
 					</div>			   		
 		    	</div>	
 			</div>
@@ -85,9 +85,9 @@
 			 	<label for="horaInput" class="col-sm-4 control-label">Hora (hh-mm) </label>
 			    <div class="col-sm-5">
 				   	<div class="input-group">
-				   		<input name="horaInicio" id="horaInicio" type="time" required class="form-control">
+				   		<input name="hora_inicio_reserva" id="horaInicio" type="time" required class="form-control">
 			       		<span class="input-group-addon">-</span>
-			       		<input name="horaFin" id="horaFin" type="time" required class="form-control">
+			       		<input name="hora_fin_reserva" id="horaFin" type="time" required class="form-control">
 			   	   	</div>
 		    	</div>	
 			</div>

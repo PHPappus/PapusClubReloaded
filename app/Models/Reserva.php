@@ -12,8 +12,8 @@ class Reserva extends Model
     protected $fillable = 
     ['fecha_inicio_reserva',
     'fecha_fin_reserva', 
-    'precio', 
-    'estadoReserva'
+    'hora_inicio_reserva', 
+    'hora_fin_reserva',
     ];
     protected $dates = ['deleted_at'];
     //funciones para las relaciones entre tablas

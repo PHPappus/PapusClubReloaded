@@ -113,9 +113,9 @@
 			    	<div class="col-sm-5">
 				    	<select class="form-control" id="tipoActividadInput" name="tipo_actividad" style="max-width: 150px "  >
 				    						<option value="-1" default>Seleccione</option>
-							               @foreach ($values as $value)      
+							               	@foreach ($values as $value)      
 							                	<option value="{{$value->id}}">{{$value->valor}}</option>
-							                @endforeach
+							               	@endforeach
 						</select>
 					</div>
 			  	</div>
