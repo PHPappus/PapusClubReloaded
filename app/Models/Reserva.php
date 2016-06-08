@@ -19,12 +19,12 @@ class Reserva extends Model
     //funciones para las relaciones entre tablas
     
     public function ambiente(){
-        return $this->belongsTo('papusclub\Models\Ambiente');
+        return $this->belongsTo('papusclub\Models\Ambiente', 'ambiente_id');
         
     }
     
     public function persona(){
-        return $this->belongsTo('papusclub\Models\Persona');
+        return $this->belongsTo('papusclub\Models\Persona', 'id_persona');
         
     }
 }

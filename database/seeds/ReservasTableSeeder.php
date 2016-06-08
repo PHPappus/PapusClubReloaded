@@ -14,12 +14,12 @@ class ReservasTableSeeder extends Seeder
     {
         
         Reserva::insert([
-        	'estadoReserva' => 'Activo', 
-        	'precio' => 70.8, 
+        	//'estadoReserva' => 'Activo', 
+        	//'precio' => 70.8, 
             'id_persona'=> 1,
             'ambiente_id' => 1,
-            'fecha_inicio_reserva'=>Carbon::create(2016, 12, 12),
-            'fecha_fin_reserva'=>Carbon::create(2016, 12, 13)
+            //'fecha_inicio_reserva'=>Carbon::create(2016, 12, 12),
+            //'fecha_fin_reserva'=>Carbon::create(2016, 12, 13)
         	]);
         
     }

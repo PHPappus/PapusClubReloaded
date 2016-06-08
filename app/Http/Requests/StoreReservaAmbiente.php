@@ -24,7 +24,7 @@ class StoreReservaAmbiente extends Request
     public function rules()
     {
         return [
-            //
+            
         ];
     }
 }

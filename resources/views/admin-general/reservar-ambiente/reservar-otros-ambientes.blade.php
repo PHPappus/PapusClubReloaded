@@ -159,7 +159,7 @@
 			        <a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/confirmacion-reserva-otro-ambiente')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 			        </td>
 					<td>
-					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/confirmacion-reserva-otro-ambiente')}}"  title="Detalle" ><i class="glyphicon glyphicon-remove"></i></a>
+					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/new-reserva-otro-ambiente')}}"  title="Detalle" ><i class="glyphicon glyphicon-remove"></i></a>
 
 			        </td>
 					</tr>

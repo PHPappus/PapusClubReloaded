@@ -33,11 +33,11 @@ class Persona extends Model
 
     public function reservas()
     {
-        return $this->hasMany('papusclub\Models\Reserva');
+        return $this->hasMany('papusclub\Models\Reserva', 'id');
     }
 
     public function usuario()
     {
-        return $this->hasOne('papusclub\User');
+        return $this->belongsTo('papusclub\User', 'id_usuario');
     }
 }

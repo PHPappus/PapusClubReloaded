@@ -39,14 +39,14 @@ class User extends Model implements AuthenticatableContract,
             $this->attributes['password'] = \Hash::make($valor);
         }
     }
-    public function perfil_id()
+    public function perfil()
     {
-        return $this->belongsTo('papusclub\Perfil');
+        return $this->belongsTo('papusclub\Perfil', 'perfil_id');
     }
 
     public function persona()
     {
-        return $this->belongsTo('papusclub\Models\Persona');
+        return $this->hasOne('papusclub\Models\Persona', 'id');
     }
     
     public function talleres(){
