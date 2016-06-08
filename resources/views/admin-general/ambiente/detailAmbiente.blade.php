@@ -35,20 +35,20 @@
 			<!-- SE DEBE LEER DATA DE LA BD E INGRESARLOS -->
 
 			<div class="form-group ">
-		    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
+		    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="nombreInput" name="nombre" value="{{$ambiente->nombre}}" readonly >
 		    	</div>
 		  	</div>
 		  	<div class="form-group ">
-		    	<label for="tipoAmbienteInput" class="col-sm-4 control-label">TIPO AMBIENTE</label>	
+		    	<label for="tipoAmbienteInput" class="col-sm-4 control-label">Tipo Ambiente</label>	
 		    	<div class="col-sm-5">
 		    		<input type="text" class="form-control" id="tipoAmbienteInput" name="tipoAmbiente" value="{{$ambiente->tipo_ambiente}}" readonly >
 				</div>
 		  	</div>
 
 		  	<div class="form-group ">
-		    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA</label>
+		    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad máxima</label>
 		    	<div class="col-sm-5">
 		      		<input type="number" class="form-control" id="capacidadInput" name="capacidadMax" value="{{$ambiente->capacidad_actual}}" readonly>
 		    	</div>
@@ -60,7 +60,7 @@
 		    	</div>
 		  	</div> -->
 		  	<div class="form-group ">
-		    	<label for="ubicacionInput" class="col-sm-4 control-label">UBICACIÓN</label>
+		    	<label for="ubicacionInput" class="col-sm-4 control-label">Ubicación</label>
 		    	<div class="col-sm-5">
 		      		<textarea type="text" class="form-control" id="ubicacionInput" name="ubicacion" placeholder="{{$ambiente->ubicacion}}" readonly></textarea>
 		    	</div>

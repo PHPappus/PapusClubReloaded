@@ -79,5 +79,11 @@ class ReservarAmbienteController extends Controller
         $reserva->save();
         return redirect('reservar-ambiente/reservar-otros-ambientes')->with('stored', 'Se registró la reserva del ambiente correctamente.');
     }
+
+     public function searchSocio() // va  a la lista de los socios
+    {
+        
+        return view('admin-general.persona.socio.buscarSocio');
+    }
        
 }

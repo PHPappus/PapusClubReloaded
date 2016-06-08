@@ -65,6 +65,30 @@
 		      		<input type="text" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->ubicacion}}" readonly>
 		    	</div>
 		  	</div>
+		  	<div class="form-group required">
+			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha (dd/mm/aaaa) </label>
+			    <div class="col-sm-5">
+				  	<!-- <div class="input-group">
+			   		<input name="fechaInicio" id="fechaInicio" type="text" required class="form-control">
+			       		<span class="input-group-addon">-</span>
+			       		<input name="fechaFin" id="fechaFin" type="text" required class="form-control">
+			   	 	</div>
+ -->
+			   	 	<div class="input-group">
+			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" style="max-width: 250px" >
+			   		<span class="input-group-addon">-</span>
+			   		<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_fin" placeholder="Fecha Fin" style="max-width: 250px">
+					</div>			   		
+		    	</div>	
+			</div>
+		  	<div class="form-group required">
+			   	<label for="contactoInput" class="col-sm-4 control-label">Socio</label>
+			  	<div class="col-sm-5">
+			   		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="contactoInput" name="nombre_contacto" placeholder="Socio" value="{{old('nombre_contacto')}}">
+			   	</div>
+			   	<a class="btn btn-info" name="buscarSocio" href="{!!URL::to('/reservar-ambiente/searchSocio')!!}"  title="Buscar" ><i name="buscarSocio" class="glyphicon glyphicon-search"></i></a>
+			    	<!-- deberia ir a una pantalla que liste todos los contactos posibles del Club  -->
+			</div>	  
 		  	<!-- <div class="form-group">
 			    	<label for="activoInput" class="col-sm-4 control-label ">Activo</label>
 			    	<div class="col-sm-3">

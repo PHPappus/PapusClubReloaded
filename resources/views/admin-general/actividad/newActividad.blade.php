@@ -120,13 +120,13 @@
 					</div>
 			  	</div>
 			  	<div class="form-group required">
-			    	<label for="cant_ambientesInput" class="col-sm-4 control-label">CANTIDAD DE AMBIENTES A USAR</label>
+			    	<label for="cant_ambientesInput" class="col-sm-4 control-label">Cantidad de ambientes a usar</label>
 			    	<div class="col-sm-5">
 			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="cant_ambientesInput" name="cant_ambientes" placeholder="Cantidad de ambientes" >
 			    	</div>
 			  	</div>
 			  	<div class="form-group required">
-			    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA</label>
+			    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad máxima</label>
 			    	<div class="col-sm-5">
 			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="capacidadInput" name="capacidad_maxima" placeholder="Capacidad Maxima" value="{{old('capacidad_maxima')}}" >
 			    	</div>
@@ -135,7 +135,18 @@
 			  	
 			  	<!-- EL ESTADO SIEMPRE VA EN TRUE PARA EL REGISTRAR -->
 			  	
-			  	
+
+			  	<!-- INICIO - Para INGRESaR LOS PRECIOS POR CADA TIPO D PERSONA -->
+			  	@foreach ($tipoPersonas as $tipoPersona)   
+				  	<!-- <div class="form-group required">
+				    	<label for="nombreInput" class="col-sm-4 control-label">{{$tipoPersona->descripcion}}</label>
+				     -->	<!-- <div class="col-sm-5">
+				      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre de la actividad" value="{{old('nombre')}}" >
+				    	</div> -->
+				  	<!-- </div> -->   						
+				@endforeach
+			  	<!-- FIN    - Para INGRESaR LOS PRECIOS POR CADA TIPO D PERSONA -->
+			  
 			  	
 		  	<!-- FIN FIN FIN -->
 					
