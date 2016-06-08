@@ -1,9 +1,9 @@
-<!-- Una lista de los oscios para elegir a cual le editare sus pagos -->
+<!-- Una lista las deudas del socios -->
 
  <!DOCTYPE html>
 <html>
 <head>
-	<title>Seleccionar Persona</title>
+	<title>Pagos</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,12 +22,12 @@
 		<div class="row">
 			<div class="col-sm-12 text-center">
 				<br/><br/>
-				<p class="lead"><strong>Seleccionar Socio</strong></p>
+				<p class="lead"><strong>Deudas del Socio</strong></p>
 				<br/>
 			</div>
 			
 		</div>
-		<h4>1. Selecciones el socio.</h4>
+		
 
 		</br>
 		</br>
@@ -38,20 +38,23 @@
 					<thead class="active">
 						<tr>
 							<th><DIV ALIGN=center>ID</th>
-							<th><DIV ALIGN=center>NOMBRE</th>
-							<th><DIV ALIGN=center>APELLIDO PAT.</th>
-							<th><DIV ALIGN=center>APELLIDO MAT.</th>
+							<th><DIV ALIGN=center>Monto</th>
+							<th><DIV ALIGN=center>Descripción</th>
+							<th><DIV ALIGN=center>estado</th>
 							<!-- <th><DIV ALIGN=center>DETALLE</th> -->
-							<th><DIV ALIGN=center>SELECCIONAR</th>
+							<th><DIV ALIGN=center>Detalle</th>
+							<th><DIV ALIGN=center>Registrar Pago</th>
 						</tr>
 					</thead>
 					<tbody>
-							@foreach($socios as $socio)						
-						    	<tr>						    		
-									<td><a class="btn btn-info" href="{{url('/ambiente/'.$ambiente->id.'/select')}}"  title="OK" ><i class="glyphicon glyphicon-ok"></i></a>
+							<!-- @foreach($socios as $socio)	 -->					
+						    	<td>
+							        <a class="btn btn-info" href="{{url('/actividad/'.$actividad->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 							        </td>
-								</tr>
-							@endforeach
+									<td>
+							        <a class="btn btn-info" href="{{url('/actividad/'.$actividad->id.'')}}" title="Registrar Pago" ><i class="glyphicon glyphicon-pencil"></i></a>
+							    </td>
+							<!-- @endforeach -->
 					</tbody>					
 												
 					

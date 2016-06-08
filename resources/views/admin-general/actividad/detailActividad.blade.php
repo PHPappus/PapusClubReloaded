@@ -41,38 +41,39 @@
 		    	</div>
 		  	</div> -->
 		  	<div class="form-group required">
-		    	<label for="ambienteInput" class="col-sm-4 control-label">AMBIENTE</label>
+		    	<label for="ambienteInput" class="col-sm-4 control-label">Ambiente</label>
 		    	<div class="col-sm-5">
 		    		<input type="text" class="form-control" id="ambienteInput" name="ambiente" value="{{$actividad->ambiente->nombre}}"  required readonly>
 		      	</div>
 		      	<a class="btn btn-info" name="buscarAmbiente" href="{!!URL::to('/ambiente/search')!!}"  title="Buscar" ><i name="buscarAmbiente" class="glyphicon glyphicon-search"></i></a>
 		  	</div>
 		  	<div class="form-group required">
-		    	<label for="tipoambienteInput" class="col-sm-4 control-label">TIPO DE AMBIENTE</label>
+		    	<label for="tipoambienteInput" class="col-sm-4 control-label">Tipo de Ambiente</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="tipoambienteInput" name="tipoambiente" value="{{$actividad->ambiente->tipo_ambiente}}"  required readonly>
 		    	</div>
 		  	</div>
 		  	<div class="form-group required">
-		    	<label for="sedeInput" class="col-sm-4 control-label">SEDE</label>
+		    	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="sedeInput" name="sede" value="{{$actividad->ambiente->sede->nombre}}"  required readonly>
 		    	</div>
 		  	</div>
 
 			<div class="form-group required">
-		    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
+		    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="nombreInput" name="nombre" value="{{$actividad->nombre}}" required>
 		    	</div>
 		  	</div>
 		  	<div class="form-group required">
-		    	<label for="descripcionInput" class="col-sm-4 control-label">DESCRIPCIÓN</label>
+		    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" value ="{{$actividad->descripcion}}" required>
 		    	</div> 
 		  	</div>
 		  	<div class="form-group required">
+
 			    	<label for="fechaInicioInput" class="col-sm-4 control-label">FECHA INICIO</label>
 			    	<div class="col-sm-5">
 			      		<input type="date" id="fechaInicioInput" value="{{$actividad->a_realizarse_en}}">
@@ -96,7 +97,7 @@
 		  	</div>
 
 		  	<div class="form-group required">
-		    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA</label>
+		    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad Maxima</label>
 		    	<div class="col-sm-5">
 		      		<input type="number" class="form-control" id="capacidadInput" name="capacidad_maxima" value="{{$actividad->capacidad_maxima}}" required>
 		    	</div>
