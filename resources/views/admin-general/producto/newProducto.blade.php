@@ -88,6 +88,7 @@
 			    	<div class="col-sm-5">
 			    	
 			      		<select class="form-control" id="tipo_producto" name="tipo_producto" >
+
 						<option value="" selected >Seleccionar tipo...</option>
 						@foreach($tipo_productos as $tipo_producto)
 							<option value="{{$tipo_producto->valor}}" >{{$tipo_producto->valor}}</option>
@@ -95,6 +96,7 @@
 						</select>						
 						
 			    	</div>
+			    	<a class="btn btn-info" name="buscarContacto" href="#"  title="Buscar" ><i name="buscarContacto" class="glyphicon glyphicon-plus"></i></a>
 			  	</div>		
 
 			  	<div class="form-group required">
