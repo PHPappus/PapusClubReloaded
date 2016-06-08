@@ -46,12 +46,13 @@
 						</tr>
 					</thead>
 					<tbody>
-							@foreach($socios as $socio)						
-						    	<tr>						    		
-									<td><a class="btn btn-info" href="{{url('/ambiente/'.$ambiente->id.'/select')}}"  title="OK" ><i class="glyphicon glyphicon-ok"></i></a>
-							        </td>
-								</tr>
-							@endforeach
+						@foreach($socios as $socio)		
+							
+						   	<tr>						    		
+							<td><a class="btn btn-info" href="#"  title="OK" ><i class="glyphicon glyphicon-ok"></i></a>
+						    </td>
+							</tr>
+						@endforeach
 					</tbody>					
 												
 					
