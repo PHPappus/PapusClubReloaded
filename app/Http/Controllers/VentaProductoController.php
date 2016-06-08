@@ -25,8 +25,8 @@ class VentaProductoController extends Controller
 	public function create()
     {
         $factura = new Facturacion();        
-        $configuracion = Configuracion::where('grupo','=','6')
-                                ->orWhere('grupo','=','7')->get();
+        $configuracion = Configuracion::where('grupo','=','7')
+                                ->orWhere('grupo','=','8')->get();
     	return view('admin-general.venta-producto.newVentaProducto', compact('factura'), compact('configuracion'));
     }
     
@@ -72,7 +72,7 @@ class VentaProductoController extends Controller
     public function edit($id)
     {
         $factura = Facturacion::find($id);
-        $estados = Configuracion::where('grupo','=','6')->get();
+        $estados = Configuracion::where('grupo','=','7')->get();
         return view('admin-general.venta-producto.editVentaProducto', compact('factura'), compact('estados'));
     }
 

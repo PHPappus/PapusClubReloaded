@@ -70,7 +70,7 @@
 			      		<select class="form-control" id="tipo_pago" name="tipo_pago" >
 						<option value="" selected >Seleccionar tipo...</option>
 						@foreach($configuracion as $tipo_pago)
-							@if ($tipo_pago['grupo'] == '7')
+							@if ($tipo_pago['grupo'] == '8')
 								<option value="{{$tipo_pago->valor}}" >{{$tipo_pago->valor}}</option>
 							@endif
 						@endforeach						
@@ -86,7 +86,7 @@
 						<!-- Las opciones se deberían extraer de la tabla configuracion-->
 						<option value="" selected>Seleccionar tipo...</option>
 						@foreach($configuracion as $estado)
-							@if ($estado['grupo'] == '6' and $estado['valor'] != 'Anulado')
+							@if ($estado['grupo'] == '7' and $estado['valor'] != 'Anulado')
 							<option value="{{$estado->valor}}">{{$estado->valor}}</option>
 							@endif
 						@endforeach						

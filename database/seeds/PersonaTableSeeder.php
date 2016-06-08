@@ -25,6 +25,17 @@ class PersonaTableSeeder extends Seeder
         	'id_usuario'=>1]);
 
         Persona::create([
+            'nacionalidad'=>'peruano',
+            'doc_identidad'=>'48288722',
+            'nombre'=>'Prueba',
+            'ap_paterno'=>'Socio',
+            'ap_materno'=>'I',
+            'sexo'=>'hombre',
+            'correo'=>'prueba@mail.com',
+            'fecha_nacimiento'=>'1994-05-14',
+            'id_tipo_persona'=>2]);
+
+        Persona::create([       
             'nacionalidad'=>'Peruano',
             'doc_identidad'=>'72877976',
             'nombre'=>'Marcelo',

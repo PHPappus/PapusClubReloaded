@@ -25,8 +25,6 @@
 			
 		</div>
 	</div>
-		</br>
-		</br>
 		@if (session('stored'))
 			<script>$("#modalSuccess").modal("show");</script>
 			
@@ -97,7 +95,7 @@
 							@endforeach
 						</tbody>
 				</table>
-				</br></br></br></br>
+				</br></br></br>
 				<div class="btn-inline">
 					<!-- <form method="POST" action="/sedes/new/sede" >
 					<input type="hidden" name="_token" value="{{ csrf_token() }}"> -->

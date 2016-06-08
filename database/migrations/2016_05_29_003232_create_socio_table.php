@@ -14,7 +14,7 @@ class CreateSocioTable extends Migration
     {
         Schema::create('socio', function (Blueprint $table) {
             $table->increments('id');
-            $table->boolean('estado');
+            $table->boolean('estado')->default(true);
             $table->integer('tipo_membresia_id')->unsigned()->nullable();
             $table->integer('postulante_id')->unsigned()->nullable();
             $table->dateTime('fecha_ingreso');

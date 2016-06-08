@@ -22,7 +22,7 @@ class ProductoController extends Controller
 
 	public function create()
     {
-        $tipo_productos = Configuracion::where('grupo','=','5')->get();
+        $tipo_productos = Configuracion::where('grupo','=','6')->get();
     	return view('admin-general.producto.newProducto', compact('tipo_productos'));
     }
     
@@ -61,7 +61,7 @@ class ProductoController extends Controller
             $precio->save();
         }
 
-        $tipo_productos = Configuracion::where('grupo','=','5')->get();
+        $tipo_productos = Configuracion::where('grupo','=','6')->get();
 
         return view('admin-general.producto.editProducto', compact('producto'), compact('tipo_productos'));
     }
