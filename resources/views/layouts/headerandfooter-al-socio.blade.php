@@ -26,6 +26,7 @@
 		    	<!--menu de opciones debajo de la superior-->
 				<nav class="menu" id="menu">
 					<ul>
+					
 						<li><a href="#">{!!Auth::user()->name!!}  <span class="glyphicon glyphicon-user"></span></a>
 									<ul>
 										<li><a href="{!!URL::to('/cuenta')!!}" title="Ir a cuenta" target="_self">MI CUENTA</a></li>

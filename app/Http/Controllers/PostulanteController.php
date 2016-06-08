@@ -4,6 +4,7 @@ namespace papusclub\Http\Controllers;
 
 use Illuminate\Http\Request;
 use papusclub\Models\Persona;
+use papusclub\Models\Departamento;
 
 use papusclub\Http\Requests;
 
@@ -17,6 +18,7 @@ class PostulanteController extends Controller
 
     public function registrar()
     {
-        return view('admin-general.persona.postulante.newPostulante');
+        $departamentos=Departamento::all();
+        return view('admin-general.persona.postulante.newPostulante',compact('departamentos'));
     }
 }
