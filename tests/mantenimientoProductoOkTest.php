@@ -9,6 +9,7 @@ class Example extends PHPUnit_Extensions_SeleniumTestCase
 
   public function testMyTestCase()
   {
+
     $this->click("link=PRODUCTOS");
     $this->waitForPageToLoad("30000");
     $this->click("link=Agregar Producto");
@@ -27,6 +28,7 @@ class Example extends PHPUnit_Extensions_SeleniumTestCase
     $this->waitForPageToLoad("30000");
     $this->click("link=Regresar");
     $this->waitForPageToLoad("30000");
+
   }
 }
 ?>
