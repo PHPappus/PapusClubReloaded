@@ -166,22 +166,25 @@
 											</div>
 											<div class="col-sm-6">
 												<!-- HTML Markup (Parent) -->
-												<select id="cat-id">
-												    <option id="">Select ...</option>
+												<select class="form-control input-sm" name="category" id="category">
+												    <option value="">Select ...</option>
 												    <!-- other options -->
+												    	@foreach($categories as $category)
+												    		<option value="{{$category->id}}">{{$category->nombre}}</option>>
+												    	@endforeach
 												</select>
 												 <br>
 												 <br>
 												<!-- HTML Markup (Child # 1) -->
-												<select id="subcat-id">
-												    <option id="">Select ...</option>
+												<select class="form-control input-sm" name="" id="cat-id">
+												    <option value="">Select ...</option>
 												    <!-- other options -->
 												</select>
 												 <br>
 												 <br>
 												<!-- HTML Markup (Child # 2) -->
-												<select id="prod-id">
-												    <option id="">Select ...</option>
+												<select class="form-control input-sm" name="" id="cat-id">
+												    <option value="">Select ...</option>
 												    <!-- other options -->
 												</select>
 												<br>
@@ -364,3 +367,20 @@
 		});
 	</script>
 
+	<script>
+		$('#category').on('change',function(e){
+				console.log(e);
+				var cat_id=e.target.value;
+
+				$.get('/ajax-subcat?cat_id=' + cad_id, function(data){
+					//success-data
+					$('#subcategory').empty();
+					$.each(data,function(index,subcatObj){
+						$('#subcategory').append('<option value="'+subcatObj.id+'">' +subcatObj.name+'</option>');
+
+					});
+				});
+
+		});
+
+	</script>

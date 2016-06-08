@@ -260,3 +260,14 @@ Route::post('password/reset', 'Auth\PasswordController@reset');
 Route::get('/home', 'HomeController@index');
 
 Route::get('/prueba', 'FrontController@prueba');
+
+
+//Ruta cochina para departamentos
+Route::get('/ajax-distritos',function(){
+
+	$cat_id= Input::get('cat_id');
+
+	$subcategories= $ubcategory::where('category_id','=',$cat_id);
+
+	return Response::json($subcategories);
+});
