@@ -158,15 +158,10 @@
 					<td>{{ $ambiente->tipo_ambiente }}</td>
 					<td>{{ $ambiente->capacidad_actual }}</td>
 					
-					<td>
-<<<<<<< HEAD
-					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/new-reserva-otro-ambiente')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
-=======
-			        <a class="btn btn-info" href="{{url('/ambiente/'.$ambiente->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-			        </td>
+				
 					<td>
 					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/new-reserva-otro-ambiente')}}"  title="Detalle" ><i class="glyphicon glyphicon-remove"></i></a>
->>>>>>> 35dc114510526c5dd31364b80ec239c4c4ee40a0
+
 
 			        </td>
 					</tr>

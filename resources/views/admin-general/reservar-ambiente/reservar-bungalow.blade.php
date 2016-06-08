@@ -142,6 +142,7 @@
 				<th><DIV ALIGN=center>TIPO</th>
 				<th><DIV ALIGN=center>CAPACIDAD</th>
 				<th><DIV ALIGN=center>RESERVAR</th>
+
 				</tr>
 				</thead>
 				<tbody>
@@ -151,10 +152,7 @@
 					<td>{{ $ambiente->nombre }}</td>
 					<td>{{ $ambiente->tipo_ambiente }}</td>
 					<td>{{ $ambiente->capacidad_actual }}</td>
-					<td>
 
-			        <a class="btn btn-info" href="{{url('/ambiente/'.$ambiente->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-			        </td>
 					<td>
 					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/new-reserva-bungalow')}}"  title="Detalle" ><i class="glyphicon glyphicon-remove"></i></a>
 
