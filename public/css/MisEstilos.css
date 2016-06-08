@@ -260,9 +260,10 @@ body{
     text-align: left;
 }
 
-body > footer > div{
+body > main > footer > div{
     height: 80px !important;
 }
+
 
 .footer{/*Pie de pagina*/
     position: relative;
