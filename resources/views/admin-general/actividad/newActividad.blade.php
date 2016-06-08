@@ -163,7 +163,6 @@
 	{!!Html::script('locales/bootstrap-datepicker.es.min.js')!!}
 	
 	<script>
-
 		var nowTemp = new Date();
 		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
  	
@@ -188,7 +187,6 @@
   			checkout.hide();
 		}).data('datepicker');		
 		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
-
 	
 	</script>
 	<script>
@@ -202,6 +200,7 @@
 			});
 		});
 	</script>
+
 
 
 

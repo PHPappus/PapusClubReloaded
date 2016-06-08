@@ -31,6 +31,7 @@ class Persona extends Model
         return $this->belongsTo('papusclub\Models\Trabajador','id');
     }
 
+
     public function reservas()
     {
         return $this->hasMany('papusclub\Models\Reserva');
@@ -39,5 +40,8 @@ class Persona extends Model
     public function usuario()
     {
         return $this->hasOne('papusclub\User');
+
+    public function facturacion(){
+        return $this->hasMany('papusclub\Models\Facturacion');
     }
 }

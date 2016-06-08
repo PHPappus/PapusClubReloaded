@@ -70,15 +70,14 @@
 			  	</div>			  
 			  	<div class="form-group">
 			    	<label for="estadoInput" class="col-sm-4 control-label ">Estado</label>
-			    	<div class="col-sm-3">			      					      	
-			      		
-			      		<select class="form-control" id="estado" name="estado"  readonly>
-						<!-- Las opciones se deberían extraer de la tabla configuracion-->
-						<option value="1" @if($proveedor['estado'] == true) selected @endif >Activo</option>
-						<option value="0" @if($proveedor['estado'] == false) selected @endif>Inactivo</option>				
-						
-						</select>							
-			    	</div>	    	
+			    	<div class="col-sm-5">
+			      		<input type="text" class="form-control" id="estadoInput" name="estado" 
+			      		@if ($proveedor['estado']==1) 
+			      			value="Activo" 
+			      		@else
+			      			value="Inactivo" 
+			      		@endif readonly>
+			    	</div>
 			  	</div>
 									
 				<br/><br/>
