@@ -1,5 +1,8 @@
  <!--Cabecera- Se separará espacio para el input de busqueda antes de la cabecera de menu-->
 
+
+
+
   	<script>
 		function inputLimiter(e,allow) {
 		    var AllowableCharacters = '';
@@ -147,3 +150,10 @@
 		</div>
 	</div>
 </footer>
+
+
+
+
+
+	
+	

@@ -270,6 +270,39 @@
 
 										<!--DATOS DE CONTACTO -->
 						<div role="tabpanel" class="tab-pane" id="seccion7">
+							<form action="" class="form-horizontal form-border">
+								<br/><br/>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Telefono:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="telefono" name="telefono_domicilio" placeholder="Telefono de Contacto" value="{{$socio->postulante->telefono_domicilio}}" disabled>
+										</div>	
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Telefono Celular:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="celular" name="telefono_celular" placeholder="Celular" value="{{$socio->postulante->telefono_celular}}" disabled>
+										</div>	
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Direccion Laboral:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" value="{{$socio->postulante->persona->correo}}" disabled>
+										</div>	
+									</div>
+								</div>																												
+							</form>						
 
 						</div>
 										<!--DATOS DE MEMBRESIA -->
