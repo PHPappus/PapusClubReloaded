@@ -10,6 +10,7 @@ use papusclub\Models\PrecioProducto;
 use papusclub\Models\Configuracion;
 use papusclub\Http\Requests\StoreProductoRequest;
 use papusclub\Http\Requests\EditProductoRequest;
+use papusclub\Http\Requests\StoreConfiguracionRequest;
 
 
 class ProductoController extends Controller
@@ -110,6 +111,19 @@ class ProductoController extends Controller
     {
         $producto = Producto::find($id);        
         return view('admin-general.producto.detailProducto', compact('producto'));
+    }
+
+    public function storeTipoProducto(StoreConfiguracionRequest $request)
+    {       
+        $input = $request->all();
+        $configuracion = new Configuracion();
+        $configuracion->valor = $input['valor'];
+        $configuracion->grupo = 6;
+        $configuracion->descripcion = 'Tipo de Producto';
+               
+        $configuracion->save();      
+        
+        return redirect('producto/new');
     }
 
 }

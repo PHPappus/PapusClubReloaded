@@ -170,6 +170,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('producto/{id}/edit', 'ProductoController@update');
 	Route::get('producto/{id}/delete', 'ProductoController@destroy');
 	Route::get('producto/{id}/show', 'ProductoController@show');
+	Route::post('producto/new/tipoproducto', 'ProductoController@storeTipoProducto');
 	//VENTA DE PRODUCTOS
 	Route::get('venta-producto/index', 'VentaProductoController@index');
 	Route::get('venta-producto/new', 'VentaProductoController@create');
