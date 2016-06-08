@@ -27,6 +27,10 @@ class StoreServicioRequest extends Request
             'nombre'       =>  'required|max:100|string',
             'descripcion'  =>  'required|max:100|string',
             'tipo_servicio'=>  'required|max:50|string',
+            
+            'trabajador' => '|max:100|string',
+            'postulante'=> 'required|max:100|string',
+            'tercero'=> '|max:100|string',
         ];
     }
 }

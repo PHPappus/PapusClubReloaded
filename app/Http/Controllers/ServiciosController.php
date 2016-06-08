@@ -8,6 +8,7 @@ use papusclub\Http\Requests;
 use papusclub\Models\Servicio;
 use papusclub\Models\Sede;
 use papusclub\Models\TipoPersona;
+use papusclub\Models\TarifarioServicio;
 use papusclub\Models\Configuracion;
 use papusclub\Http\Requests\StoreServicioRequest;
 use papusclub\Http\Requests\EditServicioRequest;
@@ -32,15 +33,47 @@ class ServiciosController extends Controller
 
     public function store(StoreServicioRequest $request)
     {
+        $tipo_persona = "0";
         $mensaje = 'Se registró el producto correctamente.';
         $input = $request->all();            
-        $servicio = new Servicio();
-        $servicio->nombre = $input['nombre'];
+        $servicio = new Servicio();        
+        $servicio->nombre   = $input['nombre'];
         $servicio->descripcion = $input['descripcion'];
         $servicio->tipo_servicio = $input['tipo_servicio'];
-        $servicio->estado = true;                
+        $servicio->estado = true;           
         $servicio->save();
+
+
+        $TarifarioServicio = new TarifarioServicio ();
+        $TarifarioServicio->idservicio = $servicio->id ;
+        $TarifarioServicio->idtipopersona = "1" ;
+        $TarifarioServicio->descripcionparafecha = "12";
+        $TarifarioServicio->precio = $input['trabajador'];
+        $TarifarioServicio->estado = true; 
+        $TarifarioServicio->save();
+
+        $TarifarioServicio = new TarifarioServicio ();
+        $TarifarioServicio->idservicio = $servicio->id ;
+        $TarifarioServicio->idtipopersona = "2" ;
+        $TarifarioServicio->descripcionparafecha = "post";
+        $TarifarioServicio->precio = $input['postulante'];
+        $TarifarioServicio->estado = true; 
+        $TarifarioServicio->save();
+        
+        $TarifarioServicio = new TarifarioServicio ();
+        $TarifarioServicio->idservicio = $servicio->id ;
+        $TarifarioServicio->idtipopersona = "3" ;
+        $TarifarioServicio->descripcionparafecha = "ter";
+        $TarifarioServicio->precio = $input['tercero'];
+        $TarifarioServicio->estado = true; 
+        $TarifarioServicio->save();
+
+        $servicio->postulante = $input['trabajador']; 
+        $servicio->postulante = $input['postulante'];
+        $servicio->tercero = $input['tercero'];        
+                
         return redirect('servicios/index')->with('mensaje', 'Se registró el servicio correctamente.');
+
     }
 
     public function edit($id)

@@ -17,6 +17,9 @@ class CrateServiciosTable extends Migration
             $table->string('nombre');
             $table->string('descripcion');
             $table->string('tipo_servicio');            
+            $table->string('trabajador');            
+            $table->string('postulante');            
+            $table->string('tercero');            
             $table->boolean('estado');
             $table->timestamps();
         });

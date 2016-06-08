@@ -12,5 +12,8 @@ class Servicio extends Model
     'descripcion', 
     'tipo_servicio',     
     'estado',     
+    'trabajador',     
+    'postulante',     
+    'tercero',     
     ];
 }

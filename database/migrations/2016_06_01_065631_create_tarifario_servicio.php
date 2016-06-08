@@ -14,8 +14,8 @@ class CreateTarifarioServicio extends Migration
     {
         Schema::create('tarifarioservicios', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('idservicio');
-            $table->integer('idtipopersona');
+            $table->integer('id_servicio');
+            $table->integer('id_tipo_persona');
             $table->string('descripcionparafecha');
             $table->double('precio');
             $table->boolean('estado');

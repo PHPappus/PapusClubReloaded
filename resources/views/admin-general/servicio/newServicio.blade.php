@@ -79,6 +79,13 @@
 			    	</div>			  
 			  	</div>	  
 
+				<!--div class="form-group required">
+			    	<label for="nombreInput" class="col-sm-4 control-label">Postulante</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" class="form-control" id="nombreInput" name="postulante" placeholder="postulante" >
+			    	</div>
+			  	</div-->
+
 	
 			  	<!--div class="form-group required">
 			  	<?php 
@@ -103,63 +110,81 @@
 
 
 				 
-
-
-			  		table table-bordered table-hover text-center display
-
-			<table class="table table-condensed table-striped" id="example"  >
-					<thead class="active"	>
+		 	
+	  	    </br>
+			<style>  				
+  				#myTable {
+    					    margin: 0 auto;
+  				}
+			</style>
+			<table id ="myTable" class="table-bordered" >
+					<thead class="active" >	
 						<tr>							
-							<th  class="col-sm-1"><DIV ALIGN=center>TIPO PERSONA</th>
-							<th  class="col-sm-1"><DIV ALIGN=center>MONEDA</th>
-							<th  class="col-sm-1"><DIV ALIGN=center>MONTO</th>
+							<th class="col-sm-4" ><DIV ALIGN=center>Tipo Persona</th>
+							<th class="col-sm-2" ><DIV ALIGN=center>Moneda</th>
+							<th class="col-sm-7"><DIV ALIGN=center>Monto</th>
 						</tr>
 					</thead>
 					<tbody>
 							@foreach($tiposPersonas as $tipoPersona)			
 						    	<tr>
-									<td>{{ $tipoPersona->descripcion }}</td>
-									<td> <p> S/. </p> </td>
-									<td> 
-					<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="precioInput" name="precio" placeholder="" >
+									<td align="center">  {{ $tipoPersona->descripcion }}</td>
+									<td align="center">  S/.</td>
+									<td align="center"> 
+					<div align="center">
+			      		<input style="text-align:right;" type="text" class="form-control" id="{{$tipoPersona->descripcion}}imput" name="{{$tipoPersona->descripcion}}" placeholder="">
 			    	</div>
-									</td>
-							        
+								</td>							        
 								</tr>
 							@endforeach
 					</tbody>													
 			</table>
+				
+
+				<!--p>	Este es eñ cpdgop que casi funca xdddddddddddddd </p-->
+				<!--div class="form-group required" align="right">
+						<div class="col-sm-4" align="center">
+						<table class="table table-bordered table-hover text-center display" id="example">
+									<thead class="active">
+										<tr>
+											<th><DIV ALIGN=center>SEDE</th>
+											<th><DIV ALIGN=center>NOMBRE</th>
+										</tr>
+									</thead>
+									<tbody>
+											@foreach($tiposPersonas as $tipoPersona)			
+								    			<tr>
+								    				<td></td>
+													<td></td>									    
+												</tr>
+											@endforeach
+									</tbody>					
+														
+							
+						</table>		
+						</div>
+				</div-->
+			
+			
+			
 
 
 
 
 
 
-<table class="table">
-  <thead>
-    <tr>
-      <th class="col-md-3">Invoice</th>
-      <th class="col-md-3">Date</th>
-      <th class="col-md-3">Amount</th>
-      <th class="col-md-3">Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>12345</td>
-      <td>Feb 1, 2014</td>
-      <td>$45.00</td>
-      <td>Owing</td>
-    </tr>
-    <tr>
-      <td>67890</td>
-      <td>Jan 30, 2014</td>
-      <td>$19.99</td>
-      <td>Overdue</td>
-    </tr>
-  </tbody>
-</table>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
