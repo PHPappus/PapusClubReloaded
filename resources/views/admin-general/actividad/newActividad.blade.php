@@ -59,34 +59,34 @@
 				
 
 			  	<div class="form-group required">
-			    	<label for="ambienteInput" class="col-sm-4 control-label">AMBIENTE</label>
+			    	<label for="ambienteInput" class="col-sm-4 control-label">Ambiente</label>
 			    	<div class="col-sm-5">
 			    		<input type="text" class="form-control" id="ambienteInput" name="ambiente" value="{{$ambiente->nombre}}"   readonly>
 			      	</div>
 			      	<a class="btn btn-info" name="buscarAmbiente" href="{!!URL::to('/ambiente/search')!!}"  title="Buscar" ><i name="buscarAmbiente" class="glyphicon glyphicon-search"></i></a>
 			  	</div>
 			  	<div class="form-group required">
-			    	<label for="tipoambienteInput" class="col-sm-4 control-label">TIPO DE AMBIENTE</label>
+			    	<label for="tipoambienteInput" class="col-sm-4 control-label">Tipo de Ambiente</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="tipoambienteInput" name="tipoambiente" value="{{$ambiente->tipo_ambiente}}"   readonly>
 			    	</div>
 			  	</div>
 			  	<div class="form-group required">
-			    	<label for="sedeInput" class="col-sm-4 control-label">SEDE</label>
+			    	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="sedeInput" name="sede" value="{{$ambiente->sede->nombre}}"   readonly>
 			    	</div>
 			  	</div>
 
 				<div class="form-group required">
-			    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
+			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
 			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre de la actividad" value="{{old('nombre')}}" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
-			    	<label for="fechaInicioInput" class="col-sm-4 control-label">FECHA INICIO(dd/mm/aaaa)</label>
+			    	<label for="fechaInicioInput" class="col-sm-4 control-label">Fecha Inicio(dd/mm/aaaa)</label>
 			    	<div class="col-sm-5">
 			      		<!-- <input type="date" class="form-control" id="fechaInicioInput" name="fecha"> -->
 			      		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="fechaInicioInput" name="a_realizarse_en" placeholder="Fecha Inicio" style="max-width: 250px">
@@ -94,7 +94,7 @@
 			  	</div>
 			 
 			  	<div class="form-group required">
-			    	<label for="horaInicioInput" class="col-sm-4 control-label">HORA INICIO(HH:mm:ss)</label>
+			    	<label for="horaInicioInput" class="col-sm-4 control-label">Hora Inicio(HH:mm:ss)</label>
 			    	<div class="col-sm-5">
 			      		<input type="time" class="form-control" id="horaInicioInput" name="hora">
 			      		 	
@@ -103,13 +103,13 @@
 			  	</div>
 
 			  	<div class="form-group required">
-			    	<label for="descripcionInput" class="col-sm-4 control-label">DESCRIPCIÓN</label>
+			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
 			      		<textarea type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" ></textarea> 
 			    	</div>
 			  	</div>
 			  	<div class="form-group required">
-			    	<label for="tipoActividadInput" class="col-sm-4 control-label">TIPO DE ACTIVIDAD</label>	
+			    	<label for="tipoActividadInput" class="col-sm-4 control-label">Tipo de Actividad</label>	
 			    	<div class="col-sm-5">
 				    	<select class="form-control" id="tipoActividadInput" name="tipo_actividad" style="max-width: 150px "  >
 				    						<option value="-1" default>Seleccione</option>
@@ -163,7 +163,6 @@
 	{!!Html::script('locales/bootstrap-datepicker.es.min.js')!!}
 	
 	<script>
-
 		var nowTemp = new Date();
 		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
  	
@@ -188,7 +187,6 @@
   			checkout.hide();
 		}).data('datepicker');		
 		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
-
 	
 	</script>
 	<script>
@@ -202,6 +200,7 @@
 			});
 		});
 	</script>
+
 
 
 

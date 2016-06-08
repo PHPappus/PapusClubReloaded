@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CarnetTableSeeder::class);
         $this->call(ReservasTableSeeder::class);
         $this->call(TestTallerTableSeeder::class);
+		$this->call(PrecioProductoTableSeeder::class);
         Model::reguard();
     }
 }

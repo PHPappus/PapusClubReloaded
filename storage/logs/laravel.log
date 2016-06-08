@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [2016-06-07 23:24:36] local.ERROR: BadMethodCallException: Call to undefined method Illuminate\Database\Query\Builder::id() in C:\Users\victo\Desktop\MASTER\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:2345
 Stack trace:
 #0 [internal function]: Illuminate\Database\Query\Builder->__call('id', Array)
@@ -994,3 +995,5 @@ Stack trace:
 #78 C:\Users\victo\Desktop\MASTER\PapusClubReloaded\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #79 C:\Users\victo\Desktop\MASTER\PapusClubReloaded\server.php(21): require_once('C:\\Users\\victo\\...')
 #80 {main}  
+=======
+>>>>>>> de7bb6907bf5c1b529cc4efe80050baea774bd5c
