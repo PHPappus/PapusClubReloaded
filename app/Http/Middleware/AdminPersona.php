@@ -4,7 +4,7 @@ namespace papusclub\Http\Middleware;
 
 use Closure;
 
-class AdminPagos
+class AdminPersona
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class AdminPagos
      */
     public function handle($request, Closure $next)
     {   
-        if (\Auth::user()->perfil_id != '3') {
+        if (\Auth::user()->perfil_id != '6') {
             $request->session()->flash('message', 'Usted no esta autorizado!.');
             $request->session()->flash('alert-class', 'alert-danger');
             switch (\Auth::user()->perfil_id) {
@@ -25,18 +25,18 @@ class AdminPagos
                 case '2':
                     return redirect('/admin-general');
                     break;
-               /* case '3':
+                case '3':
                     return redirect('/admin-pagos');
-                    break;*/
+                    break;
                 case '4':
                     return redirect('/admin-registros');
                     break;
                 case '5':
                     return redirect('/gerente');
                     break;
-                case '6':
+                /*case '6':
                     return redirect('/admin-persona');
-                    break;
+                    break;*/
                 case '7':
                     return redirect('/admin-reserva');
                     break;
