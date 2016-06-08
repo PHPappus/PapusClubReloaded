@@ -74,7 +74,7 @@
 		  	</div>
 		  	<div class="form-group required">
 
-			    	<label for="fechaInicioInput" class="col-sm-4 control-label">FECHA INICIO</label>
+			    	<label for="fechaInicioInput" class="col-sm-4 control-label">Fecha Inicio</label>
 			    	<div class="col-sm-5">
 			      		<input type="date" id="fechaInicioInput" value="{{$actividad->a_realizarse_en}}" readonly>
 			    	</div>
@@ -82,7 +82,7 @@
 			 </div>
 
 			<div class="form-group required">
-			    	<label for="horaInicioInput" class="col-sm-4 control-label">HORA INICIO</label>
+			    	<label for="horaInicioInput" class="col-sm-4 control-label">Hora Inicio</label>
 			    	<div class="col-sm-5">
 			      		<input type="time" id="horaInicioInput" value="{{$actividad->a_realizarse_en}}" readonly>
 			    	</div>
@@ -90,7 +90,7 @@
 			 </div>
 
 		  	<div class="form-group required">
-		    	<label for="tipoActividadInput" class="col-sm-4 control-label">TIPO DE ACTIVIDAD</label>	
+		    	<label for="tipoActividadInput" class="col-sm-4 control-label">Tipo de Actividad</label>	
 		    	<div class="col-sm-5">
 			    	<input type="text" class="form-control" id="tipoActividadInput" name="tipo_actividad" value="{{$actividad->tipo_actividad}}" readonly >
 				</div>

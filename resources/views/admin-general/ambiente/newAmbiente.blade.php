@@ -59,7 +59,7 @@
 
 					<!-- INICIO INICIO INICIO INICIO -->
 				<div class="form-group required">
-			    	<label for="sedeInput" class="col-sm-4 control-label">SEDE</label>	
+			    	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>	
 			    	<div class="col-sm-5">
 				    	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >
 							                <option value="-1" default>Seleccione</option>							         
@@ -71,19 +71,20 @@
 			  	</div>
 
 				<div class="form-group required">
-			    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
+			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"   class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" value="{{old('nombre')}}" >
 			    	</div>
 			  	</div>
 			  	<div class="form-group required">
-			    	<label for="tipoAmbienteInput" class="col-sm-4 control-label">TIPO AMBIENTE</label>	
+			    	<label for="tipoAmbienteInput" class="col-sm-4 control-label">Tipo Ambiente</label>	
 			    	<div class="col-sm-5">
 				    	<select class="form-control" id="tipoAmbienteInput" name="tipo_ambiente" style="max-width: 150px "   >
 							                <option value="-1" default>Seleccione</option>
 							                @foreach ($values as $value)      
 							                	<option value="{{$value->id}}">{{$value->valor}}</option>
 							                @endforeach
+							                
 							                
 
 
@@ -92,27 +93,32 @@
 			  	</div>
 
 			  	<div class="form-group required">
-			    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA</label>
+			    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad Máxima</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="capacidadInput" name="capacidad_actual" placeholder="Capacidad Maxima" value="{{old('capacidad_actual')}}" >
 			    	</div>
 			  	</div>	  	
 			  	<div class="form-group required">
-			    	<label for="numHabitacionInput" class="col-sm-4 control-label">NÚMERO DE HABITACIONES</label>
+			    	<label for="numHabitacionInput" class="col-sm-4 control-label">Número de habitaciones</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="numHabitacionInput" name="capacidad_actual" placeholder="Número de habitaciones" value="{{old('capacidad_actual')}}" >
 			    	</div>
 			  	</div>	
 			  	<div class="form-group required">
-			    	<label for="ubicacionInput" class="col-sm-4 control-label">UBICACIÓN</label>
+			    	<label for="ubicacionInput" class="col-sm-4 control-label">Ubicación</label>
 			    	<div class="col-sm-5">
 			      		<textarea type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="ubicacionInput" name="ubicacion" placeholder="Ubicacion" value="{{old('ubicacion')}}"></textarea>
 			    	</div>
 			  	</div>
 			  	</br>
-			  	
-			  	
-		  			<!-- FIN FIN FIN -->
+			  	<!-- INICIO  PRECIO POR TIPO DE PERSONA -->
+
+				
+				
+				<!-- FIN     PRECIO POR TIPO DE PERSONA -->
+			  				  	
+
+			  	<!-- FIN FIN FIN -->
 					
 				</br></br>
 			  	<div class="btn-inline">

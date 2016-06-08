@@ -8,6 +8,7 @@ use papusclub\Http\Requests;
 use papusclub\Models\Ambiente;
 use papusclub\Models\Actividad;
 use papusclub\Models\Configuracion;
+use papusclub\Models\TipoPersona;
 use papusclub\Http\Requests\StoreActividadRequest;
 use papusclub\Http\Requests\EditActividadRequest;
 use Carbon\Carbon;
@@ -23,8 +24,11 @@ class ActividadController extends Controller
     {
     	/*PAra crear la ACtividad , primero se debe buscar el Ambiente*/
     	$ambientes = Ambiente::all();
+        $tipoPersonas = TipoPersona::all();
+        
         $values=Configuracion::where('grupo','=','3')->get();
-        return view('admin-general.ambiente.searchAmbiente', compact('ambientes'),compact('values'));
+
+        return view('admin-general.ambiente.searchAmbiente', compact('ambientes'),compact('values'),compact('tipoPersonas'));
     	
     }
     public function store(StoreActividadRequest $request)
