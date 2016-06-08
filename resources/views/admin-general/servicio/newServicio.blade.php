@@ -114,10 +114,10 @@
 	  	    </br>
 			<style>  				
   				#myTable {
-    					    margin: 0 auto;
-  				}
+    					    margin: 0 auto;  				
 			</style>
-			<table id ="myTable" class="table-bordered" >
+			<div class="container" style="width: 600px; margin-left: auto; margin-right: auto"  >
+			<table class="table table-bordered" >
 					<thead class="active" >	
 						<tr>							
 							<th class="col-sm-4" ><DIV ALIGN=center>Tipo Persona</th>
@@ -139,7 +139,8 @@
 							@endforeach
 					</tbody>													
 			</table>
-				
+			</div>
+			
 
 				<!--p>	Este es eñ cpdgop que casi funca xdddddddddddddd </p-->
 				<!--div class="form-group required" align="right">
