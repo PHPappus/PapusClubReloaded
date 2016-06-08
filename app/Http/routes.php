@@ -89,6 +89,12 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('postulante/new','PostulanteController@registrar');//ya
 	Route::get('postulante/search','PostulanteController@buscar');
 	Route::get('postulante/new','PostulanteController@registrar');
+
+
+
+	//Route::get('/information/create/ajax-departamento','UbicacionController@getProvincias');
+	Route::get('api/repairdropdown', 'UbicacionController@dropdown');
+
 	//MANTENIMIENTO DE TRABAJADOR
 	Route::get('trabajador/index','TrabajadorController@index');//ya
 	Route::get('trabajador/new','TrabajadorController@registrar');//ya
@@ -263,11 +269,14 @@ Route::get('/prueba', 'FrontController@prueba');
 
 
 //Ruta cochina para departamentos
-Route::get('/ajax-distritos',function(){
+//Route::get('dropdowns/provincias/{id}', 'UbicacionController@getProvincias');
+
+
+/*Route::get('/ajax-subcat',function(){
 
 	$cat_id= Input::get('cat_id');
 
-	$subcategories= $ubcategory::where('category_id','=',$cat_id);
+	$subcategories= Provincia::where('departamento_id','=',$cat_id)->get();
 
 	return Response::json($subcategories);
-});
+});*/

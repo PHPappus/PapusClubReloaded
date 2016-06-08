@@ -147,10 +147,23 @@
 
 							<div role="tabpanel" class="tab-pane" id="seccion2">
 								<br>
+								<br>
 								<div class="form-group">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Fecha de Nacimiento:</label>
+												<label for="" class="control-label">Direccion de Nacimiento:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="direccion Nacimiento" style="max-width: 250px">
+											</div>		
+										</div>
+								</div>
+
+
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Fecha de Nacimiento</label>
 											</div>
 											<div class="col-sm-6">
 												<input class="datepicker" type="text" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" style="max-width: 250px">
@@ -159,27 +172,24 @@
 										</div>
 								</div>
 
+
 								<div class="form-group">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Fecha de Nacimiento:</label>
 											</div>
 											<div class="col-sm-6">
-												<!-- HTML Markup (Parent) -->
-												<select class="form-control input-sm" name="category" id="category">
-												    <option value="">Select ...</option>
-												    <!-- other options -->
-												    	@foreach($categories as $category)
-												    		<option value="{{$category->id}}">{{$category->nombre}}</option>>
-												    	@endforeach
+												<select class="form-control" id="departamento" name="departamento" style="max-width: 150px "   >
+													<option value="-1" default>Seleccione</option>
+														@foreach ($departamentos as $depa)      
+										                	<option value="{{$depa->id}}">{{$depa->nombre}}</option>
+										                @endforeach
 												</select>
 												 <br>
 												 <br>
 												<!-- HTML Markup (Child # 1) -->
-												<select class="form-control input-sm" name="" id="cat-id">
-												    <option value="">Select ...</option>
-												    <!-- other options -->
-												</select>
+												 <select id="provincia" class="form-control input-sm" name="provincia">
+											     </select>
 												 <br>
 												 <br>
 												<!-- HTML Markup (Child # 2) -->
@@ -194,11 +204,97 @@
 							</div>
 
 							<div role="tabpanel" class="tab-pane" id="seccion3">
-								section 3
+							<br>
+							<br>
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Educacion Primaria:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="Educacion Primaria" style="max-width: 250px">
+											</div>		
+										</div>
+								</div>
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Educacion secundaria:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="Educacion Secundaria" style="max-width: 250px">
+											</div>		
+										</div>
+								</div>
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Universidad:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="Universidad" style="max-width: 250px">
+											</div>		
+										</div>
+								</div>
+
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Profesion:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="Profesion" style="max-width: 250px">
+											</div>		
+										</div>
+								</div>
 							</div>
 
 							<div role="tabpanel" class="tab-pane" id="seccion4">
-								section 4
+								<br>
+								<br>
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Empleo:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="Empleo" style="max-width: 250px">
+											</div>		
+										</div>
+								</div>
+
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Centro de Trabajo:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="Centro de Trabajo" style="max-width: 250px">
+											</div>		
+										</div>
+								</div>
+
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Cargo de Trabajo:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="Cargo de Trabajo" style="max-width: 250px">
+											</div>		
+										</div>
+								</div>
+
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Direccion Laboral</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="Direccion Laboral" style="max-width: 250px">
+											</div>		
+										</div>
+								</div>
 							</div>
 
 							<div role="tabpanel" class="tab-pane" id="seccion5">
@@ -368,19 +464,33 @@
 	</script>
 
 	<script>
-		$('#category').on('change',function(e){
-				console.log(e);
-				var cat_id=e.target.value;
 
-				$.get('/ajax-subcat?cat_id=' + cad_id, function(data){
-					//success-data
-					$('#subcategory').empty();
-					$.each(data,function(index,subcatObj){
-						$('#subcategory').append('<option value="'+subcatObj.id+'">' +subcatObj.name+'</option>');
+	  $(document).ready(function($){
 
-					});
-				});
+	        $('#departamento').change(function(){
 
-		});
+	            $.get("{{ url('api/repairdropdown')}}", { option: $(this).val() }, 
 
+	            function(data) {
+
+	                var numbers = $('#provincia');
+
+	                    numbers.empty();
+
+	                    $.each(data, function(key, value) {   
+
+	              numbers
+
+	              .append($("<option></option>")
+
+	              .attr("value",key)
+
+	              .text(value)); 
+	              });
+
+	            });
+
+	        });
+
+	    });
 	</script>
