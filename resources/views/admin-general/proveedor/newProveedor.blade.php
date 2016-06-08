@@ -46,54 +46,56 @@
 
 				<br/>
 				<br/>
-				<div class="col-sm-4"></div>
-				<div class="">
-			  		<font color="red"> 
-			  			(*) Dato Obligatorio
-			  		</font>		  			
-				</div>			
+				<div class="form-group">
+			  		<div class="text-center">
+			  			<font color="red"> 
+			  				(*) Dato Obligatorio
+			  			</font>
+			  			
+			  		</div>
+			  	</div>
 			  	</br>
 			  	</br>
 				
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="nombre_proveedor" name="nombre_proveedor" placeholder="Nombre del Proveedor" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombre_proveedor" name="nombre_proveedor" placeholder="Nombre del Proveedor" value="{{old('nombre_proveedor')}}">
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="telefonoInput" class="col-sm-4 control-label">RUC</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="ruc" name="ruc" placeholder="RUC" pattern="[0-9]{11}" title="Número de 11 dígitos" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="ruc" name="ruc" placeholder="RUC" pattern="[0-9]{11}" title="Número de 11 dígitos" value="{{old('ruc')}}">
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="direccionInput" class="col-sm-4 control-label">Dirección</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección" >
+			      		<input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección" value="{{old('direccion')}}">
 			    	</div>
 			  	</div>	  	
 
 			  	<div class="form-group required">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">Teléfono</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" pattern="[0-9]{7,13}" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" pattern="[0-9]{7,13}" value="{{old('telefono')}}">
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="capacidadSocioInput" class="col-sm-4 control-label">Correo</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo">
+			      		<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" value="{{old('correo')}}">
 			    	</div>
 			  	</div>
 			  	
 			  	<div class="form-group required">
 			    	<label for="departamentoInput" class="col-sm-4 control-label">Nombre del Responsable</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text"  class="form-control" id="nombre-responsable" name="nombre_responsable" placeholder="Nombre del Responsable" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombre-responsable" name="nombre_responsable" placeholder="Nombre del Responsable" value="{{old('nombre_responsable')}}">
 			    	</div>
 			  	</div>			  	
 
@@ -116,10 +118,10 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-success" type="submit" value="Aceptar">
+						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
-						<a href="/proveedor/index" class="btn btn-danger">Cancelar</a>
+						<a href="/proveedor/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>

@@ -1,5 +1,18 @@
-@extends('admin-general.persona.postulante.index')
+<!DOCTYPE html>
+<html>
+<head>
+	<title>POSTULANTE</title>
+	<meta charset="UTF-8">
 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{!!Html::style('css/jquery.bxslider.css')!!}
+	{!!Html::style('css/font-awesome.css')!!}
+	{!!Html::style('css/bootstrap.css')!!}
+	{!!Html::style('css/MisEstilos.css')!!}
+	{!!Html::style('css/datepicker.css')!!}
+	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
+	<!-- PARA DATA TABLE -->
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
 	<style type="text/css" media="screen">
 		#dpd1{
 			width:300px;
@@ -24,8 +37,10 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&libraries=places"></script>
 
 
-
-@section('content-opcion')
+@extends('layouts.headerandfooter-al-admin')
+@section('content')
+		<br>
+		<br>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-left">
@@ -89,17 +104,7 @@
 										</div>
 									</div>
 
-									<div class="form-group">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Fecha de Nacimiento:</label>
-											</div>
-											<div class="col-sm-6">
-												<input class="datepicker" type="text" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" style="max-width: 250px">
-
-											</div>	
-										</div>
-									</div>
+									
 
 									<div class="form-group">
 										<div class="col-sm-6">
@@ -141,7 +146,48 @@
 							</div>
 
 							<div role="tabpanel" class="tab-pane" id="seccion2">
-								section 2
+								<br>
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Fecha de Nacimiento:</label>
+											</div>
+											<div class="col-sm-6">
+												<input class="datepicker" type="text" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" style="max-width: 250px">
+
+											</div>	
+										</div>
+								</div>
+
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Fecha de Nacimiento:</label>
+											</div>
+											<div class="col-sm-6">
+												<!-- HTML Markup (Parent) -->
+												<select id="cat-id">
+												    <option id="">Select ...</option>
+												    <!-- other options -->
+												</select>
+												 <br>
+												 <br>
+												<!-- HTML Markup (Child # 1) -->
+												<select id="subcat-id">
+												    <option id="">Select ...</option>
+												    <!-- other options -->
+												</select>
+												 <br>
+												 <br>
+												<!-- HTML Markup (Child # 2) -->
+												<select id="prod-id">
+												    <option id="">Select ...</option>
+												    <!-- other options -->
+												</select>
+												<br>
+											</div>	
+										</div>
+								</div>
 							</div>
 
 							<div role="tabpanel" class="tab-pane" id="seccion3">
@@ -209,6 +255,20 @@
 	{!!Html::script('js/MisScripts.js')!!}
 
 	{!!Html::script('js/bootstrap-datepicker.js')!!}
+
+	<script>
+    // Child # 1
+    $("#subcat-id").depdrop({
+        //url: '/server/getSubcat.php',
+        depends: ['cat-id']
+    });
+ 
+    // Child # 2
+    $("#prod-id").depdrop({
+        //url: '/server/getProd.php',
+        depends: ['cat-id', 'subcat-id']
+    });
+</script>
 
 
 	<script>

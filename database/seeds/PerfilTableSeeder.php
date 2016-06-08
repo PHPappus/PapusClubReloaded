@@ -17,5 +17,9 @@ class PerfilTableSeeder extends Seeder
         Perfil::insert(['description'=>'ADMINISTRADOR DE PAGOS']);
         Perfil::insert(['description'=>'ADMINISTRADOR DE REGISTROS']);
         Perfil::insert(['description'=>'GERENTE']);
+        Perfil::insert(['description'=>'ADMINISTRADOR DE PERSONA']);
+        Perfil::insert(['description'=>'ADMINISTRADOR DE RESERVA']);
+        Perfil::insert(['description'=>'PUBLICO']);
+
     }
 }

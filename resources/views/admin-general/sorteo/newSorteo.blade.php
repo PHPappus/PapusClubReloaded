@@ -6,7 +6,6 @@
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="../css/jquery.bxslider.css">
 	<link rel="stylesheet" href="../ss/font-awesome.css">
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="../css/datepicker.css">
@@ -80,8 +79,7 @@
 						<input class="datepicker" type="text" id="fecha_cerrado" readonly="true" name="fecha_cerrado"  value="{{ old('fecha_cerrado') }}" >						
 					</div>
 				</div>
-				<br/>
-				<br/>
+				
 				<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
 					
@@ -99,45 +97,54 @@
 	</div>		
 @stop
 <!-- JQuery -->
-	<script src="../js/jquery-1.11.3.min.js"></script>
+	<script src="../js/jquery-1.12.4.min.js"></script>
 	<!-- Bootstrap -->
 	<script type="text/javascript" src="../js/bootstrap.js"></script>
 	<!-- BXSlider -->
-	<script src="../js/jquery.bxslider.min.js"></script>
+
 	<!-- Mis Scripts -->
-	<script src="../js/MisScripts.js"></script>
-	<script type="text/javascript" src="../js/bootstrap-datepicker.js"></script>
 
+	<script type="text/javascript" src="../js/bootstrap-datepicker-sirve.js"></script>
+
+
+	
+	
 	<script>
-		var nowTemp = new Date();
-		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
- 
-		var checkin = $('#fecha_abierto').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
-  			}
-		}).on('changeDate', function(ev) {
-  			if (ev.date.valueOf() > checkout.date.valueOf()) {
-    			var newDate = new Date(ev.date)
-    			newDate.setDate(newDate.getDate() + 1);
-    			checkout.setValue(newDate);
-  			}
- 			checkin.hide();
-  			$('#fecha_cerrado')[0].focus();
-		}).data('datepicker');
+		$(document).ready(function(){
+				var nowTemp = new Date();		
+				var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+		 
+				var checkin = $('#fecha_abierto').datepicker({
+		  			onRender: function(date) {
+		    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
+		  			}
+				}).on('changeDate', function(ev) {
+		  			if (ev.date.valueOf() > checkout.date.valueOf()) {
+		    			var newDate = new Date(ev.date)
+		    			newDate.setDate(newDate.getDate() + 1);
+		    			checkout.setValue(newDate);
+		  			}
+		 			checkin.hide();
+		  			$('#fecha_cerrado')[0].focus();
+				}).data('datepicker');
 
-		var checkout = $('#fecha_cerrado').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-  			}
-		}).on('changeDate', function(ev) {
-  			checkout.hide();
-		}).data('datepicker');		
-	</script>
+				var checkout = $('#fecha_cerrado').datepicker({
+		  			onRender: function(date) {
+		    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+		  			}
+				}).on('changeDate', function(ev) {
+		  			checkout.hide();
+				}).data('datepicker');	
+		});
+			
+	</script>	
 	<script>
 		$(function(){
 			$('.datepicker').datepicker({
-				format: 'dd/mm/yyyy'
+				format: "dd/mm/yyyy",
+		        language: "es",
+		        autoclose: true,
+		        //beforeShowDay:function (date){return false}
 			});
 		});
 	</script>

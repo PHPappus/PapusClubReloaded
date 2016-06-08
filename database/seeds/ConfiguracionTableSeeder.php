@@ -27,5 +27,19 @@ class ConfiguracionTableSeeder extends Seeder
         Configuracion::insert([ 'valor' => 'fiesta' , 'grupo' => '3', 'descripcion'=>'tipos de actividades']);
         Configuracion::insert([ 'valor' => 'deportiva' , 'grupo' => '3', 'descripcion'=>'tipos de actividades']);
         Configuracion::insert([ 'valor' => 'reunion' , 'grupo' => '3', 'descripcion'=>'tipos de actividades']);
+
+
+        Configuracion::insert(['valor'=>'8','grupo'=>'5','descripcion'=>'duración del carnet en años']);
+
+        Configuracion::insert([ 'valor' => 'Ropa' , 'grupo' => '6', 'descripcion'=>'Tipos de Productos']);
+        Configuracion::insert([ 'valor' => 'Accesorios' , 'grupo' => '6', 'descripcion'=>'Tipos de Productos']);
+        Configuracion::insert([ 'valor' => 'Utiles de Oficina' , 'grupo' => '6', 'descripcion'=>'Tipos de Productos']);
+        Configuracion::insert([ 'valor' => 'Souvenirs' , 'grupo' => '6', 'descripcion'=>'Tipos de Productos']);
+        Configuracion::insert([ 'valor' => 'Pagado' , 'grupo' => '7', 'descripcion'=>'Estado de Facturas']);
+        Configuracion::insert([ 'valor' => 'Emitido' , 'grupo' => '7', 'descripcion'=>'Estado de Facturas']);
+        Configuracion::insert([ 'valor' => 'Anulado' , 'grupo' => '7', 'descripcion'=>'Estado de Facturas']);
+        Configuracion::insert([ 'valor' => 'Efectivo' , 'grupo' => '8', 'descripcion'=>'Estado de Facturas']);
+        Configuracion::insert([ 'valor' => 'Credito' , 'grupo' => '8', 'descripcion'=>'Estado de Facturas']);
+
     }
 }

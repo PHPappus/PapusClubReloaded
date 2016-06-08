@@ -32,13 +32,6 @@
 		}
 	</style>
 
-		<style>
-
-		.modal-backdrop.in{
-			z-index: 1;
-		}
-	</style>
-
 
 	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -62,7 +55,7 @@
 
 
 		<div class="container">
-			<form method="POST" action="/trabajador/{{ $trabajador->id }}/edit" class="form-horizontal form-border">
+			<form id="formEdit" method="POST" action="/trabajador/{{ $trabajador->id }}/edit" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<!-- VALIDACION CON FE INICIO -->
@@ -184,12 +177,12 @@
 									</div>
 
 									<div class="form-group required">
-										<div class="col-sm-6">
+										<div class="col-sm-6">	
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Carnet de extranjeria:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="carnet_extranjeria" name="carnet_extranjeria" placeholder="Carnet de Extranjeria" maxlength="12" style="max-width: 250px" value="{{$persona->carnet_extranjeria}}" value="{{old('carnet_extranjeria')}}"  >
+												<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="carnet_extranjeria" name="carnet_extranjeria" placeholder="Carnet de Extranjeria" maxlength="12" style="max-width: 250px" value="{{$persona->carnet_extranjeria}}" value="{{old('carnet_extranjeria')}}" disabled="true" >
 											</div>	
 										</div>
 									</div>
@@ -256,6 +249,19 @@
 											</div>
 										</div>
 									</div>
+								
+								<div class="btn-inline">
+									<div class="btn-group col-sm-5"></div>
+
+									<div class="btn-group ">
+										<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" value="Aceptar" data-href="{{url('/trabajador/'.$trabajador->id.'/edit')}}">
+									</div>
+									<div class="btn-group">
+										<a href="/trabajador/index" class="btn btn-info">Cancelar</a>
+									</div>
+								</div>
+								<br>
+
 							</div>
 
 						</div>
@@ -263,39 +269,10 @@
 					
 				</div>
 				<br>
-				<div class="btn-inline">
-					<div class="btn-group col-sm-5"></div>
 
-					<div class="btn-group ">
-						<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Aceptar">
-					</div>
-					<div class="btn-group">
-						<a href="/trabajador/index" class="btn btn-info">Cancelar</a>
-					</div>
-				</div>
-				<br>
 
 				
-				<!-- Ventana modal de Confirmación -->			  	
-				<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" data-backdrop="static">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<!-- Header de la ventana -->
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" onclick="cerrarventana()">&times;</span></button>
-								<h4 class="modal-title">EDITAR TRABAJADOR</h4>
-							</div>
-							<!-- Contenido de la ventana -->
-							<div class="modal-body">
-								<p>¿Desea guardar los cambios realizados?</p>
-							</div>
-							<div class="modal-footer">
-						        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cancelar</button>
-						        <button type="submit" class="btn btn-primary">Confirmar</button>
-					      	</div>
-						</div>
-					</div>
-				</div>
+				
 
 
 				
@@ -326,9 +303,10 @@
 	<script type="text/javascript">
 		//var disabled_dates = ["23.03.2016","21.03.2016"];
 		$(function(){
-			$('.datepicker').datepicker({
-				format: 'dd/mm/yyyy',				
-				autoclose:true,
+			$('.datepicker').datepicker({				
+				autoclose: true,
+				format: 'dd/mm/yyyy',
+				//autoclose: true,
 				startDate: '-3d',
 				beforeShowDay:function($date){
 					return false;
@@ -339,7 +317,38 @@
 	</script>
 
 
+	<!-- Ventana modal de Confirmación -->			  	
+				<div class="modal fade" id="confirmation"  role="dialog" >
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<!-- Header de la ventana -->
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" onclick="cerrarventana()">&times;</span></button>
+								<h4 class="modal-title">EDITAR TRABAJADOR</h4>
+							</div>
+							<!-- Contenido de la ventana -->
+							<div class="modal-body">
+								<p>¿Desea guardar los cambios realizados?</p>
+							</div>
+							<div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal" >Cancelar</button>
+						        <a href="#" id="submit" class="btn btn-primary" >Confirmar</a>
+					      	</div>
+						</div>
+					</div>
+				</div>
 
+
+	<script>
+		$('#submit').click(function(){
+		    $('#formEdit').submit();
+		});
+
+
+		$('#confirmation').on('show.bs.modal', function(e) {
+   			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+		});
+	</script>
 </body>
 </html>
 
