@@ -40,11 +40,10 @@ class ReservarAmbienteController extends Controller
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
     public function storeOtroTipoAmbiente($id)
     {
-
-        $user_id = Auth::user()->id();
-        $usuario = User::findOrFail($user_id);
-        $persona = $usuario->persona;
-        $reserva = new Reserva();
+        // $user_id = Auth::user()->id();
+        // $usuario = User::findOrFail($user_id);
+        // $persona = $usuario->persona;
+        // $reserva = new Reserva();
         $ambiente = Ambiente::find($id); // de aqui sacare el id de la sede :S
 
         return view('admin-general.reservar-ambiente.confirmacion-reserva-otro-ambiente',compact('ambiente'));

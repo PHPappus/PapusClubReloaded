@@ -48,7 +48,7 @@ class ActividadController extends Controller
                     $actividad->a_realizarse_en="";
                 }else{
                     $a_realizarse_en = str_replace('/', '-', $input['a_realizarse_en']);      
-                    $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+                    $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->createFromFormat('H:i:s', $input['hora'])->toDateTimeString();
                 }
 
         $actividad->estado=false; 
@@ -71,6 +71,12 @@ class ActividadController extends Controller
         $actividad->capacidad_maxima= $input['capacidad_maxima'];
         $actividad->tipo_actividad= $input['tipo_actividad'];
         $actividad->descripcion= $input['descripcion'];
+        if (empty($input['a_realizarse_en'])) {
+                    $actividad->a_realizarse_en="";
+                }else{
+                    $a_realizarse_en = str_replace('/', '-', $input['a_realizarse_en']);      
+                    $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->createFromFormat('H:i:s', $input['hora'])->toDateTimeString();
+        }
         $actividad->save();
         return redirect('actividad/index');
 
