@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Reserva extends Model
 {
     use SoftDeletes;
-    protected $table = 'reservas';
+    protected $table = 'reserva';
     protected $fillable = 
 <<<<<<< HEAD
     ['fecha_reserva', 
@@ -23,15 +23,12 @@ class Reserva extends Model
     //funciones para las relaciones entre tablas
     
     public function ambiente(){
-        return $this->belongsTo('papusclub\Models\Ambiente');
+        return $this->belongsTo('papusclub\Models\Ambiente', 'ambiente_id');
         
     }
-    public function sede(){
-        return $this->belongsTo('papusclub\Models\Sede');
-        
-    }
+    
     public function persona(){
-        return $this->belongsTo('papusclub\Models\Persona');
+        return $this->belongsTo('papusclub\Models\Persona', 'id_persona');
         
     }
 }

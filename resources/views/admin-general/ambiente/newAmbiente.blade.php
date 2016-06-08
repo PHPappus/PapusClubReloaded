@@ -81,11 +81,9 @@
 			    	<div class="col-sm-5">
 				    	<select class="form-control" id="tipoAmbienteInput" name="tipo_ambiente" style="max-width: 150px "   >
 							                <option value="-1" default>Seleccione</option>
-							                <option value="Bungalow">Bungalow</option>
-							                <option value="Canchas">Canchas</option>
-							                <option value="Piscina">Piscina</option>
-							                <option value="Comedor">Comedor</option>
-							                <option value="Salon">Salón</option >
+							                @foreach ($values as $value)      
+							                	<option value="{{$value->id}}">{{$value->valor}}</option>
+							                @endforeach
 							                
 
 

@@ -15,7 +15,7 @@ class CreateTarifaMembresiaTable extends Migration
         Schema::create('tarifamembresia', function (Blueprint $table) {
             $table->increments('id');
             $table->double('monto');
-            $table->boolean('estado');
+            $table->boolean('estado')->default(true);
             $table->dateTime('fecha_registro');
             $table->timestamps();
             $table->softDeletes();

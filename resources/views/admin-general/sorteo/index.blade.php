@@ -42,6 +42,7 @@
 						<strong>¡Éxito!</strong> {{session('stored')}}
 				</div>
 	@endif
+	<div style="text-align:right;padding-right:60px">Filtra por todos los campos</div>
 	<div class="table-responsive">
 		<div class="container">
 			<table class="table table-bordered table-hover text-center display" id="example">

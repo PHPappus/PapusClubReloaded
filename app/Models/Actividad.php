@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Actividad extends Model
 {
     use SoftDeletes;
-    protected $table = 'actividades';
+    protected $table = 'actividad';
     protected $fillable = 
     ['nombre', 
     'tipo_actividad', 
@@ -22,7 +22,7 @@ class Actividad extends Model
     //funciones para las relaciones entre tablas
     
     public function ambiente(){
-        return $this->belongsTo('papusclub\Models\Ambiente');
+        return $this->belongsTo('papusclub\Models\Ambiente', 'ambiente_id');
         
     }
 }

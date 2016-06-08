@@ -45,26 +45,28 @@
 
 				<br/>
 				<br/>
-				<div class="col-sm-4"></div>
-				<div class="">
-			  		<font color="red"> 
-			  			(*) Dato Obligatorio
-			  		</font>		  			
-				</div>			
+				<div class="form-group">
+			  		<div class="text-center">
+			  			<font color="red"> 
+			  				(*) Dato Obligatorio
+			  			</font>
+			  			
+			  		</div>
+			  	</div>
 			  	</br>
 			  	</br>
 				
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del Producto" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombre" name="nombre" placeholder="Nombre del Producto" value="{{old('nombre')}}">
 			    	</div>
 			  	</div>			  	
 
 			  	<div class="form-group required">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" >
+			      		<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción"  value="{{old('descripcion')}}">
 			    	</div>
 			  	</div>	  				  	
 			  	
@@ -85,17 +87,24 @@
 			    	<label for="tipoProductoInput" class="col-sm-4 control-label">Tipo de Producto</label>
 			    	<div class="col-sm-5">
 			    	
-			      		<select class="form-control" id="id_tipo_producto" name="id_tipo_producto" >
+			      		<select class="form-control" id="tipo_producto" name="tipo_producto" >
 						<!-- Las opciones se deberían extraer de la tabla configuracion-->
-						<option value=null selected >Seleccionar tipo...</option>
-						<option value="1" >Ropa</option>
-						<option value="2" >Accesorios</option>									
-						<option value="3" >Útiles de Oficina</option>
-						<option value="4" >Souvenirs</option>
+						<option value="" selected >Seleccionar tipo...</option>
+						<option value="Ropa" >Ropa</option>
+						<option value="Accesorios" >Accesorios</option>									
+						<option value="Utiles de Oficina" >Útiles de Oficina</option>
+						<option value="Souvenirs" >Souvenirs</option>
 						</select>						
 						
 			    	</div>
 			  	</div>		
+
+			  	<div class="form-group required">
+			    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" class="form-control" id="precio" name="precio" placeholder="Precio"  value="{{old('precio')}}">
+			    	</div>
+			  	</div>	  
 
 			  	</br>
 			  	</br>
@@ -103,10 +112,10 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-success" type="submit" value="Aceptar">
+						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
-						<a href="/producto/index" class="btn btn-danger">Cancelar</a>
+						<a href="/producto/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>

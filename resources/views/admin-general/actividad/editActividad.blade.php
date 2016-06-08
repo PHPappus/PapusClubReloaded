@@ -86,6 +86,23 @@
 		      		<input type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"  class="form-control" id="descripcionInput" name="descripcion" value ="{{$actividad->descripcion}}" required>
 		    	</div>
 		  	</div>
+		  	<div class="form-group required">
+
+			    	<label for="fechaInicioInput" class="col-sm-4 control-label">FECHA INICIO</label>
+			    	<div class="col-sm-5">
+			      		<input type="date" id="fechaInicioInput" name="a_realizarse_en" value="{{$actividad->a_realizarse_en}}">
+			    	</div>
+			  	
+			 </div>
+
+			<div class="form-group required">
+			    	<label for="horaInicioInput" class="col-sm-4 control-label">HORA INICIO</label>
+			    	<div class="col-sm-5">
+			      		<input type="time" id="horaInicioInput" name="hora" value="{{$actividad->a_realizarse_en}}">
+			    	</div>
+			  	
+			 </div>
+
 		  	<div class="form-group required ">
 		    	<label for="descripcionInput" class="col-sm-4 control-label">TIPO DE ACTIVIDAD</label>
 		    	<div class="col-sm-5">

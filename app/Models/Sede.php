@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Sede extends Model
 {
     use SoftDeletes;
-    protected $table = 'sedes';
+    protected $table = 'sede';
     protected $fillable = 
     ['nombre', 
     'telefono', 
@@ -23,10 +23,10 @@ class Sede extends Model
     protected $dates = ['deleted_at'];
     
     function ambientes(){
-        return $this->hasMany('papusclub\Models\Ambiente');
+        return $this->hasMany('papusclub\Models\Ambiente', 'id');
     }
 
     function actividades(){
-        return $this->hasMany('papusclub\Models\Actividad');
+        return $this->hasMany('papusclub\Models\Actividad', 'id');
     }
 }

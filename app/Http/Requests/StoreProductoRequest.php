@@ -27,7 +27,8 @@ class StoreProductoRequest extends Request
             'nombre'   =>  array('required','Regex:/[A-Za-z .-]/'),
             'descripcion'   =>  'required|string|max:255',            
             'estado'        =>  'required|integer',
-            'id_tipo_producto'    =>  'required|integer'           
+            'tipo_producto'    =>  'required|string',
+            'precio'           => 'required|numeric'
         ];
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Ambiente extends Model
 {
     use SoftDeletes;
-    protected $table = 'ambientes';
+    protected $table = 'ambiente';
     protected $fillable = 
     ['nombre', 
     'tipo_ambiente', 
@@ -19,10 +19,15 @@ class Ambiente extends Model
     //funciones para las relaciones entre tablas
     
     public function sede(){
-        return $this->belongsTo('papusclub\Models\Sede');
+        return $this->belongsTo('papusclub\Models\Sede', 'sede_id');
     }
     
     public function actividades(){
-        return $this->hasMany('papusclub\Models\Actividad');
+        return $this->hasMany('papusclub\Models\Actividad', 'id');
+    }
+
+    public function reservas()
+    {
+        return $this->hasMany('papusclub\Models\Reserva', 'id');
     }
 }

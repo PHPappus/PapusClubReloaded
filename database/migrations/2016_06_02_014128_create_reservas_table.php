@@ -12,21 +12,15 @@ class CreateReservasTable extends Migration
      */
     public function up()
     {
-       Schema::create('reservas', function (Blueprint $table) {
+       Schema::create('reserva', function (Blueprint $table) {
             $table->increments('id');
-<<<<<<< HEAD
-            $table->date('fecha_reserva');
-=======
             $table->date('fecha_inicio_reserva');
             $table->date('fecha_fin_reserva');
             $table->time('hora_inicio_reserva');
             $table->time('hora_fin_reserva');
->>>>>>> c4b73e2d2c3d29c8742e35afebc1eb5633dc932a
             $table->integer('sede_id')->unsigned()->nullable();
             $table->integer('ambiente_id')->unsigned()->nullable();
-            $table->integer('persona_id')->unsigned()->nullable();
-            $table->double('precio');
-            $table->string('estadoReserva');//es el estado en que se encuentra la reserva,no el registro reserva en la DB
+            $table->integer('id_persona')->unsigned()->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -39,10 +33,6 @@ class CreateReservasTable extends Migration
      */
     public function down()
     {
-<<<<<<< HEAD
-        //
-=======
          Schema::drop('reservas');
->>>>>>> c4b73e2d2c3d29c8742e35afebc1eb5633dc932a
     }
 }

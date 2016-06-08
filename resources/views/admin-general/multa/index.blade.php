@@ -25,14 +25,26 @@
 			
 		</div>
 	</div>
-	@if (session('stored'))
-				<script>$("#modalSuccess").modal("show");</script>
-				
-				<div class="alert alert-success fade in">
-						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-						<strong>¡Éxito!</strong> {{session('stored')}}
-				</div>
-	@endif
+	</br>
+		</br>
+		@if (session('stored'))
+			<script>$("#modalSuccess").modal("show");</script>
+			
+			<div class="alert alert-success fade in">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>¡Éxito!</strong> {{session('stored')}}
+			</div>
+		@endif
+		@if (session('eliminated'))			
+			<div class="alert alert-warning fade in">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>Aviso</strong> {{session('eliminated')}}
+			</div>
+		@endif
+	
+		</br>
+		</br>
+
 
 		<div class="table-responsive">
 			<div class="container">
@@ -42,7 +54,8 @@
 							<th><div align=center>DESCRIPCIÓN</div> </th>
 							<th><div align=center>MONEDA</div></th>
 							<th><div align=center>MONTO PENALIDAD</div></th>
-							<th><div align=center>CONSULTAR</div></th>
+							<th><div align=center>DETALLE</div></th>
+							<th><div align=center>EDITAR</div></th>
 							<th><div align=center>ELIMINAR</div></th>
 	
 						</thead>
@@ -54,10 +67,13 @@
 									<td>S/.</td>
 									<td>{{$multa->montoPenalidad}}</td>
 									<td>
-					              	<a class="btn btn-info" href="{{url('/multa/'.$multa->id)}}/"  title="Consultar" ><i class="glyphicon glyphicon-list-alt"></i></a>
+					              	<a class="btn btn-info" href="{{url('/multa/'.$multa->id)}}/"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 					            	</td>
 					            	<td>
-					              	<a class="btn btn-info" href="#" title="Eliminar" ><i class="glyphicon glyphicon-remove"></i></a>
+							        <a class="btn btn-info" href="{{url('/multa/'.$multa->id)}}/editar" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+							        </td>
+					            	<td>
+					              	<a class="btn btn-info" href="#" title="Eliminar" data-href="{{url('/multa/'.$multa->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
 					            	</td>
 					            </tr>				            
 						
@@ -69,13 +85,15 @@
 	
 
 	<div class="container">
-		<div class="form-group">
-			<div class="col-sm-8 text-right">
-				<a class="btn btn-info" href="{{url('/multa/new')}}" title="Registrar Multa"><i>Agregar</i> </a>	
+		<div class="form-group"><br>
+			<div class="col-sm-7 text-right">
+				<a class="btn btn-info" href="{{url('/multa/new')}}" title="Registrar Multa"><i>Registrar Multa</i> </a>	
 			</div>
 		</div>
 		<br/>
 	</div>
+
+
 
 
 @stop

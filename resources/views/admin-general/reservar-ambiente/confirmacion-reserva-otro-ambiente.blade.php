@@ -27,7 +27,7 @@
 		</div>
 		<div class="container">
 			<!--@include('errors.503')-->		
-			<form method="POST" action="/ambiente/new/ambiente" class="form-horizontal form-border"> <!-- DEBERIA EL ACTION DE REESRVAR =D -->
+			<form method="POST" action="/reservar-ambiente/{{ $ambiente->id }}/confirmacion-reserva-otro-ambiente" class="form-horizontal form-border"> <!-- DEBERIA EL ACTION DE REESRVAR =D -->
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<br/><br/>
 
@@ -86,7 +86,7 @@
 						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
-						<a href="/reservar-ambiente/reservar-bungalow" class="btn btn-info">Cancelar</a> <!-- Regresa a la pantalla inicial de la reserva -->
+						<a href="/reservar-ambiente/reservar-otros-ambientes" class="btn btn-info">Cancelar</a> <!-- Regresa a la pantalla inicial de la reserva -->
 					</div>
 				</div>
 

@@ -20,11 +20,12 @@ class CreateMaestroProveedorTable extends Migration
             $table->biginteger('ruc');
             $table->integer('telefono');
             $table->string('correo');
-            $table->string('direccion');
+            $table->text('direccion');
 			$table->string('nombre_responsable');
             $table->integer('estado');            
             $table->integer('id_tipo_proveedor');//Esta dentro de la tabla de configuracion
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

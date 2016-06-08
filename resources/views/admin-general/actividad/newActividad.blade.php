@@ -59,42 +59,42 @@
 				
 
 			  	<div class="form-group required">
-			    	<label for="ambienteInput" class="col-sm-4 control-label">AMBIENTE</label>
+			    	<label for="ambienteInput" class="col-sm-4 control-label">Ambiente</label>
 			    	<div class="col-sm-5">
 			    		<input type="text" class="form-control" id="ambienteInput" name="ambiente" value="{{$ambiente->nombre}}"   readonly>
 			      	</div>
 			      	<a class="btn btn-info" name="buscarAmbiente" href="{!!URL::to('/ambiente/search')!!}"  title="Buscar" ><i name="buscarAmbiente" class="glyphicon glyphicon-search"></i></a>
 			  	</div>
 			  	<div class="form-group required">
-			    	<label for="tipoambienteInput" class="col-sm-4 control-label">TIPO DE AMBIENTE</label>
+			    	<label for="tipoambienteInput" class="col-sm-4 control-label">Tipo de Ambiente</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="tipoambienteInput" name="tipoambiente" value="{{$ambiente->tipo_ambiente}}"   readonly>
 			    	</div>
 			  	</div>
 			  	<div class="form-group required">
-			    	<label for="sedeInput" class="col-sm-4 control-label">SEDE</label>
+			    	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="sedeInput" name="sede" value="{{$ambiente->sede->nombre}}"   readonly>
 			    	</div>
 			  	</div>
 
 				<div class="form-group required">
-			    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
+			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
 			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre de la actividad" value="{{old('nombre')}}" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
-			    	<label for="fechaInicioInput" class="col-sm-4 control-label">FECHA INICIO(dd/mm/aaaa)</label>
+			    	<label for="fechaInicioInput" class="col-sm-4 control-label">Fecha Inicio(dd/mm/aaaa)</label>
 			    	<div class="col-sm-5">
 			      		<!-- <input type="date" class="form-control" id="fechaInicioInput" name="fecha"> -->
-			      		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="fechaInicioInput" name="fecha" placeholder="Fecha Inicio" style="max-width: 250px">
+			      		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="fechaInicioInput" name="a_realizarse_en" placeholder="Fecha Inicio" style="max-width: 250px">
 			    	</div>
 			  	</div>
 			 
 			  	<div class="form-group required">
-			    	<label for="horaInicioInput" class="col-sm-4 control-label">HORA INICIO(HH:mm:ss)</label>
+			    	<label for="horaInicioInput" class="col-sm-4 control-label">Hora Inicio(HH:mm:ss)</label>
 			    	<div class="col-sm-5">
 			      		<input type="time" class="form-control" id="horaInicioInput" name="hora">
 			      		 	
@@ -103,19 +103,19 @@
 			  	</div>
 
 			  	<div class="form-group required">
-			    	<label for="descripcionInput" class="col-sm-4 control-label">DESCRIPCIÓN</label>
+			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
 			      		<textarea type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" ></textarea> 
 			    	</div>
 			  	</div>
 			  	<div class="form-group required">
-			    	<label for="tipoActividadInput" class="col-sm-4 control-label">TIPO DE ACTIVIDAD</label>	
+			    	<label for="tipoActividadInput" class="col-sm-4 control-label">Tipo de Actividad</label>	
 			    	<div class="col-sm-5">
 				    	<select class="form-control" id="tipoActividadInput" name="tipo_actividad" style="max-width: 150px "  >
-							                <option value="-1" default>Seleccione</option>
-							                <option value="fiesta">Fiesta</option>
-							                <option value="deportiva">Deportiva</option>
-							                <option value="reunion">Reunión</option>
+				    						<option value="-1" default>Seleccione</option>
+							               @foreach ($values as $value)      
+							                	<option value="{{$value->id}}">{{$value->valor}}</option>
+							                @endforeach
 						</select>
 					</div>
 			  	</div>
@@ -157,17 +157,12 @@
 	</div>		
 @stop
 <!-- JQuery -->
-	<script src="../js/jquery-1.11.3.min.js"></script>
-	<!-- Bootstrap -->
-	<script type="text/javascript" src="../js/bootstrap.js"></script>
-	<!-- BXSlider -->
-	<script src="../js/jquery.bxslider.min.js"></script>
-	<!-- Mis Scripts -->
-	<script src="../js/MisScripts.js"></script>
-
-	<!-- Para Fechas INICIO -->
+	{!!Html::script('js/jquery-1.12.4.min.js')!!}
+	{!!Html::script('js/bootstrap.js')!!}
+	{!!Html::script('js/bootstrap-datepicker-sirve.js')!!}
+	{!!Html::script('locales/bootstrap-datepicker.es.min.js')!!}
+	
 	<script>
-
 		var nowTemp = new Date();
 		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
  	
@@ -192,18 +187,30 @@
   			checkout.hide();
 		}).data('datepicker');		
 		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
-
 	
 	</script>
 	<script>
 		$(function(){
 			$('.datepicker').datepicker({
-				format: 'dd/mm/yyyy'
+				format: 'dd/mm/yyyy', 
+				language: 'es'
+			});
+			$('.datepicker').on('changeDate', function(ev){
+			    $(this).datepicker('hide');
 			});
 		});
 	</script>
 
-	<!-- Para Fecha FIN -->
 
+
+
+	<script>
+		function ventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 1;
+		}
+		function cerrarventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 3;
+		}
+  	</script>
 </body>
 </html>
