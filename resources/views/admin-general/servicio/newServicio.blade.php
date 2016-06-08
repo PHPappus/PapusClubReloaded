@@ -61,8 +61,7 @@
 			      		<!--input type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" required-->
 
 			      		<textarea id ="descripcionInput"  class="form-control" name="descripcion"  placeholder="Descripción"  rows="3" cols="50"></textarea>	
-			    	</div>
-			    	
+			    	</div>			    	
 			  	</div>
 
 
@@ -72,9 +71,9 @@
 			    	<div class="col-sm-5">
 			      			<select class="form-control" name="tipo_servicio" > 
 			      			 <option  value=""  disabled selected hidden >Elige una opción</option>
-			      	@foreach($values as $value)
-				 				<option value="{{$value->id}}"> {{$value->valor}} </option>  
-					@endforeach							
+			      					@foreach($values as $value)
+				 					<option value="{{$value->id}}"> {{$value->valor}} </option>  
+									@endforeach							
     						
     						</select>					
 			    	</div>			  
@@ -106,20 +105,21 @@
 				 
 
 
-<table class="table table-bordered table-hover text-center display" id="example"  >
+			  		table table-bordered table-hover text-center display
+
+			<table class="table table-condensed table-striped" id="example"  >
 					<thead class="active"	>
-						<tr>
-							
-							<th><DIV ALIGN=center>TIPO PERSONA</th>
-							<th><DIV ALIGN=center>MONEDA</th>
-							<th><DIV ALIGN=center>MONTO</th>
+						<tr>							
+							<th  class="col-sm-1"><DIV ALIGN=center>TIPO PERSONA</th>
+							<th  class="col-sm-1"><DIV ALIGN=center>MONEDA</th>
+							<th  class="col-sm-1"><DIV ALIGN=center>MONTO</th>
 						</tr>
 					</thead>
 					<tbody>
 							@foreach($tiposPersonas as $tipoPersona)			
 						    	<tr>
 									<td>{{ $tipoPersona->descripcion }}</td>
-									<td> <p>S/.</p> </td>
+									<td> <p> S/. </p> </td>
 									<td> 
 					<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="precioInput" name="precio" placeholder="" >
@@ -130,6 +130,47 @@
 							@endforeach
 					</tbody>													
 			</table>
+
+
+
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th class="col-md-3">Invoice</th>
+      <th class="col-md-3">Date</th>
+      <th class="col-md-3">Amount</th>
+      <th class="col-md-3">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>12345</td>
+      <td>Feb 1, 2014</td>
+      <td>$45.00</td>
+      <td>Owing</td>
+    </tr>
+    <tr>
+      <td>67890</td>
+      <td>Jan 30, 2014</td>
+      <td>$19.99</td>
+      <td>Overdue</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
