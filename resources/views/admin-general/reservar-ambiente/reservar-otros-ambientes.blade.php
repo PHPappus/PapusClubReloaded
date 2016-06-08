@@ -58,7 +58,7 @@
 
 			<br/>
 			<div class="form-group required ">
-			   	<label for="sedeInput" class="col-sm-4 control-label">SEDE</label>	
+			   	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>	
 				<div class="col-sm-5">
 				  	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >
 				        @foreach ($sedes as $sede)      
@@ -68,7 +68,7 @@
 				</div>
 			</div>
 			<div class="form-group required">
-			 	<label for="fechaInput" class="col-sm-4 control-label">FECHA (dd/mm/aaaa) </label>
+			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha (dd/mm/aaaa) </label>
 			    <div class="col-sm-5">
 				  	<!-- <div class="input-group">
 			   		<input name="fechaInicio" id="fechaInicio" type="text" required class="form-control">
@@ -84,7 +84,7 @@
 		    	</div>	
 			</div>
 			<div class="form-group required">
-			 	<label for="horaInput" class="col-sm-4 control-label">HORA (hh-mm) </label>
+			 	<label for="horaInput" class="col-sm-4 control-label">Hora (hh-mm) </label>
 			    <div class="col-sm-5">
 				   	<div class="input-group">
 				   		<input name="horaInicio" id="horaInicio" type="time" required class="form-control">
@@ -94,11 +94,12 @@
 		    	</div>	
 			</div>
 			<div class="form-group required">
-			   	<label for="numHabitacionInput" class="col-sm-4 control-label">CAPACIDAD</label>
+			   	<label for="numHabitacionInput" class="col-sm-4 control-label">Capacidad</label>
 			   	<div class="col-sm-5">
 			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="numHabitacionInput" name="capacidad_actual" placeholder="Capacidad" style="max-width: 100px" >
 			   	</div>
 			</div>	
+				
 			<!-- Boton Buscar INICIO -->
 			<div class="btn-inline">
 				<div class="btn-group col-sm-8"></div>
@@ -144,7 +145,7 @@
 				<th><DIV ALIGN=center>NOMBRE</th>
 				<th><DIV ALIGN=center>TIPO</th>
 				<th><DIV ALIGN=center>CAPACIDAD</th>
-				<th><DIV ALIGN=center>DETALLE</th>
+				
 				<th><DIV ALIGN=center>RESERVAR</th>
 				</tr>
 				</thead>
@@ -155,11 +156,9 @@
 					<td>{{ $ambiente->nombre }}</td>
 					<td>{{ $ambiente->tipo_ambiente }}</td>
 					<td>{{ $ambiente->capacidad_actual }}</td>
+					
 					<td>
-			        <a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/confirmacion-reserva-otro-ambiente')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-			        </td>
-					<td>
-					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/new-reserva-otro-ambiente')}}"  title="Detalle" ><i class="glyphicon glyphicon-remove"></i></a>
+					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/new-reserva-otro-ambiente')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
 
 			        </td>
 					</tr>

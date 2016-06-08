@@ -58,7 +58,7 @@
 			</div>
 			<br/>
 			<div class="form-group required ">
-			   	<label for="sedeInput" class="col-sm-4 control-label">SEDE</label>	
+			   	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>	
 				<div class="col-sm-5">
 				  	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >
 				        @foreach ($sedes as $sede)      
@@ -68,7 +68,7 @@
 				</div>
 			</div>
 			<div class="form-group required">
-			 	<label for="fechaInput" class="col-sm-4 control-label">FECHA (dd/mm/aaaa) </label>
+			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha (dd/mm/aaaa) </label>
 			    <div class="col-sm-5">
 				  	<div class="input-group">
 			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" style="max-width: 250px">
@@ -92,7 +92,7 @@
 		    	</div>	
 			</div> -->
 			<div class="form-group required">
-			   	<label for="numHabitacionInput" class="col-sm-4 control-label">NÚMERO DE HABITACIONES</label>
+			   	<label for="numHabitacionInput" class="col-sm-4 control-label">Número de habitaciones</label>
 			   	<div class="col-sm-5">
 			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="numHabitacionInput" name="capacidad_actual" placeholder="Número de habitaciones"  style="max-width: 175px">
 			   	</div>
@@ -142,7 +142,6 @@
 				<th><DIV ALIGN=center>NOMBRE</th>
 				<th><DIV ALIGN=center>TIPO</th>
 				<th><DIV ALIGN=center>CAPACIDAD</th>
-				<th><DIV ALIGN=center>DETALLE</th>
 				<th><DIV ALIGN=center>RESERVAR</th>
 				</tr>
 				</thead>
@@ -154,10 +153,7 @@
 					<td>{{ $ambiente->tipo_ambiente }}</td>
 					<td>{{ $ambiente->capacidad_actual }}</td>
 					<td>
-			        <a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/confirmacion-reserva-bungalow')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-			        </td>
-					<td>
-					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/confirmacion-reserva-bungalow')}}"  title="Detalle" ><i class="glyphicon glyphicon-remove"></i></a>
+					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/confirmacion-reserva-bungalow')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
 
 			        </td>
 					</tr>

@@ -51,7 +51,7 @@
 			<!-- SE DEBE LEER DATA DE LA BD E INGRESARLOS -->
 
 			<div class="form-group required">
-		    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
+		    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" value="{{$ambiente->nombre}}" >
 		    	</div>
@@ -70,7 +70,7 @@
 				</div>
 		  	</div> -->
 		  	<div class="form-group required ">
-		    	<label for="tipoAmbienteInput " class="col-sm-4 control-label">TIPO AMBIENTE</label>
+		    	<label for="tipoAmbienteInput " class="col-sm-4 control-label">Tipo Ambiente</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" value="{{$ambiente->tipo_ambiente}}" readonly >
 		    	</div>
@@ -78,7 +78,7 @@
 
 
 		  	<div class="form-group required">
-		    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA</label>
+		    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad máxima</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="capacidadInput" name="capacidad_actual" value="{{$ambiente->capacidad_actual}}" >
 		    	</div>
@@ -90,7 +90,7 @@
 		    	</div>
 		  	</div> -->
 		  	<div class="form-group required ">
-		    	<label for="ubicacionInput" class="col-sm-4 control-label">UBICACIÓN</label>
+		    	<label for="ubicacionInput" class="col-sm-4 control-label">Ubicación</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->ubicacion}}" >
 		    	</div>
@@ -121,7 +121,7 @@
 						
 						<!-- style="z-index:2; padding-top:100px;"
 						 --><!-- <button type="submit" class="btn btn-lg btn-primary">Registrar</button> -->
-						<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="confirmationLabel" data-keyboard="false" data-backdrop="static" style="position:relative">
+						<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="confirmationLabel" data-keyboard="false" data-backdrop="static" >
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
 									<!-- Header de la ventana -->
@@ -151,14 +151,10 @@
 	</div>		
 @stop
 <!-- JQuery -->
-	<script src="../js/jquery-1.11.3.min.js"></script>
-	<!-- Bootstrap -->
-	<script type="text/javascript" src="../js/bootstrap.js"></script>
-	<!-- BXSlider -->
-	<script src="../js/jquery.bxslider.min.js"></script>
-	<!-- Mis Scripts -->
-	<script src="../js/MisScripts.js"></script>
-
+	{!!Html::script('../js/jquery-1.11.3.min.js')!!}
+	{!!Html::script('../js/bootstrap.js')!!}
+	{!!Html::script('../js/jquery.bxslider.min.js')!!}
+	{!!Html::script('../js/MisScripts.js')!!}
 	<script>
 		function ventana(){
 			document.getElementsByTagName('header')[0].style.zIndex = 1;
