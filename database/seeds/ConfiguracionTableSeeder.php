@@ -29,5 +29,11 @@ class ConfiguracionTableSeeder extends Seeder
         Configuracion::insert([ 'valor' => 'reunion' , 'grupo' => '3', 'descripcion'=>'tipos de actividades']);
 
         Configuracion::insert(['valor'=>'8','grupo'=>'5','descripcion'=>'duración del carnet en años']);
+
+        Configuracion::insert(['valor'=>'Padre','grupo'=>'6','descripcion'=>'tipo relacion familiar']);
+        Configuracion::insert(['valor'=>'Madre','grupo'=>'6','descripcion'=>'tipo relacion familiar']);
+        Configuracion::insert(['valor'=>'Esposa','grupo'=>'6','descripcion'=>'tipo relacion familiar']);
+        Configuracion::insert(['valor'=>'Hijo','grupo'=>'6','descripcion'=>'tipo relacion familiar']);
+        Configuracion::insert(['valor'=>'Hija','grupo'=>'6','descripcion'=>'tipo relacion familiar']);
     }
 }

@@ -34,7 +34,7 @@ class Persona extends Model
 /*acceso: $postulante->familiarxpostulante->pivot->(elementos tabla intermedia)*/
     public function familiarxpostulante()
     {
-        return $this->belongsToMany(Postulante::class,'familiarxpostulante','persona_id','postulante_id')->whereNull('familiarxpostulante.deleted_at')->withTimestamps();
+        return $this->belongsToMany(Postulante::class,'familiarxpostulante','persona_id','postulante_id')->withPivot('relacion','estado')->whereNull('familiarxpostulante.deleted_at')->withTimestamps();
 
         /*PARA UTILIZAR SOFT DELETE
             DB::table('familiarxpostulante')
@@ -47,6 +47,6 @@ class Persona extends Model
     public function familiarxpostulanteWithTrashed()
     {
         /*Si es necesario retornar incluso los eliminados con softdelete*/
-        return $this->belongsToMany(Postulante::class,'familiarxpostulante','persona_id','postulante_id')->withPivot('postulante_id')->withTimestamps();   
+        return $this->belongsToMany(Postulante::class,'familiarxpostulante','persona_id','postulante_id')->withPivot('relacion','estado')->withTimestamps();   
     }    
 }

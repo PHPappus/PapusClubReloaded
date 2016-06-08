@@ -15,7 +15,8 @@ class CreateFamiliarxpostulanteTable extends Migration
         Schema::create('familiarxpostulante', function (Blueprint $table) {
             $table->integer('postulante_id')->unsigned()->nullable();
             $table->integer('persona_id')->unsigned()->nullable();
-            $table->integer('tipo_relacion_id')->unsigned()->nullable();
+            $table->string('relacion');
+            $table->boolean('estado')->default(true);
             $table->softDeletes();
             $table->timestamps();
         });

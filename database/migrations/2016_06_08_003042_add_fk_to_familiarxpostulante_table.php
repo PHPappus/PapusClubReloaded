@@ -14,8 +14,7 @@ class AddFkToFamiliarxpostulanteTable extends Migration
     {
         Schema::table('familiarxpostulante', function (Blueprint $table) {
             $table->foreign('postulante_id')->references('id_postulante')->on('postulante')->onDelete('cascade');
-            $table->foreign('persona_id')->references('id')->on('persona')->onDelete('cascade');
-            $table->foreign('tipo_relacion_id')->references('id')->on('tiporelacion')->onDelete('cascade');            //
+            $table->foreign('persona_id')->references('id')->on('persona')->onDelete('cascade');          //
         });
     }
 
@@ -28,8 +27,7 @@ class AddFkToFamiliarxpostulanteTable extends Migration
     {
         Schema::table('familiarxpostulante', function (Blueprint $table) {
             $table->dropForeign('familiarxpostulante_postulante_id_foreign');
-            $table->dropForeign('familiarxpostulante_persona_id_foreign');
-            $table->dropForeign('familiarxpostulante_tipo_relacion_id_foreign');            
+            $table->dropForeign('familiarxpostulante_persona_id_foreign');          
         });
     }
 }
