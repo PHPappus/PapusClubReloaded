@@ -30,4 +30,23 @@ class Persona extends Model
     public function trabajador(){
         return $this->belongsTo('papusclub\Models\Trabajador','id');
     }
+
+/*acceso: $postulante->familiarxpostulante->pivot->(elementos tabla intermedia)*/
+    public function familiarxpostulante()
+    {
+        return $this->belongsToMany(Postulante::class,'familiarxpostulante')->withPivot('postulante_id')->whereNull('familiarxpostulante.deleted_at')->withTimestamps();
+
+        /*PARA UTILIZAR SOFT DELETE
+            DB::table('familiarxpostulante')
+            ->where('postulante_id', $postulante_id)
+            ->where('persona_id', $persona_id)
+            ->update(array('deleted_at' => DB::raw('NOW()')));
+        */
+    }
+
+    public function familiarxpostulanteWithTrashed()
+    {
+        /*Si es necesario retornar incluso los eliminados con softdelete*/
+        return $this->belongsToMany(Postulante::class,'familiarxpostulante')->withPivot('postulante_id')->withTimestamps();   
+    }    
 }
