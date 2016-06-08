@@ -175,11 +175,7 @@
 
 
 										<!--DATOS NACIMIENTO-->
-						<div role="tabpanel" class="tab-pane" id="seccion2">
-
-
-
-							
+						<div role="tabpanel" class="tab-pane" id="seccion2">														
 						</div>
 										<!--DATOS FAMILIARES-->
 						<div role="tabpanel" class="tab-pane" id="seccion3">
@@ -191,20 +187,191 @@
 						</div>
 										<!--DATOS ESTUDIO-->
 						<div role="tabpanel" class="tab-pane" id="seccion5">
-
+							<form action="" class="form-horizontal form-border">
+								<br/><br/>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Colegio Primaria:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="colegio_primaria" name="colegio_primaria" placeholder="Colegio de Primaria" value="{{$socio->postulante->colegio_primario}}" disabled>
+										</div>	
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Colegio Secundaria:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="colegio_secundaria" name="colegio_secundaria" placeholder="Colegio de Secundaria" value="{{$socio->postulante->colegio_secundario}}" disabled>
+										</div>	
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Universidad:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="universidad" name="universidad" placeholder="Universidad" value="{{$socio->postulante->universidad}}" disabled>
+										</div>	
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Carrera:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="carrera" name="carrera" placeholder="Carrera" value="{{$socio->postulante->profesion}}" disabled>
+										</div>	
+									</div>
+								</div>																												
+							</form>
 						</div>
 										<!--DATOS TRABAJO -->
 						<div role="tabpanel" class="tab-pane" id="seccion6">
-
+							<form action="" class="form-horizontal form-border">
+								<br/><br/>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Centro de Trabajo:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="centrotrabajo" name="centrotrabajo" placeholder="Centro de Trabajo" value="{{$socio->postulante->centro_trabajo}}" disabled>
+										</div>	
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Cargo en Trabajo:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="cargocentrotrabajo" name="cargocentrotrabajo" placeholder="Cargo en Trabajo" value="{{$socio->postulante->cargo_centro_trabajo}}" disabled>
+										</div>	
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Direccion Laboral:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="direccionlaboral" name="direccionlaboral" placeholder="Direccion" value="{{$socio->postulante->direccionLaboral}}" disabled>
+										</div>	
+									</div>
+								</div>																												
+							</form>
 						</div>
 
 										<!--DATOS DE CONTACTO -->
 						<div role="tabpanel" class="tab-pane" id="seccion7">
+							<form action="" class="form-horizontal form-border">
+								<br/><br/>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Telefono:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="telefono" name="telefono_domicilio" placeholder="Telefono de Contacto" value="{{$socio->postulante->telefono_domicilio}}" disabled>
+										</div>	
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Telefono Celular:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="celular" name="telefono_celular" placeholder="Celular" value="{{$socio->postulante->telefono_celular}}" disabled>
+										</div>	
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Direccion Laboral:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" value="{{$socio->postulante->persona->correo}}" disabled>
+										</div>	
+									</div>
+								</div>																												
+							</form>						
 
 						</div>
 										<!--DATOS DE MEMBRESIA -->
 						<div role="tabpanel" class="tab-pane" id="seccion8">
+							<form action="" class="form-horizontal form-border">
+								<br/><br/>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Número de Carnet:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="numerocarnet" name="numerocarnet" placeholder="Numero de Carnet" value="{{$socio->carnet_actual()->nro_carnet}}" disabled>
+										</div>	
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Tipo Membresía:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="tipomembresia" name="tipomembresia" placeholder="Tipo de Membresía" value="{{$socio->membresia->descripcion}}" disabled>
+										</div>	
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Cuota:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="cuota" name="cuota" placeholder="Cuota" value="{{$socio->membresia->tarifa->monto}}" disabled>
+										</div>	
+									</div>
+								</div>	
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Estado:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="estado" name="estado" placeholder="Estado" value="{{$socio->estado()}}" disabled>
+										</div>	
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Emisión Carnet(dd/mm/aaaa):</label>
+										</div>
+										<div class="col-sm-6">
+											<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_emision" placeholder="Fecha Emisión" value="{{$socio->carnet_actual()->fecha_emision}}"style="width: 250px"  disabled>
 
+										</div>	
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Vencimiento Carnet(dd/mm/aaaa):</label>
+										</div>
+										<div class="col-sm-6">
+											<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_vencimiento" placeholder="Fecha Vencimiento" value="{{$socio->carnet_actual()->fecha_vencimiento}}"style="width: 250px"  disabled>
+
+										</div>	
+									</div>
+								</div>																																																				
+							</form>
 						</div>
 						
 					</div>

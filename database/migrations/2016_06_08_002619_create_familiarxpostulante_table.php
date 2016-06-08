@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSocioTable extends Migration
+class CreateFamiliarxpostulanteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,10 @@ class CreateSocioTable extends Migration
      */
     public function up()
     {
-        Schema::create('socio', function (Blueprint $table) {
-            $table->increments('id');
-            $table->boolean('estado')->default(true);
-            $table->integer('tipo_membresia_id')->unsigned()->nullable();
+        Schema::create('familiarxpostulante', function (Blueprint $table) {
             $table->integer('postulante_id')->unsigned()->nullable();
-            $table->date('fecha_ingreso');
+            $table->integer('persona_id')->unsigned()->nullable();
+            $table->integer('tipo_relacion_id')->unsigned()->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +28,6 @@ class CreateSocioTable extends Migration
      */
     public function down()
     {
-        Schema::drop('socio');
+        Schema::drop('familiarxpostulante');
     }
 }

@@ -51,7 +51,7 @@ class CreatePostulanteTable extends Migration
             //$table->string('distrito');
             $table->string('domicilio');
 
-            //CONTACTOS
+            //CONTACTO
             $table->integer('telefono_domicilio');
             $table->integer('telefono_celular');
 
