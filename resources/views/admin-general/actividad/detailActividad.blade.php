@@ -69,9 +69,25 @@
 		  	<div class="form-group required">
 		    	<label for="descripcionInput" class="col-sm-4 control-label">DESCRIPCIÓN</label>
 		    	<div class="col-sm-5">
-		      		<textarea type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder ="{{$actividad->descripcion}}" required>
-		    	</div></textarea> 
+		      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" value ="{{$actividad->descripcion}}" required>
+		    	</div> 
 		  	</div>
+		  	<div class="form-group required">
+			    	<label for="fechaInicioInput" class="col-sm-4 control-label">FECHA INICIO</label>
+			    	<div class="col-sm-5">
+			      		<input type="date" id="fechaInicioInput" value="{{$actividad->a_realizarse_en}}">
+			    	</div>
+			  	
+			 </div>
+
+			<div class="form-group required">
+			    	<label for="horaInicioInput" class="col-sm-4 control-label">HORA INICIO</label>
+			    	<div class="col-sm-5">
+			      		<input type="time" id="horaInicioInput" value="{{$actividad->a_realizarse_en}}">
+			    	</div>
+			  	
+			 </div>
+
 		  	<div class="form-group required">
 		    	<label for="tipoActividadInput" class="col-sm-4 control-label">TIPO DE ACTIVIDAD</label>	
 		    	<div class="col-sm-5">
