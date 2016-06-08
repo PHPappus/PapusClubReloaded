@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 class ProductoxFacturacion extends Model
 {
+    use SoftDeletes;
     protected $table = 'productoxfacturacion';
     protected $fillable = 
     ['producto_id',

@@ -17,7 +17,7 @@ class CreateFacturacionTable extends Migration
             $table->integer('persona_id')->unsigned()->index('facturacion_persona_id_foreign');
             $table->double('total');            
             $table->string('tipo_pago');            
-            $table->boolean('estado');
+            $table->string('estado');
             $table->softDeletes();
             $table->timestamps();
         });

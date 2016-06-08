@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>DETALLE DE PRODUCTO</title>
+	<title>DETALLE DE VENTA</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +22,7 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>DETALLE DE PRODUCTO</strong>
+					<strong>DETALLE DE VENTA</strong>
 			</div>		
 		</div>
 
@@ -31,54 +31,73 @@
 				<br/><br/>
 
 				<div class="form-group">
-		    		<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
+		    		<label for="idInput" class="col-sm-4 control-label">N° de Factura</label>
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="nombre" name="nombre" value="{{$producto->nombre}}" readonly>
+		      			<input type="text" class="form-control" id="idInput" name="id" value="{{str_pad($factura->id, 10, "0", STR_PAD_LEFT)}}" readonly>
 		    		</div>
 		  		</div>
 			  
 			  	<div class="form-group">
-			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
+			    	<label for="personaInput" class="col-sm-4 control-label">Persona</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" value="{{$producto->descripcion}}" readonly>
+			      		<input type="text" class="form-control" id="personaInput" name="persona" value="{{$factura->persona->nombre}} {{$factura->persona->ap_paterno}} {{$factura->persona->ap_materno}}" readonly>
 			    	</div>
-			  	</div>	  	
+			  	</div>	  				  				 
 			  	
 			  	<div class="form-group">
-			    	<label for="estadoInput" class="col-sm-4 control-label ">Estado</label>
+			    	<label for="tipoPagoInput" class="col-sm-4 control-label" >Tipo de Pago</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="estadoInput" name="estado" 
-			      		@if ($producto['estado']==1) 
-			      			value="Activo" 
-			      		@else
-			      			value="Inactivo" 
-			      		@endif readonly>
-			    	</div>
-			  	</div>
-			  	
-			  	<div class="form-group">
-			    	<label for="tipoProductoInput" class="col-sm-4 control-label" >Tipo de Producto</label>
-			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="tipoProductoInput" name="tipoProducto" 
-			    		value="{{$producto->tipo_producto}}"
+			      		<input type="text" class="form-control" id="tipoPagoInput" name="tipoPago" 
+			    		value="{{$factura->tipo_pago}}"
 			      		readonly>
 			    	</div>			      					      		
 			  	</div>	
 						
 			  	<div class="form-group">
-			    	<label for="precioInput" class="col-sm-4 control-label" >Precio</label>
+			    	<label for="estadoInput" class="col-sm-4 control-label" >Estado</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="precioInput" name="precio" 
-			    		value="{{$precio->precio}}"
+			      		<input type="text" class="form-control" id="estadoInput" name="estado" 
+			    		value="{{$factura->estado}}"
 			      		readonly>
 			    	</div>			      					      		
-			  	</div>	
+			  	</div>				  
 
 				<br/><br/>
 				
+
+				<div class="table-responsive">				
+					<table class="table table-bordered table-hover text-center display" id="example">
+						<thead class="active" data-sortable="true">
+							<th><div align=center>PRODUCTO</div></th>
+							<th><div align=center>PRECIO</div></th>
+							<th><div align=center>CANTIDAD</div></th>
+							<th><div align=center>SUBTOTAL</div></th>							
+						</thead>
+
+												
+						<tbody>
+						@foreach($factura->productoxfacturacion as $producto)
+							<tr>
+								<td>{{ $producto->producto->nombre}}</td>
+								<td>{{ $producto->producto->precioproducto->first()['precio']}}</td>
+								<td>{{ $producto->cantidad}}</td>			
+								<td>{{ $producto->subtotal }}</td>								
+				            </tr>
+						@endforeach
+						<tr>
+								<td></td>
+								<td></td>
+								<td><b>TOTAL</b></td>
+								<td>{{ $factura->total}}</td>								
+				            </tr>
+						</tbody>													
+					</table>						
+				</div>
+
+
 				<div class="form-group">
 					<div class="col-sm-8"> </div>
-					<a href="/producto/index" class="btn btn-info">Regresar</a>				
+					<a href="/venta-producto/index" class="btn btn-info">Regresar</a>				
 				</div>
 
 			</form>

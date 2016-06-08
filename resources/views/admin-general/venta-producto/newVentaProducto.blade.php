@@ -26,7 +26,7 @@
 			</div>		
 		</div>
 		<div class="container">
-			<form method="POST" action="/producto/new/producto" class="form-horizontal form-border">
+			<form method="POST" action="/venta-producto/new/venta-producto" class="form-horizontal form-border">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<div class="col-sm-4"></div>
@@ -54,57 +54,46 @@
 			  		</div>
 			  	</div>
 			  	</br>
-			  	</br>
-				
+			  	</br>								
+
 				<div class="form-group required">
-			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
+			    	<label for="persona_id" class="col-sm-4 control-label">Persona</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombre" name="nombre" placeholder="Nombre del Producto" value="{{old('nombre')}}">
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="persona_id" name="persona_id" placeholder="Nombre del Producto" value="{{old('nombre')}}">
 			    	</div>
 			  	</div>			  	
 
 			  	<div class="form-group required">
-			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
-			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción"  value="{{old('descripcion')}}">
-			    	</div>
-			  	</div>	  				  	
-			  	
-				<div hidden class="form-group required">
-			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
+			    	<label for="tipoPagoInput" class="col-sm-4 control-label">Tipo de Pago</label>
 			    	<div class="col-sm-5">
 			    	
-			      		<select class="form-control" id="estado" name="estado" >
-						<!-- Las opciones se deberían extraer de la tabla configuracion-->
-						<option value="1" selected>Activo</option>
-						<option value="0" >Inactivo</option>									
-						</select>						
-
-			    	</div>
-			  	</div>		
-
-			  	<div class="form-group required">
-			    	<label for="tipoProductoInput" class="col-sm-4 control-label">Tipo de Producto</label>
-			    	<div class="col-sm-5">
-			    	
-			      		<select class="form-control" id="tipo_producto" name="tipo_producto" >
-						<!-- Las opciones se deberían extraer de la tabla configuracion-->
+			      		<select class="form-control" id="tipo_pago" name="tipo_pago" >
 						<option value="" selected >Seleccionar tipo...</option>
-						<option value="Ropa" >Ropa</option>
-						<option value="Accesorios" >Accesorios</option>									
-						<option value="Utiles de Oficina" >Útiles de Oficina</option>
-						<option value="Souvenirs" >Souvenirs</option>
+						@foreach($configuracion as $tipo_pago)
+							@if ($tipo_pago['grupo'] == '7')
+								<option value="{{$tipo_pago->valor}}" >{{$tipo_pago->valor}}</option>
+							@endif
+						@endforeach						
 						</select>						
 						
 			    	</div>
 			  	</div>		
-
+						
 			  	<div class="form-group required">
-			    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
-			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="precio" name="precio" placeholder="Precio"  value="{{old('precio')}}">
+			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
+			    	<div class="col-sm-5">			    	
+			      		<select class="form-control" id="estado" name="estado" >
+						<!-- Las opciones se deberían extraer de la tabla configuracion-->
+						<option value="" selected>Seleccionar tipo...</option>
+						@foreach($configuracion as $estado)
+							@if ($estado['grupo'] == '6' and $estado['valor'] != 'Anulado')
+							<option value="{{$estado->valor}}">{{$estado->valor}}</option>
+							@endif
+						@endforeach						
+						</select>													
+						
 			    	</div>
-			  	</div>	  
+			  	</div>		
 
 			  	</br>
 			  	</br>
@@ -115,7 +104,7 @@
 						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
-						<a href="/producto/index" class="btn btn-info">Cancelar</a>
+						<a href="/venta-producto/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>

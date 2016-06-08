@@ -559,6 +559,7 @@ return array(
     'PersonaTableSeeder' => $baseDir . '/database/seeds/PersonaTableSeeder.php',
     'PrecioProductoTableSeeder' => $baseDir . '/database/seeds/PrecioProductoTableSeeder.php',
     'ProductoTableSeeder' => $baseDir . '/database/seeds/ProductoTableSeeder.php',
+    'ProductoxFacturacionTableSeeder' => $baseDir . '/database/seeds/ProductoxFacturacionTableSeeder.php',
     'ProveedorTableSeeder' => $baseDir . '/database/seeds/ProveedorTableSeeder.php',
     'ReservasTableSeeder' => $baseDir . '/database/seeds/ReservasTableSeeder.php',
     'SebastianBergmann\\Comparator\\ArrayComparator' => $vendorDir . '/sebastian/comparator/src/ArrayComparator.php',

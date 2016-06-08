@@ -9,9 +9,10 @@ use papusclub\Models\Producto;
 use papusclub\Models\PrecioProducto;
 use papusclub\Models\Configuracion;
 use papusclub\Models\Facturacion;
-use papusclub\Http\Requests\StoreProductoRequest;
-use papusclub\Http\Requests\EditProductoRequest;
-
+use papusclub\Models\ProductoxFacturacion;
+use papusclub\Http\Requests\StoreFacturacionRequest;
+use papusclub\Http\Requests\EditFacturacionRequest;
+use papusclub\Http\Requests\StoreProductoxFacturacionRequest;
 
 class VentaProductoController extends Controller
 {
@@ -23,73 +24,66 @@ class VentaProductoController extends Controller
 
 	public function create()
     {
-        $tipo_productos = Configuracion::where('grupo','=','5')->get();
-    	return view('admin-general.venta-producto.newProducto', compact('tipo_productos'));
+        $factura = new Facturacion();        
+        $configuracion = Configuracion::where('grupo','=','6')
+                                ->orWhere('grupo','=','7')->get();
+    	return view('admin-general.venta-producto.newVentaProducto', compact('factura'), compact('configuracion'));
     }
     
-    public function store(StoreProductoRequest $request)
+    public function store(StoreFacturacionRequest $request)
     {    	
     	$input = $request->all();
-        $producto = new Producto();
-    	$producto->nombre = $input['nombre'];
-		$producto->descripcion = $input['descripcion'];
-		$producto->estado = 1;
-		$producto->tipo_producto = $input['tipo_producto'];		
+        $factura = new Facturacion();
+    	$factura->persona_id = $input['persona_id'];
+		$factura->tipo_pago = $input['tipo_pago'];
+		$factura->estado = $input['estado'];		
     	
-        $producto->save();	    
-        
-        $precio = new PrecioProducto();
-        $precio->producto_id = $producto->id;
-        $precio->precio = $input['precio'];
-        $precio->estado = 1;
-        $precio->save();
-        return redirect('venta-producto/index')->with('stored', 'Se registró el producto correctamente.');
-    }
-	
+        $factura->save();	    
+
+        //return redirect('venta-producto/index')->with('stored', 'Se registró el producto correctamente.');
+        return view('admin-general.venta-producto.addVentaProducto', compact('factura'));
+    }	   
+
+    public function createVentaProducto($id)
+    {       
+        $factura = Facturacion::find($id);
+
+        return view('admin-general.venta-producto.add', compact('factura'));
+    }      
+
+    public function storeVentaProducto(StoreProductoxFacturacionRequest $request)
+    {               
+        $input = $request->all();
+        $productoxfacturacion = new ProductoxFacturacion();
+        $productoxfacturacion->producto_id = $input['producto_id'];
+        $productoxfacturacion->facturacion_id = $input['facturacion_id'];
+        $productoxfacturacion->cantidad = $input['cantidad'];  
+        $productoxfacturacion->subtotal = $productoxfacturacion->producto->precioproducto->first()['precio'] * $input['cantidad'];
+        $productoxfacturacion->save();
+
+        $productoxfacturacion->facturacion->total = $productoxfacturacion->facturacion->total + $productoxfacturacion->subtotal;
+        $productoxfacturacion->facturacion->save();
+        $factura = Facturacion::find($input['facturacion_id']);
+
+        return view('admin-general.venta-producto.addVentaProducto', compact('factura'));
+    }      
+
 	//Muestra el formulario para poder modificar un producto
     public function edit($id)
     {
-        $producto = Producto::find($id);
-        
-        $precio = PrecioProducto::where('producto_id', '=', $id)
-                                ->where('estado', '=', 1)->first();
-
-        if ($precio==null){
-            $precio = new PrecioProducto();
-            $precio->producto_id = $producto->id;
-            $precio->precio = 0;
-            $precio->estado = 1;
-            $precio->save();
-        }
-
-        $tipo_productos = Configuracion::where('grupo','=','5')->get();
-
-        return view('admin-general.venta-producto.editProducto', compact('producto'), compact('tipo_productos'));
+        $factura = Facturacion::find($id);
+        $estados = Configuracion::where('grupo','=','6')->get();
+        return view('admin-general.venta-producto.editVentaProducto', compact('factura'), compact('estados'));
     }
 
     //Se guarda la informacion modificada del producto en la BD
-    public function update(StoreProductoRequest $request, $id)
+    public function update(EditFacturacionRequest $request, $id)
     {
         $input = $request->all();
-        $producto = Producto::find($id);
-
-        $producto->nombre = $input['nombre'];
-        $producto->descripcion = $input['descripcion'];
-        $producto->estado = $input['estado'];
-        $producto->tipo_producto = $input['tipo_producto'];           
-        $producto->save();
-
-        $precioAnt = PrecioProducto::where('producto_id', '=', $id)
-                                    ->where('estado', '=', 1)->first();
-        $precioAnt->estado = 0;
-        $precioAnt->save();
-        $precioAnt->delete();
-
-        $precioNuevo = new PrecioProducto();
-        $precioNuevo->producto_id = $producto->id;
-        $precioNuevo->precio = $input['precio'];
-        $precioNuevo->estado = 1;
-        $precioNuevo->save();
+        $factura = Facturacion::find($id);
+        
+        $factura->estado = $input['estado'];        
+        $factura->save();        
         
         return redirect('venta-producto/index')->with('stored', 'Se actualizó el producto correctamente.');
 
@@ -98,19 +92,20 @@ class VentaProductoController extends Controller
     //Se cambia el estado de un producto a inactiva
     public function destroy($id)    
     {
-        $producto = Producto::find($id);
+        $factura = Facturacion::find($id);
         
-        $producto->precioproducto->first()->estado = 0;
-        $producto->precioproducto->first()->delete();
-        $producto->delete();
-        return back();
+        foreach ($factura->productoxfacturacion as $productoxfacturacion) {
+            $productoxfacturacion->delete();
+        }       
+        $factura->delete();
+        return redirect('venta-producto/index');
     }
 
     //Se brinda informacion mas detallada del producto
     public function show($id)
     {
-        $producto = Producto::find($id);        
-        return view('admin-general.venta-producto.detailProducto', compact('producto'));
+        $factura = Facturacion::find($id);
+        return view('admin-general.venta-producto.detailVentaProducto', compact('factura'));
     }
 
 }

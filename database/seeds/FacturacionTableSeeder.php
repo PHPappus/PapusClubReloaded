@@ -14,23 +14,23 @@ class FacturacionTableSeeder extends Seeder
     {
         Facturacion::insert([            
         	'persona_id' => '2', 
-        	'total' => '150',         	
+        	'total' => '70.5',         	
         	'tipo_pago' => 'Efectivo', 
-        	'estado' => '1'
+        	'estado' => 'Pagado'
         	]);
 
         Facturacion::insert([            
         	'persona_id' => '2', 
         	'total' => '300',         	
         	'tipo_pago' => 'Efectivo', 
-        	'estado' => '1'
+        	'estado' => 'Pagado'
         	]);
 
         Facturacion::insert([            
         	'persona_id' => '3', 
         	'total' => '85',         	
-        	'tipo_pago' => 'Efectivo', 
-        	'estado' => '1'
+        	'tipo_pago' => 'Credito', 
+        	'estado' => 'Emitido'
         	]);
     }
 }

@@ -49,9 +49,10 @@
 			</div>
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active" data-sortable="true">
-						<th><div align=center>PRODUCTO</div></th>
-						<th><div align=center>PRECIO</div></th>
-						<th><div align=center>TIPO</div></th>							
+						<th><div align=center>N° DE FACTURA</div></th>
+						<th><div align=center>ESTADO</div></th>
+						<th><div align=center>TOTAL</div></th>
+						<th><div align=center>TIPO PAGO</div></th>							
 						<th><div align=center>DETALLE</div></th>
 						<th><div align=center>EDITAR</div></th>
 						<th><div align=center>ELIMINAR</div></th>
@@ -61,17 +62,18 @@
 					<tbody>
 					@foreach($facturas as $factura)
 						<tr>
-							<td>{{ $factura->persona['nombre']}}</td>
+							<td>{{ str_pad($factura->id, 10, "0", STR_PAD_LEFT)}}</td>
+							<td>{{ $factura->estado}}</td>
 							<td>{{ $factura->total }}</td>			
 							<td>{{ $factura->tipo_pago }}</td>
 							<td>
-				              <a class="btn btn-info" href="{{url('/producto/'.$factura->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+				              <a class="btn btn-info" href="{{url('/venta-producto/'.$factura->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 				            </td>
 							<td>
-				              <a class="btn btn-info" href="{{url('/producto/'.$factura->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+				              <a class="btn btn-info" href="{{url('/venta-producto/'.$factura->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 				            </td>
 				            <td>
-				              <a class="btn btn-info"  title="Eliminar" data-href="{{url('/producto/'.$factura->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
+				              <a class="btn btn-info"  title="Eliminar" data-href="{{url('/venta-producto/'.$factura->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
 				            </td>
 			            </tr>
 					@endforeach
@@ -85,7 +87,7 @@
 	<div class="container">
 		<div class="form-group">
 			<div class="col-sm-16 text-right">
-				<a class="btn btn-info" href="{{url('/producto/new')}}" title="Registrar Producto" >Registrar Producto<i class="glyphicon" ></i> </a>	
+				<a class="btn btn-info" href="{{url('/venta-producto/new')}}" title="Registrar Producto" >Registrar Venta<i class="glyphicon" ></i> </a>	
 			</div>
 		</div>
 		<br/>

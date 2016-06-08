@@ -16,11 +16,11 @@ class Producto extends Model
     protected $dates = ['deleted_at'];
      
     public function productoxfacturacion(){
-        return $this->hasMany('papusclub\Models\ProductoxFacturacion', 'id');
+        return $this->hasMany('papusclub\Models\ProductoxFacturacion');
     }
 
     public function productoxproveedor(){
-        return $this->hasMany('papusclub\Models\ProductoxProveedor', 'id');
+        return $this->hasMany('papusclub\Models\ProductoxProveedor');
     }
 
     public function precioproducto(){

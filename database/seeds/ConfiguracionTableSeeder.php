@@ -31,5 +31,10 @@ class ConfiguracionTableSeeder extends Seeder
         Configuracion::insert([ 'valor' => 'Accesorios' , 'grupo' => '5', 'descripcion'=>'Tipos de Productos']);
         Configuracion::insert([ 'valor' => 'Utiles de Oficina' , 'grupo' => '5', 'descripcion'=>'Tipos de Productos']);
         Configuracion::insert([ 'valor' => 'Souvenirs' , 'grupo' => '5', 'descripcion'=>'Tipos de Productos']);
+        Configuracion::insert([ 'valor' => 'Pagado' , 'grupo' => '6', 'descripcion'=>'Estado de Facturas']);
+        Configuracion::insert([ 'valor' => 'Emitido' , 'grupo' => '6', 'descripcion'=>'Estado de Facturas']);
+        Configuracion::insert([ 'valor' => 'Anulado' , 'grupo' => '6', 'descripcion'=>'Estado de Facturas']);
+        Configuracion::insert([ 'valor' => 'Efectivo' , 'grupo' => '7', 'descripcion'=>'Estado de Facturas']);
+        Configuracion::insert([ 'valor' => 'Credito' , 'grupo' => '7', 'descripcion'=>'Estado de Facturas']);
     }
 }

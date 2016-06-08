@@ -813,6 +813,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'PersonaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PersonaTableSeeder.php',
         'PrecioProductoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PrecioProductoTableSeeder.php',
         'ProductoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductoTableSeeder.php',
+        'ProductoxFacturacionTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductoxFacturacionTableSeeder.php',
         'ProveedorTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProveedorTableSeeder.php',
         'ReservasTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ReservasTableSeeder.php',
         'SebastianBergmann\\Comparator\\ArrayComparator' => __DIR__ . '/..' . '/sebastian/comparator/src/ArrayComparator.php',
