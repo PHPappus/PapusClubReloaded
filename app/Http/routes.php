@@ -231,15 +231,15 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 
 //Administrador de Persona
 Route::group(['middleware' => ['auth', 'adminpersona']], function () {
-	/*Route::resource('admin-persona','AdminPersonaController');*/
+	Route::resource('admin-persona','AdminPersonaController');
 });
 //Administrador de Reserva
 Route::group(['middleware' => ['auth', 'adminreserva']], function () {
-	/*Route::resource('admin-reserva','AdminReservaController');*/
+	Route::resource('admin-reserva','AdminReservaController');
 });
 //Publico
 Route::group(['middleware' => ['auth', 'publico']], function () {
-	/*Route::resource('public','PublicoController');*/
+	Route::resource('public','PublicoController');
 });
 
 /*Route::get('sede-a','SedesController@index');

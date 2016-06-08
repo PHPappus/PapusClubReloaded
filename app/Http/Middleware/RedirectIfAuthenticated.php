@@ -43,7 +43,7 @@ class RedirectIfAuthenticated
                     return redirect('/admin-reserva');
                     break;
                 case '8':
-                    return redirect('/publico');
+                    return redirect('/public');
                     break;
                 default:
                     return redirect('/');
