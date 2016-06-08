@@ -50,24 +50,35 @@
 			  		
 				</div>
 
-				<br/><br/>
+				<br/>
+				<br/>
+				<div class="form-group">
+			  		<div class="text-center">
+			  			<font color="red"> 
+			  				(*) Dato Obligatorio
+			  			</font>
+			  			
+			  		</div>
+			  	</div>
+			  	</br>
+			  	</br>
 
 				<!-- INICIO INCIIO -->				                       
-				<div class="form-group">
+				<div class="form-group required">
 		    		<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 		    		<div class="col-sm-5">
 		      			<input type="text" class="form-control" id="nombre" name="nombre" value="{{$producto->nombre}}" >
 		    		</div>
 		  		</div>
 			  
-			  	<div class="form-group">
+			  	<div class="form-group required">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" value="{{$producto->descripcion}}">
 			    	</div>
 			  	</div>	  	
 			  	
-			  	<div class="form-group">
+			  	<div class="form-group required">
 			    	<label for="estadoInput" class="col-sm-4 control-label ">Estado</label>
 			    	<div class="col-sm-3">			      					      	
 			      		
@@ -80,21 +91,28 @@
 			    	</div>	    	
 			  	</div>
 			  	
-			  	<div class="form-group ">
+			  	<div class="form-group required">
 			    	<label for="tipoProductoInput" class="col-sm-4 control-label">Tipo de Producto</label>
 			    	<div class="col-sm-5">
 			    	
-			      		<select class="form-control" id="id_tipo_producto" name="id_tipo_producto" >
+			      		<select class="form-control" id="tipo_producto" name="tipo_producto" >
 						<!-- Las opciones se deberían extraer de la tabla configuracion-->
 						<option value=null >Seleccionar tipo...</option>
-						<option value="1" @if($producto['id_tipo_producto'] == 1) selected @endif >Ropa</option>
-						<option value="2" @if($producto['id_tipo_producto'] == 2) selected @endif>Accesorios</option>									
-						<option value="3" @if($producto['id_tipo_producto'] == 3) selected @endif>Útiles de Oficina</option>
-						<option value="4" @if($producto['id_tipo_producto'] == 4) selected @endif>Souvenirs</option>
+						<option value="Ropa" @if($producto['tipo_producto'] == "Ropa") selected @endif >Ropa</option>
+						<option value="Accesorios" @if($producto['tipo_producto'] == "Accesorios") selected @endif>Accesorios</option>									
+						<option value="Utiles de Oficina" @if($producto['tipo_producto'] == "Utiles de Oficina") selected @endif>Útiles de Oficina</option>
+						<option value="Souvenirs" @if($producto['tipo_producto'] == "Souvenirs") selected @endif>Souvenirs</option>
 						</select>						
 						
 			    	</div>
 			  	</div>		
+
+			  	<div class="form-group required">
+			    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" class="form-control" id="precio" name="precio" placeholder="Precio"  value="{{$precio->precio}}">
+			    	</div>
+			  	</div>	  
 					<!-- FIN FIN FIN  -->
 				
 			
@@ -104,10 +122,10 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-success" data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Aceptar">
+						<input class="btn btn-primary" data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Aceptar">
 					</div>
 					<div class="btn-group">
-						<a href="/producto/index" class="btn btn-danger">Cancelar</a>
+						<a href="/producto/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>
