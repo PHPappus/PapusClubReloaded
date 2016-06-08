@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 class ProductoxFacturacion extends Model
 {
+    use SoftDeletes;
     protected $table = 'productoxfacturacion';
     protected $fillable = 
     ['producto_id',
@@ -15,10 +16,10 @@ class ProductoxFacturacion extends Model
     protected $dates = ['deleted_at'];
 
     public function facturacion(){
-        return $this->belongsTo('papusclub\Models\Facturacion');
+        return $this->belongsTo('papusclub\Models\Facturacion','facturacion_id');
     }
 
     public function producto(){
-        return $this->belongsTo('papusclub\Models\Producto');
+        return $this->belongsTo('papusclub\Models\Producto','producto_id');
     }
 }

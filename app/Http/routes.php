@@ -170,6 +170,16 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('producto/{id}/edit', 'ProductoController@update');
 	Route::get('producto/{id}/delete', 'ProductoController@destroy');
 	Route::get('producto/{id}/show', 'ProductoController@show');
+	//VENTA DE PRODUCTOS
+	Route::get('venta-producto/index', 'VentaProductoController@index');
+	Route::get('venta-producto/new', 'VentaProductoController@create');
+	Route::post('venta-producto/new/venta-producto', 'VentaProductoController@store');
+	Route::get('venta-producto/{id}', 'VentaProductoController@edit');
+	Route::post('venta-producto/{id}/edit', 'VentaProductoController@update');
+	Route::get('venta-producto/{id}/delete', 'VentaProductoController@destroy');
+	Route::get('venta-producto/{id}/show', 'VentaProductoController@show');
+	Route::get('venta-producto/new/venta-producto/{id}', 'VentaProductoController@createVentaProducto');
+	Route::post('venta-producto/new/venta-producto/add', 'VentaProductoController@storeVentaProducto');
 
 	//MANTENIMIENTO DE SORTEO
 	Route::get('sorteo/index','SorteoController@index');

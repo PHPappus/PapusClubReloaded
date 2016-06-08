@@ -97,12 +97,15 @@
 			    	
 			      		<select class="form-control" id="tipo_producto" name="tipo_producto" >
 						<!-- Las opciones se deberían extraer de la tabla configuracion-->
-						<option value=null >Seleccionar tipo...</option>
-						<option value="Ropa" @if($producto['tipo_producto'] == "Ropa") selected @endif >Ropa</option>
-						<option value="Accesorios" @if($producto['tipo_producto'] == "Accesorios") selected @endif>Accesorios</option>									
-						<option value="Utiles de Oficina" @if($producto['tipo_producto'] == "Utiles de Oficina") selected @endif>Útiles de Oficina</option>
-						<option value="Souvenirs" @if($producto['tipo_producto'] == "Souvenirs") selected @endif>Souvenirs</option>
-						</select>						
+						<option value="" >Seleccionar tipo...</option>
+						@foreach($tipo_productos as $tipo_producto)
+							<option value="{{$tipo_producto->valor}}" 
+							@if (strcmp($tipo_producto->valor, $producto->tipo_producto)==0)		
+									selected
+							@endif
+							>{{$tipo_producto->valor}}</option>
+						@endforeach						
+						</select>													
 						
 			    	</div>
 			  	</div>		
@@ -110,7 +113,7 @@
 			  	<div class="form-group required">
 			    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="precio" name="precio" placeholder="Precio"  value="{{$precio->precio}}">
+			      		<input type="text" class="form-control" id="precio" name="precio" placeholder="Precio"  value="{{$producto->precioproducto->first()['precio']}}">
 			    	</div>
 			  	</div>	  
 					<!-- FIN FIN FIN  -->
