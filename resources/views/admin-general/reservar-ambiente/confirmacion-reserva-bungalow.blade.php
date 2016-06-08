@@ -27,7 +27,7 @@
 		</div>
 		<div class="container">
 			<!--@include('errors.503')-->		
-			<form method="POST" action="/ambiente/new/ambiente" class="form-horizontal form-border"> <!-- DEBERIA EL ACTION DE REESRVAR =D -->
+			<form method="POST" action="/reservar-ambiente/{{ $ambiente->id }}/confirmacion-reserva-bungalow" class="form-horizontal form-border"> 
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<br/><br/>
 

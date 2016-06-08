@@ -36,12 +36,26 @@ class ReservarAmbienteController extends Controller
         return view('admin-general.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes'));
     }
 
+    public function createBungalow($id)
+    {   
+        $ambiente = Ambiente::findOrFail($id);
+        return view('admin-general.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente'));
+    }
+
     //Se muestra el Bungalow a reservar y espera su confirmacion para la reserva
     public function storeBungalow($id)
     {
+        $user_id = Auth::user()->id;
+        $usuario = User::findOrFail($user_id);
+        $persona_id = $usuario->persona->id;        
+        $ambiente_id = $id;
 
-        $ambiente = Ambiente::find($id); // de aqui sacare el id de la sede :S
-        return view('admin-general.reservar-ambiente.confirmacion-reserva-bungalow',compact('ambiente'));
+        $reserva = new Reserva();
+        $reserva->ambiente_id = $ambiente_id;
+        $reserva->id_persona = $persona_id;
+        $reserva->save();
+
+        return redirect('reservar-ambiente/reservar-bungalow')->with('stored', 'Se registró la reserva del bungalow correctamente.');        
     }
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
 
@@ -56,8 +70,6 @@ class ReservarAmbienteController extends Controller
     {
         $user_id = Auth::user()->id;
         $usuario = User::findOrFail($user_id);
-        //echo $usuario->id;
-        //return exit;
         $persona_id = $usuario->persona->id;        
         $ambiente_id = $id;
 
@@ -65,7 +77,7 @@ class ReservarAmbienteController extends Controller
         $reserva->ambiente_id = $ambiente_id;
         $reserva->id_persona = $persona_id;
         $reserva->save();
-        return redirect('reservar-ambiente/reservar-otros-ambientes')->with('stored', 'Se registró la reserva correctamente.');
+        return redirect('reservar-ambiente/reservar-otros-ambientes')->with('stored', 'Se registró la reserva del ambiente correctamente.');
     }
        
 }

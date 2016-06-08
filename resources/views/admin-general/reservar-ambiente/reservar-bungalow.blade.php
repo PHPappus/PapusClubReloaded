@@ -21,15 +21,15 @@
 @section('content')
 
 
-<!-- <div class="container">
-	<div class="col-sm-12 text-center">
-		<br/><br/>
-		<p class="lead"><strong>RESERVAR BUNGALOW</strong></p>
-		<br/>
-	</div>
-
-	<br/>
-	<br/> -->
+<!-- Mensaje de éxito luego de registrar -->
+		@if (session('stored'))
+			<script>$("#modalSuccess").modal("show");</script>
+			
+			<div class="alert alert-success fade in">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>¡Éxito!</strong> {{session('stored')}}
+			</div>
+		@endif
 
 
 	
@@ -45,9 +45,8 @@
 	<br/>
 
 	<div class="container">
-		<form method="POST" action="/ambiente/new/ambiente" class="form-horizontal form-border"> <!-- FALTA CAMBIAR LA ACTION =D -->
-			<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+		<form  class="form-horizontal form-border"> <!-- FALTA CAMBIAR LA ACTION =D -->
+			
 			<br/>
 			<div class="form-group">
 		  		<div class="text-center ">
@@ -154,10 +153,10 @@
 					<td>{{ $ambiente->tipo_ambiente }}</td>
 					<td>{{ $ambiente->capacidad_actual }}</td>
 					<td>
-			        <a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/confirmacion-reserva-bungalow')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+			        <a class="btn btn-info" href="{{url('/ambiente/'.$ambiente->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 			        </td>
 					<td>
-					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/confirmacion-reserva-bungalow')}}"  title="Detalle" ><i class="glyphicon glyphicon-remove"></i></a>
+					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/new-reserva-bungalow')}}"  title="Detalle" ><i class="glyphicon glyphicon-remove"></i></a>
 
 			        </td>
 					</tr>
@@ -251,5 +250,24 @@
 
 </body>
 
+<!-- Modal Success -->
+	<div id="modalSuccess" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
 
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">¡Éxito!</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>{{session('stored')}}</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>           
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
 </html>
