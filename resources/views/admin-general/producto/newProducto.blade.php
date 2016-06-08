@@ -88,12 +88,10 @@
 			    	<div class="col-sm-5">
 			    	
 			      		<select class="form-control" id="tipo_producto" name="tipo_producto" >
-						<!-- Las opciones se deberían extraer de la tabla configuracion-->
 						<option value="" selected >Seleccionar tipo...</option>
-						<option value="Ropa" >Ropa</option>
-						<option value="Accesorios" >Accesorios</option>									
-						<option value="Utiles de Oficina" >Útiles de Oficina</option>
-						<option value="Souvenirs" >Souvenirs</option>
+						@foreach($tipo_productos as $tipo_producto)
+							<option value="{{$tipo_producto->valor}}" >{{$tipo_producto->valor}}</option>
+						@endforeach						
 						</select>						
 						
 			    	</div>

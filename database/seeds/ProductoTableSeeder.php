@@ -30,14 +30,14 @@ class ProductoTableSeeder extends Seeder
             'nombre' => 'Gorro PapusClub', 
             'descripcion' => 'Gorro',             
             'estado' => '1', 
-            'tipo_producto' => 'Accesorio' 
+            'tipo_producto' => 'Accesorios' 
             ]);
 
         Producto::insert([            
             'nombre' => 'Sombrero PapusClub', 
             'descripcion' => 'Sombrero',             
             'estado' => '1', 
-            'tipo_producto' => 'Accesorio' 
+            'tipo_producto' => 'Accesorios' 
             ]);
 
         Producto::insert([            
