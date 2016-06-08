@@ -59,19 +59,19 @@
 
 											
 					<tbody>
-					@foreach($productos as $producto)
+					@foreach($facturas as $factura)
 						<tr>
-							<td>{{ $producto->nombre }}</td>
-							<td>{{ $producto->precioproducto->first()['precio'] }}</td>			
-							<td>{{ $producto->tipo_producto }}</td>
+							<td>{{ $factura->persona['nombre']}}</td>
+							<td>{{ $factura->total }}</td>			
+							<td>{{ $factura->tipo_pago }}</td>
 							<td>
-				              <a class="btn btn-info" href="{{url('/producto/'.$producto->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+				              <a class="btn btn-info" href="{{url('/producto/'.$factura->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 				            </td>
 							<td>
-				              <a class="btn btn-info" href="{{url('/producto/'.$producto->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+				              <a class="btn btn-info" href="{{url('/producto/'.$factura->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 				            </td>
 				            <td>
-				              <a class="btn btn-info"  title="Eliminar" data-href="{{url('/producto/'.$producto->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
+				              <a class="btn btn-info"  title="Eliminar" data-href="{{url('/producto/'.$factura->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
 				            </td>
 			            </tr>
 					@endforeach

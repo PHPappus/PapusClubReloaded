@@ -17,8 +17,8 @@ class VentaProductoController extends Controller
 {
     //Muestra la lista de productos que se encuentran en BD, estas se pueden modificar, cambiar el estado, ver mas detalle o registrar un nuevo producto
     public function index() {
-		$productos = Producto::all();        
-        return view('admin-general.venta-producto.index', compact('productos'));
+		$facturas = Facturacion::all();        
+        return view('admin-general.venta-producto.index', compact('facturas'));
 	}	
 
 	public function create()

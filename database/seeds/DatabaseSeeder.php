@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ReservasTableSeeder::class);
         $this->call(TestTallerTableSeeder::class);
 		$this->call(PrecioProductoTableSeeder::class);
+        $this->call(FacturacionTableSeeder::class);
         Model::reguard();
     }
 }

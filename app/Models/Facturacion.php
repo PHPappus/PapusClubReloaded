@@ -19,6 +19,6 @@ class Facturacion extends Model
     }
 
     public function productoxfacturacion(){
-        return $this->hasMany('papusclub\Models\ProductoxFacturacion');
+        return $this->hasMany('papusclub\Models\ProductoxFacturacion', 'id');
     }
 }
