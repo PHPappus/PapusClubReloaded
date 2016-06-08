@@ -18,6 +18,7 @@ class CreateTarifaTallerTable extends Migration
             $table->dateTime('fecha_registro');
             $table->integer('precios');
             $table->boolean('estado')->default(TRUE);
+            $table->softDeletes();
         });
     }
 

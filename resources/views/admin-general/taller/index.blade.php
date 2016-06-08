@@ -55,10 +55,7 @@
 							<th><div align=center>DESCRIPCIÓN</div></th>
 							<th><div align=center>VACANTES</div></th>
 							<th><div align=center>FECHA INICIO INSCRIPCIONES</div></th>
-							<th><div align=center>FECHA FIN INSCRIPCIONES</div></th>
 							<th><div align=center>FECHA INICIO TALLER</div></th>
-							<th><div align=center>FECHA FIN TALLER</div></th>
-							<th><div align=center>CANTIDAD DE SESIONES</div></th>
 							<th><div align=center>DETALLE</div></th>
 							<th><div align=center>EDITAR</div></th>
 							<th><div align=center>ELIMINAR</div></th>
@@ -72,10 +69,7 @@
 									<td>{{$taller->descripcion}}</td>
 									<td>{{$taller->vacantes}}</td>
 									<td>{{$taller->fecha_inicio_inscripciones}}</td>
-									<td>{{$taller->fecha_fin_inscripciones}}</td>
 									<td>{{$taller->fecha_inicio}}</td>
-									<td>{{$taller->fin}}</td>
-									<td>{{$taller->cantidad_sesiones}}</td>
 									<td>
 					              	<a class="btn btn-info" href="{{url('/taller/'.$taller->id)}}/"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 					            	</td>

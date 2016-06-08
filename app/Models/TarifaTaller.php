@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TarifaTaller extends Model
 {
+	use SoftDeletes;
     protected $table = 'tarifataller'; 
 
     protected $fillable=
@@ -14,4 +15,9 @@ class TarifaTaller extends Model
  	 'precio',
  	 'estado'
     ];
+
+    public function taller()
+	{
+		return $this->belongsTo(Taller::class,'taller_id');
+	}
 }
