@@ -11,7 +11,9 @@ class Reserva extends Model
     protected $table = 'reserva';
     protected $fillable = 
     ['fecha_inicio_reserva',
-    'fecha_fin_reserva', 
+    'fecha_fin_reserva',
+     'hora_inicio_reserva',
+     'hora_fin_reserva' ,
     'precio', 
     'estadoReserva'
     ];

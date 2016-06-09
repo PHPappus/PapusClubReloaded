@@ -35,7 +35,36 @@ class ReservarAmbienteController extends Controller
         $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->get();
         return view('admin-general.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes'));
     }
+    public function reservarOtrosAmbientesFiltrados($request)
+    {
+        $input=$request->all();
+        $sedes=Sede::all();
+        if(!empty($input['fecha_inicio'])){
+            $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')
+            ->whereHas('reservas',function ($query){
+                    $query->where('fecha_inicio_reserva','=<',$input['fecha_inicio']);
+                    $query->where('fecha_fin_reserva','=<',$input['fecha_inicio']);
 
+              })->orwhereHas('reservas',function ($query){
+                    $query->where('fecha_inicio_reserva','=>',$input['fecha_fin']);
+                    $query->where('fecha_fin_reserva','=>',$input['fecha_fin']);
+
+              })->get();
+        }else{
+            $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')
+            ->whereHas('reservas',function ($query){
+                    $query->where('fecha_inicio_reserva','=<',$input['fecha_inicio']);
+                    $query->where('fecha_fin_reserva','=<',$input['fecha_inicio']);
+
+              })->orwhereHas('reservas',function ($query){
+                    $query->where('fecha_inicio_reserva','=>',$input['fecha_fin']);
+                    $query->where('fecha_fin_reserva','=>',$input['fecha_fin']);
+
+              })->get();
+        }
+
+        return view('admin-general.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes'));
+    }
     public function createBungalow($id)
     {   
         $ambiente = Ambiente::findOrFail($id);

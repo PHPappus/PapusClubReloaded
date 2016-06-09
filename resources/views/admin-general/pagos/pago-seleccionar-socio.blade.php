@@ -48,7 +48,9 @@
 					<tbody>
 						@foreach($socios as $socio)		
 							
-						   	<tr>						    		
+						   	<tr>
+						   	<td>{{$socio->postulante->id_postulante}}</td>
+						   	<td>{{$socio->postulante->persona->nombre}}</td>						    		
 							<td><a class="btn btn-info" href="#"  title="OK" ><i class="glyphicon glyphicon-ok"></i></a>
 						    </td>
 							</tr>
