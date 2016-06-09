@@ -120,9 +120,9 @@
 			<table class="table table-bordered" >
 					<thead class="active" >	
 						<tr>							
-							<th class="col-sm-4" ><DIV ALIGN=center>Tipo Persona</th>
-							<th class="col-sm-2" ><DIV ALIGN=center>Moneda</th>
-							<th class="col-sm-7"><DIV ALIGN=center>Monto</th>
+							<th class="col-sm-3" ><DIV ALIGN=center>Tipo Persona</th>
+							<th class="col-sm-3" ><DIV ALIGN=center>Moneda</th>
+							<th class="col-sm-3"><DIV ALIGN=center>Monto</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -131,9 +131,9 @@
 									<td align="center">  {{ $tipoPersona->descripcion }}</td>
 									<td align="center">  S/.</td>
 									<td align="center"> 
-					<div align="center">
-			      		<input style="text-align:right;" type="text" class="form-control" id="{{$tipoPersona->descripcion}}imput" name="{{$tipoPersona->descripcion}}" placeholder="">
-			    	</div>
+									<div align="center">
+							      		<input style="text-align:right;" type="text" class="form-control" id="{{$tipoPersona->descripcion}}imput" name="{{$tipoPersona->descripcion}}" placeholder="">
+							    	</div>
 								</td>							        
 								</tr>
 							@endforeach
