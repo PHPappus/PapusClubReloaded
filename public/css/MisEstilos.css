@@ -259,6 +259,12 @@ body{
     padding-right: 0;
     text-align: left;
 }
+body > footer > div{
+    height: 80px !important;
+}
+body > main > footer > div{
+    height: 80px !important;
+}
 
 
 .footer{/*Pie de pagina*/

@@ -100,8 +100,7 @@
 						<li><a href="{!!URL::to('/producto/index')!!}">PRODUCTO<span class="despliegue">▼</span></a>
 							<ul>
 								<li><a href="{!!URL::to('/producto/index')!!}">PRODUCTOS</a></li>
-								<li><a href="#">TIPOS DE PRODUCTOS</a></li>
-								<li><a href="#">VENTAS DE PRODUCTOS</a></li>
+								<li><a href="{!!URL::to('/venta-producto/index')!!}">VENTAS DE PRODUCTOS</a></li>
 							</ul>
 						</li>
 						<!-- Opción MANTENIMIENTO -->
