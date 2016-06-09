@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>RESERVAR BUNGALOW</title>
+	<title>RESERVAR OTROS AMBIENTES</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,7 +47,9 @@
 	<br/>
 
 	<div class="container">
-		<form  class="form-horizontal form-border"> <!-- FALTA CAMBIAR LA ACTION =D -->
+		<form method="POST" class="form-horizontal form-border" action="/reservar-ambiente/reservar-otros-ambientes/search"> <!-- FALTA CAMBIAR LA ACTION =D -->
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				<!-- VALIDACION CON FE INICIO -->
 			<br/>
 			<div class="form-group">
 		  		<div class="text-center ">
@@ -71,12 +73,7 @@
 			<div class="form-group required">
 			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha (dd/mm/aaaa) </label>
 			    <div class="col-sm-5">
-				  	<!-- <div class="input-group">
-			   		<input name="fechaInicio" id="fechaInicio" type="text" required class="form-control">
-			       		<span class="input-group-addon">-</span>
-			       		<input name="fechaFin" id="fechaFin" type="text" required class="form-control">
-			   	 	</div>
- -->
+				  	
 			   	 	<div class="input-group">
 			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" style="max-width: 250px">
 			   		<span class="input-group-addon">-</span>
