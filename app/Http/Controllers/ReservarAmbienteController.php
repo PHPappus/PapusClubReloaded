@@ -99,17 +99,17 @@ class ReservarAmbienteController extends Controller
         $reserva = new Reserva();
         $reserva->ambiente_id = $ambiente_id;
         $reserva->id_persona = $persona_id;
-        if (empty($input['fecha_inicio'])) {
+        if (empty($input['fecha_inicio_reserva'])) {
             $reserva->fecha_inicio_reserva="";
         }else{
-            $fecha_inicio = str_replace('/', '-', $input['fecha_inicio']);      
+            $fecha_inicio = str_replace('/', '-', $input['fecha_inicio_reserva']);      
             $reserva->fecha_inicio_reserva=$carbon->createFromFormat('d-m-Y', $fecha_inicio)->toDateString();
         }
 
-        if (empty($input['fecha_fin'])) {
+        if (empty($input['fecha_fin_reserva'])) {
             $reserva->fecha_fin_reserva="";
         }else{
-            $fecha_fin = str_replace('/', '-', $input['fecha_fin']);      
+            $fecha_fin = str_replace('/', '-', $input['fecha_fin_reserva']);      
             $reserva->fecha_fin_reserva=$carbon->createFromFormat('d-m-Y', $fecha_fin)->toDateString();
         }
 
@@ -155,10 +155,12 @@ class ReservarAmbienteController extends Controller
         $reserva = new Reserva();
         $reserva->ambiente_id = $ambiente_id;
         $reserva->id_persona = $persona_id;
-        if (empty($input['fecha_inicio'])) {
+        
+
+        if (empty($input['fecha_inicio_reserva'])) {
             $reserva->fecha_inicio_reserva="";
         }else{
-            $fecha_inicio = str_replace('/', '-', $input['fecha_inicio']);      
+            $fecha_inicio = str_replace('/', '-', $input['fecha_inicio_reserva']);      
             $reserva->fecha_inicio_reserva=$carbon->createFromFormat('d-m-Y', $fecha_inicio)->toDateString();
             $reserva->fecha_fin_reserva=$carbon->createFromFormat('d-m-Y', $fecha_inicio)->toDateString();
         }
