@@ -89,7 +89,7 @@
 			    	<label for="fechaInicioInput" class="col-sm-4 control-label">Fecha Inicio(dd/mm/aaaa)</label>
 			    	<div class="col-sm-5">
 			      		<!-- <input type="date" class="form-control" id="fechaInicioInput" name="fecha"> -->
-			      		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="fechaInicioInput" name="a_realizarse_en" placeholder="Fecha Inicio" style="max-width: 250px">
+			      		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="a_realizarse_en" placeholder="Fecha Inicio" style="max-width: 250px">
 			    	</div>
 			  	</div>
 			 
