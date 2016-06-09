@@ -41,11 +41,10 @@ class AmbienteController extends Controller
             $parent = Sede::find($input['sedeSelec']);
             $ambiente->sede_id = $parent->id;
         }
-                
-
-        //
+        
         $ambiente->capacidad_actual= $input['capacidad_actual'];
-        $ambiente->tipo_ambiente= $input['tipo_ambiente'];
+        $tipoAmbiente = Configuracion::find($input['tipo_ambiente']);
+        $ambiente->tipo_ambiente= $tipoAmbiente->valor;
         $ambiente->ubicacion= $input['ubicacion'];
         $ambiente->save();
         return redirect('ambiente/index')->with('stored', 'Se registró el ambiente correctamente.');

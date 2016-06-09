@@ -24,7 +24,9 @@ class StoreReservaAmbiente extends Request
     public function rules()
     {
         return [
-            
+            'fecha_inicio'            =>  'required|date',
+            'fecha_fin'     =>  'required|date',
+                                    
         ];
     }
 }

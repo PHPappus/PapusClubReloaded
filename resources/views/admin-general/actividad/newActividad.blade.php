@@ -105,7 +105,7 @@
 			  	<div class="form-group required">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			      		<textarea type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" ></textarea> 
+			      		<textarea type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" style="resize: none"></textarea> 
 			    	</div>
 			  	</div>
 			  	<div class="form-group required">
@@ -113,9 +113,9 @@
 			    	<div class="col-sm-5">
 				    	<select class="form-control" id="tipoActividadInput" name="tipo_actividad" style="max-width: 150px "  >
 				    						<option value="-1" default>Seleccione</option>
-							               @foreach ($values as $value)      
+							               	@foreach ($values as $value)      
 							                	<option value="{{$value->id}}">{{$value->valor}}</option>
-							                @endforeach
+							               	@endforeach
 						</select>
 					</div>
 			  	</div>
@@ -136,16 +136,32 @@
 			  	<!-- EL ESTADO SIEMPRE VA EN TRUE PARA EL REGISTRAR -->
 			  	
 
-			  	<!-- INICIO - Para INGRESaR LOS PRECIOS POR CADA TIPO D PERSONA -->
-			  	@foreach ($tipoPersonas as $tipoPersona)   
-				  	<!-- <div class="form-group required">
-				    	<label for="nombreInput" class="col-sm-4 control-label">{{$tipoPersona->descripcion}}</label>
-				     -->	<!-- <div class="col-sm-5">
-				      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre de la actividad" value="{{old('nombre')}}" >
-				    	</div> -->
-				  	<!-- </div> -->   						
-				@endforeach
-			  	<!-- FIN    - Para INGRESaR LOS PRECIOS POR CADA TIPO D PERSONA -->
+			  	<!-- INICIO  PRECIO POR TIPO DE PERSONA -->
+
+			  	<br/>
+			<div class="form-group "> 
+				<label for="precioTipo1" class="col-sm-4 control-label" width: 100px >Precios </label>
+			</div>
+			<div class="form-group required">
+			   	<label for="precioTipo1" class="col-sm-4 control-label">Trabajador</label>
+			   	<div class="col-sm-5">
+			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo1" name="precioTipo1" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" >
+			   	</div>
+			</div>	
+			<div class="form-group required">
+			   	<label for="precioTipo2" class="col-sm-4 control-label">Postulante</label>
+			   	<div class="col-sm-5">
+					<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo2" name="precioTipo2" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" >
+			   	</div>
+			</div>	
+			<div class="form-group required">
+			   	<label for="precioTipo3" class="col-sm-4 control-label">Socio</label>
+			   	<div class="col-sm-5">
+			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo3" name="precioTipo3" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" >
+			   	</div>
+			</div>	
+			  	
+			  	<!-- FIN     PRECIO POR TIPO DE PERSONA -->
 			  
 			  	
 		  	<!-- FIN FIN FIN -->
