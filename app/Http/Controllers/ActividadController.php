@@ -52,7 +52,7 @@ class ActividadController extends Controller
                     $actividad->a_realizarse_en="";
                 }else{
                     $a_realizarse_en = str_replace('/', '-', $input['a_realizarse_en']);      
-                    $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->createFromFormat('H:i', $input['hora'])->toDateTimeString();
+                    $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->createFromFormat('H:i:s', $input['hora'])->toDateTimeString();
                 }
 
         $actividad->estado=false; 
@@ -79,7 +79,7 @@ class ActividadController extends Controller
                     $actividad->a_realizarse_en="";
                 }else{
                     $a_realizarse_en = str_replace('/', '-', $input['a_realizarse_en']);      
-                    $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->createFromFormat('H:i', $input['hora'])->toDateTimeString();
+                    $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->createFromFormat('H:i:s', $input['hora'])->toDateTimeString();
         }
         $actividad->save();
         return redirect('actividad/index');
