@@ -114,7 +114,7 @@
 										</div>
 										<div class="col-sm-6 text-left" >
 												<input  type="radio" name="nacionalidad" value="Peruano"  @{{$nac=per}} checked disabled> Peruano  
-												<input  type="radio" name="nacionalidad" value="Extranjero" style="margin-left: 50px;"@{{$nac=otro}}disabled> Extranjero	
+												<input  type="radio" name="nacionalidad" value="Extranjero" style="margin-left: 50px;"@{{$nac=otro}} disabled> Extranjero	
 										</div>	
 									</div>
 								</div>
@@ -181,28 +181,28 @@
 
 							
 						</div>
-
+										<!--DATOS FAMILIARES-->
 						<div role="tabpanel" class="tab-pane" id="seccion3">
 
 						</div>
-
+										<!--DATOS VIVIENDA-->
 						<div role="tabpanel" class="tab-pane" id="seccion4">
 
 						</div>
-
+										<!--DATOS ESTUDIO-->
 						<div role="tabpanel" class="tab-pane" id="seccion5">
 
 						</div>
-
+										<!--DATOS TRABAJO -->
 						<div role="tabpanel" class="tab-pane" id="seccion6">
 
 						</div>
 
-
+										<!--DATOS DE CONTACTO -->
 						<div role="tabpanel" class="tab-pane" id="seccion7">
 
 						</div>
-
+										<!--DATOS DE MEMBRESIA -->
 						<div role="tabpanel" class="tab-pane" id="seccion8">
 
 						</div>

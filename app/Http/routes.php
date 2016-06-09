@@ -85,12 +85,12 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('postulante-al-admin','AdminGeneralController@postulante');
 
 	//MANTENIMIENTO DE POSTULANTE
-	Route::get('postulante/index','PostulanteController@index');
+	Route::get('postulante/index','PostulanteController@index');//
+	Route::get('postulante/new','PostulanteController@registrar');//ya
 	Route::get('postulante/search','PostulanteController@buscar');
 	Route::get('postulante/new','PostulanteController@registrar');
 	//MANTENIMIENTO DE TRABAJADOR
 	Route::get('trabajador/index','TrabajadorController@index');//ya
-	//Route::get('trabajador/search','TrabajadorController@buscar');//ya
 	Route::get('trabajador/new','TrabajadorController@registrar');//ya
 	Route::post('trabajador/new/trabajador', 'TrabajadorController@store');//ya
 	Route::get('trabajador/{id}','TrabajadorController@edit');//ya
@@ -170,6 +170,17 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('producto/{id}/edit', 'ProductoController@update');
 	Route::get('producto/{id}/delete', 'ProductoController@destroy');
 	Route::get('producto/{id}/show', 'ProductoController@show');
+	Route::post('producto/new/tipoproducto', 'ProductoController@storeTipoProducto');
+	//VENTA DE PRODUCTOS
+	Route::get('venta-producto/index', 'VentaProductoController@index');
+	Route::get('venta-producto/new', 'VentaProductoController@create');
+	Route::post('venta-producto/new/venta-producto', 'VentaProductoController@store');
+	Route::get('venta-producto/{id}', 'VentaProductoController@edit');
+	Route::post('venta-producto/{id}/edit', 'VentaProductoController@update');
+	Route::get('venta-producto/{id}/delete', 'VentaProductoController@destroy');
+	Route::get('venta-producto/{id}/show', 'VentaProductoController@show');
+	Route::get('venta-producto/new/venta-producto/{id}', 'VentaProductoController@createVentaProducto');
+	Route::post('venta-producto/new/venta-producto/add', 'VentaProductoController@storeVentaProducto');
 
 	//MANTENIMIENTO DE SORTEO
 	Route::get('sorteo/index','SorteoController@index');
@@ -204,7 +215,8 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('actividad/new/actividad', 'ActividadController@store');
 	Route::get('actividad/{id}', 'ActividadController@edit');
 	Route::post('actividad/{id}/edit', 'ActividadController@update');
-	Route::get('actividad/{id}/delete', 'AmbienteController@destroy');
+	Route::get('actividad/{id}/delete', 'ActividadController@destroy');
+
 	Route::get('actividad/{id}/show', 'ActividadController@show');
 
 	//MANTENIMIENTO DE TALLERES
@@ -216,7 +228,20 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 
 
 });
-	
+
+
+//Administrador de Persona
+Route::group(['middleware' => ['auth', 'adminpersona']], function () {
+	Route::resource('admin-persona','AdminPersonaController');
+});
+//Administrador de Reserva
+Route::group(['middleware' => ['auth', 'adminreserva']], function () {
+	Route::resource('admin-reserva','AdminReservaController');
+});
+//Publico
+Route::group(['middleware' => ['auth', 'publico']], function () {
+	Route::resource('public','PublicoController');
+});
 
 /*Route::get('sede-a','SedesController@index');
 Route::get('newsede-a','SedesController@create');
