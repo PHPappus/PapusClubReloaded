@@ -14,8 +14,7 @@
 <body>
 @extends('layouts.headerandfooter-al-admin-registros')
 @section('content')
-<!---Cuerpo -->
-<main class="main">
+
 	<div class="content" style="max-width: 100%;">
 		<!-- Utilizando Bootstrap -->
 		@include('alerts.success')
@@ -45,7 +44,8 @@
 									<td>{{$user->name}}</td>
 									<td>{{$user->email}}</td>
 									<td>{{$user->password}}</td>
-									<td>{{$user->perfil_id}}</td>
+									<td>{{$perfiles[$user->perfil_id-1]->description}}</td>
+									<!-- <td>{{$perfiles->where('id','=',$user->perfil_id)}}</td> -->
 								</tr>
 								@endforeach
 							</tbody>

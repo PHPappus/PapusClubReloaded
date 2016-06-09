@@ -49,8 +49,9 @@ class UsuarioController extends Controller
 
     public function index()
     {
-        $users = \papusclub\User::All();
-        return view('usuario.consultar',compact('users'));
+        $users     = \papusclub\User::All();
+        $perfiles  = \papusclub\Perfil::All();
+        return view('usuario.consultar',compact('users'),compact('perfiles'));
     }
 
     /**
