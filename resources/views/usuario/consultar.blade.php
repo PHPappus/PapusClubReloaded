@@ -34,7 +34,7 @@
 								<tr class="active">
 									<th>Nombre</th>
 									<th>Correo</th>
-									<th>Contraseña</th>
+									<!-- <th>Contraseña</th> -->
 									<th>Perfil</th>
 								</tr>
 							</thead>	
@@ -43,7 +43,7 @@
 								<tr>
 									<td>{{$user->name}}</td>
 									<td>{{$user->email}}</td>
-									<td>{{$user->password}}</td>
+									<!-- <td>{{$user->password}}</td> -->
 									<td>{{$perfiles[$user->perfil_id-1]->description}}</td>
 									<!-- <td>{{$perfiles->where('id','=',$user->perfil_id)}}</td> -->
 								</tr>
