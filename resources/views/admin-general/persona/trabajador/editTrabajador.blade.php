@@ -47,7 +47,7 @@
 				<div class="col-sm-12 text-left">
 				<br>
 				<br>
-					<p class="lead"><strong>REGISTRAR CUENTA</strong></p>
+					<p class="lead"><strong>EDITAR CUENTA</strong></p>
 			  	</div>
 				</div>
 			</div>	
@@ -219,7 +219,13 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_ini_contrato" placeholder="Fecha de inicio" style="max-width: 250px" value="@if(empty($trabajador->fecha_ini_contrato)) $trabajador->fecha_fin_contrato @endif" value="{{old('fecha_ini_contrato')}}">
+												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_ini_contrato" placeholder="Fecha de inicio" style="max-width: 250px" 
+													@if (!empty($trabajador->fecha_ini_contrato))
+														value="{{$trabajador->fecha_ini_contrato}}";
+													@else
+												  		value="" 
+													@endif
+												value="{{old('fecha_ini_contrato')}}">
 											</div>	
 										</div>
 									</div>
@@ -232,7 +238,13 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_fin_contrato" placeholder="Fecha de fin" style="max-width: 250px" value="@if(empty($trabajador->fecha_ini_contrato)) $trabajador->fecha_fin_contrato @endif" value="{{old('fecha_fin_contrato')}}">
+												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_fin_contrato" placeholder="Fecha de fin" style="max-width: 250px"
+													@if (!empty($trabajador->fecha_fin_contrato))
+														value="{{$trabajador->fecha_fin_contrato}}";
+													@else
+												  		value="" 
+													@endif 
+												  value="{{old('fecha_fin_contrato')}}">
 											</div>
 										</div>
 									</div>
@@ -306,11 +318,11 @@
 			$('.datepicker').datepicker({				
 				autoclose: true,
 				format: 'dd/mm/yyyy',
-				//autoclose: true,
-				startDate: '-3d',
-				beforeShowDay:function($date){
+				autoclose: true,
+				//startDate: '-3d',
+/*				beforeShowDay:function($date){
 					return false;
-				}
+				}*/
 			});
 		});
 		
