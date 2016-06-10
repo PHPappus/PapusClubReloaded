@@ -118,17 +118,36 @@
 			    	</div>
 			  	</div>
 
+			  	 </br>
 
-			  	@foreach ($personas as $persona)
-
-				  	<div class="form-group">
-					   	<label for="{{$persona->descripcion}}Input" class="col-sm-4 control-label">Tarifa {{$persona->descripcion}} (S/.)</label>
-					   	<div class="col-sm-5">
-				     		<input type="number" min ="0" step="any" class="form-control" id="{{$persona->descripcion}}Input" name="{{$persona->descripcion}}" placeholder="Precio (S/.)">
-					   	</div>
-				  	</div>
-
-			  	@endforeach		  	
+				<style>  				
+  				#myTable {
+    					    margin: 0 auto;  }			
+			</style>
+			<div class="container" style="width: 600px; margin-left: auto; margin-right: auto"  >
+			<table class="table table-bordered" >
+					<thead class="active" >	
+						<tr>							
+							<th class="col-sm-3" ><DIV ALIGN=center>Tipo Persona</th>
+							<th class="col-sm-3" ><DIV ALIGN=center>Moneda</th>
+							<th class="col-sm-3"><DIV ALIGN=center>Monto</th>
+						</tr>
+					</thead>
+					<tbody>
+							@foreach ($personas as $persona)		
+						    	<tr>
+									<td align="center">  {{ $persona->descripcion }}</td>
+									<td align="center">  S/.</td>
+									<td align="center"> 
+									<div align="center">
+							      		<input style="text-align:right;" type="number" min ="0" step="any" class="form-control" id="{{$persona->descripcion}}Input" name="{{$persona->descripcion}}" placeholder="">
+							    	</div>
+								</td>							        
+								</tr>
+							@endforeach
+					</tbody>													
+			</table>
+			</div>	  	
 
 						  	
 			  	</br>

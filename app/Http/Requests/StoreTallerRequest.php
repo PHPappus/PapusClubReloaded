@@ -28,9 +28,6 @@ class StoreTallerRequest extends Request
             'descripcion' =>'required|max:200|string',
             'vacantes' =>'min:0',
             'cantidad_sesiones' => 'min:0',
-            'precioSocio' => 'required|min:0|float',
-            'precioExterno' => 'required|min:0|float',
-            'precioTrabajador' => 'required|min:0|float',
         ];
     }
 }

@@ -16,8 +16,9 @@ class TarifaTaller extends Model
  	 'estado'
     ];
 
-    public function taller()
+    public function talleres()
 	{
-		return $this->belongsTo(Taller::class,'taller_id');
+		return $this->belongsToMany('App\Models\Taller')->withPivot('precio');
 	}
+
 }

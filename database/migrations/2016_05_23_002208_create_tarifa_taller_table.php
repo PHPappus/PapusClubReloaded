@@ -16,7 +16,7 @@ class CreateTarifaTallerTable extends Migration
             $table->integer('taller_id')->unsigned()->index();
             $table->integer('tipo_persona_id')->unsigned()->index();
             $table->dateTime('fecha_registro');
-            $table->integer('precios');
+            $table->integer('precio');
             $table->boolean('estado')->default(TRUE);
             $table->softDeletes();
         });

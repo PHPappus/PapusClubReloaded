@@ -63,9 +63,7 @@ class TallerController extends Controller
 
     public function store(StoreTallerRequest $request)
     {
-        $input = $request->all();    
-
-        $personas = TipoPersona::all();        
+        $input = $request->all();             
 
         $carbon=new Carbon(); 
         $taller = new Taller();
@@ -114,10 +112,15 @@ class TallerController extends Controller
         else
             $taller->cantidad_sesiones = $input['cantSes'];
 
-        
-        
-
         $taller->save();
+
+        $personas = TipoPersona::all();    
+
+        foreach ($personas as $persona) {
+            $fecha = new DateTime("now");
+            $fecha=$fecha->format('Y-m-d');
+            $taller->tarifaTaller()->save($persona,['fecha_registro'=>$fecha,'precio'=>$input[$persona->descripcion],'estado'=>TRUE]);
+        }
 
         return redirect('taller')->with('stored', 'Se registró el taller correctamente.');
         //return back();

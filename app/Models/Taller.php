@@ -26,14 +26,9 @@ class Taller extends Model
         return $this->belongsToMany('App\User')->withPivot('precio');
     }
 
-    public function tipo()
+    public function tarifaTaller()
     {
-        return $this->hasMany(TarifaTaller::class);
-    }
-
-    public function addTipo(TarifaTaller $tipo)
-    {
-        return $this->tipo()->save($tipo);      
+        return $this->belongsToMany(TipoPersona::class,'tarifataller','taller_id','tipo_persona_id')->withPivot('fecha_registro','precio','estado');
     }
 
 }
