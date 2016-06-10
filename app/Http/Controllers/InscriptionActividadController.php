@@ -120,6 +120,7 @@ class InscriptionActividadController extends Controller
             }
             
             if(!$flag){
+                $actividades=Actividad::all();
                 Session::flash('message','Ya se encuentra inscrito en este taller');
                 return view('socio.actividades.inscripciones',compact('sedes'),compact('actividades'));
             }
