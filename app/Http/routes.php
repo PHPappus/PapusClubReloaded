@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Input;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -89,6 +89,24 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('postulante/new','PostulanteController@registrar');//ya
 	Route::get('postulante/search','PostulanteController@buscar');
 	Route::get('postulante/new','PostulanteController@registrar');
+
+	//Route::get('/provincias','PostulanteController@getProvincias');
+	
+	Route::post('postulante/test', function()
+	{
+	    return 'Success! ajax in laravel 5';
+	});
+	//Route::get('/information/create/ajax-departamento','UbicacionController@getProvincias');
+	Route::post('postulante/provincias', function(){
+		$dep_id=Input::get('id');
+    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
+	});
+	Route::post('postulante/distritos', function(){
+		$prov_id=Input::get('id');
+    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
+	});
+	//Route::get('api/repairdropdown', 'UbicacionController@dropdown');
+
 	//MANTENIMIENTO DE TRABAJADOR
 	Route::get('trabajador/index','TrabajadorController@index');//ya
 	Route::get('trabajador/new','TrabajadorController@registrar');//ya
@@ -278,6 +296,7 @@ Route::get('/home', 'HomeController@index');
 Route::get('/prueba', 'FrontController@prueba');
 
 
+
 //Ruta cochina para departamentos muy cochina asco
 Route::get('/ajax-distritos',function(){
 
@@ -287,5 +306,4 @@ Route::get('/ajax-distritos',function(){
 
 	return Response::json($subcategories);
 });
-
 

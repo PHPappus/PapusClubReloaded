@@ -192,7 +192,13 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="fecha_ini_contrato" name="fecha_ini_contrato" value="@if (empty($trabajador->fecha_ini_contrato)) $trabajador->fecha_ini_contrato @endif" readonly style="max-width: 250px">
+												<input type="text" class="form-control" id="fecha_ini_contrato" name="fecha_ini_contrato" 
+												  @if (!empty($trabajador->fecha_ini_contrato))
+														value="{{$trabajador->fecha_ini_contrato}}";
+												  @else
+												  		value="" 
+												  @endif 
+												  readonly style="max-width: 250px">
 											</div>	
 										</div>
 									</div>
@@ -205,7 +211,13 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="fecha_fin_contrato" name="fecha_fin_contrato" value="@if(empty($trabajador->fecha_ini_contrato)) $trabajador->fecha_fin_contrato @endif" readonly style="max-width: 250px">
+												<input type="text" class="form-control" id="fecha_fin_contrato" name="fecha_fin_contrato"
+													@if (!empty($trabajador->fecha_fin_contrato))
+														value="{{$trabajador->fecha_fin_contrato}}";
+												  	@else
+												  		value="" 
+												  	@endif 
+												    readonly style="max-width: 250px">
 											</div>
 										</div>
 									</div>

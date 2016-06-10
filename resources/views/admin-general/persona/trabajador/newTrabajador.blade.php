@@ -76,8 +76,8 @@
 					<div class="col-sm-12 text-center">
 						<div role="tabpanel">
 							<ul class="nav nav-pills nav-tabs" role="tablist">
-								<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Datos Básicos</a></li>
-								<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Contrato</a></li>
+								<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Paso 1: Datos Básicos</a></li>
+								<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Paso 2: Contrato</a></li>
 							</ul>
 						</div>
 
@@ -278,7 +278,8 @@
 
 @stop
 
-	<script src="../js/jquery-1.12.4.min.js"></script>
+<!-- 	<script src="../js/jquery-1.12.4.min.js"></script> -->
+<script src="../js/jquery-3.0.0.min.js"></script>
 	<!-- Bootstrap -->
 	<script type="text/javascript" src="../js/bootstrap.js"></script>
 
@@ -323,7 +324,7 @@
 			$('.datepicker').datepicker({
 				format: "dd/mm/yyyy",
 		        language: 'es',
-		        autoclose: true
+		        	//autoclose: true
 		        //beforeShowDay:function (date){return false}
 			});
 			$('.datepicker').on('changeDate', function(ev){

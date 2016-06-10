@@ -15,4 +15,7 @@ class Provincia extends Model
     ];
     protected $dates = ['deleted_at'];
 
+    public function provincias($id){
+    	return Provincia::where('departamento_id','=',$id);
+    }
 }
