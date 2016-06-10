@@ -1242,7 +1242,7 @@ class BelongsToMany extends Relation
      */
     public function getRelatedFreshUpdate()
     {
-        return [$this->related->getUpdatedAtColumn() => $this->related->freshTimestampString()];
+        return [$this->related->getUpdatedAtColumn() => $this->related->freshTimestamp()];
     }
 
     /**

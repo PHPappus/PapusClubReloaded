@@ -12,7 +12,6 @@ use Session;
 use Redirect;
 use papusclub\Http\Controllers\Controller;
 use papusclub\User;
-use papusclub\Models\Socio;
 
 class SocioController extends Controller
 {
@@ -132,11 +131,5 @@ class SocioController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-     public function searchSocio() // va  a la lista de los socios
-    {
-        $socios = Socio::all();
-        return view('admin-general.persona.socio.buscarSocio',compact('socios'));
     }
 }

@@ -22,7 +22,13 @@ class Actividad extends Model
     //funciones para las relaciones entre tablas
     
     public function ambiente(){
-        return $this->belongsTo('papusclub\Models\Ambiente', 'ambiente_id');
+        return $this->belongsTo('papusclub\Models\Ambiente');
         
+    }
+    public function personas(){
+        return $this->belongsToMany('App\Models\Persona')->withPivot('precio');
+    }
+    public function sede(){
+        return $this->belongsTo('papusclub\Models\Sede');
     }
 }

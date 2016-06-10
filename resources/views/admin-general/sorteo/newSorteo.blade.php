@@ -97,8 +97,8 @@
 	</div>		
 @stop
 <!-- JQuery -->
-
-	<script src="../js/jquery-1.12.4.min.js"></script>
+	<script   src="https://code.jquery.com/jquery-3.0.0.js"   integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo="   crossorigin="anonymous"></script>
+	<!-- <script src="../js/jquery-1.12.4.min.js"></script> -->
 	<!-- Bootstrap -->
 	<script type="text/javascript" src="../js/bootstrap.js"></script>
 	<!-- BXSlider -->

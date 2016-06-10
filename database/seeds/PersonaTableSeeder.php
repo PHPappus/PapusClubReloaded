@@ -3,9 +3,6 @@
 use Illuminate\Database\Seeder;
 use papusclub\Models\Persona;
 
-use Carbon\Carbon;
-
-
 class PersonaTableSeeder extends Seeder
 {
     /**
@@ -25,7 +22,7 @@ class PersonaTableSeeder extends Seeder
         	'correo'=>'prueba@mail.com',
         	'fecha_nacimiento'=>'1994-05-14',
         	'id_tipo_persona'=>3,
-        	'id_usuario'=>1]);
+        	'id_usuario'=>4]);
 
         Persona::create([
             'nacionalidad'=>'peruano',
@@ -48,7 +45,7 @@ class PersonaTableSeeder extends Seeder
             'correo'=>'m.milera@mail.com',
             'fecha_nacimiento'=>'1992-11-19',
             'id_tipo_persona'=>3,
-            'id_usuario'=>2]);
+            'id_usuario'=>5]);
 
         Persona::create([
             'nacionalidad'=>'Peruano',
@@ -61,5 +58,16 @@ class PersonaTableSeeder extends Seeder
             'fecha_nacimiento'=>'1992-10-10',
             'id_tipo_persona'=>3,
             'id_usuario'=>3]);
+        Persona::create([
+            'nacionalidad'=>'Peruano',
+            'doc_identidad'=>'47803790',
+            'nombre'=>'César',
+            'ap_paterno'=>'Olivera',
+            'ap_materno'=>'Cokan',
+            'sexo'=>'hombre',
+            'correo'=>'cesar.olivera@pucp.pe',
+            'fecha_nacimiento'=>'1993-03-07',
+            'id_tipo_persona'=>3,
+            'id_usuario'=>1]);
     }
 }

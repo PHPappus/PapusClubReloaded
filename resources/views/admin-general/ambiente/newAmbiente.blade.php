@@ -59,7 +59,7 @@
 
 					<!-- INICIO INICIO INICIO INICIO -->
 				<div class="form-group required">
-			    	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>	
+			    	<label for="sedeInput" class="col-sm-4 control-label">SEDE</label>	
 			    	<div class="col-sm-5">
 				    	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >
 							                <option value="-1" default>Seleccione</option>							         
@@ -71,13 +71,13 @@
 			  	</div>
 
 				<div class="form-group required">
-			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
+			    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"   class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" value="{{old('nombre')}}" >
 			    	</div>
 			  	</div>
 			  	<div class="form-group required">
-			    	<label for="tipoAmbienteInput" class="col-sm-4 control-label">Tipo Ambiente</label>	
+			    	<label for="tipoAmbienteInput" class="col-sm-4 control-label">TIPO AMBIENTE</label>	
 			    	<div class="col-sm-5">
 				    	<select class="form-control" id="tipoAmbienteInput" name="tipo_ambiente" style="max-width: 150px "   >
 							                <option value="-1" default>Seleccione</option>
@@ -85,58 +85,34 @@
 							                	<option value="{{$value->id}}">{{$value->valor}}</option>
 							                @endforeach
 							                
+
+
 						</select>
 					</div>
 			  	</div>
 
 			  	<div class="form-group required">
-			    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad Máxima</label>
+			    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="capacidadInput" name="capacidad_actual" placeholder="Capacidad Maxima" value="{{old('capacidad_actual')}}" >
 			    	</div>
 			  	</div>	  	
 			  	<div class="form-group required">
-			    	<label for="numHabitacionInput" class="col-sm-4 control-label">Número de habitaciones</label>
+			    	<label for="numHabitacionInput" class="col-sm-4 control-label">NÚMERO DE HABITACIONES</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="numHabitacionInput" name="capacidad_actual" placeholder="Número de habitaciones" value="{{old('capacidad_actual')}}" >
 			    	</div>
 			  	</div>	
 			  	<div class="form-group required">
-			    	<label for="ubicacionInput" class="col-sm-4 control-label">Ubicación</label>
+			    	<label for="ubicacionInput" class="col-sm-4 control-label">UBICACIÓN</label>
 			    	<div class="col-sm-5">
-			      		<textarea type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="ubicacionInput" name="ubicacion" placeholder="Ubicacion" value="{{old('ubicacion')}}" style="resize: none"></textarea>
+			      		<textarea type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="ubicacionInput" name="ubicacion" placeholder="Ubicacion" value="{{old('ubicacion')}}"></textarea>
 			    	</div>
 			  	</div>
+			  	</br>
 			  	
-			  	<!-- INICIO  PRECIO POR TIPO DE PERSONA -->
-
-			  	<br/>
-			<div class="form-group "> 
-				<label for="precioTipo1" class="col-sm-4 control-label" width: 100px >Precios </label>
-			</div>
-			<div class="form-group required">
-			   	<label for="precioTipo1" class="col-sm-4 control-label">Trabajador</label>
-			   	<div class="col-sm-5">
-			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo1" name="precioTipo1" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" >
-			   	</div>
-			</div>	
-			<div class="form-group required">
-			   	<label for="precioTipo2" class="col-sm-4 control-label">Postulante</label>
-			   	<div class="col-sm-5">
-					<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo2" name="precioTipo2" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" >
-			   	</div>
-			</div>	
-			<div class="form-group required">
-			   	<label for="precioTipo3" class="col-sm-4 control-label">Socio</label>
-			   	<div class="col-sm-5">
-			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo3" name="precioTipo3" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" >
-			   	</div>
-			</div>	
 			  	
-			  	<!-- FIN     PRECIO POR TIPO DE PERSONA -->
-			  				  	
-
-			  	<!-- FIN FIN FIN -->
+		  			<!-- FIN FIN FIN -->
 					
 				</br></br>
 			  	<div class="btn-inline">

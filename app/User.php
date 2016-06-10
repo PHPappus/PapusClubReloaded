@@ -26,7 +26,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password','perfil_id'];
+    protected $fillable = ['name', 'email', 'password','perfil_id','persona_id'];
     /**
      * The attributes excluded from the model's JSON form.
      *
@@ -39,17 +39,14 @@ class User extends Model implements AuthenticatableContract,
             $this->attributes['password'] = \Hash::make($valor);
         }
     }
-    public function perfil()
+    public function perfil_id()
     {
-        return $this->belongsTo('papusclub\Perfil', 'perfil_id');
+        return $this->belongsTo('papusclub\Perfil');
     }
-
-    public function persona()
-    {
-        return $this->hasOne('papusclub\Models\Persona', 'id');
-    }
-    
     public function talleres(){
         return $this->belongsToMany('papusclub\Models\Taller')->withPivot('precio');
+    }
+    public function persona(){
+        return $this->hasOne('papusclub\Models\Persona','id_usuario');
     }
 }
