@@ -45,14 +45,14 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-left">
-					<p class="lead"><strong>CUENTA</strong></p>
+					<p class="lead"><strong>REGISTRAR POSTULANTE</strong></p>
 				</div>
 			</div>	
 		</div>
 
 		<div class="container">
-			<form method="POST" action="/ambiente/new/ambiente" class="form-horizontal form-border">
-			
+			<form method="POST" action="/postulante/new/postulante" class="form-horizontal form-border">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		
 				<div class="row">
 					<div class="col-sm-12 text-center">

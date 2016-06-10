@@ -43,7 +43,7 @@
 			</div>
 		@endif
 
-		<div class="container">
+			<div class="container">
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active">
 						<tr>
