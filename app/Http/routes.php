@@ -43,7 +43,7 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('anular-reserva-ambiente-s','SocioController@anularReservaAmbiente');
 	Route::get('anular-reserva-ambiente-b-s','SocioController@anularReservaAmbienteB');
 	Route::get('pagos-s','SocioController@pagos');
-		//Socio.talleres
+	//Socio.talleres  : INSCRIPCION DE TALLERES
 	Route::get('talleres/index','InscriptionTallerController@index');
 	Route::get('talleres/{id}/show','InscriptionTallerController@show');
 	Route::get('talleres/{id}/confirm','InscriptionTallerController@confirmInscription');
@@ -54,6 +54,14 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('bungalows-s','SocioController@bungalow');
 	Route::get('reserva-bungalows-s','SocioController@bungalowReserva');
 	Route::get('reserva-bungalows-b-s','SocioController@bungalowReservaB');
+	//Socio.atividades : INSCRIPCION DE ACTIVIDADES
+	Route::get('inscripcion-actividad/inscripcion-actividades', 'InscriptionActividadController@inscriptionActividad'); // REservar
+	Route::get('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades', 'InscriptionActividadController@storeInscriptionActividad');
+	Route::post('inscripcion-actividad/inscripcion-actividades','InscriptionActividadController@filterActividades');
+	Route::post('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades/confirm','InscriptionActividadController@makeInscriptionToPersona');
+
+	Route::get('inscripcion-actividad/mis-inscripciones','InscriptionActividadController@misinscripciones');
+	Route::get('inscripcion-actividad/{id}/delete', 'InscriptionActividadController@removeInscriptionToPersona');
 });
 
 
@@ -222,9 +230,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('actividad/{id}/edit', 'ActividadController@update');
 	Route::get('actividad/{id}/delete', 'ActividadController@destroy');
 	Route::get('actividad/{id}/show', 'ActividadController@show');
-	//INSCRIPCION DE ACTIVIDADES
-	Route::get('inscripcion-actividad/inscripcion-actividades', 'InscripcionActividadController@inscripcionActividad'); // REservar
-	Route::get('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades', 'InscripcionActividadController@storeInscripcionActividad');
+	
 	
 	//MANTENIMIENTO DE TALLERES
 	Route::get('talleres/','TallerController@index');
