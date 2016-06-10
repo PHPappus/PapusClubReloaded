@@ -466,7 +466,7 @@
 			    $("#distrito").append("<option  value='-1' default>--Seleccione--</option>");
 				var url = $(this).attr("data-link");
 				$departamento_id=event.target.value;
-							alert($departamento_id);
+							//alert($departamento_id);
 				//alert(url);
 				$.ajax({
 			        url: "provincias",
@@ -498,7 +498,7 @@
 				document.getElementById("distrito").disabled = false;
 				var url = $(this).attr("data-link");
 				$provincia_id=event.target.value;
-							alert($provincia_id);
+							//alert($provincia_id);
 				//alert(url);
 				//alert($provincia_id);
 				$.ajax({
@@ -517,7 +517,7 @@
 			        	$("#distrito").append("<option  value='-1' default>--Seleccione--</option>");
 			        	$.each(data,function(index,elememt){
 
-							alert(elememt.id);
+							//alert(elememt.id);
 			        		//alert(element.nombre);
 			        		$("#distrito").append("<option value='"+elememt.id+"'>"+elememt.nombre+"</option>");
 			        	});
