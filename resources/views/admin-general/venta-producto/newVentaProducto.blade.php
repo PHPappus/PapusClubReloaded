@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>REGISTRAR PRODUCTO</title>
+	<title>REGISTRAR VENTA</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +22,7 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>REGISTRAR PRODUCTO</strong>
+					<strong>REGISTRAR VENTA</strong>
 			</div>		
 		</div>
 		<div class="container">

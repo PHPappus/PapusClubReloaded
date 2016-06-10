@@ -89,7 +89,7 @@
 						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
-						<a href="/venta-producto/index" class="btn btn-info">Cancelar</a>
+						<a href="javascript:history.back()" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>
