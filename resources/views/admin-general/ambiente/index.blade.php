@@ -18,7 +18,7 @@
 @section('content')
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-12 text-center">
+			<div class="col-sm-12 text-left">
 				<br/><br/>
 				<p class="lead"><strong>AMBIENTE</strong></p>
 				<br/>
@@ -39,6 +39,13 @@
 
 		
 		<div class="container">
+			<div class="form-group">
+				<div class="text-right">
+					<font color="black"> 
+						Filtra por todos los campos
+					</font>
+				</div>
+		 	</div>
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active">
 						<tr>
@@ -101,11 +108,10 @@
 
 
 @stop
-{!!Html::script('js/jquery-1.11.3.min.js')!!}
+	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	{!!Html::script('js/bootstrap.js')!!}
 	{!!Html::script('js/jquery.bxslider.min.js')!!}
 	{!!Html::script('js/MisScripts.js')!!}
-	<!-- {!!Html::script('js/jquery.dataTables.min.js')!!} -->
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
 	<script>
 		$(document).ready(function() {

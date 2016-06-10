@@ -62,7 +62,7 @@
 		  	<div class="form-group ">
 		    	<label for="ubicacionInput" class="col-sm-4 control-label">UBICACIÓN</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->ubicacion}}" readonly>
+		      		<textarea type="text" class="form-control" id="ubicacionInput" name="ubicacion" placeholder="{{$ambiente->ubicacion}}" readonly></textarea>
 		    	</div>
 		  	</div>
 		  	<!-- <div class="form-group">

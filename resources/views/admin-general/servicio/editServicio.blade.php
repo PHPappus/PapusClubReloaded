@@ -46,7 +46,7 @@
 			  	</div>
 
 			  	<div class="form-group">
-			    	<label for="contactoInput" class="col-sm-4 control-label"> TIPO SERVICIO</label>
+			    	<label for="contactoInput" class="col-sm-4 control-label"> Tipo de Servicio</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="contactoInput" name="tipo_servicio" value="{{$servicio->tipo_servicio}}">
 			    	</div>
@@ -67,10 +67,10 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-success" type="submit" value="Confirmar">
+						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
-						<a href="/servicios/index" class="btn btn-danger">Cancelar</a>
+						<a href="/servicios/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>

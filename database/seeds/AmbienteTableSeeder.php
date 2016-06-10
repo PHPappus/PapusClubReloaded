@@ -14,21 +14,21 @@ class AmbienteTableSeeder extends Seeder
     {
         Ambiente::insert([
             'nombre' => 'Cancha 10', 
-        	'tipo' => 'Cancha', 
+        	'tipo_ambiente' => 'Cancha', 
         	'capacidad_actual' => '100', 
         	'ubicacion' => 'Sede Callao-cerca de la entrada', 
         	'sede_id' => 1 
         	]);
         Ambiente::insert([
             'nombre' => 'Bungalow 10', 
-            'tipo' => 'Bungalow', 
+            'tipo_ambiente' => 'Bungalow', 
             'capacidad_actual' => '100', 
             'ubicacion' => 'Sede Callao-cerca de la entrada', 
             'sede_id' => 1 
             ]);
         Ambiente::insert([
             'nombre' => 'Bungalow 1', 
-            'tipo' => 'Bungalow', 
+            'tipo_ambiente' => 'Bungalow', 
             'capacidad_actual' => '100', 
             'ubicacion' => 'Sede Callao-cerca de la entrada', 
             'sede_id' => 1 

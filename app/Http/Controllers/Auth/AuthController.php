@@ -5,6 +5,7 @@ namespace papusclub\Http\Controllers\Auth;
 use papusclub\User;
 use Validator;
 use papusclub\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 

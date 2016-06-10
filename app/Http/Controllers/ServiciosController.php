@@ -16,6 +16,7 @@ class ServiciosController extends Controller
     public function index()
     {
         $servicios = Servicio::all();
+        $mensaje  = null;
         return view('admin-general.servicio.index', compact('servicios'));
     }
 
@@ -27,6 +28,7 @@ class ServiciosController extends Controller
 
     public function store(StoreServicioRequest $request)
     {
+        $mensaje = 'Se registró el producto correctamente.';
         $input = $request->all();            
         $servicio = new Servicio();
         $servicio->nombre = $input['nombre'];
@@ -34,7 +36,7 @@ class ServiciosController extends Controller
         $servicio->tipo_servicio = $input['tipo_servicio'];
         $servicio->estado = true;                
         $servicio->save();
-        return back();    
+        return redirect('servicios/index')->with('mensaje', 'Se registró el servicio correctamente.');
     }
 
     public function edit($id)
@@ -62,14 +64,21 @@ class ServiciosController extends Controller
         $servicio->save();
         // return back();cambio 
         $servicios = Servicio::all();
-        return view('admin-general.servicio.index', compact('servicios'));          
+        
+        return redirect('servicios/index')->with('mensaje', 'Se actualizó el servicio correctamente.');
+                  
     }
 
 
     public function destroy($id)    
     {
         $servicio = Servicio::find($id);
-        $servicio->estado = false;
+        if ($servicio->estado == false){
+            $servicio->estado = true ;
+        }else{
+            $servicio->estado = false ;
+        }
+
         $servicio->save();
         return back();
     }

@@ -36,6 +36,15 @@
 			<form method="POST" action="/actividad/{{ $actividad->id }}/edit" class="form-horizontal form-border">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<br/><br/>
+				<div class="form-group">
+			  		<div class="text-center">
+			  			<font color="red"> 
+			  				(*) Dato Obligatorio
+			  			</font>
+			  			
+			  		</div>
+			  	</div>
+				<br/>
 
 			<!-- INICIO INICIO INICIO INICIO -->
 
@@ -45,27 +54,27 @@
 		      		<a class="btn btn-info" name="buscarAmbiente" href="{!!URL::to('/ambiente/search')!!}"  title="Buscar" ><i name="buscarAmbiente" class="glyphicon glyphicon-search"></i></a>
 		    	</div>
 		  	</div> -->
-		  	<div class="form-group ">
+		  	<div class="form-group required">
 		    	<label for="ambienteInput" class="col-sm-4 control-label">AMBIENTE</label>
 		    	<div class="col-sm-5">
 		    		<input type="text" class="form-control" id="ambienteInput" name="ambiente" value="{{$actividad->ambiente->nombre}}"  required readonly>
 		      	</div>
 		      	<a class="btn btn-info" name="buscarAmbiente" href="{!!URL::to('/ambiente/search')!!}"  title="Buscar" ><i name="buscarAmbiente" class="glyphicon glyphicon-search"></i></a>
 		  	</div>
-		  	<div class="form-group ">
+		  	<div class="form-group required">
 		    	<label for="tipoambienteInput" class="col-sm-4 control-label">TIPO DE AMBIENTE</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="tipoambienteInput" name="tipoambiente" value="{{$actividad->ambiente->tipo_ambiente}}"  required readonly>
 		    	</div>
 		  	</div>
-		  	<div class="form-group ">
+		  	<div class="form-group required">
 		    	<label for="sedeInput" class="col-sm-4 control-label">SEDE</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="sedeInput" name="sede" value="{{$actividad->ambiente->sede->nombre}}"  required readonly>
 		    	</div>
 		  	</div>
 
-			<div class="form-group ">
+			<div class="form-group required">
 		    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="nombreInput" name="nombre" value="{{$actividad->nombre}}" required>
@@ -74,10 +83,10 @@
 		  	<div class="form-group ">
 		    	<label for="descripcionInput" class="col-sm-4 control-label">DESCRIPCIÓN</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="descripcionInput" name="descripcion" value="{{$actividad->descripcion}}" required>
+		      		<input type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"  class="form-control" id="descripcionInput" name="descripcion" value ="{{$actividad->descripcion}}" required>
 		    	</div>
 		  	</div>
-		  	<div class="form-group ">
+		  	<div class="form-group required ">
 		    	<label for="descripcionInput" class="col-sm-4 control-label">TIPO DE ACTIVIDAD</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="descripcionInput" name="descripcion" value="{{$actividad->tipo_actividad}}" readonly>
@@ -95,7 +104,7 @@
 				</div>
 		  	</div> -->
 
-		  	<div class="form-group ">
+		  	<div class="form-group required ">
 		    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="capacidadInput" name="capacidad_maxima" value="{{$actividad->capacidad_maxima}}" required>
@@ -124,7 +133,7 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Guardar">
+						<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Confirmar">
 					</div>
 					<div class="btn-group">
 						<a href="/actividad/index" class="btn btn-info">Cancelar</a>

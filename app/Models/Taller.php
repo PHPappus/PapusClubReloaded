@@ -13,4 +13,8 @@ class Taller extends Model
      'vacantes'
     ];
 
+    public function users(){
+        return $this->belongsToMany('App\User')->withPivot('precio');
+    }
+
 }

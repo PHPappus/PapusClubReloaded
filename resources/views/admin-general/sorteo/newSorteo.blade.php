@@ -2,16 +2,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>AGREGAR SORTEO</title>
+	<title>REGISTRAR SORTEO</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	{!!Html::style('css/jquery.bxslider.css')!!}
-	{!!Html::style('css/font-awesome.css')!!}
-	{!!Html::style('css/bootstrap.css')!!}
-	{!!Html::style('css/MisEstilos.css')!!}
-	{!!Html::style('css/datepicker.css')!!}
+	<link rel="stylesheet" href="../ss/font-awesome.css">
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../css/datepicker.css">
+	<link rel="stylesheet" type="text/css" href="../css/MisEstilos.css">	
 	
 	
 </head>
@@ -26,7 +24,7 @@
 		
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>AGREGAR SORTEO</strong>
+					<strong>REGISTRAR SORTEO</strong>
 			</div>		
 		</div>
 		<div class="container">
@@ -81,88 +79,73 @@
 						<input class="datepicker" type="text" id="fecha_cerrado" readonly="true" name="fecha_cerrado"  value="{{ old('fecha_cerrado') }}" >						
 					</div>
 				</div>
-				<div class="table-responsive"  style="display:none">
-					<div class="container">
-						<table class="table table-bordered table-hover text-center display" id="example">
-							<thead class="active" data-sortable="true">
-								<th><div align=center>NOMBRE BUNGALOW</div> </th>
-								<th><div align=center>CAPACIDAD</div></th>
-								<th><div align=center>SEDE</div></th>
-								<th><div align=center>UBICACION</div></th>								
-							</thead>	
-							<tbody>													
-								@foreach($ambientes as $ambiente)									
-									<tr>									
-										<td>{{$ambiente->nombre}}</td>
-										<td>{{$ambiente->capacidad_actual}}</td>
-										<td>{{$ambiente->sede_id}}</td>	
-										<td>{{$ambiente->ubicacion}}</td>												            	
-									</tr>
-								</form>
-								 @endforeach
-							</tbody>			
-						</table>						
-					</div>	
-				</div>
-
-
-				<br/>
-				<br/>
+				<br><br>
 				<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-primary" type="submit" value="Confirmar">
+						<input class="btn btn-primary" type="submit" value="Continuar">
 					</div>
 					<div class="btn-group">
 						<a href="/sorteo/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
-				<br><br><br>
+				<br><br>
 
 			</form>
 		</div>
 	</div>		
 @stop
-	{!!Html::script('js/jquery-1.11.3.min.js')!!}
-	{!!Html::script('js/bootstrap.js')!!}
-	{!!Html::script('js/jquery.bxslider.min.js')!!}
-	{!!Html::script('js/MisScripts.js')!!}
-	<script type="text/javascript" src="../js/bootstrap-datepicker.js"></script>
+<!-- JQuery -->
+	<script src="../js/jquery-1.12.4.min.js"></script>
+	<!-- Bootstrap -->
+	<script type="text/javascript" src="../js/bootstrap.js"></script>
+	<!-- BXSlider -->
 
+	<!-- Mis Scripts -->
+
+	<script type="text/javascript" src="../js/bootstrap-datepicker-sirve.js"></script>
+
+
+	
+	
 	<script>
 		$(document).ready(function(){
-		    $(function() {
+				var nowTemp = new Date();		
+				var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+		 
+				var checkin = $('#fecha_abierto').datepicker({
+		  			onRender: function(date) {
+		    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
+		  			}
+				}).on('changeDate', function(ev) {
+		  			if (ev.date.valueOf() > checkout.date.valueOf()) {
+		    			var newDate = new Date(ev.date)
+		    			newDate.setDate(newDate.getDate() + 1);
+		    			checkout.setValue(newDate);
+		  			}
+		 			checkin.hide();
+		  			$('#fecha_cerrado')[0].focus();
+				}).data('datepicker');
 
-		            // run on change for the selectbox
-		            $( "#fecha_abierto" ).change(function() {  
-		                updateDurationDivs();
-		            });
+				var checkout = $('#fecha_cerrado').datepicker({
+		  			onRender: function(date) {
+		    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+		  			}
+				}).on('changeDate', function(ev) {
+		  			checkout.hide();
+				}).data('datepicker');	
 
-		            // handle the updating of the duration divs
-		            function updateDurationDivs() {
-		                // hide all form-duration-divs
-		                //$('.form-duration-div').hide();
 
-		                //var divKey = $( "#frm_duration option:selected" ).val();                
-		                $('#fecha_abierto').show();
-		            }        
-
-		            // run at load, for the currently selected div to show up
-		            updateDurationDivs();
-
-		    });
 		});
-        
-    </script>
-	<script>
-			$(function(){
-				$('.datepicker').datepicker({
-					format: 'dd/mm/yyyy',
-					autoclose:true
+		$(function(){
+					$('.datepicker').datepicker({
+						format: 'dd/mm/yyyy',
+				        language: "es",
+				        autoclose: true,
+				        //beforeShowDay:function (date){return false}
+					});
 				});
-			});
-		
-	</script>
+	</script>	
 </body>
 </html>

@@ -25,8 +25,7 @@ class StoreMultaRequest extends Request
     {
         return [
             'descripcion' =>'required|max:60|string',
-            'montoPenalidad' =>'required|min:0',
-            'estado' =>'required|max:30|string'
+            'montoPenalidad' =>'min:0',
         ];
     }
 }

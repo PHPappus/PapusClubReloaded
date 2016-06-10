@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 
 use papusclub\Http\Requests;
 use papusclub\Http\Requests\UserCreateRequest;
+use papusclub\Http\Requests\ChangePasswordRequest;
 use papusclub\User;
-
+use Auth;
 use Session;
 use Redirect;
 use Illuminate\Routing\Route;
-
+use Hash;
 
 class UsuarioController extends Controller
 {
@@ -20,6 +21,31 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function cuenta()
+    {
+       $perfil = 'socio';
+        switch (\Auth::user()->perfil_id) {
+                case '1':
+                    $perfil='socio';
+                    break;
+                case '2':
+                    $perfil='admin';
+                    break;
+                case '3':
+                    $perfil='admin-pagos';
+                    break;
+                case '4':
+                    $perfil='admin-registros';
+                    break;
+                case '5':
+                    $perfil='gerente';
+                    break;
+        }
+
+       return view('auth.cuenta', compact('perfil'));
+    }
+
     public function index()
     {
         $users = \papusclub\User::All();
@@ -44,18 +70,77 @@ class UsuarioController extends Controller
      */
     public function store(UserCreateRequest $request)
     {
-        /*User::create($request->all());*/
-         $input = $request->all();
+        $input = $request->all();
 
         $user = new User();
         $user->name = $input['name'];
         $user->email = $input['email'];
-        $user->password = bcrypt($input['password']);
+        /*$user->password = bcrypt($input['password']);*/
+        $user->password = $input['password'];
         $user->perfil_id = $input['perfil_id'];
         $user->save();
         
         Session::flash('message','Usuario Creado Correctamente');
         return Redirect::to('/usuario');
+    }
+    public function changepassword(){
+        $perfil = 'socio';
+        switch (\Auth::user()->perfil_id) {
+                case '1':
+                    $perfil='socio';
+                    break;
+                case '2':
+                    $perfil='admin';
+                    break;
+                case '3':
+                    $perfil='admin-pagos';
+                    break;
+                case '4':
+                    $perfil='admin-registros';
+                    break;
+                case '5':
+                    $perfil='gerente';
+                    break;
+        }
+
+       return view('auth.changepassword', compact('perfil'));
+    }
+
+    public function confirmchangepassword(ChangePasswordRequest $request)
+    {
+  
+        /*if(Auth::attempt(['password'=>$request['password_current']]))*/
+        if(Hash::check($request['password_current'],Auth::user()->password))
+        {
+            $user=new User;
+            $user->where('email','=',Auth::user()->email)
+                 ->update(['password' => bcrypt($request['password'])]);
+            $perfil = 'socio';
+            switch (\Auth::user()->perfil_id) {
+                case '1':
+                    $perfil='/socio';
+                    break;
+                case '2':
+                    $perfil='/admin-general';
+                    break;
+                case '3':
+                    $perfil='/admin-pagos';
+                    break;
+                case '4':
+                    $perfil='/admin-registros';
+                    break;
+                case '5':
+                    $perfil='/gerente';
+                    break;
+            }
+            Session::flash('message','Su contraseña ha sido cambiada con éxito');
+            return Redirect::to($perfil)->with('message','Su contraseña ha sido cambiada con éxito');
+        }
+        else{
+            Session::flash('message-error','Contraseña incorrecta');
+            return Redirect::to('/password/change');
+        }
+        
     }
 
     /**

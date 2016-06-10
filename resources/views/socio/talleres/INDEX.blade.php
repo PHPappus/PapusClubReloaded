@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Cursos Deportivos Papus Club</title>
+	<title>Talleres Papus Club</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/jquery.bxslider.css">
-	<link rel="stylesheet" href="css/font-awesome.css">
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/MisEstilos.css">
-	
+
+	{!!Html::style('css/jquery.bxslider.css')!!}
+	{!!Html::style('css/font-awesome.css')!!}
+	{!!Html::style('css/bootstrap.css')!!}
+	{!!Html::style('css/MisEstilos.css')!!}
+	<!-- DataTable -->
+	{!!Html::style('css/jquery.dataTables.css')!!}
+	<style>
+		.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td{
+			vertical-align: middle;
+		}
+	</style>
 </head>
 
 <body>
@@ -18,11 +25,11 @@
 
 	<div class="content" style="max-width: 100%;">
 		<div class="container">
-			<div class="row">
-				<div class="col-sm-2">
+			<div class="row" style="max-width: 920px">
+				<div class="col-sm-3">
 					<ol class="breadcrumb">
-						<li><a href="socio"><span class="glyphicon glyphicon-home"></span></a></li>
-						<li class="active">Talleres</li>
+						<li><a href="/socio"><span class="glyphicon glyphicon-home"></span></a></li>
+						<li class="active">Consultar Talleres</li>
 					</ol>
 				</div>				
 			</div>
@@ -30,82 +37,106 @@
 		<div class="container">
 			<div class="row">
 	  			<div class="col-sm-12 withoutpadding">
-	  			<!-- bxslider es un plugin que permite crear sucesión de imagenes -->
-	                <ul class="bxslider">
-	                	<li><img class="slider img-responsive" src="images/canchafutbol3.jpg" /></li>
-	                    <li><img class="slider img-responsive" src="images/canchafutbol1.jpg" /></li>  
-	                </ul>  						
+	                <img class="slider img-responsive" src="../images/canchafutbol3.jpg" />
 	  			</div>
-	  			
 			</div>
 		</div>
+		<br/><br/>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-center">
-					<p><strong>FUTBOL- ABRIL a DICIEMBRE 2016</strong></p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-6 text-left">
-					<p>LUGAR: CANCHA DE FULBITO (CALLAO)</p>
-				</div>
-				<div class="col-sm-6 text-right">
-					<p>DÍAS: LUNES-MIERCOLES-VIERNES</p>
+					<p class="lead"><strong>T A L L E R E S &nbsp;&nbsp; D I S P O N I B L E S</strong></p>
 				</div>
 			</div>
 		</div>
-			<div class="table-responsive">
-				<div class="container">
-					<table class="table table-bordered table-hover text-center">
-						<thead class="active">
-							<th>CÓDIGO</th>
-							<th>TIPO</th>
-							<th>TEMPORADA</th>
-							<th>COSTO</th>
-							<th>SELECCIONAR</th>
-						</thead>
-						<tbody>
-							<td>30701</td>
-							<td>Futbol</td>
-							<td>ABRIL-JULIO</td>
-							<td>1 Mes: 220 Soles, 3 Meses: 600 Soles</td>
-							<td><input type="radio" aria-label="" value="futbol"></td>
-						</tbody>
-						<tbody>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tbody>
-						<tbody>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tbody>
-					</table>
-				</div>	
-			</div>
-
+		<div class="container">
+			@include('alerts.success')
+		</div>
+		<div class="table-responsive" >
 			<div class="container">
-				<div class="row">
-					<div class="col-sm-12 text-right">
-					<!--aqui debe haber una validacion si está logueado o no-->
-						<button class="btn btn-primary" onclick="openTallerFutbol()">INSCRIBIRSE</button>			
-					</div>
-				</div>
+				<table id="talleresTable" class="table table-bordered table-hover text-center display">
+					<thead class="active">
+						<tr class="active">
+							<th><div align=center>NOMBRE</div></th>	
+							<th><div align=center>PROFESOR</div></th>				
+							<th style="max-width:100px;"><div align=center>FECHA DE INICIO</div></th>
+							<th style="max-width:100px;"><div align=center>FECHA DE FIN</div></th>
+							<th style="max-width:100px;"><div align=center>VACANTES DISPONIBLES</div></th>
+							<th><div align=center>ESTADO</div></th>
+							<th><div align=center>PRECIO</div></th>
+							<th><div align=center>DETALLE</div></th>
+							<th><div align=center>INSCRIBIRSE</div></th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($talleres as $taller)
+							<tr>
+								<td>{{$taller->nombre}}</td>
+								<td>{{$taller->profesor}}</td>
+								<td>{{date("d-m-Y",strtotime($taller->inicio_incripcion))}}</td>
+								<td>{{date("d-m-Y",strtotime($taller->fecha_fin))}}</td>
+								<td>{{$taller->vacantes}}</td>								
+								<td>
+						    		@if(count($talleres_user->where('id',$taller->id))!=0)
+						    			Inscrito
+						    		@elseif($taller->vacantes <= 0)
+						    			No hay vancantes
+						    		@else
+						    			Disponible
+						    		@endif
+						    	</td>
+								<td>{{$taller->precio_base}} Nuevos Soles</td>
+								<td> 
+									<a class="btn btn-info" href="{{url('/talleres/'.$taller->id.'/show')}}"  title="Detalle"><i class="glyphicon glyphicon-list-alt"></i></a>
+
+								</td>
+								<td>
+									@if((count($talleres_user->where('id',$taller->id))!=0)||($taller->vacantes<=0))
+						    			<a class="btn btn-info" title="Inscribirse" disabled><i class="glyphicon glyphicon-pencil"></i></a>
+						    		@else
+						    			<a class="btn btn-info" title="Inscribirse" href="{{url('/talleres/'.$taller->id.'/confirm')}}"><i class="glyphicon glyphicon-pencil"></i></a>
+						    		@endif					
+								</td>
+							</tr>
+						@endforeach
+					</tbody>
+				</table>
 			</div>	
+		</div>
+		<br/>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 text-right">
+						<a href="{!!URL::to('/talleres/mis-inscripciones')!!}" title="Ver mis inscripciones" class="btn btn-lg btn-primary" >Mis Inscripciones</a>		
+					</div>
+				<div class="col-sm-6 text-left">
+					<a href="{{url('/socio')}}" class="btn btn-lg btn-primary" title="Regresar a página de inicio">Regresar</a>			
+				</div>
+			</div>
+		</div>	
 	</div>
 @stop
 <!-- JQuery -->
-	<script src="js/jquery-1.11.3.min.js"></script>
+	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	<!-- Bootstrap -->
-	<script type="text/javascript" src="js/bootstrap.js"></script>
+	{!!Html::script('js/bootstrap.js')!!}
 	<!-- BXSlider -->
-	<script src="js/jquery.bxslider.min.js"></script>
+	{!!Html::script('js/jquery.bxslider.min.js')!!}
 	<!-- Mis Scripts -->
-	<script src="js/MisScripts.js"></script>
+	{!!Html::script('js/MisScripts.js')!!}
+	
+	<!-- DataTable -->
+	{!!Html::script('js/jquery.dataTables.js')!!}
+	<script>
+		$(document).ready(function() {
+		   $('#talleresTable').DataTable( {
+		       "language": {
+		           "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+		       }
+		  	});
+  		});
+		
+	</script>
+
 </body>
 </html>

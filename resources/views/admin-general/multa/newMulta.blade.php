@@ -29,6 +29,19 @@
 			<form method="POST" action="/multa/new/save" class="form-horizontal form-border">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			
+				<div class="col-sm-4"></div>
+				<div class=""> 
+					@if ($errors->any())
+		  				<ul class="alert alert-danger fade in">
+		  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  					@foreach ($errors->all() as $error)
+		  						<li>{{$error}}</li>
+		  					@endforeach
+		  				</ul>
+		  			@endif
+				</div>
+
+
 				<br/>
 				<br/>
 				<div class="col-sm-4"></div>
@@ -38,29 +51,21 @@
 			  		</font>		  			
 				</div>			
 			  	</br>
-			  	</br>
+			  	
 				
 				<div class="form-group required">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" required>
+			      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción">
 			    	</div>
 			  	</div>  	
 
-			  	<div class="form-group required">
+			  	<div class="form-group">
 			    	<label for="montoPenalidadInput" class="col-sm-4 control-label">Monto de la Penalidad (S/.)</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" min ="0" step="any" class="form-control" id="montoPenalidadInput" name="montoPenalidad" placeholder="Monto de la Penalidad" required>
+			      		<input type="number" min ="0" step="any" class="form-control" id="montoPenalidadInput" name="montoPenalidad" placeholder="Monto de la Penalidad">
 			    	</div>
 			  	</div>
-
-			  	<div class="form-group required">
-			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
-			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="estadoInput" name="estado" placeholder="Estado" required>
-			    	</div>
-			  	</div>  	
-
 
 			  	</br>
 			  	</br>

@@ -46,7 +46,17 @@
 				</div>
 
 				<!-- VALIDACION CON FE FIN  -->
-					<br/><br/>
+				<br/><br/>
+				<div class="form-group">
+			  		<div class="text-center">
+			  			<font color="red"> 
+			  				(*) Dato Obligatorio
+			  			</font>
+			  			
+			  		</div>
+			  	</div>
+				<br/>
+				
 
 			  	<div class="form-group required">
 			    	<label for="ambienteInput" class="col-sm-4 control-label">AMBIENTE</label>
@@ -71,16 +81,15 @@
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre de la actividad" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre de la actividad" value="{{old('nombre')}}" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="fechaInicioInput" class="col-sm-4 control-label">FECHA INICIO(dd/mm/aaaa)</label>
 			    	<div class="col-sm-5">
-			      		<input type="date" class="form-control" id="fechaInicioInput" name="fecha">
-			      		
-			  	
+			      		<!-- <input type="date" class="form-control" id="fechaInicioInput" name="fecha"> -->
+			      		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="fechaInicioInput" name="fecha" placeholder="Fecha Inicio" style="max-width: 250px">
 			    	</div>
 			  	</div>
 			 
@@ -96,41 +105,37 @@
 			  	<div class="form-group required">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">DESCRIPCIÓN</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" >
+			      		<textarea type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" ></textarea> 
 			    	</div>
 			  	</div>
 			  	<div class="form-group required">
 			    	<label for="tipoActividadInput" class="col-sm-4 control-label">TIPO DE ACTIVIDAD</label>	
 			    	<div class="col-sm-5">
 				    	<select class="form-control" id="tipoActividadInput" name="tipo_actividad" style="max-width: 150px "  >
-							                <option value="-1" default>Seleccione</option>
-							                <option value="fiesta">Fiesta</option>
-							                <option value="deportiva">Deportiva</option>
-							                <option value="reunion">Reunión</option>
+				    						<option value="-1" default>Seleccione</option>
+							               @foreach ($values as $value)      
+							                	<option value="{{$value->id}}">{{$value->valor}}</option>
+							                @endforeach
 						</select>
 					</div>
 			  	</div>
-
+			  	<div class="form-group required">
+			    	<label for="cant_ambientesInput" class="col-sm-4 control-label">CANTIDAD DE AMBIENTES A USAR</label>
+			    	<div class="col-sm-5">
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="cant_ambientesInput" name="cant_ambientes" placeholder="Cantidad de ambientes" >
+			    	</div>
+			  	</div>
 			  	<div class="form-group required">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="capacidadInput" name="capacidad_maxima" placeholder="Capacidad Maxima" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="capacidadInput" name="capacidad_maxima" placeholder="Capacidad Maxima" value="{{old('capacidad_maxima')}}" >
 			    	</div>
 			  	</div>	  	
 			  	
 			  	
 			  	<!-- EL ESTADO SIEMPRE VA EN TRUE PARA EL REGISTRAR -->
 			  	
-			  	</br>
-			  	<div class="form-group">
-			  		<div class="text-right col-sm-4">
-			  			<font color="red"> 
-			  				(*) Dato Obligatorio
-			  			</font>
-			  			
-			  		</div>
-
-			  	</div>
+			  	
 			  	
 		  	<!-- FIN FIN FIN -->
 					
@@ -160,7 +165,90 @@
 	<!-- Mis Scripts -->
 	<script src="../js/MisScripts.js"></script>
 
+	<!-- Para Fechas INICIO -->
+	<script>
 
+		var nowTemp = new Date();
+		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+ 	
+		var checkin = $('#dpd1').datepicker({
+  			onRender: function(date) {
+    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
+  			}
+		}).on('changeDate', function(ev) {
+  			if (ev.date.valueOf() > checkout.date.valueOf()) {
+    			var newDate = new Date(ev.date)
+    			newDate.setDate(newDate.getDate() + 1);
+    			checkout.setValue(newDate);
+  			}
+ 			checkin.hide();
+  			$('#dpd2')[0].focus();
+		}).data('datepicker');
+		var checkout = $('#dpd2').datepicker({
+  			onRender: function(date) {
+    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+  			}
+		}).on('changeDate', function(ev) {
+  			checkout.hide();
+		}).data('datepicker');		
+		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
 
+	
+	</script>
+	<script>
+		$(function(){
+			$('.datepicker').datepicker({
+				format: 'dd/mm/yyyy'
+			});
+		});
+	</script>
+
+<<<<<<< HEAD
+	<script>
+		var nowTemp = new Date();
+		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+ 	
+		var checkin = $('#dpd1').datepicker({
+  			onRender: function(date) {
+    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
+  			}
+		}).on('changeDate', function(ev) {
+  			if (ev.date.valueOf() > checkout.date.valueOf()) {
+    			var newDate = new Date(ev.date)
+    			newDate.setDate(newDate.getDate() + 1);
+    			checkout.setValue(newDate);
+  			}
+ 			checkin.hide();
+  			$('#dpd2')[0].focus();
+		}).data('datepicker');
+		var checkout = $('#dpd2').datepicker({
+  			onRender: function(date) {
+    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+  			}
+		}).on('changeDate', function(ev) {
+  			checkout.hide();
+		}).data('datepicker');		
+		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
+	
+	</script>
+	<script>
+		$(function(){
+			$('.datepicker').datepicker({
+				format: 'dd/mm/yyyy'
+			});
+		});
+	</script>
+=======
+	<!-- Para Fecha FIN -->
+>>>>>>> JEFV
+
+	<script>
+		function ventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 1;
+		}
+		function cerrarventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 3;
+		}
+  	</script>
 </body>
 </html>
