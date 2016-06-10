@@ -129,6 +129,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::patch('Socio/{id}/editEstudio','SocioAdminController@updateEstudio');
 	Route::patch('Socio/{id}/editTrabajo','SocioAdminController@updateTrabajo');
 	Route::patch('Socio/{id}/editContacto','SocioAdminController@updateContacto');
+	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');
 
 	//MANTENIMIENTO DE MEMBRESIA
 	Route::get('membresia/','MembresiaController@index');
