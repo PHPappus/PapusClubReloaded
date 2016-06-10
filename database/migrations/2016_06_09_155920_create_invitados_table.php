@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHistoricoInvitacionTable extends Migration
+class CreateInvitadosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,11 @@ class CreateHistoricoInvitacionTable extends Migration
      */
     public function up()
     {
-        Schema::create('historicoinvitacion', function (Blueprint $table) {
+        Schema::create('invitados', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('invitado_id')->unsigned();
-            $table->integer('sede_id')->unsigned();
-            $table->dateTime('fecha_invitacion');
-            $table->softDeletes();
+            $table->integer('persona_id')->unsigned(); /*Puede ser trabajador o socio*/
+            $table->integer('invitado_id')->unsigned(); /*Es id de persona pero para diferenciar le coloco este nombre*/
+            $table->date('fecha_registro');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateHistoricoInvitacionTable extends Migration
      */
     public function down()
     {
-        Schema::drop('historicoinvitacion');
+        Schema::drop('invitados');
     }
 }

@@ -10,6 +10,8 @@ use papusclub\Http\Requests;
 use papusclub\Models\Socio;
 use papusclub\Models\Carnet;
 use papusclub\Models\Configuracion;
+use papusclub\Http\Requests\EditSocioBasicoRequest;
+use Illuminate\Support\Facades\Redirect;
 
 class SocioAdminController extends Controller
 {
@@ -76,5 +78,32 @@ class SocioAdminController extends Controller
         }
         $socio->update(['estado'=>true]);
         return back();
+    }
+
+    public function edit($id)
+    {
+        $socio = Socio::withTrashed()->find($id);
+        $carbon=new Carbon();
+        $socio->carnet_actual()->fecha_emision=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_emision)->format('d/m/Y');
+        $socio->carnet_actual()->fecha_vencimiento=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_vencimiento)->format('d/m/Y');
+        $socio->postulante->persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d',$socio->postulante->persona->fecha_nacimiento)->format('d/m/Y');
+        return view('admin-general.persona.socio.editSocio',compact('socio'));        
+    }
+
+    public function updateBasico(EditSocioBasicoRequest $request,$id)
+    {
+        $carbon = new Carbon();
+
+        $socio = Socio::withTrashed()->find($id);
+        $input=$request->all();
+        $nombre = trim($input['nombre']);
+        $fecha_nac = str_replace('/', '-', $input['fecha_nacimiento']);
+        $socio->postulante->persona->fecha_nacimiento=$carbon->createFromFormat('d-m-Y', $fecha_nac)->toDateString();
+        $socio->postulante->persona->nombre=$nombre;
+        $socio->postulante->persona->save();
+
+        //$socio->postulante->persona->update(['nombre'=>$input['nombre'], 'fecha_nacimiento'=>$fecha_nac]);
+        //return view('admin-general.persona.socio.editSocio',compact('socio'));   
+        return Redirect::action('SocioAdminController@edit',$socio->id); 
     }
 }

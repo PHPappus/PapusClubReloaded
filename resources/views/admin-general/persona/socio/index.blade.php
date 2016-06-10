@@ -78,7 +78,7 @@
 						              	<a class="btn btn-info" href="{{url('/Socio/'.$socio->id)}}/"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 						            	</td>
 						            	<td>
-								        <a class="btn btn-info" href="#" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+								        <a class="btn btn-info" href="{{url('/Socio/'.$socio->id)}}/editar" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 								        </td>
 						            	<td>
 								        <a class="btn btn-info"  title="Deshabilitar" data-href="{{url('/Socio/'.$socio->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-check"></i></a>

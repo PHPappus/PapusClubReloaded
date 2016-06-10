@@ -57,6 +57,11 @@ class Postulante extends Model
         return $this->belongsToMany(Persona::class,'familiarxpostulante','postulante_id','persona_id')->withPivot('relacion','estado')->withTimestamps();   
     }
 
+    public function addFamiliar(Persona $familiar,$relacion)
+    {
+        return $this->familiarxpostulante()->save($familiar,['relacion'=>$relacion]);
+    }
+
 
     
 }
