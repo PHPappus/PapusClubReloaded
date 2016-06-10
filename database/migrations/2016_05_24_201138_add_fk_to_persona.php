@@ -14,9 +14,6 @@ class AddFkToPersona extends Migration
     {
         Schema::table('persona', function (Blueprint $table) {
             $table->foreign('id_tipo_persona')->references('id')->on('tipopersona')->onDelete('cascade');
-            $table->foreign('id_usuario')
-                  ->references('id')
-                  ->on('users');
         });
     }
 
@@ -29,7 +26,6 @@ class AddFkToPersona extends Migration
     {
         Schema::table('persona', function (Blueprint $table) {
             $table->dropForeign('persona_id_tipo_persona_foreign');
-            $table->dropForeign('persona_id_usuario_foreign');
         });
     }
 }

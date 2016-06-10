@@ -37,7 +37,7 @@
               Actividades <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#" title="consultar actividades" target="_self">Consultar</a></li>
+              <li><a href="{!!URL::to('/inscripcion-actividad/inscripcion-actividades')!!}" title="consultar actividades" target="_self">Consultar</a></li>
               <li><a href="#" title="inscripciones de actividades" target="_self">Inscripciones</a></li>
             </ul>
           </li>
