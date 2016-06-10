@@ -5,17 +5,20 @@
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{!!Html::style('css/jquery.bxslider.css')!!}
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css">
+
 	<style>
 
 		.modal-backdrop.in{
 			z-index: 1;
 		}
 	</style>
-
+	
 	<style type="text/css" media="screen">
 		#dpd1{
 			width:456.6px;
@@ -24,7 +27,8 @@
 		}
 		#map { height: 20%; }
 	</style>
-	
+
+
 </head>
 <body>
 @extends('layouts.headerandfooter-al-admin')
@@ -78,7 +82,7 @@
 			  	<div class="form-group required">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" value="{{$taller->descripcion}}">
+			    		<textarea class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" rows="3" cols="50" value="{{$taller->descripcion}}">{{$taller->descripcion}}</textarea>
 			    	</div>
 			  	</div>
 
@@ -92,36 +96,28 @@
 			  	<div class="form-group">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Inicio Inscripciones</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIniIns" placeholder="Fecha Inicio Inscripciones"  value="{{$taller->fecha_inicio_inscripciones}}">
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIniIns" placeholder="Fecha Inicio Inscripciones" value="{{$taller->fecha_inicio_inscripciones}}">
 					</div>	
 				</div>
 
 			  	<div class="form-group">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Fin Inscripciones</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFinIns" placeholder="Fecha Fin Inscripciones"  value="{{$taller->fecha_fin_inscripciones}}">
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFinIns" placeholder="Fecha Fin Inscripciones" value="{{$taller->fecha_fin_inscripciones}}">
 					</div>	
 				</div>
 
 				<div class="form-group">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Inicio Taller</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIni" placeholder="Fecha Inicio Taller"  value="{{$taller->fecha_inicio}}">
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIni" placeholder="Fecha Inicio Taller" value="{{$taller->fecha_inicio}}">
 					</div>	
 				</div>
-
-				<div class="form-group">
-					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Fin Taller</label>
-					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFin" placeholder="Fecha Fin Taller"  value="{{$taller->fecha_fin}}">
-					</div>	
-				</div>
-
 
 			  	<div class="form-group">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Fin Taller</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFin" placeholder="Fecha Fin Taller"  value="{{old('fecFin')}}">
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFin" placeholder="Fecha Fin Taller"  value="{{$taller->fecha_fin}}">
 					</div>	
 				</div>
 
@@ -132,44 +128,54 @@
 			    	</div>
 			  	</div>
 
-				<div class="form-group">
-				   	<label for="precioSocioInput" class="col-sm-4 control-label">Tarifa para Socios</label>
-				   	<div class="col-sm-5">
-			     		<input type="number" min ="0" step="any" class="form-control" id="precioSocioInput" name="precioSocio" placeholder="Precio (S/.)">
-				   	</div>
-			  	</div>
+			  	 </br>
 
-			  	<div class="form-group">
-				   	<label for="precioTerceroInput" class="col-sm-4 control-label">Tarifa para Externos</label>
-				  	<div class="col-sm-5">
-				   		<input type="number" min ="0" step="any" class="form-control" id="precioTerceroInput" name="precioTercero" placeholder="Precio (S/.)">
-				   	</div>
-			  	</div>
+				<style>  				
+  				#myTable {
+    					    margin: 0 auto;  }			
+			</style>
+			<div class="container" style="width: 600px; margin-left: auto; margin-right: auto"  >
+			<table class="table table-bordered" >
+					<thead class="active" >	
+						<tr>							
+							<th class="col-sm-3" ><DIV ALIGN=center>Tipo Persona</th>
+							<th class="col-sm-3" ><DIV ALIGN=center>Moneda</th>
+							<th class="col-sm-3"><DIV ALIGN=center>Monto</th>
+						</tr>
+					</thead>
+					<tbody>
+							@foreach ($taller->tarifaTaller as $persona)		
+						    	<tr>
+									<td align="center">  {{ $persona->descripcion }}</td>
+									<td align="center">  S/.</td>
+									<td align="center"> 
+									<div align="center">
+							      		<input style="text-align:center;" type="number" min ="0" step="any" class="form-control" id="{{$persona->descripcion}}Input" name="{{$persona->descripcion}}" placeholder="" value="{{$persona->pivot->precio}}">
+							    	</div>
+								</td>							        
+								</tr>
+							@endforeach
+					</tbody>													
+			</table>
+			</div>	  	
 
-			  	<div class="form-group">
-				   	<label for="precioTrabajadorInput" class="col-sm-4 control-label">Tarifa para Trabajadores</label>
-				   	<div class="col-sm-5">
-				   		<input type="number" min ="0" step="any" class="form-control" id="precioTrabajadorInput" name="precioTrabajador" placeholder="Precio (S/.)">
-				   	</div>
-			  	</div>
-
-
+						  	
 			  	</br>
 			  	</br>
 				<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
-					
 					<div class="btn-group ">
 						<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Guardar">
 					</div>
+
 					<div class="btn-group">
-						<a href="/taller/" class="btn btn-info">Cancelar</a>
+						<a href="/taller/" class="btn btn-info">Regresar</a>
 					</div>
 				</div>
 				</br>
 				</br>
 
-					<div class = "modal fade" id = "confirmation" tabindex = "-1" role = "dialog" 
+				<div class = "modal fade" id = "confirmation" tabindex = "-1" role = "dialog" 
 				   aria-labelledby = "myModalLabel" aria-hidden = "true">
 				   
 				   <div class = "modal-dialog">
@@ -204,34 +210,27 @@
 				  
 				</div><!-- /.modal -->
 
-
 			</form>
 		</div>
 	</div>		
 @stop
-
-<!-- JQuery -->
-	<script src="../js/jquery-1.12.4.min.js"></script>
-	<!-- Bootstrap -->
-	<script type="text/javascript" src="/js/bootstrap.js"></script>
-	<!-- BXSlider -->
-	<script src="/js/jquery.bxslider.min.js"></script>
-	<!-- Mis Scripts -->
-	<script src="/js/MisScripts.js"></script>
-
-	<script src="../js/jquery-1.12.4.min.js"></script>
-	<!-- Bootstrap -->
-	<script type="text/javascript" src="../js/bootstrap.js"></script>
-
-	<!-- BXSlider -->
-
-	<!-- Mis Scripts -->
-
-	<script type="text/javascript" src="../js/bootstrap-datepicker-sirve.js"></script>
+	{!!Html::script('js/jquery-1.11.3.min.js')!!}
+	{!!Html::script('js/bootstrap.js')!!}
+	{!!Html::script('js/jquery.bxslider.min.js')!!}
+	{!!Html::script('js/bootstrap-datepicker.js')!!}
+	{!!Html::script('js/MisScripts.js')!!}
+	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
+	<script>
+		$(document).ready(function() {
+		   $('#example').DataTable( {
+		       "language": {
+		           "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+		       }
+		  	});
+  		});
+	</script>	
 
 
-	
-	
 	<script>
 		$(document).ready(function(){
 				var nowTemp = new Date();		
@@ -272,6 +271,18 @@
 			});
 		});
 	</script>
+
+	<script>
+		function ventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 1;
+		}
+		function cerrarventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 3;
+		}
+  	</script>
+	
+	
+
 
 
 </body>

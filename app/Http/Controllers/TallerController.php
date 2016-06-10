@@ -140,12 +140,6 @@ class TallerController extends Controller
                         'vacantes'=>$input['vacantes']
                          ]);
 
-        if (empty($input['vacantes'])) {
-            $taller->vacantes ="";
-        }
-        else
-            $taller->vacantes = $input['vacantes'];
-
         if (empty($input['fecIniIns'])) {
             $taller->fecha_inicio_inscripciones="";
         }else{
@@ -174,6 +168,13 @@ class TallerController extends Controller
             $taller->fecha_fin=$carbon->createFromFormat('d-m-Y', $fecFin)->toDateString();
         }
 
+        $taller->save();
+
+        $personas = TipoPersona::all(); 
+
+        foreach ($personas as $persona) {
+            $taller->tarifaTaller()->sync([$persona->id=>['precio'=>$input[$persona->descripcion]]],FALSE);
+        }
 
         return Redirect::action('TallerController@index');
     }

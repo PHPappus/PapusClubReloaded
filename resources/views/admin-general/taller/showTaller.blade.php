@@ -9,13 +9,7 @@
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
-	<style>
-
-		.modal-backdrop.in{
-			z-index: 1;
-		}
-	</style>
-
+	
 	<style type="text/css" media="screen">
 		#dpd1{
 			width:456.6px;
@@ -24,7 +18,8 @@
 		}
 		#map { height: 20%; }
 	</style>
-	
+
+
 </head>
 <body>
 @extends('layouts.headerandfooter-al-admin')
@@ -37,12 +32,11 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>MODIFICAR TALLER</strong>
+					<strong>DETALLE DE TALLER</strong>
 			</div>		
 		</div>
 		<div class="container">
-			<form method="POST" action="/taller/{{$taller->id}}/edit" class="form-horizontal form-border">
-			{{method_field('PATCH')}}
+			<form method="POST" action="/taller/new/save" class="form-horizontal form-border">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			
 				<div class="col-sm-4"></div>
@@ -71,14 +65,14 @@
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="dInput" name="descripcion" placeholder="Nombre" value="{{$taller->nombre}}" readonly>
+			      		<input type="text" class="form-control" id="dInput" name="nombre" placeholder="Nombre" value="{{$taller->nombre}}" readonly>
 			    	</div>
 			  	</div> 
 
 			  	<div class="form-group required">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" value="{{$taller->descripcion}}" readonly>
+			    		<textarea class="form-control" id="descripcionInput" name="descripcion" rows="3" cols="50" value = "{{$taller->descripcion}}" readonly>{{$taller->descripcion}}</textarea>
 			    	</div>
 			  	</div>
 
@@ -92,84 +86,81 @@
 			  	<div class="form-group">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Inicio Inscripciones</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIniIns" placeholder="Fecha Inicio Inscripciones"  value="{{$taller->fecha_inicio_inscripciones}}" readonly>
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIniIns" placeholder="Fecha Inicio Inscripciones" value="{{$taller->fecha_inicio_inscripciones}}" readonly>
 					</div>	
 				</div>
 
 			  	<div class="form-group">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Fin Inscripciones</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFinIns" placeholder="Fecha Fin Inscripciones"  value="{{$taller->fecha_fin_inscripciones}}" readonly>
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFinIns" placeholder="Fecha Fin Inscripciones" value="{{$taller->fecha_fin_inscripciones}}" readonly>
 					</div>	
 				</div>
 
 				<div class="form-group">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Inicio Taller</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIni" placeholder="Fecha Inicio Taller"  value="{{$taller->fecha_inicio}}" readonly>
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIni" placeholder="Fecha Inicio Taller" value="{{$taller->fecha_inicio}}" readonly>
 					</div>	
 				</div>
 
-				<div class="form-group">
+			  	<div class="form-group">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Fin Taller</label>
 					<div class="col-sm-5">
 						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFin" placeholder="Fecha Fin Taller"  value="{{$taller->fecha_fin}}" readonly>
 					</div>	
 				</div>
 
-			  	<div class="form-group">
+				<div class="form-group">
 			    	<label for="cantSesInput" class="col-sm-4 control-label">Cantidad de Sesiones</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" min ="0" step="any" class="form-control" id="cantSesInput" name="cantSes" placeholder="Cantidad de Sesiones" value = "{{ $taller->cantidad_sesiones}}"readonly>
+			      		<input type="number" min ="0" step="any" class="form-control" id="cantSesInput" name="cantSes" placeholder="Cantidad de Sesiones" value="{{$taller->cantidad_sesiones}}" readonly>
 			    	</div>
 			  	</div>
 
+			  	 </br>
 
+				<style>  				
+  				#myTable {
+    					    margin: 0 auto;  }			
+			</style>
+			<div class="container" style="width: 600px; margin-left: auto; margin-right: auto"  >
+			<table class="table table-bordered" >
+					<thead class="active" >	
+						<tr>							
+							<th class="col-sm-3" ><DIV ALIGN=center>Tipo Persona</th>
+							<th class="col-sm-3" ><DIV ALIGN=center>Moneda</th>
+							<th class="col-sm-3"><DIV ALIGN=center>Monto</th>
+						</tr>
+					</thead>
+					<tbody>
+							@foreach ($taller->tarifaTaller as $persona)		
+						    	<tr>
+									<td align="center">  {{ $persona->descripcion }}</td>
+									<td align="center">  S/.</td>
+									<td align="center"> 
+									<div align="center">
+							      		<input style="text-align:center;" type="number" min ="0" step="any" class="form-control" id="{{$persona->descripcion}}Input" name="{{$persona->descripcion}}" placeholder="" value="{{$persona->pivot->precio}}" readonly>
+							    	</div>
+								</td>							        
+								</tr>
+							@endforeach
+					</tbody>													
+			</table>
+			</div>	  	
+
+						  	
 			  	</br>
 			  	</br>
-				<div class="form-group">
-					<div class="col-sm-6"> </div>
-						<a class="btn btn-info" href="/taller/" title="Editar" >Regresar <i class="glyphicon glyphicon-arrow-left"></i></a>			
+				<div class="btn-inline">
+					<div class="btn-group col-sm-7"></div>
+				
+					<div class="btn-group">
+						<a href="/taller/" class="btn btn-info">Regresar</a>
+					</div>
 				</div>
 				</br>
 				</br>
-
-
-					<div class = "modal fade" id = "confirmation" tabindex = "-1" role = "dialog" 
-				   aria-labelledby = "myModalLabel" aria-hidden = "true">
-				   
-				   <div class = "modal-dialog">
-				      <div class = "modal-content">
-				         
-				         <div class = "modal-header">
-				            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
-				                  &times;
-				            </button>
-				            
-				            <h4 class = "modal-title" id = "myModalLabel">
-				               EDITAR MULTA
-				            </h4>
-				         </div>
-				         
-				         <div class = "modal-body">
-				            <p>¿Desea guardar los cambios realizados?</p>
-				         </div>
-				         
-				         <div class = "modal-footer">
-				            <button type = "button" class = "btn btn-default" data-dismiss = "modal" >
-				               Cerrar
-				            </button>
-				            
-				            <button type = "submit" class = "btn btn-primary">
-				               Confirmar
-				            </button>
-				         </div>
-				         
-				      </div><!-- /.modal-content -->
-				   </div><!-- /.modal-dialog -->
-				  
-				</div><!-- /.modal -->
-
 
 			</form>
 		</div>
@@ -237,6 +228,11 @@
 			});
 		});
 	</script>
+
+	
+	
+
+
 
 </body>
 </html>

@@ -140,7 +140,7 @@
 									<td align="center">  S/.</td>
 									<td align="center"> 
 									<div align="center">
-							      		<input style="text-align:right;" type="number" min ="0" step="any" class="form-control" id="{{$persona->descripcion}}Input" name="{{$persona->descripcion}}" placeholder="">
+							      		<input style="text-align:center;" type="number" min ="0" step="any" class="form-control" id="{{$persona->descripcion}}Input" name="{{$persona->descripcion}}" placeholder="">
 							    	</div>
 								</td>							        
 								</tr>

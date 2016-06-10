@@ -3,6 +3,7 @@
 namespace papusclub\Http\Requests;
 
 use papusclub\Http\Requests\Request;
+use papusclub\Models\TipoPersona;
 
 class StoreTallerRequest extends Request
 {
@@ -23,11 +24,17 @@ class StoreTallerRequest extends Request
      */
     public function rules()
     {
+
         return [
+
             'nombre' => 'required|max:60|string',
             'descripcion' =>'required|max:200|string',
             'vacantes' =>'min:0',
             'cantidad_sesiones' => 'min:0',
+            'trabajador' => 'required|float|min:0',
+            'postulante' => 'required|float|min:0',
+            'tercero' => 'required|float|min:0',
+
         ];
     }
 }

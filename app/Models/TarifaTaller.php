@@ -15,10 +15,10 @@ class TarifaTaller extends Model
  	 'precio',
  	 'estado'
     ];
-
+/*
     public function talleres()
 	{
 		return $this->belongsToMany('App\Models\Taller')->withPivot('precio');
-	}
+	}*/
 
 }
