@@ -37,7 +37,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-center">
-					<p class="lead"><strong>M I S &nbsp;&nbsp; IO N E S</strong></p>
+					<p class="lead"><strong>M I S &nbsp;&nbsp; I N S C R I P C I O N E S</strong></p>
 				</div>
 			</div>
 		</div>
