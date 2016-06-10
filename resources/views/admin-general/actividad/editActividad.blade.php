@@ -57,14 +57,14 @@
 		  	<div class="form-group required">
 		    	<label for="ambienteInput" class="col-sm-4 control-label">Ambiente</label>
 		    	<div class="col-sm-5">
-		    		<input type="text" class="form-control" id="ambienteInput" name="ambiente" value="{{$actividad->ambiente->nombre}}"  required readonly>
+		    		<input type="text" class="form-control" id="ambienteInput" name="nombre" value="{{$actividad->ambiente->nombre}}"  required readonly>
 		      	</div>
 		      	<a class="btn btn-info" name="buscarAmbiente" href="{!!URL::to('/ambiente/search')!!}"  title="Buscar" ><i name="buscarAmbiente" class="glyphicon glyphicon-search"></i></a>
 		  	</div>
 		  	<div class="form-group required">
 		    	<label for="tipoambienteInput" class="col-sm-4 control-label">Tipo de Ambiente</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="tipoambienteInput" name="tipoambiente" value="{{$actividad->ambiente->tipo_ambiente}}"  required readonly>
+		      		<input type="text" class="form-control" id="tipoambienteInput" name="tipo_ambiente" value="{{$actividad->ambiente->tipo_ambiente}}"  required readonly>
 		    	</div>
 		  	</div>
 		  	<div class="form-group required">
@@ -96,7 +96,7 @@
 			 </div>
 
 			<div class="form-group required">
-			    	<label for="horaInicioInput" class="col-sm-4 control-label">Hora Inicia</label>
+			    	<label for="horaInicioInput" class="col-sm-4 control-label">Hora Inicio</label>
 			    	<div class="col-sm-5">
 			      		<input type="time" id="horaInicioInput" name="hora" value="{{$actividad->a_realizarse_en}}">
 			    	</div>
@@ -155,7 +155,7 @@
 			</div>	
 			  	
 			  	<!-- FIN     PRECIO POR TIPO DE PERSONA -->
- -->		  	
+		  	
 	  	<!-- FIN FIN FIN -->
 				
 		
@@ -176,7 +176,7 @@
 						
 						<!-- style="z-index:2; padding-top:100px;"
 						 --><!-- <button type="submit" class="btn btn-lg btn-primary">Registrar</button> -->
-						<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="confirmationLabel" data-keyboard="false" data-backdrop="static" style="position:relative">
+						<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" aria-labelledby="confirmationLabel" data-keyboard="false" data-backdrop="static" >
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
 									<!-- Header de la ventana -->
