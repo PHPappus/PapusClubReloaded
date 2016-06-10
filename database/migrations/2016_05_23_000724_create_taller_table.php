@@ -14,15 +14,16 @@ class CreateTallerTable extends Migration
     {
         Schema::create('taller', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('reserva_id')->unsigned()->index();
+            $table->integer('reserva_id')->unsigned()->index()->nullable();
             $table->string('nombre');
             $table->string('descripcion');
             $table->integer('vacantes');
-            $table->dateTime('fecha_inicio_inscripciones');
-            $table->dateTime('fecha_fin_inscripciones');
-            $table->dateTime('fecha_inicio');
-            $table->dateTime('fecha_fin');
+            $table->date('fecha_inicio_inscripciones');
+            $table->date('fecha_fin_inscripciones');
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
             $table->integer('cantidad_sesiones');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

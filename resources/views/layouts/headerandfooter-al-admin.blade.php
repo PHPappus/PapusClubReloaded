@@ -93,7 +93,7 @@
 							</ul> -->
 						</li>
 						<!-- Opción Actividades -->
-						<li><a href="#">TALLER<span class="despliegue">▼</span></a>
+						<li><a href="{!!URL::to('/taller/')!!}">TALLER<span class="despliegue">▼</span></a>
 							<ul>
 							</ul>					
 						</li>
