@@ -11,7 +11,11 @@ use papusclub\Models\Socio;
 use papusclub\Models\Carnet;
 use papusclub\Models\Configuracion;
 use papusclub\Http\Requests\EditSocioBasicoRequest;
+use papusclub\Http\Requests\EditSocioEstudioRequest;
+use papusclub\Http\Requests\EditSocioTrabajoRequest;
+use papusclub\Http\Requests\EditSocioContactoRequest;
 use Illuminate\Support\Facades\Redirect;
+use Session;
 
 class SocioAdminController extends Controller
 {
@@ -103,7 +107,77 @@ class SocioAdminController extends Controller
         $socio->postulante->persona->save();
 
         //$socio->postulante->persona->update(['nombre'=>$input['nombre'], 'fecha_nacimiento'=>$fecha_nac]);
-        //return view('admin-general.persona.socio.editSocio',compact('socio'));   
+        //return view('admin-general.persona.socio.editSocio',compact('socio'));
+        Session::flash('update','basico');  
         return Redirect::action('SocioAdminController@edit',$socio->id); 
+    }
+
+    public function updateEstudio(EditSocioEstudioRequest $request, $id)
+    {
+        $socio = Socio::withTrashed()->find($id);
+        $input=$request->all();
+        $primaria = trim($input['colegio_primaria']);
+        $secundaria = trim($input['colegio_secundaria']);
+        $socio->postulante->colegio_primario=$primaria;
+        $socio->postulante->colegio_secundario=$secundaria;
+        /*Campos opcionales*/
+        if(!empty($input['universidad']))
+        {
+            $universidad=trim($input['universidad']);
+            $socio->postulante->universidad=$universidad;
+        }
+        if(!empty($input['carrera']))
+        {
+            $carrera=trim($input['carrera']);
+            $socio->postulante->profesion=$carrera;
+        }
+        $socio->postulante->save();
+        Session::flash('update','estudio');
+        return Redirect::action('SocioAdminController@edit',$socio->id);
+    }
+
+    public function updateTrabajo(EditSocioTrabajoRequest $request,$id)
+    {
+        $socio = Socio::withTrashed()->find($id);
+        $input=$request->all();
+        /*Campos opcionales*/
+        if(!empty($input['centrotrabajo']))
+        {
+            $centrotrabajo=trim($input['centrotrabajo']);
+            $socio->postulante->centro_trabajo=$centrotrabajo;
+        }
+        if(!empty($input['cargocentrotrabajo']))
+        {
+            $cargocentrotrabajo=trim($input['cargocentrotrabajo']);
+            $socio->postulante->cargo_centro_trabajo=$cargocentrotrabajo;
+        }
+        if(!empty($input['direccionlaboral']))
+        {
+            $direccionlaboral=trim($input['direccionlaboral']);
+            $socio->postulante->direccionLaboral=$direccionlaboral;
+        }
+        $socio->postulante->save();
+        Session::flash('update','trabajo');
+        return Redirect::action('SocioAdminController@edit',$socio->id);                                        
+    }
+
+    public function updateContacto(EditSocioContactoRequest $request,$id)
+    {
+        $socio = Socio::withTrashed()->find($id);
+        $input=$request->all();
+
+        $telefono = trim($input['telefono_domicilio']);
+        $celular = trim($input['telefono_celular']);
+        $correo = trim($input['correo']);
+
+        $socio->postulante->telefono_domicilio=$telefono;
+        $socio->postulante->telefono_celular=$celular;
+        $socio->postulante->persona->correo=$correo;
+
+        $socio->postulante->persona->save();
+        $socio->postulante->save();
+
+        Session::flash('update','contacto');
+        return Redirect::action('SocioAdminController@edit',$socio->id);        
     }
 }

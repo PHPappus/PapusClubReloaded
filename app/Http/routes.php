@@ -108,6 +108,9 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('Socio/{id}/activate','SocioAdminController@activate');
 	/*editar*/
 	Route::patch('Socio/{id}/editBasico','SocioAdminController@updateBasico');
+	Route::patch('Socio/{id}/editEstudio','SocioAdminController@updateEstudio');
+	Route::patch('Socio/{id}/editTrabajo','SocioAdminController@updateTrabajo');
+	Route::patch('Socio/{id}/editContacto','SocioAdminController@updateContacto');
 
 	//MANTENIMIENTO DE MEMBRESIA
 	Route::get('membresia/','MembresiaController@index');
@@ -219,6 +222,16 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 
 
 
+/*Pruebas locas*/
+	Route::post('test', function()
+	{
+	    return 'Success! ajax in laravel 5';
+	});
+
+	Route::get('/testmax',function(){
+		return view('testmax');
+	});
+
 });
 	
 
@@ -274,3 +287,5 @@ Route::get('/ajax-distritos',function(){
 
 	return Response::json($subcategories);
 });
+
+

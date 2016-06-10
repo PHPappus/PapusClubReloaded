@@ -30,5 +30,16 @@ class EditMembresiaRequest extends Request
         ];
     }
 
+    public function messages()
+    {
+        return [
+            'tarifa.float' => 'El campo tarifa debe ser un valor entero positivo',
+            'numMax.integer' => 'El campo número de invitados debe ser un valor entero',
+            'numMax.max'=>'El campo número de invitados no puede ser mayor a 100',
+            'numMax.min'=>'El campo número de invitados no puede ser menor a 0'
+
+        ];
+    }
+
 
 }
