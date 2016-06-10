@@ -62,9 +62,9 @@
 								<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Paso 2: Nacimiento</a></li>
 								<li role="presentation"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Paso 3: Educacion</a></li>
 								<li role="presentation"><a href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab">Paso 4: Empleo</a></li>
-								<li role="presentation"><a href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab">Paso 5: Familiares</a></li>
+								<!-- <li role="presentation"><a href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab">Paso 5: Familiares</a></li>
 								<li role="presentation"><a href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab">Paso 6: Vivienda</a></li>
-								<li role="presentation"><a href="#seccion6" aria-controls="seccion7" data-toggle="tab" role="tab">Paso 7: Contactos</a></li>
+								<li role="presentation"><a href="#seccion6" aria-controls="seccion7" data-toggle="tab" role="tab">Paso 7: Contactos</a></li> -->
 							</ul>
 						</div>
 
@@ -166,9 +166,8 @@
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Fecha de Nacimiento</label>
 											</div>
-											<div class="col-sm-6">
-												<input class="datepicker" type="text" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha Nacimiento" style="max-width: 250px">
-
+											<div class="col-sm-1">
+												<input class="datepicker" type="text" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha Nacimiento" readonly="true">
 											</div>	
 										</div>
 								</div>
@@ -177,12 +176,11 @@
 									<div class="form-group">
 											<div class="col-sm-6">
 												<div class="col-sm-6 text-left">
-													<label for="" class="control-label">Fecha de Nacimiento:</label>
+													<label for="" class="control-label">Lugar de Nacimiento:</label>
 												</div>
 													<div class="col-sm-6">
-														
 														<select form="form_id" class="form-control" id="departamento" name="departamento" style="max-width: 150px " data-link="{{ url('/provincias') }}">
-															<option value="-1" default>--Seleccione--</option>
+															<option value="-1" default>--Departamento--</option>
 																@foreach ($departamentos as $depa)      
 												                	<option value="{{$depa->id}}">{{$depa->nombre}}</option>
 												                @endforeach
@@ -190,11 +188,11 @@
 														
 														<br>
 														<select form="form_id" class="form-control" id="provincia" name="provincia" style="max-width: 150px " data-link="{{ url('/distritos') }}" disabled="true">
-															<option  value="-1" default disab>--Seleccione--</option>
+															<option  value="-1" default disab>--Provincia--</option>
 														</select>
 														<br>
 														<select form="form_id" class="form-control" id="distrito" name="distrito" style="max-width: 150px " disabled="true">
-															<option  value="-1" default>--Seleccione--</option>
+															<option  value="-1" default>--Distrito--</option>
 														</select>
 
 														<br><br>
@@ -348,12 +346,10 @@
 	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 	<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 
-	<!-- {!!Html::script('js/jquery-1.11.3.min.js')!!} -->
  	{!!Html::script('js/bootstrap.js')!!}
 	{!!Html::script('js/jquery.bxslider.min.js')!!}
 	{!!Html::script('js/MisScripts.js')!!}
 	<script>$.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')} })</script>
-	<!--{!!Html::script('js/bootstrap-datepicker.js')!!} -->
 
 	<script type="text/javascript" src="../js/bootstrap-datepicker-sirve.js"></script>
 
@@ -454,6 +450,24 @@
 		});
 	</script> -->
 
+	<script>
+		$(document).ready(function(){
+			$(function(){
+				$('.datepicker').datepicker({
+					format: "dd/mm/yyyy",
+			        language: "es",
+			        autoclose: true,
+			        //beforeShowDay:function (date){return false}
+				});
+
+			});
+
+		});
+
+			
+	</script>	
+
+
     <script type="text/javascript">
 
 	    
@@ -463,7 +477,7 @@
 				document.getElementById("provincia").disabled = false;
 				document.getElementById("distrito").disabled = true;
 			    $("#distrito").empty();
-			    $("#distrito").append("<option  value='-1' default>--Seleccione--</option>");
+			    $("#distrito").append("<option  value='-1' default>--Distrito--</option>");
 				var url = $(this).attr("data-link");
 				$departamento_id=event.target.value;
 							//alert($departamento_id);
@@ -481,7 +495,7 @@
 			        data: { id: $departamento_id},
 			        success:function(data){
 			        	$("#provincia").empty();
-			        	$("#provincia").append("<option  value='-1' default>--Seleccione--</option>");
+			        	$("#provincia").append("<option  value='-1' default>--Provincia--</option>");
 			        	$.each(data,function(index,elememt){
 			        		//alert(element.nombre);
 			        		$("#provincia").append("<option value='"+elememt.id+"'>"+elememt.nombre+"</option>");
@@ -514,7 +528,7 @@
 			        data: { id: $provincia_id},
 			        success:function(data){
 			        	$("#distrito").empty();
-			        	$("#distrito").append("<option  value='-1' default>--Seleccione--</option>");
+			        	$("#distrito").append("<option  value='-1' default>--Distrito--</option>");
 			        	$.each(data,function(index,elememt){
 
 							//alert(elememt.id);

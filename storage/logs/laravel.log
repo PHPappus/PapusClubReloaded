@@ -6747,3 +6747,13 @@ Stack trace:
 #25 /opt/lampp/htdocs/PapusClubReloaded/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #26 /opt/lampp/htdocs/PapusClubReloaded/artisan(29): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #27 {main}  
+[2016-06-10 19:29:46] local.ERROR: Symfony\Component\Console\Exception\CommandNotFoundException: Command "serve." is not defined.
+
+Did you mean this?
+    serve in /opt/lampp/htdocs/PapusClubReloaded/vendor/symfony/console/Application.php:512
+Stack trace:
+#0 /opt/lampp/htdocs/PapusClubReloaded/vendor/symfony/console/Application.php(183): Symfony\Component\Console\Application->find('serve.')
+#1 /opt/lampp/htdocs/PapusClubReloaded/vendor/symfony/console/Application.php(117): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#2 /opt/lampp/htdocs/PapusClubReloaded/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 /opt/lampp/htdocs/PapusClubReloaded/artisan(29): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 {main}  
