@@ -46,10 +46,11 @@ class User extends Model implements AuthenticatableContract,
 
     public function persona()
     {
-        return $this->hasOne('papusclub\Models\Persona', 'id');
+        return $this->hasOne('papusclub\Models\Persona', 'id_usuario');
     }
     
     public function talleres(){
         return $this->belongsToMany('papusclub\Models\Taller')->withPivot('precio');
     }
+    
 }
