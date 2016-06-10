@@ -89,9 +89,9 @@ class ProvinciaTableSeeder extends Seeder
 		Provincia::create(['id'=>'75', 'nombre'=>'ESPINAR', 'departamento_id'=>'8']);
 		Provincia::create(['id'=>'76', 'nombre'=>'LA CONVENCION', 'departamento_id'=>'8']);
 		Provincia::create(['id'=>'77', 'nombre'=>'PARURO', 'departamento_id'=>'8']);
-		Provincia::create(['id'=>'77', 'nombre'=>'PAUCARTAMBO', 'departamento_id'=>'8']);
-		Provincia::create(['id'=>'78', 'nombre'=>'QUISPICANCHI', 'departamento_id'=>'8']);
-		Provincia::create(['id'=>'80', 'nombre'=>'URUBAMBA', 'departamento_id'=>'8']);
+		Provincia::create(['id'=>'78', 'nombre'=>'PAUCARTAMBO', 'departamento_id'=>'8']);
+		Provincia::create(['id'=>'79', 'nombre'=>'QUISPICANCHI', 'departamento_id'=>'8']);
+		//Provincia::create(['id'=>'80', 'nombre'=>'URUBAMBA', 'departamento_id'=>'8']);
 		Provincia::create(['id'=>'80', 'nombre'=>'HUANCAVELICA', 'departamento_id'=>'9']);
 		Provincia::create(['id'=>'81', 'nombre'=>'ACOBAMBA', 'departamento_id'=>'9']);
 		Provincia::create(['id'=>'82', 'nombre'=>'ANGARAES', 'departamento_id'=>'9']);

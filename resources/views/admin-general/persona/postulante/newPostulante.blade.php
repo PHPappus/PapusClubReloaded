@@ -500,7 +500,7 @@
 				$provincia_id=event.target.value;
 							alert($provincia_id);
 				//alert(url);
-				alert($provincia_id);
+				//alert($provincia_id);
 				$.ajax({
 			        url: "distritos",
 			        type:"POST",

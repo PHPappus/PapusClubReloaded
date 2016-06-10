@@ -278,7 +278,6 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'AddFkToFamiliarxsocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_213338_add_fk_to_familiarxsocio_table.php',
         'AddFkToHistoricoIngresoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_024301_add_fk_to_historico_ingreso_table.php',
         'AddFkToHistoricoInvitacion' => __DIR__ . '/../..' . '/database/migrations/2016_06_09_191230_add_fk_to_historico_invitacion.php',
-        'AddFkToHistoricoInvitacionTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_023659_add_fk_to_historico_invitacion_table.php',
         'AddFkToInvitadoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_09_165934_add_fk_to_invitado_table.php',
         'AddFkToMultaxpersonaTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_205656_add_fk_to_multaxpersona_table.php',
         'AddFkToPersona' => __DIR__ . '/../..' . '/database/migrations/2016_05_24_201138_add_fk_to_persona.php',
