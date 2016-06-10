@@ -41,6 +41,7 @@
               <li><a href="#" title="inscripciones de actividades" target="_self">Inscripciones</a></li>
             </ul>
           </li>
+          
         </ul>
         <ul class="nav navbar-nav">
           <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
