@@ -91,9 +91,15 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
     public static $prefixDirsPsr4 = array (
         'phpDocumentor\\Reflection\\' => 
         array (
+
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+
+            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+
         ),
         'papusclub\\' => 
         array (
@@ -275,9 +281,11 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'AddFkToCarnetxsocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_031359_add_fk_to_carnetxsocio_table.php',
         'AddFkToFacturacionTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_235523_add_fk_to_facturacion_table.php',
         'AddFkToFacturasTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_202818_add_fk_to_facturas_table.php',
+        'AddFkToFamiliarxpostulanteTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_08_003042_add_fk_to_familiarxpostulante_table.php',
         'AddFkToFamiliarxsocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_213338_add_fk_to_familiarxsocio_table.php',
         'AddFkToHistoricoIngresoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_024301_add_fk_to_historico_ingreso_table.php',
-        'AddFkToHistoricoInvitacionTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_023659_add_fk_to_historico_invitacion_table.php',
+        'AddFkToHistoricoInvitacion' => __DIR__ . '/../..' . '/database/migrations/2016_06_09_191230_add_fk_to_historico_invitacion.php',
+        'AddFkToInvitadoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_09_165934_add_fk_to_invitado_table.php',
         'AddFkToMultaxpersonaTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_205656_add_fk_to_multaxpersona_table.php',
         'AddFkToPersona' => __DIR__ . '/../..' . '/database/migrations/2016_05_24_201138_add_fk_to_persona.php',
         'AddFkToPersonaxactividadTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_203528_add_fk_to_personaxactividad_table.php',
@@ -336,9 +344,11 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'CreateDistritosTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_07_192449_create_distritos_table.php',
         'CreateFacturacionTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_235441_create_facturacion_table.php',
         'CreateFacturasTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_172526_create_facturas_table.php',
+        'CreateFamiliarxpostulanteTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_08_002619_create_familiarxpostulante_table.php',
         'CreateFamiliarxsocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_194431_create_familiarxsocio_table.php',
         'CreateHistoricoIngresoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_200124_create_historico_ingreso_table.php',
         'CreateHistoricoInvitacionTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_200103_create_historico_invitacion_table.php',
+        'CreateInvitadosTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_09_155920_create_invitados_table.php',
         'CreateMaestroProductoTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_21_152952_create_maestro_producto_table.php',
         'CreateMaestroProveedorTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_06_042135_create_maestro_proveedor_table.php',
         'CreateMultaTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_24_220332_create_multa_table.php',
@@ -388,6 +398,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'Cron\\MonthField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/MonthField.php',
         'Cron\\YearField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/YearField.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
+<<<<<<< HEAD
         'DepartamentosTableSeeder' => __DIR__ . '/../..' . '/database/seeds/DepartamentosTableSeeder.php',
         'Doctrine\\Common\\Inflector\\Inflector' => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector/Inflector.php',
         'Doctrine\\Instantiator\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator/Exception/ExceptionInterface.php',
@@ -804,6 +815,10 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'Faker\\Provider\\zh_TW\\Text' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/zh_TW/Text.php',
         'Faker\\UniqueGenerator' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/UniqueGenerator.php',
         'Faker\\ValidGenerator' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/ValidGenerator.php',
+=======
+        'DepartamentoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/DepartamentoTableSeeder.php',
+        'DistritoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/DistritoTableSeeder.php',
+>>>>>>> mjjj
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',

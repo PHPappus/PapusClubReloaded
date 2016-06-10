@@ -43,7 +43,7 @@
 			</div>
 		@endif
 
-		<div class="container">
+			<div class="container">
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active">
 						<tr>
@@ -72,7 +72,7 @@
 			 						<td>{{ $persona->ap_materno }}</td>
 			 						<td>{{ $persona->nacionalidad }}</td>
 									<td>
-							        <a class="btn btn-info" href="{{url('/persona/'.$persona->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+							        <a class="btn btn-info" href="{{url('/trabajador/'.$persona->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 							        </td>
 									<td>
 							        <a class="btn btn-info" href="{{url('/trabajador/'.$persona->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>

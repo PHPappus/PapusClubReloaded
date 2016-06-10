@@ -4,12 +4,13 @@
 	<title>POSTULANTE</title>
 	<meta charset="UTF-8">
 
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	{!!Html::style('css/jquery.bxslider.css')!!}
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
-	{!!Html::style('css/MisEstilos.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
+	{!!Html::style('css/MisEstilos.css')!!}
+	{!!Html::style('css/jquery.bxslider.css')!!}
 	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
 	<!-- PARA DATA TABLE -->
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
@@ -31,39 +32,39 @@
 	}
 </style>
 
-
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&libraries=places"></script>
+<!-- <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>  -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&libraries=places"></script> 
 
 
 @extends('layouts.headerandfooter-al-admin')
 @section('content')
+
 		<br>
 		<br>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-left">
-					<p class="lead"><strong>CUENTA</strong></p>
+					<p class="lead"><strong>REGISTRAR POSTULANTE</strong></p>
 				</div>
 			</div>	
 		</div>
 
 		<div class="container">
-			<form method="POST" action="/ambiente/new/ambiente" class="form-horizontal form-border">
-			
+			<form method="POST" action="/postulante/new/postulante" class="form-horizontal form-border">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		
 				<div class="row">
 					<div class="col-sm-12 text-center">
 						<div role="tabpanel">
 							<ul class="nav nav-pills nav-tabs" role="tablist">
-								<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Datos Básicos</a></li>
-								<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Nacimiento</a></li>
-								<li role="presentation"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Educacion</a></li>
-								<li role="presentation"><a href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab">Empleo</a></li>
-								<li role="presentation"><a href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab">Familiares</a></li>
-								<li role="presentation"><a href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab">Vivienda</a></li>
-								<li role="presentation"><a href="#seccion6" aria-controls="seccion7" data-toggle="tab" role="tab">Contactos</a></li>
+								<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Paso 1: Datos Básicos</a></li>
+								<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Paso 2: Nacimiento</a></li>
+								<li role="presentation"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Paso 3: Educacion</a></li>
+								<li role="presentation"><a href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab">Paso 4: Empleo</a></li>
+								<!-- <li role="presentation"><a href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab">Paso 5: Familiares</a></li>
+								<li role="presentation"><a href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab">Paso 6: Vivienda</a></li>
+								<li role="presentation"><a href="#seccion6" aria-controls="seccion7" data-toggle="tab" role="tab">Paso 7: Contactos</a></li> -->
 							</ul>
 						</div>
 
@@ -147,55 +148,156 @@
 
 							<div role="tabpanel" class="tab-pane" id="seccion2">
 								<br>
-								<div class="form-group">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Fecha de Nacimiento:</label>
-											</div>
-											<div class="col-sm-6">
-												<input class="datepicker" type="text" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" style="max-width: 250px">
+								<br>
 
-											</div>	
-										</div>
-								</div>
+
 
 								<div class="form-group">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Fecha de Nacimiento:</label>
+												<label for="" class="control-label">Fecha de Nacimiento</label>
 											</div>
-											<div class="col-sm-6">
-												<!-- HTML Markup (Parent) -->
-												<select id="cat-id">
-												    <option id="">Select ...</option>
-												    <!-- other options -->
-												</select>
-												 <br>
-												 <br>
-												<!-- HTML Markup (Child # 1) -->
-												<select id="subcat-id">
-												    <option id="">Select ...</option>
-												    <!-- other options -->
-												</select>
-												 <br>
-												 <br>
-												<!-- HTML Markup (Child # 2) -->
-												<select id="prod-id">
-												    <option id="">Select ...</option>
-												    <!-- other options -->
-												</select>
-												<br>
+											<div class="col-sm-1">
+												<input class="datepicker" type="text" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha Nacimiento" readonly="true">
 											</div>	
 										</div>
 								</div>
+
+								<form method="POST" action="api/repairdropdown">
+									<div class="form-group">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Lugar de Nacimiento:</label>
+												</div>
+													<div class="col-sm-6">
+														<select form="form_id" class="form-control" id="departamento" name="departamento" style="max-width: 150px " data-link="{{ url('/provincias') }}">
+															<option value="-1" default>--Departamento--</option>
+																@foreach ($departamentos as $depa)      
+												                	<option value="{{$depa->id}}">{{$depa->nombre}}</option>
+												                @endforeach
+														</select>
+														
+														<br>
+														<select form="form_id" class="form-control" id="provincia" name="provincia" style="max-width: 150px " data-link="{{ url('/distritos') }}" disabled="true">
+															<option  value="-1" default disab>--Provincia--</option>
+														</select>
+														<br>
+														<select form="form_id" class="form-control" id="distrito" name="distrito" style="max-width: 150px " disabled="true">
+															<option  value="-1" default>--Distrito--</option>
+														</select>
+
+														<br><br>
+														<a href="#" id="try" data-link="{{ url('/test') }}">Try</a>
+													</div>	
+											</div>
+									</div>
+									
+									<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Direccion de Nacimiento:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="direccion Nacimiento" style="max-width: 250px">
+											</div>		
+										</div>
+									</div>
+								</form>
+
 							</div>
 
 							<div role="tabpanel" class="tab-pane" id="seccion3">
-								section 3
+							<br>
+							<br>
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Educacion Primaria:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="educacion_primaria" name="educacion_primaria" placeholder="Educacion Primaria" style="max-width: 250px">
+											</div>		
+										</div>
+								</div>
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Educacion secundaria:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="educacion_secundaria" name="educacion_secundaria" placeholder="Educacion Secundaria" style="max-width: 250px">
+											</div>		
+										</div>
+								</div>
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Universidad:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="universidad" name="universidad" placeholder="Universidad" style="max-width: 250px">
+											</div>		
+										</div>
+								</div>
+
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Profesion:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="profesion" name="profesion" placeholder="Profesion" style="max-width: 250px">
+											</div>		
+										</div>
+								</div>
 							</div>
 
 							<div role="tabpanel" class="tab-pane" id="seccion4">
-								section 4
+								<br>
+								<br>
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Empleo:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="empleo" name="empleo" placeholder="Empleo" style="max-width: 250px">
+											</div>		
+										</div>
+								</div>
+
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Centro de Trabajo:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="centro_trabajo" name="centro_trabajo" placeholder="Centro de Trabajo" style="max-width: 250px">
+											</div>		
+										</div>
+								</div>
+
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Cargo de Trabajo:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="cargo_trabajo" name="cargo_trabajo" placeholder="Cargo de Trabajo" style="max-width: 250px">
+											</div>		
+										</div>
+								</div>
+
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Direccion Laboral</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="direccion_laboral" name="direccion_laboral" placeholder="Direccion Laboral" style="max-width: 250px">
+											</div>		
+										</div>
+								</div>
 							</div>
 
 							<div role="tabpanel" class="tab-pane" id="seccion5">
@@ -241,34 +343,19 @@
 
 
 @stop
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <!-- JQuery -->
-	{!!Html::script('js/jquery-1.11.3.min.js')!!}
-	<!-- Bootstrap -->
-	{!!Html::script('js/bootstrap.js')!!}
-	
-	<!-- BXSlider -->
+ 	 <script src="../js/jquery-3.0.0.js"></script> 
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+	<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+
+ 	{!!Html::script('js/bootstrap.js')!!}
 	{!!Html::script('js/jquery.bxslider.min.js')!!}
-	<!-- Mis Scripts -->
 	{!!Html::script('js/MisScripts.js')!!}
+	<script>$.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')} })</script>
 
-	{!!Html::script('js/bootstrap-datepicker.js')!!}
+	<script type="text/javascript" src="../js/bootstrap-datepicker-sirve.js"></script>
 
-	<script>
-    // Child # 1
-    $("#subcat-id").depdrop({
-        //url: '/server/getSubcat.php',
-        depends: ['cat-id']
-    });
- 
-    // Child # 2
-    $("#prod-id").depdrop({
-        //url: '/server/getProd.php',
-        depends: ['cat-id', 'subcat-id']
-    });
-</script>
+
 
 
 	<script>
@@ -277,17 +364,18 @@
 		
 		
 		var map= new google.maps.Map(document.getElementById('map-canvas'), {
-			center:{
-				lat:27.72,
-				lng:85.36
+			center:{ 
+				lat:-12.089279446409028,
+				lng:-77.02249328165635
 			},
-			zoom:15
+			zoom:15,
+			mapTypeId: google.maps.MapTypeId.TERRAIN
 		});
 
 		var marker= new google.maps.Marker({
 			position:{
-				lat:27.72,
-				lng:85.36
+				lat:-12.089279446409028,
+				lng:-77.02249328165635
 			},
 			map: map,
 			draggable:true
@@ -306,7 +394,7 @@
 			}
 
 			map.fitBounds(bounds);
-			map.setZoom(15);
+			map.setZoom(30);
 		});
 
 		google.maps.event.addListener(marker,'position_changed',function(){
@@ -327,7 +415,7 @@
 
 
 
-	<script>
+<!-- 	<script>
 
 		var nowTemp = new Date();
 		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
@@ -362,5 +450,127 @@
 				format: 'dd/mm/yyyy'
 			});
 		});
+	</script> -->
+
+	<script>
+		$(document).ready(function(){
+			$(function(){
+				$('.datepicker').datepicker({
+					format: "dd/mm/yyyy",
+			        language: "es",
+			        autoclose: true,
+			        //beforeShowDay:function (date){return false}
+				});
+
+			});
+
+		});
+
+			
+	</script>	
+
+
+    <script type="text/javascript">
+
+	    
+		$(document).ready(function(){
+
+			$("#departamento").change(function(event){
+				document.getElementById("provincia").disabled = false;
+				document.getElementById("distrito").disabled = true;
+			    $("#distrito").empty();
+			    $("#distrito").append("<option  value='-1' default>--Distrito--</option>");
+				var url = $(this).attr("data-link");
+				$departamento_id=event.target.value;
+							//alert($departamento_id);
+				//alert(url);
+				$.ajax({
+			        url: "provincias",
+			        type:"POST",
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { id: $departamento_id},
+			        success:function(data){
+			        	$("#provincia").empty();
+			        	$("#provincia").append("<option  value='-1' default>--Provincia--</option>");
+			        	$.each(data,function(index,elememt){
+			        		//alert(element.nombre);
+			        		$("#provincia").append("<option value='"+elememt.id+"'>"+elememt.nombre+"</option>");
+			        	});
+			            //alert(data);
+			        },error:function(){ 
+			            alert("error!!!!");
+			        }
+			    }); //end of ajax
+			});
+
+
+			$("#provincia").change(function(event){
+				document.getElementById("distrito").disabled = false;
+				var url = $(this).attr("data-link");
+				$provincia_id=event.target.value;
+							//alert($provincia_id);
+				//alert(url);
+				//alert($provincia_id);
+				$.ajax({
+			        url: "distritos",
+			        type:"POST",
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { id: $provincia_id},
+			        success:function(data){
+			        	$("#distrito").empty();
+			        	$("#distrito").append("<option  value='-1' default>--Distrito--</option>");
+			        	$.each(data,function(index,elememt){
+
+							//alert(elememt.id);
+			        		//alert(element.nombre);
+			        		$("#distrito").append("<option value='"+elememt.id+"'>"+elememt.nombre+"</option>");
+			        	});
+			            //alert(data);
+			        },error:function(){ 
+			            alert("error!!!!");
+			        }
+			    }); //end of ajax
+			});
+
+
+			$("#try").click(function(){
+			    var url = $(this).attr("data-link");
+			    //alert(url);
+			    $.ajax({
+			        url: "test",
+			        type:"POST",
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { testdata : 'testdatacontent' },
+			        success:function(data){
+			            alert(data);
+			        },error:function(){ 
+			            alert("error!!!!");
+			        }
+			    }); //end of ajax
+			});
+
+		});
+
+
 	</script>
 
+	</body>
+</html>

@@ -3041,6 +3041,7 @@
         "homepage": "https://symfony.com"
     },
     {
+<<<<<<< HEAD
         "name": "webmozart/assert",
         "version": "1.0.2",
         "version_normalized": "1.0.2.0",
@@ -3066,12 +3067,39 @@
         "extra": {
             "branch-alias": {
                 "dev-master": "1.0-dev"
-            }
+=======
+        "name": "phpdocumentor/reflection-docblock",
+        "version": "3.0.2",
+        "version_normalized": "3.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
+            "reference": "45ada3e3fd09789fbfbd6d65b3f0901f0030dc61"
         },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/45ada3e3fd09789fbfbd6d65b3f0901f0030dc61",
+            "reference": "45ada3e3fd09789fbfbd6d65b3f0901f0030dc61",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5",
+            "phpdocumentor/reflection-common": "^1.0@dev",
+            "phpdocumentor/type-resolver": "^0.1.5",
+            "webmozart/assert": "^1.0"
+        },
+        "require-dev": {
+            "mockery/mockery": "^0.9.4",
+            "phpunit/phpunit": "^4.4"
+        },
+        "time": "2016-06-06 06:44:13",
+        "type": "library",
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "Webmozart\\Assert\\": "src/"
+                "phpDocumentor\\Reflection\\": [
+                    "src/"
+                ]
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -3080,6 +3108,63 @@
         ],
         "authors": [
             {
+                "name": "Mike van Riel",
+                "email": "me@mikevanriel.com"
+            }
+        ],
+        "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock."
+    },
+    {
+        "name": "phpspec/prophecy",
+        "version": "v1.6.1",
+        "version_normalized": "1.6.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phpspec/prophecy.git",
+            "reference": "58a8137754bc24b25740d4281399a4a3596058e0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/phpspec/prophecy/zipball/58a8137754bc24b25740d4281399a4a3596058e0",
+            "reference": "58a8137754bc24b25740d4281399a4a3596058e0",
+            "shasum": ""
+        },
+        "require": {
+            "doctrine/instantiator": "^1.0.2",
+            "php": "^5.3|^7.0",
+            "phpdocumentor/reflection-docblock": "^2.0|^3.0.2",
+            "sebastian/comparator": "^1.1",
+            "sebastian/recursion-context": "^1.0"
+        },
+        "require-dev": {
+            "phpspec/phpspec": "^2.0"
+        },
+        "time": "2016-06-07 08:13:47",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.6.x-dev"
+>>>>>>> mjjj
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+<<<<<<< HEAD
+            "psr-4": {
+                "Webmozart\\Assert\\": "src/"
+=======
+            "psr-0": {
+                "Prophecy\\": "src/"
+>>>>>>> mjjj
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+<<<<<<< HEAD
                 "name": "Bernhard Schussek",
                 "email": "bschussek@gmail.com"
             }
@@ -3089,6 +3174,26 @@
             "assert",
             "check",
             "validate"
+=======
+                "name": "Konstantin Kudryashov",
+                "email": "ever.zet@gmail.com",
+                "homepage": "http://everzet.com"
+            },
+            {
+                "name": "Marcello Duarte",
+                "email": "marcello.duarte@gmail.com"
+            }
+        ],
+        "description": "Highly opinionated mocking framework for PHP 5.3+",
+        "homepage": "https://github.com/phpspec/prophecy",
+        "keywords": [
+            "Double",
+            "Dummy",
+            "fake",
+            "mock",
+            "spy",
+            "stub"
+>>>>>>> mjjj
         ]
     },
     {
@@ -3197,6 +3302,7 @@
         ]
     },
     {
+<<<<<<< HEAD
         "name": "phpdocumentor/reflection-docblock",
         "version": "3.0.2",
         "version_normalized": "3.0.2.0",
@@ -3273,12 +3379,44 @@
         "extra": {
             "branch-alias": {
                 "dev-master": "1.6.x-dev"
+=======
+        "name": "webmozart/assert",
+        "version": "1.0.2",
+        "version_normalized": "1.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/webmozart/assert.git",
+            "reference": "30eed06dd6bc88410a4ff7f77b6d22f3ce13dbde"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/webmozart/assert/zipball/30eed06dd6bc88410a4ff7f77b6d22f3ce13dbde",
+            "reference": "30eed06dd6bc88410a4ff7f77b6d22f3ce13dbde",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^4.6"
+        },
+        "time": "2015-08-24 13:29:44",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+>>>>>>> mjjj
             }
         },
         "installation-source": "dist",
         "autoload": {
+<<<<<<< HEAD
             "psr-0": {
                 "Prophecy\\": "src/"
+=======
+            "psr-4": {
+                "Webmozart\\Assert\\": "src/"
+>>>>>>> mjjj
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -3287,6 +3425,7 @@
         ],
         "authors": [
             {
+<<<<<<< HEAD
                 "name": "Konstantin Kudryashov",
                 "email": "ever.zet@gmail.com",
                 "homepage": "http://everzet.com"
@@ -3305,6 +3444,17 @@
             "mock",
             "spy",
             "stub"
+=======
+                "name": "Bernhard Schussek",
+                "email": "bschussek@gmail.com"
+            }
+        ],
+        "description": "Assertions to validate method input/output with nice error messages.",
+        "keywords": [
+            "assert",
+            "check",
+            "validate"
+>>>>>>> mjjj
         ]
     }
 ]

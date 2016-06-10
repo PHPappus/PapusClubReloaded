@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Input;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -97,6 +97,24 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('postulante/new','PostulanteController@registrar');//ya
 	Route::get('postulante/search','PostulanteController@buscar');
 	Route::get('postulante/new','PostulanteController@registrar');
+
+	//Route::get('/provincias','PostulanteController@getProvincias');
+	
+	Route::post('postulante/test', function()
+	{
+	    return 'Success! ajax in laravel 5';
+	});
+	//Route::get('/information/create/ajax-departamento','UbicacionController@getProvincias');
+	Route::post('postulante/provincias', function(){
+		$dep_id=Input::get('id');
+    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
+	});
+	Route::post('postulante/distritos', function(){
+		$prov_id=Input::get('id');
+    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
+	});
+	//Route::get('api/repairdropdown', 'UbicacionController@dropdown');
+
 	//MANTENIMIENTO DE TRABAJADOR
 	Route::get('trabajador/index','TrabajadorController@index');//ya
 	Route::get('trabajador/new','TrabajadorController@registrar');//ya
@@ -111,8 +129,15 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('Socio/','SocioAdminController@index');
 	Route::get('Socio/all','SocioAdminController@indexAll');
 	Route::get('Socio/{id}/','SocioAdminController@show');
+	Route::get('Socio/{id}/editar','SocioAdminController@edit');
 	Route::get('Socio/{socio}/delete', 'SocioAdminController@destroy');
 	Route::get('Socio/{id}/activate','SocioAdminController@activate');
+	/*editar*/
+	Route::patch('Socio/{id}/editBasico','SocioAdminController@updateBasico');
+	Route::patch('Socio/{id}/editEstudio','SocioAdminController@updateEstudio');
+	Route::patch('Socio/{id}/editTrabajo','SocioAdminController@updateTrabajo');
+	Route::patch('Socio/{id}/editContacto','SocioAdminController@updateContacto');
+	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');
 
 	//MANTENIMIENTO DE MEMBRESIA
 	Route::get('membresia/','MembresiaController@index');
@@ -233,8 +258,13 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	
 	
 	//MANTENIMIENTO DE TALLERES
-	Route::get('talleres/','TallerController@index');
-	Route::get('talleres/new','TallerController@create');
+	Route::get('taller/','TallerController@index');
+	Route::get('taller/new','TallerController@create');
+	Route::get('taller/{id}/editar','TallerController@edit');
+	Route::get('taller/{id}/','TallerController@show');
+	Route::post('taller/new/save','TallerController@store');
+	Route::patch('taller/{id}/edit','TallerController@update');
+	Route::get('taller/{taller}/delete', 'TallerController@destroy');
 
 	//RESERVAS
 
@@ -300,3 +330,16 @@ Route::post('password/reset', 'Auth\PasswordController@reset');
 Route::get('/home', 'HomeController@index');
 
 Route::get('/prueba', 'FrontController@prueba');
+
+
+
+//Ruta cochina para departamentos muy cochina asco
+Route::get('/ajax-distritos',function(){
+
+	$cat_id= Input::get('cat_id');
+
+	$subcategories= $ubcategory::where('category_id','=',$cat_id);
+
+	return Response::json($subcategories);
+});
+

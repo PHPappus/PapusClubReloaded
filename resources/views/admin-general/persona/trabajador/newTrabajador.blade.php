@@ -5,11 +5,11 @@
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	{!!Html::style('css/jquery.bxslider.css')!!}
+	
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
-	{!!Html::style('css/MisEstilos.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
+	{!!Html::style('css/MisEstilos.css')!!}
 	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
 	<!-- PARA DATA TABLE -->
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
@@ -76,8 +76,8 @@
 					<div class="col-sm-12 text-center">
 						<div role="tabpanel">
 							<ul class="nav nav-pills nav-tabs" role="tablist">
-								<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Datos Básicos</a></li>
-								<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Contrato</a></li>
+								<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Paso 1: Datos Básicos</a></li>
+								<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Paso 2: Contrato</a></li>
 							</ul>
 						</div>
 
@@ -278,29 +278,69 @@
 
 @stop
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- 	<script src="../js/jquery-1.12.4.min.js"></script> -->
+<script src="../js/jquery-3.0.0.min.js"></script>
+	<!-- Bootstrap -->
+	<script type="text/javascript" src="../js/bootstrap.js"></script>
+
+	<!-- BXSlider -->
+
+	<!-- Mis Scripts -->
+
+	<script type="text/javascript" src="../js/bootstrap-datepicker-sirve.js"></script>
 
 
-	<script type="text/javascript" src="../js/bootstrap-datepicker.js"></script>
+	
+	
+	<script>
+		$(document).ready(function(){
+				var nowTemp = new Date();		
+				var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+		 
+				var checkin = $('#fecha_abierto').datepicker({
+		  			onRender: function(date) {
+		    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
+		  			}
+				}).on('changeDate', function(ev) {
+		  			if (ev.date.valueOf() > checkout.date.valueOf()) {
+		    			var newDate = new Date(ev.date)
+		    			newDate.setDate(newDate.getDate() + 1);
+		    			checkout.setValue(newDate);
+		  			}
+		 			checkin.hide();
+		  			$('#fecha_cerrado')[0].focus();
+				}).data('datepicker');
 
-
-	<script type="text/javascript">
-		//var disabled_dates = ["23.03.2016","21.03.2016"];
+				var checkout = $('#fecha_cerrado').datepicker({
+		  			onRender: function(date) {
+		    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+		  			}
+				});
+		});
+			
+	</script>	
+	<script>
 		$(function(){
 			$('.datepicker').datepicker({
-				format: 'dd/mm/yyyy',				
-				autoclose:true,
-				startDate: '-3d',
-				beforeShowDay:function($date){
-					return false;
-				}
+				format: "dd/mm/yyyy",
+		        language: 'es',
+		        	//autoclose: true
+		        //beforeShowDay:function (date){return false}
+			});
+			$('.datepicker').on('changeDate', function(ev){
+			    $(this).datepicker('hide');
 			});
 		});
-		
 	</script>
 
-	<script>
+	
+	
+
+
+
+	
+
+	<!--<script>
 	    $(document).ready(function(){
 	        if($(#doc_identidad).attr("disabled")=="true"){
 	            $(#carnet_extranjeria).attr("disabled","false");
@@ -310,9 +350,10 @@
 	        }
 	    });
 
-	</script>
+	</script>-->
 
-
+</body>
+</html>
 <!-- 	<script>
 		var nowTemp = new Date();
 		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
