@@ -16,6 +16,20 @@
 		.modal-backdrop.in{
 			z-index: 1;
 		}
+
+		#cuota_select {
+        /*for firefox*/
+        -moz-appearance: none;
+        /*for chrome*/
+        -webkit-appearance:none;
+      }
+
+		/*for IE10*/
+		#cuota_select::-ms-expand {
+    	display: none;
+		}
+}
+
 	</style>
 
 </head>
@@ -657,17 +671,22 @@
 												<div class="btn-group ">
 													<a href="#" class="btn btn-info" type="submit">Registrar Invitado</a>
 												</div>
-											</div>								
+											</div>
+											<br><br><br>								
 										</div>		
 									</div>														
 							</form>						
 						</div>
 
-
+						@if(Session::has('test') )
+						<h1>{{Session::get('test')}}</h1>
+						@endif
 										<!--DATOS DE MEMBRESIA -->
 						<div role="tabpanel" class="tab-pane" id="seccion9">
-							<form action="" class="form-horizontal form-border">
-								<br/><br/>
+							<form method="POST" action="/Socio/{{$socio->id}}/editMembresia" class="form-horizontal form-border">
+								{{method_field('PATCH')}}
+								<br><br>
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								<div class="form-group">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
@@ -684,7 +703,12 @@
 											<label for="" class="control-label">Tipo Membresía:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="tipomembresia" name="tipomembresia" placeholder="Tipo de Membresía" value="{{$socio->membresia->descripcion}}" disabled>
+								      		<select class="form-control" id="estado_select" name="estado" onchange="mostrar_precio()">
+								    		@foreach ($membresias as $membresia)
+								    			<option value={{$membresia->id}}
+								    			@if($socio->membresia->id==$membresia->id) selected @endif>{{$membresia->descripcion}}</option>
+								    		@endforeach												
+											</select>											
 										</div>	
 									</div>
 								</div>
@@ -694,20 +718,78 @@
 											<label for="" class="control-label">Cuota:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="cuota" name="cuota" placeholder="Cuota" value="{{$socio->membresia->tarifa->monto}}" disabled>
-										</div>	
+								      		<select class="form-control" id="cuota_select" name="cuota" disabled>
+								    		@foreach ($membresias as $membresia)
+								    			<option value={{$membresia->id}}
+								    			@if($socio->membresia->id==$membresia->id) selected @endif>{{$membresia->tarifa->monto}}</option>
+								    		@endforeach												
+											</select>											
+										</div>										
 									</div>
-								</div>	
-								<div class="form-group">
+									<!---BOTON GUARDAR-->
+									<div class="btn-inline">
+										<div class="btn-group col-sm-7"></div>								
+										<div class="btn-group ">
+											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationMembresia" onclick="ventana()" value="Guardar Cambios">
+										</div>
+									</div>
+									<!--FIN-->									
+								</div>
+								@if($socio->estado()==$socio->vigente())
+								<div class="form-group">								
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
 											<label for="" class="control-label">Estado:</label>
 										</div>
-										<div class="col-sm-6">
-											<input type="text" class="form-control" id="estado" name="estado" placeholder="Estado" value="{{$socio->estado()}}" disabled>
-										</div>	
-									</div>
-								</div>
+										<div class="col-sm-6">									
+											<div class="input-group">
+						                        <input type="text" class="form-control" name="estadoVig" value="{{$socio->estado()}}" readonly id="estado_socio">
+						                        <div class="input-group-btn">
+						                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Estado <span class="caret"></span></button>
+						                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+						                                <li><a href="#" onclick="vigente()">{{$socio->vigente()}}</a></li>
+						                                <li><a href="#" onclick="inhabilitado()">{{$socio->inhabilitado()}}</a></li>
+						                                <li><a href="#" onclick="carnet_inhabilitado()">{{$socio->carnet_inhabilitado()}}</a></li>
+						                            </ul>
+						                        </div><!-- /btn-group -->
+						                    </div><!-- /input-group -->
+									    </div>
+								    </div>
+								</div>								
+								@elseif($socio->estado()==$socio->inhabilitado() || $socio->estado()==$socio->carnet_inhabilitado())
+								<div class="form-group">								
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Estado:</label>
+										</div>
+										<div class="col-sm-6">									
+										    <div class="input-group" style="width: 254px">
+										      <input type="text"  class="form-control" placeholder="Estado" name="estadoInv" id="estado_socio_2" value="{{$socio->estado()}}" readonly>
+										      <span class="input-group-btn">
+										        <button class="btn btn-secondary" onclick="reactivar()" type="button">Reactivar</button>
+										      </span>
+										    </div>
+									    </div>
+								    </div>
+								</div>									    								
+								@else
+								<div class="form-group">								
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Estado:</label>
+										</div>
+										<div class="col-sm-6">									
+										    <div class="input-group" style="width: 254px">
+										      <input type="text"  class="form-control" placeholder="Estado" name="estado-r" id="estado_socio_3" value="{{$socio->estado()}}" readonly>
+										      <span class="input-group-btn">
+										        <button class="btn btn-secondary" onclick="reactivar2()" type="button">Renovar</button>
+										      </span>
+										    </div>
+									    </div>
+								    </div>
+								</div>								
+								@endif	
+
 								<div class="form-group">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
@@ -729,7 +811,41 @@
 
 										</div>	
 									</div>
-								</div>																																																				
+								</div>
+						<!--MODAL CONFIRMACION-->
+							<!-- Modal -->
+								<div class = "modal fade" id = "confirmationMembresia" tabindex = "-1" role = "dialog" 
+								   aria-labelledby = "myModalLabel" aria-hidden = "true">
+								   
+								   <div class = "modal-dialog">
+								      <div class = "modal-content">
+								         
+								         <div class = "modal-header">
+								            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+												<span aria-hidden="true" onclick="cerrarventana()">&times;</span>
+								            </button>
+								            
+								            <h4 class = "modal-title" id = "myModalLabel">
+								               EDITAR SOCIO
+								            </h4>
+								         </div>
+								         
+								         <div class = "modal-body">
+								            <p>¿Desea guardar los cambios realizados?</p>
+								         </div>
+								         
+								         <div class = "modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cerrar</button>
+								            
+								            <button type = "submit" class = "btn btn-primary">
+								               Confirmar
+								            </button>
+								         </div>
+								         
+								      </div><!-- /.modal-content -->
+								   </div><!-- /.modal-dialog -->
+								  
+								</div><!-- /.modal -->																																		
 							</form>
 						</div>
 						
@@ -751,8 +867,9 @@
 @stop
 <!-- JQuery -->
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
-	{!!Html::script('js/bootstrap.js')!!}
 	{!!Html::script('js/jquery.bxslider.min.js')!!}
+	{!!Html::script('js/bootstrap.js')!!}
+
 	{!!Html::script('js/bootstrap-datepicker.js')!!}
 	{!!Html::script('js/MisScripts.js')!!}
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
@@ -764,7 +881,41 @@
 		       }
 		  	});
   		});
+	</script>
+
+	<script>
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });
 	</script>	
+
+	<script>
+	function vigente() {
+    	document.getElementById("estado_socio").value = "{{$socio->vigente()}}";
+	}
+
+	function inhabilitado() {
+    	document.getElementById("estado_socio").value = "{{$socio->inhabilitado()}}";
+	}
+
+	function carnet_inhabilitado() {
+    	document.getElementById("estado_socio").value = "{{$socio->carnet_inhabilitado()}}";
+	}
+
+	function reactivar() {
+    	document.getElementById("estado_socio_2").value = "{{$socio->vigente()}}";
+	}
+
+	function reactivar2() {
+    	document.getElementById("estado_socio_3").value = "Renovar al Guardar";
+	}
+
+	function mostrar_precio(){
+		var x = document.getElementById("estado_select").value;
+		document.getElementById("cuota_select").value = x;
+	}
+	</script>
+
 
 
 	<script>

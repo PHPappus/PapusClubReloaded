@@ -14,6 +14,7 @@ use papusclub\Http\Requests\EditSocioBasicoRequest;
 use papusclub\Http\Requests\EditSocioEstudioRequest;
 use papusclub\Http\Requests\EditSocioTrabajoRequest;
 use papusclub\Http\Requests\EditSocioContactoRequest;
+use papusclub\Models\TipoMembresia;
 use Illuminate\Support\Facades\Redirect;
 use Session;
 
@@ -78,6 +79,13 @@ class SocioAdminController extends Controller
             $fecha_vencimiento->add($intervalo);
             $fecha_vencimiento=$fecha_vencimiento->format('Y-m-d');
             $carnet->fecha_vencimiento = $fecha_vencimiento;
+
+            if($socio->estado()==$socio->vencido())
+            {
+                $carnet_temp = $socio->carnet_actual();
+                $carnet_temp->update(['estado'=>false]);
+                $carnet_temp->delete();                
+            }
             $socio->addCarnet($carnet);
         }
         $socio->update(['estado'=>true]);
@@ -87,11 +95,12 @@ class SocioAdminController extends Controller
     public function edit($id)
     {
         $socio = Socio::withTrashed()->find($id);
+        $membresias = TipoMembresia::all();
         $carbon=new Carbon();
         $socio->carnet_actual()->fecha_emision=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_emision)->format('d/m/Y');
         $socio->carnet_actual()->fecha_vencimiento=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_vencimiento)->format('d/m/Y');
         $socio->postulante->persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d',$socio->postulante->persona->fecha_nacimiento)->format('d/m/Y');
-        return view('admin-general.persona.socio.editSocio',compact('socio'));        
+        return view('admin-general.persona.socio.editSocio',compact('socio','membresias'));        
     }
 
     public function updateBasico(EditSocioBasicoRequest $request,$id)
@@ -178,6 +187,100 @@ class SocioAdminController extends Controller
         $socio->postulante->save();
 
         Session::flash('update','contacto');
+        return Redirect::action('SocioAdminController@edit',$socio->id);        
+    }
+
+    public function updateMembresia(Request $request,$id)
+    {
+        $socio = Socio::withTrashed()->find($id);
+        $input=$request->all();
+        
+        /*Modificar tipo de membresia*/
+        $id_membresia = $input['estado'];
+        if($id_membresia!=$socio->membresia->id)
+        {
+            /*Actualizar foreign key*/
+            $tipo_membresia= TipoMembresia::withTrashed()->find($id_membresia);
+            $socio->membresia()->associate($tipo_membresia);
+            $socio->save();
+        }
+        /*Modificar estado de carnet o socio*/
+
+        if(!empty($input['estadoInv']))
+        {
+            $estado=$input['estadoInv'];
+            if($estado==$socio->vigente())
+            {
+                $socio->restore();
+                if($socio->estado==$socio->carnet_inhabilitado())
+                {
+                    /*Registro de un nuevo carnet*/
+                    $anio = Configuracion::where('grupo',5)->first();
+                    $tempcarnet = $socio->carnet_actual();
+                    $carnet = new Carnet();
+                    $carnet->nro_carnet = $tempcarnet->nro_carnet;
+                    /*Fecha de emision*/
+                    $fecha_emision = new DateTime("now");
+                    $fecha_vencimiento = $fecha_emision;
+                    $fecha_emision=$fecha_emision->format('Y-m-d');
+                    $carnet->fecha_emision = $fecha_emision;
+                    /*Fecha de vencimiento*/
+                    $intervalo = new DateInterval('P'.$anio->valor.'Y');
+                    $fecha_vencimiento->add($intervalo);
+                    $fecha_vencimiento=$fecha_vencimiento->format('Y-m-d');
+                    $carnet->fecha_vencimiento = $fecha_vencimiento;
+                    $socio->addCarnet($carnet);                   
+                }
+                $socio->update(['estado'=>true]);
+            }     
+        }
+        else if(!empty($input['estado-r']))
+        {
+                    /*Registro de un nuevo carnet*/
+                    $anio = Configuracion::where('grupo',5)->first();
+                    $tempcarnet = $socio->carnet_actual();
+                    $carnet = new Carnet();
+                    $carnet->nro_carnet = $tempcarnet->nro_carnet;
+                    /*Fecha de emision*/
+                    $fecha_emision = new DateTime("now");
+                    $fecha_vencimiento = $fecha_emision;
+                    $fecha_emision=$fecha_emision->format('Y-m-d');
+                    $carnet->fecha_emision = $fecha_emision;
+                    /*Fecha de vencimiento*/
+                    $intervalo = new DateInterval('P'.$anio->valor.'Y');
+                    $fecha_vencimiento->add($intervalo);
+                    $fecha_vencimiento=$fecha_vencimiento->format('Y-m-d');
+                    $carnet->fecha_vencimiento = $fecha_vencimiento;
+
+
+                    $carnet_temp = $socio->carnet_actual();
+                    $carnet_temp->update(['estado'=>false]);
+                    $carnet_temp->delete();
+
+                    $socio->addCarnet($carnet);            
+        }
+        else if(!empty($input['estadoVig']))
+        {
+            $estado = $input['estadoVig'];
+            if($estado!=$socio->estado())
+            {
+                if($estado==$socio->inhabilitado())
+                {
+                    $socio->update(['estado'=>false]);
+                    $socio->delete();
+                }
+                else if($estado==$socio->carnet_inhabilitado())
+                {
+                    $carnet = $socio->carnet_actual();
+                    $carnet->update(['estado'=>false]);
+                    $carnet->delete();
+
+                    $socio->update(['estado'=>false]);
+                    $socio->delete();
+                }
+            }
+        }
+
         return Redirect::action('SocioAdminController@edit',$socio->id);        
     }
 }
