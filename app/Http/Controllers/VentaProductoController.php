@@ -10,6 +10,7 @@ use papusclub\Models\PrecioProducto;
 use papusclub\Models\Configuracion;
 use papusclub\Models\Facturacion;
 use papusclub\Models\ProductoxFacturacion;
+use papusclub\Models\Persona;
 use papusclub\Http\Requests\StoreFacturacionRequest;
 use papusclub\Http\Requests\EditFacturacionRequest;
 use papusclub\Http\Requests\StoreProductoxFacturacionRequest;
@@ -33,6 +34,11 @@ class VentaProductoController extends Controller
     public function store(StoreFacturacionRequest $request)
     {    	
     	$input = $request->all();
+        $persona = Persona::find($input['persona_id']);
+        if ($persona==null){
+            $errorPersona = 'ID de persona ingresado no es válido';
+            return back()->withErrors($errorPersona);
+        }
         $factura = new Facturacion();
     	$factura->persona_id = $input['persona_id'];
 		$factura->tipo_pago = $input['tipo_pago'];
@@ -54,6 +60,11 @@ class VentaProductoController extends Controller
     public function storeVentaProducto(StoreProductoxFacturacionRequest $request)
     {               
         $input = $request->all();
+        $producto = Producto::find($input['producto_id']);
+        if ($producto==null){
+            $errorProducto = 'ID de producto ingresado no es válido';
+            return back()->withErrors($errorProducto);
+        }
         $productoxfacturacion = new ProductoxFacturacion();
         $productoxfacturacion->producto_id = $input['producto_id'];
         $productoxfacturacion->facturacion_id = $input['facturacion_id'];
