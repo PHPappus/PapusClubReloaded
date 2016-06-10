@@ -280,7 +280,7 @@ class SocioAdminController extends Controller
                 }
             }
         }
-
+        Session::flash('update','membresia');
         return Redirect::action('SocioAdminController@edit',$socio->id);        
     }
 }

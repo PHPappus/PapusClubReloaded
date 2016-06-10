@@ -97,8 +97,15 @@
 						@endif
 
 						<!--DATOS INVITADOS-->
-							<li role="presentation"><a href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab">Invitados</a></li>							
+							<li role="presentation"><a href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab">Invitados</a></li>
+
+						<!--DATOS MEMBRESIA-->
+						@if(Session::get('update')=='membresia')
+							<li role="presentation" class="active"> <a href="#seccion9" aria-controls="seccion9" data-toggle="tab" role="tab">Membresía</a></li>
+						@else
 							<li role="presentation"><a href="#seccion9" aria-controls="seccion9" data-toggle="tab" role="tab">Membresía</a></li>
+						@endif													
+
 						</ul>
 					</div>
 					<div class="tab-content">
@@ -678,11 +685,11 @@
 							</form>						
 						</div>
 
-						@if(Session::has('test') )
-						<h1>{{Session::get('test')}}</h1>
-						@endif
-										<!--DATOS DE MEMBRESIA -->
+					@if(Session::get('update')=='membresia')
+						<div role="tabpanel" class="tab-pane active" id="seccion9">
+					@else
 						<div role="tabpanel" class="tab-pane" id="seccion9">
+					@endif										<!--DATOS DE MEMBRESIA -->
 							<form method="POST" action="/Socio/{{$socio->id}}/editMembresia" class="form-horizontal form-border">
 								{{method_field('PATCH')}}
 								<br><br>
