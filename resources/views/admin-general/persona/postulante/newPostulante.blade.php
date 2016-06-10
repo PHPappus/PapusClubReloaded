@@ -149,16 +149,7 @@
 							<div role="tabpanel" class="tab-pane" id="seccion2">
 								<br>
 								<br>
-								<div class="form-group">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Direccion de Nacimiento:</label>
-											</div>
-											<div class="col-sm-6">
-												<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="direccion Nacimiento" style="max-width: 250px">
-											</div>		
-										</div>
-								</div>
+
 
 
 								<div class="form-group">
@@ -199,6 +190,17 @@
 														<a href="#" id="try" data-link="{{ url('/test') }}">Try</a>
 													</div>	
 											</div>
+									</div>
+									
+									<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Direccion de Nacimiento:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="direccion Nacimiento" style="max-width: 250px">
+											</div>		
+										</div>
 									</div>
 								</form>
 
