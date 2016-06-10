@@ -16,6 +16,20 @@
 		.modal-backdrop.in{
 			z-index: 1;
 		}
+
+		#cuota_select {
+        /*for firefox*/
+        -moz-appearance: none;
+        /*for chrome*/
+        -webkit-appearance:none;
+      }
+
+		/*for IE10*/
+		#cuota_select::-ms-expand {
+    	display: none;
+		}
+}
+
 	</style>
 
 </head>
@@ -39,21 +53,74 @@
 				<div class="col-sm-16 text-center">
 					<div role="tabpanel">
 						<ul class="nav nav-pills nav-tabs" role="tablist">
+
+						<!--DATOS BASICOS-->
+						@if(!Session::has('update') && !$errors->basico->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any())									
 							<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Básico</a></li>
+						@elseif(Session::get('update')=='basico' || $errors->basico->any())
+							<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Básico</a></li>
+						@else
+							<li role="presentation"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Básico</a></li>
+						@endif
+
+						<!--DATOS DE NACIMIENTO-->
+
 							<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Nacimiento</a></li>
+
+						<!--DATOS DE FAMILIA-->
+
 							<li role="presentation"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Familia</a></li>
+
+						<!--DATOS DE VIVIENDA-->
+
 							<li role="presentation"><a href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab">Vivienda</a></li>
+
+						<!--DATOS DE ESTUDIO-->							
+						@if(Session::get('update')=='estudio' || $errors->estudio->any())
+							<li role="presentation" class="active"><a href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab">Estudio</a></li>
+						@else
 							<li role="presentation"><a href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab">Estudio</a></li>
+						@endif
+
+						<!--DATOS TRABAJO-->							
+						@if(Session::get('update')=='trabajo' || $errors->trabajo->any())
+							<li role="presentation" class="active"><a href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab">Trabajo</a></li>
+						@else
 							<li role="presentation"><a href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab">Trabajo</a></li>
+						@endif
+
+						<!--DATOS CONTACTO-->
+						@if(Session::get('update')=='contacto' || $errors->contacto->any())
+							<li role="presentation" class="active"><a href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab">Contacto</a></li>
+						@else
 							<li role="presentation"><a href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab">Contacto</a></li>
-							<li role="presentation"><a href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab">Invitados</a></li>							
+						@endif
+
+						<!--DATOS INVITADOS-->
+							<li role="presentation"><a href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab">Invitados</a></li>
+
+						<!--DATOS MEMBRESIA-->
+						@if(Session::get('update')=='membresia')
+							<li role="presentation" class="active"> <a href="#seccion9" aria-controls="seccion9" data-toggle="tab" role="tab">Membresía</a></li>
+						@else
 							<li role="presentation"><a href="#seccion9" aria-controls="seccion9" data-toggle="tab" role="tab">Membresía</a></li>
+						@endif													
+
 						</ul>
 					</div>
 					<div class="tab-content">
 
 										<!--DATOS BÁSICOS-->
+						
+
+
+					@if(!Session::has('update') && !$errors->basico->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any())									
 						<div role="tabpanel" class="tab-pane active" id="seccion1">
+					@elseif(Session::get('update')=='basico' || $errors->basico->any())
+						<div role="tabpanel" class="tab-pane active" id="seccion1">
+					@else
+						<div role="tabpanel" class="tab-pane" id="seccion1">
+					@endif
 							<form method="POST" action="/Socio/{{$socio->id}}/editBasico" class="form-horizontal form-border">
 								{{method_field('PATCH')}}
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -78,7 +145,7 @@
 											<label for="" class="control-label">Nombre:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{{$socio->postulante->persona->nombre}}" >
+											<input type="text" class="form-control" onkeypress="return inputLimiter(event,'Letters')" id="nombre" name="nombre" placeholder="Nombre" value="{{$socio->postulante->persona->nombre}}" >
 										</div>	
 									</div>
 								</div>
@@ -254,28 +321,57 @@
 
 						</div>
 										<!--DATOS ESTUDIO-->
+					@if(Session::get('update')=='estudio' || $errors->estudio->any())
+						<div role="tabpanel" class="tab-pane active" id="seccion5">
+					@else
 						<div role="tabpanel" class="tab-pane" id="seccion5">
-							<form action="" class="form-horizontal form-border">
+					@endif
+
+							<form method="POST" action="/Socio/{{$socio->id}}/editEstudio" class="form-horizontal form-border">
+								{{method_field('PATCH')}}
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								<br/><br/>
-								<div class="form-group">
+								<div class="col-sm-4"></div>
+								<div class=""> 
+									@if ($errors->estudio->any())
+						  				<ul class="alert alert-danger fade in">
+						  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						  					@foreach ($errors->estudio->all() as $error)
+						  						<li>{{$error}}</li>
+						  					@endforeach
+						  				</ul>
+						  			@endif
+								</div>								
+								<br>
+									<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+								<br>
+								<div class="form-group required">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
 											<label for="" class="control-label">Colegio Primaria:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="colegio_primaria" name="colegio_primaria" placeholder="Colegio de Primaria" value="{{$socio->postulante->colegio_primario}}" disabled>
+											<input type="text" class="form-control" id="colegio_primaria" name="colegio_primaria" placeholder="Colegio de Primaria" value="{{$socio->postulante->colegio_primario}}" >
 										</div>	
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group required">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
 											<label for="" class="control-label">Colegio Secundaria:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="colegio_secundaria" name="colegio_secundaria" placeholder="Colegio de Secundaria" value="{{$socio->postulante->colegio_secundario}}" disabled>
+											<input type="text" class="form-control" id="colegio_secundaria" name="colegio_secundaria" placeholder="Colegio de Secundaria" value="{{$socio->postulante->colegio_secundario}}" >
 										</div>	
 									</div>
+									<!---BOTON GUARDAR-->
+									<div class="btn-inline">
+										<div class="btn-group col-sm-7"></div>								
+										<div class="btn-group ">
+											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationEstudio" onclick="ventana()" value="Guardar Cambios">
+										</div>
+									</div>
+									<!--FIN-->									
 								</div>
 								<div class="form-group">
 									<div class="col-sm-6">
@@ -283,7 +379,7 @@
 											<label for="" class="control-label">Universidad:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="universidad" name="universidad" placeholder="Universidad" value="{{$socio->postulante->universidad}}" disabled>
+											<input type="text" class="form-control" id="universidad" name="universidad" placeholder="Universidad" value="{{$socio->postulante->universidad}}" >
 										</div>	
 									</div>
 								</div>
@@ -293,23 +389,80 @@
 											<label for="" class="control-label">Carrera:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="carrera" name="carrera" placeholder="Carrera" value="{{$socio->postulante->profesion}}" disabled>
+											<input type="text" class="form-control" id="carrera" name="carrera" placeholder="Carrera" value="{{$socio->postulante->profesion}}" >
 										</div>	
 									</div>
-								</div>																												
+								</div>
+						<!--MODAL CONFIRMACION-->
+							<!-- Modal -->
+								<div class = "modal fade" id = "confirmationEstudio" tabindex = "-1" role = "dialog" 
+								   aria-labelledby = "myModalLabel" aria-hidden = "true">
+								   
+								   <div class = "modal-dialog">
+								      <div class = "modal-content">
+								         
+								         <div class = "modal-header">
+								            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+												<span aria-hidden="true" onclick="cerrarventana()">&times;</span>
+								            </button>
+								            
+								            <h4 class = "modal-title" id = "myModalLabel">
+								               EDITAR SOCIO
+								            </h4>
+								         </div>
+								         
+								         <div class = "modal-body">
+								            <p>¿Desea guardar los cambios realizados?</p>
+								         </div>
+								         
+								         <div class = "modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cerrar</button>
+								            
+								            <button type = "submit" class = "btn btn-primary">
+								               Confirmar
+								            </button>
+								         </div>
+								         
+								      </div><!-- /.modal-content -->
+								   </div><!-- /.modal-dialog -->
+								  
+								</div><!-- /.modal -->																																		
 							</form>
 						</div>
+
+
 										<!--DATOS TRABAJO -->
+					@if(Session::get('update')=='trabajo' || $errors->trabajo->any())
+						<div role="tabpanel" class="tab-pane active" id="seccion6">
+					@else
 						<div role="tabpanel" class="tab-pane" id="seccion6">
-							<form action="" class="form-horizontal form-border">
+					@endif						
+
+							<form method="POST" action="/Socio/{{$socio->id}}/editTrabajo" class="form-horizontal form-border">
+								{{method_field('PATCH')}}
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								<br/><br/>
+								<div class="col-sm-4"></div>
+								<div class=""> 
+									@if ($errors->trabajo->any())
+						  				<ul class="alert alert-danger fade in">
+						  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						  					@foreach ($errors->trabajo->all() as $error)
+						  						<li>{{$error}}</li>
+						  					@endforeach
+						  				</ul>
+						  			@endif
+								</div>								
+								<br>
+									<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+								<br>
 								<div class="form-group">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
 											<label for="" class="control-label">Centro de Trabajo:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="centrotrabajo" name="centrotrabajo" placeholder="Centro de Trabajo" value="{{$socio->postulante->centro_trabajo}}" disabled>
+											<input type="text" class="form-control" id="centrotrabajo" name="centrotrabajo" placeholder="Centro de Trabajo" value="{{$socio->postulante->centro_trabajo}}" >
 										</div>	
 									</div>
 								</div>
@@ -319,9 +472,17 @@
 											<label for="" class="control-label">Cargo en Trabajo:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="cargocentrotrabajo" name="cargocentrotrabajo" placeholder="Cargo en Trabajo" value="{{$socio->postulante->cargo_centro_trabajo}}" disabled>
+											<input type="text" class="form-control" id="cargocentrotrabajo" name="cargocentrotrabajo" placeholder="Cargo en Trabajo" value="{{$socio->postulante->cargo_centro_trabajo}}" >
 										</div>	
 									</div>
+									<!---BOTON GUARDAR-->
+									<div class="btn-inline">
+										<div class="btn-group col-sm-7"></div>								
+										<div class="btn-group ">
+											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationTrabajo" onclick="ventana()" value="Guardar Cambios">
+										</div>
+									</div>
+									<!--FIN-->										
 								</div>
 								<div class="form-group">
 									<div class="col-sm-6">
@@ -329,47 +490,144 @@
 											<label for="" class="control-label">Direccion Laboral:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="direccionlaboral" name="direccionlaboral" placeholder="Direccion" value="{{$socio->postulante->direccionLaboral}}" disabled>
+											<input type="text" class="form-control" id="direccionlaboral" name="direccionlaboral" placeholder="Direccion" value="{{$socio->postulante->direccionLaboral}}" >
 										</div>	
 									</div>
-								</div>																												
+								</div>
+						<!--MODAL CONFIRMACION-->
+							<!-- Modal -->
+								<div class = "modal fade" id = "confirmationTrabajo" tabindex = "-1" role = "dialog" 
+								   aria-labelledby = "myModalLabel" aria-hidden = "true">
+								   
+								   <div class = "modal-dialog">
+								      <div class = "modal-content">
+								         
+								         <div class = "modal-header">
+								            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+												<span aria-hidden="true" onclick="cerrarventana()">&times;</span>
+								            </button>
+								            
+								            <h4 class = "modal-title" id = "myModalLabel">
+								               EDITAR SOCIO
+								            </h4>
+								         </div>
+								         
+								         <div class = "modal-body">
+								            <p>¿Desea guardar los cambios realizados?</p>
+								         </div>
+								         
+								         <div class = "modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cerrar</button>
+								            
+								            <button type = "submit" class = "btn btn-primary">
+								               Confirmar
+								            </button>
+								         </div>
+								         
+								      </div><!-- /.modal-content -->
+								   </div><!-- /.modal-dialog -->
+								  
+								</div><!-- /.modal -->																																				
 							</form>
 						</div>
 
 										<!--DATOS DE CONTACTO -->
+					@if(Session::get('update')=='contacto' || $errors->contacto->any())
+						<div role="tabpanel" class="tab-pane active" id="seccion7">
+					@else
 						<div role="tabpanel" class="tab-pane" id="seccion7">
-							<form action="" class="form-horizontal form-border">
+					@endif											
+
+							<form method="POST" action="/Socio/{{$socio->id}}/editContacto" class="form-horizontal form-border">
+								{{method_field('PATCH')}}
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								<br/><br/>
-								<div class="form-group">
+								<div class="col-sm-4"></div>
+								<div class=""> 
+									@if ($errors->contacto->any())
+						  				<ul class="alert alert-danger fade in">
+						  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						  					@foreach ($errors->contacto->all() as $error)
+						  						<li>{{$error}}</li>
+						  					@endforeach
+						  				</ul>
+						  			@endif
+								</div>								
+								<br>
+									<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+								<br>
+								<div class="form-group required">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
 											<label for="" class="control-label">Telefono:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="telefono" name="telefono_domicilio" placeholder="Telefono de Contacto" value="{{$socio->postulante->telefono_domicilio}}" disabled>
+											<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="telefono" name="telefono_domicilio" placeholder="Telefono de Contacto" value="{{$socio->postulante->telefono_domicilio}}" >
 										</div>	
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group required">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
 											<label for="" class="control-label">Telefono Celular:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="celular" name="telefono_celular" placeholder="Celular" value="{{$socio->postulante->telefono_celular}}" disabled>
+											<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="celular" name="telefono_celular" placeholder="Celular" value="{{$socio->postulante->telefono_celular}}" >
+										</div>	
+									</div>
+									<!---BOTON GUARDAR-->
+									<div class="btn-inline">
+										<div class="btn-group col-sm-7"></div>								
+										<div class="btn-group ">
+											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationContacto" onclick="ventana()" value="Guardar Cambios">
+										</div>
+									</div>
+									<!--FIN-->										
+								</div>
+								<div class="form-group required">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Correo:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" value="{{$socio->postulante->persona->correo}}" >
 										</div>	
 									</div>
 								</div>
-								<div class="form-group">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Direccion Laboral:</label>
-										</div>
-										<div class="col-sm-6">
-											<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" value="{{$socio->postulante->persona->correo}}" disabled>
-										</div>	
-									</div>
-								</div>																												
+						<!--MODAL CONFIRMACION-->
+							<!-- Modal -->
+								<div class = "modal fade" id = "confirmationContacto" tabindex = "-1" role = "dialog" 
+								   aria-labelledby = "myModalLabel" aria-hidden = "true">
+								   
+								   <div class = "modal-dialog">
+								      <div class = "modal-content">
+								         
+								         <div class = "modal-header">
+								            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+												<span aria-hidden="true" onclick="cerrarventana()">&times;</span>
+								            </button>
+								            
+								            <h4 class = "modal-title" id = "myModalLabel">
+								               EDITAR SOCIO
+								            </h4>
+								         </div>
+								         
+								         <div class = "modal-body">
+								            <p>¿Desea guardar los cambios realizados?</p>
+								         </div>
+								         
+								         <div class = "modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cerrar</button>
+								            
+								            <button type = "submit" class = "btn btn-primary">
+								               Confirmar
+								            </button>
+								         </div>
+								         
+								      </div><!-- /.modal-content -->
+								   </div><!-- /.modal-dialog -->
+								  
+								</div><!-- /.modal -->																																				
 							</form>						
 						</div>
 										<!--DATOS DE INVITADOS-->
@@ -385,7 +643,9 @@
 														<th><div align=center>APELLIDO PATERNO</div></th>
 														<th><div align=center>APELLIDO MATERNO</div></th>
 														<th><div align="center">CORREO</div></th>
-
+														<th><div align=center>DETALLE</div></th>
+														<th><div align=center>EDITAR</div></th>
+														<th><div align=center>ELIMINAR</div></th>													
 													</thead>
 													<tbody>
 														@foreach($socio->postulante->persona->invitados as $invitado)					
@@ -399,22 +659,41 @@
 																	<td>{{$invitado->ap_paterno}}</td>
 																	<td>{{$invitado->ap_materno}}</td>
 																	<td>{{$invitado->correo}}</td>
+																	<td>
+													              	<a class="btn btn-info" href="#"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+													            	</td>
+													            	<td>
+															        <a class="btn btn-info" href="#" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+															        </td>
+													            	<td>
+															        <a class="btn btn-info"  title="Eliminar" data-href="#" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+													            	</td>																	
 													            </tr>				            		
 														@endforeach
 													</tbody>
 											</table>
-											</br></br>
+											<br><br><br>
+											<div class="btn-inline">
+												<div class="btn-group col-sm-10"></div>										
+												<div class="btn-group ">
+													<a href="#" class="btn btn-info" type="submit">Registrar Invitado</a>
+												</div>
+											</div>
 											<br><br><br>								
 										</div>		
 									</div>														
 							</form>						
 						</div>
 
-
-										<!--DATOS DE MEMBRESIA -->
+					@if(Session::get('update')=='membresia')
+						<div role="tabpanel" class="tab-pane active" id="seccion9">
+					@else
 						<div role="tabpanel" class="tab-pane" id="seccion9">
-							<form action="" class="form-horizontal form-border">
-								<br/><br/>
+					@endif										<!--DATOS DE MEMBRESIA -->
+							<form method="POST" action="/Socio/{{$socio->id}}/editMembresia" class="form-horizontal form-border">
+								{{method_field('PATCH')}}
+								<br><br>
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								<div class="form-group">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
@@ -431,7 +710,12 @@
 											<label for="" class="control-label">Tipo Membresía:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="tipomembresia" name="tipomembresia" placeholder="Tipo de Membresía" value="{{$socio->membresia->descripcion}}" disabled>
+								      		<select class="form-control" id="estado_select" name="estado" onchange="mostrar_precio()">
+								    		@foreach ($membresias as $membresia)
+								    			<option value={{$membresia->id}}
+								    			@if($socio->membresia->id==$membresia->id) selected @endif>{{$membresia->descripcion}}</option>
+								    		@endforeach												
+											</select>											
 										</div>	
 									</div>
 								</div>
@@ -441,20 +725,78 @@
 											<label for="" class="control-label">Cuota:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="cuota" name="cuota" placeholder="Cuota" value="{{$socio->membresia->tarifa->monto}}" disabled>
-										</div>	
+								      		<select class="form-control" id="cuota_select" name="cuota" disabled>
+								    		@foreach ($membresias as $membresia)
+								    			<option value={{$membresia->id}}
+								    			@if($socio->membresia->id==$membresia->id) selected @endif>{{$membresia->tarifa->monto}}</option>
+								    		@endforeach												
+											</select>											
+										</div>										
 									</div>
-								</div>	
-								<div class="form-group">
+									<!---BOTON GUARDAR-->
+									<div class="btn-inline">
+										<div class="btn-group col-sm-7"></div>								
+										<div class="btn-group ">
+											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationMembresia" onclick="ventana()" value="Guardar Cambios">
+										</div>
+									</div>
+									<!--FIN-->									
+								</div>
+								@if($socio->estado()==$socio->vigente())
+								<div class="form-group">								
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
 											<label for="" class="control-label">Estado:</label>
 										</div>
-										<div class="col-sm-6">
-											<input type="text" class="form-control" id="estado" name="estado" placeholder="Estado" value="{{$socio->estado()}}" disabled>
-										</div>	
-									</div>
-								</div>
+										<div class="col-sm-6">									
+											<div class="input-group">
+						                        <input type="text" class="form-control" name="estadoVig" value="{{$socio->estado()}}" readonly id="estado_socio">
+						                        <div class="input-group-btn">
+						                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Estado <span class="caret"></span></button>
+						                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+						                                <li><a href="#" onclick="vigente()">{{$socio->vigente()}}</a></li>
+						                                <li><a href="#" onclick="inhabilitado()">{{$socio->inhabilitado()}}</a></li>
+						                                <li><a href="#" onclick="carnet_inhabilitado()">{{$socio->carnet_inhabilitado()}}</a></li>
+						                            </ul>
+						                        </div><!-- /btn-group -->
+						                    </div><!-- /input-group -->
+									    </div>
+								    </div>
+								</div>								
+								@elseif($socio->estado()==$socio->inhabilitado() || $socio->estado()==$socio->carnet_inhabilitado())
+								<div class="form-group">								
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Estado:</label>
+										</div>
+										<div class="col-sm-6">									
+										    <div class="input-group" style="width: 254px">
+										      <input type="text"  class="form-control" placeholder="Estado" name="estadoInv" id="estado_socio_2" value="{{$socio->estado()}}" readonly>
+										      <span class="input-group-btn">
+										        <button class="btn btn-secondary" onclick="reactivar()" type="button">Reactivar</button>
+										      </span>
+										    </div>
+									    </div>
+								    </div>
+								</div>									    								
+								@else
+								<div class="form-group">								
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Estado:</label>
+										</div>
+										<div class="col-sm-6">									
+										    <div class="input-group" style="width: 254px">
+										      <input type="text"  class="form-control" placeholder="Estado" name="estado-r" id="estado_socio_3" value="{{$socio->estado()}}" readonly>
+										      <span class="input-group-btn">
+										        <button class="btn btn-secondary" onclick="reactivar2()" type="button">Renovar</button>
+										      </span>
+										    </div>
+									    </div>
+								    </div>
+								</div>								
+								@endif	
+
 								<div class="form-group">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
@@ -476,7 +818,41 @@
 
 										</div>	
 									</div>
-								</div>																																																				
+								</div>
+						<!--MODAL CONFIRMACION-->
+							<!-- Modal -->
+								<div class = "modal fade" id = "confirmationMembresia" tabindex = "-1" role = "dialog" 
+								   aria-labelledby = "myModalLabel" aria-hidden = "true">
+								   
+								   <div class = "modal-dialog">
+								      <div class = "modal-content">
+								         
+								         <div class = "modal-header">
+								            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+												<span aria-hidden="true" onclick="cerrarventana()">&times;</span>
+								            </button>
+								            
+								            <h4 class = "modal-title" id = "myModalLabel">
+								               EDITAR SOCIO
+								            </h4>
+								         </div>
+								         
+								         <div class = "modal-body">
+								            <p>¿Desea guardar los cambios realizados?</p>
+								         </div>
+								         
+								         <div class = "modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cerrar</button>
+								            
+								            <button type = "submit" class = "btn btn-primary">
+								               Confirmar
+								            </button>
+								         </div>
+								         
+								      </div><!-- /.modal-content -->
+								   </div><!-- /.modal-dialog -->
+								  
+								</div><!-- /.modal -->																																		
 							</form>
 						</div>
 						
@@ -498,8 +874,9 @@
 @stop
 <!-- JQuery -->
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
-	{!!Html::script('js/bootstrap.js')!!}
 	{!!Html::script('js/jquery.bxslider.min.js')!!}
+	{!!Html::script('js/bootstrap.js')!!}
+
 	{!!Html::script('js/bootstrap-datepicker.js')!!}
 	{!!Html::script('js/MisScripts.js')!!}
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
@@ -511,7 +888,41 @@
 		       }
 		  	});
   		});
+	</script>
+
+	<script>
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });
 	</script>	
+
+	<script>
+	function vigente() {
+    	document.getElementById("estado_socio").value = "{{$socio->vigente()}}";
+	}
+
+	function inhabilitado() {
+    	document.getElementById("estado_socio").value = "{{$socio->inhabilitado()}}";
+	}
+
+	function carnet_inhabilitado() {
+    	document.getElementById("estado_socio").value = "{{$socio->carnet_inhabilitado()}}";
+	}
+
+	function reactivar() {
+    	document.getElementById("estado_socio_2").value = "{{$socio->vigente()}}";
+	}
+
+	function reactivar2() {
+    	document.getElementById("estado_socio_3").value = "Renovar al Guardar";
+	}
+
+	function mostrar_precio(){
+		var x = document.getElementById("estado_select").value;
+		document.getElementById("cuota_select").value = x;
+	}
+	</script>
+
 
 
 	<script>

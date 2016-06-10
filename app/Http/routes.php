@@ -126,6 +126,10 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('Socio/{id}/activate','SocioAdminController@activate');
 	/*editar*/
 	Route::patch('Socio/{id}/editBasico','SocioAdminController@updateBasico');
+	Route::patch('Socio/{id}/editEstudio','SocioAdminController@updateEstudio');
+	Route::patch('Socio/{id}/editTrabajo','SocioAdminController@updateTrabajo');
+	Route::patch('Socio/{id}/editContacto','SocioAdminController@updateContacto');
+	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');
 
 	//MANTENIMIENTO DE MEMBRESIA
 	Route::get('membresia/','MembresiaController@index');
@@ -237,6 +241,16 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 
 
 
+/*Pruebas locas*/
+	Route::post('test', function()
+	{
+	    return 'Success! ajax in laravel 5';
+	});
+
+	Route::get('/testmax',function(){
+		return view('testmax');
+	});
+
 });
 	
 
@@ -281,3 +295,16 @@ Route::post('password/reset', 'Auth\PasswordController@reset');
 Route::get('/home', 'HomeController@index');
 
 Route::get('/prueba', 'FrontController@prueba');
+
+
+
+//Ruta cochina para departamentos muy cochina asco
+Route::get('/ajax-distritos',function(){
+
+	$cat_id= Input::get('cat_id');
+
+	$subcategories= $ubcategory::where('category_id','=',$cat_id);
+
+	return Response::json($subcategories);
+});
+

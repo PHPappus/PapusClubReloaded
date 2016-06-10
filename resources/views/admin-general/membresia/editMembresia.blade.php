@@ -74,7 +74,7 @@
 			  	<div class="form-group required">
 			    	<label for="capacidadSocioInput" class="col-sm-4 control-label">Tarifa (S/.)</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="tarifaInput" name="tarifa" value="{{$membresia->tarifa->monto}}" placeholder="Tarifa" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'DoubleFormat')" class="form-control" id="tarifaInput" name="tarifa" value="{{$membresia->tarifa->monto}}" placeholder="Tarifa" >
 			    	</div>
 			  	</div>
 

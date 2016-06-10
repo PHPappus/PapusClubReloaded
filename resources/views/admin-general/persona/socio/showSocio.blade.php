@@ -297,7 +297,7 @@
 								<div class="form-group">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Direccion Laboral:</label>
+											<label for="" class="control-label">Correo:</label>
 										</div>
 										<div class="col-sm-6">
 											<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" value="{{$socio->postulante->persona->correo}}" disabled>
