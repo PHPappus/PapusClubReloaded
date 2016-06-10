@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>RESERVAR BUNGALOW</title>
+	<title>RESERVAR OTROS AMBIENTES</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,15 +21,17 @@
 @section('content')
 
 
-<!-- <div class="container">
-	<div class="col-sm-12 text-center">
-		<br/><br/>
-		<p class="lead"><strong>RESERVAR BUNGALOW</strong></p>
-		<br/>
-	</div>
+<!-- Mensaje de éxito luego de registrar -->
+		@if (session('stored'))
+			<script>$("#modalSuccess").modal("show");</script>
+			
+			<div class="alert alert-success fade in">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>¡Éxito!</strong> {{session('stored')}}
+			</div>
+		@endif
 
-	<br/>
-	<br/> -->
+
 
 
 	
@@ -45,8 +47,9 @@
 	<br/>
 
 	<div class="container">
-		<form method="POST" action="/ambiente/new/ambiente" class="form-horizontal form-border"> <!-- FALTA CAMBIAR LA ACTION =D -->
+		<form method="POST" class="form-horizontal form-border" action="/reservar-ambiente/reservar-otros-ambientes/search"> <!-- FALTA CAMBIAR LA ACTION =D -->
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				<!-- VALIDACION CON FE INICIO -->
 			<br/>
 			<div class="form-group">
 		  		<div class="text-center ">
@@ -58,7 +61,7 @@
 
 			<br/>
 			<div class="form-group required ">
-			   	<label for="sedeInput" class="col-sm-4 control-label">SEDE</label>	
+			   	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>	
 				<div class="col-sm-5">
 				  	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >
 				        @foreach ($sedes as $sede)      
@@ -68,14 +71,9 @@
 				</div>
 			</div>
 			<div class="form-group required">
-			 	<label for="fechaInput" class="col-sm-4 control-label">FECHA (dd/mm/aaaa) </label>
+			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha (dd/mm/aaaa) </label>
 			    <div class="col-sm-5">
-				  	<!-- <div class="input-group">
-			   		<input name="fechaInicio" id="fechaInicio" type="text" required class="form-control">
-			       		<span class="input-group-addon">-</span>
-			       		<input name="fechaFin" id="fechaFin" type="text" required class="form-control">
-			   	 	</div>
- -->
+				  	
 			   	 	<div class="input-group">
 			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" style="max-width: 250px">
 			   		<span class="input-group-addon">-</span>
@@ -84,7 +82,7 @@
 		    	</div>	
 			</div>
 			<div class="form-group required">
-			 	<label for="horaInput" class="col-sm-4 control-label">HORA (hh-mm) </label>
+			 	<label for="horaInput" class="col-sm-4 control-label">Hora (hh-mm) </label>
 			    <div class="col-sm-5">
 				   	<div class="input-group">
 				   		<input name="horaInicio" id="horaInicio" type="time" required class="form-control">
@@ -94,11 +92,12 @@
 		    	</div>	
 			</div>
 			<div class="form-group required">
-			   	<label for="numHabitacionInput" class="col-sm-4 control-label">CAPACIDAD</label>
+			   	<label for="numHabitacionInput" class="col-sm-4 control-label">Capacidad</label>
 			   	<div class="col-sm-5">
 			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="numHabitacionInput" name="capacidad_actual" placeholder="Capacidad" style="max-width: 100px" >
 			   	</div>
 			</div>	
+				
 			<!-- Boton Buscar INICIO -->
 			<div class="btn-inline">
 				<div class="btn-group col-sm-8"></div>
@@ -144,7 +143,7 @@
 				<th><DIV ALIGN=center>NOMBRE</th>
 				<th><DIV ALIGN=center>TIPO</th>
 				<th><DIV ALIGN=center>CAPACIDAD</th>
-				<th><DIV ALIGN=center>DETALLE</th>
+				
 				<th><DIV ALIGN=center>RESERVAR</th>
 				</tr>
 				</thead>
@@ -155,11 +154,11 @@
 					<td>{{ $ambiente->nombre }}</td>
 					<td>{{ $ambiente->tipo_ambiente }}</td>
 					<td>{{ $ambiente->capacidad_actual }}</td>
+					
+				
 					<td>
-			        <a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/confirmacion-reserva-otro-ambiente')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-			        </td>
-					<td>
-					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/confirmacion-reserva-otro-ambiente')}}"  title="Detalle" ><i class="glyphicon glyphicon-remove"></i></a>
+					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/new-reserva-otro-ambiente')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
+
 
 			        </td>
 					</tr>
@@ -250,4 +249,25 @@
 
 	<!-- Para Fecha FIN -->
 </body>
+
+<!-- Modal Success -->
+	<div id="modalSuccess" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">¡Éxito!</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>{{session('stored')}}</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>           
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
 </html>

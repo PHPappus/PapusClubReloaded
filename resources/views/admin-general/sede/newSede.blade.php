@@ -97,7 +97,7 @@
 			  	<div class="form-group required">
 			    	<label for="departamentoInput" class="col-sm-4 control-label">Departamento</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="departamentoInput" name="departamento" placeholder="Departamento" value="{{old('departamento')}}">
+			      		{!!Form::select('departamento',$departamentos,null,['id'=>'departamento'])!!}
 			    	</div>
 			  	</div>
 
@@ -154,7 +154,8 @@
 	
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	{!!Html::script('js/bootstrap.js')!!}
-
+	{!!Html::script('js/jQuery-2.1.4.min.js')!!}
+	{!!Html::script('js/dropdown.js')!!}
 	<script src="/js/jquery-1.11.3.min.js"></script>
 	<!-- Bootstrap -->
 	<script type="text/javascript" src="/js/bootstrap.js"></script>

@@ -85,9 +85,9 @@
 						</li>
 
 						<li><a href="{!!URL::to('/actividad/index')!!}">ACTIVIDAD<span class="despliegue">▼</span></a>
-						<!-- <ul>
-								<li><a href="{!!URL::to('/actividad/new')!!}" title="ir a agregar sede" target="_self">AGREGAR</a></li>
-							</ul> -->
+							<ul>
+								<li><a href="{!!URL::to('/inscripcion-actividad/inscripcion-actividades')!!}" title="ir a agregar sede" target="_self">INSCRIPCIÓN</a></li>
+							</ul>
 						</li>
 						<!-- Opción Actividades -->
 						<li><a href="#">TALLER<span class="despliegue">▼</span></a>
@@ -111,6 +111,8 @@
 						<li><a href="#">TRÁMITES</a></li>
 						<!-- Opción Eventos -->
 						<li><a href="{!!URL::to('/proveedor/index')!!}">PROVEEDOR</a></li>
+						<!-- MANTENIMIENTO DE PAGOS -->
+						<li><a href="{{url('/pagos/pago-seleccionar-socio')}}">PAGOS</a></li>
 
 					</ul>
 				</nav>

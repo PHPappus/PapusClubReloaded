@@ -43,7 +43,7 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('anular-reserva-ambiente-s','SocioController@anularReservaAmbiente');
 	Route::get('anular-reserva-ambiente-b-s','SocioController@anularReservaAmbienteB');
 	Route::get('pagos-s','SocioController@pagos');
-		//Socio.talleres
+	//Socio.talleres  : INSCRIPCION DE TALLERES
 	Route::get('talleres/index','InscriptionTallerController@index');
 	Route::get('talleres/{id}/show','InscriptionTallerController@show');
 	Route::get('talleres/{id}/confirm','InscriptionTallerController@confirmInscription');
@@ -54,6 +54,14 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('bungalows-s','SocioController@bungalow');
 	Route::get('reserva-bungalows-s','SocioController@bungalowReserva');
 	Route::get('reserva-bungalows-b-s','SocioController@bungalowReservaB');
+	//Socio.atividades : INSCRIPCION DE ACTIVIDADES
+	Route::get('inscripcion-actividad/inscripcion-actividades', 'InscriptionActividadController@inscriptionActividad'); // REservar
+	Route::get('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades', 'InscriptionActividadController@storeInscriptionActividad');
+	Route::post('inscripcion-actividad/inscripcion-actividades','InscriptionActividadController@filterActividades');
+	Route::post('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades/confirm','InscriptionActividadController@makeInscriptionToPersona');
+
+	Route::get('inscripcion-actividad/mis-inscripciones','InscriptionActividadController@misinscripciones');
+	Route::get('inscripcion-actividad/{id}/delete', 'InscriptionActividadController@removeInscriptionToPersona');
 });
 
 
@@ -205,8 +213,13 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	//RESERVA DE AMBIENTES
 	Route::get('reservar-ambiente/reservar-bungalow', 'ReservarAmbienteController@reservarBungalow'); // REservar Bungalows
 	Route::get('reservar-ambiente/reservar-otros-ambientes', 'ReservarAmbienteController@reservarOtrosAmbientes'); // REservar otros ambientes distinto de bungalows
-	Route::get('reservar-ambiente/{id}/confirmacion-reserva-bungalow', 'ReservarAmbienteController@storeBungalow');//confirmacion para la reserva del bungalos
-	Route::get('reservar-ambiente/{id}/confirmacion-reserva-otro-ambiente', 'ReservarAmbienteController@storeOtroTipoAmbiente');//confirmacion para la reserva de otros ambientes distintos de bungalows
+	Route::post('reservar-ambiente/reservar-otros-ambientes/search','ReservarAmbienteController@reservarOtrosAmbientesFiltrados');
+	Route::get('reservar-ambiente/{id}/new-reserva-bungalow', 'ReservarAmbienteController@createBungalow');//
+	Route::post('reservar-ambiente/{id}/confirmacion-reserva-bungalow', 'ReservarAmbienteController@storeBungalow');//confirmacion para la reserva del bungalos
+	Route::get('reservar-ambiente/{id}/new-reserva-otro-ambiente', 'ReservarAmbienteController@createOtroTipoAmbiente');//
+	Route::post('reservar-ambiente/{id}/confirmacion-reserva-otro-ambiente', 'ReservarAmbienteController@storeOtroTipoAmbiente');//confirmacion para la reserva de otros ambientes distintos de bungalows
+
+	Route::get('reservar-ambiente/searchSocio', 'SocioController@searchSocio');
 
 
 	///MANTENIMIENTO DE ACTIVIDADES
@@ -216,15 +229,18 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('actividad/{id}', 'ActividadController@edit');
 	Route::post('actividad/{id}/edit', 'ActividadController@update');
 	Route::get('actividad/{id}/delete', 'ActividadController@destroy');
-
 	Route::get('actividad/{id}/show', 'ActividadController@show');
-
+	
+	
 	//MANTENIMIENTO DE TALLERES
 	Route::get('talleres/','TallerController@index');
 	Route::get('talleres/new','TallerController@create');
 
 	//RESERVAS
 
+	
+	//MATENIMIENTO DE PAGOS
+	Route::get('pagos/pago-seleccionar-socio/','PagosController@seleccionarSocio');
 
 
 });

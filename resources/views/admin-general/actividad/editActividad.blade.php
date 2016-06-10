@@ -55,39 +55,56 @@
 		    	</div>
 		  	</div> -->
 		  	<div class="form-group required">
-		    	<label for="ambienteInput" class="col-sm-4 control-label">AMBIENTE</label>
+		    	<label for="ambienteInput" class="col-sm-4 control-label">Ambiente</label>
 		    	<div class="col-sm-5">
 		    		<input type="text" class="form-control" id="ambienteInput" name="ambiente" value="{{$actividad->ambiente->nombre}}"  required readonly>
 		      	</div>
 		      	<a class="btn btn-info" name="buscarAmbiente" href="{!!URL::to('/ambiente/search')!!}"  title="Buscar" ><i name="buscarAmbiente" class="glyphicon glyphicon-search"></i></a>
 		  	</div>
 		  	<div class="form-group required">
-		    	<label for="tipoambienteInput" class="col-sm-4 control-label">TIPO DE AMBIENTE</label>
+		    	<label for="tipoambienteInput" class="col-sm-4 control-label">Tipo de Ambiente</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="tipoambienteInput" name="tipoambiente" value="{{$actividad->ambiente->tipo_ambiente}}"  required readonly>
 		    	</div>
 		  	</div>
 		  	<div class="form-group required">
-		    	<label for="sedeInput" class="col-sm-4 control-label">SEDE</label>
+		    	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="sedeInput" name="sede" value="{{$actividad->ambiente->sede->nombre}}"  required readonly>
 		    	</div>
 		  	</div>
 
 			<div class="form-group required">
-		    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
+		    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="nombreInput" name="nombre" value="{{$actividad->nombre}}" required>
 		    	</div>
 		  	</div>
 		  	<div class="form-group ">
-		    	<label for="descripcionInput" class="col-sm-4 control-label">DESCRIPCIÓN</label>
+		    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"  class="form-control" id="descripcionInput" name="descripcion" value ="{{$actividad->descripcion}}" required>
 		    	</div>
 		  	</div>
+		  	<div class="form-group required">
+
+			    	<label for="fechaInicioInput" class="col-sm-4 control-label">Fecha Inicio</label>
+			    	<div class="col-sm-5">
+			      		<input type="date" id="fechaInicioInput" name="a_realizarse_en" value="{{$actividad->a_realizarse_en}}">
+			    	</div>
+			  	
+			 </div>
+
+			<div class="form-group required">
+			    	<label for="horaInicioInput" class="col-sm-4 control-label">Hora Inicia</label>
+			    	<div class="col-sm-5">
+			      		<input type="time" id="horaInicioInput" name="hora" value="{{$actividad->a_realizarse_en}}">
+			    	</div>
+			  	
+			 </div>
+
 		  	<div class="form-group required ">
-		    	<label for="descripcionInput" class="col-sm-4 control-label">TIPO DE ACTIVIDAD</label>
+		    	<label for="descripcionInput" class="col-sm-4 control-label">Tipo de Actividad</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="descripcionInput" name="descripcion" value="{{$actividad->tipo_actividad}}" readonly>
 		    	</div>
@@ -105,25 +122,39 @@
 		  	</div> -->
 
 		  	<div class="form-group required ">
-		    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA</label>
+		    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad máxima</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="capacidadInput" name="capacidad_maxima" value="{{$actividad->capacidad_maxima}}" required>
 		    	</div>
 		  	</div>	  	
 		  	
 		  	
-		  	<!-- EL ESTADO SIEMPRE VA EN TRUE PARA EL REGISTRAR -->
-		  	
-		  	<!-- </br>
-		  	<div class="form-group">
-		  		<div class="text-right col-sm-4">
-		  			<font color="red"> 
-		  				(*) Dato Obligatorio
-		  			</font>
-		  			
-		  		</div>
+		  		<!-- INICIO  PRECIO POR TIPO DE PERSONA -->
 
-		  	</div>
+			  <br/>
+			<div class="form-group "> 
+				<label for="precioTipo1" class="col-sm-4 control-label" width: 100px >Precios </label>
+			</div>
+			<div class="form-group required">
+			   	<label for="precioTipo1" class="col-sm-4 control-label">Trabajador</label>
+			   	<div class="col-sm-5">
+			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo1" name="precioTipo1" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" >
+			   	</div>
+			</div>	
+			<div class="form-group required">
+			   	<label for="precioTipo2" class="col-sm-4 control-label">Postulante</label>
+			   	<div class="col-sm-5">
+					<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo2" name="precioTipo2" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" >
+			   	</div>
+			</div>	
+			<div class="form-group required">
+			   	<label for="precioTipo3" class="col-sm-4 control-label">Socio</label>
+			   	<div class="col-sm-5">
+			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo3" name="precioTipo3" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" >
+			   	</div>
+			</div>	
+			  	
+			  	<!-- FIN     PRECIO POR TIPO DE PERSONA -->
  -->		  	
 	  	<!-- FIN FIN FIN -->
 				

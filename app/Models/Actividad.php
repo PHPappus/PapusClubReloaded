@@ -25,4 +25,10 @@ class Actividad extends Model
         return $this->belongsTo('papusclub\Models\Ambiente');
         
     }
+    public function personas(){
+        return $this->belongsToMany('App\Models\Persona')->withPivot('precio');
+    }
+    public function sede(){
+        return $this->belongsTo('papusclub\Models\Sede');
+    }
 }
