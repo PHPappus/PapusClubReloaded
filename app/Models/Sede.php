@@ -29,4 +29,8 @@ class Sede extends Model
     function actividades(){
         return $this->hasMany('papusclub\Models\Actividad');
     }
+
+    function invitaciones(){
+        return $this->hasMany(HistoricoInvitacion::class);
+    }
 }

@@ -8,7 +8,7 @@
 	
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
-		{!!Html::style('css/datepicker.css')!!}
+	{!!Html::style('css/datepicker.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
 	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
 	<!-- PARA DATA TABLE -->

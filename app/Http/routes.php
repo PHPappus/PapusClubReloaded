@@ -121,8 +121,11 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('Socio/','SocioAdminController@index');
 	Route::get('Socio/all','SocioAdminController@indexAll');
 	Route::get('Socio/{id}/','SocioAdminController@show');
+	Route::get('Socio/{id}/editar','SocioAdminController@edit');
 	Route::get('Socio/{socio}/delete', 'SocioAdminController@destroy');
 	Route::get('Socio/{id}/activate','SocioAdminController@activate');
+	/*editar*/
+	Route::patch('Socio/{id}/editBasico','SocioAdminController@updateBasico');
 
 	//MANTENIMIENTO DE MEMBRESIA
 	Route::get('membresia/','MembresiaController@index');

@@ -14,7 +14,9 @@ class CreatePostulanteTable extends Migration
     {
         Schema::create('postulante', function (Blueprint $table) {
             //DATOS PERSONALES
+<
             $table->integer('id_postulante')->unsigned()->unique();
+
             $table->bigInteger('ruc'); //en caso lo tenga, no es necesario si no tiene
             //en la vista se tiene un checkbox de nacionalidad
             //1:Peruano   2:Extranjero
@@ -51,7 +53,7 @@ class CreatePostulanteTable extends Migration
             //$table->string('distrito');
             $table->string('domicilio');
 
-            //CONTACTOS
+            //CONTACTO
             $table->integer('telefono_domicilio');
             $table->integer('telefono_celular');
 

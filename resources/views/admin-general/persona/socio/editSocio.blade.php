@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>DETALLE SOCIO</title>
+	<title>EDITAR SOCIO</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,6 +12,11 @@
 	{!!Html::style('css/datepicker.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
+	<style>
+		.modal-backdrop.in{
+			z-index: 1;
+		}
+	</style>
 
 </head>
 <body>
@@ -23,7 +28,7 @@
 		<div class="row">
 			<div class="col-sm-12 text-left">
 				<br/><br/>
-				<p class="lead"><strong>DETALLE DE SOCIO</strong></p>
+				<p class="lead"><strong>EDITAR SOCIO</strong></p>
 				<br/>
 			</div>
 			
@@ -47,21 +52,37 @@
 					</div>
 					<div class="tab-content">
 
-										<!--DATOS BÁSICOS-->										
+										<!--DATOS BÁSICOS-->
 						<div role="tabpanel" class="tab-pane active" id="seccion1">
-							<form action="" class="form-horizontal form-border">
+							<form method="POST" action="/Socio/{{$socio->id}}/editBasico" class="form-horizontal form-border">
+								{{method_field('PATCH')}}
+								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								<br/><br/>
-								<div class="form-group">
+								<div class="col-sm-4"></div>
+								<div class=""> 
+									@if ($errors->basico->any())
+						  				<ul class="alert alert-danger fade in">
+						  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						  					@foreach ($errors->basico->all() as $error)
+						  						<li>{{$error}}</li>
+						  					@endforeach
+						  				</ul>
+						  			@endif
+								</div>								
+								<br>
+									<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+								<br>								
+								<div class="form-group required">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
 											<label for="" class="control-label">Nombre:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{{$socio->postulante->persona->nombre}}" disabled>
+											<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{{$socio->postulante->persona->nombre}}" >
 										</div>	
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group required">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
 											<label for="" class="control-label">Apellido Paterno:</label>
@@ -71,7 +92,7 @@
 										</div>	
 									</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group required">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
 											<label for="" class="control-label">Apellido Materno:</label>
@@ -80,36 +101,46 @@
 											<input type="text" class="form-control" id="apellidoMat" name="apellidoMat" placeholder="Apellido Materno" value="{{$socio->postulante->persona->ap_materno}}" disabled>
 										</div>	
 									</div>
-								</div>								
-								<div class="form-group">
+								</div>
+																
+								<div class="form-group required">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
 											<label for="" class="control-label">Sexo:</label>
 										</div>
 										<div class="col-sm-6 text-left" >
 										@if(strcmp($socio->postulante->persona->sexo,'masculino')==0)
-												<input type="radio" name="genero" value="Masculino" disabled checked> Masculino
+												<input type="radio" name="genero" value="Masculino"  checked disabled> Masculino
 												<input type="radio" name="genero" value="Femenino" style="margin-left: 35px;" disabled> Femenino
 										@else
-												<input type="radio" name="genero" value="Masculino" disabled > Masculino
-												<input type="radio" name="genero" value="Femenino" style="margin-left: 35px;" disabled checked> Femenino
+												<input type="radio" name="genero" value="Masculino"  disabled> Masculino
+												<input type="radio" name="genero" value="Femenino" style="margin-left: 35px;"  checked disabled> Femenino
 										@endif										
 										</div>	
 									</div>
+									<!---BOTON GUARDAR-->
+									<div class="btn-inline">
+										<div class="btn-group col-sm-7"></div>								
+										<div class="btn-group ">
+											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Guardar Cambios">
+										</div>
+									</div>
+									<!--FIN-->									
 								</div>
-								<div class="form-group">
+								
+								<div class="form-group required">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
 											<label for="" class="control-label">Fecha de Nacimiento(dd/mm/aaaa):</label>
 										</div>
 										<div class="col-sm-6">
-											<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" value="{{$socio->postulante->persona->fecha_nacimiento}}"style="width: 250px"  disabled>
+											<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" value="{{$socio->postulante->persona->fecha_nacimiento}}"style="width: 250px"  >
 
 										</div>	
 									</div>
 								</div>
 								@if(strcmp($socio->postulante->persona->nacionalidad,'peruano')==0)
-								<div class="form-group">
+								<div class="form-group required">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
 											<label for="" class="control-label">Nacionalidad:</label>
@@ -121,7 +152,7 @@
 									</div>
 								</div>
 								<!--Debe ir un if si es extranjero-->																
-								<div class="form-group">
+								<div class="form-group required">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
 											<label for="" class="control-label">DNI:</label>
@@ -132,7 +163,7 @@
 									</div>
 								</div>
 								@else
-								<div class="form-group">
+								<div class="form-group required">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
 											<label for="" class="control-label">Nacionalidad:</label>
@@ -144,7 +175,7 @@
 									</div>
 								</div>
 								<!--Debe ir un if si es extranjero-->																
-								<div class="form-group">
+								<div class="form-group required">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
 											<label for="" class="control-label">Carnet de Extranjería:</label>
@@ -155,13 +186,13 @@
 									</div>
 								</div>
 								@endif
-								<div class="form-group">
+								<div class="form-group required">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
 											<label for="" class="control-label">Estado Civil:</label>
 										</div>
 										<div class="col-sm-6">
-											<select class="form-control inputmodify" name="sede" style="max-width: 250px " disabled>
+											<select class="form-control inputmodify" name="sede" style="max-width: 250px "disabled>
 								                <option value="Soltero" default>Soltero (a)</option>
 												<option value="Casado">Casado (a)</option>
 												<option value="Divorciado">Divorciado (a)</option>
@@ -171,7 +202,42 @@
 					    					</select>
 										</div>	
 									</div>
-								</div>								
+								</div>
+						<!--MODAL CONFIRMACION-->
+							<!-- Modal -->
+								<div class = "modal fade" id = "confirmation" tabindex = "-1" role = "dialog" 
+								   aria-labelledby = "myModalLabel" aria-hidden = "true">
+								   
+								   <div class = "modal-dialog">
+								      <div class = "modal-content">
+								         
+								         <div class = "modal-header">
+								            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+												<span aria-hidden="true" onclick="cerrarventana()">&times;</span>
+								            </button>
+								            
+								            <h4 class = "modal-title" id = "myModalLabel">
+								               EDITAR SOCIO
+								            </h4>
+								         </div>
+								         
+								         <div class = "modal-body">
+								            <p>¿Desea guardar los cambios realizados?</p>
+								         </div>
+								         
+								         <div class = "modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cerrar</button>
+								            
+								            <button type = "submit" class = "btn btn-primary">
+								               Confirmar
+								            </button>
+								         </div>
+								         
+								      </div><!-- /.modal-content -->
+								   </div><!-- /.modal-dialog -->
+								  
+								</div><!-- /.modal -->							
+						<!---->																
 							</form>
 						</div>
 
@@ -424,6 +490,10 @@
 						<a class="btn btn-info" href="/Socio/" title="Editar" >Regresar <i class="glyphicon glyphicon-arrow-left"></i></a>			
 				</div>
 		</div>
+
+	
+
+
 	</div>		
 @stop
 <!-- JQuery -->
@@ -445,28 +515,54 @@
 
 
 	<script>
-		var nowTemp = new Date();
-		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
- 
-		var checkin = $('#dpd1').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
-  			}
-		}).on('changeDate', function(ev) {
-  			if (ev.date.valueOf() > checkout.date.valueOf()) {
-    			var newDate = new Date(ev.date)
-    			newDate.setDate(newDate.getDate() + 1);
-    			checkout.setValue(newDate);
-  			}
- 			checkin.hide();
-  			$('#dpd2')[0].focus();
-		}).data('datepicker');
-	</script>
+		$(document).ready(function(){
+				var nowTemp = new Date();		
+				var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+		 
+				var checkin = $('#fecha_abierto').datepicker({
+		  			onRender: function(date) {
+		    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
+		  			}
+				}).on('changeDate', function(ev) {
+		  			if (ev.date.valueOf() > checkout.date.valueOf()) {
+		    			var newDate = new Date(ev.date)
+		    			newDate.setDate(newDate.getDate() + 1);
+		    			checkout.setValue(newDate);
+		  			}
+		 			checkin.hide();
+		  			$('#fecha_cerrado')[0].focus();
+				}).data('datepicker');
+
+				var checkout = $('#fecha_cerrado').datepicker({
+		  			onRender: function(date) {
+		    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+		  			}
+				});
+		});
+			
+	</script>	
 	<script>
 		$(function(){
-			$('.datepicker').datepicker();
+			$('.datepicker').datepicker({
+				format: "dd/mm/yyyy",
+		        language: 'es',
+		        autoclose: true
+		        //beforeShowDay:function (date){return false}
+			});
+			$('.datepicker').on('changeDate', function(ev){
+			    $(this).datepicker('hide');
+			});
 		});
 	</script>
+
+	<script>
+		function ventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 1;
+		}
+		function cerrarventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 3;
+		}
+  	</script>
 	
 
 
