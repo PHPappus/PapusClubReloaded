@@ -218,11 +218,16 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	//MANTENIMIENTO DE SORTEO
 	Route::get('sorteo/index','SorteoController@index');
 	Route::get('sorteo/new','SorteoController@create');	
-	Route::post('sorteo/new/sorteo','SorteoController@store');	
+	Route::post('sorteo/new/sorteo','SorteoController@store');
 	Route::get('sorteo/{id}','SorteoController@edit');
 	Route::post('sorteo/{id}/edit', 'SorteoController@update');
 	Route::get('sorteo/editSorteo/{id}','SorteoController@showEditSorteo');
 	Route::get('sorteo/{id}/delete', 'SorteoController@destroy');
+	Route::get('sorteo/{id}/show', 'SorteoController@show');
+
+	//Transaccional
+	Route::get('sorteo/new/sorteo/bungalows/{id}','SorteoController@bungalows');
+	Route::post('sorteo/new/sorteo/bungalows/{id}/store','SorteoController@storeBungalows');
 
 	//MANTENIMIENTO DE AMBIENTES
 	Route::get('ambiente/index', 'AmbienteController@index');

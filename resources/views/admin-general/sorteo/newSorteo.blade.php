@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>AGREGAR SORTEO</title>
+	<title>REGISTRAR SORTEO</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,7 @@
 		
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>AGREGAR SORTEO</strong>
+					<strong>REGISTRAR SORTEO</strong>
 			</div>		
 		</div>
 		<div class="container">
@@ -79,12 +79,12 @@
 						<input class="datepicker" type="text" id="fecha_cerrado" readonly="true" name="fecha_cerrado"  value="{{ old('fecha_cerrado') }}" >						
 					</div>
 				</div>
-				
+				<br><br>
 				<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-primary" type="submit" value="Confirmar">
+						<input class="btn btn-primary" type="submit" value="Continuar">
 					</div>
 					<div class="btn-group">
 						<a href="/sorteo/index" class="btn btn-info">Cancelar</a>
@@ -97,7 +97,6 @@
 	</div>		
 @stop
 <!-- JQuery -->
-
 	<script src="../js/jquery-1.12.4.min.js"></script>
 	<!-- Bootstrap -->
 	<script type="text/javascript" src="../js/bootstrap.js"></script>
@@ -136,18 +135,17 @@
 				}).on('changeDate', function(ev) {
 		  			checkout.hide();
 				}).data('datepicker');	
+
+
 		});
-			
-	</script>	
-	<script>
 		$(function(){
-			$('.datepicker').datepicker({
-				format: "dd/mm/yyyy",
-		        language: "es",
-		        autoclose: true,
-		        //beforeShowDay:function (date){return false}
-			});
-		});
-	</script>
+					$('.datepicker').datepicker({
+						format: 'dd/mm/yyyy',
+				        language: "es",
+				        autoclose: true,
+				        //beforeShowDay:function (date){return false}
+					});
+				});
+	</script>	
 </body>
 </html>

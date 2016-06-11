@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html>
 <head>
 	<title>MODIFICAR SORTEO</title>
@@ -124,7 +124,7 @@
 				<br/>
 				<div class="form-group">
 					<div class="col-sm-6 text-center">
-						<input class="btn btn-success" type="submit" value="Confirmar">	
+						<input class="btn btn-success"" type="submit" value="Confirmar">	
 					</div>
 					<div class="col-sm-6 text-center">
 						<a href="/sorteo/index" class="btn btn-danger">Cancelar</a>
