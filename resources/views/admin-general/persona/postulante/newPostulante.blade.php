@@ -71,14 +71,16 @@
 						<div class="tab-content">
 							<div role="tabpanel" class="tab-pane active" id="seccion1">
 								<form action="" class="form-horizontal form-border">
-									<br><br>
+									<br>
+										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+									<br>
 									<div class="form-group">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Nombre:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" style="max-width: 250px" required>
+												<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" style="max-width: 250px" >
 											</div>	
 										</div>
 									</div>
@@ -89,7 +91,7 @@
 												<label for="" class="control-label">Apellido Paterno:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="ap_paterno" name="ap_paterno" placeholder="Apellido Paterno" style="max-width: 250px" required>
+												<input type="text" class="form-control" id="ap_paterno" name="ap_paterno" placeholder="Apellido Paterno" style="max-width: 250px">
 											</div>	
 										</div>
 									</div>
@@ -105,6 +107,21 @@
 										</div>
 									</div>
 
+									<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Sexo:</label>
+											</div>
+											<div class="col-sm-6 text-left" style="float: right">											
+													<div>
+														{{ Form::radio('sexo', 'masculino') }}Masculino
+													</div>
+													<div>
+														{{ Form::radio('sexo', 'femenino'   ) }}Femenino
+													</div>
+											</div>	
+										</div>
+									</div>
 									
 
 									<div class="form-group">
@@ -148,6 +165,8 @@
 
 							<div role="tabpanel" class="tab-pane" id="seccion2">
 								<br>
+
+										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 								<br>
 
 
@@ -158,19 +177,18 @@
 												<label for="" class="control-label">Fecha de Nacimiento</label>
 											</div>
 											<div class="col-sm-1">
-												<input class="datepicker" type="text" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha Nacimiento" readonly="true">
+												<input style="max-width: 250px" class="datepicker" type="text" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha Nacimiento" readonly="true" >
 											</div>	
 										</div>
 								</div>
 
-								<form method="POST" action="api/repairdropdown">
 									<div class="form-group">
 											<div class="col-sm-6">
 												<div class="col-sm-6 text-left">
 													<label for="" class="control-label">Lugar de Nacimiento:</label>
 												</div>
 													<div class="col-sm-6">
-														<select form="form_id" class="form-control" id="departamento" name="departamento" style="max-width: 150px " data-link="{{ url('/provincias') }}">
+														<select form="form_id" class="form-control" id="departamento" name="departamento" style="max-width: 250px " data-link="{{ url('/provincias') }}">
 															<option value="-1" default>--Departamento--</option>
 																@foreach ($departamentos as $depa)      
 												                	<option value="{{$depa->id}}">{{$depa->nombre}}</option>
@@ -178,11 +196,11 @@
 														</select>
 														
 														<br>
-														<select form="form_id" class="form-control" id="provincia" name="provincia" style="max-width: 150px " data-link="{{ url('/distritos') }}" disabled="true">
+														<select form="form_id" class="form-control" id="provincia" name="provincia" style="max-width: 250px " data-link="{{ url('/distritos') }}" disabled="true">
 															<option  value="-1" default disab>--Provincia--</option>
 														</select>
 														<br>
-														<select form="form_id" class="form-control" id="distrito" name="distrito" style="max-width: 150px " disabled="true">
+														<select form="form_id" class="form-control" id="distrito" name="distrito" style="max-width: 250px " disabled="true">
 															<option  value="-1" default>--Distrito--</option>
 														</select>
 
@@ -202,12 +220,14 @@
 											</div>		
 										</div>
 									</div>
-								</form>
 
 							</div>
 
 							<div role="tabpanel" class="tab-pane" id="seccion3">
+
 							<br>
+								
+										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 							<br>
 								<div class="form-group">
 										<div class="col-sm-6">
@@ -254,6 +274,7 @@
 
 							<div role="tabpanel" class="tab-pane" id="seccion4">
 								<br>
+										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 								<br>
 								<div class="form-group">
 										<div class="col-sm-6">
@@ -298,15 +319,27 @@
 											</div>		
 										</div>
 								</div>
+								
+								<br><br>
+								<div class="form-group required" >
+										<div class="btn-group col-sm-5" ></div>
+										
+										<div class="btn-group">
+											<input class="btn btn-primary "  type="submit" value="Confirmar">
+										</div>
+										<div class="btn-group">
+											<a href="/postulante/index" class="btn btn-info">Cancelar</a>
+										</div>
+								</div>
 							</div>
 
-							<div role="tabpanel" class="tab-pane" id="seccion5">
+<!-- 							<div role="tabpanel" class="tab-pane" id="seccion5">
 								section 5
-							</div>
+							</div> -->
 
-							<div role="tabpanel" class="tab-pane" id="seccion6">
+							<!-- <div role="tabpanel" class="tab-pane" id="seccion6">
 								<div class="container">
-									{{Form::open(array('url'=>'/vendor/add', 'files' => true))}}
+									{
 										<div class="form-group">
 											<label for="">Title</label>
 											<input type="text" name="form-control input-sm" name="title">
@@ -329,9 +362,9 @@
 										</div>
 
 										<button class="btn btn-sm btn-danger">Save</button>
-									{{Form::close()}}
+
 								</div>      
-							</div>
+							</div> -->
 
 
 						</div>

@@ -11,21 +11,24 @@ class Postulante extends Model
     protected $primaryKey='id_postulante';   /*IMPORTANTE PORQUE NO RECONOCE CUAL ES SU ID*/
     protected $fillable = 
     ['ruc', 
-    'direccion',  
-    'pais_nacimiento', 
-    'lugar_nacimiento', 
-    'colegio_primario', 
+    'departamento', 
+    'provincia', 
+    'distrito', 
+    'direccion_nacimiento', 
+    'colegio_primario',
     'colegio_secundario',
-    'univeridad', 
-    'profesion', 
+    'universidad',
+    'profesion',
+    'empleo',
     'centro_trabajo',
-    'cargo_centro_trabajo', 
-    'direccionLaboral', 
+    'cargo_trabajo',
+    'direccion_laboral',
     'estado_civil',
-    'nro_hijos', 
-    'domicilio', 
+    'nro_hijos',
+    'domicilio',
     'telefono_domicilio',
-    'telefono_celular'
+    'telefono_celular',
+    'estado'
     ];
     protected $dates = ['deleted_at'];
 
