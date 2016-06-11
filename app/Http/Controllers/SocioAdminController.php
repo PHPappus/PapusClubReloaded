@@ -48,8 +48,7 @@ class SocioAdminController extends Controller
         if(!($socio->isIndependent()))
         {
             $socio->update(['estado'=>false]);
-            $socio->delete();
-            return redirect('Socio')->with('eliminated', 'Imposible de eliminar existe dependencia, se ha cambiado de estado a inhabilitado');
+            return redirect('Socio')->with('eliminated', 'Imposible de eliminar debido a que existe dependencia a este socio, se ha cambiado de estado a inhabilitado');
         }
         else
         {
@@ -267,7 +266,7 @@ class SocioAdminController extends Controller
                 if($estado==$socio->inhabilitado())
                 {
                     $socio->update(['estado'=>false]);
-                    $socio->delete();
+                    //$socio->delete();
                 }
                 else if($estado==$socio->carnet_inhabilitado())
                 {
@@ -276,7 +275,7 @@ class SocioAdminController extends Controller
                     $carnet->delete();
 
                     $socio->update(['estado'=>false]);
-                    $socio->delete();
+                    //$socio->delete();
                 }
             }
         }
