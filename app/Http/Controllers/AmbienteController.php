@@ -25,9 +25,10 @@ class AmbienteController extends Controller
     public function create()
     {
     	$sedes = Sede::all();
+        $tipoPersonas = TipoPersona::all();
         $values=Configuracion::where('grupo','=','2')->get();
 
-        return view('admin-general.ambiente.newAmbiente', compact('sedes'),compact('values'));
+        return view('admin-general.ambiente.newAmbiente', compact('sedes', 'values', 'tipoPersonas'));
         
     }
     //Se almacena el nuevo ambiente que se ha registrado en la BD
@@ -53,7 +54,8 @@ class AmbienteController extends Controller
     public function edit($id)
     {
         $ambiente = Ambiente::find($id);
-        return view('admin-general.ambiente.editAmbiente', compact('ambiente'));
+        $tipoPersonas = TipoPersona::all();
+        return view('admin-general.ambiente.editAmbiente', compact('ambiente','tipoPersonas'));
     }
 
     //Se guarda la informacion modificada del ambiente en la BD
@@ -90,7 +92,8 @@ class AmbienteController extends Controller
     public function show($id)
     {
         $ambiente = Ambiente::find($id);
-        return view('admin-general.ambiente.detailAmbiente', compact('ambiente'));
+        $tipoPersonas = TipoPersona::all();
+        return view('admin-general.ambiente.detailAmbiente', compact('ambiente','tipoPersonas'));
     }
 
 
@@ -101,9 +104,8 @@ class AmbienteController extends Controller
         $ambiente = Ambiente::find($id);
         $values=Configuracion::where('grupo','=','3')->get();
         $tipoPersonas = TipoPersona::all();
-
-
-        return view('admin-general.actividad.newActividad', compact('ambiente'),compact('values'),compact('tipoPersonas'));
+        
+        return view('admin-general.actividad.newActividad', compact('ambiente','values','tipoPersonas'));
     }
      public function search()
     {

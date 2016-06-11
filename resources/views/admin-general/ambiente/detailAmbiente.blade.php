@@ -74,30 +74,38 @@
 		  	<!-- EL ESTADO SIEMPRE VA EN TRUE PARA EL REGISTRAR -->
 		  	
 	<!-- INICIO  PRECIO POR TIPO DE PERSONA -->
-
 			  	<br/>
-			<div class="form-group "> 
-				<label for="precioTipo1" class="col-sm-4 control-label" width: 100px >Precios </label>
-			</div>
-			<div class="form-group required">
-			   	<label for="precioTipo1" class="col-sm-4 control-label">Trabajador</label>
-			   	<div class="col-sm-5">
-			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo1" name="precioTipo1" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" readonly="">
-			   	</div>
-			</div>	
-			<div class="form-group required">
-			   	<label for="precioTipo2" class="col-sm-4 control-label">Postulante</label>
-			   	<div class="col-sm-5">
-					<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo2" name="precioTipo2" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" readonly="">
-			   	</div>
-			</div>	
-			<div class="form-group required">
-			   	<label for="precioTipo3" class="col-sm-4 control-label">Socio</label>
-			   	<div class="col-sm-5">
-			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo3" name="precioTipo3" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" readonly="">
-			   	</div>
-			</div>	
-			  	
+			  	<br/>
+			  	<style>  				
+  				#myTable {
+    					    margin: 0 auto; 
+    			}			
+				</style>
+				<div class="container" style="width: 600px; margin-left: auto; margin-right: auto"  >
+				<table class="table table-bordered" >
+					<thead class="active" >	
+						<tr>							
+							<th class="col-sm-3" ><DIV ALIGN=center>Tipo Persona</th>
+							<th class="col-sm-3" ><DIV ALIGN=center>Moneda</th>
+							<th class="col-sm-3"><DIV ALIGN=center>Monto</th>
+						</tr>
+					</thead>
+					<tbody>
+							@foreach ($tipoPersonas as $tipoPersona)		
+						    	<tr>
+									<td align="center">{{$tipoPersona->descripcion}}</td>
+									<td align="center">  S/.</td>
+									<td align="center"> 
+										<div align="center">
+								      		<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="{{$tipoPersona->descripcion}}Input" name="{{$tipoPersona->descripcion}}" placeholder="Monto" >
+								    	</div>
+								</td>							        
+								</tr>
+							@endforeach
+					</tbody>													
+			</table>
+			</div>	  	
+
 			  	<!-- FIN     PRECIO POR TIPO DE PERSONA -->
 		  	
 	  	<!-- FIN FIN FIN -->

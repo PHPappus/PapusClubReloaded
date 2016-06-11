@@ -33,34 +33,41 @@
 		</br>
 
 		
-		<div class="container">
-			<table class="table table-bordered table-hover text-center display" id="example">
-					<thead class="active">
-						<tr>
-							<th><DIV ALIGN=center>ID</th>
-							<th><DIV ALIGN=center>NOMBRE</th>
-							<th><DIV ALIGN=center>APELLIDO PAT.</th>
-							<th><DIV ALIGN=center>APELLIDO MAT.</th>
-							<!-- <th><DIV ALIGN=center>DETALLE</th> -->
-							<th><DIV ALIGN=center>SELECCIONAR</th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach($socios as $socio)		
-							
-						   	<tr>
-						   	<td>{{$socio->postulante->id_postulante}}</td>
-						   	<td>{{$socio->postulante->persona->nombre}}</td>						    		
-							<td><a class="btn btn-info" href="#"  title="OK" ><i class="glyphicon glyphicon-ok"></i></a>
-						    </td>
-							</tr>
-						@endforeach
-					</tbody>					
-												
-					
-			</table>		
-			
-		</div>
+		<div class="table-responsive">
+			<div class="container">
+				<table class="table table-bordered table-hover text-center display" id="example">
+						<thead class="active">
+							<th><div align=center>CARNET</div> </th>
+							<th><div align=center>MEMBRESÍA</div></th>
+							<th><div align=center>APELLIDO PATERNO</div></th>
+							<th><div align=center>APELLIDO MATERNO</div></th>
+							<th><div align=center>NOMBRES</div></th>
+							<th><div align=center>ESTADO</div></th>
+							<th><div align=center>Seleccionar</div></th>
+						</thead>
+						<tbody>
+							@foreach($socios as $socio)
+								@if(strcmp($socio->estado(), $socio->vigente() )==0)						
+									<tr>
+										<td>{{$socio->carnet_actual()->nro_carnet}}</td>
+										<td>{{$socio->membresia->descripcion}}</td>
+										<td>{{$socio->postulante->persona->ap_paterno}}</td>
+										<td>{{$socio->postulante->persona->ap_materno}}</td>
+										<td>{{$socio->postulante->persona->nombre}}</td>
+										<td>{{$socio->estado()}}</td>
+										<td>
+								        <a class="btn btn-info" href="{{url('/pagos/'.$socio->id.'/selectSocio')}}/" title="Seleccionar" ><i class="glyphicon glyphicon-ok"></i></a>
+								        </td>
+						            	
+						            	 
+						            </tr>
+					            @endif				            		
+							@endforeach
+						</tbody>
+				</table>
+				</br></br></br>
+										
+			</div>		
 	</div>
 </br></br></br></br></br>
 		

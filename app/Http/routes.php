@@ -234,9 +234,10 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 
 	
 	//MATENIMIENTO DE PAGOS
-	Route::get('pagos/pago-seleccionar-socio/','PagosController@seleccionarSocio');
-
-
+	Route::get('pagos/pago-seleccionar-socio/','PagosController@seleccionarSocio');//pantalla donde se lista a los socios
+	Route::get('pagos/{id}/selectSocio/', 'PagosController@selectSocio');//ya se seleciono al socio, asiq ue voy a pantalla que lista las deudas de los socios
+	Route::get('pagos/registrar-pago/', 'PagosController@registrarPago');
+    /*Route::post('pagos/{id}/createPago', 'PagosController@createPago');*/
 });
 
 

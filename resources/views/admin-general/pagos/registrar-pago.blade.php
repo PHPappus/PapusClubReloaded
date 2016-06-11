@@ -28,7 +28,7 @@
 		</div>
 		<div class="container">
 			<!--@include('errors.503')-->		
-			<form method="POST" action="/actividad/new/actividad" class="form-horizontal form-border">
+			<form method="POST" action="#" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<!-- VALIDACION CON FE INICIO -->
@@ -60,27 +60,27 @@
 			  	<div class="form-group required">
 			    	<label for="ambienteInput" class="col-sm-4 control-label">Monto</label>
 			    	<div class="col-sm-5">
-			    		<input type="text" class="form-control" id="ambienteInput" name="ambiente" value="FALTA"   readonly>
+			    		<input type="text" class="form-control" id="ambienteInput" name="ambiente" value="250"   readonly>
 			      	</div>
 			      	<a class="btn btn-info" name="buscarAmbiente" href="{!!URL::to('/ambiente/search')!!}"  title="Buscar" ><i name="buscarAmbiente" class="glyphicon glyphicon-search"></i></a>
 			  	</div>
 			  	<div class="form-group required">
 			    	<label for="tipoambienteInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="tipoambienteInput" name="tipoambiente" value="FALTA"   readonly>
+			      		<input type="text" class="form-control" id="tipoambienteInput" name="tipoambiente" value="Deuda de Alquiler de Bungalow"   readonly>
 			    	</div>
 			  	</div>
 			  	<div class="form-group required">
 			    	<label for="sedeInput" class="col-sm-4 control-label">N° Factura</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="sedeInput" name="sede" value="FALTA"   readonly>
+			      		<input type="text" class="form-control" id="sedeInput" name="sede" value="48265"   readonly>
 			    	</div>
 			  	</div>
 
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">N° Pago</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre de la actividad" value="FALTA" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="nombreInput" name="nombre" placeholder="Código del pago realizado" >
 			    	</div>
 			  	</div>
 
@@ -98,10 +98,11 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-primary" type="submit" value="Confirmar">
+						<input class="btn btn-primary" type="btn btn-info" value="Confirmar">
 					</div>
 					<div class="btn-group">
-						<a href="/actividad/index" class="btn btn-info">Cancelar</a>
+						<a href="/pagos/pago-seleccionar-socio" class="btn btn-info">Cancelar</a>
+						<!-- DEBERIA REGRESAR A LA LISTA DE LAS FACTURAS DEL SOCIO - FALTA LINQUEAR ESO -->
 					</div>
 				</div>
 			

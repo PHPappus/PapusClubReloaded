@@ -63,7 +63,8 @@ class ActividadController extends Controller
     public function edit($id)
     {
         $actividad=Actividad::find($id);
-        return view('admin-general.actividad.editActividad', compact('actividad'));
+        $tipoPersonas=TipoPersona::all();
+        return view('admin-general.actividad.editActividad', compact('actividad','tipoPersonas'));
     }
     //Se guarda la informacion modificada de la actividad en la BD
     public function update(EditActividadRequest $request, $id)
@@ -89,7 +90,8 @@ class ActividadController extends Controller
     public function show($id)
     {
         $actividad=Actividad::find($id);
-        return view('admin-general.actividad.detailActividad', compact('actividad'));
+        $tipoPersonas=TipoPersona::all();
+        return view('admin-general.actividad.detailActividad', compact('actividad','tipoPersonas'));
     }
     public function destroy($id)
     {
