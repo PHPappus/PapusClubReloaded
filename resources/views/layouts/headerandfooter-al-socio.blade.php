@@ -1,4 +1,5 @@
 <header class="header">
+
   <div class="content clearfix">
     <!--Input de buscador de la parte superior derecha-->
 
@@ -121,6 +122,7 @@
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
+
 </header>
 <!---Cuerpo -->
 

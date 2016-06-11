@@ -70,12 +70,21 @@
 			   	 	</div>
 		    	</div>	
 			</div>
-		
+			<div class="form-group required">
+			 	<label for="horaInput" class="col-sm-4 control-label">Hora (hh-mm) </label>
+			    <div class="col-sm-5">
+				   	<div class="input-group">
+				   		<input name="horaInicio" id="horaInicio" type="time"  class="form-control">
+			       		<span class="input-group-addon">-</span>
+			       		<input name="horaFin" id="horaFin" type="time"  class="form-control">
+			   	   	</div>
+		    	</div>	
+			</div>
 			<!-- Boton Buscar INICIO -->
 			<div class="btn-inline">
 				<div class="btn-group col-sm-8"></div>
 				<div class="btn-group ">
-					<input class="btn btn-primary" type="submit" value="Buscar">
+					<input class="btn btn-primary" type="submit" value="Filtrar">
 				</div>
 			</div>
 			<!-- Boton Buscar FIN -->

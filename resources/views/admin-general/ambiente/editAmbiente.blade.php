@@ -72,7 +72,7 @@
 		  	<div class="form-group required ">
 		    	<label for="tipoAmbienteInput " class="col-sm-4 control-label">Tipo Ambiente</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" value="{{$ambiente->tipo_ambiente}}" readonly >
+		      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="tipo_ambiente" value="{{$ambiente->tipo_ambiente}}" readonly >
 		    	</div>
 		  	</div>
 

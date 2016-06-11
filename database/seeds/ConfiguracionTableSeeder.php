@@ -41,5 +41,10 @@ class ConfiguracionTableSeeder extends Seeder
         Configuracion::insert([ 'valor' => 'Efectivo' , 'grupo' => '8', 'descripcion'=>'Estado de Facturas']);
         Configuracion::insert([ 'valor' => 'Credito' , 'grupo' => '8', 'descripcion'=>'Estado de Facturas']);
 
+        Configuracion::insert(['valor'=>'Padre','grupo'=>'9','descripcion'=>'tipo relacion familiar']);
+        Configuracion::insert(['valor'=>'Madre','grupo'=>'9','descripcion'=>'tipo relacion familiar']);
+        Configuracion::insert(['valor'=>'Esposa','grupo'=>'9','descripcion'=>'tipo relacion familiar']);
+        Configuracion::insert(['valor'=>'Hijo','grupo'=>'9','descripcion'=>'tipo relacion familiar']);
+        Configuracion::insert(['valor'=>'Hija','grupo'=>'9','descripcion'=>'tipo relacion familiar']);
     }
 }
