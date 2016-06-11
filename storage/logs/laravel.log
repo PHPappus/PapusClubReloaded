@@ -2324,3 +2324,18 @@ Stack trace:
 #79 C:\xampp\htdocs\PapusClubReloaded\public\index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #80 C:\xampp\htdocs\PapusClubReloaded\server.php(21): require_once('C:\\xampp\\htdocs...')
 #81 {main}  
+[2016-06-11 01:16:13] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'papusclub\Http\Requests\Validator' not found' in C:\xampp\htdocs\PapusClubReloaded\app\Http\Requests\StoreServicioRequest.php:28
+Stack trace:
+#0 {main}  
+[2016-06-11 01:18:28] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'papusclub\Http\Requests\Validator' not found' in C:\xampp\htdocs\PapusClubReloaded\app\Http\Requests\StoreServicioRequest.php:28
+Stack trace:
+#0 {main}  
+[2016-06-11 01:23:55] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'papusclub\Http\Requests\Validator' not found' in C:\xampp\htdocs\PapusClubReloaded\app\Http\Requests\StoreServicioRequest.php:28
+Stack trace:
+#0 {main}  
+[2016-06-11 01:26:02] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'papusclub\Http\Requests\Validator' not found' in C:\xampp\htdocs\PapusClubReloaded\app\Http\Requests\StoreServicioRequest.php:28
+Stack trace:
+#0 {main}  
+[2016-06-11 01:27:15] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'papusclub\Http\Requests\Validator' not found' in C:\xampp\htdocs\PapusClubReloaded\app\Http\Requests\StoreServicioRequest.php:28
+Stack trace:
+#0 {main}  

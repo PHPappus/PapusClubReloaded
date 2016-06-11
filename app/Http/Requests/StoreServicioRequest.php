@@ -23,20 +23,16 @@ class StoreServicioRequest extends Request
      */
     public function rules()
     {
-         $regex = "/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/";
-
-        $v = Validator::make(compact('input'),[
-            'input' => array('required','regex:'.$regex)
-        ]);
+         
 
         return [
             'nombre'       =>  'required|max:100|string',
             'descripcion'  =>  'required|max:100|string',
 
             'tipo_servicio'=>  'required|max:50|integer',            
-            'trabajador' =>'numeric|min:1|max:50',
-            'postulante'=> 'numeric|min:1|max:50',
-            'tercero'=> 'numeric|min:1|max:50',
+            'trabajador' =>'numeric|min:1|max:2880',
+            'postulante'=> 'numeric|min:1|max:2800',
+            'tercero'=> 'numeric|min:1|max:2800',
         ];
     }
 }
