@@ -6,14 +6,18 @@ use Illuminate\Http\Request;
 use papusclub\Models\Persona;
 use papusclub\Models\Departamento;
 use papusclub\Models\Provincia;
+use papusclub\Models\Postulante;
+use papusclub\Http\Requests\StorePostulanteRequest;
 use papusclub\Http\Controllers\Controller;
 use papusclub\Http\Requests;
+
+use Carbon\Carbon;
 
 class PostulanteController extends Controller
 {
     public function index()
     {
-        $personas=Persona::where('id_tipo_persona','=','2')->get();
+        $personas=Persona::where('id_tipo_persona','=','1')->get();
         return view('admin-general.persona.postulante.index',compact('personas'));
     }
 
@@ -62,13 +66,13 @@ class PostulanteController extends Controller
         $idPersona = $persona->id; //obtiene el id de la persona ingresada
         //Aqui hago el registro del trabajador una vez registraa la persona
 
-        $postulante= new Postulante();
-        $postulante->id_postulante=$idPeronsa;
+        $postulante = new Postulante();
+        $postulante->id_postulante=$idPersona;
         $postulante->direccion_nacimiento=$input['direccion_nacimiento'];
 
         $postulante->save();
 
-        return redirect('postulante/index')->with('stored', 'Se registró el producto correctamente.');
+        return redirect('postulante/index')->with('stored', 'Se registró el postulante correctamente.');
     }
 
     public function getProvincias(){
@@ -77,5 +81,17 @@ class PostulanteController extends Controller
             $provincias=Provincia::provincias($dep_id);
             return Response::json($provincias);
         //}
+    }
+
+     public function destroy($id){
+
+        $persona = Persona::find($id);
+        $postulante=Postulante::find($persona->id);
+
+
+        $postulante->forceDelete();
+        $persona ->forceDelete();
+        return back();
+
     }
 }

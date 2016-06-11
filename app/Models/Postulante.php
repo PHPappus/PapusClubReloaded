@@ -19,7 +19,6 @@ class Postulante extends Model
     'colegio_secundario',
     'universidad',
     'profesion',
-    'empleo',
     'centro_trabajo',
     'cargo_trabajo',
     'direccion_laboral',

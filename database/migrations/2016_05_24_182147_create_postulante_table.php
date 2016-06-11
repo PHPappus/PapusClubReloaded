@@ -25,12 +25,12 @@ class CreatePostulanteTable extends Migration
             //en caso sea peruano
             $table->integer('departamento');
             $table->integer('provincia');
-            $table->interger('distrito');
+            $table->integer('distrito');
             $table->string('direccion_nacimiento');
 
             //en caso sea extranjero
-            //$table->string('pais_nacimiento'); //Esto deermina el pais Peru
-            //$table->string('lugar_nacimiento'); //esto es una cadena Av. SiempreViva 123 
+            $table->string('pais_nacimiento'); //Esto deermina el pais Peru
+            $table->string('lugar_nacimiento'); //esto es una cadena Av. SiempreViva 123 
             
             //DATOS DE ESTUDIOS
             $table->string('colegio_primario');
@@ -39,7 +39,6 @@ class CreatePostulanteTable extends Migration
             $table->string('profesion');
 
             //DATOS DE EMPLEO
-            $table->string('empleo');
             $table->string('centro_trabajo');
             $table->string('cargo_trabajo');
             $table->string('direccion_laboral');
