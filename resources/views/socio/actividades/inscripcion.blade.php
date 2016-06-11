@@ -75,7 +75,7 @@
 			<div class="btn-inline">
 				<div class="btn-group col-sm-8"></div>
 				<div class="btn-group ">
-					<input class="btn btn-primary" type="submit" value="Buscar">
+					<input class="btn btn-primary" type="submit" value="Filtrar">
 				</div>
 			</div>
 			<!-- Boton Buscar FIN -->
