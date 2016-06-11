@@ -17,7 +17,7 @@ class CreateSocioTable extends Migration
             $table->boolean('estado')->default(true);
             $table->integer('tipo_membresia_id')->unsigned()->nullable();
             $table->integer('postulante_id')->unsigned()->nullable();
-            $table->dateTime('fecha_ingreso');
+            $table->date('fecha_ingreso');
             $table->softDeletes();
             $table->timestamps();
         });

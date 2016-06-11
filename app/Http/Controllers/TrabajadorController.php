@@ -27,18 +27,19 @@ class TrabajadorController extends Controller
     {
         $persona = Persona::find($id);
         $carbon=new Carbon();
-        if((strtotime($persona['fecha_nacimiento']) == 0))
+        if((strtotime($persona['fecha_nacimiento']) < 0))
             $persona->fecha_nacimiento=NULL;
         else
             $persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d', $persona->fecha_nacimiento)->format('d/m/Y');
 
         $trabajador=Trabajador::find($persona->id);
-        if((strtotime($trabajador['fecha_ini_contrato']) == 0)) 
+
+        if((strtotime($trabajador['fecha_ini_contrato']) < 0)) 
             $trabajador->fecha_ini_contrato=NULL;
         else
             $trabajador->fecha_ini_contrato=$carbon->createFromFormat('Y-m-d',  $trabajador->fecha_ini_contrato)->format('d/m/Y');
         
-        if((strtotime($trabajador['fecha_fin_contrato']) == 0)) 
+        if((strtotime($trabajador['fecha_fin_contrato']) < 0)) 
             $trabajador->fecha_fin_contrato=NULL;
         else
             $trabajador->fecha_fin_contrato=$carbon->createFromFormat('Y-m-d',  $trabajador->fecha_fin_contrato)->format('d/m/Y');
@@ -51,7 +52,7 @@ class TrabajadorController extends Controller
 
     public function registrar()
     {
-        $puestos = Configuracion::where('grupo',1)->get();
+        $puestos = Configuracion::where('grupo','=','1')->get();
         return view('admin-general.persona.trabajador.newTrabajador',compact('puestos'));
     }
 
@@ -126,14 +127,25 @@ class TrabajadorController extends Controller
     }
 
     public function edit($id){
-        $puestoslaborales = Configuracion::all()->where('grupo', 1);
+        $puestoslaborales = Configuracion::where('grupo','=','1')->get();
         $persona = Persona::find($id);
         $carbon=new Carbon();
-        $persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d', $persona->fecha_nacimiento)->format('d/m/Y');
+        if((strtotime($persona['fecha_nacimiento']) < 0))
+            $persona->fecha_nacimiento=NULL;
+        else
+            $persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d', $persona->fecha_nacimiento)->format('d/m/Y');
 
         $trabajador=Trabajador::find($persona->id);
-        $trabajador->fecha_ini_contrato=$carbon->createFromFormat('Y-m-d',  $trabajador->fecha_ini_contrato)->format('d/m/Y');
-        $trabajador->fecha_fin_contrato=$carbon->createFromFormat('Y-m-d',  $trabajador->fecha_fin_contrato)->format('d/m/Y');
+
+        if((strtotime($trabajador['fecha_ini_contrato']) < 0)) 
+            $trabajador->fecha_ini_contrato=NULL;
+        else
+            $trabajador->fecha_ini_contrato=$carbon->createFromFormat('Y-m-d',  $trabajador->fecha_ini_contrato)->format('d/m/Y');
+        
+        if((strtotime($trabajador['fecha_fin_contrato']) < 0)) 
+            $trabajador->fecha_fin_contrato=NULL;
+        else
+            $trabajador->fecha_fin_contrato=$carbon->createFromFormat('Y-m-d',  $trabajador->fecha_fin_contrato)->format('d/m/Y');
 
         $puesto=Configuracion::find($trabajador->puesto);
 

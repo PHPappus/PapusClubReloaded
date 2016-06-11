@@ -31,7 +31,74 @@ class Persona extends Model
         return $this->belongsTo('papusclub\Models\Trabajador','id');
     }
 
+
+    public function actividades(){
+        return $this->belongsToMany('papusclub\Models\Actividad')->withPivot('precio');
+    }
+
+    public function usuario(){
+        return $this->belongsTo('papusclub\User','id');
+    }
+
     public function facturacion(){
         return $this->hasMany('papusclub\Models\Facturacion');
+    }
+
+/*acceso: $postulante->familiarxpostulante->pivot->(elementos tabla intermedia)*/
+    public function familiarxpostulante()
+    {
+        return $this->belongsToMany(Postulante::class,'familiarxpostulante','persona_id','postulante_id')->withPivot('relacion','estado')->whereNull('familiarxpostulante.deleted_at')->withTimestamps();
+
+        /*PARA UTILIZAR SOFT DELETE
+            DB::table('familiarxpostulante')
+            ->where('postulante_id', $postulante_id)
+            ->where('persona_id', $persona_id)
+            ->update(array('deleted_at' => DB::raw('NOW()')));
+        */
+    }
+
+
+    public function familiarxpostulanteWithTrashed()
+    {
+        /*Si es necesario retornar incluso los eliminados con softdelete*/
+        return $this->belongsToMany(Postulante::class,'familiarxpostulante','persona_id','postulante_id')->withPivot('relacion','estado')->withTimestamps();   
+    }
+
+    public function invitados()
+    {
+        return $this->belongsToMany(Persona::class,'invitados','persona_id','invitado_id')->withPivot('id','fecha_registro')->withTimestamps();
+    }
+
+    public function addInvitado(Persona $invitado, $fecha_registro)
+    {
+        if($this->id==$invitado->id)
+        {
+            return false;
+        }
+        else
+        {
+            $existe=false;
+            $invitados = $this->invitados;
+            $count =count($invitados);
+            $i=0;
+            while(!$existe && $i<$count)
+            {
+                $inv =$invitados[$i];
+                if($inv->id==$invitado->id)
+                {
+                    $existe=true;
+                }
+                $i++;
+            }
+            if(!$existe)
+            {
+                $this->invitados()->save($invitado,['fecha_registro'=>$fecha_registro]);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

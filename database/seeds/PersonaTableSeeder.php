@@ -3,6 +3,9 @@
 use Illuminate\Database\Seeder;
 use papusclub\Models\Persona;
 
+use Carbon\Carbon;
+
+
 class PersonaTableSeeder extends Seeder
 {
     /**

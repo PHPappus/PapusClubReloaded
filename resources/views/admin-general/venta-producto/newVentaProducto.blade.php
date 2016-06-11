@@ -57,9 +57,9 @@
 			  	</br>								
 
 				<div class="form-group required">
-			    	<label for="persona_id" class="col-sm-4 control-label">Persona</label>
+			    	<label for="persona_id" class="col-sm-4 control-label">ID Persona</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="persona_id" name="persona_id" placeholder="Nombre del Producto" value="{{old('nombre')}}">
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="persona_id" name="persona_id" placeholder="ID de la Persona" value="{{old('nombre')}}">
 			    	</div>
 			  	</div>			  	
 

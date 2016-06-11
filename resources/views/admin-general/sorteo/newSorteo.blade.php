@@ -79,11 +79,17 @@
 						<input class="datepicker" type="text" id="fecha_cerrado" readonly="true" name="fecha_cerrado"  value="{{ old('fecha_cerrado') }}" >						
 					</div>
 				</div>
-<<<<<<< HEAD
-				
-=======
+				<div class="form-group required">
+			    	<label for="" class="control-label col-sm-5">SEDE</label>	
+			    	<div class="col-sm-7">
+				    	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >					         
+							                 @foreach ($sedes as $sede)      
+							                	<option value="{{$sede->id}}">{{$sede->nombre}}</option>
+							                @endforeach
+						</select>
+					</div>
+			  	</div>
 				<br><br>
->>>>>>> refs/remotes/origin/Sebastian
 				<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
 					
@@ -109,49 +115,6 @@
 	<!-- Mis Scripts -->
 
 	<script type="text/javascript" src="../js/bootstrap-datepicker-sirve.js"></script>
-<<<<<<< HEAD
-
-
-	
-	
-	<script>
-		$(document).ready(function(){
-				var nowTemp = new Date();		
-				var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-		 
-				var checkin = $('#fecha_abierto').datepicker({
-		  			onRender: function(date) {
-		    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
-		  			}
-				}).on('changeDate', function(ev) {
-		  			if (ev.date.valueOf() > checkout.date.valueOf()) {
-		    			var newDate = new Date(ev.date)
-		    			newDate.setDate(newDate.getDate() + 1);
-		    			checkout.setValue(newDate);
-		  			}
-		 			checkin.hide();
-		  			$('#fecha_cerrado')[0].focus();
-				}).data('datepicker');
-
-				var checkout = $('#fecha_cerrado').datepicker({
-		  			onRender: function(date) {
-		    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-		  			}
-				}).on('changeDate', function(ev) {
-		  			checkout.hide();
-				}).data('datepicker');	
-		});
-			
-	</script>	
-	<script>
-		$(function(){
-			$('.datepicker').datepicker({
-				format: "dd/mm/yyyy",
-		        language: "es",
-		        autoclose: true,
-		        //beforeShowDay:function (date){return false}
-			});
-=======
 
 
 	
@@ -184,7 +147,6 @@
 				}).data('datepicker');	
 
 
->>>>>>> refs/remotes/origin/Sebastian
 		});
 		$(function(){
 					$('.datepicker').datepicker({

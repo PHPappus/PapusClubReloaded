@@ -55,9 +55,9 @@
 
 				<!-- INICIO INCIIO -->				                       
 				<div class="form-group">
-		    		<label for="producto_idInput" class="col-sm-4 control-label">Producto</label>
+		    		<label for="producto_idInput" class="col-sm-4 control-label">ID Producto</label>
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="producto_idInput" name="producto_id" value="{{old('producto_id')}}">
+		      			<input type="text" class="form-control" id="producto_idInput" name="producto_id" placeholder="ID del producto" onkeypress="return inputLimiter(event,'Numbers')" value="{{old('producto_id')}}">
 		    		</div>
 		  		</div>
 			  
@@ -71,7 +71,7 @@
 			  	<div class="form-group">
 			    	<label for="cantidadInput" class="col-sm-4 control-label" >Cantidad</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="cantidadInput" name="cantidad" value="{{old('cantidad')}}" onkeypress="myFunction()">
+			      		<input type="text" class="form-control" id="cantidadInput" name="cantidad" placeholder="Cantidad del producto comprado" onkeypress="return inputLimiter(event,'Numbers')"  value="{{old('cantidad')}}" onkeypress="myFunction()">
 			    	</div>			      					      		
 			  	</div>	
 
