@@ -16,6 +16,6 @@ class TipoPersona extends Model
     protected $dates = ['deleted_at'];
     
     public function persona(){
-        return $this->hasMany('papusclub\Models\TipoPersona');
+        return $this->hasMany('papusclub\Models\TipoPersona','id');
     }
 }

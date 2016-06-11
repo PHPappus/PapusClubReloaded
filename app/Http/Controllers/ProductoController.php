@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use papusclub\Http\Requests;
 use papusclub\Models\Producto;
 use papusclub\Models\PrecioProducto;
+use papusclub\Models\Configuracion;
 use papusclub\Http\Requests\StoreProductoRequest;
 use papusclub\Http\Requests\EditProductoRequest;
+use papusclub\Http\Requests\StoreConfiguracionRequest;
 
 
 class ProductoController extends Controller
@@ -21,7 +23,8 @@ class ProductoController extends Controller
 
 	public function create()
     {
-    	return view('admin-general.producto.newProducto');
+        $tipo_productos = Configuracion::where('grupo','=','6')->get();
+    	return view('admin-general.producto.newProducto', compact('tipo_productos'));
     }
     
     public function store(StoreProductoRequest $request)
@@ -59,7 +62,9 @@ class ProductoController extends Controller
             $precio->save();
         }
 
-        return view('admin-general.producto.editProducto', compact('producto'), compact('precio'));        
+        $tipo_productos = Configuracion::where('grupo','=','6')->get();
+
+        return view('admin-general.producto.editProducto', compact('producto'), compact('tipo_productos'));
     }
 
     //Se guarda la informacion modificada del producto en la BD
@@ -95,8 +100,8 @@ class ProductoController extends Controller
     {
         $producto = Producto::find($id);
         
-        $producto->PrecioProducto->first()->estado = 0;
-        $producto->PrecioProducto->first()->delete();
+        $producto->precioproducto->first()->estado = 0;
+        $producto->precioproducto->first()->delete();
         $producto->delete();
         return back();
     }
@@ -104,10 +109,21 @@ class ProductoController extends Controller
     //Se brinda informacion mas detallada del producto
     public function show($id)
     {
-        $producto = Producto::find($id);
-        $precio = PrecioProducto::where('producto_id', '=', $id)
-                                    ->where('estado', '=', 1)->first();
-        return view('admin-general.producto.detailProducto', compact('producto'), compact('precio'));
+        $producto = Producto::find($id);        
+        return view('admin-general.producto.detailProducto', compact('producto'));
+    }
+
+    public function storeTipoProducto(StoreConfiguracionRequest $request)
+    {       
+        $input = $request->all();
+        $configuracion = new Configuracion();
+        $configuracion->valor = $input['valor'];
+        $configuracion->grupo = 6;
+        $configuracion->descripcion = 'Tipo de Producto';
+               
+        $configuracion->save();      
+        
+        return redirect('producto/new');
     }
 
 }

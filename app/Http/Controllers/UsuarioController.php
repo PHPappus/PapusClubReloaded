@@ -8,6 +8,7 @@ use papusclub\Http\Requests;
 use papusclub\Http\Requests\UserCreateRequest;
 use papusclub\Http\Requests\ChangePasswordRequest;
 use papusclub\User;
+use papusclub\Perfil;
 use Auth;
 use Session;
 use Redirect;
@@ -48,8 +49,9 @@ class UsuarioController extends Controller
 
     public function index()
     {
-        $users = \papusclub\User::All();
-        return view('usuario.consultar',compact('users'));
+        $users     = \papusclub\User::All();
+        $perfiles  = \papusclub\Perfil::All();
+        return view('usuario.consultar',compact('users'),compact('perfiles'));
     }
 
     /**
@@ -58,8 +60,9 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('usuario.create');
+    {   
+        $perfiles=Perfil::all();
+        return view('usuario.create',compact('perfiles'));
     }
 
     /**

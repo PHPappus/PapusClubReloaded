@@ -9,6 +9,7 @@
 	{!!Html::style('../css/font-awesome.css')!!}
 	{!!Html::style('../css/bootstrap.css')!!}
 	{!!Html::style('../css/MisEstilos.css')!!}
+	{!!Html::style('css/datepicker.css')!!}
 	
 </head>
 <body>
@@ -35,20 +36,20 @@
 			<!-- SE DEBE LEER DATA DE LA BD E INGRESARLOS -->
 
 			<div class="form-group ">
-		    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
+		    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="nombreInput" name="nombre" value="{{$ambiente->nombre}}" readonly >
 		    	</div>
 		  	</div>
 		  	<div class="form-group ">
-		    	<label for="tipoAmbienteInput" class="col-sm-4 control-label">TIPO AMBIENTE</label>	
+		    	<label for="tipoAmbienteInput" class="col-sm-4 control-label">Tipo ambiente</label>	
 		    	<div class="col-sm-5">
 		    		<input type="text" class="form-control" id="tipoAmbienteInput" name="tipoAmbiente" value="{{$ambiente->tipo_ambiente}}" readonly >
 				</div>
 		  	</div>
 
 		  	<div class="form-group ">
-		    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA</label>
+		    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad máxima</label>
 		    	<div class="col-sm-5">
 		      		<input type="number" class="form-control" id="capacidadInput" name="capacidadMax" value="{{$ambiente->capacidad_actual}}" readonly>
 		    	</div>
@@ -60,19 +61,51 @@
 		    	</div>
 		  	</div> -->
 		  	<div class="form-group ">
-		    	<label for="ubicacionInput" class="col-sm-4 control-label">UBICACIÓN</label>
+		    	<label for="ubicacionInput" class="col-sm-4 control-label">Ubicación</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->ubicacion}}" readonly>
 		    	</div>
 		  	</div>
-		  	<!-- <div class="form-group">
-			    	<label for="activoInput" class="col-sm-4 control-label ">Activo</label>
-			    	<div class="col-sm-3">
-			      		<input type="checkbox"  class="checkbox" id="activoInput" name="estado" disabled >
-			    	</div>	    	
-			  	</div> -->
-		  	<!-- EL ESTADO SIEMPRE VA EN TRUE PARA EL REGISTRAR -->
-		  	
+		  	<div class="form-group required">
+			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha (dd/mm/aaaa) </label>
+			    <div class="col-sm-5">
+				  	<!-- <div class="input-group">
+			   		<input name="fechaInicio" id="fechaInicio" type="text" required class="form-control">
+			       		<span class="input-group-addon">-</span>
+			       		<input name="fechaFin" id="fechaFin" type="text" required class="form-control">
+			   	 	</div>
+ -->
+			   	 	<div class="input-group">
+			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio_reserva" placeholder="Fecha Inicio" style="max-width: 250px">
+			   		<span class="input-group-addon">-</span>
+			   		<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd2" name="fecha_fin_reserva" placeholder="Fecha Fin" style="max-width: 250px">
+					</div>			   		
+		    	</div>	
+			</div>
+			<div class="form-group required">
+			 	<label for="horaInput" class="col-sm-4 control-label">Hora (hh-mm) </label>
+			    <div class="col-sm-5">
+				   	<div class="input-group">
+				   		<input name="hora_inicio_reserva" id="horaInicio" type="time" required class="form-control">
+			       		<span class="input-group-addon">-</span>
+			       		<input name="hora_fin_reserva" id="horaFin" type="time" required class="form-control">
+			   	   	</div>
+		    	</div>	
+			</div>
+		  	<div class="form-group required">
+			   	<label for="contactoInput" class="col-sm-4 control-label">Socio</label>
+			  	<div class="col-sm-5">
+			   		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="contactoInput" name="nombre_contacto" placeholder="Socio" value="{{old('nombre_contacto')}}">
+			   	</div>
+			   	<a class="btn btn-info" name="buscarContacto" href="#"  title="Buscar" ><i name="buscarSocio" class="glyphicon glyphicon-search"></i></a>
+			    	<!-- deberia ir a una pantalla que liste todos los contactos posibles del Club  -->
+			</div>	
+			<div class="form-group ">
+		    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
+		    	<div class="col-sm-5">
+		      		<input type="text" class="form-control" id="precioInput" onkeypress="return inputLimiter(event,'Numbers')" name="ubicacion" value="FALTA CALCULAR EL PRECIO" readonly>
+		    	</div>
+		  	</div>  
 		  	</br>
 		  	</br>
 		  	
@@ -96,15 +129,59 @@
 		</div>
 	</div>		
 @stop
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <!-- JQuery -->
-	<script src="../js/jquery-1.11.3.min.js"></script>
+	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	<!-- Bootstrap -->
-	<script type="text/javascript" src="../js/bootstrap.js"></script>
+	{!!Html::script('js/bootstrap.js')!!}
+	
 	<!-- BXSlider -->
-	<script src="../js/jquery.bxslider.min.js"></script>
+	{!!Html::script('js/jquery.bxslider.min.js')!!}
 	<!-- Mis Scripts -->
-	<script src="../js/MisScripts.js"></script>
+	{!!Html::script('js/MisScripts.js')!!}
 
+	{!!Html::script('js/bootstrap-datepicker.js')!!}
+
+<!-- Para Fechas INICIO -->
+	<script>
+
+		var nowTemp = new Date();
+		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+ 	
+		var checkin = $('#dpd1').datepicker({
+  			onRender: function(date) {
+    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
+  			}
+		}).on('changeDate', function(ev) {
+  			if (ev.date.valueOf() > checkout.date.valueOf()) {
+    			var newDate = new Date(ev.date)
+    			newDate.setDate(newDate.getDate() + 1);
+    			checkout.setValue(newDate);
+  			}
+ 			checkin.hide();
+  			$('#dpd2')[0].focus();
+		}).data('datepicker');
+		var checkout = $('#dpd2').datepicker({
+  			onRender: function(date) {
+    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+  			}
+		}).on('changeDate', function(ev) {
+  			checkout.hide();
+		}).data('datepicker');		
+		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
+
+	
+	</script>
+	<script>
+		$(function(){
+			$('.datepicker').datepicker({
+				format: 'dd/mm/yyyy'
+			});
+		});
+	</script>
+
+	<!-- Para Fecha FIN -->
 
 </body>
 </html>

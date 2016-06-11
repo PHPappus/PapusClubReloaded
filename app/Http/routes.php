@@ -170,6 +170,17 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('producto/{id}/edit', 'ProductoController@update');
 	Route::get('producto/{id}/delete', 'ProductoController@destroy');
 	Route::get('producto/{id}/show', 'ProductoController@show');
+	Route::post('producto/new/tipoproducto', 'ProductoController@storeTipoProducto');
+	//VENTA DE PRODUCTOS
+	Route::get('venta-producto/index', 'VentaProductoController@index');
+	Route::get('venta-producto/new', 'VentaProductoController@create');
+	Route::post('venta-producto/new/venta-producto', 'VentaProductoController@store');
+	Route::get('venta-producto/{id}', 'VentaProductoController@edit');
+	Route::post('venta-producto/{id}/edit', 'VentaProductoController@update');
+	Route::get('venta-producto/{id}/delete', 'VentaProductoController@destroy');
+	Route::get('venta-producto/{id}/show', 'VentaProductoController@show');
+	Route::get('venta-producto/new/venta-producto/{id}', 'VentaProductoController@createVentaProducto');
+	Route::post('venta-producto/new/venta-producto/add', 'VentaProductoController@storeVentaProducto');
 
 	//MANTENIMIENTO DE SORTEO
 	Route::get('sorteo/index','SorteoController@index');
@@ -194,9 +205,13 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	//RESERVA DE AMBIENTES
 	Route::get('reservar-ambiente/reservar-bungalow', 'ReservarAmbienteController@reservarBungalow'); // REservar Bungalows
 	Route::get('reservar-ambiente/reservar-otros-ambientes', 'ReservarAmbienteController@reservarOtrosAmbientes'); // REservar otros ambientes distinto de bungalows
-	Route::get('reservar-ambiente/{id}/confirmacion-reserva-bungalow', 'ReservarAmbienteController@storeBungalow');//confirmacion para la reserva del bungalos
+	Route::post('reservar-ambiente/reservar-otros-ambientes/search','ReservarAmbienteController@reservarOtrosAmbientesFiltrados');
+	Route::get('reservar-ambiente/{id}/new-reserva-bungalow', 'ReservarAmbienteController@createBungalow');//
+	Route::post('reservar-ambiente/{id}/confirmacion-reserva-bungalow', 'ReservarAmbienteController@storeBungalow');//confirmacion para la reserva del bungalos
 	Route::get('reservar-ambiente/{id}/new-reserva-otro-ambiente', 'ReservarAmbienteController@createOtroTipoAmbiente');//
-	Route::get('reservar-ambiente/{id}/confirmacion-reserva-otro-ambiente', 'ReservarAmbienteController@storeOtroTipoAmbiente');//confirmacion para la reserva de otros ambientes distintos de bungalows
+	Route::post('reservar-ambiente/{id}/confirmacion-reserva-otro-ambiente', 'ReservarAmbienteController@storeOtroTipoAmbiente');//confirmacion para la reserva de otros ambientes distintos de bungalows
+
+	Route::get('reservar-ambiente/searchSocio', 'SocioController@searchSocio');
 
 
 	///MANTENIMIENTO DE ACTIVIDADES
@@ -223,7 +238,20 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 
 
 });
-	
+
+
+//Administrador de Persona
+Route::group(['middleware' => ['auth', 'adminpersona']], function () {
+	Route::resource('admin-persona','AdminPersonaController');
+});
+//Administrador de Reserva
+Route::group(['middleware' => ['auth', 'adminreserva']], function () {
+	Route::resource('admin-reserva','AdminReservaController');
+});
+//Publico
+Route::group(['middleware' => ['auth', 'publico']], function () {
+	Route::resource('public','PublicoController');
+});
 
 /*Route::get('sede-a','SedesController@index');
 Route::get('newsede-a','SedesController@create');

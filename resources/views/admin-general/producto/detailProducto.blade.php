@@ -69,7 +69,7 @@
 			    	<label for="precioInput" class="col-sm-4 control-label" >Precio</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="precioInput" name="precio" 
-			    		value="{{$precio->precio}}"
+			    		value="{{$producto->precioproducto->first()['precio']}}"
 			      		readonly>
 			    	</div>			      					      		
 			  	</div>	

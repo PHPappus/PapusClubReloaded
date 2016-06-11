@@ -15,7 +15,6 @@ use Auth;
 use Session;
 use Carbon\Carbon;
 
-
 class ReservarAmbienteController extends Controller
 {
     //Muestra la pantalla para realizar la reserva de un bungalow
@@ -36,12 +35,104 @@ class ReservarAmbienteController extends Controller
         return view('admin-general.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes'));
     }
 
-    //Se muestra el Bungalow a reservar y espera su confirmacion para la reserva
-    public function storeBungalow($id)
+    public function reservarOtrosAmbientesFiltrados(Request $request)
     {
 
-        $ambiente = Ambiente::find($id); // de aqui sacare el id de la sede :S
-        return view('admin-general.reservar-ambiente.confirmacion-reserva-bungalow',compact('ambiente'));
+        $sedes = Sede::all();
+        $input = $request->all();
+        $carbon=new Carbon();
+        $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
+        $fecha=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+
+        $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->get();
+
+        $reservas_caso_1=Reserva::where('fecha_inicio_reserva','=',$fecha )->whereBetween('hora_inicio_reserva',[$input['horaInicio'],$input['horaFin']])->get();
+
+        $reservas_caso_2=Reserva::where('fecha_inicio_reserva','=', $fecha)->whereBetween('fecha_fin_reserva', [$input['horaInicio'], $input['horaFin']])->get();
+
+        //$reservas_caso_3=Reserva::where('fecha_inicio_reserva','!=',$fecha)->get();
+
+        // echo $fecha;
+        // echo $reservas_caso_1;
+        // echo $reservas_caso_2;
+        //echo $reservas_caso_3;
+        //return exit;
+        
+        foreach ($ambientes as $i=> $ambiente) {
+            foreach ($reservas_caso_1 as  $reserva) {
+                if($reserva->ambiente_id==$ambiente->id)  unset($ambientes[$i]);
+                
+            }
+        }
+        foreach ($ambientes as $i => $ambiente) {
+             foreach ($reservas_caso_2 as  $reserva) {
+                if($reserva->ambiente_id==$ambiente->id) unset($ambientes[$i]);
+                
+            }
+        }
+        // foreach ($ambientes as $i => $ambiente) {
+        //      foreach ($reservas_caso_3 as  $reserva) {
+        //         if($reserva->ambiente_id==$ambiente->id) unset($ambientes[$i]);
+                
+        //     }
+        // }
+        return view('admin-general.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes'));
+        
+    }
+
+    public function createBungalow($id)
+    {   
+        $ambiente = Ambiente::findOrFail($id);
+        return view('admin-general.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente'));
+    }
+
+    //Se muestra el Bungalow a reservar y espera su confirmacion para la reserva
+    public function storeBungalow($id, StoreReservaAmbiente $request)
+    {
+        $user_id = Auth::user()->id;
+        $usuario = User::findOrFail($user_id);
+        $persona_id = $usuario->persona->id;        
+        $ambiente_id = $id;
+
+        $input = $request->all();
+        $carbon=new Carbon(); 
+
+        $reserva = new Reserva();
+        $reserva->ambiente_id = $ambiente_id;
+        $reserva->id_persona = $persona_id;
+        if (empty($input['fecha_inicio_reserva'])) {
+            $reserva->fecha_inicio_reserva="";
+        }else{
+            $fecha_inicio = str_replace('/', '-', $input['fecha_inicio_reserva']);      
+            $reserva->fecha_inicio_reserva=$carbon->createFromFormat('d-m-Y', $fecha_inicio)->toDateString();
+        }
+
+        if (empty($input['fecha_fin_reserva'])) {
+            $reserva->fecha_fin_reserva="";
+        }else{
+            $fecha_fin = str_replace('/', '-', $input['fecha_fin_reserva']);      
+            $reserva->fecha_fin_reserva=$carbon->createFromFormat('d-m-Y', $fecha_fin)->toDateString();
+        }
+
+        if (empty($input['hora_fin_reserva'])) {
+            $reserva->hora_inicio_reserva="";
+        }else{
+            $reserva->hora_inicio_reserva=Carbon::createFromTime(0, 0, 0);            
+        }
+
+
+        if (empty($input['hora_fin_reserva'])) {
+            $reserva->hora_fin_reserva="";
+        }else{
+            $reserva->hora_fin_reserva=Carbon::createFromTime(0, 0, 0);
+        }
+
+        $reserva->precio = 0;
+        $reserva->estadoReserva = "En proceso";
+        
+        $reserva->save();
+
+        return redirect('reservar-ambiente/reservar-bungalow')->with('stored', 'Se registró la reserva del bungalow correctamente.');        
     }
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
 
@@ -52,20 +143,54 @@ class ReservarAmbienteController extends Controller
     }
 
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
-    public function storeOtroTipoAmbiente($id)
+    public function storeOtroTipoAmbiente($id, Request $request)
     {
         $user_id = Auth::user()->id;
         $usuario = User::findOrFail($user_id);
-        //echo $usuario->id;
-        //return exit;
         $persona_id = $usuario->persona->id;        
         $ambiente_id = $id;
+
+        $input = $request->all();
+        $carbon = new Carbon(); 
 
         $reserva = new Reserva();
         $reserva->ambiente_id = $ambiente_id;
         $reserva->id_persona = $persona_id;
+        
+
+        if (empty($input['fecha_inicio_reserva'])) {
+            $reserva->fecha_inicio_reserva="";
+        }else{
+            $fecha_inicio = str_replace('/', '-', $input['fecha_inicio_reserva']);      
+            $reserva->fecha_inicio_reserva=$carbon->createFromFormat('d-m-Y', $fecha_inicio)->toDateString();
+            $reserva->fecha_fin_reserva=$carbon->createFromFormat('d-m-Y', $fecha_inicio)->toDateString();
+        }
+        
+        if (empty($input['hora_inicio_reserva'])) {
+            $reserva->hora_inicio_reserva="";
+        }else{
+            $reserva->hora_inicio_reserva=$carbon->createFromFormat('H:i', $input['hora_inicio_reserva'])->toTimeString();
+        }
+
+
+        if (empty($input['hora_fin_reserva'])) {
+            $reserva->hora_fin_reserva="";
+        }else{
+            $reserva->hora_fin_reserva=$carbon->createFromFormat('H:i', $input['hora_fin_reserva'])->toTimeString();
+        }
+
+        $reserva->precio = 0;
+        $reserva->estadoReserva = "En proceso";
+
+
         $reserva->save();
-        return redirect('reservar-ambiente/reservar-otros-ambientes')->with('stored', 'Se registró la reserva correctamente.');
+        return redirect('reservar-ambiente/reservar-otros-ambientes')->with('stored', 'Se registró la reserva del ambiente correctamente.');
+    }
+
+     public function searchSocio() // va  a la lista de los socios
+    {
+        
+        return view('admin-general.persona.socio.buscarSocio');
     }
        
 }

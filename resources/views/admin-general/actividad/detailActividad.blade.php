@@ -74,7 +74,7 @@
 		  	</div>
 		  	<div class="form-group required">
 
-			    	<label for="fechaInicioInput" class="col-sm-4 control-label">FECHA INICIO</label>
+			    	<label for="fechaInicioInput" class="col-sm-4 control-label">Fecha Inicio</label>
 			    	<div class="col-sm-5">
 			      		<input type="date" id="fechaInicioInput" value="{{$actividad->a_realizarse_en}}" readonly>
 			    	</div>
@@ -82,7 +82,7 @@
 			 </div>
 
 			<div class="form-group required">
-			    	<label for="horaInicioInput" class="col-sm-4 control-label">HORA INICIO</label>
+			    	<label for="horaInicioInput" class="col-sm-4 control-label">Hora Inicio</label>
 			    	<div class="col-sm-5">
 			      		<input type="time" id="horaInicioInput" value="{{$actividad->a_realizarse_en}}" readonly>
 			    	</div>
@@ -90,7 +90,7 @@
 			 </div>
 
 		  	<div class="form-group required">
-		    	<label for="tipoActividadInput" class="col-sm-4 control-label">TIPO DE ACTIVIDAD</label>	
+		    	<label for="tipoActividadInput" class="col-sm-4 control-label">Tipo de Actividad</label>	
 		    	<div class="col-sm-5">
 			    	<input type="text" class="form-control" id="tipoActividadInput" name="tipo_actividad" value="{{$actividad->tipo_actividad}}" readonly >
 				</div>
@@ -103,7 +103,32 @@
 		    	</div>
 		  	</div>	  	
 		  	
-		
+				<!-- INICIO  PRECIO POR TIPO DE PERSONA -->
+			<br/>
+			<div class="form-group "> 
+				<label for="precioTipo1" class="col-sm-4 control-label" width: 100px >Precios </label>
+			</div>
+			<div class="form-group required">
+			   	<label for="precioTipo1" class="col-sm-4 control-label">Trabajador</label>
+			   	<div class="col-sm-5">
+			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo1" name="precioTipo1" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" readonly="" >
+			   	</div>
+			</div>	
+			<div class="form-group required">
+			   	<label for="precioTipo2" class="col-sm-4 control-label">Postulante</label>
+			   	<div class="col-sm-5">
+					<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo2" name="precioTipo2" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" readonly="">
+			   	</div>
+			</div>	
+			<div class="form-group required">
+			   	<label for="precioTipo3" class="col-sm-4 control-label">Socio</label>
+			   	<div class="col-sm-5">
+			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo3" name="precioTipo3" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" readonly="">
+			   	</div>
+			</div>	
+			  	
+			  	<!-- FIN     PRECIO POR TIPO DE PERSONA -->
+
 			</br></br>
 			  	<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>

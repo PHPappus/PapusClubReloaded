@@ -48,4 +48,9 @@ class Persona extends Model
         return $this->hasMany('papusclub\Models\Facturacion');
 
     }
+        public function postulante()
+    {
+        return $this->hasOne('papusclub\Models\Postulante');
+
+    }
 }
