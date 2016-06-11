@@ -91,6 +91,10 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('postulante/new','PostulanteController@registrar');
 	//MANTENIMIENTO DE TRABAJADOR
 	Route::get('trabajador/index','TrabajadorController@index');//ya
+<<<<<<< HEAD
+=======
+	//Route::get('trabajador/search','TrabajadorController@buscar');//ya
+>>>>>>> refs/remotes/origin/Sebastian
 	Route::get('trabajador/new','TrabajadorController@registrar');//ya
 	Route::post('trabajador/new/trabajador', 'TrabajadorController@store');//ya
 	Route::get('trabajador/{id}','TrabajadorController@edit');//ya
@@ -185,11 +189,19 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	//MANTENIMIENTO DE SORTEO
 	Route::get('sorteo/index','SorteoController@index');
 	Route::get('sorteo/new','SorteoController@create');	
-	Route::post('sorteo/new/sorteo','SorteoController@store');	
+	Route::post('sorteo/new/sorteo','SorteoController@store');
 	Route::get('sorteo/{id}','SorteoController@edit');
 	Route::post('sorteo/{id}/edit', 'SorteoController@update');
 	Route::get('sorteo/editSorteo/{id}','SorteoController@showEditSorteo');
 	Route::get('sorteo/{id}/delete', 'SorteoController@destroy');
+<<<<<<< HEAD
+=======
+	Route::get('sorteo/{id}/show', 'SorteoController@show');
+
+	//Transaccional
+	Route::get('sorteo/new/sorteo/bungalows/{id}','SorteoController@bungalows');
+	Route::post('sorteo/new/sorteo/bungalows/{id}/store','SorteoController@storeBungalows');
+>>>>>>> refs/remotes/origin/Sebastian
 
 	//MANTENIMIENTO DE AMBIENTES
 	Route::get('ambiente/index', 'AmbienteController@index');
@@ -215,8 +227,12 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('actividad/new/actividad', 'ActividadController@store');
 	Route::get('actividad/{id}', 'ActividadController@edit');
 	Route::post('actividad/{id}/edit', 'ActividadController@update');
+<<<<<<< HEAD
 	Route::get('actividad/{id}/delete', 'ActividadController@destroy');
 
+=======
+	Route::get('actividad/{id}/delete', 'AmbienteController@destroy');
+>>>>>>> refs/remotes/origin/Sebastian
 	Route::get('actividad/{id}/show', 'ActividadController@show');
 
 	//MANTENIMIENTO DE TALLERES

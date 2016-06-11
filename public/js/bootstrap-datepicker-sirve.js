@@ -22,8 +22,14 @@
 	// Picker object
 	
 	var Datepicker = function(element, options){
+<<<<<<< HEAD
 		this.element = $(element);
 		this.format = DPGlobal.parseFormat(options.format||this.element.data('date-format')||'mm/dd/yyyy');
+=======
+		this.language = "es";
+		this.element = $(element);
+		this.format = DPGlobal.parseFormat(options.format||this.element.data('date-format')||'dd/mm/yyyy');
+>>>>>>> refs/remotes/origin/Sebastian
 		this.picker = $(DPGlobal.template)
 							.appendTo('body')
 							.on({

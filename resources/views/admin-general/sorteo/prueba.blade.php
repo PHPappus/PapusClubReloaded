@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<><!DOCTYPE html>
 <html>
 <head>
-	<title>SORTEOS</title>
+	<title>PRUEBA</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,14 +23,13 @@
 		<br/><br/>		
 			<div class="row">
 				<a class="btn btn-link text-left withoutpadding" href="/">INICIO <span class="glyphicon glyphicon-chevron-right"></span></a>
-				<button class="btn btn-link text-left withoutpadding" href="#">MANTENIMIENTO <span class="glyphicon glyphicon-chevron-right"></span></button>				
-				<label class="text-left withoutpadding">SORTEOS</button></label>
+				<label class="text-left withoutpadding">INSCRIPCION SORTEOS</button></label>
 			</div>
 		<br/>
 	</div>
 	<div class="container">
 		<div class="col-sm-12 text-left lead">
-				<strong>SORTEOS</strong>
+				<strong>SORTEOS ABIERTOS</strong>
 		</div>		
 	</div>
 	<!-- Mensaje de éxito luego de registrar -->
@@ -44,63 +43,21 @@
 	@endif
 	<div class="table-responsive">
 		<div class="container">
-			<div class="form-group">
-			  		<div class="text-right">
-			  			<font color="black"> 
-			  				Filtra por todos los campos
-			  			</font>
-			  			
-			  		</div>
-			</div>
 			<table class="table table-bordered table-hover text-center display" id="example">
 				<thead class="active" data-sortable="true">
 					<th><div align=center>NOMBRE SORTEO</div> </th>
-					<th><div align=center>FECHA INICIO DE SORTEO</div></th>
-					<th><div align=center>FECHA FIN DE SORTEO</div></th>
-					<th><div align=center>DESCRIPCION</div></th>
-					<th><div align=center>DETALLE</div></th>
-					<th><div align=center>MODIFICAR</div></th>
-					<th><div align=center>ELIMINAR</div></th>
 				</thead>	
 				<tbody>													
-					@foreach($sorteos as $sorteo)	
-					
+					@foreach($nombres as $nombre)	
 						<tr>									
-							<td>{{$sorteo->nombre_sorteo}}</td>
-							<td>{{$sorteo->fecha_abierto}}</td>
-							<td>{{$sorteo->fecha_cerrado}}</td>	
-							<td>{{$sorteo->descripcion}}</td>
-							<td>
-							        <a class="btn btn-info" href="{{url('/sorteo/'.$sorteo->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-							        </td>
-							<td>
-			              		<a class="btn btn-info" href="{{url('/sorteo/'.$sorteo->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
-			              	</td>
-			              	<td>
-					            <a class="btn btn-info"  title="Eliminar" data-href="{{url('/sorteo/'.$sorteo->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
-					        </td>			            	
+							<td>{{$nombre}}</td>									            	
 						</tr>
 					</form>
 					 @endforeach
 				</tbody>			
-			</table>
-			<br><br>
-			<div class="btn-inline">
-					<!-- <form method="POST" action="/sedes/new/sede" >
-					<input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
-
-					<div class="btn-group col-sm-10"></div>
-					
-					<div class="btn-group ">
-						<a class="btn btn-info" href="{{url('/sorteo/new')}}" >	Registrar Sorteo</a>	
-
-					</div>
-					
-			</div>						
-					
+			</table>						
 		</div>	
-	</div>
-		
+	</div>			
 @stop
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	{!!Html::script('js/bootstrap.js')!!}
@@ -129,7 +86,7 @@
 	        <h4 class="modal-title">Confirmar</h4>
 	      </div>
 	      <div class="modal-body">
-	        <p>¿Está seguro que desea eliminar el sorteo?</p>
+	        <p>¿Está seguro que desea eliminar el producto?</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

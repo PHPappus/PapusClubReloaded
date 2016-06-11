@@ -4,7 +4,7 @@ namespace papusclub\Http\Requests;
 
 use papusclub\Http\Requests\Request;
 
-class StoreSorteoRequest extends Request
+class StoreAmbientexSorteoRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,9 @@ class StoreSorteoRequest extends Request
     public function rules()
     {
         return [
-            'nombre_sorteo'          =>  array('required','Regex:/[A-Za-z .-]/'),
-            'descripcion'       =>  array('required','Regex:/[A-Za-z .-]/'),            
-            'fecha_abierto'      =>  'required|date_format:d/m/Y|after:today',            
-            'fecha_cerrado'      =>  'required|date_format:d/m/Y|after:fecha_abierto',                        
+            'id_sorteo'          =>  'numeric',
+            'id_ambiente'       =>  'numeric',
+            'ch'=>'required'                     
         ];
     }
 }

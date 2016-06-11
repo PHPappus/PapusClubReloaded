@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>AGREGAR SORTEO</title>
+	<title>REGISTRAR SORTEO</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,7 @@
 		
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>AGREGAR SORTEO</strong>
+					<strong>REGISTRAR SORTEO</strong>
 			</div>		
 		</div>
 		<div class="container">
@@ -79,12 +79,16 @@
 						<input class="datepicker" type="text" id="fecha_cerrado" readonly="true" name="fecha_cerrado"  value="{{ old('fecha_cerrado') }}" >						
 					</div>
 				</div>
+<<<<<<< HEAD
 				
+=======
+				<br><br>
+>>>>>>> refs/remotes/origin/Sebastian
 				<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-primary" type="submit" value="Confirmar">
+						<input class="btn btn-primary" type="submit" value="Continuar">
 					</div>
 					<div class="btn-group">
 						<a href="/sorteo/index" class="btn btn-info">Cancelar</a>
@@ -105,6 +109,7 @@
 	<!-- Mis Scripts -->
 
 	<script type="text/javascript" src="../js/bootstrap-datepicker-sirve.js"></script>
+<<<<<<< HEAD
 
 
 	
@@ -146,7 +151,49 @@
 		        autoclose: true,
 		        //beforeShowDay:function (date){return false}
 			});
+=======
+
+
+	
+	
+	<script>
+		$(document).ready(function(){
+				var nowTemp = new Date();		
+				var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+		 
+				var checkin = $('#fecha_abierto').datepicker({
+		  			onRender: function(date) {
+		    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
+		  			}
+				}).on('changeDate', function(ev) {
+		  			if (ev.date.valueOf() > checkout.date.valueOf()) {
+		    			var newDate = new Date(ev.date)
+		    			newDate.setDate(newDate.getDate() + 1);
+		    			checkout.setValue(newDate);
+		  			}
+		 			checkin.hide();
+		  			$('#fecha_cerrado')[0].focus();
+				}).data('datepicker');
+
+				var checkout = $('#fecha_cerrado').datepicker({
+		  			onRender: function(date) {
+		    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+		  			}
+				}).on('changeDate', function(ev) {
+		  			checkout.hide();
+				}).data('datepicker');	
+
+
+>>>>>>> refs/remotes/origin/Sebastian
 		});
-	</script>
+		$(function(){
+					$('.datepicker').datepicker({
+						format: 'dd/mm/yyyy',
+				        language: "es",
+				        autoclose: true,
+				        //beforeShowDay:function (date){return false}
+					});
+				});
+	</script>	
 </body>
 </html>
