@@ -57,36 +57,14 @@
 			      		<input type="text" class="form-control" id="capacidadInput" name="capacidad_maxima" value="{{$sorteo->fecha_cerrado}}" readonly>
 			    	</div>
 			  	</div>
-			  	<div class="table-responsive">
-					<div class="container">
-						<table class="table table-bordered table-hover text-center display" id="example">
-							<thead class="active" data-sortable="true">
-								<th><div align=center>ID</div> </th>
-								<th><div align=center>NOMBRE</div></th>																
-							</thead>	
-							<tbody>													
-								@foreach($ambientes as $ambientess)
-									@foreach($ambientess as $ambiente)
-										@if($ambiente)
-										<tr>									
-											<td>{{$ambiente->id}}</td>
-											<td>{{$ambiente->nombre}}</td>
-										</tr>
-										@endif
-									@endforeach
-								@endforeach
-								<!--@foreach($ambientes as $ambiente)
-									<tr>
-										<td>{{$ambiente[0]->id}}</td>
-										<td>{{var_dump($ambiente)}}</td>
-										<td>{{var_dump($ambientes)}}</td>
-										<td>{{$ambiente[0]->nombre}}</td>
-									</tr>
-								@endforeach-->
-							</tbody>			
-						</table>						
-					</div>	
-				</div>
+			  	<div class="form-group">
+			    	<label for="capacidadInput" class="col-sm-4 control-label">Sede</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" class="form-control" id="capacidadInput" name="capacidad_maxima" value="{{$sede->nombre}}" readonly>
+			    	</div>
+			  	</div>
+			  	
+
 
 				<br/><br/>
 				
@@ -97,6 +75,32 @@
 
 			</form>
 		</div>
+		<div class="table-responsive">
+					<div class="container">
+						<table class="table table-bordered table-hover text-center display" id="example">
+							<thead class="active" data-sortable="true">								
+								<th><div align=center>NOMBRE</div></th>	
+								<th><div align=center>CAPACIDAD</div></th>	
+								<th><div align=center>UBICACION</div></th>	
+
+							</thead>	
+							<tbody>													
+								@foreach($ambientes as $ambientess)
+									@foreach($ambientess as $ambiente)
+										@if($ambiente)
+										<tr>																			
+											<td>{{$ambiente->nombre}}</td>
+											<td>{{$ambiente->capacidad_actual}}</td>
+											<td>{{$ambiente->ubicacion}}</td>
+										</tr>
+										@endif
+									@endforeach
+								@endforeach
+								
+							</tbody>			
+						</table>						
+					</div>	
+				</div>
 	</div>		
 @stop
 <!-- JQuery -->

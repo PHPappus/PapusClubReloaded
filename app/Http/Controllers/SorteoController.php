@@ -9,6 +9,7 @@ use papusclub\Http\Requests;
 use papusclub\Models\Sorteo;
 use papusclub\Models\Ambiente;
 use papusclub\Models\Reserva;
+use papusclub\Models\Sede;
 use papusclub\Models\AmbientexSorteo;
 use papusclub\Http\Requests\EditSorteoRequest;
 use papusclub\Http\Requests\StoreSorteoRequest;
@@ -32,7 +33,8 @@ class SorteoController extends Controller
 
     public function create()
     {
-        return view('admin-general.sorteo.newSorteo');
+        $sedes = Sede::all();
+        return view('admin-general.sorteo.newSorteo',['sedes'=>$sedes]);
     }
 
 
@@ -81,18 +83,22 @@ class SorteoController extends Controller
             }
             
         }
+
+        $sede=Sede::find($sorteo->id_sede)->first();
+
         $ambientes=$collection->all();
-        return view('admin-general.sorteo.detailSorteo',['sorteo'=>$sorteo],['ambientes'=>$ambientes]);
+        return view('admin-general.sorteo.detailSorteo',['sorteo'=>$sorteo,'ambientes'=>$ambientes,'sede'=>$sede]);
     }
 
     public function store(StoreSorteoRequest $request)
     {
         $input = $request->all();
         $sorteo= new Sorteo();
-        $carbon=new Carbon(); 
+        $carbon=new Carbon();         
 
         $sorteo->nombre_sorteo=$input['nombre_sorteo'];
         $sorteo->descripcion=$input['descripcion'];
+        $sorteo->id_sede=$input['sedeSelec'];
 
         $date = str_replace('/', '-', $input['fecha_abierto']);      
         $sorteo->fecha_abierto=$carbon->createFromFormat('d-m-Y', $date)->toDateString();

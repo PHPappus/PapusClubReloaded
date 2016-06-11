@@ -79,6 +79,16 @@
 						<input class="datepicker" type="text" id="fecha_cerrado" readonly="true" name="fecha_cerrado"  value="{{ old('fecha_cerrado') }}" >						
 					</div>
 				</div>
+				<div class="form-group required">
+			    	<label for="" class="control-label col-sm-5">SEDE</label>	
+			    	<div class="col-sm-7">
+				    	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >					         
+							                 @foreach ($sedes as $sede)      
+							                	<option value="{{$sede->id}}">{{$sede->nombre}}</option>
+							                @endforeach
+						</select>
+					</div>
+			  	</div>
 				<br><br>
 				<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>

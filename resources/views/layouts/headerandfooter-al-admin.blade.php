@@ -77,7 +77,7 @@
 
 						<li><a href="{!!URL::to('/sedes/index')!!}">SEDE<span class="despliegue">▼</span></a>
 							<ul>
-								<li><a href="{!!URL::to('/sorteo/new')!!}" title="Mantenimiento Sorteo" target="_self">SORTEO</a></li>
+								<li><a href="{!!URL::to('/sorteo/index')!!}" title="Mantenimiento Sorteo" target="_self">SORTEO</a></li>
 							</ul>
 						</li>
 						<li><a href="{!!URL::to('/ambiente/index')!!}">AMBIENTE<span class="despliegue">▼</span></a>
