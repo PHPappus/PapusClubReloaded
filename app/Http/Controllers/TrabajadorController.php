@@ -52,7 +52,7 @@ class TrabajadorController extends Controller
 
     public function registrar()
     {
-        $puestos = Configuracion::where('grupo',1)->get();
+        $puestos = Configuracion::where('grupo','=','1')->get();
         return view('admin-general.persona.trabajador.newTrabajador',compact('puestos'));
     }
 
@@ -127,7 +127,7 @@ class TrabajadorController extends Controller
     }
 
     public function edit($id){
-        $puestoslaborales = Configuracion::all()->where('grupo', 1);
+        $puestoslaborales = Configuracion::where('grupo','=','1')->get();
         $persona = Persona::find($id);
         $carbon=new Carbon();
         if((strtotime($persona['fecha_nacimiento']) < 0))
