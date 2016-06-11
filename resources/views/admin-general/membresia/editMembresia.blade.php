@@ -74,7 +74,7 @@
 			  	<div class="form-group required">
 			    	<label for="capacidadSocioInput" class="col-sm-4 control-label">Tarifa (S/.)</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="tarifaInput" name="tarifa" value="{{$membresia->tarifa->monto}}" placeholder="Tarifa" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'DoubleFormat')" class="form-control" id="tarifaInput" name="tarifa" value="{{$membresia->tarifa->monto}}" placeholder="Tarifa" >
 			    	</div>
 			  	</div>
 
@@ -103,7 +103,7 @@
 				         
 				         <div class = "modal-header">
 				            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
-				                  &times;
+							<span aria-hidden="true" onclick="cerrarventana()">&times;</span>
 				            </button>
 				            
 				            <h4 class = "modal-title" id = "myModalLabel">
@@ -116,9 +116,7 @@
 				         </div>
 				         
 				         <div class = "modal-footer">
-				            <button type = "button" class = "btn btn-default" data-dismiss = "modal" >
-				               Cerrar
-				            </button>
+							<button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cerrar</button>
 				            
 				            <button type = "submit" class = "btn btn-primary">
 				               Confirmar

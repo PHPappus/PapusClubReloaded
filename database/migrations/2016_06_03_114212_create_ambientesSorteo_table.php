@@ -18,6 +18,7 @@ class CreateAmbientesSorteoTable extends Migration
             $table->integer('id_ambiente');            
             $table->softDeletes();
             $table->timestamps();
+            $table->primary(['id_sorteo', 'id_ambiente']);
         });
     }
 

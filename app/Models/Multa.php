@@ -10,7 +10,6 @@ class Multa extends Model
 	use SoftDeletes;
     protected $table = 'multa';
 
-    //use SoftDeletes;
 
     protected $fillable=
     ['descripcion',

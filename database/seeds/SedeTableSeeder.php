@@ -23,5 +23,28 @@ class SedeTableSeeder extends Seeder
         	'capacidad_maxima' => 10000, 
         	'capacidad_socio' => 50 
         	]);
+        Sede::create(['nombre' => 'Chosica', 
+            'telefono' => '964247239', 
+            'departamento' => 'Lima', 
+            'provincia' => 'Callao', 
+            'distrito' => 'La Punta', 
+            'direccion' => 'Av. Grau 457', 
+            'referencia' => 'Alt. Comisaria La Punta', 
+            'nombre_contacto' => 'Francisco Beingolea', 
+            'capacidad_maxima' => 10000, 
+            'capacidad_socio' => 50 
+            ]);
+
+        Sede::create(['nombre' => 'Piura', 
+            'telefono' => '964247239', 
+            'departamento' => 'Lima', 
+            'provincia' => 'Callao', 
+            'distrito' => 'La Punta', 
+            'direccion' => 'Av. Grau 457', 
+            'referencia' => 'Alt. Comisaria La Punta', 
+            'nombre_contacto' => 'Francisco Beingolea', 
+            'capacidad_maxima' => 10000, 
+            'capacidad_socio' => 50 
+            ]);
     }
 }
