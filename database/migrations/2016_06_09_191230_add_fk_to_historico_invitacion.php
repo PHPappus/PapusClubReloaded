@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFkToHistoricoInvitacionTable extends Migration
+class AddFkToHistoricoInvitacion extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class AddFkToHistoricoInvitacionTable extends Migration
     public function up()
     {
         Schema::table('historicoinvitacion', function (Blueprint $table) {
-
-            $table->foreign('invitado_id')->references('id')->on('persona')->onDelete('cascade');
-            $table->foreign('socio_id')->references('id')->on('socio')->onDelete('cascade');
-            $table->foreign('sede_id')->references('id')->on('sede')->onDelete('cascade');
+            $table->foreign('invitado_id')->references('id')->on('invitados')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('sede_id')->references('id')->on('sede')->onUpdate('cascade')->onDelete('cascade');            //
         });
     }
 
@@ -29,8 +27,8 @@ class AddFkToHistoricoInvitacionTable extends Migration
     {
         Schema::table('historicoinvitacion', function (Blueprint $table) {
             $table->dropForeign('historicoinvitacion_invitado_id_foreign');
-            $table->dropForeign('historicoinvitacion_socio_id_foreign');
-            $table->dropForeign('historicoinvitacion_sede_id_foreign');
+            $table->dropForeign('historicoinvitacion_sede_id_foreign');     
+                  //
         });
     }
 }
