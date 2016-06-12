@@ -11,6 +11,7 @@ use papusclub\Models\Configuracion;
 use papusclub\Models\TipoPersona;
 use papusclub\Models\TarifaAmbientexTipoPersona;
 use papusclub\Http\Requests\StoreAmbienteRequest;
+use papusclub\Http\Requests\StoreConfiguracionRequest;
 use papusclub\Http\Requests\EditAmbienteRequest;
 
 class AmbienteController extends Controller
@@ -45,6 +46,7 @@ class AmbienteController extends Controller
         }
         
         $ambiente->capacidad_actual= $input['capacidad_actual'];
+        $ambiente->num_habitaciones= $input['num_habitaciones'];
         $tipoAmbiente = Configuracion::find($input['tipo_ambiente']);
         $ambiente->tipo_ambiente= $tipoAmbiente->valor;
         $ambiente->ubicacion= $input['ubicacion'];
@@ -65,6 +67,20 @@ class AmbienteController extends Controller
         
         return redirect('ambiente/index')->with('stored', 'Se registró el ambiente correctamente.');
     }
+
+    public function storeTipoAmbiente(StoreConfiguracionRequest $request)
+    {       
+        $input = $request->all();
+        $configuracion = new Configuracion();
+        $configuracion->valor = $input['valor'];
+        $configuracion->grupo = 2;
+        $configuracion->descripcion = 'Tipos de Ambientes';
+               
+        $configuracion->save();      
+        
+        return redirect('ambiente/new');
+    }
+
     //Muestra el formulario para poder modificar un ambiente
     public function edit($id)
     {
@@ -81,6 +97,7 @@ class AmbienteController extends Controller
 
         $ambiente->nombre= $input['nombre'];
         $ambiente->capacidad_actual= $input['capacidad_actual'];
+        $ambiente->num_habitaciones= $input['num_habitaciones'];
         $ambiente->tipo_ambiente= $input['tipo_ambiente'];
         $ambiente->ubicacion= $input['ubicacion'];
         $ambiente->save();
@@ -92,10 +109,8 @@ class AmbienteController extends Controller
             $tarifa_up = TarifaAmbientexTipoPersona::where('ambiente_id', '=', $tarifa->ambiente_id)->where('tipo_persona_id', '=', $tarifa->tipo_persona_id)->first();
             
             $tarifa_up->precio = $input[$tarifa->tipo_persona->descripcion];
-            echo $tarifa_up;
-            return exit;
-            
-            $tarifa_up->sync();
+                        
+            $tarifa_up->save();
             // $taller->tarifaTaller()->save($persona,['fecha_registro'=>$fecha,'precio'=>$input[$persona->descripcion],'estado'=>TRUE]);
         }
 

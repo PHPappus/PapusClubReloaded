@@ -118,6 +118,7 @@
 							               	@endforeach
 						</select>
 					</div>
+					<a class="btn btn-info" name="agregarTipoActividad" href="#"  title="Agregar Tipo de Actividad" data-toggle="modal" data-target="#modalAgregar"><i name="agregarTipoActividad" class="glyphicon glyphicon-plus"></i></a>
 			  	</div>
 			  	<div class="form-group required">
 			    	<label for="cant_ambientesInput" class="col-sm-4 control-label">Cantidad de ambientes a usar</label>
@@ -196,6 +197,49 @@
 	{!!Html::script('js/bootstrap.js')!!}
 	{!!Html::script('js/bootstrap-datepicker-sirve.js')!!}
 	{!!Html::script('locales/bootstrap-datepicker.es.min.js')!!}
+
+	<!-- Modal -->
+	<div id="modalAgregar" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->	    
+	    <div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Confirmar</h4>
+		</div>
+		<div class="container">
+			<form method="POST" action="/actividad/new/{{ $ambiente->id }}/tipoactividad" class="form-horizontal form-border">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+			<br>
+				<div class="form-group required">
+			    	<label for="valorInput" class="col-sm-1 control-label">Nombre</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="valor" name="valor" placeholder="Nombre del Tipo de Actividad" value="{{old('valor')}}">
+			    	</div>					    	
+				</div>									 
+
+				<div class="btn-inline">
+					<div class="btn-group col-sm-4"></div>
+					
+					<div class="btn-group ">
+						<input class="btn btn-primary" type="submit" value="Confirmar">
+					</div>
+					<div class="btn-group">
+						<a  data-dismiss="modal" class="btn btn-info">Cancelar</a>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	    <div class="modal-body">	      
+	    </div>
+		<div class="modal-footer">	                    
+		</div>
+	    </div>
+
+	  </div>
+	</div>
 	
 	<script>
 		var nowTemp = new Date();

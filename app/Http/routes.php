@@ -239,6 +239,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('ambiente/{id}/delete', 'AmbienteController@destroy');
 	Route::get('ambiente/{id}/show', 'AmbienteController@show');
 	Route::get('ambiente/{id}/select', 'AmbienteController@select');/*Para el seleccionar ambiente desde  Actividad*/
+	Route::post('ambiente/new/tipoambiente', 'AmbienteController@storeTipoAmbiente');
 
 	//RESERVA DE AMBIENTES
 	Route::get('reservar-ambiente/reservar-bungalow', 'ReservarAmbienteController@reservarBungalow'); // REservar Bungalows
@@ -260,6 +261,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('actividad/{id}/edit', 'ActividadController@update');
 	Route::get('actividad/{id}/delete', 'ActividadController@destroy');
 	Route::get('actividad/{id}/show', 'ActividadController@show');
+	Route::post('actividad/new/{id}/tipoactividad', 'ActividadController@storeTipoActividad');
 	
 	
 	//MANTENIMIENTO DE TALLERES

@@ -13,6 +13,7 @@ class Ambiente extends Model
     ['nombre', 
     'tipo_ambiente', 
     'capacidad_actual', 
+    'num_habitaciones',
     'ubicacion'
     ];
     protected $dates = ['deleted_at'];

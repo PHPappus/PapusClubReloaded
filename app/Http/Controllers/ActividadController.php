@@ -10,6 +10,7 @@ use papusclub\Models\Actividad;
 use papusclub\Models\Configuracion;
 use papusclub\Models\TipoPersona;
 use papusclub\Http\Requests\StoreActividadRequest;
+use papusclub\Http\Requests\StoreConfiguracionRequest;
 use papusclub\Http\Requests\EditActividadRequest;
 use Carbon\Carbon;
 class ActividadController extends Controller
@@ -60,6 +61,20 @@ class ActividadController extends Controller
         $actividad->save();
         return redirect('actividad/index')->with('stored', 'Se registró la actividad correctamente.');
     }
+
+    public function storeTipoActividad(StoreConfiguracionRequest $request, $id)
+    {       
+        $input = $request->all();
+        $configuracion = new Configuracion();
+        $configuracion->valor = $input['valor'];
+        $configuracion->grupo = 3;
+        $configuracion->descripcion = 'Tipos de Actividades';
+               
+        $configuracion->save();      
+        
+        return redirect('ambiente/'.$id.'/select');
+    }
+
     //Muestra el formulario para poder modificar una actividad
     public function edit($id)
     {

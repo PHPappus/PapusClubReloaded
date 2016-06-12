@@ -87,6 +87,7 @@
 							                
 						</select>
 					</div>
+					<a class="btn btn-info" name="agregarTipoAmbiente" href="#"  title="Agregar Tipo de Ambiente" data-toggle="modal" data-target="#modalAgregar"><i name="agregarTipoAmbiente" class="glyphicon glyphicon-plus"></i></a>
 			  	</div>
 
 			  	<div class="form-group required">
@@ -98,7 +99,7 @@
 			  	<div class="form-group required">
 			    	<label for="numHabitacionInput" class="col-sm-4 control-label">Número de habitaciones</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="numHabitacionInput" name="capacidad_actual" placeholder="Número de habitaciones" value="{{old('capacidad_actual')}}" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="numHabitacionInput" name="num_habitaciones" placeholder="Número de habitaciones" value="{{old('capacidad_actual')}}" >
 			    	</div>
 			  	</div>	
 			  	<div class="form-group required">
@@ -172,6 +173,49 @@
 	<script src="../js/jquery.bxslider.min.js"></script>
 	<!-- Mis Scripts -->
 	<script src="../js/MisScripts.js"></script>
+
+	<!-- Modal -->
+	<div id="modalAgregar" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->	    
+	    <div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Confirmar</h4>
+		</div>
+		<div class="container">
+			<form method="POST" action="/ambiente/new/tipoambiente" class="form-horizontal form-border">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+			<br>
+				<div class="form-group required">
+			    	<label for="valorInput" class="col-sm-1 control-label">Nombre</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="valor" name="valor" placeholder="Nombre del Tipo de Ambiente" value="{{old('valor')}}">
+			    	</div>					    	
+				</div>									 
+
+				<div class="btn-inline">
+					<div class="btn-group col-sm-4"></div>
+					
+					<div class="btn-group ">
+						<input class="btn btn-primary" type="submit" value="Confirmar">
+					</div>
+					<div class="btn-group">
+						<a  data-dismiss="modal" class="btn btn-info">Cancelar</a>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	    <div class="modal-body">	      
+	    </div>
+		<div class="modal-footer">	                    
+		</div>
+	    </div>
+
+	  </div>
+	</div>
 
 
   	
