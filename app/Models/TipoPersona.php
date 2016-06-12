@@ -23,4 +23,9 @@ class TipoPersona extends Model
     {
         return $this->belongsToMany(Taller::class,'tarifataller','tipopersona_id','taller_id')->withPivot('fecha_registro','precio','estado');
     }
+
+    public function tarifas()
+    {
+        return $this->hasMany('papusclub\Models\TarifaAmbientexTipoPersona');
+    }
 }

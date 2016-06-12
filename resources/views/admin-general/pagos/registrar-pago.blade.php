@@ -28,7 +28,7 @@
 		</div>
 		<div class="container">
 			<!--@include('errors.503')-->		
-			<form method="POST" action="#" class="form-horizontal form-border">
+			<form method="POST" action="pagos/registrar-pago/edit" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<!-- VALIDACION CON FE INICIO -->

@@ -13,10 +13,10 @@ class CreateTarifaAmbientextipoPersonaTable extends Migration
     public function up()
     {
         Schema::create('tarifaambientextipopersona', function (Blueprint $table) {
-            $table->integer('ambiente_id')->unsigned()->nullable();
-            $table->integer('tipo_persona_id')->unsigned()->nullable();
+            $table->integer('ambiente_id')->unsigned();
+            $table->integer('tipo_persona_id')->unsigned();
             $table->float('precio');
-            
+            $table->softDeletes();
             $table->timestamps();
         });
     }

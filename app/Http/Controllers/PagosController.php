@@ -29,6 +29,10 @@ class PagosController extends Controller
         return view('admin-general.pagos.registrar-pago');
     }
 
+    public function update()
+    {
+        return redirect('ambiente/index')->with('stored', 'Se registró el ambiente correctamente.');
+    }
     //Se guarda la informacion del pago  del ambiente en la BD
     /*public function createPago(EditAmbienteRequest $request, $id)
     {

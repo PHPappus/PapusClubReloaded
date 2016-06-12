@@ -13,6 +13,7 @@ class Ambiente extends Model
     ['nombre', 
     'tipo_ambiente', 
     'capacidad_actual', 
+    'num_habitaciones',
     'ubicacion'
     ];
     protected $dates = ['deleted_at'];
@@ -29,5 +30,10 @@ class Ambiente extends Model
     public function reservas()
     {
         return $this->hasMany('papusclub\Models\Reserva', 'id');
+    }
+
+    public function tarifas()
+    {
+        return $this->hasMany('papusclub\Models\TarifaAmbientexTipoPersona');
     }
 }
