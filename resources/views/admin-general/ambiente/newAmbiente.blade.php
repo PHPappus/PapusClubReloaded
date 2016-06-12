@@ -96,12 +96,7 @@
 			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="capacidadInput" name="capacidad_actual" placeholder="Capacidad Maxima" value="{{old('capacidad_actual')}}" >
 			    	</div>
 			  	</div>	  	
-			  	<div class="form-group required">
-			    	<label for="numHabitacionInput" class="col-sm-4 control-label">Número de habitaciones</label>
-			    	<div class="col-sm-5">
-			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="numHabitacionInput" name="num_habitaciones" placeholder="Número de habitaciones" value="{{old('capacidad_actual')}}" >
-			    	</div>
-			  	</div>	
+			  	
 			  	<div class="form-group required">
 			    	<label for="ubicacionInput" class="col-sm-4 control-label">Ubicación</label>
 			    	<div class="col-sm-5">

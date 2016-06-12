@@ -83,12 +83,7 @@
 		      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="capacidadInput" name="capacidad_actual" value="{{$ambiente->capacidad_actual}}" >
 		    	</div>
 		  	</div>	  	
-		  	<!-- <div class="form-group ">
-		    	<label for="capacidadDisponibleInput" class="col-sm-4 control-label">CAPACIDAD DISPONIBLE</label>
-		    	<div class="col-sm-5">
-		      		<input type="number" class="form-control" id="capacidadDisponibleInput" name="capacidad_disponible" placeholder="Capacidad Disponible" readonly>
-		    	</div>
-		  	</div> -->
+		  	
 		  	<div class="form-group required ">
 		    	<label for="ubicacionInput" class="col-sm-4 control-label">Ubicación</label>
 		    	<div class="col-sm-5">

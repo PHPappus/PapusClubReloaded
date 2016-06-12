@@ -46,7 +46,6 @@ class AmbienteController extends Controller
         }
         
         $ambiente->capacidad_actual= $input['capacidad_actual'];
-        $ambiente->num_habitaciones= $input['num_habitaciones'];
         $tipoAmbiente = Configuracion::find($input['tipo_ambiente']);
         $ambiente->tipo_ambiente= $tipoAmbiente->valor;
         $ambiente->ubicacion= $input['ubicacion'];
@@ -97,20 +96,19 @@ class AmbienteController extends Controller
 
         $ambiente->nombre= $input['nombre'];
         $ambiente->capacidad_actual= $input['capacidad_actual'];
-        $ambiente->num_habitaciones= $input['num_habitaciones'];
         $ambiente->tipo_ambiente= $input['tipo_ambiente'];
         $ambiente->ubicacion= $input['ubicacion'];
-        $ambiente->save();
+        $ambiente->update();
 
         $tipoPersonas = TipoPersona::all();
         $tarifas = $ambiente->tarifas;
         foreach ($tarifas as $tarifa) {
 
-            $tarifa_up = TarifaAmbientexTipoPersona::where('ambiente_id', '=', $tarifa->ambiente_id)->where('tipo_persona_id', '=', $tarifa->tipo_persona_id)->first();
+        //$tarifa_up = TarifaAmbientexTipoPersona::where('ambiente_id', '=', $tarifa->ambiente_id)->where('tipo_persona_id', '=', $tarifa->tipo_persona_id)->first();
             
-            $tarifa_up->precio = $input[$tarifa->tipo_persona->descripcion];
+            //$tarifa_up->precio = $input[$tarifa->tipo_persona->descripcion];
                         
-            $tarifa_up->save();
+            $tarifa->update(['precio'=>$input[$tarifa->tipo_persona->descripcion]]);
             // $taller->tarifaTaller()->save($persona,['fecha_registro'=>$fecha,'precio'=>$input[$persona->descripcion],'estado'=>TRUE]);
         }
 
