@@ -129,7 +129,7 @@
 											</div>
 											<div class="col-sm-6 text-left" style="float: right">											
 													<div>
-														{{ Form::radio('sexo', 'masculino') }}Masculino
+														{{ Form::radio('sexo', 'masculino','selected') }}Masculino
 													</div>
 													<div>
 														{{ Form::radio('sexo', 'femenino'   ) }}Femenino
@@ -204,7 +204,7 @@
 													<label for="" class="control-label">Lugar de Nacimiento:</label>
 												</div>
 													<div class="col-sm-6">
-														<select form="form_id" class="form-control" id="departamento" name="departamento" style="max-width: 250px " data-link="{{ url('/provincias') }}">
+														<select class="form-control" id="departamento" name="departamento" style="max-width: 250px " data-link="{{ url('/provincias') }}">
 															<option value="-1" default>--Departamento--</option>
 																@foreach ($departamentos as $depa)      
 												                	<option value="{{$depa->id}}"  @if (old('departamento') == $depa->id) selected="selected" @endif  >{{$depa->nombre}}</option>
@@ -212,11 +212,11 @@
 														</select>
 														
 														<br>
-														<select form="form_id" class="form-control" id="provincia" name="provincia" style="max-width: 250px " data-link="{{ url('/distritos') }}" disabled="true">
+														<select class="form-control" id="provincia" name="provincia" style="max-width: 250px " data-link="{{ url('/distritos') }}" disabled="true">
 															<option  value="-1" default disab>--Provincia--</option>
 														</select>
 														<br>
-														<select form="form_id" class="form-control" id="distrito" name="distrito" style="max-width: 250px " disabled="true">
+														<select class="form-control" id="distrito" name="distrito" style="max-width: 250px " disabled="true">
 															<option  value="-1" default>--Distrito--</option>
 														</select>
 
@@ -245,7 +245,7 @@
 								
 										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 							<br>
-								<div class="form-group">
+								<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Educacion Primaria:</label>
@@ -255,7 +255,7 @@
 											</div>		
 										</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Educacion secundaria:</label>
@@ -276,7 +276,7 @@
 										</div>
 								</div>
 
-								<div class="form-group required">
+								<div class="form-group">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Profesion:</label>
@@ -384,7 +384,8 @@
 
 @stop
 <!-- JQuery -->
- 	 <script src="../js/jquery-3.0.0.js"></script> 
+	{!!Html::script('js/jquery-1.11.3.min.js')!!}
+<!--  	 <script src="../js/jquery-3.0.0.js"></script>  -->
 	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 	<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 
@@ -392,8 +393,8 @@
 	{!!Html::script('js/jquery.bxslider.min.js')!!}
 	{!!Html::script('js/MisScripts.js')!!}
 	<script>$.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')} })</script>
-
-	<script type="text/javascript" src="../js/bootstrap-datepicker-sirve.js"></script>
+	{!!Html::script('js/bootstrap-datepicker.js')!!}
+<!-- 	<script type="text/javascript" src="../js/bootstrap-datepicker-sirve.js"></script> -->
 
 
 
@@ -505,7 +506,9 @@
 			});
 
 		});
-
+		$('.datepicker').on('changeDate', function(ev){
+			    $(this).datepicker('hide');
+		});
 			
 	</script>	
 
