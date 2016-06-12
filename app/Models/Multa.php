@@ -17,4 +17,9 @@ class Multa extends Model
      'montoPenalidad',
      'estado'
     ];
+
+    public function multaxpersona()
+    {
+    	return $this->belongsToMany(Persona::class,'multaxpersona','multa_id','socio_id')->withPivot('multa_modificada','descripcion_detallada','fecha_registro')->withTimestamps();
+    }
 }

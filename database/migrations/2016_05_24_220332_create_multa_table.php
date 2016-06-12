@@ -18,7 +18,7 @@ class CreateMultaTable extends Migration
             $table->string('descripcion');
             $table->double('montoPenalidad');
             $table->boolean('estado')->default(TRUE);
-            $table->dateTime('fecha_registro');
+            $table->date('fecha_registro');
             $table->softDeletes();
             $table->timestamps();
         });

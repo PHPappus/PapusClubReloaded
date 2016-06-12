@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use papusclub\Http\Requests;
 use papusclub\Models\Socio;
 use papusclub\Models\Carnet;
+use papusclub\Models\Multa;
 use papusclub\Models\Configuracion;
 use papusclub\Http\Requests\EditSocioBasicoRequest;
 use papusclub\Http\Requests\EditSocioEstudioRequest;
@@ -282,5 +283,13 @@ class SocioAdminController extends Controller
         }
         Session::flash('update','membresia');
         return Redirect::action('SocioAdminController@edit',$socio->id);        
+    }
+
+    public function indexRegMulta()
+    {
+        $socios = Socio::all();
+        $multas = Multa::all();
+
+        return view('admin-persona.multa.registrarMulta',compact('socios','multas'));
     }
 }

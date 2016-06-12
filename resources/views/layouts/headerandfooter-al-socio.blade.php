@@ -86,6 +86,11 @@
         </ul>
         <ul class="nav navbar-nav">
           <li class="dropdown">
+            <li><a href="{!!URL::to('/multas-s')!!}" class="dropdown-toggle btn-lg" title="registrar multas" target="_self">Multas</a></li>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
               Trámites</span>
             </a>

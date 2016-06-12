@@ -322,6 +322,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'CreateMaestroProductoTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_21_152952_create_maestro_producto_table.php',
         'CreateMaestroProveedorTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_06_042135_create_maestro_proveedor_table.php',
         'CreateMultaTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_24_220332_create_multa_table.php',
+        'CreateMultaxpersonaTabke' => __DIR__ . '/../..' . '/database/migrations/2016_06_12_061747_create_multaxpersona_tabke.php',
         'CreateMultaxpersonaTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_194018_create_multaxpersona_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreatePerfilsTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_17_022327_create_perfils_table.php',

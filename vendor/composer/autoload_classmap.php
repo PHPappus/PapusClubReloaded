@@ -60,6 +60,7 @@ return array(
     'CreateMaestroProductoTable' => $baseDir . '/database/migrations/2016_05_21_152952_create_maestro_producto_table.php',
     'CreateMaestroProveedorTable' => $baseDir . '/database/migrations/2016_05_06_042135_create_maestro_proveedor_table.php',
     'CreateMultaTable' => $baseDir . '/database/migrations/2016_05_24_220332_create_multa_table.php',
+    'CreateMultaxpersonaTabke' => $baseDir . '/database/migrations/2016_06_12_061747_create_multaxpersona_tabke.php',
     'CreateMultaxpersonaTable' => $baseDir . '/database/migrations/2016_06_04_194018_create_multaxpersona_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePerfilsTable' => $baseDir . '/database/migrations/2016_05_17_022327_create_perfils_table.php',

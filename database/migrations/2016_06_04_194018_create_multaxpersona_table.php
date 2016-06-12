@@ -14,9 +14,10 @@ class CreateMultaxpersonaTable extends Migration
     {
         Schema::create('multaxpersona', function (Blueprint $table) {
             $table->integer('multa_id')->unsigned()->nullable();
-            $table->integer('persona_id')->unsigned()->nullable();
-            $table->string('multaModificada');
-            $table->dateTime('fecha_registro');
+            $table->integer('socio_id')->unsigned()->nullable();
+            $table->double('multa_modificada');
+            $table->string('descripcion_detallada');
+            $table->date('fecha_registro');
             $table->softDeletes();
             $table->timestamps();
         });

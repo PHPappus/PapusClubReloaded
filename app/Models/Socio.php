@@ -102,4 +102,9 @@ class Socio extends Model
     {
         return $this->carnets()->save($carnet);
     }
+
+    public function multaxpersona()
+    {
+        return $this->belongsToMany(Persona::class,'multaxpersona','socio_id','multa_id')->withPivot('multa_modificada','descripcion_detallada','fecha_registro')->withTimestamps();
+    }
 }
