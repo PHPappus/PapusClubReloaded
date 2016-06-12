@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>REGISTRAR VENTA</title>
+	<title>MODIFICAR VENTA</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,12 +27,12 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>REGISTRAR VENTA</strong>
+					<strong>EDITAR VENTA</strong>
 			</div>		
 		</div>
 		<div class="container">
 			<!--@include('errors.503')-->		
-			<form method="POST" action="add" class="form-horizontal form-border">
+			<form method="POST" action="/venta-producto/{{ $producto->id }}/edit" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<!-- Mensajes de error de validación del Request -->
@@ -67,21 +67,21 @@
 				<div class="form-group required">
 		    		<label for="producto_idInput" class="col-sm-4 control-label">ID Producto</label>
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="producto_idInput" name="producto_id" placeholder="ID del producto" onkeypress="return inputLimiter(event,'Numbers')" value="{{old('producto_id')}}">
+		      			<input type="text" class="form-control" id="producto_idInput" name="producto_id" placeholder="ID del producto" onkeypress="return inputLimiter(event,'Numbers')" value="{{$producto->producto_id}}" readonly>
 		    		</div>
 		  		</div>
 			  
 			  	<div class="form-group required">
 		    		<label for="facturacion_idInput" class="col-sm-4 control-label">N° de Factura</label>
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="facturacion_idInput" name="facturacion_id" value="{{$factura->id}}" readonly>
+		      			<input type="text" class="form-control" id="facturacion_idInput" name="facturacion_id" value="{{$producto->facturacion_id}}" readonly>
 		    		</div>
 		  		</div>				  				 
 			  	
 			  	<div class="form-group required">
 			    	<label for="cantidadInput" class="col-sm-4 control-label" >Cantidad</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="cantidadInput" name="cantidad" placeholder="Cantidad del producto comprado" onkeypress="return inputLimiter(event,'Numbers')"  value="{{old('cantidad')}}" onkeypress="myFunction()">
+			      		<input type="text" class="form-control" id="cantidadInput" name="cantidad" placeholder="Cantidad del producto comprado" onkeypress="return inputLimiter(event,'Numbers')"  value="{{$producto->cantidad}}" onkeypress="myFunction()">
 			    	</div>			      					      		
 			  	</div>	
 
@@ -96,16 +96,35 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-primary" type="submit" value="Confirmar">
+						<input class="btn btn-primary" data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Aceptar">
 					</div>
 					<div class="btn-group">
-						<a href="{{url('/venta-producto/'.$factura->id.'/back')}}" class="btn btn-info">Cancelar</a>
+						<a href="{{url('/venta-producto/'.$producto->facturacion_id.'/back')}}" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>
 				</br>
 
-				
+				<!-- Ventana modal de Confirmación -->			  	
+				<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" data-backdrop="static">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<!-- Header de la ventana -->
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" onclick="cerrarventana()">&times;</span></button>
+								<h4 class="modal-title">EDITAR PRODUCTO</h4>
+							</div>
+							<!-- Contenido de la ventana -->
+							<div class="modal-body">
+								<p>¿Desea guardar los cambios realizados?</p>
+							</div>
+							<div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cancelar</button>
+						        <button type="submit" class="btn btn-primary">Confirmar</button>
+					      	</div>
+						</div>
+					</div>
+				</div>
 				
 			</form>
 		</div>
@@ -116,6 +135,14 @@
 	{!!Html::script('../js/bootstrap.js')!!}
 	{!!Html::script('../js/jquery.bxslider.min.js')!!}
 	{!!Html::script('../js/MisScripts.js')!!}
-
+	<!-- Javascript -->
+	<script>
+		function ventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 1;
+		}
+		function cerrarventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 3;
+		}
+  	</script>
 </body>
 </html>
