@@ -126,7 +126,7 @@
 											</div>
 											<div class="col-sm-6 text-left" style="float: right">											
 													<div>
-														{{ Form::radio('sexo', 'masculino') }}Masculino
+														{{ Form::radio('sexo', 'masculino', 'selected') }}Masculino
 													</div>
 													<div>
 														{{ Form::radio('sexo', 'femenino'   ) }}Femenino
