@@ -51,7 +51,7 @@
 				<table class="table table-bordered table-hover text-center display" id="example">
 						<thead class="active">
 							
-							<th><div align=center>DESCRIPCIÓN</div> </th>
+							<th><div align=center>NOMBRE</div> </th>
 							<th><div align=center>MONEDA</div></th>
 							<th><div align=center>MONTO PENALIDAD</div></th>
 							<th><div align=center>DETALLE</div></th>
@@ -63,7 +63,7 @@
 							@foreach($multas as $multa)						
 								<tr>
 									
-									<td>{{$multa->descripcion}}</td>
+									<td>{{$multa->nombre}}</td>
 									<td>S/.</td>
 									<td>{{$multa->montoPenalidad}}</td>
 									<td>

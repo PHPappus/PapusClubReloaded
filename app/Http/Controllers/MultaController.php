@@ -37,7 +37,7 @@ class MultaController extends Controller
         $multa = Multa::withTrashed()->find($id);
         $originalDate = $multa->fecha_registro;
         $newDate = date("d-m-Y", strtotime($originalDate));
-       $multa->fecha_registro = $newDate;
+        $multa->fecha_registro = $newDate;
         $multa = Multa::withTrashed()->find($id);
         return view('admin-general.multa.showMulta',compact('multa'));
     }
@@ -50,9 +50,10 @@ class MultaController extends Controller
         $fecha=$fecha->format('Y-m-d');
 
         $multa = new Multa();
+        $multa->nombre = $input['nombre'];
         $multa->descripcion = $input['descripcion'];
         $multa->montoPenalidad = $input['montoPenalidad'];
-        $multa->estado = 'Activo';
+        $multa->estado = TRUE;
         $multa->fecha_registro = $fecha;
         $multa->save();
 
@@ -73,11 +74,20 @@ class MultaController extends Controller
         $input = $request->all();
         
 
-        $multa->update(['descripcion'=>$input['descripcion'],
-                        'montoPenalidad'=>$input['montoPenalidad'],
-                        'estado'=>$input['estado']]);
+        $multa->update(['nombre'=>$input['nombre'],'descripcion'=>$input['descripcion'],
+                        'montoPenalidad'=>$input['montoPenalidad']]);
+        if (isset($input['estado']))
+        {
+            $multa->estado = TRUE;
+        }
+        else
+        {
+            $multa->estado = FALSE;
+        }
 
+        $multa->save();
         return Redirect::action('MultaController@index');
+        
     }
 
     public function destroy(Multa $multa){

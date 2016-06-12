@@ -28,12 +28,27 @@ class StoreTallerRequest extends Request
         return [
 
             'nombre' => 'required|max:60|string',
-            'descripcion' =>'required|max:200|string',
+            'descripcion' =>'|max:200|string',
             'vacantes' =>'min:0',
+            'fecIniIns' => 'required',
+            'fecFinIns' => 'required',
+            'fecIni' => 'required',
+            'fecFin' => 'required',
             'cantidad_sesiones' => 'min:0',
             'trabajador' => 'required|float|min:0',
             'postulante' => 'required|float|min:0',
             'tercero' => 'required|float|min:0',
+
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'fecIniIns.required' => 'El campo fecha inicio de inscripciones es obligatorio',
+            'fecFinIns.required' => 'El campo fecha fin de inscripciones es obligatorio',
+            'fecIni.required'=> 'El campo fecha inicio de taller es obligatorio',
+            'fecFin.required'=>'El campo fecha fin de taller es obligatorio'
 
         ];
     }

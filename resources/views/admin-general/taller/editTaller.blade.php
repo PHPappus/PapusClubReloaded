@@ -79,52 +79,52 @@
 			    	</div>
 			  	</div> 
 
-			  	<div class="form-group required">
+			  	<div class="form-group">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
 			    		<textarea class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" rows="3" cols="50" value="{{$taller->descripcion}}">{{$taller->descripcion}}</textarea>
 			    	</div>
 			  	</div>
 
-			  	<div class="form-group">
+			  	<div class="form-group required">
 			    	<label for="vacantesInput" class="col-sm-4 control-label">Vacantes</label>
 			    	<div class="col-sm-5">
 			      		<input type="number" min ="0" step="any" class="form-control" id="vacantesInput" name="vacantes" placeholder="Vacantes" value="{{$taller->vacantes}}">
 			    	</div>
 			  	</div>
 
-			  	<div class="form-group">
+			  	<div class="form-group required">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Inicio Inscripciones</label>
 					<div class="col-sm-5">
 						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIniIns" placeholder="Fecha Inicio Inscripciones" value="{{$taller->fecha_inicio_inscripciones}}">
 					</div>	
 				</div>
 
-			  	<div class="form-group">
+			  	<div class="form-group required">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Fin Inscripciones</label>
 					<div class="col-sm-5">
 						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFinIns" placeholder="Fecha Fin Inscripciones" value="{{$taller->fecha_fin_inscripciones}}">
 					</div>	
 				</div>
 
-				<div class="form-group">
+				<div class="form-group required">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Inicio Taller</label>
 					<div class="col-sm-5">
 						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIni" placeholder="Fecha Inicio Taller" value="{{$taller->fecha_inicio}}">
 					</div>	
 				</div>
 
-			  	<div class="form-group">
+			  	<div class="form-group required">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Fin Taller</label>
 					<div class="col-sm-5">
 						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFin" placeholder="Fecha Fin Taller"  value="{{$taller->fecha_fin}}">
 					</div>	
 				</div>
 
-				<div class="form-group">
+				<div class="form-group required">
 			    	<label for="cantSesInput" class="col-sm-4 control-label">Cantidad de Sesiones</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" min ="0" step="any" class="form-control" id="cantSesInput" name="cantSes" placeholder="Cantidad de Sesiones" value="{{$taller->cantidad_sesiones}}">
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" min ="0" step="any" class="form-control" id="cantSesInput" name="cantSes" placeholder="Cantidad de Sesiones" value="{{$taller->cantidad_sesiones}}">
 			    	</div>
 			  	</div>
 
@@ -144,13 +144,20 @@
 						</tr>
 					</thead>
 					<tbody>
+
 							@foreach ($taller->tarifaTaller as $persona)		
 						    	<tr>
-									<td align="center">  {{ $persona->descripcion }}</td>
+						    		@if ($persona->descripcion == 'trabajador')
+										<td align="center">Trabajador</td>
+									@elseif ($persona->descripcion == 'postulante')
+										<td align="center">Socio</td>
+									@elseif ($persona->descripcion == 'tercero')
+										<td align="center">Tercero</td>
+									@endif
 									<td align="center">  S/.</td>
 									<td align="center"> 
 									<div align="center">
-							      		<input style="text-align:center;" type="number" min ="0" step="any" class="form-control" id="{{$persona->descripcion}}Input" name="{{$persona->descripcion}}" placeholder="" value="{{$persona->pivot->precio}}">
+							      		<input style="text-align:center;" type="text" onkeypress="return inputLimiter(event,'DoubleFormat')" min ="0" step="any" class="form-control" id="{{$persona->descripcion}}Input" name="{{$persona->descripcion}}" placeholder="" value="{{$persona->pivot->precio}}">
 							    	</div>
 								</td>							        
 								</tr>
@@ -165,7 +172,7 @@
 				<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
 					<div class="btn-group ">
-						<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Guardar">
+						<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Confirmar">
 					</div>
 
 					<div class="btn-group">

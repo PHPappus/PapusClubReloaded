@@ -30,4 +30,8 @@ class Ambiente extends Model
     {
         return $this->hasMany('papusclub\Models\Reserva', 'id');
     }
+    
+    public function talleres(){
+        return $this->hasMany(Taller::class);
+    }
 }

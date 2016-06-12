@@ -12,7 +12,8 @@ class Multa extends Model
 
 
     protected $fillable=
-    ['descripcion',
+    ['nombre',
+     'descripcion',
      'montoPenalidad',
      'estado'
     ];
