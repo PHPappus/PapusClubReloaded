@@ -151,7 +151,7 @@ class ReservarAmbienteController extends Controller
         $ambiente_id = $id;
 
         $input = $request->all();
-        $carbon = new Carbon(); 
+        $carbon=new Carbon(); 
 
         $reserva = new Reserva();
         $reserva->ambiente_id = $ambiente_id;

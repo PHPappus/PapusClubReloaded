@@ -78,7 +78,7 @@
 					              		<a class="btn btn-info" href="{{url('/Socio/'.$socio->id)}}/"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 					            	</td>
 					            	<td>
-							        	<a class="btn btn-info" href="#" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+							        	<a class="btn btn-info" href="{{url('/Socio/'.$socio->id)}}/editar" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 							        </td>
 					            	<td>
 										<a class="btn btn-info"  title="Habilitar" data-href="{{url('/Socio/'.$socio->id.'/activate')}}" data-toggle="modal" data-target="#modalActivar"><i class="glyphicon-unchecked unchecked"></i></a>
@@ -88,7 +88,7 @@
 					              		<a class="btn btn-info" href="{{url('/Socio/'.$socio->id)}}/"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 					            	</td>
 					            	<td>
-							        	<a class="btn btn-info" href="#" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+							        	<a class="btn btn-info" href="{{url('/Socio/'.$socio->id)}}/editar" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 							        </td>
 							        @if(strcmp($socio->estado(), $socio->vigente())==0)
 						            	<td>

@@ -18,6 +18,11 @@ class AppServiceProvider extends ServiceProvider
             $re = "/^[+]?([0-9]+(?:[\\.,][0-9]*)?|[0-9]+)/";  
             return(preg_match($re, $value));
         });
+
+        Validator::extend('alpha_spaces', function($attribute, $value)
+        {
+            return preg_match('/^[\pL\s]+$/u', $value);
+        });
     }
 
     /**

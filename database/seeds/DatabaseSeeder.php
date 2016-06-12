@@ -33,6 +33,10 @@ class DatabaseSeeder extends Seeder
 		$this->call(PrecioProductoTableSeeder::class);
         $this->call(FacturacionTableSeeder::class);
         $this->call(ProductoxFacturacionTableSeeder::class);
+        $this->call(DepartamentoTableSeeder::class);
+        $this->call(ProvinciaTableSeeder::class);
+        $this->call(DistritoTableSeeder::class);
+		
         Model::reguard();
     }
 }
