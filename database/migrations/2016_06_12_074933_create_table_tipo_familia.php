@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFamiliarxpostulanteTable extends Migration
+class CreateTableTipoFamilia extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,10 @@ class CreateFamiliarxpostulanteTable extends Migration
      */
     public function up()
     {
-        Schema::create('familiarxpostulante', function (Blueprint $table) {
-            $table->integer('postulante_id')->unsigned()->nullable();
-            $table->integer('persona_id')->unsigned()->nullable();
-            $table->integer('tipo_familia_id')->unsigned()->nullable();
+        Schema::create('tipofamilia', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre');
             $table->boolean('estado')->default(true);
-            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateFamiliarxpostulanteTable extends Migration
      */
     public function down()
     {
-        Schema::drop('familiarxpostulante');
+        Schema::drop('tipofamilia');
     }
 }

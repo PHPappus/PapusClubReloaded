@@ -12,7 +12,7 @@ class PostulanteTableSeeder extends Seeder
     public function run()
     {
         Postulante::create([
-        	'id_postulante'=>2,
+        	'id_postulante'=>1,
         	'ruc'=>78451296,
         	'direccion_nacimiento'=>'avenida prueba 123',
         	'pais_nacimiento'=>'Perú',
@@ -31,7 +31,7 @@ class PostulanteTableSeeder extends Seeder
         	'telefono_celular'=>989456123]);
 
         Postulante::create([
-        	'id_postulante'=>3,
+        	'id_postulante'=>2,
         	'direccion_nacimiento'=>'avenida prueba 123',
         	'pais_nacimiento'=>'Perú',
         	'lugar_nacimiento'=>'Lima',
