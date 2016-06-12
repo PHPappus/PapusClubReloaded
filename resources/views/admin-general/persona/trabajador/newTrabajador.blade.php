@@ -327,9 +327,9 @@
 		        	//autoclose: true
 		        //beforeShowDay:function (date){return false}
 			});
-			$('.datepicker').on('changeDate', function(ev){
-			    $(this).datepicker('hide');
-			});
+			//$('.datepicker').on('changeDate', function(ev){
+			//    $(this).datepicker('hide');
+			//});
 		});
 	</script>
 
