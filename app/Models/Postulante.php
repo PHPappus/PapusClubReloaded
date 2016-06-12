@@ -65,5 +65,9 @@ class Postulante extends Model
     }
 
 
+    public function socio()
+    {
+        return $this->hasOne(Socio::class,'id');
+    }
     
 }

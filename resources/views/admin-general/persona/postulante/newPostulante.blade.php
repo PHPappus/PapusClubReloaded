@@ -192,8 +192,8 @@
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Fecha de Nacimiento</label>
 											</div>
-											<div class="col-sm-1">
-												<input style="max-width: 250px" class="datepicker" type="text" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha Nacimiento" readonly="true" value="{{old('fecha_nacimiento')}}" >
+											<div class="col-sm-6">
+												<input style="width: 250px" class="datepicker" type="text" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha Nacimiento" readonly="true" value="{{old('fecha_nacimiento')}}" >
 											</div>	
 										</div>
 								</div>

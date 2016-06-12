@@ -17,8 +17,19 @@ class PostulanteController extends Controller
 {
     public function index()
     {
-        $personas=Persona::where('id_tipo_persona','=','1')->get();
-        return view('admin-general.persona.postulante.index',compact('personas'));
+        $personas=Postulante::all();
+        $postulantes=array();
+        foreach ($personas as $per) {
+            if($per->socio==NULL)
+                array_push($postulantes,$per);
+
+            # code...
+        }
+/*        $personas=Persona::where([
+        ['id_tipo_persona','=','2'],
+        ['id_tipo_persona','<>','3'],
+        ])->get();*/
+        return view('admin-general.persona.postulante.index',compact('postulantes'));
     }
 
     public function registrar()
@@ -59,7 +70,7 @@ class PostulanteController extends Controller
         }
 
 
-        $persona->id_tipo_persona = 1;
+        $persona->id_tipo_persona = 2;
         $persona->sexo=$input['sexo'];
         //$persona->correo=trim($input['correo']);
         $persona->save();
