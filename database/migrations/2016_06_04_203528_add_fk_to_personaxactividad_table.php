@@ -34,7 +34,7 @@ class AddFkToPersonaxactividadTable extends Migration
         Schema::table('actividad_persona', function (Blueprint $table) {
             
             $table->dropForeign('actividad_persona_id_foreign');
-            $table->dropForeign('actividad_persona_id_foreign');
+            $table->dropForeign('actividad_actividad_id_foreign');
         });
     }
 }
