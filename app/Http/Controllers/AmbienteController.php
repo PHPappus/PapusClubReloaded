@@ -9,6 +9,7 @@ use papusclub\Models\Ambiente;
 use papusclub\Models\Sede;
 use papusclub\Models\Configuracion;
 use papusclub\Models\TipoPersona;
+use papusclub\Models\TarifaAmbientexTipoPersona;
 use papusclub\Http\Requests\StoreAmbienteRequest;
 use papusclub\Http\Requests\EditAmbienteRequest;
 
@@ -47,7 +48,21 @@ class AmbienteController extends Controller
         $tipoAmbiente = Configuracion::find($input['tipo_ambiente']);
         $ambiente->tipo_ambiente= $tipoAmbiente->valor;
         $ambiente->ubicacion= $input['ubicacion'];
+
         $ambiente->save();
+
+
+        $tipoPersonas = TipoPersona::all();
+        $ambiente_id = Ambiente::all()->last()->id;
+        foreach ($tipoPersonas as $tipoPersona) {
+            $tarifa = new TarifaAmbientexTipoPersona();
+            $tarifa->ambiente_id = $ambiente_id;
+            $tarifa->tipo_persona_id = $tipoPersona->id;
+            $tarifa->precio = $input[$tipoPersona->descripcion];
+            $tarifa->save();
+        }
+
+        
         return redirect('ambiente/index')->with('stored', 'Se registró el ambiente correctamente.');
     }
     //Muestra el formulario para poder modificar un ambiente
@@ -55,7 +70,8 @@ class AmbienteController extends Controller
     {
         $ambiente = Ambiente::find($id);
         $tipoPersonas = TipoPersona::all();
-        return view('admin-general.ambiente.editAmbiente', compact('ambiente','tipoPersonas'));
+        $tarifas = $ambiente->tarifas;
+        return view('admin-general.ambiente.editAmbiente', compact('ambiente','tipoPersonas', 'tarifas'));
     }
 
     //Se guarda la informacion modificada del ambiente en la BD
@@ -69,6 +85,14 @@ class AmbienteController extends Controller
         $ambiente->tipo_ambiente= $input['tipo_ambiente'];
         $ambiente->ubicacion= $input['ubicacion'];
         $ambiente->save();
+
+        $tipoPersonas = TipoPersona::all();
+        $tarifas = $ambiente->tarifas;
+        foreach (array_combine($tarifas, $tipoPersonas) as $tarifa=>$tipoPersona) {
+            $tarifa->precio = $input[$tipoPersona->descripcion];
+            $tarifa->save();
+        }
+
         return redirect('ambiente/index');
 
     }

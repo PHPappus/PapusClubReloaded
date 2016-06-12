@@ -44,7 +44,8 @@ class ActividadController extends Controller
         }
         //
         $actividad->capacidad_maxima= $input['capacidad_maxima'];
-        $actividad->tipo_actividad= $input['tipo_actividad'];
+        $tipoActividad = Configuracion::find($input['tipo_actividad']);
+        $actividad->tipo_actividad= $tipoActividad->valor;
         $actividad->descripcion= $input['descripcion'];
         $actividad->cant_ambientes=$input['cant_ambientes'];
         

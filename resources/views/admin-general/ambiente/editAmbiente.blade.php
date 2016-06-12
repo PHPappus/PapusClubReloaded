@@ -114,13 +114,13 @@
 						</tr>
 					</thead>
 					<tbody>
-							@foreach ($tipoPersonas as $tipoPersona)		
+							@foreach (array_combine($tipoPersonas, $tarifas) as $tipoPersona=>$tarifa)		
 						    	<tr>
 									<td align="center">{{$tipoPersona->descripcion}}</td>
 									<td align="center">  S/.</td>
 									<td align="center"> 
 										<div align="center">
-								      		<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="{{$tipoPersona->descripcion}}Input" name="{{$tipoPersona->descripcion}}" placeholder="Monto" >
+								      		<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="{{$tipoPersona->descripcion}}Input" name="{{$tipoPersona->descripcion}}" value="{{$tarifa->precio}}" placeholder="Monto" >
 								    	</div>
 								</td>							        
 								</tr>

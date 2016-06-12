@@ -30,4 +30,9 @@ class Ambiente extends Model
     {
         return $this->hasMany('papusclub\Models\Reserva', 'id');
     }
+
+    public function tarifas()
+    {
+        return $this->hasMany('papusclub\Models\TarifaAmbientexTipoPersona');
+    }
 }
