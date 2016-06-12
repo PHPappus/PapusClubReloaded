@@ -69,9 +69,8 @@ class AmbienteController extends Controller
     public function edit($id)
     {
         $ambiente = Ambiente::find($id);
-        $tipoPersonas = TipoPersona::all();
         $tarifas = $ambiente->tarifas;
-        return view('admin-general.ambiente.editAmbiente', compact('ambiente','tipoPersonas', 'tarifas'));
+        return view('admin-general.ambiente.editAmbiente', compact('ambiente', 'tarifas'));
     }
 
     //Se guarda la informacion modificada del ambiente en la BD
@@ -88,9 +87,16 @@ class AmbienteController extends Controller
 
         $tipoPersonas = TipoPersona::all();
         $tarifas = $ambiente->tarifas;
-        foreach (array_combine($tarifas, $tipoPersonas) as $tarifa=>$tipoPersona) {
-            $tarifa->precio = $input[$tipoPersona->descripcion];
-            $tarifa->save();
+        foreach ($tarifas as $tarifa) {
+
+            $tarifa_up = TarifaAmbientexTipoPersona::where('ambiente_id', '=', $tarifa->ambiente_id)->where('tipo_persona_id', '=', $tarifa->tipo_persona_id)->first();
+            
+            $tarifa_up->precio = $input[$tarifa->tipo_persona->descripcion];
+            echo $tarifa_up;
+            return exit;
+            
+            $tarifa_up->sync();
+            // $taller->tarifaTaller()->save($persona,['fecha_registro'=>$fecha,'precio'=>$input[$persona->descripcion],'estado'=>TRUE]);
         }
 
         return redirect('ambiente/index');
@@ -116,8 +122,8 @@ class AmbienteController extends Controller
     public function show($id)
     {
         $ambiente = Ambiente::find($id);
-        $tipoPersonas = TipoPersona::all();
-        return view('admin-general.ambiente.detailAmbiente', compact('ambiente','tipoPersonas'));
+        $tarifas = $ambiente->tarifas;
+        return view('admin-general.ambiente.detailAmbiente', compact('ambiente','tarifas'));
     }
 
 

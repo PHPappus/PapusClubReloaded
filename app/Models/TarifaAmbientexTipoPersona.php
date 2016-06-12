@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TarifaAmbientexTipoPersona extends Model
 {
-    //use SoftDeletes;
+    use SoftDeletes;
     protected $table = 'tarifaambientextipopersona';
     protected $fillable = 
     ['precio',
     ];
-   	
+   	protected $dates = ['deleted_at'];
 
    	public function ambiente()
    	{
