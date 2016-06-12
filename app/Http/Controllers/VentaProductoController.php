@@ -50,8 +50,7 @@ class VentaProductoController extends Controller
 		$factura->estado = $input['estado'];		
     	
         $factura->save();	    
-
-        //return redirect('venta-producto/index')->with('stored', 'Se registró el producto correctamente.');
+        
         return view('admin-general.venta-producto.addVentaProducto', compact('factura'));
     }	   
 
@@ -71,6 +70,8 @@ class VentaProductoController extends Controller
             $errorProducto = 'ID de producto ingresado no es válido';
             return back()->withErrors($errorProducto);
         }
+
+        $productoxfacturacion = new ProductoxFacturacion();
         $productoxfacturacion = ProductoxFacturacion::where('facturacion_id','=',$input['facturacion_id'])
                                                     ->where('producto_id','=',$input['producto_id'])
                                                     ->first();

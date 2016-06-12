@@ -63,13 +63,13 @@
 			  	</br>
 			  	</br>	
 
-				<!-- INICIO INCIIO -->				                       
+				<!-- INICIO INCIIO -->				                       				
 				<div class="form-group required">
 		    		<label for="producto_idInput" class="col-sm-4 control-label">ID Producto</label>
 		    		<div class="col-sm-5">
 		      			<input type="text" class="form-control" id="producto_idInput" name="producto_id" placeholder="ID del producto" onkeypress="return inputLimiter(event,'Numbers')" value="{{old('producto_id')}}">
 		    		</div>
-		  		</div>
+		  		</div>			  	
 			  
 			  	<div class="form-group required">
 		    		<label for="facturacion_idInput" class="col-sm-4 control-label">N° de Factura</label>
@@ -83,11 +83,7 @@
 			    	<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="cantidadInput" name="cantidad" placeholder="Cantidad del producto comprado" onkeypress="return inputLimiter(event,'Numbers')"  value="{{old('cantidad')}}" onkeypress="myFunction()">
 			    	</div>			      					      		
-			  	</div>	
-
-			  	
-				<br/><br/>
-				
+			  	</div>				  								
 					<!-- FIN FIN FIN  -->				
 			
 				</br>
@@ -98,7 +94,7 @@
 					<div class="btn-group ">
 						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
-					<div class="btn-group">
+					<div class="btn-group">						
 						<a href="{{url('/venta-producto/'.$factura->id.'/back')}}" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>

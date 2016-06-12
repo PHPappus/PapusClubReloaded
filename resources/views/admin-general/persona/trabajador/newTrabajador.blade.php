@@ -199,7 +199,7 @@
 												<select class="form-control" id="puestoSelect" name="puestoSelect" style="max-width: 150px "   >
 													<option value="-1" default>Seleccione</option>
 														@foreach ($puestos as $puesto)      
-										                	<option value="{{$puesto->id}}">{{$puesto->valor}}</option>
+										                	<option value="{{$puesto->id}}" @if (old('puestoSelect') == $puesto->id) selected="selected" @endif >{{$puesto->valor}}</1option>
 										                @endforeach
 												</select>
 											</div>
@@ -327,9 +327,9 @@
 		        	//autoclose: true
 		        //beforeShowDay:function (date){return false}
 			});
-			$('.datepicker').on('changeDate', function(ev){
-			    $(this).datepicker('hide');
-			});
+			//$('.datepicker').on('changeDate', function(ev){
+			//    $(this).datepicker('hide');
+			//});
 		});
 	</script>
 

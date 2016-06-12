@@ -49,5 +49,6 @@ class ConfiguracionTableSeeder extends Seeder
 
         Configuracion::insert(['valor'=>'Boleta','grupo'=>'10','descripcion'=>'tipo de comprobante']);
         Configuracion::insert(['valor'=>'Factura','grupo'=>'10','descripcion'=>'tipo de comprobante']);
+
     }
 }
