@@ -46,33 +46,34 @@
 			  	
 			  	<div class="form-group">
 			    	<label for="estadoInput" class="col-sm-4 control-label ">Estado</label>
-			    	<div class="col-sm-3">			      					      	
-			      		
-			      		<select class="form-control" id="estado" name="estado" readonly>
-						<!-- Las opciones se deberían extraer de la tabla configuracion-->
-						<option value="1" @if($producto['estado'] == true) selected @endif >Activo</option>
-						<option value="0" @if($producto['estado'] == false) selected @endif>Inactivo</option>	
-						
-						</select>							
-			    	</div>	    	
+			    	<div class="col-sm-5">
+			      		<input type="text" class="form-control" id="estadoInput" name="estado" 
+			      		@if ($producto['estado']==1) 
+			      			value="Activo" 
+			      		@else
+			      			value="Inactivo" 
+			      		@endif readonly>
+			    	</div>
 			  	</div>
 			  	
-			  	<div class="form-group ">
+			  	<div class="form-group">
 			    	<label for="tipoProductoInput" class="col-sm-4 control-label" >Tipo de Producto</label>
 			    	<div class="col-sm-5">
-			    	
-			      		<select class="form-control" id="id_tipo_producto" name="id_tipo_producto"  readonly>
-						<!-- Las opciones se deberían extraer de la tabla configuracion-->
-						<option value=null >Seleccionar tipo...</option>
-						<option value="1" @if($producto['id_tipo_producto'] == 1) selected @endif >Ropa</option>
-						<option value="2" @if($producto['id_tipo_producto'] == 2) selected @endif>Accesorios</option>									
-						<option value="3" @if($producto['id_tipo_producto'] == 3) selected @endif>Útiles de Oficina</option>
-						<option value="4" @if($producto['id_tipo_producto'] == 4) selected @endif>Souvenirs</option>
-						</select>						
-						
-			    	</div>
+			      		<input type="text" class="form-control" id="tipoProductoInput" name="tipoProducto" 
+			    		value="{{$producto->tipo_producto}}"
+			      		readonly>
+			    	</div>			      					      		
 			  	</div>	
-									
+						
+			  	<div class="form-group">
+			    	<label for="precioInput" class="col-sm-4 control-label" >Precio</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" class="form-control" id="precioInput" name="precio" 
+			    		value="{{$producto->precioproducto->first()['precio']}}"
+			      		readonly>
+			    	</div>			      					      		
+			  	</div>	
+
 				<br/><br/>
 				
 				<div class="form-group">

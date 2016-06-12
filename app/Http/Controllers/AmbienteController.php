@@ -8,6 +8,7 @@ use papusclub\Http\Requests;
 use papusclub\Models\Ambiente;
 use papusclub\Models\Sede;
 use papusclub\Models\Configuracion;
+use papusclub\Models\TipoPersona;
 use papusclub\Http\Requests\StoreAmbienteRequest;
 use papusclub\Http\Requests\EditAmbienteRequest;
 
@@ -25,6 +26,7 @@ class AmbienteController extends Controller
     {
     	$sedes = Sede::all();
         $values=Configuracion::where('grupo','=','2')->get();
+
         return view('admin-general.ambiente.newAmbiente', compact('sedes'),compact('values'));
         
     }
@@ -39,11 +41,10 @@ class AmbienteController extends Controller
             $parent = Sede::find($input['sedeSelec']);
             $ambiente->sede_id = $parent->id;
         }
-                
-
-        //
+        
         $ambiente->capacidad_actual= $input['capacidad_actual'];
-        $ambiente->tipo_ambiente= $input['tipo_ambiente'];
+        $tipoAmbiente = Configuracion::find($input['tipo_ambiente']);
+        $ambiente->tipo_ambiente= $tipoAmbiente->valor;
         $ambiente->ubicacion= $input['ubicacion'];
         $ambiente->save();
         return redirect('ambiente/index')->with('stored', 'Se registró el ambiente correctamente.');
@@ -99,12 +100,16 @@ class AmbienteController extends Controller
     {
         $ambiente = Ambiente::find($id);
         $values=Configuracion::where('grupo','=','3')->get();
-        return view('admin-general.actividad.newActividad', compact('ambiente'),compact('values'));
+        $tipoPersonas = TipoPersona::all();
+
+
+        return view('admin-general.actividad.newActividad', compact('ambiente'),compact('values'),compact('tipoPersonas'));
     }
      public function search()
     {
         $ambientes = Ambiente::all();
-        return view('admin-general.ambiente.searchAmbiente', compact('ambientes'));
+        $tipoPersonas = TipoPersona::all();
+        return view('admin-general.ambiente.searchAmbiente', compact('ambientes'),compact('tipoPersonas'));
     }
     
 }

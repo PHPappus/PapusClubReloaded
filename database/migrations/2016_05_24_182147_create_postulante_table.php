@@ -17,6 +17,7 @@ class CreatePostulanteTable extends Migration
             
             $table->integer('id_postulante')->unsigned()->unique();
 
+
             $table->bigInteger('ruc'); //en caso lo tenga, no es necesario si no tiene
             //en la vista se tiene un checkbox de nacionalidad
             //1:Peruano   2:Extranjero
@@ -74,3 +75,4 @@ class CreatePostulanteTable extends Migration
         Schema::drop('postulante');
     }
 }
+ 

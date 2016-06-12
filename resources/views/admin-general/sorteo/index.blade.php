@@ -42,15 +42,23 @@
 						<strong>¡Éxito!</strong> {{session('stored')}}
 				</div>
 	@endif
-	<div style="text-align:right;padding-right:60px">Filtra por todos los campos</div>
 	<div class="table-responsive">
 		<div class="container">
+			<div class="form-group">
+			  		<div class="text-right">
+			  			<font color="black"> 
+			  				Filtra por todos los campos
+			  			</font>
+			  			
+			  		</div>
+			</div>
 			<table class="table table-bordered table-hover text-center display" id="example">
 				<thead class="active" data-sortable="true">
 					<th><div align=center>NOMBRE SORTEO</div> </th>
 					<th><div align=center>FECHA INICIO DE SORTEO</div></th>
 					<th><div align=center>FECHA FIN DE SORTEO</div></th>
 					<th><div align=center>DESCRIPCION</div></th>
+					<th><div align=center>DETALLE</div></th>
 					<th><div align=center>MODIFICAR</div></th>
 					<th><div align=center>ELIMINAR</div></th>
 				</thead>	
@@ -63,6 +71,9 @@
 							<td>{{$sorteo->fecha_cerrado}}</td>	
 							<td>{{$sorteo->descripcion}}</td>
 							<td>
+							        <a class="btn btn-info" href="{{url('/sorteo/'.$sorteo->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+							        </td>
+							<td>
 			              		<a class="btn btn-info" href="{{url('/sorteo/'.$sorteo->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 			              	</td>
 			              	<td>
@@ -72,12 +83,24 @@
 					</form>
 					 @endforeach
 				</tbody>			
-			</table>						
+			</table>
+			<br><br>
+			<div class="btn-inline">
+					<!-- <form method="POST" action="/sedes/new/sede" >
+					<input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
+
+					<div class="btn-group col-sm-10"></div>
+					
+					<div class="btn-group ">
+						<a class="btn btn-info" href="{{url('/sorteo/new')}}" >	Registrar Sorteo</a>	
+
+					</div>
+					
+			</div>						
+					
 		</div>	
 	</div>
-	<div align="center" style="padding:20px">
-		<a class="btn btn-info" href="{{url('/sorteo/new')}}" > Agregar Sorteo</a>	
-	</div>				
+		
 @stop
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	{!!Html::script('js/bootstrap.js')!!}
@@ -106,7 +129,7 @@
 	        <h4 class="modal-title">Confirmar</h4>
 	      </div>
 	      <div class="modal-body">
-	        <p>¿Está seguro que desea eliminar el producto?</p>
+	        <p>¿Está seguro que desea eliminar el sorteo?</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

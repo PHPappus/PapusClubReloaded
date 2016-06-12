@@ -31,6 +31,19 @@ class Persona extends Model
         return $this->belongsTo('papusclub\Models\Trabajador','id');
     }
 
+
+    public function actividades(){
+        return $this->belongsToMany('papusclub\Models\Actividad')->withPivot('precio');
+    }
+
+    public function usuario(){
+        return $this->belongsTo('papusclub\User','id');
+    }
+
+    public function facturacion(){
+        return $this->hasMany('papusclub\Models\Facturacion');
+    }
+
 /*acceso: $postulante->familiarxpostulante->pivot->(elementos tabla intermedia)*/
     public function familiarxpostulante()
     {
@@ -88,6 +101,4 @@ class Persona extends Model
             }
         }
     }
-
-
 }

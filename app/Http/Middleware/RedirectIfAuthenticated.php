@@ -36,6 +36,15 @@ class RedirectIfAuthenticated
                 case '5':
                     return redirect('/gerente');
                     break;
+                case '6':
+                    return redirect('/admin-persona');
+                    break;
+                case '7':
+                    return redirect('/admin-reserva');
+                    break;
+                case '8':
+                    return redirect('/public');
+                    break;
                 default:
                     return redirect('/');
                     break;

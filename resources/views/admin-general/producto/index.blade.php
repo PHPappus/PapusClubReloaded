@@ -39,10 +39,18 @@
 
 	<div class="table-responsive">
 		<div class="container">
+			<div class="form-group">
+			  		<div class="text-right">
+			  			<font color="black"> 
+			  				Filtra por todos los campos
+			  			</font>
+			  			
+			  		</div>
+			</div>
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active" data-sortable="true">
 						<th><div align=center>PRODUCTO</div></th>
-						<th><div align=center>DESCRIPCION</div></th>
+						<th><div align=center>PRECIO</div></th>
 						<th><div align=center>TIPO</div></th>							
 						<th><div align=center>DETALLE</div></th>
 						<th><div align=center>EDITAR</div></th>
@@ -54,8 +62,8 @@
 					@foreach($productos as $producto)
 						<tr>
 							<td>{{ $producto->nombre }}</td>
-							<td>{{ $producto->descripcion }}</td>	 							
-							<td>{{ $producto->id_tipo_producto }}</td>
+							<td>{{ $producto->precioproducto->first()['precio'] }}</td>			
+							<td>{{ $producto->tipo_producto }}</td>
 							<td>
 				              <a class="btn btn-info" href="{{url('/producto/'.$producto->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 				            </td>
@@ -77,7 +85,7 @@
 	<div class="container">
 		<div class="form-group">
 			<div class="col-sm-16 text-right">
-				<a class="btn btn-info" href="{{url('/producto/new')}}" title="Registrar Producto" >Agregar Producto<i class="glyphicon" ></i> </a>	
+				<a class="btn btn-info" href="{{url('/producto/new')}}" title="Registrar Producto" >Registrar Producto<i class="glyphicon" ></i> </a>	
 			</div>
 		</div>
 		<br/>

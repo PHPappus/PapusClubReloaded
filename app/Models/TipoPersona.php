@@ -16,6 +16,11 @@ class TipoPersona extends Model
     protected $dates = ['deleted_at'];
     
     public function persona(){
-        return $this->hasMany('papusclub\Models\TipoPersona');
+        return $this->hasMany('papusclub\Models\TipoPersona','id');
+    }
+
+    public function tarifaTaller()
+    {
+        return $this->belongsToMany(Taller::class,'tarifataller','tipopersona_id','taller_id')->withPivot('fecha_registro','precio','estado');
     }
 }
