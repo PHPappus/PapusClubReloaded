@@ -16,6 +16,7 @@ class FacturacionTableSeeder extends Seeder
         	'persona_id' => '2', 
         	'total' => '70.5',         	
         	'tipo_pago' => 'Efectivo', 
+            'tipo_comprobante' => 'Boleta',
         	'estado' => 'Pagado'
         	]);
 
@@ -23,6 +24,7 @@ class FacturacionTableSeeder extends Seeder
         	'persona_id' => '2', 
         	'total' => '300',         	
         	'tipo_pago' => 'Efectivo', 
+            'tipo_comprobante' => 'Factura',
         	'estado' => 'Pagado'
         	]);
 
@@ -30,7 +32,16 @@ class FacturacionTableSeeder extends Seeder
         	'persona_id' => '3', 
         	'total' => '85',         	
         	'tipo_pago' => 'Credito', 
+            'tipo_comprobante' => 'Boleta',
         	'estado' => 'Emitido'
         	]);
+
+        Facturacion::insert([            
+            'persona_id' => '1', 
+            'total' => '50',
+            'tipo_pago' => 'Credito', 
+            'tipo_comprobante' => 'Boleta',
+            'estado' => 'Emitido'
+            ]);
     }
 }

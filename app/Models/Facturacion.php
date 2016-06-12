@@ -12,6 +12,7 @@ class Facturacion extends Model
     ['persona_id',
      'total',
      'tipo_pago',
+     'tipo_comprobante',
      'estado'];
      protected $dates = ['deleted_at'];
 
