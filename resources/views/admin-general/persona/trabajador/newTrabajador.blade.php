@@ -136,7 +136,7 @@
 									</div>
 
 									
-									<div class="form-group">
+									<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Fecha de Nacimiento:</label>
@@ -327,9 +327,9 @@
 		        	//autoclose: true
 		        //beforeShowDay:function (date){return false}
 			});
-			$('.datepicker').on('changeDate', function(ev){
+/*			$('.datepicker').on('changeDate', function(ev){
 			    $(this).datepicker('hide');
-			});
+			});*/
 		});
 	</script>
 

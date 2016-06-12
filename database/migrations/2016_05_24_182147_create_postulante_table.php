@@ -49,9 +49,9 @@ class CreatePostulanteTable extends Migration
             $table->integer('nro_hijos');
 
             //DATOS DE VIVIENDA
-            //$table->string('departamento');
-            //$table->string('provincia');
-            //$table->string('distrito');
+/*            $table->integer('departamento');
+            $table->integer('provincia');
+            $table->integer('distrito');*/
             $table->string('domicilio');
 
             //CONTACTO
