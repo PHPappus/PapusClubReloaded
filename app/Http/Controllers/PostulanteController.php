@@ -69,6 +69,10 @@ class PostulanteController extends Controller
         $postulante = new Postulante();
         $postulante->id_postulante=$idPersona;
         $postulante->direccion_nacimiento=$input['direccion_nacimiento'];
+        $postulante->departamentos=$input['departamento'];
+        $postulante->departamentos=$input['provincia'];
+        $postulante->departamentos=$input['distrito'];
+
 
         $postulante->save();
 

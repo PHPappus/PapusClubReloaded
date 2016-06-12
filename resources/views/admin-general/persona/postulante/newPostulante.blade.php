@@ -198,7 +198,7 @@
 										</div>
 								</div>
 
-									<div class="form-group">
+									<div class="form-group required">
 											<div class="col-sm-6">
 												<div class="col-sm-6 text-left">
 													<label for="" class="control-label">Lugar de Nacimiento:</label>
@@ -207,7 +207,7 @@
 														<select form="form_id" class="form-control" id="departamento" name="departamento" style="max-width: 250px " data-link="{{ url('/provincias') }}">
 															<option value="-1" default>--Departamento--</option>
 																@foreach ($departamentos as $depa)      
-												                	<option value="{{$depa->id}}" @if (old('departamento') == $depa->id) selected="selected" @endif  >{{$depa->nombre}}</option>
+												                	<option value="{{$depa->id}}"  @if (old('departamento') == $depa->id) selected="selected" @endif  >{{$depa->nombre}}</option>
 												                @endforeach
 														</select>
 														
@@ -221,7 +221,7 @@
 														</select>
 
 														<br><br>
-														<a href="#" id="try" data-link="{{ url('/test') }}">Try</a>
+														<!-- <a href="#" id="try" data-link="{{ url('/test') }}">Try</a> -->
 													</div>	
 											</div>
 									</div>
@@ -539,10 +539,11 @@
 			        	$("#provincia").empty();
 			        	$("#provincia").append("<option  value='-1' default>--Provincia--</option>");
 			        	$.each(data,function(index,elememt){
-			        		//alert(element.nombre);
+			        		
 			        		$("#provincia").append("<option value='"+elememt.id+"'>"+elememt.nombre+"</option>");
+			           		 console.log("mensaje que quieras");
+
 			        	});
-			            //alert(data);
 			        },error:function(){ 
 			            alert("error!!!!");
 			        }
