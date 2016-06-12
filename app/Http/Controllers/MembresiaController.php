@@ -86,11 +86,13 @@ class MembresiaController extends Controller
     {
         if(count($membresia->socio))
         {
-            $membresia->delete();
-            return redirect('membresia')->with('eliminated', 'Imposible de eliminar existe dependencia, se ha cambiado de estado a inhabilitado');
+            //$membresia->delete(); Se colocaba con softdelete y producía error
+            return redirect('membresia')->with('eliminated', 'Imposible de eliminar debido a que existe dependencia a este tipo de membresía, se ha cambiado de estado a inhabilitado');
         }
         else
         {
+            $tarifa = $membresia->tarifa;
+            $tarifa->forceDelete();
             $membresia->forceDelete();
             return back();
         }
