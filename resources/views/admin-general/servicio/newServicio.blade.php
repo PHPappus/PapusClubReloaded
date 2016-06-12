@@ -95,7 +95,7 @@
 				 </div-->	  
 
 
-				 <div class="form-group required">
+				 <!--div class="form-group required">
 			    	<label for="tipo_servicioInput" class="col-sm-4 control-label">Sede</label>
 			    	<div class="col-sm-5">
 			      			<select class="form-control" name="id_sede" 
@@ -106,7 +106,7 @@
 				 				 @endforeach							
     						</select>					
 			    	</div>			  
-			  	</div>	  
+			  	</div-->	  
 
 
 			  	
@@ -169,47 +169,6 @@
 						</div>
 				</div-->
 			
-			
-			
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-						
 
 
 
