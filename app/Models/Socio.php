@@ -19,7 +19,7 @@ class Socio extends Model
 
     public function membresia()
     {
-    	return $this->belongsTo(TipoMembresia::class,'tipo_membresia_id');
+    	return $this->belongsTo(TipoMembresia::class,'tipo_membresia_id');//->withTrashed();
     }
 
     public function postulante()

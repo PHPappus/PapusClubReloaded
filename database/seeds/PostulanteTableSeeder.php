@@ -1,4 +1,4 @@
-<?php
+ q <?php
 
 use Illuminate\Database\Seeder;
 use papusclub\Models\Postulante;
@@ -12,9 +12,9 @@ class PostulanteTableSeeder extends Seeder
     public function run()
     {
         Postulante::create([
-        	'id_postulante'=>2,
+        	'id_postulante'=>1,
         	'ruc'=>78451296,
-        	'direccion'=>'avenida prueba 123',
+        	'direccion_nacimiento'=>'avenida prueba 123',
         	'pais_nacimiento'=>'Perú',
         	'lugar_nacimiento'=>'Lima',
         	'colegio_primario'=>'maranguita',
@@ -22,8 +22,8 @@ class PostulanteTableSeeder extends Seeder
         	'universidad'=>'Alcatraz',
         	'profesion'=>'Burrier',
         	'centro_trabajo'=>'La calle',
-        	'cargo_centro_trabajo'=>'planificador',
-        	'direccionLaboral'=>'callao callao callao',
+        	'cargo_trabajo'=>'planificador',
+        	'direccion_laboral'=>'callao callao callao',
         	'estado_civil'=>'viudo',
         	'nro_hijos'=>20,
         	'domicilio'=>'La perla',
@@ -31,8 +31,8 @@ class PostulanteTableSeeder extends Seeder
         	'telefono_celular'=>989456123]);
 
         Postulante::create([
-        	'id_postulante'=>3,
-        	'direccion'=>'avenida prueba 123',
+        	'id_postulante'=>2,
+        	'direccion_nacimiento'=>'avenida prueba 123',
         	'pais_nacimiento'=>'Perú',
         	'lugar_nacimiento'=>'Lima',
         	'colegio_primario'=>'maranguita',
@@ -40,8 +40,8 @@ class PostulanteTableSeeder extends Seeder
         	'universidad'=>'Alcatraz',
         	'profesion'=>'Burrier',
         	'centro_trabajo'=>'La calle',
-        	'cargo_centro_trabajo'=>'planificador',
-        	'direccionLaboral'=>'callao callao callao',
+        	'cargo_trabajo'=>'planificador',
+        	'direccion_laboral'=>'callao callao callao',
         	'estado_civil'=>'viudo',
         	'nro_hijos'=>20,
         	'domicilio'=>'La perla',

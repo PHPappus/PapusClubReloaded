@@ -28,6 +28,9 @@
 		#cuota_select::-ms-expand {
     	display: none;
 		}
+		.glyphicon.glyphicon-chevron-left, .glyphicon.glyphicon-chevron-right {
+    		font-size: 25px;
+		}
 }
 
 	</style>
@@ -52,7 +55,7 @@
 			<div class="row">
 				<div class="col-sm-16 text-center">
 					<div role="tabpanel">
-						<ul class="nav nav-pills nav-tabs" role="tablist">
+						<ul class="nav nav-pills nav-justified" id="pills-edit" role="tablist">
 
 						<!--DATOS BASICOS-->
 						@if(!Session::has('update') && !$errors->basico->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any())									
@@ -124,7 +127,7 @@
 							<form method="POST" action="/Socio/{{$socio->id}}/editBasico" class="form-horizontal form-border">
 								{{method_field('PATCH')}}
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
-								<br/><br/>
+
 								<div class="col-sm-4"></div>
 								<div class=""> 
 									@if ($errors->basico->any())
@@ -135,9 +138,31 @@
 						  					@endforeach
 						  				</ul>
 						  			@endif
-								</div>								
-								<br>
-									<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+								</div>
+								@if(session('cambios-bas'))
+									<div class="alert alert-success fade in">
+											<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+											<strong>¡Éxito!</strong> {{session('cambios-bas')}}
+									</div>								
+								@endif
+																
+								<br><br/><br/>
+
+								<div class="form-group required" >
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4">
+											<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+										</div>
+
+										<div class="btn-group col-sm-4" ></div>
+										
+										<div class="btn-group">
+											<a href="#"  class="btn btn-info back" disabled><span class="glyphicon glyphicon-chevron-left"></span></a>
+										</div>
+										<div class="btn-group">
+											<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
+										</div>
+								</div>										
 								<br>								
 								<div class="form-group required">
 									<div class="col-sm-6">
@@ -185,14 +210,7 @@
 										@endif										
 										</div>	
 									</div>
-									<!---BOTON GUARDAR-->
-									<div class="btn-inline">
-										<div class="btn-group col-sm-7"></div>								
-										<div class="btn-group ">
-											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Guardar Cambios">
-										</div>
-									</div>
-									<!--FIN-->									
+								
 								</div>
 								
 								<div class="form-group required">
@@ -304,21 +322,74 @@
 								   </div><!-- /.modal-dialog -->
 								  
 								</div><!-- /.modal -->							
-						<!---->																
+								<br><br>
+								<div class="form-group required" >
+										<div class="btn-group col-sm-5" ></div>
+										
+										<div class="btn-group">
+											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Confirmar">
+										</div>
+										<div class="btn-group">
+											<a href="/Socio" class="btn btn-info">Retornar</a>
+										</div>
+								</div>														<!---->																
 							</form>
 						</div>
 
 
 										<!--DATOS NACIMIENTO-->
-						<div role="tabpanel" class="tab-pane" id="seccion2">														
+						<div role="tabpanel" class="tab-pane" id="seccion2">
+								<div class="form-group required" >
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4">
+											<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+										</div>
+
+										<div class="btn-group col-sm-4" ></div>
+										
+										<div class="btn-group">
+											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+										</div>
+										<div class="btn-group">
+											<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
+										</div>
+								</div>																				
 						</div>
 										<!--DATOS FAMILIARES-->
 						<div role="tabpanel" class="tab-pane" id="seccion3">
+								<div class="form-group required" >
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4">
+											<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+										</div>
 
+										<div class="btn-group col-sm-4" ></div>
+										
+										<div class="btn-group">
+											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+										</div>
+										<div class="btn-group">
+											<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
+										</div>
+								</div>
 						</div>
 										<!--DATOS VIVIENDA-->
 						<div role="tabpanel" class="tab-pane" id="seccion4">
+								<div class="form-group required" >
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4">
+											<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+										</div>
 
+										<div class="btn-group col-sm-4" ></div>
+										
+										<div class="btn-group">
+											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+										</div>
+										<div class="btn-group">
+											<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
+										</div>
+								</div>
 						</div>
 										<!--DATOS ESTUDIO-->
 					@if(Session::get('update')=='estudio' || $errors->estudio->any())
@@ -330,7 +401,7 @@
 							<form method="POST" action="/Socio/{{$socio->id}}/editEstudio" class="form-horizontal form-border">
 								{{method_field('PATCH')}}
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
-								<br/><br/>
+
 								<div class="col-sm-4"></div>
 								<div class=""> 
 									@if ($errors->estudio->any())
@@ -341,9 +412,29 @@
 						  					@endforeach
 						  				</ul>
 						  			@endif
+									@if(session('cambios-est'))
+										<div class="alert alert-success fade in">
+												<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+												<strong>¡Éxito!</strong> {{session('cambios-est')}}
+										</div>								
+									@endif						  			
 								</div>								
-								<br>
-									<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+								<br><br/><br/>
+								<div class="form-group required" >
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4">
+											<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+										</div>
+
+										<div class="btn-group col-sm-4" ></div>
+										
+										<div class="btn-group">
+											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+										</div>
+										<div class="btn-group">
+											<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
+										</div>
+								</div>
 								<br>
 								<div class="form-group required">
 									<div class="col-sm-6">
@@ -363,15 +454,7 @@
 										<div class="col-sm-6">
 											<input type="text" class="form-control" id="colegio_secundaria" name="colegio_secundaria" placeholder="Colegio de Secundaria" value="{{$socio->postulante->colegio_secundario}}" >
 										</div>	
-									</div>
-									<!---BOTON GUARDAR-->
-									<div class="btn-inline">
-										<div class="btn-group col-sm-7"></div>								
-										<div class="btn-group ">
-											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationEstudio" onclick="ventana()" value="Guardar Cambios">
-										</div>
-									</div>
-									<!--FIN-->									
+									</div>								
 								</div>
 								<div class="form-group">
 									<div class="col-sm-6">
@@ -426,7 +509,18 @@
 								      </div><!-- /.modal-content -->
 								   </div><!-- /.modal-dialog -->
 								  
-								</div><!-- /.modal -->																																		
+								</div><!-- /.modal -->
+								<br><br>
+								<div class="form-group required" >
+										<div class="btn-group col-sm-5" ></div>
+										
+										<div class="btn-group">
+											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationEstudio" onclick="ventana()" value="Confirmar">
+										</div>
+										<div class="btn-group">
+											<a href="/Socio" class="btn btn-info">Retornar</a>
+										</div>
+								</div>																																							
 							</form>
 						</div>
 
@@ -441,7 +535,7 @@
 							<form method="POST" action="/Socio/{{$socio->id}}/editTrabajo" class="form-horizontal form-border">
 								{{method_field('PATCH')}}
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
-								<br/><br/>
+
 								<div class="col-sm-4"></div>
 								<div class=""> 
 									@if ($errors->trabajo->any())
@@ -452,9 +546,29 @@
 						  					@endforeach
 						  				</ul>
 						  			@endif
+									@if(session('cambios-trab'))
+										<div class="alert alert-success fade in">
+												<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+												<strong>¡Éxito!</strong> {{session('cambios-trab')}}
+										</div>								
+									@endif							  			
 								</div>								
-								<br>
-									<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+								<br><br/><br/>
+								<div class="form-group required" >
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4">
+											<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+										</div>
+
+										<div class="btn-group col-sm-4" ></div>
+										
+										<div class="btn-group">
+											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+										</div>
+										<div class="btn-group">
+											<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
+										</div>
+								</div>
 								<br>
 								<div class="form-group">
 									<div class="col-sm-6">
@@ -472,17 +586,9 @@
 											<label for="" class="control-label">Cargo en Trabajo:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="cargocentrotrabajo" name="cargocentrotrabajo" placeholder="Cargo en Trabajo" value="{{$socio->postulante->cargo_centro_trabajo}}" >
+											<input type="text" class="form-control" id="cargocentrotrabajo" name="cargocentrotrabajo" placeholder="Cargo en Trabajo" value="{{$socio->postulante->cargo_trabajo}}" >
 										</div>	
-									</div>
-									<!---BOTON GUARDAR-->
-									<div class="btn-inline">
-										<div class="btn-group col-sm-7"></div>								
-										<div class="btn-group ">
-											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationTrabajo" onclick="ventana()" value="Guardar Cambios">
-										</div>
-									</div>
-									<!--FIN-->										
+									</div>									
 								</div>
 								<div class="form-group">
 									<div class="col-sm-6">
@@ -490,7 +596,7 @@
 											<label for="" class="control-label">Direccion Laboral:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="direccionlaboral" name="direccionlaboral" placeholder="Direccion" value="{{$socio->postulante->direccionLaboral}}" >
+											<input type="text" class="form-control" id="direccionlaboral" name="direccionlaboral" placeholder="Direccion" value="{{$socio->postulante->direccion_laboral}}" >
 										</div>	
 									</div>
 								</div>
@@ -525,9 +631,19 @@
 								         </div>
 								         
 								      </div><!-- /.modal-content -->
-								   </div><!-- /.modal-dialog -->
-								  
-								</div><!-- /.modal -->																																				
+								   </div><!-- /.modal-dialog -->								  
+								</div><!-- /.modal -->
+								<br><br>
+								<div class="form-group required" >
+										<div class="btn-group col-sm-5" ></div>
+										
+										<div class="btn-group">
+											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationTrabajo" onclick="ventana()" value="Confirmar">
+										</div>
+										<div class="btn-group">
+											<a href="/Socio" class="btn btn-info">Retornar</a>
+										</div>
+								</div>																																								
 							</form>
 						</div>
 
@@ -541,7 +657,7 @@
 							<form method="POST" action="/Socio/{{$socio->id}}/editContacto" class="form-horizontal form-border">
 								{{method_field('PATCH')}}
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
-								<br/><br/>
+
 								<div class="col-sm-4"></div>
 								<div class=""> 
 									@if ($errors->contacto->any())
@@ -552,9 +668,29 @@
 						  					@endforeach
 						  				</ul>
 						  			@endif
+									@if(session('cambios-cont'))
+										<div class="alert alert-success fade in">
+												<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+												<strong>¡Éxito!</strong> {{session('cambios-cont')}}
+										</div>								
+									@endif							  			
 								</div>								
-								<br>
-									<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+								<br><br/><br/>
+								<div class="form-group required" >
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4">
+											<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+										</div>
+
+										<div class="btn-group col-sm-4" ></div>
+										
+										<div class="btn-group">
+											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+										</div>
+										<div class="btn-group">
+											<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
+										</div>
+								</div>
 								<br>
 								<div class="form-group required">
 									<div class="col-sm-6">
@@ -574,15 +710,7 @@
 										<div class="col-sm-6">
 											<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="celular" name="telefono_celular" placeholder="Celular" value="{{$socio->postulante->telefono_celular}}" >
 										</div>	
-									</div>
-									<!---BOTON GUARDAR-->
-									<div class="btn-inline">
-										<div class="btn-group col-sm-7"></div>								
-										<div class="btn-group ">
-											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationContacto" onclick="ventana()" value="Guardar Cambios">
-										</div>
-									</div>
-									<!--FIN-->										
+									</div>									
 								</div>
 								<div class="form-group required">
 									<div class="col-sm-6">
@@ -627,13 +755,38 @@
 								      </div><!-- /.modal-content -->
 								   </div><!-- /.modal-dialog -->
 								  
-								</div><!-- /.modal -->																																				
+								</div><!-- /.modal -->
+								<br><br>
+								<div class="form-group required" >
+										<div class="btn-group col-sm-5" ></div>
+										
+										<div class="btn-group">
+											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationContacto" onclick="ventana()" value="Confirmar">
+										</div>
+										<div class="btn-group">
+											<a href="/Socio" class="btn btn-info">Retornar</a>
+										</div>
+								</div>																																							
 							</form>						
 						</div>
 										<!--DATOS DE INVITADOS-->
 						<div role="tabpanel" class="tab-pane" id="seccion8">
 							<form action="" class="form-horizontal form-border">
-								<br/><br/>
+								<br/><br/><br>
+								<div class="form-group required" >
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										
+										<div class="btn-group">
+											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+										</div>
+										<div class="btn-group">
+											<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
+										</div>
+								</div>								
 									<div class="table-responsive">
 										<div class="container">
 											<table class="table table-bordered table-hover text-center display" id="example">
@@ -692,7 +845,29 @@
 					@endif										<!--DATOS DE MEMBRESIA -->
 							<form method="POST" action="/Socio/{{$socio->id}}/editMembresia" class="form-horizontal form-border">
 								{{method_field('PATCH')}}
-								<br><br>
+
+								@if(session('cambios-mem'))
+									<div class="alert alert-success fade in">
+											<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+											<strong>¡Éxito!</strong> {{session('cambios-mem')}}
+									</div>								
+								@endif
+								<br><br><br>									
+								<div class="form-group required" >
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										
+										
+										<div class="btn-group">
+											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+										</div>
+										<div class="btn-group">
+											<a href="#" class="btn btn-info cont" disabled><span class="glyphicon glyphicon-chevron-right"></span></a>
+										</div>
+								</div>								
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								<div class="form-group">
 									<div class="col-sm-6">
@@ -732,15 +907,7 @@
 								    		@endforeach												
 											</select>											
 										</div>										
-									</div>
-									<!---BOTON GUARDAR-->
-									<div class="btn-inline">
-										<div class="btn-group col-sm-7"></div>								
-										<div class="btn-group ">
-											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationMembresia" onclick="ventana()" value="Guardar Cambios">
-										</div>
-									</div>
-									<!--FIN-->									
+									</div>									
 								</div>
 								@if($socio->estado()==$socio->vigente())
 								<div class="form-group">								
@@ -852,7 +1019,18 @@
 								      </div><!-- /.modal-content -->
 								   </div><!-- /.modal-dialog -->
 								  
-								</div><!-- /.modal -->																																		
+								</div><!-- /.modal -->	
+								<br><br>
+								<div class="form-group required" >
+										<div class="btn-group col-sm-5" ></div>
+										
+										<div class="btn-group">
+											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationMembresia" onclick="ventana()" value="Confirmar">
+										</div>
+										<div class="btn-group">
+											<a href="/Socio" class="btn btn-info">Retornar</a>
+										</div>
+								</div>																																						
 							</form>
 						</div>
 						
@@ -860,11 +1038,6 @@
 				</div>
 			</div> 	
 			<br/><br/>
-
-				<div class="form-group">
-					<div class="col-sm-5"> </div>
-						<a class="btn btn-info" href="/Socio/" title="Editar" >Regresar <i class="glyphicon glyphicon-arrow-left"></i></a>			
-				</div>
 		</div>
 
 	
@@ -893,6 +1066,22 @@
 	<script>
     $(document).ready(function () {
         $('.dropdown-toggle').dropdown();
+
+
+        $('.cont').click(function(){
+
+  		var nextId = $(this).parents('.tab-pane').next().attr("id");
+  		$('[href=#'+nextId+']').tab('show');
+
+		})
+
+		$('.back').click(function(){
+
+  		var backId = $(this).parents('.tab-pane').prev().attr("id");
+  		$('[href=#'+backId+']').tab('show');
+
+		})
+
     });
 	</script>	
 
@@ -974,6 +1163,7 @@
 			document.getElementsByTagName('header')[0].style.zIndex = 3;
 		}
   	</script>
+
 	
 
 

@@ -56,26 +56,26 @@
 						</tr>
 					</thead>
 					<tbody>
-							@foreach($personas as $persona)						
+							@foreach($postulantes as $postulante)						
 						    	<tr>
-						    		@if($persona->nacionalidad =="peruano")
-						    			<td>{{ $persona->doc_identidad }}</td>
+						    		@if($postulante->persona->nacionalidad =="peruano")
+						    			<td>{{ $postulante->persona->doc_identidad }}</td>
 						    		
 						    		@else
-						    			<td>{{ $persona->carnet_extranjeria }}</td>
+						    			<td>{{ $postulante->persona->carnet_extranjeria }}</td>
 						    		@endif
-									<td>{{ $persona->nombre }}</td>
-									<td>{{ $persona->ap_paterno }}</td>
-			 						<td>{{ $persona->ap_materno }}</td>
-			 						<td>{{ $persona->nacionalidad }}</td>
+									<td>{{ $postulante->persona->nombre }}</td>
+									<td>{{ $postulante->persona->ap_paterno }}</td>
+			 						<td>{{ $postulante->persona->ap_materno }}</td>
+			 						<td>{{ $postulante->persona->nacionalidad }}</td>
 									<td>
-							        <a class="btn btn-info" href="{{url('/postulante/'.$persona->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+							        <a class="btn btn-info" href="{{url('/postulante/'.$postulante->id_postulante.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 							        </td>
 									<td>
-							        <a class="btn btn-info" href="{{url('/postulante/'.$persona->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+							        <a class="btn btn-info" href="{{url('/postulante/'.$postulante->id_postulante.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 							        </td>
 							        <td>
-							        <a class="btn btn-info"  title="Eliminar" data-href="{{url('/postulante/'.$persona->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a> 
+							        <a class="btn btn-info"  title="Eliminar" data-href="{{url('/postulante/'.$postulante->id_postulante.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a> 
 							        </td>
 							            
 								</tr>
