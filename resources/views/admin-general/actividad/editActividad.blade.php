@@ -18,7 +18,7 @@
 	
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-registros')
 @section('content')
 
 <!---Cuerpo -->

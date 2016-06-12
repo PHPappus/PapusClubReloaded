@@ -4,6 +4,7 @@
 	<title>REGISTRAR SEDE</title>
 	<meta charset="UTF-8">
 
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	{!!Html::style('/css/jquery.bxslider.css')!!}
 	{!!Html::style('/css/font-awesome.css')!!}
@@ -94,38 +95,52 @@
 			    	</div>
 			  	</div>
 			  	
-			  	<div class="form-group required">
-			    	<label for="departamentoInput" class="col-sm-4 control-label">Departamento</label>
-			    	<div class="col-sm-5">
-			      		{!!Form::select('departamento',$departamentos,null,['id'=>'departamento'])!!}
-			    	</div>
-			  	</div>
+			  	
 
-			  	<div class="form-group required">
-			    	<label for="provinciaInput" class="col-sm-4 control-label">Provincia</label>
-			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="provinciaInput" name="provincia" placeholder="Provincia" value="{{old('provincia')}}">
-			    	</div>
-			  	</div>
-
-			  	<div class="form-group required">
-			    	<label for="distritoInput" class="col-sm-4 control-label">Distrito</label>
-			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="distritoInput" name="distrito" placeholder="Distrito" value="{{old('distrito')}}">
-			    	</div>
-			  	</div>
-
+			  	
+			  	<!-- DEPARTAMENTO - PROVINCIA - DISTRITO -->
+			  	  	<div class="form-group">
+			  	  		<div class="form-group required">
+			    			<label for="departamentoInput" class="col-sm-4 control-label">Departamento</label>
+			    			<div class="col-sm-5">
+			      				<select form="form_id" class="form-control" id="departamento" name="departamento" style="max-width: 150px " data-link="{{ url('/provincias') }}">
+										<option value="-1" default>--Departamento--</option>
+											@foreach ($departamentos as $depa)      
+												<option value="{{$depa->id}}">{{$depa->nombre}}</option>
+											@endforeach
+								</select>
+			    			</div>
+			  			</div>
+			  			<!-- <div class="form-group required">
+			    			<label for="provinciaInput" class="col-sm-4 control-label">Provincia</label>
+			    			<div class="col-sm-5">
+			      				<select form="form_id" class="form-control" id="provincia" name="provincia" style="max-width: 150px " data-link="{{ url('/distritos') }}" disabled="true">
+									<option  value="-1" default disab>--Provincia--</option>
+								</select>
+			    			</div>
+			  			</div>
+						<div class="form-group required">
+			    			<label for="distritoInput" class="col-sm-4 control-label">Distrito</label>
+			    			<div class="col-sm-5">
+			      				<select form="form_id" class="form-control" id="distrito" name="distrito" style="max-width: 150px " disabled="true">
+									<option  value="-1" default>--Distrito--</option>
+								</select>
+			    			</div>
+			  			</div> -->
+					</div>
+				
+			  	
 			  	<div class="form-group required">
 			    	<label for="direccionInput" class="col-sm-4 control-label">Dirección</label>
 			    	<div class="col-sm-5">
-			      		<textarea   type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"  class="form-control" id="direccionInput" name="direccion" placeholder="Dirección" value="{{old('direccion')}}"></textarea> 
+			      		<textarea   type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"  class="form-control" id="direccionInput" name="direccion" placeholder="Dirección" value="{{old('direccion')}}" style="resize: none"></textarea> 
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group ">
 			    	<label for="referenciaInput" class="col-sm-4 control-label">Referencia </label>
 			    	<div class="col-sm-5">
-			      		<textarea  type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="referenciaInput" name="referencia" placeholder="Referencia" value="{{old('referencia')}}"></textarea> 
+			      		<textarea  type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="referenciaInput" name="referencia" placeholder="Referencia" value="{{old('referencia')}}" style="resize: none"></textarea> 
 			    	</div>
 			  	</div>
 
@@ -151,21 +166,117 @@
 	</div>		
 @stop
 <!-- JQuery -->
-	
-	{!!Html::script('js/jquery-1.11.3.min.js')!!}
+	<script src="../js/jquery-3.0.0.js"></script> 
 	{!!Html::script('js/bootstrap.js')!!}
-	{!!Html::script('js/jQuery-2.1.4.min.js')!!}
-	{!!Html::script('js/dropdown.js')!!}
-	<script src="/js/jquery-1.11.3.min.js"></script>
+	{!!Html::script('js/jquery.bxslider.min.js')!!}
+	{!!Html::script('js/MisScripts.js')!!}
 	<!-- Bootstrap -->
-	<script type="text/javascript" src="/js/bootstrap.js"></script>
 	<!-- BXSlider -->
-	<script src="/js/jquery.bxslider.min.js"></script>
 	<!-- Mis Scripts -->
-	<script src="/js/MisScripts.js"></script>
+	
+	<script>$.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')} })</script>
+
+
+	<script type="text/javascript">
+
+	    
+		$(document).ready(function(){
+
+			$("#departamento").change(function(event){
+				document.getElementById("provincia").disabled = false;
+				document.getElementById("distrito").disabled = true;
+			    $("#distrito").empty();
+			    $("#distrito").append("<option  value='-1' default>--Distrito--</option>");
+				var url = $(this).attr("data-link");
+				$departamento_id=event.target.value;
+							//alert($departamento_id);
+				alert(url);
+				$.ajax({
+			        url: "provincias",
+			        type:"POST",
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { id: $departamento_id},
+			        success:function(data){
+			        	$("#provincia").empty();
+			        	$("#provincia").append("<option  value='-1' default>--Provincia--</option>");
+			        	$.each(data,function(index,elememt){
+			        		//alert(element.nombre);
+			        		$("#provincia").append("<option value='"+elememt.id+"'>"+elememt.nombre+"</option>");
+			        	});
+			            //alert(data);
+			        },error:function(){ 
+			            alert("error!!!!");
+			        }
+			    }); //end of ajax
+			});
+
+
+			$("#provincia").change(function(event){
+				document.getElementById("distrito").disabled = false;
+				var url = $(this).attr("data-link");
+				$provincia_id=event.target.value;
+							//alert($provincia_id);
+				//alert(url);
+				//alert($provincia_id);
+				$.ajax({
+			        url: "distritos",
+			        type:"POST",
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { id: $provincia_id},
+			        success:function(data){
+			        	$("#distrito").empty();
+			        	$("#distrito").append("<option  value='-1' default>--Distrito--</option>");
+			        	$.each(data,function(index,elememt){
+
+							//alert(elememt.id);
+			        		//alert(element.nombre);
+			        		$("#distrito").append("<option value='"+elememt.id+"'>"+elememt.nombre+"</option>");
+			        	});
+			            //alert(data);
+			        },error:function(){ 
+			            alert("error!!!!");
+			        }
+			    }); //end of ajax
+			});
+
+
+			$("#try").click(function(){
+			    var url = $(this).attr("data-link");
+			    //alert(url);
+			    $.ajax({
+			        url: "test",
+			        type:"POST",
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { testdata : 'testdatacontent' },
+			        success:function(data){
+			            alert(data);
+			        },error:function(){ 
+			            alert("error!!!!");
+			        }
+			    }); //end of ajax
+			});
 
 
 
-
+		});
+	</script>
 </body>
 </html>

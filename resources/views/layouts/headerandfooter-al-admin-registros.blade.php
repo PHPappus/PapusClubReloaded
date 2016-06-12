@@ -88,17 +88,10 @@
 							</ul>					
 						</li>
 						<!-- Opción TRAMITES -->
-						<li><a href="#">AMBIENTE<span class="despliegue">▼</span></a>
-							<ul>
-								<li><a href="#" title="ir_tramites" target="_self">VER TRÁMITES<span class="despliegue">▼</span></a>
-									<ul>
-										<!-- <li><a href="#" title="Evento 1-1" target="_self">Evento 1.1</a></li> -->
-										<!-- <li><a href="#" title="Evento 1-2" target="_self">Evento 1.2</a></li> -->
-										<!-- <li><a href="#" title="Evento 1-3" target="_self">Evento 1.3</a></li> -->
-									</ul>
-								</li>
-							</ul>
+						<li><a href="{!!URL::to('/ambiente/index')!!}">AMBIENTE<span class="despliegue"></span></a>
+							
 						</li>
+
 						<!-- Opción MANTENIMIENTO -->
 						<li><a href="#">BUNGALOW<!-- <span class="despliegue">▼</span> --></a>
 							<ul>
@@ -107,16 +100,9 @@
 							</ul>
 						</li>
 												<!-- Opción Eventos -->
-						<li><a href="#">ACTIVIDAD<!-- <span class="despliegue">▼</span> --></a>
-							<!-- <ul>
-								<li><a href="#" title="Evento 1" target="_self">VER DETALLES<span class="despliegue">▼</span></a>
-									<ul>
-										<li><a href="#" title="Evento 1-1" target="_self">Evento 1.1</a></li>
-										<li><a href="#" title="Evento 1-2" target="_self">Evento 1.2</a></li>
-									</ul>
-								</li>
-							</ul> -->
-						</li>	
+						<li><a href="{!!URL::to('/actividad/index')!!}">ACTIVIDAD<span class="despliegue"></span></a>
+							
+						</li>
 					</ul>
 				</nav>
 				<nav class="menu" id="menu2">

@@ -3,14 +3,14 @@
 namespace papusclub\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use papusclub\Http\Controllers\Controller;
 use papusclub\Http\Requests;
 use papusclub\Models\Sede;
 use papusclub\Models\Servicio;
-use papusclub\Models\Departamento;
 use papusclub\Http\Requests\StoreSedeRequest;
 use papusclub\Http\Requests\EditSedeRequest;
-
+use papusclub\Models\Departamento;
+use papusclub\Models\Provincia;
 
 class SedesController extends Controller
 {
@@ -25,7 +25,9 @@ class SedesController extends Controller
     public function create()
     {
         //$mensaje = null;
-        $departamentos=Departamento::lists('nombre','id');
+        /*$departamentos=Departamento::lists('nombre','id');
+        */
+        $departamentos=Departamento::all();
         return view('admin-general.sede.newSede',compact('departamentos'));
     }
 
@@ -38,6 +40,8 @@ class SedesController extends Controller
         $sede = new Sede();
         $sede->nombre = $input['nombre'];
         $sede->telefono = $input['telefono'];
+        echo ($input['departamento']);
+        return exit;
         $sede->departamento = $input['departamento'];
         $sede->provincia = $input['provincia'];
         $sede->distrito = $input['distrito'];
@@ -67,6 +71,7 @@ class SedesController extends Controller
 
         $sede->nombre = $input['nombre'];
         $sede->telefono = $input['telefono'];
+
         $sede->departamento = $input['departamento'];
         $sede->provincia = $input['provincia'];
         $sede->distrito = $input['distrito'];
@@ -108,5 +113,14 @@ class SedesController extends Controller
         $servicios = Servicio::all();        
         return view('admin-general.sede.serviciosdesede', compact('sede', 'servicios'));
     }
-    
+
+
+    //Para el desplegable de provincias-distrito-departamento
+    public function getProvincias(){
+        //if($request->ajax()){
+            $dep_id=Input::get('dep_id');
+            $provincias=Provincia::provincias($dep_id);
+            return Response::json($provincias);
+        //}
+    }
 }

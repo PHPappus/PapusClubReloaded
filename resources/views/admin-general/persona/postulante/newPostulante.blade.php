@@ -483,7 +483,7 @@
 				var url = $(this).attr("data-link");
 				$departamento_id=event.target.value;
 							//alert($departamento_id);
-				//alert(url);
+				alert(url);
 				$.ajax({
 			        url: "provincias",
 			        type:"POST",

@@ -81,10 +81,7 @@
 							</ul>
 						</li>
 						<li><a href="{!!URL::to('/ambiente/index')!!}">AMBIENTE<span class="despliegue">▼</span></a>
-							<ul>
-								<li><a href="{!!URL::to('/reservar-ambiente/reservar-bungalow')!!}" title="ir a reserva de Bungalow" target="_self">RESERVAR BUNGALOW</a></li>
-								<li><a href="{!!URL::to('/reservar-ambiente/reservar-otros-ambientes')!!}" title="ir a reserva de Otros Ambientes" target="_self">RESERVAR OTRO AMBIENTES</a></li>
-							</ul>
+							
 						</li>
 
 						<li><a href="{!!URL::to('/actividad/index')!!}">ACTIVIDAD<span class="despliegue">▼</span></a>
