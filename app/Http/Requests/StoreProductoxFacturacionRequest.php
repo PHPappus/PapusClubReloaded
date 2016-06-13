@@ -25,8 +25,8 @@ class StoreProductoxFacturacionRequest extends Request
     {
          return [            
             'producto_id'   =>  'required|integer',
-            'facturacion_id'   =>  'required|integer',
-            'cantidad'   =>  'required|integer'
+            'facturacion_id'   =>  'required|integer',            
+            'cantidad'   =>  'required|integer|min:1|max:2147483647'
         ];
     }
 }
