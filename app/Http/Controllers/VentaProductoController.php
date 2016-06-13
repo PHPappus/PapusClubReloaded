@@ -31,8 +31,8 @@ class VentaProductoController extends Controller
         $estados = Configuracion::where('grupo','=','7')->get();                                
         $tipo_pagos = Configuracion::where('grupo','=','8')->get();
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
-        $socios = Socio::all();
-    	return view('admin-general.venta-producto.newVentaProducto', compact('factura','tipo_pagos','tipo_comprobantes','estados','socios'));
+        $personas = Persona::all();
+    	return view('admin-general.venta-producto.newVentaProducto', compact('factura','tipo_pagos','tipo_comprobantes','estados','personas'));
     }
     
     public function store(StoreFacturacionRequest $request)
@@ -57,8 +57,9 @@ class VentaProductoController extends Controller
     public function createVentaProducto($id)
     {       
         $factura = Facturacion::find($id);
+        $productos = Producto::all();
 
-        return view('admin-general.venta-producto.add', compact('factura'));
+        return view('admin-general.venta-producto.add', compact('factura','productos'));
     }      
 
     public function storeVentaProducto(StoreProductoxFacturacionRequest $request)

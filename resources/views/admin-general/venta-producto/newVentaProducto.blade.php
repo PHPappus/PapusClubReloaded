@@ -59,9 +59,9 @@
 				<div class="form-group required">
 			    	<label for="persona_id" class="col-sm-4 control-label">ID Persona</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="persona_id" name="persona_id" placeholder="ID de la Persona" value="{{old('nombre')}}">
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="persona_id" name="persona_id" placeholder="ID de la Persona" value="{{old('persona_id')}}">
 			    	</div>
-			    	<a class="btn btn-info" name="buscarPersona" href="#"  title="Buscar Persona" data-toggle="modal" data-target="#modalBuscarPersona"><i name="buscarPersona" class="glyphicon glyphicon-search"></i></a>
+			    	<a class="btn btn-info" name="buscarPersona" href="#"  title="Buscar Persona" data-toggle="modal" data-target="#modalBuscar"><i name="buscarPersona" class="glyphicon glyphicon-search"></i></a>
 			  	</div>			  	
 
 			  	<div class="form-group required">
@@ -137,18 +137,24 @@
 	<script src="/js/MisScripts.js"></script>
 
 	<script src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
-	<script>
+	<script>		
 		$(document).ready(function() {
 		   $('#example').DataTable( {
 		       "language": {
 		           "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-		       },
-		       "dom": '<"search" f>t<"bottom" ip>'
+		       },		       
+		       "dom": '<"pull-left"f><"pull-right"l>tip',
+		       "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Todos"]]
 		  	});
-  		});
+  		});		
+  		
+		function getPersona(){								
+								document.getElementById('persona_id').value =  $('#example input:radio:checked').val();
+							}
 	</script>
+
 <!-- Modal -->
-	<div id="modalBuscarPersona" class="modal fade" role="dialog">
+	<div id="modalBuscar" class="modal fade" role="dialog">
 	  <div class="modal-dialog modal-lg">
 
 	    <!-- Modal content-->	    
@@ -160,45 +166,56 @@
 			</div>
 
 			<div class="modal-body">	      	  
-				<div class="container">
-					<br>
+				<div class="container">					
 					<div class="table-responsive">
-						<div class="container">
-							<table class="table table-bordered table-hover text-center display" id="example">
-								<thead class="active">
-									<th><div align=center>CARNET</div> </th>
-									<th><div align=center>MEMBRESÍA</div></th>
+						<div class="container" id="TableContainer">
+							<div class="text-left">
+					  			<font color="black"> 
+					  				Ingresar alguno de los siguientes campos:
+					  				<ul>
+					  				<li>DNI</li>
+					  				<li>Apellido Paterno</li>
+					  				<li>Apellido Materno</li>
+					  				<li>Nombre</li>
+					  				</ul>
+					  			</font>					  			
+					  		</div>
+					  		<br>
+							<table class="table table-bordered table-hover text-center display" id="example" width="100%">
+								<thead class="active" data-sortable="true">									
+									<th><div align=center>DNI</div> </th>
+									<th><div align=center>NOMBRES</div></th>
 									<th><div align=center>APELLIDO PATERNO</div></th>
 									<th><div align=center>APELLIDO MATERNO</div></th>
-									<th><div align=center>NOMBRES</div></th>
-									<th><div align=center>ESTADO</div></th>		
+									<th><div align=center>SELECCIONAR</div></th>
 								</thead>
 								<tbody>
-									@foreach($socios as $socio)						
-										<tr>
-											<td>{{$socio->carnet_actual()->nro_carnet}}</td>
-											<td>{{$socio->membresia->descripcion}}</td>
-											<td>{{$socio->postulante->persona->ap_paterno}}</td>
-											<td>{{$socio->postulante->persona->ap_materno}}</td>
-											<td>{{$socio->postulante->persona->nombre}}</td>
-											<td>{{$socio->estado()}}</td>											
+									
+									@foreach($personas as $persona)						
+										<tr>											
+											<td>{{$persona->doc_identidad}}</td>
+											<td>{{$persona->nombre}}</td>		
+											<td>{{$persona->ap_paterno}}</td>
+											<td>{{$persona->ap_materno}}</td>
+											<td>
+												<div class="radio">
+  													<label><input type="radio" name="optradio" value="{{$persona->id}}"></label>
+												</div>
+											</td>
 							            </tr>				            		
 									@endforeach
+									
 								</tbody>
-							</table>						
-							<br>
-							<br>
+							</table>																		
 						</div>								
 					</div>		
 				</div>
-			</div>			
-			<br>
-			<br>			    
+			</div>								
 			<div class="modal-footer">	                    
 				<div class="btn-inline">
-					<div class="btn-group col-sm-4"></div>					
+					<div class="btn-group col-sm-4"></div>														
 					<div class="btn-group ">
-						<input class="btn btn-primary" value="Confirmar">
+						<input class="btn btn-primary" onclick="getPersona()" data-dismiss="modal" value="Confirmar">					
 					</div>
 					<div class="btn-group">
 						<a  data-dismiss="modal" class="btn btn-info">Cancelar</a>
@@ -206,15 +223,26 @@
 				</div>
 			</div>
 		</div>
-
 	  </div>
 	</div>
 	<style type="text/css">
     @media screen and (min-width: 992px) {
-        #modalBuscarPersona .modal-lg {
-          width: 98%; /* New width for large modal */
-        }
+        #modalBuscar .modal-lg {
+          width: 90%; /* New width for large modal */         
+        }                       
+
+		#TableContainer.container {
+	        width: 80%;
+	    }        
     }
-</style>
+	</style>
 </body>
+<!--
+	<a id="{{$persona->id}}" href="#" class="btn btn-default"><i class="glyphicon glyphicon-unchecked"></i></a>
+						<script>
+							$('#{{$persona->id}}').click(function(){
+							    $(this).find('i').toggleClass('glyphicon-unchecked').toggleClass('glyphicon-check');
+							});
+						</script>
+-->
 </html>
