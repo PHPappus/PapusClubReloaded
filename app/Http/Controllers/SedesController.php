@@ -27,7 +27,7 @@ class SedesController extends Controller
         //$mensaje = null;
         /*$departamentos=Departamento::lists('nombre','id');
         */
-        $departamentos=Departamento::all();
+        $departamentos=Departamento::select('id','nombre')->get();
         return view('admin-general.sede.newSede',compact('departamentos'));
     }
 
@@ -39,9 +39,7 @@ class SedesController extends Controller
 
         $sede = new Sede();
         $sede->nombre = $input['nombre'];
-        $sede->telefono = $input['telefono'];
-        echo ($input['departamento']);
-        return exit;
+        $sede->telefono = $input['telefono'];        
         $sede->departamento = $input['departamento'];
         $sede->provincia = $input['provincia'];
         $sede->distrito = $input['distrito'];
@@ -92,6 +90,7 @@ class SedesController extends Controller
         $ambientes = $sede->ambientes;
         
         if($sede->ambientes->count() || $sede->actividades->count()) {
+            return redirect('sedes/index')->with('delete', 'No se puede eliminar esta sede, posee dependencias.');
             
         }
         else

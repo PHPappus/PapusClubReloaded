@@ -123,7 +123,7 @@ class AmbienteController extends Controller
         $actividades = $ambiente->actividades;
 
         if($ambiente->actividades->count()){
-            
+            return redirect('ambiente/index')->with('delete', 'No se puede eliminar este ambiente, posee dependencias.');
         }
         else
             $ambiente->delete();

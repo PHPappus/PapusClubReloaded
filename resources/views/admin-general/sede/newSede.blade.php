@@ -111,7 +111,7 @@
 								</select>
 			    			</div>
 			  			</div>
-			  			<!-- <div class="form-group required">
+			  			<div class="form-group required">
 			    			<label for="provinciaInput" class="col-sm-4 control-label">Provincia</label>
 			    			<div class="col-sm-5">
 			      				<select form="form_id" class="form-control" id="provincia" name="provincia" style="max-width: 150px " data-link="{{ url('/distritos') }}" disabled="true">
@@ -126,7 +126,7 @@
 									<option  value="-1" default>--Distrito--</option>
 								</select>
 			    			</div>
-			  			</div> -->
+			  			</div>
 					</div>
 				
 			  	
@@ -177,7 +177,7 @@
 	<script>$.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')} })</script>
 
 
-	<script type="text/javascript">
+	 <script type="text/javascript">
 
 	    
 		$(document).ready(function(){
@@ -274,9 +274,11 @@
 			    }); //end of ajax
 			});
 
-
-
 		});
+
+
 	</script>
+
+	
 </body>
 </html>
