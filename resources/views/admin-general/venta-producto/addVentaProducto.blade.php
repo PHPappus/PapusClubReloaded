@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>MODIFICAR VENTA</title>
+	<title>REGISTRAR VENTA</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +27,7 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>EDITAR VENTA</strong>
+					<strong>REGISTRAR VENTA</strong>
 			</div>		
 		</div>
 		<div class="container">
@@ -91,6 +91,8 @@
 							<th><div align=center>PRECIO</div></th>
 							<th><div align=center>CANTIDAD</div></th>
 							<th><div align=center>SUBTOTAL</div></th>
+							<th><div align=center>EDITAR</div></th>
+							<th><div align=center>ELIMINAR</div></th>
 						</thead>											
 						<tbody>
 						@foreach($factura->productoxfacturacion as $producto)
@@ -98,7 +100,11 @@
 								<td>{{ $producto->producto->nombre}}</td>
 								<td>{{ $producto->producto->precioproducto->first()['precio']}}</td>
 								<td>{{ $producto->cantidad}}</td>			
-								<td>{{ $producto->subtotal }}</td>								
+								<td>{{ $producto->subtotal }}</td>
+								<td><a class="btn btn-info" href="{{url('/venta-producto/'.$producto->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a></td>
+								<td>
+					              <a class="btn btn-info"  title="Eliminar" data-href="{{url('/venta-producto/'.$producto->id.'/deleteProducto')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
+					            </td>
 				            </tr>
 						@endforeach
 						<tr>
@@ -125,10 +131,15 @@
 			  	</br>
 				<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
-					
-					<div class="btn-group ">
-						<a class="btn btn-primary" href="/venta-producto/index">Confirmar</a>
-					</div>
+					@if (count($factura->productoxfacturacion)>0)						
+						<div class="btn-group ">
+							<a class="btn btn-primary" href="/venta-producto/index">Confirmar</a>
+						</div>						
+					@else
+						<div class="btn-group ">
+							<a class="btn btn-primary" disabled >Confirmar</a>
+						</div>
+					@endif
 					<div class="btn-group">
 						<a href="{{url('/venta-producto/'.$factura->id.'/delete')}}" class="btn btn-info">Cancelar</a>
 					</div>
@@ -146,5 +157,35 @@
 	{!!Html::script('../js/bootstrap.js')!!}
 	{!!Html::script('../js/jquery.bxslider.min.js')!!}
 	{!!Html::script('../js/MisScripts.js')!!}
+
 </body>
+	<!-- Modal -->
+	<div id="modalEliminar" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Confirmar</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>¿Está seguro que desea eliminar el producto?</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-danger btn-ok">Confirmar</a>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
+	<!-- Modal Event-->
+	<script>
+		$('#modalEliminar').on('show.bs.modal', function(e) {
+   			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+		});
+	</script>
+
 </html>

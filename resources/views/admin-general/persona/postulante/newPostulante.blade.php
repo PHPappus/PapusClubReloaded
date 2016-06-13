@@ -36,6 +36,8 @@
 <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>  -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&libraries=places"></script> 
 
+</head>
+<body>
 
 @extends('layouts.headerandfooter-al-admin')
 @section('content')
@@ -53,7 +55,20 @@
 		<div class="container">
 			<form method="POST" action="/postulante/new/postulante" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
-		
+
+				<div class="col-sm-4"></div>
+				<div class="">
+		  			@if ($errors->any())
+		  				<ul class="alert alert-danger fade in">
+		  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  					@foreach ($errors->all() as $error)
+		  						<li>{{$error}}</li>
+		  					@endforeach
+		  				</ul>
+		  			@endif
+			  		
+				</div>
+
 				<div class="row">
 					<div class="col-sm-12 text-center">
 						<div role="tabpanel">
@@ -71,25 +86,38 @@
 						<div class="tab-content">
 							<div role="tabpanel" class="tab-pane active" id="seccion1">
 								<form action="" class="form-horizontal form-border">
-									<br><br>
-									<div class="form-group">
+									<br>
+										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+									<br>
+									<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Nombre:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" style="max-width: 250px" required>
+												<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" style="max-width: 250px" value="{{old('nombre')}}" >
 											</div>	
 										</div>
 									</div>
 
-									<div class="form-group">
+									<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Apellido Paterno:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="ap_paterno" name="ap_paterno" placeholder="Apellido Paterno" style="max-width: 250px" required>
+												<input type="text" class="form-control" id="ap_paterno" name="ap_paterno" placeholder="Apellido Paterno" style="max-width: 250px" value="{{old('ap_paterno')}}">
+											</div>	
+										</div>
+									</div>
+
+									<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Apellido Materno:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="ap_materno" name="ap_materno" placeholder="Apellido Materno" style="max-width: 250px" value="{{old('ap_materno')}}">
 											</div>	
 										</div>
 									</div>
@@ -97,14 +125,18 @@
 									<div class="form-group">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Apellido Materno:</label>
+												<label for="" class="control-label">Sexo:</label>
 											</div>
-											<div class="col-sm-6">
-												<input type="text" class="form-control" id="ap_materno" name="ap_materno" placeholder="Apellido Materno" style="max-width: 250px" required>
+											<div class="col-sm-6 text-left" style="float: right">											
+													<div>
+														{{ Form::radio('sexo', 'masculino','selected') }}Masculino
+													</div>
+													<div>
+														{{ Form::radio('sexo', 'femenino'   ) }}Femenino
+													</div>
 											</div>	
 										</div>
 									</div>
-
 									
 
 									<div class="form-group">
@@ -113,9 +145,10 @@
 												<label for="" class="control-label">Nacionalidad:</label>
 											</div>
 											<div class="col-sm-6 text-left" >
-													<input onclick="document.getElementById('doc_identidad').disabled = false; document.getElementById('carnet_extranjeria').disabled = true; document.getElementById('carnet_extranjeria').value = '';" type="radio" name="nacionalidad" value="Peruano" checked> Peruano
-													<input onclick="document.getElementById('carnet_extranjeria').disabled = false; document.getElementById('doc_identidad').disabled = true; document.getElementById('doc_identidad').value = '';" type="radio" name="nacionalidad" value="Extranjero" style="margin-left: 50px;"> Extranjero	
-											</div>	
+													<input checked onchange="document.getElementById('doc_identidad').disabled = false; document.getElementById('carnet_extranjeria').disabled = true;" onclick=" document.getElementById('carnet_extranjeria').value = '';" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : '' }}/>Peruano&nbsp&nbsp&nbsp
+													<input onchange="document.getElementById('carnet_extranjeria').disabled = false; document.getElementById('doc_identidad').disabled = true;" onclick=" document.getElementById('doc_identidad').value = ''; " type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "extranjero") ? 'checked="true"' : '' }}/>Extranjero
+
+											</div>
 										</div>
 									</div>
 
@@ -126,7 +159,7 @@
 											</div>
 											<div class="col-sm-6">
 											<!--Se hace validacion para que acepte solo numeros pero que sea un texto-->
-												<input  type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="form-control" id="doc_identidad" name="doc_identidad" placeholder="DNI" maxlength="8" style="max-width: 250px" required>
+												<input  type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="doc_identidad" name="doc_identidad" placeholder="DNI" maxlength="8" style="max-width: 250px" value="{{old('doc_identidad')}}" {{ (old('nacionalidad') == "extranjero") ? 'disabled="true"' : '' }}  >
 											</div>	
 										</div>
 									</div>
@@ -137,7 +170,7 @@
 												<label for="" class="control-label">Carnet de extranjeria:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" disabled="true" class="form-control" id="carnet_extranjeria" name="carnet_extranjeria" placeholder="Carnet de Extranjeria" maxlength="12" style="max-width: 250px" required>
+												<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="carnet_extranjeria" name="carnet_extranjeria" placeholder="Carnet de Extranjeria" maxlength="12" style="max-width: 250px" value="{{old('carnet_extranjeria')}}" {{ (old('nacionalidad') == "peruano") ? 'disabled="true"' : '' }}  {{ (old('nacionalidad') == "") ? 'disabled="true"' : '' }} >
 											</div>	
 										</div>
 									</div>
@@ -148,84 +181,89 @@
 
 							<div role="tabpanel" class="tab-pane" id="seccion2">
 								<br>
+
+										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 								<br>
 
 
 
-								<div class="form-group">
+								<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Fecha de Nacimiento</label>
 											</div>
-											<div class="col-sm-1">
-												<input class="datepicker" type="text" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha Nacimiento" readonly="true">
+											<div class="col-sm-6">
+												<input style="width: 250px" class="datepicker" type="text" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha Nacimiento" readonly="true" value="{{old('fecha_nacimiento')}}" >
 											</div>	
 										</div>
 								</div>
 
-								<form method="POST" action="api/repairdropdown">
-									<div class="form-group">
+									<div class="form-group required">
 											<div class="col-sm-6">
 												<div class="col-sm-6 text-left">
 													<label for="" class="control-label">Lugar de Nacimiento:</label>
 												</div>
 													<div class="col-sm-6">
-														<select form="form_id" class="form-control" id="departamento" name="departamento" style="max-width: 150px " data-link="{{ url('/provincias') }}">
+														<select class="form-control" id="departamento" name="departamento" style="max-width: 250px " data-link="{{ url('/provincias') }}">
 															<option value="-1" default>--Departamento--</option>
 																@foreach ($departamentos as $depa)      
-												                	<option value="{{$depa->id}}">{{$depa->nombre}}</option>
+												                	<option value="{{$depa->id}}"  @if (old('departamento') == $depa->id) selected="selected" @endif  >{{$depa->nombre}}</option>
 												                @endforeach
 														</select>
 														
 														<br>
-														<select form="form_id" class="form-control" id="provincia" name="provincia" style="max-width: 150px " data-link="{{ url('/distritos') }}" disabled="true">
+														<select class="form-control" id="provincia" name="provincia" style="max-width: 250px " data-link="{{ url('/distritos') }}" disabled="true">
 															<option  value="-1" default disab>--Provincia--</option>
 														</select>
 														<br>
-														<select form="form_id" class="form-control" id="distrito" name="distrito" style="max-width: 150px " disabled="true">
+														<select class="form-control" id="distrito" name="distrito" style="max-width: 250px " disabled="true">
 															<option  value="-1" default>--Distrito--</option>
 														</select>
 
 														<br><br>
+
 														<!--<a href="#" id="try" data-link="{{ url('/test') }}">Try</a>-->>
+
 													</div>	
 											</div>
 									</div>
 									
-									<div class="form-group">
+									<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Direccion de Nacimiento:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="direccion Nacimiento" style="max-width: 250px">
+												<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{old('direccion_nacimiento')}}">
 											</div>		
 										</div>
 									</div>
-								</form>
 
 							</div>
 
 							<div role="tabpanel" class="tab-pane" id="seccion3">
+
 							<br>
+								
+										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 							<br>
-								<div class="form-group">
+								<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Educacion Primaria:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="educacion_primaria" name="educacion_primaria" placeholder="Educacion Primaria" style="max-width: 250px">
+												<input type="text" class="form-control" id="educacion_primaria" name="educacion_primaria" placeholder="Educacion Primaria" style="max-width: 250px" value="{{old('educacion_primaria')}}">
 											</div>		
 										</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Educacion secundaria:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="educacion_secundaria" name="educacion_secundaria" placeholder="Educacion Secundaria" style="max-width: 250px">
+												<input type="text" class="form-control" id="educacion_secundaria" name="educacion_secundaria" placeholder="Educacion Secundaria" style="max-width: 250px" value="{{old('educacion_secundaria')}}">
 											</div>		
 										</div>
 								</div>
@@ -235,7 +273,7 @@
 												<label for="" class="control-label">Universidad:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="universidad" name="universidad" placeholder="Universidad" style="max-width: 250px">
+												<input type="text" class="form-control" id="universidad" name="universidad" placeholder="Universidad" style="max-width: 250px" value="{{old('universidad')}}">
 											</div>		
 										</div>
 								</div>
@@ -246,7 +284,7 @@
 												<label for="" class="control-label">Profesion:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="profesion" name="profesion" placeholder="Profesion" style="max-width: 250px">
+												<input type="text" class="form-control" id="profesion" name="profesion" placeholder="Profesion" style="max-width: 250px" value="{{old('profesion')}}">
 											</div>		
 										</div>
 								</div>
@@ -254,25 +292,17 @@
 
 							<div role="tabpanel" class="tab-pane" id="seccion4">
 								<br>
+										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 								<br>
-								<div class="form-group">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Empleo:</label>
-											</div>
-											<div class="col-sm-6">
-												<input type="text" class="form-control" id="empleo" name="empleo" placeholder="Empleo" style="max-width: 250px">
-											</div>		
-										</div>
-								</div>
+								
 
-								<div class="form-group">
+								<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Centro de Trabajo:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="centro_trabajo" name="centro_trabajo" placeholder="Centro de Trabajo" style="max-width: 250px">
+												<input type="text" class="form-control" id="centro_trabajo" name="centro_trabajo" placeholder="Centro de Trabajo" style="max-width: 250px" value="{{old('centro_trabajo')}}">
 											</div>		
 										</div>
 								</div>
@@ -283,30 +313,42 @@
 												<label for="" class="control-label">Cargo de Trabajo:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="cargo_trabajo" name="cargo_trabajo" placeholder="Cargo de Trabajo" style="max-width: 250px">
+												<input type="text" class="form-control" id="cargo_trabajo" name="cargo_trabajo" placeholder="Cargo de Trabajo" style="max-width: 250px" value="{{old('cargo_trabajo')}}">
 											</div>		
 										</div>
 								</div>
 
-								<div class="form-group">
+								<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Direccion Laboral</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="direccion_laboral" name="direccion_laboral" placeholder="Direccion Laboral" style="max-width: 250px">
+												<input type="text" class="form-control" id="direccion_laboral" name="direccion_laboral" placeholder="Direccion Laboral" style="max-width: 250px" value="{{old('direccion_laboral')}}">
 											</div>		
+										</div>
+								</div>
+								
+								<br><br>
+								<div class="form-group required" >
+										<div class="btn-group col-sm-5" ></div>
+										
+										<div class="btn-group">
+											<input class="btn btn-primary "  type="submit" value="Confirmar">
+										</div>
+										<div class="btn-group">
+											<a href="/postulante/index" class="btn btn-info">Cancelar</a>
 										</div>
 								</div>
 							</div>
 
-							<div role="tabpanel" class="tab-pane" id="seccion5">
+<!-- 							<div role="tabpanel" class="tab-pane" id="seccion5">
 								section 5
-							</div>
+							</div> -->
 
-							<div role="tabpanel" class="tab-pane" id="seccion6">
+							<!-- <div role="tabpanel" class="tab-pane" id="seccion6">
 								<div class="container">
-									{{Form::open(array('url'=>'/vendor/add', 'files' => true))}}
+									{
 										<div class="form-group">
 											<label for="">Title</label>
 											<input type="text" name="form-control input-sm" name="title">
@@ -329,9 +371,9 @@
 										</div>
 
 										<button class="btn btn-sm btn-danger">Save</button>
-									{{Form::close()}}
+
 								</div>      
-							</div>
+							</div> -->
 
 
 						</div>
@@ -344,7 +386,8 @@
 
 @stop
 <!-- JQuery -->
- 	 <script src="../js/jquery-3.0.0.js"></script> 
+	{!!Html::script('js/jquery-1.11.3.min.js')!!}
+<!--  	 <script src="../js/jquery-3.0.0.js"></script>  -->
 	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 	<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 
@@ -352,8 +395,8 @@
 	{!!Html::script('js/jquery.bxslider.min.js')!!}
 	{!!Html::script('js/MisScripts.js')!!}
 	<script>$.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')} })</script>
-
-	<script type="text/javascript" src="../js/bootstrap-datepicker-sirve.js"></script>
+	{!!Html::script('js/bootstrap-datepicker.js')!!}
+<!-- 	<script type="text/javascript" src="../js/bootstrap-datepicker-sirve.js"></script> -->
 
 
 
@@ -465,7 +508,9 @@
 			});
 
 		});
-
+		$('.datepicker').on('changeDate', function(ev){
+			    $(this).datepicker('hide');
+		});
 			
 	</script>	
 
@@ -499,10 +544,11 @@
 			        	$("#provincia").empty();
 			        	$("#provincia").append("<option  value='-1' default>--Provincia--</option>");
 			        	$.each(data,function(index,elememt){
-			        		//alert(element.nombre);
+			        		
 			        		$("#provincia").append("<option value='"+elememt.id+"'>"+elememt.nombre+"</option>");
+			           		 console.log("mensaje que quieras");
+
 			        	});
-			            //alert(data);
 			        },error:function(){ 
 			            alert("error!!!!");
 			        }

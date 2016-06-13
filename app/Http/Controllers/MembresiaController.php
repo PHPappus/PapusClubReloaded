@@ -60,7 +60,7 @@ class MembresiaController extends Controller
         $tarifa->addTipo($membresia);
 
         //return redirect()->action('MembresiaController@index', ['stored' => 'Se registró la sede correctamente.']);
-        return redirect('membresia')->with('stored', 'Se registró la sede correctamente.');
+        return redirect('membresia')->with('stored', 'Se registró la membresía correctamente.');
     }
 
     public function edit ($id)
@@ -79,18 +79,20 @@ class MembresiaController extends Controller
         $membresia->update(['descripcion'=>$input['nombre'],
                             'numMaxInvitados'=>$input['numMax']]);
 
-        return Redirect::action('MembresiaController@index');
+        return Redirect::action('MembresiaController@index')->with('stored','Se actualizo la membresía correctamente');
     }
 
     public function destroy(TipoMembresia $membresia)
     {
         if(count($membresia->socio))
         {
-            $membresia->delete();
-            return redirect('membresia')->with('eliminated', 'Imposible de eliminar existe dependencia, se ha cambiado de estado a inhabilitado');
+            //$membresia->delete(); Se colocaba con softdelete y producía error
+            return redirect('membresia')->with('eliminated', 'Imposible de eliminar debido a que existe dependencia a este tipo de membresía, se ha cambiado de estado a inhabilitado');
         }
         else
         {
+            $tarifa = $membresia->tarifa;
+            $tarifa->forceDelete();
             $membresia->forceDelete();
             return back();
         }
