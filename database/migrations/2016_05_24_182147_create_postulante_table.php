@@ -14,17 +14,20 @@ class CreatePostulanteTable extends Migration
     {
         Schema::create('postulante', function (Blueprint $table) {
             //DATOS PERSONALES
-            $table->integer('id_postulante')->unsigned()->nullable();
+            
+            $table->integer('id_postulante')->unsigned()->unique();
+
+
             $table->bigInteger('ruc'); //en caso lo tenga, no es necesario si no tiene
             //en la vista se tiene un checkbox de nacionalidad
             //1:Peruano   2:Extranjero
             
             //DATOS DE NACIMIENTO
             //en caso sea peruano
-            //$table->string('departamento');
-            //$table->string('provincia');
-            //$table->string('distrito');
-            $table->string('direccion');
+            $table->integer('departamento');
+            $table->integer('provincia');
+            $table->integer('distrito');
+            $table->string('direccion_nacimiento');
 
             //en caso sea extranjero
             $table->string('pais_nacimiento'); //Esto deermina el pais Peru
@@ -38,20 +41,20 @@ class CreatePostulanteTable extends Migration
 
             //DATOS DE EMPLEO
             $table->string('centro_trabajo');
-            $table->string('cargo_centro_trabajo');
-            $table->string('direccionLaboral');
+            $table->string('cargo_trabajo');
+            $table->string('direccion_laboral');
 
             //DATOS FAMILIARES
             $table->string('estado_civil');
             $table->integer('nro_hijos');
 
             //DATOS DE VIVIENDA
-            //$table->string('departamento');
-            //$table->string('provincia');
-            //$table->string('distrito');
+/*            $table->integer('departamento');
+            $table->integer('provincia');
+            $table->integer('distrito');*/
             $table->string('domicilio');
 
-            //CONTACTOS
+            //CONTACTO
             $table->integer('telefono_domicilio');
             $table->integer('telefono_celular');
 
@@ -72,3 +75,4 @@ class CreatePostulanteTable extends Migration
         Schema::drop('postulante');
     }
 }
+ 

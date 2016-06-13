@@ -8,6 +8,7 @@ use papusclub\Http\Requests;
 use papusclub\Models\Ambiente;
 use papusclub\Models\Actividad;
 use papusclub\Models\Configuracion;
+use papusclub\Models\TipoPersona;
 use papusclub\Http\Requests\StoreActividadRequest;
 use papusclub\Http\Requests\EditActividadRequest;
 use Carbon\Carbon;
@@ -23,14 +24,18 @@ class ActividadController extends Controller
     {
     	/*PAra crear la ACtividad , primero se debe buscar el Ambiente*/
     	$ambientes = Ambiente::all();
+        $tipoPersonas = TipoPersona::all();
+        
         $values=Configuracion::where('grupo','=','3')->get();
-        return view('admin-general.ambiente.searchAmbiente', compact('ambientes'),compact('values'));
+
+        return view('admin-general.ambiente.searchAmbiente', compact('ambientes'),compact('values'),compact('tipoPersonas'));
     	
     }
     public function store(StoreActividadRequest $request)
     {
         $input = $request->all();
         $actividad = new Actividad();
+        $carbon=new Carbon(); 
         $actividad->nombre= $input['nombre'];
         //para agregar la actividades al ambiente
         if($request['ambienteSelec'] != -1){
@@ -42,7 +47,14 @@ class ActividadController extends Controller
         $actividad->tipo_actividad= $input['tipo_actividad'];
         $actividad->descripcion= $input['descripcion'];
         $actividad->cant_ambientes=$input['cant_ambientes'];
-        $actividad->a_realizarse_en=now()->addDay();
+        
+        if (empty($input['a_realizarse_en'])) {
+                    $actividad->a_realizarse_en="";
+                }else{
+                    $a_realizarse_en = str_replace('/', '-', $input['a_realizarse_en']);      
+                    $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->createFromFormat('H:i:s', $input['hora'])->toDateTimeString();
+                }
+
         $actividad->estado=false; 
         $actividad->save();
         return redirect('actividad/index')->with('stored', 'Se registró la actividad correctamente.');
@@ -63,6 +75,12 @@ class ActividadController extends Controller
         $actividad->capacidad_maxima= $input['capacidad_maxima'];
         $actividad->tipo_actividad= $input['tipo_actividad'];
         $actividad->descripcion= $input['descripcion'];
+        if (empty($input['a_realizarse_en'])) {
+                    $actividad->a_realizarse_en="";
+                }else{
+                    $a_realizarse_en = str_replace('/', '-', $input['a_realizarse_en']);      
+                    $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->createFromFormat('H:i:s', $input['hora'])->toDateTimeString();
+        }
         $actividad->save();
         return redirect('actividad/index');
 

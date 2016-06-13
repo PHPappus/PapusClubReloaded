@@ -1,4 +1,5 @@
 <header class="header">
+
   <div class="content clearfix">
     <!--Input de buscador de la parte superior derecha-->
 
@@ -37,10 +38,11 @@
               Actividades <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#" title="consultar actividades" target="_self">Consultar</a></li>
-              <li><a href="#" title="inscripciones de actividades" target="_self">Inscripciones</a></li>
+              <li><a href="{!!URL::to('/inscripcion-actividad/inscripcion-actividades')!!}" title="consultar actividades" target="_self">Consultar</a></li>
+              <li><a href="{!!URL::to('/inscripcion-actividad/mis-inscripciones')!!}" title="inscripciones de actividades" target="_self">Inscripciones</a></li>
             </ul>
           </li>
+
         </ul>
         <ul class="nav navbar-nav">
           <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
@@ -120,6 +122,7 @@
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
+
 </header>
 <!---Cuerpo -->
 

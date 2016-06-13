@@ -14,11 +14,11 @@ class SocioTableSeeder extends Seeder
     {
         Socio::create([
         	'tipo_membresia_id'=>1,
-        	'postulante_id'=>2,
-        	'fecha_ingreso'=>'2016-06-06 18:35:06']);
+        	'postulante_id'=>1,
+        	'fecha_ingreso'=>'2016-06-06']);
         Socio::create([
         	'tipo_membresia_id'=>2,
-        	'postulante_id'=>3,
-        	'fecha_ingreso'=>'2016-06-06 18:35:06']);        
+        	'postulante_id'=>2,
+        	'fecha_ingreso'=>'2016-06-06']);        
     }
 }

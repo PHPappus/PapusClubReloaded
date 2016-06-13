@@ -11,8 +11,11 @@ class Provincia extends Model
     protected $table = 'provincia';
     protected $fillable = 
     ['nombre',
-     'provincia_id'
+     'departamento_id'
     ];
     protected $dates = ['deleted_at'];
 
+    public function provincias($id){
+    	return Provincia::where('departamento_id','=',$id);
+    }
 }

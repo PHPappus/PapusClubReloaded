@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>AGREGAR SORTEO</title>
+	<title>REGISTRAR SORTEO</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,7 @@
 		
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>AGREGAR SORTEO</strong>
+					<strong>REGISTRAR SORTEO</strong>
 			</div>		
 		</div>
 		<div class="container">
@@ -79,12 +79,22 @@
 						<input class="datepicker" type="text" id="fecha_cerrado" readonly="true" name="fecha_cerrado"  value="{{ old('fecha_cerrado') }}" >						
 					</div>
 				</div>
-				
+				<div class="form-group required">
+			    	<label for="" class="control-label col-sm-5">SEDE</label>	
+			    	<div class="col-sm-7">
+				    	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >					         
+							                 @foreach ($sedes as $sede)      
+							                	<option value="{{$sede->id}}">{{$sede->nombre}}</option>
+							                @endforeach
+						</select>
+					</div>
+			  	</div>
+				<br><br>
 				<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-primary" type="submit" value="Confirmar">
+						<input class="btn btn-primary" type="submit" value="Continuar">
 					</div>
 					<div class="btn-group">
 						<a href="/sorteo/index" class="btn btn-info">Cancelar</a>
@@ -135,18 +145,17 @@
 				}).on('changeDate', function(ev) {
 		  			checkout.hide();
 				}).data('datepicker');	
+
+
 		});
-			
-	</script>	
-	<script>
 		$(function(){
-			$('.datepicker').datepicker({
-				format: "dd/mm/yyyy",
-		        language: "es",
-		        autoclose: true,
-		        //beforeShowDay:function (date){return false}
-			});
-		});
-	</script>
+					$('.datepicker').datepicker({
+						format: 'dd/mm/yyyy',
+				        language: "es",
+				        autoclose: true,
+				        //beforeShowDay:function (date){return false}
+					});
+				});
+	</script>	
 </body>
 </html>
