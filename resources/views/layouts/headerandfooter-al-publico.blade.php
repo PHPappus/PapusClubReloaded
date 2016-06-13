@@ -52,21 +52,21 @@
               Sedes <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="historia-sede-callao" title="Callao" target="_self">Callao<span class="despliegue">▼</span></a>
+                <li><a href="historia-sede-callao" title="Callao" target="_self">Callao <span class="caret"></a>
                   <ul>
                     <li><a href="#" title="Concesiones" target="_self">Concesiones</a></li>
                     <li><a href="#" title="Servicios" target="_self">Servicios</a></li>
                     <li><a href="reserva-bungalow" title="Bungalows" target="_self">Bungalows</a></li>
                   </ul>
                 </li>
-                <li><a href="#" title="Surquillo" target="_self">Surquillo<span class="despliegue">▼</span></a>
+                <li><a href="#" title="Surquillo" target="_self">Surquillo <span class="caret"></a>
                   <ul>
                     <li><a href="#" title="Concesiones" target="_self">Concesiones</a></li>
                     <li><a href="#" title="Servicios" target="_self">Servicios</a></li>
                     <li><a href="#" title="Bungalows" target="_self">Bungalows</a></li>
                   </ul>           
                 </li>
-                <li><a href="#" title="Barranco" target="_self">Barranco<span class="despliegue">▼</span></a>
+                <li><a href="#" title="Barranco" target="_self">Barranco <span class="caret"></a>
                   <ul>
                     <li><a href="#" title="Concesiones" target="_self">Concesiones</a></li>
                     <li><a href="#" title="Servicios" target="_self">Servicios</a></li>
@@ -82,14 +82,14 @@
               Actividades <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#" title="ir a cursos" target="_self">Talleres <span class="caret"></a>
+              <li><a href="#" title="Ir a talleres" target="_self">Talleres <span class="caret"></a>
                   <ul>
                     <li><a href="futbol" title="ir a futbol" target="_self">Futbol</a></li>
                     <li><a href="#" title="Actividad 1.2" target="_self">Actividad 1.2</a></li>
                     <li><a href="#" title="Actividad 1.3" target="_self">Actividad 1.3</a></li>
                   </ul>
                 </li>
-                <li><a href="#" title="Actividad 2" target="_self">Actividad 2<span class="despliegue">▼</span></a>
+                <li><a href="#" title="Actividad 2" target="_self">Actividad 2 <span class="caret"></a>
                   <ul>
                     <li><a href="#" title="Actividad 2.1" target="_self">Actividad 2.1</a></li>
                     <li><a href="#" title="Actividad 2.2" target="_self">Actividad 2.2</a></li>
