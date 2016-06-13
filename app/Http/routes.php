@@ -95,7 +95,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	//MANTENIMIENTO DE POSTULANTE
 	Route::get('postulante/index','PostulanteController@index');//ya
 	Route::get('postulante/new','PostulanteController@registrar');//ya
-	Route::post('postulante/new/postulante', 'PostulanteController@store');//
+	Route::post('postulante/new/postulante', 'PostulanteController@store');//ya
 	Route::get('postulante/{id}','PostulanteController@edit');//
 	Route::get('postulante/{id}/delete', 'PostulanteController@destroy');
 	Route::get('postulante/{id}/show', 'PostulanteController@show');//
