@@ -38,11 +38,7 @@ class VentaProductoController extends Controller
     public function store(StoreFacturacionRequest $request)
     {    	
     	$input = $request->all();
-        $persona = Persona::find($input['persona_id']);
-        if ($persona==null){
-            $errorPersona = 'ID de persona ingresado no es válido';
-            return back()->withErrors($errorPersona);
-        }
+      
         $factura = new Facturacion();
     	$factura->persona_id = $input['persona_id'];
 		$factura->tipo_pago = $input['tipo_pago'];
@@ -65,12 +61,7 @@ class VentaProductoController extends Controller
     public function storeVentaProducto(StoreProductoxFacturacionRequest $request)
     {   $cantidad = 0;
         $subtotal = 0;
-        $input = $request->all();
-        $producto = Producto::find($input['producto_id']);
-        if ($producto==null){
-            $errorProducto = 'ID de producto ingresado no es válido';
-            return back()->withErrors($errorProducto);
-        }
+        $input = $request->all();        
 
         $productoxfacturacion = new ProductoxFacturacion();
         $productoxfacturacion = ProductoxFacturacion::where('facturacion_id','=',$input['facturacion_id'])
@@ -125,12 +116,7 @@ class VentaProductoController extends Controller
 
     public function updateProducto(StoreProductoxFacturacionRequest $request, $id)
     {
-        $input = $request->all();
-        $producto = Producto::find($input['producto_id']);
-        if ($producto==null){
-            $errorProducto = 'ID de producto ingresado no es válido';
-            return back()->withErrors($errorProducto);
-        }
+        $input = $request->all();        
 
         $productoxfacturacion = ProductoxFacturacion::find($id);
         $productoxfacturacion->facturacion->total = $productoxfacturacion->facturacion->total - $productoxfacturacion->subtotal;
