@@ -1,4 +1,4 @@
- q <?php
+<?php
 
 use Illuminate\Database\Seeder;
 use papusclub\Models\Postulante;
@@ -46,7 +46,8 @@ class PostulanteTableSeeder extends Seeder
         	'nro_hijos'=>20,
         	'domicilio'=>'La perla',
         	'telefono_domicilio'=>84516235,
-        	'telefono_celular'=>989456123]);
+        	'telefono_celular'=>989456123
+            ]);
 
         Postulante::create([
             'id_postulante'=>5,
@@ -66,7 +67,8 @@ class PostulanteTableSeeder extends Seeder
             'estado_civil'=>'soltero',
             'nro_hijos'=>1,
             'domicilio'=>'Av. Las torres 515',
-            'telefono_domicilio'=>3265025
-            'telefono_celular'=>992745845]);
+            'telefono_domicilio'=>3265025,
+            'telefono_celular'=>9927458451
+            ]);
     }
 }

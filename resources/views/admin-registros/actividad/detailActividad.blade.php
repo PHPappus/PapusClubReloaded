@@ -84,7 +84,7 @@
 			<div class="form-group required">
 			    	<label for="horaInicioInput" class="col-sm-4 control-label">Hora Inicio</label>
 			    	<div class="col-sm-5">
-			      		<input type="time" id="horaInicioInput" value="{{$actividad->a_realizarse_en}}" readonly>
+			      		<input type="time" id="horaInicioInput" value="{{$actividad->hora_inicio}}" readonly>
 			    	</div>
 			  	
 			 </div>

@@ -98,7 +98,7 @@
 			<div class="form-group required">
 			    	<label for="horaInicioInput" class="col-sm-4 control-label">Hora Inicio</label>
 			    	<div class="col-sm-5">
-			      		<input type="time" id="horaInicioInput" name="hora" value="{{$actividad->a_realizarse_en}}">
+			      		<input type="time" id="horaInicioInput" name="hora" value="{{$actividad->hora_inicio}}">
 			    	</div>
 			  	
 			 </div>
