@@ -96,6 +96,7 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::post('actividad/{id}/edit', 'ActividadController@update');
 	Route::get('actividad/{id}/delete', 'ActividadController@destroy');
 	Route::get('actividad/{id}/show', 'ActividadController@show');
+	Route::post('actividad/new/{id}/tipoactividad', 'ActividadController@storeTipoActividad');
 
 	//MANTENIMIENTO DE AMBIENTES
 	Route::get('ambiente/index', 'AmbienteController@index');
@@ -107,6 +108,7 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::get('ambiente/{id}/delete', 'AmbienteController@destroy');
 	Route::get('ambiente/{id}/show', 'AmbienteController@show');
 	Route::get('ambiente/{id}/select', 'AmbienteController@select');/*Para el seleccionar ambiente desde  Actividad*/
+	Route::post('ambiente/new/tipoambiente', 'AmbienteController@storeTipoAmbiente');
 });
 
 //Gerente
