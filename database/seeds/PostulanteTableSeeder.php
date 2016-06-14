@@ -1,4 +1,4 @@
- q <?php
+<?php
 
 use Illuminate\Database\Seeder;
 use papusclub\Models\Postulante;

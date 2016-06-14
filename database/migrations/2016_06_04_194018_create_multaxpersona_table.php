@@ -13,12 +13,12 @@ class CreateMultaxpersonaTable extends Migration
     public function up()
     {
         Schema::create('multaxpersona', function (Blueprint $table) {
-            $table->integer('multa_id')->unsigned()->nullable();
-            $table->integer('persona_id')->unsigned()->nullable();
-            $table->string('multaModificada');
-            $table->dateTime('fecha_registro');
+            $table->integer('multa_id')->unsigned()->index();
+            $table->integer('socio_id')->unsigned()->index();
+            $table->double('multa_modificada');
+            $table->string('descripcion_detallada');
+            $table->date('fecha_registro');
             $table->softDeletes();
-            $table->timestamps();
         });
     }
 

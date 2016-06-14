@@ -99,13 +99,13 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('postulante/{id}','PostulanteController@edit');//
 	Route::get('postulante/{id}/delete', 'PostulanteController@destroy');
 	Route::get('postulante/{id}/show', 'PostulanteController@show');//
+
 	/*editar*/
 	Route::patch('postulante/{id}/editBasico','PostulanteController@updateBasico');
 /*	Route::patch('Socio/{id}/editEstudio','SocioAdminController@updateEstudio');
 	Route::patch('Socio/{id}/editTrabajo','SocioAdminController@updateTrabajo');
 	Route::patch('Socio/{id}/editContacto','SocioAdminController@updateContacto');
 	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');*/
-
 
 	//Route::get('/provincias','PostulanteController@getProvincias');
 	
@@ -141,12 +141,40 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('Socio/{id}/editar','SocioAdminController@edit');
 	Route::get('Socio/{socio}/delete', 'SocioAdminController@destroy');
 	Route::get('Socio/{id}/activate','SocioAdminController@activate');
+
+	/*invitado*/
+	Route::get('Socio/{id}/invitado/new','SocioAdminController@createInvitado');
+	Route::post('Socio/{id}/invitado/save','SocioAdminController@storeInvitado');
+	Route::get('Socio/{id}/invitado/delete','SocioAdminController@deleteInvitado');
+	Route::get('Socio/invitado/{id}/','SocioAdminController@detailInvitado');
+		/*Departamento, provincia, distrito*/
+		Route::post('Socio/{id}/invitado/provincias', function(){
+			$dep_id=Input::get('id');
+	    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
+		});
+		Route::post('Socio/{id}/invitado/distritos', function(){
+			$prov_id=Input::get('id');
+	    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
+		});
+	/**/
+
 	/*editar*/
 	Route::patch('Socio/{id}/editBasico','SocioAdminController@updateBasico');
+	Route::patch('Socio/{id}/editNacimiento','SocioAdminController@updateNacimiento');
 	Route::patch('Socio/{id}/editEstudio','SocioAdminController@updateEstudio');
 	Route::patch('Socio/{id}/editTrabajo','SocioAdminController@updateTrabajo');
 	Route::patch('Socio/{id}/editContacto','SocioAdminController@updateContacto');
 	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');
+
+	/*Departamento, provincia, distrito*/
+	Route::post('Socio/{id}/provincias', function(){
+		$dep_id=Input::get('id');
+    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
+	});
+	Route::post('Socio/{id}/distritos', function(){
+		$prov_id=Input::get('id');
+    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
+	});
 
 	//MANTENIMIENTO DE MEMBRESIA
 	Route::get('membresia/','MembresiaController@index');
@@ -223,6 +251,10 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('venta-producto/{id}/show', 'VentaProductoController@show');
 	Route::get('venta-producto/new/venta-producto/{id}', 'VentaProductoController@createVentaProducto');
 	Route::post('venta-producto/new/venta-producto/add', 'VentaProductoController@storeVentaProducto');
+	Route::get('venta-producto/{id}', 'VentaProductoController@editProducto');
+	Route::post('venta-producto/{id}/edit', 'VentaProductoController@updateProducto');
+	Route::get('venta-producto/{id}/deleteProducto', 'VentaProductoController@destroyProducto');
+	Route::get('venta-producto/{id}/back', 'VentaProductoController@back');
 
 	//MANTENIMIENTO DE SORTEO
 	Route::get('sorteo/index','SorteoController@index');
@@ -293,6 +325,8 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 //Administrador de Persona
 Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::resource('admin-persona','AdminPersonaController');
+	Route::get('multas-s/','SocioAdminController@indexRegMulta');
+	Route::post('multas-s/save','SocioAdminController@storeMulta');
 });
 //Administrador de Reserva
 Route::group(['middleware' => ['auth', 'adminreserva']], function () {
