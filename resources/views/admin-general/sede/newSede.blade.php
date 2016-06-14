@@ -98,35 +98,38 @@
 			  	
 
 			  	
+			  	<!-- DEPARTAMENTO / PROVINCIA / DISTRITO -->
 			  	<div class="form-group required">
-					<div class="col-sm-10">
-						<div class="col-sm-5 text-center">
-							<label for="" class="control-label">Lugar de Sede:</label>
-						</div>
-							<div class="col-sm-5">
-								<select class="form-control" id="departamento" name="departamento" style="max-width: 250px " data-link="{{ url('/provincias') }}">
-									<option value="-1" default>--Departamento--</option>
-										@foreach ($departamentos as $depa)      
-						                	<option value="{{$depa->id}}"  @if (old('departamento') == $depa->id) selected="selected" @endif  >{{$depa->nombre}}</option>
-						                @endforeach
-								</select>
-								
-								<br>
-								<select class="form-control" id="provincia" name="provincia" style="max-width: 250px " data-link="{{ url('/distritos') }}" disabled="true">
-									<option  value="-1" default disab>--Provincia--</option>
-								</select>
-								<br>
-								<select class="form-control" id="distrito" name="distrito" style="max-width: 250px " disabled="true">
-									<option  value="-1" default>--Distrito--</option>
-								</select>
-
-								<br><br>
-
-								<!--<a href="#" id="try" data-link="{{ url('/test') }}">Try</a>-->
-
-							</div>	
+					<label for="" class="col-sm-4 control-label">Departamento:</label>
+					<div class="col-sm-5">
+						<select class="form-control" id="departamento" name="departamento" style="max-width: 250px " data-link="{{ url('/provincias') }}">
+							<option value="-1" default>--Departamento--</option>
+								@foreach ($departamentos as $depa)      
+					              	<option value="{{$depa->id}}"  @if (old('departamento') == $depa->id) selected="selected" @endif  >{{$depa->nombre}}</option>
+					            @endforeach
+						</select>
+					</div>
+				</div>			
+					<br>
+				<div class="form-group required">
+					<label for="" class="col-sm-4 control-label">Provincia:</label>
+					<div class="col-sm-5">
+						<select class="form-control" id="provincia" name="provincia" style="max-width: 250px " data-link="{{ url('/distritos') }}" disabled="true">
+							<option  value="-1" default disab>--Provincia--</option>
+						</select>
 					</div>
 				</div>
+					<br>
+				<div class="form-group required">
+					<label for="" class="col-sm-4 control-label">Distrito:</label>
+					<div class="col-sm-5">
+						<select class="form-control" id="distrito" name="distrito" style="max-width: 250px " disabled="true">
+							<option  value="-1" default>--Distrito--</option>
+						</select>
+					</div>
+				</div>
+
+				<br><br>
 									
 				
 			  	

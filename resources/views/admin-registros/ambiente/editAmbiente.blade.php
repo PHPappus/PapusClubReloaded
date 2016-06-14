@@ -115,7 +115,7 @@
 									<td align="center">  S/.</td>
 									<td align="center"> 
 										<div align="center">
-								      		<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="{{$tarifa->tipo_persona->descripcion}}Input" name="{{$tarifa->tipo_persona->descripcion}}" value="{{$tarifa->precio}}" placeholder="Monto" >
+								      		<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'DoubleFormat')"   class="form-control" id="{{$tarifa->tipo_persona->descripcion}}Input" name="{{$tarifa->tipo_persona->descripcion}}" value="{{$tarifa->precio}}" placeholder="Monto" >
 								    	</div>
 								</td>							        
 								</tr>

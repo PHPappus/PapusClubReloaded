@@ -101,16 +101,31 @@ class AmbienteController extends Controller
         $ambiente->ubicacion= $input['ubicacion'];
         $ambiente->update();
 
-        $tipoPersonas = TipoPersona::all();
-        $tarifas = $ambiente->tarifas;
-        foreach ($tarifas as $tarifa) {
+        $tarifasAnt = TarifaAmbientexTipoPersona::where('ambiente_id', '=', $id)->get();
 
-        //$tarifa_up = TarifaAmbientexTipoPersona::where('ambiente_id', '=', $tarifa->ambiente_id)->where('tipo_persona_id', '=', $tarifa->tipo_persona_id)->first();
+        foreach ($tarifasAnt as $tarifaAnt) {
+            $tarifaAnt->delete();
+        }
+
+
+        // $tarifas = $ambiente->tarifas;
+        // foreach ($tarifas as $tarifa) {
+
+        // //$tarifa_up = TarifaAmbientexTipoPersona::where('ambiente_id', '=', $tarifa->ambiente_id)->where('tipo_persona_id', '=', $tarifa->tipo_persona_id)->first();
             
-            //$tarifa_up->precio = $input[$tarifa->tipo_persona->descripcion];
+        //     //$tarifa_up->precio = $input[$tarifa->tipo_persona->descripcion];
                         
-            $tarifa->update(['precio'=>$input[$tarifa->tipo_persona->descripcion]]);
-            // $taller->tarifaTaller()->save($persona,['fecha_registro'=>$fecha,'precio'=>$input[$persona->descripcion],'estado'=>TRUE]);
+        //     $tarifa->update(['precio'=>$input[$tarifa->tipo_persona->descripcion]]);
+        //     // $taller->tarifaTaller()->save($persona,['fecha_registro'=>$fecha,'precio'=>$input[$persona->descripcion],'estado'=>TRUE]);
+        // }
+
+        $tipoPersonas = TipoPersona::all();
+        foreach ($tipoPersonas as $tipoPersona) {
+            $tarifa = new TarifaAmbientexTipoPersona();
+            $tarifa->ambiente_id = $id;
+            $tarifa->tipo_persona_id = $tipoPersona->id;
+            $tarifa->precio = $input[$tipoPersona->descripcion];
+            $tarifa->save();
         }
 
         return redirect('ambiente/index');
