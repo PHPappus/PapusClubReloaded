@@ -87,6 +87,12 @@ class PostulanteController extends Controller
             $postulante->provincia=$input['provincia'];
         if(isset($input['distrito']))
             $postulante->distrito=$input['distrito'];
+        $postulante->direccion_nacimiento=$input['direccion_nacimiento'];
+        $postulante->colegio_primario=$input['colegio_primario'];
+        $postulante->colegio_secundario=$input['colegio_secundario'];
+        $postulante->universidad=$input['universidad'];
+        $postulante->profesion=$input['profesion'];
+        $portulante->centro_trabajo=$input['centro_trabajo'];
 
 
         $postulante->save();
@@ -131,6 +137,10 @@ class PostulanteController extends Controller
 
     }
 
+    public function edit($id){
+
+
+    }
     
     public function destroy($id){
 
