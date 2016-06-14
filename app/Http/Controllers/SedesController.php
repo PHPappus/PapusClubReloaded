@@ -10,7 +10,7 @@ use papusclub\Models\Servicio;
 use papusclub\Models\Departamento;
 use papusclub\Http\Requests\StoreSedeRequest;
 use papusclub\Http\Requests\EditSedeRequest;
-
+use Illuminate\Support\Facades\Input;
 
 class SedesController extends Controller
 {
@@ -104,9 +104,16 @@ class SedesController extends Controller
 
     public function agregarservicios($id)
     {
+        
         $sede = Sede::find($id);
         $servicios = Servicio::all();        
-        return view('admin-general.sede.serviciosdesede', compact('sede', 'servicios'));
+        return view('admin-general.sede.serviciosescoger', compact('sede', 'servicios'));
     }
-    
+
+     public function storeservicios($id){
+        $servciosEscogidos = Input::get('ch');
+        $sede = Sede::find($id);
+        $servicios = Servicio::all();  
+        return view('admin-general.sede.serviciosdesedeindex', compact('sede', 'servicios','servciosEscogidos'));
+     }    
 }

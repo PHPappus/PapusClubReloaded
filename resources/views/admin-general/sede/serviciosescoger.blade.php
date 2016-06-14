@@ -29,11 +29,10 @@
 			<div></div>
 		</div>
 		
-			<form method="POST" action="" class="form-horizontal form-border">
+			<form method="POST" action="agregarservicios/store" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
-					<p>
-						
+					<p>						
 						ERROR DE STORED	
 					</p>
 					
@@ -42,8 +41,8 @@
 						<table class="table table-bordered table-hover text-center display" id="example">
 							<thead class="active" data-sortable="true">								
 								<th><div align=center>NOMBRE</div></th>	
-								<th><div align=center>CAPACIDAD</div></th>	
-								<th><div align=center>UBICACION</div></th>	
+								<th><div align=center>DESCRIPCIÓN</div></th>	
+								<th><div align=center>TIPO DE SERVICIO</div></th>	
 								<th><div align=center>SELECCIONAR</div></th>
 							</thead>	
 							<tbody>													
