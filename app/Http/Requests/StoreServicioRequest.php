@@ -27,9 +27,9 @@ class StoreServicioRequest extends Request
 
         return [
             'nombre'       =>  'required|max:100|string',
-            'descripcion'  =>  'required|max:100|string',
+            'descripcion'  =>  'string|max:400|string',
 
-            'tipo_servicio'=>  'required|max:50|integer',            
+            'tipo_servicio'=>  'required|max:50|integer',
             'trabajador' =>'numeric|min:1|max:2880',
             'postulante'=> 'numeric|min:1|max:2800',
             'tercero'=> 'numeric|min:1|max:2800',

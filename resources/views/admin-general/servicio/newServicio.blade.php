@@ -22,7 +22,7 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>REGISTRAR SERVICIO</strong>
+					<strong>REGISTRAR SERVICIO ADICIONAL</strong>
 			</div>		
 		</div>
 		<div class="container">
@@ -51,16 +51,14 @@
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" >
 			    	</div>
 			  	</div>
 
-			  	<div class="form-group required">
-			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>			    	
-			    	<div class="col-sm-5">
-			      		<!--input type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" required-->
-
-			      		<textarea id ="descripcionInput"  class="form-control" name="descripcion"  placeholder="Descripción"  rows="3" cols="50"></textarea>	
+			  	<div class="form-group">
+			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>			    				    	<div class="col-sm-5">
+			      	
+			      		<textarea id ="descripcionInput" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" class="form-control" name="descripcion"  placeholder="Descripción"  rows="3" cols="50" style="resize: none" ></textarea>	
 			    	</div>			    	
 			  	</div>
 
@@ -135,7 +133,7 @@
 									<td align="center">  S/.</td>
 									<td align="center"> 
 									<div align="center">
-							      		<input style="text-align:right;" type="text" class="form-control" id="{{$tipoPersona->descripcion}}imput" name="{{$tipoPersona->descripcion}}" placeholder="">
+							      		<input style="text-align:right;" onkeypress="return inputLimiter(event,'DoubleFormat')" type="text" class="form-control" id="{{$tipoPersona->descripcion}}imput" name="{{$tipoPersona->descripcion}}" placeholder="0.00">
 							    	</div>
 								</td>							        
 								</tr>

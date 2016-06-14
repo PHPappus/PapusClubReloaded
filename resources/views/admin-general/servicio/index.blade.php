@@ -19,7 +19,7 @@
 		<div class="row">
 			<div class="col-sm-12 text-left">
 				<br/><br/>
-				<p class="lead"><strong>SERVICIOS EXTRAS</strong></p>
+				<p class="lead"><strong>SERVICIOS ADICIONAL</strong></p>
 				<br/>
 			</div>
 			
