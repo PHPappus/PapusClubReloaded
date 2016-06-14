@@ -111,17 +111,6 @@
 										</div>	
 									</div>
 								</div>
-								<div class="form-group">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Fecha de Nacimiento(dd/mm/aaaa):</label>
-										</div>
-										<div class="col-sm-6">
-											<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" value="{{$socio->postulante->persona->fecha_nacimiento}}"style="width: 250px"  disabled>
-
-										</div>	
-									</div>
-								</div>
 								@if(strcmp($socio->postulante->persona->nacionalidad,'peruano')==0)
 								<div class="form-group">
 									<div class="col-sm-6">
@@ -196,6 +185,7 @@
 
 										<!--DATOS NACIMIENTO-->
 						<div role="tabpanel" class="tab-pane" id="seccion2">
+							<form action="" class="form-horizontal form-border">
 								<br><br><br>
 								<div class="form-group required" >
 										<div class="btn-group col-sm-4" ></div>
@@ -210,7 +200,88 @@
 										<div class="btn-group">
 											<a href="#" class="btn btn-info cont" ><span class="glyphicon glyphicon-chevron-right"></span></a>
 										</div>
-								</div>																				
+								</div>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Fecha de Nacimiento(dd/mm/aaaa):</label>
+										</div>
+										<div class="col-sm-6">
+											<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" value="{{$socio->postulante->persona->fecha_nacimiento}}"style="width: 250px"  disabled>
+
+										</div>	
+									</div>
+								</div>
+							@if(strcmp($socio->postulante->persona->nacionalidad,'peruano')==0)	
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Departamento:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="departamento" name="departamento" placeholder="Departamento" value="{{$socio->postulante->Departamento->nombre}}" disabled>
+										</div>	
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Provincia:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="provincia" name="provincia" placeholder="Provincia" value="{{$socio->postulante->Provincia->nombre}}" disabled>
+										</div>	
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Distrito:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="distrito" name="distrito" placeholder="Distrito" value="{{$socio->postulante->Distrito->nombre}}" disabled>
+										</div>	
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Dirección de Nacimiento:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="Direccion de nacimiento" value="{{$socio->postulante->direccion_nacimiento}}" disabled>
+										</div>	
+									</div>
+								</div>
+							@else
+								<div class="form-group ">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">País de Nacimiento:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="pais_nacimiento" name="pais_nacimiento" placeholder="Pais de  Nacimiento" style="max-width: 250px" value="{{$socio->postulante->pais_nacimiento}}" disabled>
+										</div>		
+									</div>
+								</div>
+
+								<div class="form-group ">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Ciudad de Nacimiento:</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="lugar_nacimiento" name="lugar_nacimiento" placeholder="Lugar de Nacimiento" style="max-width: 250px" value="{{$socio->postulante->lugar_nacimiento}}" disabled>
+										</div>		
+									</div>
+								</div>							
+							@endif
+								<div class="form-group">
+									<div class="col-sm-5"> </div>
+										<a class="btn btn-info" href="/Socio/" title="Editar" >Regresar</a>			
+								</div>																							
+							</form>
+
 						</div>
 										<!--DATOS FAMILIARES-->
 						<div role="tabpanel" class="tab-pane" id="seccion3">
@@ -448,6 +519,7 @@
 														<th><div align=center>APELLIDO PATERNO</div></th>
 														<th><div align=center>APELLIDO MATERNO</div></th>
 														<th><div align="center">CORREO</div></th>
+														<th><div align=center>DETALLE</div></th>														
 
 													</thead>
 													<tbody>
@@ -462,6 +534,9 @@
 																	<td>{{$invitado->ap_paterno}}</td>
 																	<td>{{$invitado->ap_materno}}</td>
 																	<td>{{$invitado->correo}}</td>
+																	<td>
+													              	<a class="btn btn-info" href="{{url('/Socio/invitado/'.$invitado->pivot->id.'/')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+													            	</td>																	
 													            </tr>				            		
 														@endforeach
 													</tbody>
@@ -538,6 +613,19 @@
 										</div>	
 									</div>
 								</div>
+								<div class="form-group">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Descripción:</label>
+										</div>
+										<div class="col-sm-6">
+			      						<textarea id ="descripcion"  class="form-control" name="descripcion"  placeholder="Descripción" required rows="5" cols="50" style="max-width: 850px; max-height: 300px;" readonly>
+			      							{{$socio->carnet_actual()->descripcion}}
+			      						</textarea>
+										</div>											
+
+									</div>
+								</div>								
 								<div class="form-group">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
