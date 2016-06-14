@@ -99,8 +99,13 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('postulante/{id}','PostulanteController@edit');//
 	Route::get('postulante/{id}/delete', 'PostulanteController@destroy');
 	Route::get('postulante/{id}/show', 'PostulanteController@show');//
-	Route::get('postulante/search','PostulanteController@buscar');
-	Route::get('postulante/new','PostulanteController@registrar');
+
+	/*editar*/
+	Route::patch('postulante/{id}/editBasico','PostulanteController@updateBasico');
+/*	Route::patch('Socio/{id}/editEstudio','SocioAdminController@updateEstudio');
+	Route::patch('Socio/{id}/editTrabajo','SocioAdminController@updateTrabajo');
+	Route::patch('Socio/{id}/editContacto','SocioAdminController@updateContacto');
+	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');*/
 
 	//Route::get('/provincias','PostulanteController@getProvincias');
 	

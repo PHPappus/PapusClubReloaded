@@ -9,8 +9,12 @@ use papusclub\Models\Provincia;
 use papusclub\Models\Distrito;
 use papusclub\Models\Postulante;
 use papusclub\Http\Requests\StorePostulanteRequest;
+use papusclub\Http\Requests\EditPostulanteBasicoRequest;
 use papusclub\Http\Controllers\Controller;
 use papusclub\Http\Requests;
+use papusclub\Models\Configuracion;
+use Illuminate\Support\Facades\Redirect;
+use Session;
 
 use Carbon\Carbon;
 
@@ -87,6 +91,17 @@ class PostulanteController extends Controller
             $postulante->provincia=$input['provincia'];
         if(isset($input['distrito']))
             $postulante->distrito=$input['distrito'];
+        $postulante->direccion_nacimiento=$input['direccion_nacimiento'];
+        $postulante->colegio_primario=$input['colegio_primario'];
+        $postulante->colegio_secundario=$input['colegio_secundario'];
+        $postulante->universidad=$input['universidad'];
+        $postulante->profesion=$input['profesion'];
+        $portulante->centro_trabajo=$input['centro_trabajo'];
+        $postulante->centro_trabajo=$input['centro_trabajo'];
+        $postulante->cargo_trabajo=['cargo_trabajo'];
+        $postulante->direccion_laboral['direccion_laboral'];
+        $postulante->estado_civil['estado_civil'];
+        
 
 
         $postulante->save();
@@ -104,20 +119,16 @@ class PostulanteController extends Controller
 
     public function show($id){
 
-        $persona = Persona::find($id);
-        //busco el valor del departamento
+        $postulante=Postulante::find($id);
 
-
-
- 
 
         $carbon=new Carbon();
-        if((strtotime($persona['fecha_nacimiento']) < 0))
-            $persona->fecha_nacimiento=NULL;
+        if((strtotime($postulante->persona->fecha_nacimiento) < 0))
+            $postulante->persona->fecha_nacimiento=NULL;
         else
-            $persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d', $persona->fecha_nacimiento)->format('d/m/Y');
+            $postulante->persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d', $postulante->persona->fecha_nacimiento)->format('d/m/Y');
 
-        $postulante=Postulante::find($persona->id);
+
         $departamento = Departamento::find($postulante['departamento']);
         $provincia = Provincia::find($postulante['provincia']);
         $distrito = Distrito::find($postulante['distrito']);
@@ -127,10 +138,69 @@ class PostulanteController extends Controller
         array_push($arregloLugar,$provincia);
         array_push($arregloLugar,$distrito);
         
-        return view('admin-general.persona.postulante.detailPostulante',compact('persona','postulante','arregloLugar'));
+        return view('admin-general.persona.postulante.detailPostulante',compact('postulante','arregloLugar'));
 
     }
 
+    public function edit($id){
+        $departamentos=Departamento::select('id','nombre')->get();
+        $postulante = Postulante::find($id);
+        $estadocivil= Configuracion::where('grupo','=','11')->get();
+        $estado=Configuracion::find($postulante->estado_civil);
+        
+        $carbon=new Carbon();
+        if((strtotime($postulante->persona['fecha_nacimiento']) < 0))
+            $postulante->persona->fecha_nacimiento=NULL;
+        else
+            $postulante->persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d', $postulante->persona->fecha_nacimiento)->format('d/m/Y');
+        return view('admin-general.persona.postulante.editPostulante',compact('postulante', 'departamentos','estado','estadocivil'));
+
+        }
+
+
+    public function updateBasico(EditPostulanteBasicoRequest $request,$id)
+    {
+        $carbon = new Carbon();
+
+        $postulante = Postulante::withTrashed()->find($id);
+        $input=$request->all();
+
+        if (empty($input['fecha_nacimiento'])) {
+            $postulante->persona->fecha_nacimiento ="";            
+        }else{
+            $fecha_nac = str_replace('/', '-', $input['fecha_nacimiento']);      
+            $postulante->persona->fecha_nacimiento=$carbon->createFromFormat('d-m-Y', $fecha_nac)->toDateString();
+        }        
+
+
+        $postulante->persona->nombre= trim($input['nombre']);;
+        $postulante->persona->ap_paterno=trim($input['apellidoPat']);
+        $postulante->persona->ap_materno=trim($input['apellidoMat']);
+        $postulante->persona->sexo=$input['sexo'];
+
+        $postulante->persona->nacionalidad = $input['nacionalidad'];
+
+        if (empty($input['carnet_extranjeria'])) {
+            $postulante->persona->carnet_extranjeria ="";
+        }
+        else
+            $postulante->persona->carnet_extranjeria = $input['carnet_extranjeria'];
+
+        
+        if (empty($input['doc_identidad'])) {
+            $postulante->persona->doc_identidad ="";
+        }
+        else
+            $postulante->persona->doc_identidad = $input['doc_identidad'];
+
+        $postulante->persona->save();
+
+
+        //$socio->postulante->persona->update(['nombre'=>$input['nombre'], 'fecha_nacimiento'=>$fecha_nac]);
+        //return view('admin-general.persona.socio.editSocio',compact('socio'));
+        Session::flash('update','basico');
+        return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('cambios-bas','Cambios realizados con éxito');
+    }
     
     public function destroy($id){
 
