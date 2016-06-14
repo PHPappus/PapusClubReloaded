@@ -45,6 +45,24 @@
 
 		<div class="table-responsive">
 			<div class="container">
+
+				<form method="POST" action="/multas-s/save" class="form-horizontal form-border">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+
+				<div class="col-sm-4"></div>
+				<div class=""> 
+					@if ($errors->any())
+		  				<ul class="alert alert-danger fade in">
+		  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  					@foreach ($errors->all() as $error)
+		  						<li>{{$error}}</li>
+		  					@endforeach
+		  				</ul>
+		  			@endif
+				</div>
+
+				<br></br>
 				<table class="table table-bordered table-hover text-center display" id="example">
 						<thead class="active">
 							<th><div align=center>CARNET</div> </th>
@@ -67,43 +85,36 @@
 							@endforeach
 						</tbody>
 				</table>
-				</br></br></br>
+				</br></br>
 
 				<div class="form-group">
 			    	<label for="tipoMultaInput" class="col-sm-4 control-label">Tipo Multa</label>	
 			    	<div class="col-sm-5">
-				    	<select class="form-control" id="tipoMultaInput" name="tipoMulta" style="max-width: 150px " onchange="mostrar_precio()" >
-				    				<option value="-1" default>Seleccione</option>
-							        	@foreach ($multas as $multa)      
+				    	<select class="form-control" id="tipoMultaSelect" name="tipoMulta" style="max-width: 150px " onchange="mostrar_precio()" >
+							    @foreach ($multas as $multa)      
 							        <option value="{{$multa->id}}">{{$multa->nombre}}</option>
-							            @endforeach
+							    @endforeach
 						</select>
 					</div>
 			  	</div>
 
 			  	<div class="form-group">
-					<div class="col-sm-6">
-						<div class="col-sm-6 text-left">
-							<label for="" class="control-label">Tipo Membresía:</label>
-						</div>
-					<div class="col-sm-6">
-					<select class="form-control" id="estado_select" name="estado" onchange="mostrar_precio()">
-				   		@foreach ($membresias as $membresia)
-				   			<option value={{$membresia->id}}
-				   			@if($socio->membresia->id==$membresia->id) selected @endif>{{$membresia->descripcion}}</option>
-				   		@endforeach												
-					</select>											
-					</div>	
-					</div>
-				</div>
-
-			  	<br></br>
-			  	<div class="form-group">
 			    	<label for="montoMultaInput" class="col-sm-4 control-label">Monto Multa</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" onkeypress="return inputLimiter(event,'DoubleFormat')" @if ("tipoMulta" != "Seleccione") value = "{{$multa->montoPenalidad}}" @endif class="form-control" id="montoMultaInput" style="max-width: 150px" name="montoMulta">
+			      		<select class="form-control" id="montoMultaSelect" name="montoMulta" style="max-width: 150px " disabled>
+							@foreach ($multas as $multa)      
+							        <option value="{{$multa->id}}">{{$multa->montoPenalidad}}</option>
+							 @endforeach											
+						</select>	
 			    	</div>
 			  	</div>
+
+			  	<div class="form-group ">
+			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
+			    	<div class="col-sm-5">
+			    		<textarea class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" rows="3" cols="50" value="{{old('descripcion')}}"></textarea>
+			    	</div>
+			  	</div>	
 
 			  	<br></br>
 			  	<br></br>
@@ -114,11 +125,11 @@
 					<div class="btn-group col-sm-5"></div>
 					
 					<div class="btn-group ">
-						<a href="{{url('/multas-s/registrar')}}" class="btn btn-info" type="submit">Registrar Multa</a>
-
+						<input class="btn btn-info" type="submit" value="Confirmar">
 					</div>
 					
-				</div>								
+				</div>
+				</form>							
 			</div>		
 		</div>
 
@@ -145,6 +156,15 @@
 		       }
 		  	});
   		});
+	</script>
+
+	<script>
+
+	function mostrar_precio(){
+		var x = document.getElementById("tipoMultaSelect").value;
+		document.getElementById("montoMultaSelect").value = x;
+	}
+
 	</script>
 
 

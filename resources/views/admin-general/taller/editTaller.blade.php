@@ -130,6 +130,10 @@
 
 			  	 </br>
 
+			  	 <div class="form-group">
+			    	<label for="capacidadSocioInput" class="col-sm-7 control-label">TARIFAS ESPECIALES POR FAMILIAR</label>
+			  	</div>
+
 				<style>  				
   				#myTable {
     					    margin: 0 auto;  }			

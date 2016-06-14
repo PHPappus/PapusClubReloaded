@@ -15,6 +15,7 @@ use papusclub\Http\Requests\EditSocioBasicoRequest;
 use papusclub\Http\Requests\EditSocioEstudioRequest;
 use papusclub\Http\Requests\EditSocioTrabajoRequest;
 use papusclub\Http\Requests\EditSocioContactoRequest;
+use papusclub\http\Requests\StoreMultaxPersonaRequest;
 use papusclub\Models\TipoMembresia;
 use Illuminate\Support\Facades\Redirect;
 use Session;
@@ -290,5 +291,23 @@ class SocioAdminController extends Controller
         $multas = Multa::all();
 
         return view('admin-persona.multa.registrarMulta',compact('socios','multas'));
+    }
+
+    public function storeMulta(StoreMultaxPersonaRequest $request){
+
+        $input = $request->all();
+        $personas = $input['ch'];
+
+
+        $multa = Multa::find($input['tipoMulta']);
+
+        foreach ($personas as $persona) {
+            
+            $socio = Socio::find($persona); 
+            $fecha = new DateTime('today');
+            $fecha=$fecha->format('Y-m-d');
+            $socio->multaxpersona()->save($multa,['multa_modificada' => $multa->montoPenalidad, 'descripcion_detallada' => $input['descripcion'],'fecha_registro' => $fecha]);
+        }
+        return redirect('multas-s')->with('stored', 'Se registró la multa correctamente.');
     }
 }

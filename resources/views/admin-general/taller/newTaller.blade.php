@@ -89,7 +89,7 @@
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="dInput" name="nombre" placeholder="Nombre" value="{{old('nombre')}}">
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="dInput" name="nombre" placeholder="Nombre" value="{{old('nombre')}}">
 			    	</div>
 			  	</div> 
 
@@ -143,6 +143,10 @@
 			  	</div>
 
 			  	 </br>
+
+			  	 <div class="form-group">
+			    	<label for="capacidadSocioInput" class="col-sm-7 control-label">TARIFAS ESPECIALES POR FAMILIAR</label>
+			  	</div>
 
 				<style>  				
   				#myTable {

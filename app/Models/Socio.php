@@ -105,6 +105,8 @@ class Socio extends Model
 
     public function multaxpersona()
     {
-        return $this->belongsToMany(Persona::class,'multaxpersona','socio_id','multa_id')->withPivot('multa_modificada','descripcion_detallada','fecha_registro')->withTimestamps();
+        return $this->belongsToMany(Multa::class,'multaxpersona','socio_id','multa_id')->withPivot('multa_modificada','descripcion_detallada','fecha_registro');
     }
+
+    
 }
