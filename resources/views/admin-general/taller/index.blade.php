@@ -83,22 +83,24 @@
 						
 							@endforeach
 						</tbody>
-				</table>			
+				</table>
+
+				</br></br></br>
+				<div class="btn-inline">
+					<!-- <form method="POST" action="/sedes/new/sede" >
+					<input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
+
+					<div class="btn-group col-sm-10"></div>
+					
+					<div class="btn-group ">
+						<a href="{{url('/taller/new')}}" class="btn btn-info" type="submit">Registrar Taller</a>
+
+					</div>
+					
+				</div>				
 			</div>		
 		</div>
 	
-
-	<div class="container">
-		<div class="form-group"><br>
-			<div class="col-sm-7 text-right">
-				<a class="btn btn-info" href="{{url('/taller/new')}}" title="Registrar Taller"><i>Registrar Taller</i> </a>	
-			</div>
-		</div>
-		<br/>
-	</div>
-
-
-
 
 @stop
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
