@@ -34,13 +34,13 @@ class PostulanteController extends Controller
         ['id_tipo_persona','=','2'],
         ['id_tipo_persona','<>','3'],
         ])->get();*/
-        return view('admin-general.persona.postulante.index',compact('postulantes'));
+        return view('admin-persona.persona.postulante.index',compact('postulantes'));
     }
 
     public function registrar()
     {
         $departamentos=Departamento::select('id','nombre')->get();
-        return view('admin-general.persona.postulante.newPostulante',compact('departamentos'));
+        return view('admin-persona.persona.postulante.newPostulante',compact('departamentos'));
     }
 
     public function store(StorePostulanteRequest $request){
@@ -138,7 +138,7 @@ class PostulanteController extends Controller
         array_push($arregloLugar,$provincia);
         array_push($arregloLugar,$distrito);
         
-        return view('admin-general.persona.postulante.detailPostulante',compact('postulante','arregloLugar'));
+        return view('admin-persona.persona.postulante.detailPostulante',compact('postulante','arregloLugar'));
 
     }
 
@@ -153,7 +153,7 @@ class PostulanteController extends Controller
             $postulante->persona->fecha_nacimiento=NULL;
         else
             $postulante->persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d', $postulante->persona->fecha_nacimiento)->format('d/m/Y');
-        return view('admin-general.persona.postulante.editPostulante',compact('postulante', 'departamentos','estado','estadocivil'));
+        return view('admin-persona.persona.postulante.editPostulante',compact('postulante', 'departamentos','estado','estadocivil'));
 
         }
 
