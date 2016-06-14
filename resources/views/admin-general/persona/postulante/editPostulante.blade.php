@@ -4,15 +4,17 @@
 	<title>EDITAR POSTULANTE</title>
 	<meta charset="UTF-8">
 
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	{!!Html::style('css/jquery.bxslider.css')!!}
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
+	{!!Html::style('css/jquery.bxslider.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
+
+
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
-	<style>
+<!-- 	<style>
 		.modal-backdrop.in{
 			z-index: 1;
 		}
@@ -33,7 +35,7 @@
 		}
 }
 
-	</style>
+	</style> -->
 
 </head>
 <body>
@@ -770,7 +772,7 @@
 @stop
 <!-- JQuery -->
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
-	{!!Html::script('js/jquery.bxslider.min.js')!!}
+
 	{!!Html::script('js/bootstrap.js')!!}
 
 	{!!Html::script('js/bootstrap-datepicker.js')!!}
