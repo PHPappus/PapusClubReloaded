@@ -33,6 +33,6 @@ class Ambiente extends Model
 
     public function tarifas()
     {
-        return $this->hasMany('papusclub\Models\TarifaAmbientexTipoPersona', 'id');
+        return $this->hasMany('papusclub\Models\TarifaAmbientexTipoPersona');
     }
 }

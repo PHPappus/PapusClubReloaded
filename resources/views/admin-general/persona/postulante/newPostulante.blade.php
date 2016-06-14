@@ -222,7 +222,7 @@
 
 														<br><br>
 
-														<!--<a href="#" id="try" data-link="{{ url('/test') }}">Try</a>-->>
+														<!--<a href="#" id="try" data-link="{{ url('/test') }}">Try</a>-->
 
 													</div>	
 											</div>

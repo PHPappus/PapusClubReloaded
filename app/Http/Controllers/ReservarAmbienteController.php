@@ -23,7 +23,7 @@ class ReservarAmbienteController extends Controller
         $sedes = Sede::all();
         //$ambientes = Ambiente::all();
         $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();  
-        return view('admin-general.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes'));
+        return view('socio.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes'));
     }
      //Muestra la pantalla para realizar la reserva de un ambiente que no sea bungalow
     public function reservarOtrosAmbientes()
@@ -32,7 +32,7 @@ class ReservarAmbienteController extends Controller
         $sedes = Sede::all();
         //$ambientes = Ambiente::all(); 
         $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->get();
-        return view('admin-general.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes'));
+        return view('socio.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes'));
     }
 
     public function reservarOtrosAmbientesFiltrados(Request $request)
@@ -76,14 +76,14 @@ class ReservarAmbienteController extends Controller
                 
         //     }
         // }
-        return view('admin-general.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes'));
+        return view('socio.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes'));
         
     }
 
     public function createBungalow($id)
     {   
         $ambiente = Ambiente::findOrFail($id);
-        return view('admin-general.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente'));
+        return view('socio.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente'));
     }
 
     //Se muestra el Bungalow a reservar y espera su confirmacion para la reserva
@@ -139,7 +139,7 @@ class ReservarAmbienteController extends Controller
     public function createOtroTipoAmbiente($id)
     {   
         $ambiente = Ambiente::findOrFail($id);
-        return view('admin-general.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente'));
+        return view('socio.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente'));
     }
 
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
@@ -190,7 +190,7 @@ class ReservarAmbienteController extends Controller
      public function searchSocio() // va  a la lista de los socios
     {
         
-        return view('admin-general.persona.socio.buscarSocio');
+        return view('socio.persona.socio.buscarSocio');
     }
        
 }

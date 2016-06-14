@@ -11,6 +11,7 @@ use papusclub\Http\Requests\StoreSedeRequest;
 use papusclub\Http\Requests\EditSedeRequest;
 use papusclub\Models\Departamento;
 use papusclub\Models\Provincia;
+use papusclub\Models\Distrito;
 
 class SedesController extends Controller
 {
@@ -40,9 +41,18 @@ class SedesController extends Controller
         $sede = new Sede();
         $sede->nombre = $input['nombre'];
         $sede->telefono = $input['telefono'];        
-        $sede->departamento = $input['departamento'];
-        $sede->provincia = $input['provincia'];
-        $sede->distrito = $input['distrito'];
+        if(isset($input['departamento'])){
+            $departamento = Departamento::find($input['departamento']);
+            $sede->departamento = $departamento->nombre;  
+        }
+        if(isset($input['provincia'])){
+            $provincia = Provincia::find($input['provincia']);
+            $sede->provincia = $provincia->nombre;  
+        }
+        if(isset($input['distrito'])){
+            $distrito = Distrito::find($input['distrito']);
+            $sede->distrito = $distrito->nombre;  
+        }
         $sede->direccion = $input['direccion'];
         $sede->referencia = $input['referencia'];
         $sede->nombre_contacto = $input['nombre_contacto'];

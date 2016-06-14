@@ -20,7 +20,7 @@ class AmbienteController extends Controller
     public function index()
     {
         $ambientes = Ambiente::all();
-        return view('admin-general.ambiente.index', compact('ambientes'));
+        return view('admin-registros.ambiente.index', compact('ambientes'));
     }
 
 
@@ -30,7 +30,7 @@ class AmbienteController extends Controller
         $tipoPersonas = TipoPersona::all();
         $values=Configuracion::where('grupo','=','2')->get();
 
-        return view('admin-general.ambiente.newAmbiente', compact('sedes', 'values', 'tipoPersonas'));
+        return view('admin-registros.ambiente.newAmbiente', compact('sedes', 'values', 'tipoPersonas'));
         
     }
     //Se almacena el nuevo ambiente que se ha registrado en la BD
@@ -85,7 +85,8 @@ class AmbienteController extends Controller
     {
         $ambiente = Ambiente::find($id);
         $tarifas = $ambiente->tarifas;
-        return view('admin-general.ambiente.editAmbiente', compact('ambiente', 'tarifas'));
+        
+        return view('admin-registros.ambiente.editAmbiente', compact('ambiente', 'tarifas'));
     }
 
     //Se guarda la informacion modificada del ambiente en la BD
@@ -136,7 +137,7 @@ class AmbienteController extends Controller
     {
         $ambiente = Ambiente::find($id);
         $tarifas = $ambiente->tarifas;
-        return view('admin-general.ambiente.detailAmbiente', compact('ambiente','tarifas'));
+        return view('admin-registros.ambiente.detailAmbiente', compact('ambiente','tarifas'));
     }
 
 
@@ -148,13 +149,13 @@ class AmbienteController extends Controller
         $values=Configuracion::where('grupo','=','3')->get();
         $tipoPersonas = TipoPersona::all();
         
-        return view('admin-general.actividad.newActividad', compact('ambiente','values','tipoPersonas'));
+        return view('admin-registros.actividad.newActividad', compact('ambiente','values','tipoPersonas'));
     }
      public function search()
     {
         $ambientes = Ambiente::all();
         $tipoPersonas = TipoPersona::all();
-        return view('admin-general.ambiente.searchAmbiente', compact('ambientes'),compact('tipoPersonas'));
+        return view('admin-registros.ambiente.searchAmbiente', compact('ambientes'),compact('tipoPersonas'));
     }
     
 }

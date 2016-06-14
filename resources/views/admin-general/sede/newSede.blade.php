@@ -98,36 +98,36 @@
 			  	
 
 			  	
-			  	<!-- DEPARTAMENTO - PROVINCIA - DISTRITO -->
-			  	  	<div class="form-group">
-			  	  		<div class="form-group required">
-			    			<label for="departamentoInput" class="col-sm-4 control-label">Departamento</label>
-			    			<div class="col-sm-5">
-			      				<select form="form_id" class="form-control" id="departamento" name="departamento" style="max-width: 150px " data-link="{{ url('/provincias') }}">
-										<option value="-1" default>--Departamento--</option>
-											@foreach ($departamentos as $depa)      
-												<option value="{{$depa->id}}">{{$depa->nombre}}</option>
-											@endforeach
+			  	<div class="form-group required">
+					<div class="col-sm-10">
+						<div class="col-sm-5 text-center">
+							<label for="" class="control-label">Lugar de Sede:</label>
+						</div>
+							<div class="col-sm-5">
+								<select class="form-control" id="departamento" name="departamento" style="max-width: 250px " data-link="{{ url('/provincias') }}">
+									<option value="-1" default>--Departamento--</option>
+										@foreach ($departamentos as $depa)      
+						                	<option value="{{$depa->id}}"  @if (old('departamento') == $depa->id) selected="selected" @endif  >{{$depa->nombre}}</option>
+						                @endforeach
 								</select>
-			    			</div>
-			  			</div>
-			  			<div class="form-group required">
-			    			<label for="provinciaInput" class="col-sm-4 control-label">Provincia</label>
-			    			<div class="col-sm-5">
-			      				<select form="form_id" class="form-control" id="provincia" name="provincia" style="max-width: 150px " data-link="{{ url('/distritos') }}" disabled="true">
+								
+								<br>
+								<select class="form-control" id="provincia" name="provincia" style="max-width: 250px " data-link="{{ url('/distritos') }}" disabled="true">
 									<option  value="-1" default disab>--Provincia--</option>
 								</select>
-			    			</div>
-			  			</div>
-						<div class="form-group required">
-			    			<label for="distritoInput" class="col-sm-4 control-label">Distrito</label>
-			    			<div class="col-sm-5">
-			      				<select form="form_id" class="form-control" id="distrito" name="distrito" style="max-width: 150px " disabled="true">
+								<br>
+								<select class="form-control" id="distrito" name="distrito" style="max-width: 250px " disabled="true">
 									<option  value="-1" default>--Distrito--</option>
 								</select>
-			    			</div>
-			  			</div>
+
+								<br><br>
+
+								<!--<a href="#" id="try" data-link="{{ url('/test') }}">Try</a>-->
+
+							</div>	
 					</div>
+				</div>
+									
 				
 			  	
 			  	<div class="form-group required">
@@ -176,8 +176,7 @@
 	
 	<script>$.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')} })</script>
 
-
-	 <script type="text/javascript">
+	<script type="text/javascript">
 
 	    
 		$(document).ready(function(){
@@ -206,10 +205,11 @@
 			        	$("#provincia").empty();
 			        	$("#provincia").append("<option  value='-1' default>--Provincia--</option>");
 			        	$.each(data,function(index,elememt){
-			        		//alert(element.nombre);
+			        		
 			        		$("#provincia").append("<option value='"+elememt.id+"'>"+elememt.nombre+"</option>");
+			           		 console.log("mensaje que quieras");
+
 			        	});
-			            //alert(data);
 			        },error:function(){ 
 			            alert("error!!!!");
 			        }
@@ -254,7 +254,7 @@
 
 			$("#try").click(function(){
 			    var url = $(this).attr("data-link");
-			    //alert(url);
+			    
 			    $.ajax({
 			        url: "test",
 			        type:"POST",
@@ -271,7 +271,7 @@
 			        },error:function(){ 
 			            alert("error!!!!");
 			        }
-			    }); //end of ajax
+			    }); 
 			});
 
 		});
@@ -279,6 +279,8 @@
 
 	</script>
 
+
+	
 	
 </body>
 </html>

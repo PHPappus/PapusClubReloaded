@@ -13,20 +13,20 @@ class PagosController extends Controller
     public function seleccionarSocio()
     {
     	$socios = Socio::all();
-        return view('admin-general.pagos.pago-seleccionar-socio',compact('socios'));
+        return view('admin-pagos.pagos.pago-seleccionar-socio',compact('socios'));
     }
      public function selectSocio($id) //una vez seleccionado el socio , voy a la sigueiten pantalla que sera las facturas del socio
     {
         $socio = Socio::find($id);
        
-        return view('admin-general.pagos.lista-deudas-del-socio', compact('socio'));
+        return view('admin-pagos.pagos.lista-deudas-del-socio', compact('socio'));
     }
   
     
      public function registrarPago() /// registro que el socio ya realizo el pago de x producto
     {   //Deberia buscar el ID de la factura , de donde se sacara el socio y de que fue la deuda
        
-        return view('admin-general.pagos.registrar-pago');
+        return view('admin-pagos.pagos.registrar-pago');
     }
 
     public function update()

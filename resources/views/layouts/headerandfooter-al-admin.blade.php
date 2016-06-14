@@ -80,7 +80,7 @@
 								<li><a href="{!!URL::to('/sorteo/index')!!}" title="Mantenimiento Sorteo" target="_self">SORTEO</a></li>
 							</ul>
 						</li>
-						<li><a href="{!!URL::to('/ambiente/index')!!}">AMBIENTE<span class="despliegue">▼</span></a>
+						<!-- <li><a href="{!!URL::to('/ambiente/index')!!}">AMBIENTE<span class="despliegue">▼</span></a>
 							
 						</li>
 
@@ -88,7 +88,7 @@
 							<ul>
 								<li><a href="{!!URL::to('/inscripcion-actividad/inscripcion-actividades')!!}" title="ir a agregar sede" target="_self">INSCRIPCIÓN</a></li>
 							</ul>
-						</li>
+						</li> -->
 						<!-- Opción Actividades -->
 						<li><a href="{!!URL::to('/taller/')!!}">TALLER<span class="despliegue">▼</span></a>
 							<ul>
@@ -112,7 +112,7 @@
 						<!-- Opción Eventos -->
 						<li><a href="{!!URL::to('/proveedor/index')!!}">PROVEEDOR</a></li>
 						<!-- MANTENIMIENTO DE PAGOS -->
-						<li><a href="{{url('/pagos/pago-seleccionar-socio')}}">PAGOS</a></li>
+						<!-- <li><a href="{{url('/pagos/pago-seleccionar-socio')}}">PAGOS</a></li> -->
 
 					</ul>
 				</nav>

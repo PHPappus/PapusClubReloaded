@@ -19,7 +19,7 @@ class ActividadController extends Controller
     public function index()
     {
         $actividades=Actividad::all();
-        return view('admin-general.actividad.index',compact('actividades'));
+        return view('admin-registros.actividad.index',compact('actividades'));
     }
     public function create()
     {
@@ -29,7 +29,7 @@ class ActividadController extends Controller
         
         $values=Configuracion::where('grupo','=','3')->get();
 
-        return view('admin-general.ambiente.searchAmbiente', compact('ambientes'),compact('values'),compact('tipoPersonas'));
+        return view('admin-registros.ambiente.searchAmbiente', compact('ambientes'),compact('values'),compact('tipoPersonas'));
     	
     }
     public function store(StoreActividadRequest $request)
@@ -80,7 +80,7 @@ class ActividadController extends Controller
     {
         $actividad=Actividad::find($id);
         $tipoPersonas=TipoPersona::all();
-        return view('admin-general.actividad.editActividad', compact('actividad','tipoPersonas'));
+        return view('admin-registros.actividad.editActividad', compact('actividad','tipoPersonas'));
     }
     //Se guarda la informacion modificada de la actividad en la BD
     public function update(EditActividadRequest $request, $id)
@@ -107,7 +107,7 @@ class ActividadController extends Controller
     {
         $actividad=Actividad::find($id);
         $tipoPersonas=TipoPersona::all();
-        return view('admin-general.actividad.detailActividad', compact('actividad','tipoPersonas'));
+        return view('admin-registros.actividad.detailActividad', compact('actividad','tipoPersonas'));
     }
     public function destroy($id)
     {
