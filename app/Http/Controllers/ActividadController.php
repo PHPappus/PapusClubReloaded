@@ -48,14 +48,14 @@ class ActividadController extends Controller
         $tipoActividad = Configuracion::find($input['tipo_actividad']);
         $actividad->tipo_actividad= $tipoActividad->valor;
         $actividad->descripcion= $input['descripcion'];
-        $actividad->cant_ambientes=$input['cant_ambientes'];
+       // $actividad->cant_ambientes=$input['cant_ambientes'];
         
         if (empty($input['a_realizarse_en'])) {
                     $actividad->a_realizarse_en="";
                 }else{
                     $a_realizarse_en = str_replace('/', '-', $input['a_realizarse_en']);      
                     $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
-                    $actividad->hora_incio=$carbon->createFromFormat('H:i:s', $input['hora'])->toTimeString();
+                    $actividad->hora_inicio=$carbon->createFromFormat('H:i:s', $input['hora'])->toTimeString();
                 }
 
         $actividad->estado=false; 
@@ -88,7 +88,7 @@ class ActividadController extends Controller
     {
         $input = $request->all();
         $actividad = Actividad::find($id);
-
+        $carbon=new Carbon(); 
         $actividad->nombre= $input['nombre'];
         $actividad->capacidad_maxima= $input['capacidad_maxima'];
         $actividad->tipo_actividad= $input['tipo_actividad'];
@@ -97,10 +97,11 @@ class ActividadController extends Controller
                     $actividad->a_realizarse_en="";
                 }else{
                     $a_realizarse_en = str_replace('/', '-', $input['a_realizarse_en']);      
-                    $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
-                    $actividad->hora_incio=$carbon->createFromFormat('H:i:s', $input['hora'])->toTimeString();
+                    $actividad->a_realizarse_en=$carbon->createFromFormat('Y-m-d', $a_realizarse_en)->toDateString();
+                    $actividad->hora_inicio=$carbon->createFromFormat('H:i:s', $input['hora'])->toTimeString();
         }
-        $actividad->save();
+        $actividad->update();
+
         return redirect('actividad/index');
 
     }
@@ -114,7 +115,14 @@ class ActividadController extends Controller
     public function destroy($id)
     {
         $actividad=Actividad::find($id);
-        $actividad->delete();
+        
+        // if($actividad->reservas->count()){
+        //     return redirect('actividad/index')->with('delete', 'No se puede eliminar esta actividad, posee dependencias.');
+        // }
+        // else
+        //     $actividad->delete();
+        
         return back();
+
     }
 }

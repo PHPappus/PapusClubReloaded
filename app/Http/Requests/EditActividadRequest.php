@@ -28,7 +28,6 @@ class EditActividadRequest extends Request
             'tipo_actividad'     =>  'required|max:100|string',
             'capacidad_maxima'  =>  'integer|min:1',
             'descripcion'         =>  'required|max:100|string',   
-            'cant_ambientes'    => 'required|min:1',
         ];
     }
 }

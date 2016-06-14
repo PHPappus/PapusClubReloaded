@@ -16,7 +16,6 @@ class Actividad extends Model
     'descripcion',
     'a_realizarse_en',
     'hora_inicio',
-    'cant_ambientes',
     'estado',
     ];
     protected $dates = ['deleted_at'];
