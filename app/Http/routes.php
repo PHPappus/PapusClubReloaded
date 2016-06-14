@@ -90,102 +90,9 @@ Route::group(['middleware' => ['auth', 'adminpagos']], function () {
 //Administrador general
 Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::resource('admin-general','AdminGeneralController');
-	Route::get('postulante-al-admin','AdminGeneralController@postulante');
-
-	//MANTENIMIENTO DE POSTULANTE
-	Route::get('postulante/index','PostulanteController@index');//ya
-	Route::get('postulante/new','PostulanteController@registrar');//ya
-	Route::post('postulante/new/postulante', 'PostulanteController@store');//ya
-	Route::get('postulante/{id}','PostulanteController@edit');//
-	Route::get('postulante/{id}/delete', 'PostulanteController@destroy');
-	Route::get('postulante/{id}/show', 'PostulanteController@show');//
-
-	/*editar*/
-	Route::patch('postulante/{id}/editBasico','PostulanteController@updateBasico');
-/*	Route::patch('Socio/{id}/editEstudio','SocioAdminController@updateEstudio');
-	Route::patch('Socio/{id}/editTrabajo','SocioAdminController@updateTrabajo');
-	Route::patch('Socio/{id}/editContacto','SocioAdminController@updateContacto');
-	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');*/
-
-	//Route::get('/provincias','PostulanteController@getProvincias');
-	
-	Route::post('postulante/test', function()
-	{
-	    return 'Success! ajax in laravel 5';
-	});
-	//Route::get('/information/create/ajax-departamento','UbicacionController@getProvincias');
-	Route::post('postulante/provincias', function(){
-		$dep_id=Input::get('id');
-    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
-	});
-	Route::post('postulante/distritos', function(){
-		$prov_id=Input::get('id');
-    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
-	});
-	//Route::get('api/repairdropdown', 'UbicacionController@dropdown');
-
-	//MANTENIMIENTO DE TRABAJADOR
-	Route::get('trabajador/index','TrabajadorController@index');//ya
-	Route::get('trabajador/new','TrabajadorController@registrar');//ya
-	Route::post('trabajador/new/trabajador', 'TrabajadorController@store');//ya
-	Route::get('trabajador/{id}','TrabajadorController@edit');//ya
-	Route::post('trabajador/{id}/edit', 'TrabajadorController@update');
-	Route::get('trabajador/{id}/delete', 'TrabajadorController@destroy');
-	Route::get('trabajador/{id}/show', 'TrabajadorController@show');//ya
+/*	Route::get('postulante-al-admin','AdminGeneralController@postulante');*/
 
 
-	//MANTENIMIENTO DE SOCIO
-	Route::get('Socio/','SocioAdminController@index');
-	Route::get('Socio/all','SocioAdminController@indexAll');
-	Route::get('Socio/{id}/','SocioAdminController@show');
-	Route::get('Socio/{id}/editar','SocioAdminController@edit');
-	Route::get('Socio/{socio}/delete', 'SocioAdminController@destroy');
-	Route::get('Socio/{id}/activate','SocioAdminController@activate');
-
-	/*invitado*/
-	Route::get('Socio/{id}/invitado/new','SocioAdminController@createInvitado');
-	Route::post('Socio/{id}/invitado/save','SocioAdminController@storeInvitado');
-	Route::get('Socio/{id}/invitado/delete','SocioAdminController@deleteInvitado');
-	Route::get('Socio/invitado/{id}/','SocioAdminController@detailInvitado');
-		/*Departamento, provincia, distrito*/
-		Route::post('Socio/{id}/invitado/provincias', function(){
-			$dep_id=Input::get('id');
-	    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
-		});
-		Route::post('Socio/{id}/invitado/distritos', function(){
-			$prov_id=Input::get('id');
-	    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
-		});
-	/**/
-
-	/*editar*/
-	Route::patch('Socio/{id}/editBasico','SocioAdminController@updateBasico');
-	Route::patch('Socio/{id}/editNacimiento','SocioAdminController@updateNacimiento');
-	Route::patch('Socio/{id}/editEstudio','SocioAdminController@updateEstudio');
-	Route::patch('Socio/{id}/editTrabajo','SocioAdminController@updateTrabajo');
-	Route::patch('Socio/{id}/editContacto','SocioAdminController@updateContacto');
-	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');
-
-	/*Departamento, provincia, distrito*/
-	Route::post('Socio/{id}/provincias', function(){
-		$dep_id=Input::get('id');
-    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
-	});
-	Route::post('Socio/{id}/distritos', function(){
-		$prov_id=Input::get('id');
-    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
-	});
-
-	//MANTENIMIENTO DE MEMBRESIA
-	Route::get('membresia/','MembresiaController@index');
-	Route::get('membresia/all','MembresiaController@indexAll');
-	Route::get('membresia/new','MembresiaController@create');
-	Route::get('membresia/{id}/','MembresiaController@show');
-	Route::post('membresia/new/save','MembresiaController@store');
-	Route::get('membresia/{id}/editar','MembresiaController@edit');
-	Route::get('membresia/{membresia}/delete', 'MembresiaController@destroy');
-	Route::get('membresia/{id}/activate','MembresiaController@activate');
-	Route::patch('membresia/{id}/edit','MembresiaController@update'); 
 
 	//MANTENIMIENTO DE MULTAS
 	Route::get('multa/','MultaController@index');
@@ -327,6 +234,105 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::resource('admin-persona','AdminPersonaController');
 	Route::get('multas-s/','SocioAdminController@indexRegMulta');
 	Route::post('multas-s/save','SocioAdminController@storeMulta');
+
+
+	//MANTENIMIENTO DE TRABAJADOR
+	Route::get('trabajador/index','TrabajadorController@index');//ya
+	Route::get('trabajador/new','TrabajadorController@registrar');//ya
+	Route::post('trabajador/new/trabajador', 'TrabajadorController@store');//ya
+	Route::get('trabajador/{id}','TrabajadorController@edit');//ya
+	Route::post('trabajador/{id}/edit', 'TrabajadorController@update');
+	Route::get('trabajador/{id}/delete', 'TrabajadorController@destroy');
+	Route::get('trabajador/{id}/show', 'TrabajadorController@show');//ya
+
+		//MANTENIMIENTO DE POSTULANTE
+	Route::get('postulante/index','PostulanteController@index');//ya
+	Route::get('postulante/new','PostulanteController@registrar');//ya
+	Route::post('postulante/new/postulante', 'PostulanteController@store');//ya
+	Route::get('postulante/{id}','PostulanteController@edit');//
+	Route::get('postulante/{id}/delete', 'PostulanteController@destroy');
+	Route::get('postulante/{id}/show', 'PostulanteController@show');//
+
+	/*editar*/
+	Route::patch('postulante/{id}/editBasico','PostulanteController@updateBasico');
+/*	Route::patch('Socio/{id}/editEstudio','SocioAdminController@updateEstudio');
+	Route::patch('Socio/{id}/editTrabajo','SocioAdminController@updateTrabajo');
+	Route::patch('Socio/{id}/editContacto','SocioAdminController@updateContacto');
+	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');*/
+
+	//Route::get('/provincias','PostulanteController@getProvincias');
+	
+	Route::post('postulante/test', function()
+	{
+	    return 'Success! ajax in laravel 5';
+	});
+	//Route::get('/information/create/ajax-departamento','UbicacionController@getProvincias');
+	Route::post('postulante/provincias', function(){
+		$dep_id=Input::get('id');
+    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
+	});
+	Route::post('postulante/distritos', function(){
+		$prov_id=Input::get('id');
+    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
+	});
+	//Route::get('api/repairdropdown', 'UbicacionController@dropdown');
+
+
+	//MANTENIMIENTO DE SOCIO
+	Route::get('Socio/','SocioAdminController@index');
+	Route::get('Socio/all','SocioAdminController@indexAll');
+	Route::get('Socio/{id}/','SocioAdminController@show');
+	Route::get('Socio/{id}/editar','SocioAdminController@edit');
+	Route::get('Socio/{socio}/delete', 'SocioAdminController@destroy');
+	Route::get('Socio/{id}/activate','SocioAdminController@activate');
+
+	/*invitado*/
+	Route::get('Socio/{id}/invitado/new','SocioAdminController@createInvitado');
+	Route::post('Socio/{id}/invitado/save','SocioAdminController@storeInvitado');
+	Route::get('Socio/{id}/invitado/delete','SocioAdminController@deleteInvitado');
+	Route::get('Socio/invitado/{id}/','SocioAdminController@detailInvitado');
+		/*Departamento, provincia, distrito*/
+		Route::post('Socio/{id}/invitado/provincias', function(){
+			$dep_id=Input::get('id');
+	    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
+		});
+		Route::post('Socio/{id}/invitado/distritos', function(){
+			$prov_id=Input::get('id');
+	    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
+		});
+	/**/
+
+	/*editar*/
+	Route::patch('Socio/{id}/editBasico','SocioAdminController@updateBasico');
+	Route::patch('Socio/{id}/editNacimiento','SocioAdminController@updateNacimiento');
+	Route::patch('Socio/{id}/editEstudio','SocioAdminController@updateEstudio');
+	Route::patch('Socio/{id}/editTrabajo','SocioAdminController@updateTrabajo');
+	Route::patch('Socio/{id}/editContacto','SocioAdminController@updateContacto');
+	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');
+
+	/*Departamento, provincia, distrito*/
+	Route::post('Socio/{id}/provincias', function(){
+		$dep_id=Input::get('id');
+    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
+	});
+	Route::post('Socio/{id}/distritos', function(){
+		$prov_id=Input::get('id');
+    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
+	});
+
+	
+	//MANTENIMIENTO DE MEMBRESIA
+	Route::get('membresia/','MembresiaController@index');
+	Route::get('membresia/all','MembresiaController@indexAll');
+	Route::get('membresia/new','MembresiaController@create');
+	Route::get('membresia/{id}/','MembresiaController@show');
+	Route::post('membresia/new/save','MembresiaController@store');
+	Route::get('membresia/{id}/editar','MembresiaController@edit');
+	Route::get('membresia/{membresia}/delete', 'MembresiaController@destroy');
+	Route::get('membresia/{id}/activate','MembresiaController@activate');
+	Route::patch('membresia/{id}/edit','MembresiaController@update'); 
+
+
 });
 //Administrador de Reserva
 Route::group(['middleware' => ['auth', 'adminreserva']], function () {
