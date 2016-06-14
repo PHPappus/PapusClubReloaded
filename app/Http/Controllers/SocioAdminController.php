@@ -33,13 +33,13 @@ class SocioAdminController extends Controller
     {
         $socios = Socio::all();
         
-        return view('admin-general.persona.socio.index',compact('socios'));
+        return view('admin-persona.persona.socio.index',compact('socios'));
     }
 
     public function indexAll()
     {
         $socios = Socio::withTrashed()->get();
-        return view('admin-general.persona.socio.all',compact('socios'));
+        return view('admin-persona.persona.socio.all',compact('socios'));
     }
 
     public function show($id)
@@ -49,7 +49,7 @@ class SocioAdminController extends Controller
         $socio->carnet_actual()->fecha_emision=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_emision)->format('d/m/Y');
         $socio->carnet_actual()->fecha_vencimiento=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_vencimiento)->format('d/m/Y');
         $socio->postulante->persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d',$socio->postulante->persona->fecha_nacimiento)->format('d/m/Y');
-        return view('admin-general.persona.socio.showSocio',compact('socio'));
+        return view('admin-persona.persona.socio.showSocio',compact('socio'));
     }
 
     public function destroy(Socio $socio)
@@ -111,7 +111,7 @@ class SocioAdminController extends Controller
 
         $departamentos=Departamento::select('id','nombre')->get();
 
-        return view('admin-general.persona.socio.editSocio',compact('socio','membresias', 'departamentos'));        
+        return view('admin-persona.persona.socio.editSocio',compact('socio','membresias', 'departamentos'));        
     }
 
     public function updateBasico(EditSocioBasicoRequest $request,$id)
@@ -411,7 +411,7 @@ class SocioAdminController extends Controller
         $socio = Socio::withTrashed()->find($id);
         $departamentos=Departamento::select('id','nombre')->get();
 
-        return view('admin-general.persona.socio.invitado.newInvitado',compact('socio','departamentos'));
+        return view('admin-persona.persona.socio.invitado.newInvitado',compact('socio','departamentos'));
     }
 
     public function detailInvitado($id)
@@ -419,7 +419,7 @@ class SocioAdminController extends Controller
         $invitado = Invitados::find($id);
         $socio = Socio::withTrashed()->find($invitado->persona_id);
         $persona = Persona::find($invitado->invitado_id);
-        return view('admin-general.persona.socio.invitado.detailInvitado',compact('persona','socio'));
+        return view('admin-persona.persona.socio.invitado.detailInvitado',compact('persona','socio'));
     }
 
     public function storeInvitado(StoreInvitadoRequest $request, $id)
