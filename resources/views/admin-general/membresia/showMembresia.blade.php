@@ -52,7 +52,41 @@
 			      		<input type="number" min="0" step="any" class="form-control" id="tarifaInput" name="tarifa" placeholder="Tarifa" value="{{$membresia->tarifa->monto}}" readonly >
 			    	</div>
 			  	</div>
+			  	<br>
+			  	<div class="form-group">
+			    	<label for="capacidadSocioInput" class="col-sm-7 control-label">DESCUENTOS ESPECIALES POR FAMILIAR</label>
+			  	</div>	
+			  	<br>		  	
 
+					<style>  				
+	  				#myTable {
+	    					    margin: 0 auto;  
+	    			}			
+				</style>
+				<div class="container" style="width: 600px; margin-left: auto; margin-right: auto"  >
+				<table class="table table-bordered" >
+						<thead class="active" >	
+							<tr>							
+								<th class="col-sm-3" ><DIV ALIGN=center>Tipo Persona</th>
+								<th class="col-sm-3" ><DIV ALIGN=center>%</th>
+								<th class="col-sm-3"><DIV ALIGN=center>Descuento</th>
+							</tr>
+						</thead>
+						<tbody>
+								@foreach ($membresia->tarifas_familias as $tipofamilia)		
+							    	<tr>
+										<td align="center">  {{ $tipofamilia->nombre }}</td>
+										<td align="center">%</td>
+										<td align="center"> 
+										<div align="center">
+								      		<input style="text-align:center;" type="text"  class="form-control" name="descuentos[{{$tipofamilia->id}}]" value="{{$tipofamilia->pivot->descuento}}" readonly>
+								    	</div>
+									</td>							        
+									</tr>
+								@endforeach
+						</tbody>													
+				</table>
+				</div>
 			  	</br>
 			  	</br>
 				<div class="form-group">
