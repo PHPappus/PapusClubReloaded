@@ -66,7 +66,7 @@ class PostulanteTableSeeder extends Seeder
             'estado_civil'=>'soltero',
             'nro_hijos'=>1,
             'domicilio'=>'Av. Las torres 515',
-            'telefono_domicilio'=>3265025
+            'telefono_domicilio'=>3265025,
             'telefono_celular'=>992745845]);
     }
 }

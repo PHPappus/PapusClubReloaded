@@ -45,7 +45,7 @@ class CreatePostulanteTable extends Migration
             $table->string('direccion_laboral');
 
             //DATOS FAMILIARES
-            $table->string('estado_civil');
+            $table->integer('estado_civil');
             $table->integer('nro_hijos');
 
             //DATOS DE VIVIENDA
