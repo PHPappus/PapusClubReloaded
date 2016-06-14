@@ -15,6 +15,7 @@ class Actividad extends Model
     'capacidad_maxima', 
     'descripcion',
     'a_realizarse_en',
+    'hora_inicio',
     'cant_ambientes',
     'estado',
     ];
