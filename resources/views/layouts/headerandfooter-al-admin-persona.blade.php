@@ -34,13 +34,17 @@
       <div class="collapse navbar-collapse" id="navbar1">
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Bungalows <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="{!!URL::to('/bungalows-s')!!}" title="consultar Bungalows" target="_self">Consultar</a></li>
-                <li><a href="{!!URL::to('/reserva-bungalows-s')!!}" title="reserva de bungalows" target="_self">Reservar</a></li>
-            </ul>
+            <li><a href="{!!URL::to('/trabajador/index')!!}" class="dropdown-toggle btn-lg" title="consultar Bungalows" target="_self">Trabajadores</a></li>
+          </li>
+        </ul>
+         <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <li><a href="{!!URL::to('/postulante/index')!!}" class="dropdown-toggle btn-lg" title="consultar Bungalows" target="_self">Postulante</a></li>
+          </li>
+        </ul>
+         <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <li><a href="{!!URL::to('/Socio/')!!}" class="dropdown-toggle btn-lg" title="consultar Bungalows" target="_self">Socio</a></li>
           </li>
         </ul>
         <ul class="nav navbar-nav">
