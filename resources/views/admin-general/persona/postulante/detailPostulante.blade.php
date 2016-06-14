@@ -23,7 +23,7 @@
 		<div class="row">
 			<div class="col-sm-12 text-left">
 				<br/><br/>
-				<p class="lead"><strong>DETALLE DE SOCIO</strong></p>
+				<p class="lead"><strong>DETALLE DE POSTULANTE</strong></p>
 				<br/>
 			</div>
 			
@@ -41,8 +41,7 @@
 							<li role="presentation"><a href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab">Estudio</a></li>
 							<li role="presentation"><a href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab">Trabajo</a></li>
 							<li role="presentation"><a href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab">Contacto</a></li>
-							<li role="presentation"><a href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab">Invitados</a></li>							
-							<li role="presentation"><a href="#seccion9" aria-controls="seccion9" data-toggle="tab" role="tab">Membresía</a></li>
+						
 						</ul>
 					</div>
 					<div class="tab-content">
@@ -71,7 +70,7 @@
 											<label for="" class="control-label">Nombre:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{{$socio->postulante->persona->nombre}}" disabled>
+											<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{{$postulante->persona->nombre}}" disabled>
 										</div>	
 									</div>
 								</div>
@@ -81,7 +80,7 @@
 											<label for="" class="control-label">Apellido Paterno:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="apellidoPat" name="apellidoPat" placeholder="Apellido Paterno" value="{{$socio->postulante->persona->ap_paterno}}" disabled>
+											<input type="text" class="form-control" id="apellidoPat" name="apellidoPat" placeholder="Apellido Paterno" value="{{$postulante->persona->ap_paterno}}" disabled>
 										</div>	
 									</div>
 								</div>
@@ -91,7 +90,7 @@
 											<label for="" class="control-label">Apellido Materno:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="apellidoMat" name="apellidoMat" placeholder="Apellido Materno" value="{{$socio->postulante->persona->ap_materno}}" disabled>
+											<input type="text" class="form-control" id="apellidoMat" name="apellidoMat" placeholder="Apellido Materno" value="{{$postulante->persona->ap_materno}}" disabled>
 										</div>	
 									</div>
 								</div>								
@@ -101,7 +100,7 @@
 											<label for="" class="control-label">Sexo:</label>
 										</div>
 										<div class="col-sm-6 text-left" >
-										@if(strcmp($socio->postulante->persona->sexo,'masculino')==0)
+										@if(strcmp($postulante->persona->sexo,'masculino')==0)
 												<input type="radio" name="genero" value="Masculino" disabled checked> Masculino
 												<input type="radio" name="genero" value="Femenino" style="margin-left: 35px;" disabled> Femenino
 										@else
@@ -111,7 +110,8 @@
 										</div>	
 									</div>
 								</div>
-								@if(strcmp($socio->postulante->persona->nacionalidad,'peruano')==0)
+
+								@if(strcmp($postulante->persona->nacionalidad,'peruano')==0)
 								<div class="form-group">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
@@ -130,7 +130,7 @@
 											<label for="" class="control-label">DNI:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control inputmodify" id="docidentity" placeholder="#######" style="max-width: 250px" value="{{$socio->postulante->persona->doc_identidad}}"disabled>
+											<input type="text" class="form-control inputmodify" id="docidentity" placeholder="#######" style="max-width: 250px" value="{{$postulante->persona->doc_identidad}}"disabled>
 										</div>	
 									</div>
 								</div>
@@ -153,7 +153,7 @@
 											<label for="" class="control-label">Carnet de Extranjería:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control inputmodify" id="docidentity" placeholder="#######" style="max-width: 250px" value="{{$socio->postulante->persona->carnet_extranjeria}}"disabled>
+											<input type="text" class="form-control inputmodify" id="docidentity" placeholder="#######" style="max-width: 250px" value="{{$postulante->persona->carnet_extranjeria}}"disabled>
 										</div>	
 									</div>
 								</div>
@@ -177,7 +177,7 @@
 								</div>	
 								<div class="form-group">
 									<div class="col-sm-5"> </div>
-										<a class="btn btn-info" href="/Socio/" title="Editar" >Regresar</a>			
+										<a class="btn btn-info" href="/postulante/index" title="Editar" >Regresar</a>			
 								</div>															
 							</form>
 						</div>
@@ -201,87 +201,69 @@
 											<a href="#" class="btn btn-info cont" ><span class="glyphicon glyphicon-chevron-right"></span></a>
 										</div>
 								</div>
+
+
 								<div class="form-group">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
 											<label for="" class="control-label">Fecha de Nacimiento(dd/mm/aaaa):</label>
 										</div>
 										<div class="col-sm-6">
-											<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" value="{{$socio->postulante->persona->fecha_nacimiento}}"style="width: 250px"  disabled>
+											<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" value="{{$postulante->persona->fecha_nacimiento}}"style="width: 250px"  disabled>
 
 										</div>	
 									</div>
 								</div>
-							@if(strcmp($socio->postulante->persona->nacionalidad,'peruano')==0)	
+
 								<div class="form-group">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Departamento:</label>
-										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="departamento" name="departamento" placeholder="Departamento" value="{{$socio->postulante->Departamento->nombre}}" disabled>
-										</div>	
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Provincia:</label>
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Departamento:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="departamento" name="departamento" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{array_values($arregloLugar)[0]['nombre']}}" disabled>
+											</div>		
 										</div>
-										<div class="col-sm-6">
-											<input type="text" class="form-control" id="provincia" name="provincia" placeholder="Provincia" value="{{$socio->postulante->Provincia->nombre}}" disabled>
-										</div>	
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Distrito:</label>
-										</div>
-										<div class="col-sm-6">
-											<input type="text" class="form-control" id="distrito" name="distrito" placeholder="Distrito" value="{{$socio->postulante->Distrito->nombre}}" disabled>
-										</div>	
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Dirección de Nacimiento:</label>
-										</div>
-										<div class="col-sm-6">
-											<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="Direccion de nacimiento" value="{{$socio->postulante->direccion_nacimiento}}" disabled>
-										</div>	
-									</div>
-								</div>
-							@else
-								<div class="form-group ">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">País de Nacimiento:</label>
-										</div>
-										<div class="col-sm-6">
-											<input type="text" class="form-control" id="pais_nacimiento" name="pais_nacimiento" placeholder="Pais de  Nacimiento" style="max-width: 250px" value="{{$socio->postulante->pais_nacimiento}}" disabled>
-										</div>		
-									</div>
 								</div>
 
-								<div class="form-group ">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Ciudad de Nacimiento:</label>
-										</div>
+								<div class="form-group">
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="lugar_nacimiento" name="lugar_nacimiento" placeholder="Lugar de Nacimiento" style="max-width: 250px" value="{{$socio->postulante->lugar_nacimiento}}" disabled>
-										</div>		
-									</div>
-								</div>							
-							@endif
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Provincia:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="provincia" name="provincia" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{array_values($arregloLugar)[1]['nombre']}}" disabled>
+											</div>		
+										</div>
+								</div>
+
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Distrito:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="distrito" name="distrito" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{array_values($arregloLugar)[2]['nombre']}}" disabled>
+											</div>		
+										</div>
+								</div>
+
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Direccion Nacimiento:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{$postulante->direccion_nacimiento}}" disabled>
+											</div>		
+										</div>
+								</div>
+
 								<div class="form-group">
 									<div class="col-sm-5"> </div>
-										<a class="btn btn-info" href="/Socio/" title="Editar" >Regresar</a>			
-								</div>																							
-							</form>
-
+										<a class="btn btn-info" href="/postulante/index" title="Editar" >Regresar</a>			
+								</div>	
+							</form>	
 						</div>
 										<!--DATOS FAMILIARES-->
 						<div role="tabpanel" class="tab-pane" id="seccion3">
@@ -343,7 +325,7 @@
 											<label for="" class="control-label">Colegio Primaria:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="colegio_primaria" name="colegio_primaria" placeholder="Colegio de Primaria" value="{{$socio->postulante->colegio_primario}}" disabled>
+											<input type="text" class="form-control" id="colegio_primaria" name="colegio_primaria" placeholder="Colegio de Primaria" value="{{$postulante->colegio_primario}}" disabled>
 										</div>	
 									</div>
 								</div>
@@ -353,7 +335,7 @@
 											<label for="" class="control-label">Colegio Secundaria:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="colegio_secundaria" name="colegio_secundaria" placeholder="Colegio de Secundaria" value="{{$socio->postulante->colegio_secundario}}" disabled>
+											<input type="text" class="form-control" id="colegio_secundaria" name="colegio_secundaria" placeholder="Colegio de Secundaria" value="{{$postulante->colegio_secundario}}" disabled>
 										</div>	
 									</div>
 								</div>
@@ -363,7 +345,7 @@
 											<label for="" class="control-label">Universidad:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="universidad" name="universidad" placeholder="Universidad" value="{{$socio->postulante->universidad}}" disabled>
+											<input type="text" class="form-control" id="universidad" name="universidad" placeholder="Universidad" value="{{$postulante->universidad}}" disabled>
 										</div>	
 									</div>
 								</div>
@@ -373,13 +355,13 @@
 											<label for="" class="control-label">Carrera:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="carrera" name="carrera" placeholder="Carrera" value="{{$socio->postulante->profesion}}" disabled>
+											<input type="text" class="form-control" id="carrera" name="carrera" placeholder="Carrera" value="{{$postulante->profesion}}" disabled>
 										</div>	
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-5"> </div>
-										<a class="btn btn-info" href="/Socio/" title="Editar" >Regresar</a>			
+										<a class="btn btn-info" href="/postulante/index" title="Editar" >Regresar</a>			
 								</div>																																				
 							</form>
 						</div>
@@ -407,7 +389,7 @@
 											<label for="" class="control-label">Centro de Trabajo:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="centrotrabajo" name="centrotrabajo" placeholder="Centro de Trabajo" value="{{$socio->postulante->centro_trabajo}}" disabled>
+											<input type="text" class="form-control" id="centrotrabajo" name="centrotrabajo" placeholder="Centro de Trabajo" value="{{$postulante->centro_trabajo}}" disabled>
 										</div>	
 									</div>
 								</div>
@@ -417,7 +399,7 @@
 											<label for="" class="control-label">Cargo en Trabajo:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="cargocentrotrabajo" name="cargocentrotrabajo" placeholder="Cargo en Trabajo" value="{{$socio->postulante->cargo_trabajo}}" disabled>
+											<input type="text" class="form-control" id="cargocentrotrabajo" name="cargocentrotrabajo" placeholder="Cargo en Trabajo" value="{{$postulante->cargo_trabajo}}" disabled>
 										</div>	
 									</div>
 								</div>
@@ -427,13 +409,13 @@
 											<label for="" class="control-label">Direccion Laboral:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="direccionlaboral" name="direccionlaboral" placeholder="Direccion" value="{{$socio->postulante->direccion_laboral}}" disabled>
+											<input type="text" class="form-control" id="direccionlaboral" name="direccionlaboral" placeholder="Direccion" value="{{$postulante->direccion_laboral}}" disabled>
 										</div>	
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-5"> </div>
-										<a class="btn btn-info" href="/Socio/" title="Editar" >Regresar</a>			
+										<a class="btn btn-info" href="/postulante/index" title="Editar" >Regresar</a>			
 								</div>																														
 							</form>
 						</div>
@@ -462,7 +444,7 @@
 											<label for="" class="control-label">Telefono:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="telefono" name="telefono_domicilio" placeholder="Telefono de Contacto" value="{{$socio->postulante->telefono_domicilio}}" disabled>
+											<input type="text" class="form-control" id="telefono" name="telefono_domicilio" placeholder="Telefono de Contacto" value="{{$postulante->telefono_domicilio}}" disabled>
 										</div>	
 									</div>
 								</div>
@@ -472,7 +454,7 @@
 											<label for="" class="control-label">Telefono Celular:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="celular" name="telefono_celular" placeholder="Celular" value="{{$socio->postulante->telefono_celular}}" disabled>
+											<input type="text" class="form-control" id="celular" name="telefono_celular" placeholder="Celular" value="{{$postulante->telefono_celular}}" disabled>
 										</div>	
 									</div>
 								</div>
@@ -482,177 +464,15 @@
 											<label for="" class="control-label">Correo:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" value="{{$socio->postulante->persona->correo}}" disabled>
+											<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" value="{{$postulante->persona->correo}}" disabled>
 										</div>	
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-5"> </div>
-										<a class="btn btn-info" href="/Socio/" title="Editar" >Regresar</a>			
+										<a class="btn btn-info" href="/postulante/index" title="Editar" >Regresar</a>			
 								</div>																																				
 							</form>						
-						</div>
-										<!--DATOS DE INVITADOS-->
-						<div role="tabpanel" class="tab-pane" id="seccion8">
-							<form action="" class="form-horizontal form-border">
-								<br><br><br>
-								<div class="form-group required" >
-										<div class="btn-group col-sm-4" ></div>
-										<div class="btn-group col-sm-4"></div>
-										<div class="btn-group col-sm-4"></div>
-										<div class="btn-group col-sm-4" ></div>
-										<div class="btn-group col-sm-4"></div>
-										
-										<div class="btn-group">
-											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-										</div>
-										<div class="btn-group">
-											<a href="#" class="btn btn-info cont" ><span class="glyphicon glyphicon-chevron-right"></span></a>
-										</div>
-								</div>
-									<div class="table-responsive">
-										<div class="container">
-											<table class="table table-bordered table-hover text-center display" id="example">
-													<thead class="active">
-														<th><div algin=center>DOCUMENTO</div></th>
-														<th><div align=center>NOMBRE</div> </th>
-														<th><div align=center>APELLIDO PATERNO</div></th>
-														<th><div align=center>APELLIDO MATERNO</div></th>
-														<th><div align="center">CORREO</div></th>
-														<th><div align=center>DETALLE</div></th>														
-
-													</thead>
-													<tbody>
-														@foreach($socio->postulante->persona->invitados as $invitado)					
-																<tr>
-																@if(strcmp($invitado->nacionalidad,'peruano')==0)
-																	<td>{{$invitado->doc_identidad}}</td>
-																@else
-																	<td>{{$invitado->carnet_extranjeria}}</td>
-																@endif
-																	<td>{{$invitado->nombre}}</td>
-																	<td>{{$invitado->ap_paterno}}</td>
-																	<td>{{$invitado->ap_materno}}</td>
-																	<td>{{$invitado->correo}}</td>
-																	<td>
-													              	<a class="btn btn-info" href="{{url('/Socio/invitado/'.$invitado->pivot->id.'/')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-													            	</td>																	
-													            </tr>				            		
-														@endforeach
-													</tbody>
-
-											</table>
-											<div class="form-group">
-												<div class="col-sm-5"> </div>
-													<a class="btn btn-info" href="/Socio/" title="Editar" >Regresar</a>			
-											</div>												
-											</br></br>
-											<br><br><br>								
-										</div>		
-									</div>
-																						
-							</form>						
-						</div>
-
-
-										<!--DATOS DE MEMBRESIA -->
-						<div role="tabpanel" class="tab-pane" id="seccion9">
-							<form action="" class="form-horizontal form-border">
-								<br><br><br>
-								<div class="form-group required" >
-										<div class="btn-group col-sm-4" ></div>
-										<div class="btn-group col-sm-4"></div>
-										<div class="btn-group col-sm-4"></div>
-										<div class="btn-group col-sm-4" ></div>
-										<div class="btn-group col-sm-4"></div>
-										
-										<div class="btn-group">
-											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-										</div>
-										<div class="btn-group">
-											<a href="#" class="btn btn-info cont" disabled><span class="glyphicon glyphicon-chevron-right"></span></a>
-										</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Número de Carnet:</label>
-										</div>
-										<div class="col-sm-6">
-											<input type="text" class="form-control" id="numerocarnet" name="numerocarnet" placeholder="Numero de Carnet" value="{{$socio->carnet_actual()->nro_carnet}}" disabled>
-										</div>	
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Tipo Membresía:</label>
-										</div>
-										<div class="col-sm-6">
-											<input type="text" class="form-control" id="tipomembresia" name="tipomembresia" placeholder="Tipo de Membresía" value="{{$socio->membresia->descripcion}}" disabled>
-										</div>	
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Cuota:</label>
-										</div>
-										<div class="col-sm-6">
-											<input type="text" class="form-control" id="cuota" name="cuota" placeholder="Cuota" value="{{$socio->membresia->tarifa->monto}}" disabled>
-										</div>	
-									</div>
-								</div>	
-								<div class="form-group">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Estado:</label>
-										</div>
-										<div class="col-sm-6">
-											<input type="text" class="form-control" id="estado" name="estado" placeholder="Estado" value="{{$socio->estado()}}" disabled>
-										</div>	
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Descripción:</label>
-										</div>
-										<div class="col-sm-6">
-			      						<textarea id ="descripcion"  class="form-control" name="descripcion"  placeholder="Descripción" required rows="5" cols="50" style="max-width: 850px; max-height: 300px;" readonly>
-			      							{{$socio->carnet_actual()->descripcion}}
-			      						</textarea>
-										</div>											
-
-									</div>
-								</div>								
-								<div class="form-group">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Emisión Carnet(dd/mm/aaaa):</label>
-										</div>
-										<div class="col-sm-6">
-											<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_emision" placeholder="Fecha Emisión" value="{{$socio->carnet_actual()->fecha_emision}}"style="width: 250px"  disabled>
-
-										</div>	
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Vencimiento Carnet(dd/mm/aaaa):</label>
-										</div>
-										<div class="col-sm-6">
-											<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_vencimiento" placeholder="Fecha Vencimiento" value="{{$socio->carnet_actual()->fecha_vencimiento}}"style="width: 250px"  disabled>
-
-										</div>	
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-5"> </div>
-										<a class="btn btn-info" href="/Socio/" title="Editar" >Regresar</a>			
-								</div>																																																												
-							</form>
 						</div>
 						
 					</div>

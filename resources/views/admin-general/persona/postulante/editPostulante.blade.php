@@ -4,7 +4,6 @@
 	<title>EDITAR SOCIO</title>
 	<meta charset="UTF-8">
 
-	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	{!!Html::style('css/jquery.bxslider.css')!!}
@@ -41,10 +40,6 @@
 @extends('layouts.headerandfooter-al-admin')
 @section('content')
 
-	@if (session('storedInvitado'))
-		<script>$("#modalSuccess").modal("show");</script>
-	@endif
-
 
 	<div class="container">
 		<div class="row">
@@ -53,7 +48,7 @@
 				<p class="lead"><strong>EDITAR SOCIO</strong></p>
 				<br/>
 			</div>
-		
+			
 		</div>
 	</div>
 		<div class="container">
@@ -63,7 +58,7 @@
 						<ul class="nav nav-pills nav-justified" id="pills-edit" role="tablist">
 
 						<!--DATOS BASICOS-->
-						@if(!Session::has('update') &&  !session('storedInvitado')   && !$errors->basico->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any() && !$errors->nacimiento->any())									
+						@if(!Session::has('update') && !$errors->basico->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any())									
 							<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Básico</a></li>
 						@elseif(Session::get('update')=='basico' || $errors->basico->any())
 							<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Básico</a></li>
@@ -72,12 +67,8 @@
 						@endif
 
 						<!--DATOS DE NACIMIENTO-->
-							@if(Session::get('update')=='estudio' || $errors->estudio->any())
-							<li role="presentation" class="active"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Nacimiento</a></li>
-						@else
-							<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Nacimiento</a></li>
-						@endif					
 
+							<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Nacimiento</a></li>
 
 						<!--DATOS DE FAMILIA-->
 
@@ -108,14 +99,8 @@
 							<li role="presentation"><a href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab">Contacto</a></li>
 						@endif
 
-												<!--DATOS INVITADOS-->
-						@if(session('storedInvitado') || Session::get('update')=='invitado')
-							<li role="presentation" class="active"><a href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab">Invitados</a></li>						
-						@else
-							<li role="presentation"><a href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab">Invitados</a></li>						
-						@endif
-
-
+						<!--DATOS INVITADOS-->
+							<li role="presentation"><a href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab">Invitados</a></li>
 
 						<!--DATOS MEMBRESIA-->
 						@if(Session::get('update')=='membresia')
@@ -132,7 +117,7 @@
 						
 
 
-					@if(!Session::has('update') &&  !session('storedInvitado')  && !$errors->basico->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any() && !$errors->nacimiento->any())									
+					@if(!Session::has('update') && !$errors->basico->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any())									
 						<div role="tabpanel" class="tab-pane active" id="seccion1">
 					@elseif(Session::get('update')=='basico' || $errors->basico->any())
 						<div role="tabpanel" class="tab-pane active" id="seccion1">
@@ -228,7 +213,17 @@
 								
 								</div>
 								
+								<div class="form-group required">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Fecha de Nacimiento(dd/mm/aaaa):</label>
+										</div>
+										<div class="col-sm-6">
+											<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" value="{{$socio->postulante->persona->fecha_nacimiento}}"style="width: 250px"  >
 
+										</div>	
+									</div>
+								</div>
 								@if(strcmp($socio->postulante->persona->nacionalidad,'peruano')==0)
 								<div class="form-group required">
 									<div class="col-sm-6">
@@ -340,37 +335,10 @@
 								</div>														<!---->																
 							</form>
 						</div>
+
+
 										<!--DATOS NACIMIENTO-->
-					
-					@if(Session::get('update')=='nacimiento' || $errors->nacimiento->any())
-						<div role="tabpanel" class="tab-pane active" id="seccion2">
-					@else
 						<div role="tabpanel" class="tab-pane" id="seccion2">
-					@endif
-							<form method="POST" action="/Socio/{{$socio->id}}/editNacimiento" class="form-horizontal form-border">
-								{{method_field('PATCH')}}
-								<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-								<div class="col-sm-4"></div>
-								<div class=""> 
-									@if ($errors->nacimiento->any())
-						  				<ul class="alert alert-danger fade in">
-						  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-						  					@foreach ($errors->nacimiento->all() as $error)
-						  						<li>{{$error}}</li>
-						  					@endforeach
-						  				</ul>
-						  			@endif
-								</div>
-								@if(session('cambios-nac'))
-									<div class="alert alert-success fade in">
-											<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-											<strong>¡Éxito!</strong> {{session('cambios-nac')}}
-									</div>								
-								@endif
-																
-								<br><br/><br/>
-
 								<div class="form-group required" >
 										<div class="btn-group col-sm-4" ></div>
 										<div class="btn-group col-sm-4">
@@ -385,149 +353,7 @@
 										<div class="btn-group">
 											<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
 										</div>
-								</div>										
-								<br>
-								<div class="form-group required">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Fecha de Nacimiento(dd/mm/aaaa):</label>
-										</div>
-										<div class="col-sm-6">
-											<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" value="{{$socio->postulante->persona->fecha_nacimiento}}"style="width: 250px"  >
-
-										</div>	
-									</div>
-								</div>
-							@if(strcmp($socio->postulante->persona->nacionalidad,'peruano')==0)
-								<input type="hidden" name="nacionalidad" value="peruano">
-								<div class="form-group required">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Departamento:</label>
-										</div>
-										<div class="col-sm-6">
-											<select class="form-control" id="departamento" name="departamento" style="max-width: 250px " data-link="{{ url('/provincias') }}">
-												<option value="-1" default>--Departamento--</option>
-													@foreach ($departamentos as $depa)      
-									                	<option value="{{$depa->id}}"  @if($socio->postulante->departamento==$depa->id) selected @endif>{{$depa->nombre}}</option>
-									                @endforeach
-											</select>
-										</div>
-									</div>
-								</div>
-
-								<div class="form-group required">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Provincia:</label>
-										</div>
-										<div class="col-sm-6">
-											<select class="form-control" id="provincia" name="provincia" style="max-width: 250px " data-link="{{ url('/distritos') }}" >
-												<option  value="-1" default disab>--Provincia--</option>
-													@foreach ($socio->postulante->Departamento->provincias as $provincia)      
-									                	<option value="{{$provincia->id}}"  @if($socio->postulante->provincia==$provincia->id) selected @endif>{{$provincia->nombre}}</option>
-									                @endforeach												
-											</select>
-										</div>
-									</div>
-								</div>
-
-								<div class="form-group required">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Distrito:</label>
-										</div>
-
-										<div class="col-sm-6">
-											<select class="form-control" id="distrito" name="distrito" style="max-width: 250px " >
-												<option  value="-1" default>--Distrito--</option>
-													@foreach ($socio->postulante->Provincia->distritos as $distrito)      
-									                	<option value="{{$distrito->id}}"  @if($socio->postulante->distrito==$distrito->id) selected @endif>{{$distrito->nombre}}</option>
-									                @endforeach													
-											</select>
-										</div>
-									</div>
-								</div>																																							
-								<div class="form-group required">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Direccion de Nacimiento:</label>
-										</div>
-										<div class="col-sm-6">
-											<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{$socio->postulante->direccion_nacimiento}}">
-										</div>		
-									</div>
-								</div>
-							@else
-							<input type="hidden" name="nacionalidad" value="extranjero">
-							<div class="form-group required">
-								<div class="col-sm-6">
-									<div class="col-sm-6 text-left">
-										<label for="" class="control-label">País de Nacimiento:</label>
-									</div>
-									<div class="col-sm-6">
-										<input type="text" class="form-control" id="pais_nacimiento" name="pais_nacimiento" placeholder="Pais de  Nacimiento" style="max-width: 250px" value="{{$socio->postulante->pais_nacimiento}}">
-									</div>		
-								</div>
-							</div>
-
-							<div class="form-group ">
-								<div class="col-sm-6">
-									<div class="col-sm-6 text-left">
-										<label for="" class="control-label">Ciudad de Nacimiento:</label>
-									</div>
-									<div class="col-sm-6">
-										<input type="text" class="form-control" id="lugar_nacimiento" name="lugar_nacimiento" placeholder="Lugar de Nacimiento" style="max-width: 250px" value="{{$socio->postulante->lugar_nacimiento}}">
-									</div>		
-								</div>
-							</div>															
-							@endif
-
-
-								<div class = "modal fade" id = "confirmationNacimiento" tabindex = "-1" role = "dialog" 
-								   aria-labelledby = "myModalLabel" aria-hidden = "true">
-								   
-								   <div class = "modal-dialog">
-								      <div class = "modal-content">
-								         
-								         <div class = "modal-header">
-								            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
-												<span aria-hidden="true" onclick="cerrarventana()">&times;</span>
-								            </button>
-								            
-								            <h4 class = "modal-title" id = "myModalLabel">
-								               EDITAR SOCIO
-								            </h4>
-								         </div>
-								         
-								         <div class = "modal-body">
-								            <p>¿Desea guardar los cambios realizados?</p>
-								         </div>
-								         
-								         <div class = "modal-footer">
-											<button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cerrar</button>
-								            
-								            <button type = "submit" class = "btn btn-primary">
-								               Confirmar
-								            </button>
-								         </div>
-								         
-								      </div><!-- /.modal-content -->
-								   </div><!-- /.modal-dialog -->
-								  
-								</div><!-- /.modal -->							
-								<br><br>
-								<div class="form-group required" >
-										<div class="btn-group col-sm-5" ></div>
-										
-										<div class="btn-group">
-											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationNacimiento" onclick="ventana()" value="Confirmar">
-										</div>
-										<div class="btn-group">
-											<a href="/Socio" class="btn btn-info">Retornar</a>
-										</div>
-								</div>								
-							</form>																											
+								</div>																				
 						</div>
 										<!--DATOS FAMILIARES-->
 						<div role="tabpanel" class="tab-pane" id="seccion3">
@@ -944,11 +770,7 @@
 							</form>						
 						</div>
 										<!--DATOS DE INVITADOS-->
-					@if(session('storedInvitado') || Session::get('update')=='invitado')
-						<div role="tabpanel" class="tab-pane active" id="seccion8">
-					@else
 						<div role="tabpanel" class="tab-pane" id="seccion8">
-					@endif					
 							<form action="" class="form-horizontal form-border">
 								<br/><br/><br>
 								<div class="form-group required" >
@@ -975,6 +797,7 @@
 														<th><div align=center>APELLIDO MATERNO</div></th>
 														<th><div align="center">CORREO</div></th>
 														<th><div align=center>DETALLE</div></th>
+														<th><div align=center>EDITAR</div></th>
 														<th><div align=center>ELIMINAR</div></th>													
 													</thead>
 													<tbody>
@@ -990,10 +813,13 @@
 																	<td>{{$invitado->ap_materno}}</td>
 																	<td>{{$invitado->correo}}</td>
 																	<td>
-													              	<a class="btn btn-info" href="{{url('/Socio/invitado/'.$invitado->pivot->id.'/')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+													              	<a class="btn btn-info" href="#"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 													            	</td>
-													            	<td>												           
-																		<a class="btn btn-info"  title="Eliminar" data-href="{{url('/Socio/'.$invitado->pivot->id.'/invitado/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+													            	<td>
+															        <a class="btn btn-info" href="#" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+															        </td>
+													            	<td>
+															        <a class="btn btn-info"  title="Eliminar" data-href="#" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
 													            	</td>																	
 													            </tr>				            		
 														@endforeach
@@ -1003,7 +829,7 @@
 											<div class="btn-inline">
 												<div class="btn-group col-sm-10"></div>										
 												<div class="btn-group ">
-													<a href="{{url('Socio/'.$socio->id.'/invitado/new')}}" class="btn btn-info" type="submit">Registrar Invitado</a>
+													<a href="#" class="btn btn-info" type="submit">Registrar Invitado</a>
 												</div>
 											</div>
 											<br><br><br>								
@@ -1103,19 +929,7 @@
 						                    </div><!-- /input-group -->
 									    </div>
 								    </div>
-								</div>
-								<div class="form-group required">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Descripción:</label>
-										</div>
-										<div class="col-sm-6">
-			      						<textarea id ="descripcion"  class="form-control" name="descripcion"  placeholder="Descripción"  rows="5" cols="50" style="max-width: 850px; max-height: 300px;" readonly>{{$socio->carnet_actual()->descripcion}}</textarea>
-										</div>											
-
-									</div>
 								</div>								
-
 								@elseif($socio->estado()==$socio->inhabilitado() || $socio->estado()==$socio->carnet_inhabilitado())
 								<div class="form-group">								
 									<div class="col-sm-6">
@@ -1131,18 +945,7 @@
 										    </div>
 									    </div>
 								    </div>
-								</div>
-								<div class="form-group required">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Descripción:</label>
-										</div>
-										<div class="col-sm-6">
-			      						<textarea id ="descripcion"  class="form-control" name="descripcion"  placeholder="Descripción"  rows="5" cols="50" style="max-width: 850px; max-height: 300px;">{{$socio->carnet_actual()->descripcion}}</textarea>
-										</div>											
-
-									</div>
-								</div>																	    								
+								</div>									    								
 								@else
 								<div class="form-group">								
 									<div class="col-sm-6">
@@ -1158,20 +961,8 @@
 										    </div>
 									    </div>
 								    </div>
-								</div>
-								<div class="form-group required">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Descripción:</label>
-										</div>
-										<div class="col-sm-6">
-			      						<textarea id ="descripcion"  class="form-control" name="descripcion"  placeholder="Descripción"  rows="5" cols="50" style="max-width: 850px; max-height: 300px;">{{$socio->carnet_actual()->descripcion}}</textarea>
-										</div>											
-
-									</div>
-								</div>																
-								@endif
-										
+								</div>								
+								@endif	
 
 								<div class="form-group">
 									<div class="col-sm-6">
@@ -1249,7 +1040,7 @@
 			<br/><br/>
 		</div>
 
-		
+	
 
 
 	</div>		
@@ -1271,7 +1062,6 @@
 		  	});
   		});
 	</script>
-	<!--<script>$.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')} })</script>-->
 
 	<script>
     $(document).ready(function () {
@@ -1298,33 +1088,22 @@
 	<script>
 	function vigente() {
     	document.getElementById("estado_socio").value = "{{$socio->vigente()}}";
-    	document.getElementById("descripcion").value="{{$socio->default_estado()}}";
-    	document.getElementById("descripcion").readOnly = true;
 	}
 
 	function inhabilitado() {
     	document.getElementById("estado_socio").value = "{{$socio->inhabilitado()}}";
-    	document.getElementById("descripcion").value="";
-    	document.getElementById("descripcion").readOnly = false;
 	}
 
 	function carnet_inhabilitado() {
     	document.getElementById("estado_socio").value = "{{$socio->carnet_inhabilitado()}}";
-    	document.getElementById("descripcion").value="";
-    	document.getElementById("descripcion").readOnly = false;
-
 	}
 
 	function reactivar() {
     	document.getElementById("estado_socio_2").value = "{{$socio->vigente()}}";
-    	document.getElementById("descripcion").value="";
-
 	}
 
 	function reactivar2() {
     	document.getElementById("estado_socio_3").value = "Renovar al Guardar";
-    	document.getElementById("descripcion").value="";
-
 	}
 
 	function mostrar_precio(){
@@ -1332,93 +1111,6 @@
 		document.getElementById("cuota_select").value = x;
 	}
 	</script>
-
-
-<script type="text/javascript">
-
-	    
-		$(document).ready(function(){
-
-			$("#departamento").change(function(event){
-				document.getElementById("provincia").disabled = false;
-				document.getElementById("distrito").disabled = true;
-			    $("#distrito").empty();
-			    $("#distrito").append("<option  value='-1' default>--Distrito--</option>");
-				var url = $(this).attr("data-link");
-				$departamento_id=event.target.value;
-							//alert($departamento_id);
-				//alert(url);
-				$.ajax({
-			        url: "provincias",
-			        type:"POST",
-				    headers: {
-				        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-				    },			        
-			        beforeSend: function (xhr) {
-			            var token = $('meta[name="csrf_token"]').attr('content');
-
-			            if (token) {
-			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
-			            }
-			        },
-			        data: { id: $departamento_id},
-			        success:function(data){
-			        	$("#provincia").empty();
-			        	$("#provincia").append("<option  value='-1' default>--Provincia--</option>");
-			        	$.each(data,function(index,elememt){
-			        		
-			        		$("#provincia").append("<option value='"+elememt.id+"'>"+elememt.nombre+"</option>");
-			           		 console.log("mensaje que quieras");
-
-			        	});
-			        },error:function(){ 
-			            alert("error!!!!");
-			        }
-			    }); //end of ajax
-			});
-
-
-			$("#provincia").change(function(event){
-				document.getElementById("distrito").disabled = false;
-				var url = $(this).attr("data-link");
-				$provincia_id=event.target.value;
-							//alert($provincia_id);
-				//alert(url);
-				//alert($provincia_id);
-				$.ajax({
-			        url: "distritos",
-			        type:"POST",
-				    headers: {
-				        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-				    },				        
-			        beforeSend: function (xhr) {
-			            var token = $('meta[name="csrf_token"]').attr('content');
-
-			            if (token) {
-			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
-			            }
-			        },
-			        data: { id: $provincia_id},
-			        success:function(data){
-			        	$("#distrito").empty();
-			        	$("#distrito").append("<option  value='-1' default>--Distrito--</option>");
-			        	$.each(data,function(index,elememt){
-
-							//alert(elememt.id);
-			        		//alert(element.nombre);
-			        		$("#distrito").append("<option value='"+elememt.id+"'>"+elememt.nombre+"</option>");
-			        	});
-			            //alert(data);
-			        },error:function(){ 
-			            alert("error!!!!");
-			        }
-			    }); //end of ajax
-			});
-
-		});
-
-
-	</script>	
 
 
 
@@ -1471,71 +1163,6 @@
 			document.getElementsByTagName('header')[0].style.zIndex = 3;
 		}
   	</script>
-
-
-
-
-
-<!--MODALES-->
-
-
-	<!-- Modal -->
-	<div id="modalEliminar" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
-
-	    <!-- Modal content-->
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Confirmar</h4>
-	      </div>
-	      <div class="modal-body">
-	        <p>¿Está seguro que desea eliminar a este persona de su lista de Invitados?</p>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-danger btn-ok">Confirmar</a>
-	      </div>
-	    </div>
-
-	  </div>
-	</div>
-
-	<!-- Modal Event-->
-	<!-- Modal Event-->
-	<script>
-		$('#modalEliminar').on('show.bs.modal', function(e) {
-   			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-		});
-	</script>
-
-
-
-
-
-
-
-	<!-- Modal Success -->
-	<div id="modalSuccess" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
-
-	    <!-- Modal content-->
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">¡Éxito!</h4>
-	      </div>
-	      <div class="modal-body">
-	        <p>{{session('storedInvitado')}}</p>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>           
-	      </div>
-	    </div>
-
-	  </div>
-	</div>
-
 
 	
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use papusclub\Models\Persona;
 use papusclub\Models\Departamento;
 use papusclub\Models\Provincia;
+use papusclub\Models\Distrito;
 use papusclub\Models\Postulante;
 use papusclub\Http\Requests\StorePostulanteRequest;
 use papusclub\Http\Controllers\Controller;
@@ -93,15 +94,45 @@ class PostulanteController extends Controller
         return redirect('postulante/index')->with('stored', 'Se registró el postulante correctamente.');
     }
 
-    public function getProvincias(){
+/*    public function getProvincias(){
         //if($request->ajax()){
             $dep_id=Input::get('dep_id');
             $provincias=Provincia::provincias($dep_id);
             return Response::json($provincias);
         //}
+    }*/
+
+    public function show($id){
+
+        $persona = Persona::find($id);
+        //busco el valor del departamento
+
+
+
+ 
+
+        $carbon=new Carbon();
+        if((strtotime($persona['fecha_nacimiento']) < 0))
+            $persona->fecha_nacimiento=NULL;
+        else
+            $persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d', $persona->fecha_nacimiento)->format('d/m/Y');
+
+        $postulante=Postulante::find($persona->id);
+        $departamento = Departamento::find($postulante['departamento']);
+        $provincia = Provincia::find($postulante['provincia']);
+        $distrito = Distrito::find($postulante['distrito']);
+
+        $arregloLugar=array();
+        array_push($arregloLugar,$departamento);
+        array_push($arregloLugar,$provincia);
+        array_push($arregloLugar,$distrito);
+        
+        return view('admin-general.persona.postulante.detailPostulante',compact('persona','postulante','arregloLugar'));
+
     }
 
-     public function destroy($id){
+    
+    public function destroy($id){
 
         $persona = Persona::find($id);
         $postulante=Postulante::find($persona->id);

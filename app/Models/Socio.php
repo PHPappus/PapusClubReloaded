@@ -98,6 +98,11 @@ class Socio extends Model
         return false;
     }
 
+    public function default_estado()
+    {
+        return "El socio se encuentra habilitado. El carnet se encuentra vigente.";
+    }
+
     public function addCarnet(Carnet $carnet)
     {
         return $this->carnets()->save($carnet);
