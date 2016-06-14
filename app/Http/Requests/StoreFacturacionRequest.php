@@ -26,6 +26,7 @@ class StoreFacturacionRequest extends Request
          return [            
             'persona_id'   =>  'required|integer',
             'tipo_pago'   =>  'required|string|max:255',
+            'tipo_comprobante' =>  'required|string|max:255',
             'estado'        =>  'required|string|max:255'            
         ];
     }

@@ -93,8 +93,12 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('postulante-al-admin','AdminGeneralController@postulante');
 
 	//MANTENIMIENTO DE POSTULANTE
-	Route::get('postulante/index','PostulanteController@index');//
+	Route::get('postulante/index','PostulanteController@index');//ya
 	Route::get('postulante/new','PostulanteController@registrar');//ya
+	Route::post('postulante/new/postulante', 'PostulanteController@store');//ya
+	Route::get('postulante/{id}','PostulanteController@edit');//
+	Route::get('postulante/{id}/delete', 'PostulanteController@destroy');
+	Route::get('postulante/{id}/show', 'PostulanteController@show');//
 	Route::get('postulante/search','PostulanteController@buscar');
 	Route::get('postulante/new','PostulanteController@registrar');
 
@@ -214,6 +218,10 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('venta-producto/{id}/show', 'VentaProductoController@show');
 	Route::get('venta-producto/new/venta-producto/{id}', 'VentaProductoController@createVentaProducto');
 	Route::post('venta-producto/new/venta-producto/add', 'VentaProductoController@storeVentaProducto');
+	Route::get('venta-producto/{id}', 'VentaProductoController@editProducto');
+	Route::post('venta-producto/{id}/edit', 'VentaProductoController@updateProducto');
+	Route::get('venta-producto/{id}/deleteProducto', 'VentaProductoController@destroyProducto');
+	Route::get('venta-producto/{id}/back', 'VentaProductoController@back');
 
 	//MANTENIMIENTO DE SORTEO
 	Route::get('sorteo/index','SorteoController@index');
