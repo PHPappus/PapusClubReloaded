@@ -402,6 +402,7 @@ class SocioAdminController extends Controller
             $socio->multaxpersona()->save($multa,['multa_modificada' => $multa->montoPenalidad, 'descripcion_detallada' => $input['descripcion'],'fecha_registro' => $fecha]);
         }
         return redirect('multas-s')->with('stored', 'Se registró la multa correctamente.');
+    }
     /*INVITADOS*/
 
     public function createInvitado($id)
