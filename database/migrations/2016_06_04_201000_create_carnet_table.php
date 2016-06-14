@@ -18,6 +18,7 @@ class CreateCarnetTable extends Migration
             $table->integer('nro_carnet');
             $table->date('fecha_emision'); //es fecha de actualización también
             $table->boolean('estado')->default(true);
+            $table->string('descripcion')->default("El socio se encuentra habilitado. El carnet se encuentra vigente.");
             $table->date('fecha_vencimiento'); // 8 años
             $table->softDeletes();
             $table->timestamps();
