@@ -93,6 +93,10 @@ class PostulanteController extends Controller
         $postulante->universidad=$input['universidad'];
         $postulante->profesion=$input['profesion'];
         $portulante->centro_trabajo=$input['centro_trabajo'];
+        $postulante->centro_trabajo=$input['centro_trabajo'];
+        $postulante->cargo_trabajo=['cargo_trabajo'];
+        $postulante->direccion_laboral['direccion_laboral'];
+        $postulante->estado_civil['estado_civil'];
 
 
         $postulante->save();

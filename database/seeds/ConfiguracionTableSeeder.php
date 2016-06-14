@@ -46,5 +46,10 @@ class ConfiguracionTableSeeder extends Seeder
         Configuracion::insert(['valor'=>'Esposa','grupo'=>'9','descripcion'=>'tipo relacion familiar']);
         Configuracion::insert(['valor'=>'Hijo','grupo'=>'9','descripcion'=>'tipo relacion familiar']);
         Configuracion::insert(['valor'=>'Hija','grupo'=>'9','descripcion'=>'tipo relacion familiar']);
+
+        Configuracion::insert(['valor'=>'Soltero(a)','grupo'=>'10','descripcion'=>'estado civil']);
+        Configuracion::insert(['valor'=>'Casado(a)','grupo'=>'10','descripcion'=>'estado civil']);
+        Configuracion::insert(['valor'=>'Viudo(a)','grupo'=>'10','descripcion'=>'estado civil']);
+        Configuracion::insert(['valor'=>'Divorciado(a)','grupo'=>'10','descripcion'=>'estado civil']);
     }
 }
