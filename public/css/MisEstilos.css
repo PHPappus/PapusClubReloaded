@@ -182,6 +182,12 @@ body{
 .dropdown-menu > li > a{
     color: #FFF;
 }
+@media (max-width: 767px){
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #FFF;
+    }
+}
+
 .navbar-default{
     background-color: #A3DECB;
 }
@@ -191,9 +197,11 @@ body{
 }
 .dropdown-menu > li > a:hover{
     background-color:#007ABD !important;
+    color: #FFF;
 }
 .navbar-nav:hover{
     background-color:#007ABD !important;
+    color: #FFF;
 }
 @media screen and (max-width: 740px) {
     .navbar-brand>img {

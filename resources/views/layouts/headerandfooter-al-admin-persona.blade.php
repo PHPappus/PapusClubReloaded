@@ -4,14 +4,12 @@
     <!--Input de buscador de la parte superior derecha-->
 
     <nav class="search">
-
       <div class="search_box">
-
         <form action="#" id="search-box" method="get">
-          <!-- <label class="hidden" for="inputbusqueda">Buscar</label> -->
-                    <input type="text" placeholder="Ingresa tu búsqueda" id="inputbusqueda" name="conte" style="max-width:145px;">
-                    <!-- <span class="glyphicon glyphicon-search" href="#"></span> -->
-                    <button style="background-color:transparent;border:none;"><span class="glyphicon glyphicon-search" href="#"></span></button>
+                <!-- <label class="hidden" for="inputbusqueda">Buscar</label> -->
+                <input type="text" placeholder="Ingresa tu búsqueda" id="inputbusqueda" name="conte" style="max-width:145px;">
+                <!-- <span class="glyphicon glyphicon-search" href="#"></span> -->
+                <button style="background-color:transparent;border:none;"><span class="glyphicon glyphicon-search" href="#"></span></button>
         </form>
       </div>
     </nav>
@@ -27,7 +25,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a href="{!!URL::to('/socio')!!}" class="navbar-brand"><img alt="Brand" class="img-responsive" src="{!!URL::to('/images/logo.png')!!}" ></a>
+        <a href="{!!URL::to('/admin-persona')!!}" class="navbar-brand"><img alt="Brand" class="img-responsive" src="{!!URL::to('/images/logo.png')!!}" ></a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -35,11 +33,12 @@
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Actividades <span class="caret"></span>
+              Socio <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="{!!URL::to('/inscripcion-actividad/inscripcion-actividades')!!}" title="Consultar Actividades" target="_self">Consultar</a></li>
-              <li><a href="{!!URL::to('/inscripcion-actividad/mis-inscripciones')!!}" title="Inscripciones de actividades realizadas" target="_self">Inscripciones</a></li>
+                <li><a href="#" title="Consultar socio" target="_self">Consultar</a></li>
+                <li><a href="#" title="Registrar nuevo socio" target="_self">Registrar</a></li>
+                <li><a href="#" title="Anular socio" target="_self">Anular</a></li>
             </ul>
           </li>
 
@@ -48,43 +47,52 @@
           <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
           <li class="dropdown">
             <a href="#" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" role="button" >
-              Ambientes <span class="caret"></span>
+              Postulante <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-
-                <li><a href="{!!URL::to('/ambientes-s')!!}" title="consultar ambientes" target="_self">Consultar</a></li>
-                <li><a href="{!!URL::to('/reservar-ambiente/reservar-otros-ambientes')!!}" title="reserva de ambientes" target="_self">Reservar</a></li>
-                <li><a href="{!!URL::to('/anular-reserva-ambiente-s')!!}" title="anular ambientes" target="_self">Anular</a></li>
-                
+                <li><a href="#" title="Consultar postulantes" target="_self">Consultar</a></li>
+                <li><a href="#" title="Registrar nuevo postulante" target="_self">Registrar</a></li>
+                <li><a href="#" title="Aprobar/Desaprobar postulante" target="_self">Aprobar/Desaprobar</a></li>
             </ul>
           </li>
         </ul>
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Bungalows <span class="caret"></span>
+              Proveedor <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="{!!URL::to('/bungalows-s')!!}" title="consultar Bungalows" target="_self">Consultar</a></li>
-                <!-- <li><a href="{!!URL::to('/reserva-bungalows-s')!!}" title="reserva de bungalows" target="_self">Reservar</a></li> -->
-                <li><a href="{!!URL::to('/reservar-ambiente/reservar-bungalow')!!}" title="reserva de bungalows" target="_self">Reservar</a></li>                
+                <li><a href="#" title="Consultar Proveedores" target="_self">Consultar</a></li>
+                <li><a href="#" title="Registrar nuevo proveedor" target="_self">Registrar</a></li>
+                <li><a href="#" title="Anular proveedor" target="_self">Anular</a></li>
             </ul>
           </li>
         </ul>
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Talleres <span class="caret"></span>
+              Trabajador <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="{!!URL::to('/talleres/index')!!}" title="Consultar talleres" target="_self">Consultar</a></li>
-                <li><a href="{!!URL::to('/talleres/mis-inscripciones')!!}" title="Inscripciones de talleres realizados" target="_self">Mis Inscripciones</a></li>
+              <li><a href="#" title="Consultar trabajador" target="_self">Consultar</a></li>
+                <li><a href="#" title="Registrar nuevo trabajador" target="_self">Registrar</a></li>
+                <li><a href="#" title="Anular trabajador" target="_self">Anular</a></li>
             </ul>
           </li>
         </ul>
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <li><a href="{!!URL::to('/pagos-s')!!}" class="dropdown-toggle btn-lg" title="Consultar Cuotas" target="_self">Cuotas</a></li>
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Usuario <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#" title="Asignar usuario" target="_self">Asignar</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <li><a href="#" class="dropdown-toggle btn-lg" title="Consultar Cuotas" target="_self">Cuotas</a></li>
           </li>
         </ul>
         <ul class="nav navbar-nav">
@@ -98,15 +106,6 @@
               <li class="divider"></li>
               <li><a href="#">Item #4</a></li>
             </ul> -->
-          </li>
-        </ul>
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg">Sorteos <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#" title="Consultar Sorteos" target="_self">Consultar</a></li>
-                <li><a href="#" title="Reservar y entrar a sorteo" target="_self">Reservar</a></li>
-            </ul>
           </li>
         </ul>
 
