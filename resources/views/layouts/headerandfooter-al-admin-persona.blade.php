@@ -35,31 +35,6 @@
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Actividades <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="{!!URL::to('/inscripcion-actividad/inscripcion-actividades')!!}" title="consultar actividades" target="_self">Consultar</a></li>
-              <li><a href="{!!URL::to('/inscripcion-actividad/mis-inscripciones')!!}" title="inscripciones de actividades" target="_self">Inscripciones</a></li>
-            </ul>
-          </li>
-
-        </ul>
-        <ul class="nav navbar-nav">
-          <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
-          <li class="dropdown">
-            <a href="#" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" role="button" >
-              Ambientes <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-                <li><a href="{!!URL::to('/ambientes-s')!!}" title="consultar ambientes" target="_self">Consultar</a></li>
-                <li><a href="#" title="reserva de ambientes" target="_self">Reservar</a></li>
-                <li><a href="{!!URL::to('/anular-reserva-ambiente-s')!!}" title="anular ambientes" target="_self">Anular</a></li>
-            </ul>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
               Bungalows <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
@@ -81,7 +56,7 @@
         </ul>
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <li><a href="{!!URL::to('/observaciones-s')!!}" class="dropdown-toggle btn-lg" title="consultar Bungalows" target="_self">Observaciones</a></li>
+            <li><a href="{!!URL::to('/multas-s')!!}" class="dropdown-toggle btn-lg" title="registrar multas" target="_self">Multas</a></li>
           </li>
         </ul>
         <ul class="nav navbar-nav">
