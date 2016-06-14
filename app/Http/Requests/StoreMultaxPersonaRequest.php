@@ -24,8 +24,8 @@ class StoreMultaxPersonaRequest extends Request
 
     public function rules()
     {
-        //var_dump($this->all());
-        //die();   
+       /* var_dump($this->all());
+        die();*/   
 
         return [
             'montoMultaSelect' => 'float|min:0',

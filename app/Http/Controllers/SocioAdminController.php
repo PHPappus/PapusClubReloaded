@@ -16,7 +16,7 @@ use papusclub\Http\Requests\EditSocioBasicoRequest;
 use papusclub\Http\Requests\EditSocioEstudioRequest;
 use papusclub\Http\Requests\EditSocioTrabajoRequest;
 use papusclub\Http\Requests\EditSocioContactoRequest;
-use papusclub\http\Requests\StoreMultaxPersonaRequest;
+use papusclub\Http\Requests\StoreMultaxPersonaRequest;
 use papusclub\Http\Requests\EditSocioNacimientoRequest;
 use papusclub\Http\Requests\StoreInvitadoRequest;
 use papusclub\Models\Invitados;
