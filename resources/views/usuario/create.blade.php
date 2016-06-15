@@ -23,7 +23,7 @@
 	
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin-registros')
+@extends('layouts.headerandfooter-al-admin-persona')
 @section('content')
 <!---Cuerpo -->
 <main class="main">
