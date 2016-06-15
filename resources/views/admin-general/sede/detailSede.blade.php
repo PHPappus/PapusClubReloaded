@@ -96,7 +96,7 @@
 			  	<div class="form-group">
 			    	<label for="referenciaInput" class="col-sm-4 control-label">Referencia </label>
 			    	<div class="col-sm-5">
-			      		<textarea type="text" class="form-control" id="referenciaInput" name="referencia" placeholder ="{{$sede->referencia}}" readonly></textarea>
+			      		<textarea type="text" class="form-control" id="referenciaInput" name="referencia" placeholder ="{{$sede->referencia}}" style="resize: none" readonly ></textarea>
 			    	</div>
 			  	</div>
 

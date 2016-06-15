@@ -23,6 +23,8 @@ class StorePostulanteRequest extends Request
      */
     public function rules()
     {
+/*        var_dump($this->all());
+        die();*/
         return [
             'nombre' =>  'required|max:100|string',
             'ap_paterno' => 'required|max:100|string',
@@ -31,16 +33,17 @@ class StorePostulanteRequest extends Request
             'carnet_extranjeria'=> 'required_if:nacionalidad,extranjero',//  | unique:persona,carnet_extranjeria,NULL',
             //'correo'=>'required|string',
             //'puestoSelect' => 'required|exists:configuracion,id'
-
+            'educacion_primaria'=>'required|max:100|string',
+            'educacion_secundaria'=>'required|max:100|string',
             'fecha_nacimiento' => 'required | string',
             'direccion_nacimiento' => 'required | string',
-            'profesion'=>'required | string',
             'centro_trabajo'=>'required | string',
             'direccion_laboral'=>'required | string',
 
-            'departamento' => 'required_if:nacionalidad,peruano',
-            'provincia' => 'required_if:nacionalidad,peruano |exists:provincia,id',
-            'distrito' => 'required_if: nacionalidad,peruano|exists:distrito,id'
+            //'distrito' => 'required | exists:distrito,id',
+            'departamento' => 'required_if:nacionalidad,peruano, exists:departamento,id',
+            'provincia' => 'required_if:nacionalidad,peruano , exists:provincia,id'  ,
+            'distrito' => 'required_if:nacionalidad,peruano , exists:distrito,id'
         ];
     }
 }

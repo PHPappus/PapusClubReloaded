@@ -121,7 +121,7 @@ class InscriptionActividadController extends Controller
             
             if(!$flag){
                 $actividades=Actividad::all();
-                Session::flash('message','Ya se encuentra inscrito en esta actividad');
+                Session::flash('message-error','Ya se encuentra inscrito en esta actividad');
                 return view('socio.actividades.inscripciones',compact('sedes'),compact('actividades'));
             }
             else{
@@ -143,7 +143,7 @@ class InscriptionActividadController extends Controller
     public function removeInscriptionToPersona($id)
     {
         $usuario  = Auth::user();
-        $persona=$usuario->persona;
+        $persona  = $usuario->persona;
         $actividad   = Actividad::find($id);
 
 

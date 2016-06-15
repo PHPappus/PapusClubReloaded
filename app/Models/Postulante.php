@@ -44,7 +44,7 @@ class Postulante extends Model
 /*si ya existe se puede usar atach*/
     public function familiarxpostulante()
     {
-        return $this->belongsToMany(Persona::class,'familiarxpostulante','postulante_id','persona_id')->withPivot('relacion','estado')->whereNull('familiarxpostulante.deleted_at')->withTimestamps();
+        return $this->belongsToMany(Persona::class,'familiarxpostulante','postulante_id','persona_id')->withPivot('tipo_familia_id','estado')->whereNull('familiarxpostulante.deleted_at')->withTimestamps();
         /*PARA UTILIZAR SOFT DELETE
             DB::table('familiarxpostulante')
             ->where('postulante_id', $postulante_id)
@@ -56,14 +56,18 @@ class Postulante extends Model
     public function familiarxpostulanteWithTrashed()
     {
         /*Si es necesario retornar incluso los eliminados con softdelete*/
-        return $this->belongsToMany(Persona::class,'familiarxpostulante','postulante_id','persona_id')->withPivot('relacion','estado')->withTimestamps();   
+        return $this->belongsToMany(Persona::class,'familiarxpostulante','postulante_id','persona_id')->withPivot('tipo_familia_id','estado')->withTimestamps();   
     }
 
-    public function addFamiliar(Persona $familiar,$relacion)
+    public function addFamiliar(Persona $familiar,$tipo_familia_id)
     {
-        return $this->familiarxpostulante()->save($familiar,['relacion'=>$relacion]);
+        return $this->familiarxpostulante()->save($familiar,['tipo_familia_id'=>$tipo_familia_id]);
     }
 
 
+    public function socio()
+    {
+        return $this->hasOne(Socio::class,'id');
+    }
     
 }

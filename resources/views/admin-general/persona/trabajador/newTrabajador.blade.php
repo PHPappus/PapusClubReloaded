@@ -126,7 +126,7 @@
 											</div>
 											<div class="col-sm-6 text-left" style="float: right">											
 													<div>
-														{{ Form::radio('sexo', 'masculino') }}Masculino
+														{{ Form::radio('sexo', 'masculino', 'selected') }}Masculino
 													</div>
 													<div>
 														{{ Form::radio('sexo', 'femenino'   ) }}Femenino
@@ -136,13 +136,13 @@
 									</div>
 
 									
-									<div class="form-group">
+									<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Fecha de Nacimiento:</label>
 											</div>
-											<div class="col-sm-6">
-												<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" style="max-width: 250px" value="{{old('fecha_nacimiento')}}">
+											<div class="col-sm-1">
+												<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha Nacimiento" style="width: 250px" value="{{old('fecha_nacimiento')}}">
 
 											</div>	
 										</div>
@@ -196,7 +196,7 @@
 												<label for="" class="control-label">Puesto:</label>
 											</div>
 											<div class="col-sm-6">
-												<select class="form-control" id="puestoSelect" name="puestoSelect" style="max-width: 150px "   >
+												<select class="form-control" id="puestoSelect" name="puestoSelect" style="width: 250px "   >
 													<option value="-1" default>Seleccione</option>
 														@foreach ($puestos as $puesto)      
 										                	<option value="{{$puesto->id}}" @if (old('puestoSelect') == $puesto->id) selected="selected" @endif >{{$puesto->valor}}</1option>
@@ -227,7 +227,7 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_fin_contrato" placeholder="Fecha de fin" style="max-width: 250px" value="{{old('fecha_fin_contrato')}}">
+												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_fin_contrato" placeholder="Fecha de fin" style="width: 250px" value="{{old('fecha_fin_contrato')}}">
 											</div>
 										</div>
 									</div>
@@ -240,7 +240,7 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="correo"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" name="correo" placeholder="correo" style="max-width: 250pc; margin-top:0px;" value="{{old('correo')}}" >
+												<input type="text" class="form-control" id="correo"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" name="correo" placeholder="correo" style="max-width:250pc" value="{{old('correo')}}" >
 											</div>
 										</div>
 									</div>
@@ -279,16 +279,16 @@
 @stop
 
 <!-- 	<script src="../js/jquery-1.12.4.min.js"></script> -->
-<script src="../js/jquery-3.0.0.min.js"></script>
+	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	<!-- Bootstrap -->
 	<script type="text/javascript" src="../js/bootstrap.js"></script>
 
+ 	{!!Html::script('js/bootstrap.js')!!}
 	<!-- BXSlider -->
 
 	<!-- Mis Scripts -->
 
-	<script type="text/javascript" src="../js/bootstrap-datepicker-sirve.js"></script>
-
+	{!!Html::script('js/bootstrap-datepicker.js')!!}
 
 	
 	
