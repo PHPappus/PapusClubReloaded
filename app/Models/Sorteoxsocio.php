@@ -9,11 +9,16 @@ class Sorteo extends Model
 {
 	use SoftDeletes;
 
-    protected $table='sorteo';
+    protected $table='socioxsorteo';
     protected $dates = ['deleted_at'];
  	
  	public function sede()
+ 	{ 		
+ 		return $this->belongsTo('papusclub\Models\Sorteo','id');
+ 	}
+
+ 	public function socio()
  	{
- 		return $this->belongsTo('papusclub\Models\Sede','id_sede');
+ 		return $this->belongsTo('papusclub\Models\Socio','id');
  	}
 }

@@ -223,6 +223,9 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('venta-producto/{id}/deleteProducto', 'VentaProductoController@destroyProducto');
 	Route::get('venta-producto/{id}/back', 'VentaProductoController@back');
 
+	//Inscribirse en Sorteo
+	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
+
 	//MANTENIMIENTO DE SORTEO
 	Route::get('sorteo/index','SorteoController@index');
 	Route::get('sorteo/new','SorteoController@create');	
@@ -231,11 +234,19 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('sorteo/{id}/edit', 'SorteoController@update');
 	Route::get('sorteo/editSorteo/{id}','SorteoController@showEditSorteo');
 	Route::get('sorteo/{id}/delete', 'SorteoController@destroy');
+	Route::get('sorteo/{id}/nuke', 'SorteoController@nuke');
+	Route::get('sorteo/{id}/atras', 'SorteoController@atras');
 	Route::get('sorteo/{id}/show', 'SorteoController@show');
 
-	//Transaccional
+
+	//Transaccional Sorteo
 	Route::get('sorteo/new/sorteo/bungalows/{id}','SorteoController@bungalows');
 	Route::post('sorteo/new/sorteo/bungalows/{id}/store','SorteoController@storeBungalows');
+		//Modificar Sorteo
+		Route::get('sorteo/edit/remove/sorteo/bungalows/{id}','SorteoController@removebungalows');
+		Route::post('sorteo/new/sorteo/bungalows/{id}/remove','SorteoController@removeCheckedBungalows');
+		//Agregar Sorteo
+		
 
 	//MANTENIMIENTO DE AMBIENTES
 	Route::get('ambiente/index', 'AmbienteController@index');

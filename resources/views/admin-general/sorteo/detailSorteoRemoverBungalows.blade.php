@@ -24,12 +24,11 @@
 		
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>AGREGAR BUNGALOWS</strong>
+					<strong>REMOVER BUNGALOWS</strong>
 			</div>		
 			<div></div>
 		</div>
-		
-			<form method="POST" action="/sorteo/new/sorteo/bungalows/{{ $sorteo->id }}/store" class="form-horizontal form-border">
+			<form method="POST" action="/sorteo/new/sorteo/bungalows/{{ $id }}/remove" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 
@@ -41,6 +40,7 @@
 		  					@endforeach
 		  				</ul>
 		  			@endif
+		  		@if(!empty($ambientes))
 				<div class="table-responsive">
 					<div class="container">
 						<table class="table table-bordered table-hover text-center display" id="example">
@@ -48,25 +48,32 @@
 								<th><div align=center>NOMBRE</div></th>	
 								<th><div align=center>CAPACIDAD</div></th>	
 								<th><div align=center>UBICACION</div></th>	
-								<th><div align=center>SELECCIONAR</div></th>
+								<th><div align=center>SELECCIONAR</div></th>	
+
 							</thead>	
-							<tbody>													
-								@foreach($ambientes as $ambiente)	
-									@if($ambiente->nombre!='nada')
-										<tr>																				
+							<tbody>				
+
+								@foreach($ambientes as $ambientess)
+									@foreach($ambientess as $ambiente)
+										@if($ambiente)
+										<tr>																			
 											<td>{{$ambiente->nombre}}</td>
 											<td>{{$ambiente->capacidad_actual}}</td>
 											<td>{{$ambiente->ubicacion}}</td>
 											<td>{{ Form::checkbox('ch[]', $ambiente->id, false) }}</td>
-														
 										</tr>
-									@endif								
-								 @endforeach
+										@endif
+									@endforeach
+								@endforeach
 								
 							</tbody>			
 						</table>						
 					</div>	
 				</div>
+				@else
+					<div>NO POSEE BUNGALOWS ASOCIADOS</div>
+					
+				@endif
 				<br><br>
 				<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
@@ -75,10 +82,10 @@
 						<input class="btn btn-primary" type="submit" value="Continuar">
 					</div>
 					<div class="btn-group">
-						 <a class="btn btn-info"  title="Atras" href="{{url('/sorteo/'.$sorteo->id.'/atras')}}">Atras</a>   
+						 <a class="btn btn-info"  title="Atras" href="{{url('/sorteo/'.$id)}}">Atras</a>   
 					</div>
 					<div class="btn-group">
-						 <a class="btn btn-info"  title="Cancelar" data-href="{{url('/sorteo/'.$sorteo->id.'/nuke')}}" data-toggle="modal" data-target="#modalEliminar">Cancelar</a>   
+						 <a class="btn btn-info"  title="Cancelar" data-href="{{url('/sorteo/index')}}" data-toggle="modal" data-target="#modalEliminar">Cancelar</a>   
 					</div>
 				</div>
 				<br><br>
@@ -115,7 +122,7 @@
 	        <h4 class="modal-title">Confirmar</h4>
 	      </div>
 	      <div class="modal-body">
-	        <p>¿Está seguro que desea cancelar la creación del sorteo?</p>
+	        <p>¿Está seguro que desea cancelar la modificación del sorteo?</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

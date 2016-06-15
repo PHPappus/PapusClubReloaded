@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSorteoTable extends Migration
+class CreateTableSocioxsorteoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,10 @@ class CreateSorteoTable extends Migration
      */
     public function up()
     {
-        Schema::create('sorteo',function (Blueprint $table){
+        Schema::create('socioxsorteo',function (Blueprint $table){
             //Estos son los atributos que estaban en el caso de uso
-            $table->increments('id');
-            $table->string('nombre_sorteo');
-            $table->string('descripcion');
-            $table->integer('id_sede')->unsigned()->nullable();
-            $table->integer('numero_bungalows');
-            $table->date('fecha_abierto');
-            $table->date('fecha_cerrado');            
+            $table->integer('id');
+            $table->integer('id_socio')->unsigned()->nullable();            
             $table->Boolean('estado');
             $table->softDeletes();
             $table->timestamps();
@@ -34,6 +29,6 @@ class CreateSorteoTable extends Migration
      */
     public function down()
     {
-        Schema::drop('sorteo');
+        Schema::drop('socioxsorteo');
     }
 }
