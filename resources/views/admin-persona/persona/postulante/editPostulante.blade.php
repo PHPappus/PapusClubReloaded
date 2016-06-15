@@ -320,6 +320,7 @@
 										<div class="btn-group">
 											<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
 										</div>
+
 								</div>																				
 						</div>
 
@@ -386,7 +387,7 @@
 						<div role="tabpanel" class="tab-pane" id="seccion5">
 					@endif
 
-							<form method="POST" action="/postulante/{{$postulante->id}}/editPostulante" class="form-horizontal form-border">
+							<form method="POST" action="/postulante/{{$postulante->id}}/editEstudio" class="form-horizontal form-border">
 								{{method_field('PATCH')}}
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -769,8 +770,8 @@
 	</div>		
 @stop
 <!-- JQuery -->
-	{!!Html::script('js/jquery-1.11.3.min.js')!!}
-	{!!Html::script('js/jquery.bxslider.min.js')!!}
+	{!!Html::script('js/jquery-1.11.3.min.js')!!}<!-- 
+	{!!Html::script('js/jquery.bxslider.min.js')!!} -->
 	{!!Html::script('js/bootstrap.js')!!}
 
 	{!!Html::script('js/bootstrap-datepicker.js')!!}

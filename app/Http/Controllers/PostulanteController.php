@@ -10,6 +10,7 @@ use papusclub\Models\Distrito;
 use papusclub\Models\Postulante;
 use papusclub\Http\Requests\StorePostulanteRequest;
 use papusclub\Http\Requests\EditPostulanteBasicoRequest;
+use papusclub\Http\Requests\EditPostulanteEstudioRequest;
 use papusclub\Http\Controllers\Controller;
 use papusclub\Http\Requests;
 use papusclub\Models\Configuracion;
@@ -198,6 +199,18 @@ class PostulanteController extends Controller
 
         //$socio->postulante->persona->update(['nombre'=>$input['nombre'], 'fecha_nacimiento'=>$fecha_nac]);
         //return view('admin-general.persona.socio.editSocio',compact('socio'));
+        Session::flash('update','basico');
+        return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('cambios-bas','Cambios realizados con éxito');
+    }
+
+    public function updateEstudio(EditPostulanteEstudioRequest $request, $id){
+        $postulante = Postulante::withTrashed()->find($id);
+        $postulante->persona->colegio_primario=trim($input['colegio_primario']);
+        $postulante->persona->colegio_secundario=trim($input['colegio_secundario']);
+        $postulante->persona->universidad=trim($input['universidad']);
+        $postulante->persona->profesion=trim($input['profesion']);
+
+        $postulante->save();
         Session::flash('update','basico');
         return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('cambios-bas','Cambios realizados con éxito');
     }
