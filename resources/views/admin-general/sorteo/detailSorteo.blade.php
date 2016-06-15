@@ -75,7 +75,8 @@
 
 			</form>
 		</div>
-		<div class="table-responsive">
+		@if(!empty($ambientes))
+			<div class="table-responsive">
 					<div class="container">
 						<table class="table table-bordered table-hover text-center display" id="example">
 							<thead class="active" data-sortable="true">								
@@ -84,7 +85,7 @@
 								<th><div align=center>UBICACION</div></th>	
 
 							</thead>	
-							<tbody>													
+							<tbody>											
 								@foreach($ambientes as $ambientess)
 									@foreach($ambientess as $ambiente)
 										@if($ambiente)
@@ -96,11 +97,11 @@
 										@endif
 									@endforeach
 								@endforeach
-								
 							</tbody>			
 						</table>						
 					</div>	
 				</div>
+		@endif
 	</div>		
 @stop
 <!-- JQuery -->

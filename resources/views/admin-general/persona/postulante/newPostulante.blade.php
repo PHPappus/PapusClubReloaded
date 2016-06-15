@@ -129,7 +129,7 @@
 											</div>
 											<div class="col-sm-6 text-left" style="float: right">											
 													<div>
-														{{ Form::radio('sexo', 'masculino') }}Masculino
+														{{ Form::radio('sexo', 'masculino','selected') }}Masculino
 													</div>
 													<div>
 														{{ Form::radio('sexo', 'femenino'   ) }}Femenino
@@ -192,36 +192,38 @@
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Fecha de Nacimiento</label>
 											</div>
-											<div class="col-sm-1">
-												<input style="max-width: 250px" class="datepicker" type="text" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha Nacimiento" readonly="true" value="{{old('fecha_nacimiento')}}" >
+											<div class="col-sm-6">
+												<input style="width: 250px" class="datepicker" type="text" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha Nacimiento" readonly="true" value="{{old('fecha_nacimiento')}}" >
 											</div>	
 										</div>
 								</div>
 
-									<div class="form-group">
+									<div class="form-group required">
 											<div class="col-sm-6">
 												<div class="col-sm-6 text-left">
 													<label for="" class="control-label">Lugar de Nacimiento:</label>
 												</div>
 													<div class="col-sm-6">
-														<select form="form_id" class="form-control" id="departamento" name="departamento" style="max-width: 250px " data-link="{{ url('/provincias') }}">
+														<select class="form-control" id="departamento" name="departamento" style="max-width: 250px " data-link="{{ url('/provincias') }}">
 															<option value="-1" default>--Departamento--</option>
 																@foreach ($departamentos as $depa)      
-												                	<option value="{{$depa->id}}" @if (old('departamento') == $depa->id) selected="selected" @endif  >{{$depa->nombre}}</option>
+												                	<option value="{{$depa->id}}"  @if (old('departamento') == $depa->id) selected="selected" @endif  >{{$depa->nombre}}</option>
 												                @endforeach
 														</select>
 														
 														<br>
-														<select form="form_id" class="form-control" id="provincia" name="provincia" style="max-width: 250px " data-link="{{ url('/distritos') }}" disabled="true">
+														<select class="form-control" id="provincia" name="provincia" style="max-width: 250px " data-link="{{ url('/distritos') }}" disabled="true">
 															<option  value="-1" default disab>--Provincia--</option>
 														</select>
 														<br>
-														<select form="form_id" class="form-control" id="distrito" name="distrito" style="max-width: 250px " disabled="true">
+														<select class="form-control" id="distrito" name="distrito" style="max-width: 250px " disabled="true">
 															<option  value="-1" default>--Distrito--</option>
 														</select>
 
 														<br><br>
-														<!--<a href="#" id="try" data-link="{{ url('/test') }}">Try</a>-->>
+
+														<!--<a href="#" id="try" data-link="{{ url('/test') }}">Try</a>-->
+
 													</div>	
 											</div>
 									</div>
@@ -245,7 +247,7 @@
 								
 										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 							<br>
-								<div class="form-group">
+								<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Educacion Primaria:</label>
@@ -255,7 +257,7 @@
 											</div>		
 										</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Educacion secundaria:</label>
@@ -276,7 +278,7 @@
 										</div>
 								</div>
 
-								<div class="form-group required">
+								<div class="form-group">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
 												<label for="" class="control-label">Profesion:</label>
@@ -384,7 +386,8 @@
 
 @stop
 <!-- JQuery -->
- 	 <script src="../js/jquery-3.0.0.js"></script> 
+	{!!Html::script('js/jquery-1.11.3.min.js')!!}
+<!--  	 <script src="../js/jquery-3.0.0.js"></script>  -->
 	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 	<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
 
@@ -392,8 +395,8 @@
 	{!!Html::script('js/jquery.bxslider.min.js')!!}
 	{!!Html::script('js/MisScripts.js')!!}
 	<script>$.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')} })</script>
-
-	<script type="text/javascript" src="../js/bootstrap-datepicker-sirve.js"></script>
+	{!!Html::script('js/bootstrap-datepicker.js')!!}
+<!-- 	<script type="text/javascript" src="../js/bootstrap-datepicker-sirve.js"></script> -->
 
 
 
@@ -505,7 +508,9 @@
 			});
 
 		});
-
+		$('.datepicker').on('changeDate', function(ev){
+			    $(this).datepicker('hide');
+		});
 			
 	</script>	
 
@@ -523,7 +528,7 @@
 				var url = $(this).attr("data-link");
 				$departamento_id=event.target.value;
 							//alert($departamento_id);
-				//alert(url);
+				alert(url);
 				$.ajax({
 			        url: "provincias",
 			        type:"POST",
@@ -539,10 +544,11 @@
 			        	$("#provincia").empty();
 			        	$("#provincia").append("<option  value='-1' default>--Provincia--</option>");
 			        	$.each(data,function(index,elememt){
-			        		//alert(element.nombre);
+			        		
 			        		$("#provincia").append("<option value='"+elememt.id+"'>"+elememt.nombre+"</option>");
+			           		 console.log("mensaje que quieras");
+
 			        	});
-			            //alert(data);
 			        },error:function(){ 
 			            alert("error!!!!");
 			        }

@@ -16,7 +16,7 @@ class PersonaTableSeeder extends Seeder
     public function run()
     {
         Persona::create([
-        	'nacionalidad'=>'Peruano',
+        	'nacionalidad'=>'peruano',
         	'doc_identidad'=>'48755415',
         	'nombre'=>'Max',
         	'ap_paterno'=>'Vilcapoma',
@@ -39,29 +39,40 @@ class PersonaTableSeeder extends Seeder
             'id_tipo_persona'=>2]);
 
         Persona::create([       
-            'nacionalidad'=>'Peruano',
+            'nacionalidad'=>'peruano',
             'doc_identidad'=>'72877976',
             'nombre'=>'Marcelo',
             'ap_paterno'=>'Milera',
             'ap_materno'=>'Sánchez',
-            'sexo'=>'hombre',
+            'sexo'=>'masculino',
             'correo'=>'m.milera@mail.com',
             'fecha_nacimiento'=>'1992-11-19',
             'id_tipo_persona'=>3,
             'id_usuario'=>2]);
 
         Persona::create([
-            'nacionalidad'=>'Peruano',
+            'nacionalidad'=>'peruano',
             'doc_identidad'=>'65872376',
             'nombre'=>'Victor',
             'ap_paterno'=>'Fuentes',
             'ap_materno'=>'Ramos',
-            'sexo'=>'hombre',
+            'sexo'=>'masculino',
             'correo'=>'v.fuentesr@mail.com',
             'fecha_nacimiento'=>'1992-10-10',
             'id_tipo_persona'=>3,
             'id_usuario'=>3]);
-
+			
+        Persona::create([
+            'nacionalidad'=>'peruano',
+            'doc_identidad'=>'72914561',
+            'nombre'=>'Max',
+            'ap_paterno'=>'Vilcapoma',
+            'ap_materno'=>'Gonzales',
+            'sexo'=>'masculino',
+            'correo'=>'max@papus.com',
+            'fecha_nacimiento'=>'1993-07-15',
+            'id_tipo_persona'=>2]);
+			
         Persona::create([
             'nacionalidad'=>'Peruano',
             'doc_identidad'=>'65235376',
@@ -122,4 +133,5 @@ class PersonaTableSeeder extends Seeder
             'id_tipo_persona'=>3,
             'id_usuario'=>3]);
     }
+
 }

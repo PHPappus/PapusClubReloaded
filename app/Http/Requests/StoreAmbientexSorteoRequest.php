@@ -26,7 +26,7 @@ class StoreAmbientexSorteoRequest extends Request
         return [
             'id_sorteo'          =>  'numeric',
             'id_ambiente'       =>  'numeric',
-            'ch'=>'required'                     
+            //'ch'=>'required'                     
         ];
     }
 }

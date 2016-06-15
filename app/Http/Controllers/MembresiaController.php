@@ -60,7 +60,7 @@ class MembresiaController extends Controller
         $tarifa->addTipo($membresia);
 
         //return redirect()->action('MembresiaController@index', ['stored' => 'Se registró la sede correctamente.']);
-        return redirect('membresia')->with('stored', 'Se registró la sede correctamente.');
+        return redirect('membresia')->with('stored', 'Se registró la membresía correctamente.');
     }
 
     public function edit ($id)
@@ -79,7 +79,7 @@ class MembresiaController extends Controller
         $membresia->update(['descripcion'=>$input['nombre'],
                             'numMaxInvitados'=>$input['numMax']]);
 
-        return Redirect::action('MembresiaController@index');
+        return Redirect::action('MembresiaController@index')->with('stored','Se actualizo la membresía correctamente');
     }
 
     public function destroy(TipoMembresia $membresia)

@@ -49,6 +49,7 @@
 					<th><div align=center>FECHA INICIO DE SORTEO</div></th>
 					<th><div align=center>FECHA FIN DE SORTEO</div></th>
 					<th><div align=center>DESCRIPCION</div></th>
+					<th><div align=center>INSCRIPCION</div></th>
 				</thead>	
 				<tbody>													
 					@foreach($sorteos as $sorteo)	
@@ -56,7 +57,9 @@
 							<td>{{$sorteo->nombre_sorteo}}</td>
 							<td>{{$sorteo->fecha_abierto}}</td>
 							<td>{{$sorteo->fecha_cerrado}}</td>	
-							<td>{{$sorteo->descripcion}}</td>										            	
+							<td>{{$sorteo->descripcion}}</td>
+									
+							<td>{{ Form::checkbox('ch[]', $sorteo->id, false) }}</td>							            	
 						</tr>
 					</form>
 					 @endforeach

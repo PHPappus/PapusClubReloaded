@@ -25,7 +25,7 @@ class UsuarioController extends Controller
 
     public function cuenta()
     {
-       $perfil = 'socio';
+        $perfil = 'socio';
         switch (\Auth::user()->perfil_id) {
                 case '1':
                     $perfil='socio';
@@ -41,6 +41,15 @@ class UsuarioController extends Controller
                     break;
                 case '5':
                     $perfil='gerente';
+                    break;
+                case '6':
+                    $perfil='admin-persona';
+                    break;
+                case '7':
+                    $perfil='admin-reserva';
+                    break;
+                case '8':
+                    $perfil='publico';
                     break;
         }
 
@@ -83,7 +92,7 @@ class UsuarioController extends Controller
         $user->perfil_id = $input['perfil_id'];
         $user->save();
         
-        Session::flash('message','Usuario Creado Correctamente');
+        Session::flash('message','Nuevo Usuario Creado Correctamente');
         return Redirect::to('/usuario');
     }
     public function changepassword(){
@@ -103,6 +112,15 @@ class UsuarioController extends Controller
                     break;
                 case '5':
                     $perfil='gerente';
+                    break;
+                case '6':
+                    $perfil='admin-persona';
+                    break;
+                case '7':
+                    $perfil='admin-reserva';
+                    break;
+                case '8':
+                    $perfil='publico';
                     break;
         }
 
@@ -134,6 +152,15 @@ class UsuarioController extends Controller
                     break;
                 case '5':
                     $perfil='/gerente';
+                    break;
+                case '6':
+                    $perfil='/admin-persona';
+                    break;
+                case '7':
+                    $perfil='/admin-reserva';
+                    break;
+                case '8':
+                    $perfil='/public';
                     break;
             }
             Session::flash('message','Su contraseña ha sido cambiada con éxito');

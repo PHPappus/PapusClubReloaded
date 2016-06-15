@@ -116,8 +116,8 @@ class SocioAdminController extends Controller
 
         //$socio->postulante->persona->update(['nombre'=>$input['nombre'], 'fecha_nacimiento'=>$fecha_nac]);
         //return view('admin-general.persona.socio.editSocio',compact('socio'));
-        Session::flash('update','basico');  
-        return Redirect::action('SocioAdminController@edit',$socio->id); 
+        Session::flash('update','basico');
+        return Redirect::action('SocioAdminController@edit',$socio->id)->with('cambios-bas','Cambios realizados con éxito');
     }
 
     public function updateEstudio(EditSocioEstudioRequest $request, $id)
@@ -141,7 +141,7 @@ class SocioAdminController extends Controller
         }
         $socio->postulante->save();
         Session::flash('update','estudio');
-        return Redirect::action('SocioAdminController@edit',$socio->id);
+        return Redirect::action('SocioAdminController@edit',$socio->id)->with('cambios-est','Cambios realizados con éxito');
     }
 
     public function updateTrabajo(EditSocioTrabajoRequest $request,$id)
@@ -157,16 +157,16 @@ class SocioAdminController extends Controller
         if(!empty($input['cargocentrotrabajo']))
         {
             $cargocentrotrabajo=trim($input['cargocentrotrabajo']);
-            $socio->postulante->cargo_centro_trabajo=$cargocentrotrabajo;
+            $socio->postulante->cargo_trabajo=$cargocentrotrabajo;
         }
         if(!empty($input['direccionlaboral']))
         {
             $direccionlaboral=trim($input['direccionlaboral']);
-            $socio->postulante->direccionLaboral=$direccionlaboral;
+            $socio->postulante->direccion_laboral=$direccionlaboral;
         }
         $socio->postulante->save();
         Session::flash('update','trabajo');
-        return Redirect::action('SocioAdminController@edit',$socio->id);                                        
+        return Redirect::action('SocioAdminController@edit',$socio->id)->with('cambios-trab','Cambios realizados con éxito');                                       
     }
 
     public function updateContacto(EditSocioContactoRequest $request,$id)
@@ -186,7 +186,7 @@ class SocioAdminController extends Controller
         $socio->postulante->save();
 
         Session::flash('update','contacto');
-        return Redirect::action('SocioAdminController@edit',$socio->id);        
+        return Redirect::action('SocioAdminController@edit',$socio->id)->with('cambios-cont','Cambios realizados con éxito');      
     }
 
     public function updateMembresia(Request $request,$id)
@@ -280,6 +280,6 @@ class SocioAdminController extends Controller
             }
         }
         Session::flash('update','membresia');
-        return Redirect::action('SocioAdminController@edit',$socio->id);        
+        return Redirect::action('SocioAdminController@edit',$socio->id)->with('cambios-mem','Cambios realizados con éxito');         
     }
 }

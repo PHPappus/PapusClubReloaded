@@ -33,7 +33,7 @@
 			<div class="row">
 				<div class="col-sm-16 text-center">
 					<div role="tabpanel">
-						<ul class="nav nav-pills nav-tabs" role="tablist">
+						<ul class="nav nav-pills nav-justified" role="tablist">
 							<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Básico</a></li>
 							<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Nacimiento</a></li>
 							<li role="presentation"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Familia</a></li>
@@ -50,7 +50,21 @@
 										<!--DATOS BÁSICOS-->										
 						<div role="tabpanel" class="tab-pane active" id="seccion1">
 							<form action="" class="form-horizontal form-border">
-								<br/><br/>
+								<br><br><br>
+								<div class="form-group required" >
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										
+										<div class="btn-group">
+											<a href="#"  class="btn btn-info back" disabled><span class="glyphicon glyphicon-chevron-left"></span></a>
+										</div>
+										<div class="btn-group">
+											<a href="#" class="btn btn-info cont" ><span class="glyphicon glyphicon-chevron-right"></span></a>
+										</div>
+								</div>
 								<div class="form-group">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
@@ -171,26 +185,87 @@
 					    					</select>
 										</div>	
 									</div>
-								</div>								
+								</div>	
+								<div class="form-group">
+									<div class="col-sm-5"> </div>
+										<a class="btn btn-info" href="/Socio/" title="Editar" >Regresar</a>			
+								</div>															
 							</form>
 						</div>
 
 
 										<!--DATOS NACIMIENTO-->
-						<div role="tabpanel" class="tab-pane" id="seccion2">														
+						<div role="tabpanel" class="tab-pane" id="seccion2">
+								<br><br><br>
+								<div class="form-group required" >
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										
+										<div class="btn-group">
+											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+										</div>
+										<div class="btn-group">
+											<a href="#" class="btn btn-info cont" ><span class="glyphicon glyphicon-chevron-right"></span></a>
+										</div>
+								</div>																				
 						</div>
 										<!--DATOS FAMILIARES-->
 						<div role="tabpanel" class="tab-pane" id="seccion3">
-
+							<br><br><br>
+							<div class="form-group required" >
+									<div class="btn-group col-sm-4" ></div>
+									<div class="btn-group col-sm-4"></div>
+									<div class="btn-group col-sm-4"></div>
+									<div class="btn-group col-sm-4" ></div>
+									<div class="btn-group col-sm-4"></div>
+									
+									<div class="btn-group">
+										<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+									</div>
+									<div class="btn-group">
+										<a href="#" class="btn btn-info cont" ><span class="glyphicon glyphicon-chevron-right"></span></a>
+									</div>
+							</div>
 						</div>
 										<!--DATOS VIVIENDA-->
 						<div role="tabpanel" class="tab-pane" id="seccion4">
-
+							<br><br><br>
+							<div class="form-group required" >
+									<div class="btn-group col-sm-4" ></div>
+									<div class="btn-group col-sm-4"></div>
+									<div class="btn-group col-sm-4"></div>
+									<div class="btn-group col-sm-4" ></div>
+									<div class="btn-group col-sm-4"></div>
+									
+									<div class="btn-group">
+										<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+									</div>
+									<div class="btn-group">
+										<a href="#" class="btn btn-info cont" ><span class="glyphicon glyphicon-chevron-right"></span></a>
+									</div>
+							</div>
 						</div>
 										<!--DATOS ESTUDIO-->
 						<div role="tabpanel" class="tab-pane" id="seccion5">
 							<form action="" class="form-horizontal form-border">
-								<br/><br/>
+								<br><br><br>
+								<div class="form-group required" >
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										
+										<div class="btn-group">
+											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+										</div>
+										<div class="btn-group">
+											<a href="#" class="btn btn-info cont" ><span class="glyphicon glyphicon-chevron-right"></span></a>
+										</div>
+								</div>
 								<div class="form-group">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
@@ -230,13 +305,31 @@
 											<input type="text" class="form-control" id="carrera" name="carrera" placeholder="Carrera" value="{{$socio->postulante->profesion}}" disabled>
 										</div>	
 									</div>
-								</div>																												
+								</div>
+								<div class="form-group">
+									<div class="col-sm-5"> </div>
+										<a class="btn btn-info" href="/Socio/" title="Editar" >Regresar</a>			
+								</div>																																				
 							</form>
 						</div>
 										<!--DATOS TRABAJO -->
 						<div role="tabpanel" class="tab-pane" id="seccion6">
 							<form action="" class="form-horizontal form-border">
-								<br/><br/>
+								<br><br><br>
+								<div class="form-group required" >
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										
+										<div class="btn-group">
+											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+										</div>
+										<div class="btn-group">
+											<a href="#" class="btn btn-info cont" ><span class="glyphicon glyphicon-chevron-right"></span></a>
+										</div>
+								</div>
 								<div class="form-group">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
@@ -253,7 +346,7 @@
 											<label for="" class="control-label">Cargo en Trabajo:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="cargocentrotrabajo" name="cargocentrotrabajo" placeholder="Cargo en Trabajo" value="{{$socio->postulante->cargo_centro_trabajo}}" disabled>
+											<input type="text" class="form-control" id="cargocentrotrabajo" name="cargocentrotrabajo" placeholder="Cargo en Trabajo" value="{{$socio->postulante->cargo_trabajo}}" disabled>
 										</div>	
 									</div>
 								</div>
@@ -263,17 +356,35 @@
 											<label for="" class="control-label">Direccion Laboral:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="direccionlaboral" name="direccionlaboral" placeholder="Direccion" value="{{$socio->postulante->direccionLaboral}}" disabled>
+											<input type="text" class="form-control" id="direccionlaboral" name="direccionlaboral" placeholder="Direccion" value="{{$socio->postulante->direccion_laboral}}" disabled>
 										</div>	
 									</div>
-								</div>																												
+								</div>
+								<div class="form-group">
+									<div class="col-sm-5"> </div>
+										<a class="btn btn-info" href="/Socio/" title="Editar" >Regresar</a>			
+								</div>																														
 							</form>
 						</div>
 
 										<!--DATOS DE CONTACTO -->
 						<div role="tabpanel" class="tab-pane" id="seccion7">
 							<form action="" class="form-horizontal form-border">
-								<br/><br/>
+								<br><br><br>
+								<div class="form-group required" >
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										
+										<div class="btn-group">
+											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+										</div>
+										<div class="btn-group">
+											<a href="#" class="btn btn-info cont" ><span class="glyphicon glyphicon-chevron-right"></span></a>
+										</div>
+								</div>
 								<div class="form-group">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
@@ -303,13 +414,31 @@
 											<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" value="{{$socio->postulante->persona->correo}}" disabled>
 										</div>	
 									</div>
-								</div>																												
+								</div>
+								<div class="form-group">
+									<div class="col-sm-5"> </div>
+										<a class="btn btn-info" href="/Socio/" title="Editar" >Regresar</a>			
+								</div>																																				
 							</form>						
 						</div>
 										<!--DATOS DE INVITADOS-->
 						<div role="tabpanel" class="tab-pane" id="seccion8">
 							<form action="" class="form-horizontal form-border">
-								<br/><br/>
+								<br><br><br>
+								<div class="form-group required" >
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										
+										<div class="btn-group">
+											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+										</div>
+										<div class="btn-group">
+											<a href="#" class="btn btn-info cont" ><span class="glyphicon glyphicon-chevron-right"></span></a>
+										</div>
+								</div>
 									<div class="table-responsive">
 										<div class="container">
 											<table class="table table-bordered table-hover text-center display" id="example">
@@ -336,11 +465,17 @@
 													            </tr>				            		
 														@endforeach
 													</tbody>
+
 											</table>
+											<div class="form-group">
+												<div class="col-sm-5"> </div>
+													<a class="btn btn-info" href="/Socio/" title="Editar" >Regresar</a>			
+											</div>												
 											</br></br>
 											<br><br><br>								
 										</div>		
-									</div>														
+									</div>
+																						
 							</form>						
 						</div>
 
@@ -348,7 +483,21 @@
 										<!--DATOS DE MEMBRESIA -->
 						<div role="tabpanel" class="tab-pane" id="seccion9">
 							<form action="" class="form-horizontal form-border">
-								<br/><br/>
+								<br><br><br>
+								<div class="form-group required" >
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										
+										<div class="btn-group">
+											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+										</div>
+										<div class="btn-group">
+											<a href="#" class="btn btn-info cont" disabled><span class="glyphicon glyphicon-chevron-right"></span></a>
+										</div>
+								</div>
 								<div class="form-group">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
@@ -410,7 +559,11 @@
 
 										</div>	
 									</div>
-								</div>																																																				
+								</div>
+								<div class="form-group">
+									<div class="col-sm-5"> </div>
+										<a class="btn btn-info" href="/Socio/" title="Editar" >Regresar</a>			
+								</div>																																																												
 							</form>
 						</div>
 						
@@ -419,10 +572,7 @@
 			</div> 	
 			<br/><br/>
 
-				<div class="form-group">
-					<div class="col-sm-5"> </div>
-						<a class="btn btn-info" href="/Socio/" title="Editar" >Regresar <i class="glyphicon glyphicon-arrow-left"></i></a>			
-				</div>
+
 		</div>
 	</div>		
 @stop
@@ -440,6 +590,23 @@
 		           "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
 		       }
 		  	});
+
+        $('.cont').click(function(){
+
+  		var nextId = $(this).parents('.tab-pane').next().attr("id");
+  		$('[href=#'+nextId+']').tab('show');
+
+		})
+
+		$('.back').click(function(){
+
+  		var backId = $(this).parents('.tab-pane').prev().attr("id");
+  		$('[href=#'+backId+']').tab('show');
+
+		})
+
+
+
   		});
 	</script>	
 
