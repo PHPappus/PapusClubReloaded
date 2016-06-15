@@ -13,6 +13,7 @@
 	{!!Html::style('css/MisEstilos.css')!!}
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
 
+
 </head>
 <body>
 @extends('layouts.headerandfooter-al-admin-persona')

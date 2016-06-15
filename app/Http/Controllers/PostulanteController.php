@@ -215,7 +215,7 @@ class PostulanteController extends Controller
 
         $postulante->save();
         Session::flash('update','estudio');
-        return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('cambios-bas','Cambios realizados con éxito');
+        return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('cambios-est','Cambios realizados con éxito');
     }
     
     public function updateTrabajo(EditPostulanteTrabajoRequest $request, $id){
@@ -227,7 +227,7 @@ class PostulanteController extends Controller
 
         $postulante->save();
         Session::flash('update','trabajo');
-        return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('cambios-bas','Cambios realizados con éxito');
+        return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('cambios-trab','Cambios realizados con éxito');
     }
 
     public function updateContacto(EditPostulanteContactoRequest $request, $id){
@@ -240,7 +240,7 @@ class PostulanteController extends Controller
         $postulante->persona->save();
         $postulante->save();
         Session::flash('update','contacto');
-        return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('cambios-bas','Cambios realizados con éxito');
+        return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('cambios-cont','Cambios realizados con éxito');
     }
 
     public function destroy($id){
@@ -255,3 +255,4 @@ class PostulanteController extends Controller
 
     }
 }
+    

@@ -4,9 +4,9 @@
 	<title>EDITAR POSTULANTE</title>
 	<meta charset="UTF-8">
 
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	{!!Html::style('css/jquery.bxslider.css')!!}
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
@@ -58,7 +58,7 @@
 						<ul class="nav nav-pills nav-justified" id="pills-edit" role="tablist">
 
 						<!--DATOS BASICOS-->
-						@if(!Session::has('update') && !$errors->basico->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any())									
+						@if(!Session::has('update') && !$errors->basico->any() && !$errors->nacimiento->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any())									
 							<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Básico</a></li>
 						@elseif(Session::get('update')=='basico' || $errors->basico->any())
 							<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Básico</a></li>
@@ -67,8 +67,11 @@
 						@endif
 
 						<!--DATOS DE NACIMIENTO-->
-
+						@if(Session::get('update')=='nacimiento' || $errors->nacimiento->any())
+							<li role="presentation" class="active"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Nacimiento</a></li>
+						@else
 							<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Nacimiento</a></li>
+						@endif
 
 						<!--DATOS DE FAMILIA-->
 
@@ -108,7 +111,7 @@
 						
 
 
-					@if(!Session::has('update') && !$errors->basico->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any())									
+					@if(!Session::has('update') && !$errors->basico->any() && !$errors->nacimiento->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any())									
 						<div role="tabpanel" class="tab-pane active" id="seccion1">
 					@elseif(Session::get('update')=='basico' || $errors->basico->any())
 						<div role="tabpanel" class="tab-pane active" id="seccion1">
@@ -204,17 +207,7 @@
 										</div>
 									</div>
 								
-								<div class="form-group required">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Fecha de Nacimiento(dd/mm/aaaa):</label>
-										</div>
-										<div class="col-sm-6">
-											<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" value="{{$postulante->persona->fecha_nacimiento}}" style="width: 250px"  >
 
-										</div>	
-									</div>
-								</div>
 
 								<div class="form-group">
 										<div class="col-sm-6">
@@ -253,8 +246,7 @@
 											</div>	
 										</div>
 								</div>
-
-								
+		
 						<!--MODAL CONFIRMACION-->
 							<!-- Modal -->
 								<div class = "modal fade" id = "confirmation" tabindex = "-1" role = "dialog" 
@@ -304,27 +296,73 @@
 						</div>
 
 
-										<!--DATOS NACIMIENTO-->
+						
+					@if(!Session::has('update') && !$errors->basico->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any())									
+						<div role="tabpanel" class="tab-pane active" id="seccion2">
+					@elseif(Session::get('update')=='nacimiento' || $errors->nacimiento->any())
+						<div role="tabpanel" class="tab-pane active" id="seccion2">
+					@else
 						<div role="tabpanel" class="tab-pane" id="seccion2">
-								<div class="form-group required" >
-										<div class="btn-group col-sm-4" ></div>
-										<div class="btn-group col-sm-4">
-											<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
-										</div>
+					@endif
 
-										<div class="btn-group col-sm-4" ></div>
-										
-										<div class="btn-group">
-											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-										</div>
-										<div class="btn-group">
-											<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
-										</div>
+							<form method="POST" action="/postulante/{{$postulante->persona->id}}/editNacimiento" class="form-horizontal form-border">
+							{{method_field('PATCH')}}
 
-								</div>																				
+								<div class="col-sm-4"></div>
+								<div class=""> 
+									@if ($errors->nacimiento->any())
+						  				<ul class="alert alert-danger fade in">
+						  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						  					@foreach ($errors->nacimiento->all() as $error)
+						  						<li>{{$error}}</li>
+						  					@endforeach
+						  				</ul>
+						  			@endif
+								</div>
+								@if(session('cambios-nac'))
+									<div class="alert alert-success fade in">
+											<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+											<strong>¡Éxito!</strong> {{session('cambios-nac')}}
+									</div>								
+								@endif
+
+								<!--DATOS NACIMIENTO-->
+								<br><br><br>
+
+								<div role="tabpanel" class="tab-pane" id="seccion2">
+										<div class="form-group required" >
+												<div class="btn-group col-sm-4" ></div>
+												<div class="btn-group col-sm-4">
+													<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+												</div>
+
+												<div class="btn-group col-sm-4" ></div>
+												
+												<div class="btn-group">
+													<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+												</div>
+												<div class="btn-group">
+													<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
+												</div>
+
+										</div>																				
+								</div>
+
+								<div class="form-group required">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Fecha de Nacimiento(dd/mm/aaaa):</label>
+										</div>
+										<div class="col-sm-6">
+											<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" name="fecha_nacimiento" placeholder="Fecha Nacimiento" value="{{$postulante->persona->fecha_nacimiento}}" style="width: 250px"  >
+
+										</div>	
+									</div>
+								</div>
+
+							</form>
+
 						</div>
-
-
 										<!--DATOS FAMILIARES-->
 						<div role="tabpanel" class="tab-pane" id="seccion3">
 								<div class="form-group required" >
@@ -770,8 +808,7 @@
 	</div>		
 @stop
 <!-- JQuery -->
-	{!!Html::script('js/jquery-1.11.3.min.js')!!}<!-- 
-	{!!Html::script('js/jquery.bxslider.min.js')!!} -->
+	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	{!!Html::script('js/bootstrap.js')!!}
 
 	{!!Html::script('js/bootstrap-datepicker.js')!!}
@@ -846,9 +883,9 @@
 		        autoclose: true
 		        //beforeShowDay:function (date){return false}
 			});
-			$('.datepicker').on('changeDate', function(ev){
+/*			$('.datepicker').on('changeDate', function(ev){
 			    $(this).datepicker('hide');
-			});
+			});*/
 		});
 	</script>
 
