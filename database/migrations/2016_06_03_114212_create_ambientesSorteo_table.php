@@ -12,7 +12,7 @@ class CreateAmbientesSorteoTable extends Migration
      */
     public function up()
     {
-        Schema::create('ambientesSorteo',function (Blueprint $table){
+        Schema::create('ambientessorteo',function (Blueprint $table){
             //Estos son los atributos que estaban en el caso de uso
             $table->integer('id');
             $table->integer('id_ambiente');      
