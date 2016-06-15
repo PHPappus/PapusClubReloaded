@@ -28,23 +28,29 @@ class EditPostulanteEstudioRequest extends Request
     public function rules()
     {
         return [
-            'colegio_primario' =>'required|alpha_spaces|max:100',
-            'colegio_secundario' =>'required|alpha_spaces|max:100',
-            'universidad' =>'required|alpha_spaces|max:100',
-            'profesion' =>'required|string'
+            'colegio_primaria'=>'required|alpha_spaces|max:100',
+            'colegio_secundaria'=>'required|alpha_spaces|max:100',
+            'universidad'=>'alpha_spaces|max:80',
+            'carrera'=>'alpha_spaces|max:80'
         ];
     }
 
     public function messages()
     {
         return [
-            'colegio_primario.required' => 'El campo colegio primario es obligatorio',
-            'colegio_primario.alpha_spaces' => 'El campo colegio primario debe ser solo caracteres',
-            'colegio_primario.max'=>'El campo colegio primario no puede superar la longitud de 100 caracteres',
-            
-            'colegio_secundario.required' => 'El campo colegio secundario es obligatorio',
-            'colegio_secundario.alpha_spaces' => 'El campo colegio secundario debe ser solo caracteres',
-            'colegio_secundario.max'=>'El campo colegio secundario no puede superar la longitud de 100 caracteres',
+            'colegio_primaria.required' => 'El campo colegio primaria es obligatorio',
+            'colegio_primaria.alpha_spaces' => 'El campo colegio primaria debe ser solo caracteres',
+            'colegio_primaria.max'=>'El campo colegio primaria no puede superar la longitud de 100 caracteres',
+
+            'colegio_secundaria.required' => 'El campo colegio secundaria es obligatorio',
+            'colegio_secundaria.alpha_spaces' => 'El campo colegio secundaria debe ser solo caracteres',
+            'colegio_secundaria.max'=>'El campo colegio secundaria no puede superar la longitud de 100 caracteres',
+
+            'universidad.alpha_spaces' => 'El campo universidad debe ser solo caracteres',
+            'universidad.max'=>'El campo universidad no puede superar la longitud de 80 caracteres',
+
+            'carrera.alpha_spaces' => 'El campo carrera debe ser solo caracteres',
+            'carrera.max'=>'El campo carrera no puede superar la longitud de 80 caracteres'
         ];
     }
 }

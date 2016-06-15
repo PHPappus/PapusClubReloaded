@@ -11,6 +11,8 @@ use papusclub\Models\Postulante;
 use papusclub\Http\Requests\StorePostulanteRequest;
 use papusclub\Http\Requests\EditPostulanteBasicoRequest;
 use papusclub\Http\Requests\EditPostulanteEstudioRequest;
+use papusclub\Http\Requests\EditPostulanteTrabajoRequest;
+use papusclub\Http\Requests\EditPostulanteContactoRequest;
 use papusclub\Http\Controllers\Controller;
 use papusclub\Http\Requests;
 use papusclub\Models\Configuracion;
@@ -205,16 +207,42 @@ class PostulanteController extends Controller
 
     public function updateEstudio(EditPostulanteEstudioRequest $request, $id){
         $postulante = Postulante::withTrashed()->find($id);
-        $postulante->persona->colegio_primario=trim($input['colegio_primario']);
-        $postulante->persona->colegio_secundario=trim($input['colegio_secundario']);
-        $postulante->persona->universidad=trim($input['universidad']);
-        $postulante->persona->profesion=trim($input['profesion']);
+        $input=$request->all();
+        $postulante->colegio_primario=trim($input['colegio_primaria']);
+        $postulante->colegio_secundario=trim($input['colegio_secundaria']);
+        $postulante->universidad=trim($input['universidad']);
+        $postulante->profesion=trim($input['carrera']);
 
         $postulante->save();
-        Session::flash('update','basico');
+        Session::flash('update','estudio');
         return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('cambios-bas','Cambios realizados con éxito');
     }
     
+    public function updateTrabajo(EditPostulanteTrabajoRequest $request, $id){
+        $postulante = Postulante::withTrashed()->find($id);
+        $input=$request->all();
+        $postulante->centro_trabajo=trim($input['centrotrabajo']);
+        $postulante->cargo_trabajo=trim($input['cargocentrotrabajo']);
+        $postulante->direccion_laboral=trim($input['direccionlaboral']);
+
+        $postulante->save();
+        Session::flash('update','trabajo');
+        return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('cambios-bas','Cambios realizados con éxito');
+    }
+
+    public function updateContacto(EditPostulanteContactoRequest $request, $id){
+        $postulante = Postulante::withTrashed()->find($id);
+        $input=$request->all();
+        $postulante->telefono_domicilio=trim($input['telefono_domicilio']);
+        $postulante->telefono_celular=trim($input['telefono_celular']);
+        $postulante->persona->correo=trim($input['correo']);
+
+        $postulante->persona->save();
+        $postulante->save();
+        Session::flash('update','contacto');
+        return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('cambios-bas','Cambios realizados con éxito');
+    }
+
     public function destroy($id){
 
         $persona = Persona::find($id);

@@ -256,9 +256,9 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	/*editar*/
 	Route::patch('postulante/{id}/editBasico','PostulanteController@updateBasico');
 	Route::patch('postulante/{id}/editEstudio','PostulanteController@updateEstudio');
-/*	Route::patch('Socio/{id}/editTrabajo','SocioAdminController@updateTrabajo');
-	Route::patch('Socio/{id}/editContacto','SocioAdminController@updateContacto');
-	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');*/
+	Route::patch('postulante/{id}/editTrabajo','PostulanteController@updateTrabajo');
+	Route::patch('postulante/{id}/editContacto','PostulanteController@updateContacto');
+/*	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');*/
 
 	//Route::get('/provincias','PostulanteController@getProvincias');
 	

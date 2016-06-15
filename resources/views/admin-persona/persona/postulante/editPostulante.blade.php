@@ -387,7 +387,7 @@
 						<div role="tabpanel" class="tab-pane" id="seccion5">
 					@endif
 
-							<form method="POST" action="/postulante/{{$postulante->id}}/editEstudio" class="form-horizontal form-border">
+							<form method="POST" action="/postulante/{{$postulante->persona->id}}/editEstudio" class="form-horizontal form-border">
 								{{method_field('PATCH')}}
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -507,7 +507,7 @@
 											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationEstudio" onclick="ventana()" value="Confirmar">
 										</div>
 										<div class="btn-group">
-											<a href="/postulante" class="btn btn-info">Retornar</a>
+											<a href="/postulante/index" class="btn btn-info">Retornar</a>
 										</div>
 								</div>																																							
 							</form>
@@ -521,7 +521,7 @@
 						<div role="tabpanel" class="tab-pane" id="seccion6">
 					@endif						
 
-							<form method="POST" action="/postulante/{{$postulante->id}}/ediPostulante" class="form-horizontal form-border">
+							<form method="POST" action="/postulante/{{$postulante->persona->id}}/editTrabajo" class="form-horizontal form-border">
 								{{method_field('PATCH')}}
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -643,7 +643,7 @@
 						<div role="tabpanel" class="tab-pane" id="seccion7">
 					@endif											
 
-							<form method="POST" action="/postulante/{{$postulante->id}}/editPostulante" class="form-horizontal form-border">
+							<form method="POST" action="/postulante/{{$postulante->persona->id}}/editContacto" class="form-horizontal form-border">
 								{{method_field('PATCH')}}
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -753,7 +753,7 @@
 											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationContacto" onclick="ventana()" value="Confirmar">
 										</div>
 										<div class="btn-group">
-											<a href="/postulante" class="btn btn-info">Retornar</a>
+											<a href="/postulante/index" class="btn btn-info">Retornar</a>
 										</div>
 								</div>																																							
 							</form>						
