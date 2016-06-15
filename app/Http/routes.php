@@ -73,6 +73,15 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::get('ambientes-ar','AdminRegistrosController@ambientes');
 	Route::get('registrar-ambiente','AdminRegistrosController@registrar');
 	Route::get('modificar-ambiente','AdminRegistrosController@modificar');
+
+	//MANTENIMIENTO DE TALLERES
+	Route::get('taller/','TallerController@index');
+	Route::get('taller/new','TallerController@create');
+	Route::get('taller/{id}/editar','TallerController@edit');
+	Route::get('taller/{id}/','TallerController@show');
+	Route::post('taller/new/save','TallerController@store');
+	Route::patch('taller/{id}/edit','TallerController@update');
+	Route::get('taller/{taller}/delete', 'TallerController@destroy');
 });
 
 //Gerente
@@ -209,15 +218,6 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('actividad/{id}/delete', 'ActividadController@destroy');
 	Route::get('actividad/{id}/show', 'ActividadController@show');
 	
-	
-	//MANTENIMIENTO DE TALLERES
-	Route::get('taller/','TallerController@index');
-	Route::get('taller/new','TallerController@create');
-	Route::get('taller/{id}/editar','TallerController@edit');
-	Route::get('taller/{id}/','TallerController@show');
-	Route::post('taller/new/save','TallerController@store');
-	Route::patch('taller/{id}/edit','TallerController@update');
-	Route::get('taller/{taller}/delete', 'TallerController@destroy');
 
 	//RESERVAS
 
