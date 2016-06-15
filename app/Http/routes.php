@@ -124,7 +124,8 @@ Route::group(['middleware' => ['auth', 'adminpagos']], function () {
 	//MATENIMIENTO DE PAGOS
 	Route::get('pagos/pago-seleccionar-socio/','PagosController@seleccionarSocio');//se lista a los socios
 	Route::get('pagos/{id}/selectSocio/', 'PagosController@selectSocio');//lista las deudas de los socios
-	Route::get('pagos/registrar-pago/', 'PagosController@registrarPago');
+	Route::get('pagos/registrar-pago/{id}', 'PagosController@registrarPago');
+    Route::post('pagos/registrar-pago/update/{id}', 'PagosController@storePago');
     /*Route::post('pagos/{id}/createPago', 'PagosController@createPago');*/
 });
 
