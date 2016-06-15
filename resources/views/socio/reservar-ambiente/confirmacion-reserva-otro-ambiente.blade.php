@@ -12,7 +12,7 @@
 	
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-socio')
 @section('content')
 
 <!---Cuerpo -->
@@ -27,7 +27,7 @@
 		</div>
 		<div class="container">
 			<!--@include('errors.503')-->		
-			<form method="POST" action="/reservar-ambiente/{{ $ambiente->id }}/confirmacion-reserva-bungalow" class="form-horizontal form-border"> 
+			<form method="POST" action="/reservar-ambiente/{{ $ambiente->id }}/confirmacion-reserva-otro-ambiente" class="form-horizontal form-border"> <!-- DEBERIA EL ACTION DE REESRVAR =D -->
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<br/><br/>
 
@@ -35,20 +35,20 @@
 			<!-- SE DEBE LEER DATA DE LA BD E INGRESARLOS -->
 
 			<div class="form-group ">
-		    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
+		    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="nombreInput" name="nombre" value="{{$ambiente->nombre}}" readonly >
 		    	</div>
 		  	</div>
 		  	<div class="form-group ">
-		    	<label for="tipoAmbienteInput" class="col-sm-4 control-label">TIPO AMBIENTE</label>	
+		    	<label for="tipoAmbienteInput" class="col-sm-4 control-label">Tipo ambiente</label>	
 		    	<div class="col-sm-5">
 		    		<input type="text" class="form-control" id="tipoAmbienteInput" name="tipoAmbiente" value="{{$ambiente->tipo_ambiente}}" readonly >
 				</div>
 		  	</div>
 
 		  	<div class="form-group ">
-		    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA</label>
+		    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad máxima</label>
 		    	<div class="col-sm-5">
 		      		<input type="number" class="form-control" id="capacidadInput" name="capacidadMax" value="{{$ambiente->capacidad_actual}}" readonly>
 		    	</div>
@@ -60,7 +60,7 @@
 		    	</div>
 		  	</div> -->
 		  	<div class="form-group ">
-		    	<label for="ubicacionInput" class="col-sm-4 control-label">UBICACIÓN</label>
+		    	<label for="ubicacionInput" class="col-sm-4 control-label">Ubicación</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->ubicacion}}" readonly>
 		    	</div>
@@ -75,10 +75,20 @@
 			   	 	</div>
  -->
 			   	 	<div class="input-group">
-			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" style="max-width: 250px" >
+			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio_reserva" placeholder="Fecha Inicio" style="max-width: 250px">
 			   		<span class="input-group-addon">-</span>
-			   		<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_fin" placeholder="Fecha Fin" style="max-width: 250px">
+			   		<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd2" name="fecha_fin_reserva" placeholder="Fecha Fin" style="max-width: 250px">
 					</div>			   		
+		    	</div>	
+			</div>
+			<div class="form-group required">
+			 	<label for="horaInput" class="col-sm-4 control-label">Hora (hh-mm) </label>
+			    <div class="col-sm-5">
+				   	<div class="input-group">
+				   		<input name="hora_inicio_reserva" id="horaInicio" type="time" required class="form-control">
+			       		<span class="input-group-addon">-</span>
+			       		<input name="hora_fin_reserva" id="horaFin" type="time" required class="form-control">
+			   	   	</div>
 		    	</div>	
 			</div>
 		  	<div class="form-group required">
@@ -86,16 +96,15 @@
 			  	<div class="col-sm-5">
 			   		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="contactoInput" name="nombre_contacto" placeholder="Socio" value="{{old('nombre_contacto')}}">
 			   	</div>
-			   	<a class="btn btn-info" name="buscarSocio" href="{!!URL::to('/reservar-ambiente/searchSocio')!!}"  title="Buscar" ><i name="buscarSocio" class="glyphicon glyphicon-search"></i></a>
+			   	<a class="btn btn-info" name="buscarContacto" href="#"  title="Buscar" ><i name="buscarSocio" class="glyphicon glyphicon-search"></i></a>
 			    	<!-- deberia ir a una pantalla que liste todos los contactos posibles del Club  -->
-			</div>	  
-		  	<div class="form-group ">
+			</div>	
+			<div class="form-group ">
 		    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="precioInput" onkeypress="return inputLimiter(event,'Numbers')" name="ubicacion" value="FALTA CALCULAR EL PRECIO" readonly>
 		    	</div>
-		  	</div>
-		  	
+		  	</div>  
 		  	</br>
 		  	</br>
 		  	
@@ -109,7 +118,7 @@
 						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
-						<a href="/reservar-ambiente/reservar-bungalow" class="btn btn-info">Cancelar</a> <!-- Regresa a la pantalla inicial de la reserva -->
+						<a href="/reservar-ambiente/reservar-otros-ambientes" class="btn btn-info">Cancelar</a> <!-- Regresa a la pantalla inicial de la reserva -->
 					</div>
 				</div>
 

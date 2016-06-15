@@ -51,9 +51,11 @@
               Ambientes <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="{!!URL::to('/ambientes-s')!!}" title="Consultar ambientes" target="_self">Consultar</a></li>
-                <li><a href="#" title="Reservar ambiente" target="_self">Reservar</a></li>
-                <li><a href="{!!URL::to('/anular-reserva-ambiente-s')!!}" title="Anular ambiente" target="_self">Anular</a></li>
+
+                <li><a href="{!!URL::to('/ambientes-s')!!}" title="consultar ambientes" target="_self">Consultar</a></li>
+                <li><a href="{!!URL::to('/reservar-ambiente/reservar-otros-ambientes')!!}" title="reserva de ambientes" target="_self">Reservar</a></li>
+                <li><a href="{!!URL::to('/anular-reserva-ambiente-s')!!}" title="anular ambientes" target="_self">Anular</a></li>
+                
             </ul>
           </li>
         </ul>
@@ -63,8 +65,9 @@
               Bungalows <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="{!!URL::to('/bungalows-s')!!}" title="Consultar Bungalows" target="_self">Consultar</a></li>
-                <li><a href="{!!URL::to('/reserva-bungalows-s')!!}" title="Reservar bungalow" target="_self">Reservar</a></li>
+              <li><a href="{!!URL::to('/bungalows-s')!!}" title="consultar Bungalows" target="_self">Consultar</a></li>
+                <!-- <li><a href="{!!URL::to('/reserva-bungalows-s')!!}" title="reserva de bungalows" target="_self">Reservar</a></li> -->
+                <li><a href="{!!URL::to('/reservar-ambiente/reservar-bungalow')!!}" title="reserva de bungalows" target="_self">Reservar</a></li>                
             </ul>
           </li>
         </ul>
