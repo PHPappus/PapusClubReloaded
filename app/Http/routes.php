@@ -80,7 +80,7 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 
 //Administrados de registros
 Route::group(['middleware' => ['auth', 'adminregistros']], function () {
-	Route::resource('usuario','UsuarioController');
+	
 	Route::resource('admin-registros','AdminRegistrosController');
 	Route::get('ambientes-ar','AdminRegistrosController@ambientes');
 	Route::get('registrar-ambiente','AdminRegistrosController@registrar');
@@ -312,6 +312,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 //Administrador de Persona
 Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::resource('admin-persona','AdminPersonaController');
+	Route::resource('usuario','UsuarioController');
 });
 //Administrador de Reserva
 Route::group(['middleware' => ['auth', 'adminreserva']], function () {

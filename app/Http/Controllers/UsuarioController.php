@@ -92,7 +92,7 @@ class UsuarioController extends Controller
         $user->perfil_id = $input['perfil_id'];
         $user->save();
         
-        Session::flash('message','Usuario Creado Correctamente');
+        Session::flash('message','Nuevo Usuario Creado Correctamente');
         return Redirect::to('/usuario');
     }
     public function changepassword(){
