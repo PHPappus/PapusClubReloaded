@@ -62,6 +62,14 @@ class VentaProductoController extends Controller
     {   $cantidad = 0;
         $subtotal = 0;
         $input = $request->all();        
+        $producto = Producto::find($input['producto_id']);
+        if ($input['cantidad'] > $producto->stock){
+            return redirect()->back()->withErrors('No hay stock suficiente');
+        }
+        else{
+            $producto->stock = $producto->stock - $input['cantidad'];
+            $producto->save();
+        }
 
         $productoxfacturacion = new ProductoxFacturacion();
         $productoxfacturacion = ProductoxFacturacion::where('facturacion_id','=',$input['facturacion_id'])
@@ -116,9 +124,20 @@ class VentaProductoController extends Controller
 
     public function updateProducto(StoreProductoxFacturacionRequest $request, $id)
     {
-        $input = $request->all();        
+        $input = $request->all();            
 
         $productoxfacturacion = ProductoxFacturacion::find($id);
+
+        $producto = Producto::find($input['producto_id']);
+        if (($input['cantidad']-$productoxfacturacion->cantidad) > $producto->stock){
+            return redirect()->back()->withErrors('No hay stock suficiente');
+        }
+        else{
+            $producto->stock = $producto->stock + $productoxfacturacion->cantidad;
+            $producto->stock = $producto->stock - $input['cantidad'];  
+            $producto->save();
+        }
+
         $productoxfacturacion->facturacion->total = $productoxfacturacion->facturacion->total - $productoxfacturacion->subtotal;
 
         $productoxfacturacion->producto_id = $input['producto_id'];
@@ -149,12 +168,16 @@ class VentaProductoController extends Controller
 
     public function destroyProducto($id)    
     {
-        $producto = ProductoxFacturacion::find($id);
+        $productoxfacturacion = ProductoxFacturacion::find($id);
         
-        $factura = Facturacion::find($producto->facturacion_id);
-        $factura->total = $factura->total - $producto->subtotal;
+        $producto = Producto::find($productoxfacturacion->producto_id);
+        $producto->stock = $producto->stock + $productoxfacturacion->cantidad;
+        $producto->save();
+
+        $factura = Facturacion::find($productoxfacturacion->facturacion_id);
+        $factura->total = $factura->total - $productoxfacturacion->subtotal;
         $factura->save();
-        $producto->delete();
+        $productoxfacturacion->delete();
 
         return view('admin-general.venta-producto.addVentaProducto', compact('factura'));
     }

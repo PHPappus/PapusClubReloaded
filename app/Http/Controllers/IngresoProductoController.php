@@ -13,12 +13,12 @@ use papusclub\Http\Requests\EditProductoRequest;
 use papusclub\Http\Requests\StoreConfiguracionRequest;
 
 
-class ProductoController extends Controller
+class IngresoProductoController extends Controller
 {
     //Muestra la lista de productos que se encuentran en BD, estas se pueden modificar, cambiar el estado, ver mas detalle o registrar un nuevo producto
     public function index() {
 		$productos = Producto::all();        
-        return view('admin-general.producto.index', compact('productos'));
+        return view('admin-general.ingreso-producto.index', compact('productos'));
 	}	
 
 	public function create()
@@ -35,7 +35,6 @@ class ProductoController extends Controller
 		$producto->descripcion = $input['descripcion'];
 		$producto->estado = 1;
 		$producto->tipo_producto = $input['tipo_producto'];		
-        $producto->stock = 0;
     	
         $producto->save();	    
         

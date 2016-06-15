@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>PRODUCTO</title>
+	<title>INGRESO DE PRODUCTOS</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +18,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 text-left">
-				<p class="lead"><strong>PRODUCTOS</strong></p>
+				<p class="lead"><strong>INGRESO DE PRODUCTOS</strong></p>
 				<br/>
 			</div>
 			
@@ -52,7 +52,6 @@
 						<th><div align=center>PRODUCTO</div></th>
 						<th><div align=center>PRECIO</div></th>
 						<th><div align=center>TIPO</div></th>							
-						<th><div align=center>STOCK</div></th>	
 						<th><div align=center>DETALLE</div></th>
 						<th><div align=center>EDITAR</div></th>
 						<th><div align=center>ELIMINAR</div></th>
@@ -65,7 +64,6 @@
 							<td>{{ $producto->nombre }}</td>
 							<td>{{ $producto->precioproducto->first()['precio'] }}</td>			
 							<td>{{ $producto->tipo_producto }}</td>
-							<td>{{ $producto->stock }}</td>
 							<td>
 				              <a class="btn btn-info" href="{{url('/producto/'.$producto->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 				            </td>

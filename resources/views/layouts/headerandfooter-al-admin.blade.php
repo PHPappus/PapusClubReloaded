@@ -103,6 +103,7 @@
 						<li><a href="{!!URL::to('/producto/index')!!}">PRODUCTO<span class="despliegue">▼</span></a>
 							<ul>
 								<li><a href="{!!URL::to('/producto/index')!!}">PRODUCTOS</a></li>
+								<li><a href="{!!URL::to('/ingreso-producto/index')!!}">INGRESO DE PRODUCTOS</a></li>
 								<li><a href="{!!URL::to('/venta-producto/index')!!}">VENTAS DE PRODUCTOS</a></li>
 							</ul>
 						</li>

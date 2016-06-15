@@ -222,6 +222,8 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('venta-producto/{id}/edit', 'VentaProductoController@updateProducto');
 	Route::get('venta-producto/{id}/deleteProducto', 'VentaProductoController@destroyProducto');
 	Route::get('venta-producto/{id}/back', 'VentaProductoController@back');
+	//INGRESO DE PRODUCTOS
+	Route::get('ingreso-producto/index', 'IngresoProductoController@index');
 
 	//MANTENIMIENTO DE SORTEO
 	Route::get('sorteo/index','SorteoController@index');
