@@ -20,7 +20,7 @@ class ServiciosController extends Controller
     {
         $servicios = Servicio::all();
         $mensaje  = null;
-        return view('admin-general.servicio.index', compact('servicios'));
+        return view('admin-registros.servicio.index', compact('servicios'));
     }
 
     public function create()
@@ -28,7 +28,7 @@ class ServiciosController extends Controller
         $sedes_todas = Sede::all();
         $values=Configuracion::where('grupo','=','4')->get();
         $tiposPersonas = TipoPersona::all();
-        return view('admin-general.servicio.newServicio',compact('sedes_todas','values','tiposPersonas'));
+        return view('admin-registros.servicio.newServicio',compact('sedes_todas','values','tiposPersonas'));
     }
 
     public function store(StoreServicioRequest $request)
@@ -79,7 +79,7 @@ class ServiciosController extends Controller
     public function edit($id)
     {
         $servicio = Servicio::find($id);
-        return view('admin-general.servicio.editServicio', compact('servicio'));
+        return view('admin-registros.servicio.editServicio', compact('servicio'));
     }
 
     public function update(EditServicioRequest $request, $id)
@@ -123,7 +123,7 @@ class ServiciosController extends Controller
     public function show($id)
     {
         $servicio = Servicio::find($id);
-        return view('admin-general.servicio.detailServicio', compact('servicio'));
+        return view('admin-registros.servicio.detailServicio', compact('servicio'));
     }
 }
 
