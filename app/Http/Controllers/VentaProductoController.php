@@ -182,6 +182,17 @@ class VentaProductoController extends Controller
         return view('admin-general.venta-producto.addVentaProducto', compact('factura'));
     }
 
+     public function cancel($id)    
+    {
+        $factura = Facturacion::find($id);
+        
+        foreach ($factura->productoxfacturacion as $productoxfacturacion) {
+            VentaProductoController::destroyProducto($productoxfacturacion->id);
+        }       
+        $factura->delete();
+        return redirect('venta-producto/index');
+    }
+
     //Se brinda informacion mas detallada del producto
     public function show($id)
     {
