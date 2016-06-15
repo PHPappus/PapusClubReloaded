@@ -51,7 +51,7 @@ class TallerController extends Controller
         $taller->fecha_fin_inscripciones=$carbon->createFromFormat('Y-m-d', $taller->fecha_fin_inscripciones)->format('d/m/Y');
         $taller->fecha_inicio=$carbon->createFromFormat('Y-m-d', $taller->fecha_inicio)->format('d/m/Y');
         $taller->fecha_fin=$carbon->createFromFormat('Y-m-d', $taller->fecha_fin)->format('d/m/Y');
-        return view('admin-general.taller.showTaller',compact('taller'));
+        return view('admin-registros.taller.showTaller',compact('taller'));
     }
 
     public function edit ($id)
