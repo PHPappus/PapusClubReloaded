@@ -4,11 +4,11 @@ namespace papusclub\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Servicio extends Model
+class Sedexservicio extends Model
 {
     protected $table = 'sedexservicio';
     protected $fillable = 
     ['idsede', 
-    'idservicio',     
+    'idservicio',
     ];
 }

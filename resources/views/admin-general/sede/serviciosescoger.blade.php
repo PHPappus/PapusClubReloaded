@@ -38,7 +38,7 @@
 					
 				<div class="table-responsive">
 					<div class="container">
-						<table class="table table-bordered table-hover text-center display" id="example">
+						<table class="table table-bordered table-hover text-center display" id=	"example">
 							<thead class="active" data-sortable="true">								
 								<th><div align=center>NOMBRE</div></th>	
 								<th><div align=center>DESCRIPCIÓN</div></th>	

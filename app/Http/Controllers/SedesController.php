@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use papusclub\Http\Requests;
 use papusclub\Models\Sede;
 use papusclub\Models\Servicio;
+use papusclub\Models\Sedexservicio;
 use papusclub\Models\Departamento;
 use papusclub\Http\Requests\StoreSedeRequest;
 use papusclub\Http\Requests\EditSedeRequest;
@@ -114,6 +115,19 @@ class SedesController extends Controller
         $servciosEscogidos = Input::get('ch');
         $sede = Sede::find($id);
         $servicios = Servicio::all();  
+
+
+        foreach ($servciosEscogidos as $serID) {
+            foreach ($servicios as $servicio){
+                if ( $serID== $servicio->id){                    
+                        $s = new Sedexservicio();
+                        $s->idsede =  (int) $id;
+                        $s->idservicio = (int)$serID;
+                        $s->save();
+                }   
+            }
+        }
+
         return view('admin-general.sede.serviciosdesedeindex', compact('sede', 'servicios','servciosEscogidos'));
-     }    
+     }
 }

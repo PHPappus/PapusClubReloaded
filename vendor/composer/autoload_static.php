@@ -30,10 +30,6 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         array (
             'XdgBaseDir\\' => 11,
         ),
-        'W' => 
-        array (
-            'Webmozart\\Assert\\' => 17,
-        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Util\\' => 22,
@@ -91,9 +87,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
     public static $prefixDirsPsr4 = array (
         'phpDocumentor\\Reflection\\' => 
         array (
-            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'papusclub\\' => 
         array (
@@ -102,10 +96,6 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'XdgBaseDir\\' => 
         array (
             0 => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src',
-        ),
-        'Webmozart\\Assert\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/webmozart/assert/src',
         ),
         'Symfony\\Polyfill\\Util\\' => 
         array (
@@ -345,6 +335,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'CreateSocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_29_003232_create_socio_table.php',
         'CreateSocioxconcursoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_151157_create_socioxconcurso_table.php',
         'CreateSorteoTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_20_005933_create_sorteo_table.php',
+        'CreateTableSedexservicio' => __DIR__ . '/../..' . '/database/migrations/2016_06_14_065412_create_table_sedexservicio.php',
         'CreateTableTarifaFamiliar' => __DIR__ . '/../..' . '/database/migrations/2016_06_12_075912_create_table_tarifa_familiar.php',
         'CreateTableTipoFamilia' => __DIR__ . '/../..' . '/database/migrations/2016_06_12_074933_create_table_tipo_familia.php',
         'CreateTallerTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_23_000724_create_taller_table.php',

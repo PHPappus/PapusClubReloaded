@@ -83,6 +83,7 @@ return array(
     'CreateSocioTable' => $baseDir . '/database/migrations/2016_05_29_003232_create_socio_table.php',
     'CreateSocioxconcursoTable' => $baseDir . '/database/migrations/2016_06_06_151157_create_socioxconcurso_table.php',
     'CreateSorteoTable' => $baseDir . '/database/migrations/2016_05_20_005933_create_sorteo_table.php',
+    'CreateTableSedexservicio' => $baseDir . '/database/migrations/2016_06_14_065412_create_table_sedexservicio.php',
     'CreateTableTarifaFamiliar' => $baseDir . '/database/migrations/2016_06_12_075912_create_table_tarifa_familiar.php',
     'CreateTableTipoFamilia' => $baseDir . '/database/migrations/2016_06_12_074933_create_table_tipo_familia.php',
     'CreateTallerTable' => $baseDir . '/database/migrations/2016_05_23_000724_create_taller_table.php',
