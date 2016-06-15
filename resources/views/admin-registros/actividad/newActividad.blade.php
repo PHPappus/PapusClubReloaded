@@ -77,8 +77,19 @@
 			      		<input type="text" class="form-control" id="sedeInput" name="sede" value="{{$ambiente->sede->nombre}}"   readonly>
 			    	</div>
 			  	</div>
-
-				<div class="form-group required">
+			  	<div class="form-group required">
+			    	<label for="tipoActividadInput" class="col-sm-4 control-label">Tipo de Actividad</label>	
+			    	<div class="col-sm-5">
+				    	<select class="form-control" id="tipoActividadInput" name="tipo_actividad" style="max-width: 150px "  >
+				    						<option value="-1" default>Seleccione</option>
+							               	@foreach ($values as $value)      
+							                	<option value="{{$value->id}}">{{$value->valor}}</option>
+							               	@endforeach
+						</select>
+					</div>
+					<a class="btn btn-info" name="agregarTipoActividad" href="#"  title="Agregar Tipo de Actividad" data-toggle="modal" data-target="#modalAgregar"><i name="agregarTipoActividad" class="glyphicon glyphicon-plus"></i></a>
+			  	</div>
+			  	<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
 			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre de la actividad" value="{{old('nombre')}}" >
@@ -107,18 +118,6 @@
 			    	<div class="col-sm-5">
 			      		<textarea type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" style="resize: none"></textarea> 
 			    	</div>
-			  	</div>
-			  	<div class="form-group required">
-			    	<label for="tipoActividadInput" class="col-sm-4 control-label">Tipo de Actividad</label>	
-			    	<div class="col-sm-5">
-				    	<select class="form-control" id="tipoActividadInput" name="tipo_actividad" style="max-width: 150px "  >
-				    						<option value="-1" default>Seleccione</option>
-							               	@foreach ($values as $value)      
-							                	<option value="{{$value->id}}">{{$value->valor}}</option>
-							               	@endforeach
-						</select>
-					</div>
-					<a class="btn btn-info" name="agregarTipoActividad" href="#"  title="Agregar Tipo de Actividad" data-toggle="modal" data-target="#modalAgregar"><i name="agregarTipoActividad" class="glyphicon glyphicon-plus"></i></a>
 			  	</div>
 			  	
 			  	<div class="form-group required">
