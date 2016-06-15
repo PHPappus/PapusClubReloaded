@@ -38,8 +38,8 @@
               Bungalows <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#" title="Consultar Bungalows con solicitud de reserva" target="_self">Consultar</a></li>
-              <li><a href="#" title="Reservar Bungalow" target="_self">Reservar</a></li>
+              <!-- <li><a href="#" title="Consultar Bungalows con solicitud de reserva" target="_self">Consultar</a></li> -->
+              <li><a href="{!!URL::to('/reservar-ambiente/reservar-bungalow-adminR')!!}" title="Reservar Bungalow" target="_self">Reservar</a></li>
             </ul>
           </li>
 
@@ -73,8 +73,8 @@
               Ambientes <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#" title="Consultar ambientes" target="_self">Consultar</a></li>
-                <li><a href="#" title="Reservas de ambientes realizados" target="_self">Reservas</a></li>
+              <!-- <li><a href="#" title="Consultar ambientes" target="_self">Consultar</a></li> -->
+                <li><a href="{!!URL::to('/reservar-ambiente/reservar-otros-ambientes-adminR')!!}" title="Reservas de ambientes realizados" target="_self">Reservas</a></li>
             </ul>
           </li>
         </ul>

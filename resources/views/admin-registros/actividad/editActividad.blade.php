@@ -52,7 +52,6 @@
 			    	<div class="col-sm-5">
 			    		<input type="text" class="form-control" id="ambienteInput"  value="{{$actividad->ambiente->nombre}}"  required readonly>
 			      	</div>
-			      	<a class="btn btn-info" name="buscarAmbiente" href="{!!URL::to('/ambiente/search')!!}"  title="Buscar" ><i name="buscarAmbiente" class="glyphicon glyphicon-search"></i></a>
 			  	</div>
 			  	<div class="form-group required">
 			    	<label for="tipoambienteInput" class="col-sm-4 control-label">Tipo de Ambiente</label>
