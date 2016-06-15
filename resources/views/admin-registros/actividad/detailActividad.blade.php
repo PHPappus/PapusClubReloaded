@@ -121,18 +121,18 @@
 						</tr>
 					</thead>
 					<tbody>
-							@foreach ($tipoPersonas as $tipoPersona)		
+							@foreach ($tarifas as $tarifa)		
 						    	<tr>
-									<td align="center">{{$tipoPersona->descripcion}}</td>
+									<td align="center">{{$tarifa->tipo_persona->descripcion}}</td>
 									<td align="center">  S/.</td>
 									<td align="center"> 
 										<div align="center">
-								      		<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="{{$tipoPersona->descripcion}}Input" name="{{$tipoPersona->descripcion}}" placeholder="Monto" >
+								      		<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="{{$tarifa->tipo_persona->descripcion}}Input" name="{{$tarifa->tipo_persona->descripcion}}" value="{{$tarifa->precio}}" placeholder="Monto" readonly>
 								    	</div>
 								</td>							        
 								</tr>
 							@endforeach
-					</tbody>													
+					</tbody>												
 			</table>
 			</div>	  	
 

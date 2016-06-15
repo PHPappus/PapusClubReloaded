@@ -9,6 +9,7 @@ use papusclub\Models\Ambiente;
 use papusclub\Models\Actividad;
 use papusclub\Models\Configuracion;
 use papusclub\Models\TipoPersona;
+use papusclub\Models\TarifaActividad;
 use papusclub\Http\Requests\StoreActividadRequest;
 use papusclub\Http\Requests\StoreConfiguracionRequest;
 use papusclub\Http\Requests\EditActividadRequest;
@@ -29,7 +30,7 @@ class ActividadController extends Controller
         
         $values=Configuracion::where('grupo','=','3')->get();
 
-        return view('admin-registros.ambiente.searchAmbiente', compact('ambientes'),compact('values'),compact('tipoPersonas'));
+        return view('admin-registros.ambiente.searchAmbiente', compact('ambientes', 'values', 'tipoPersonas'));
     	
     }
     public function store(StoreActividadRequest $request)
@@ -60,6 +61,17 @@ class ActividadController extends Controller
 
         $actividad->estado=false; 
         $actividad->save();
+
+        $tipoPersonas = TipoPersona::all();
+        $actividad_id = Actividad::all()->last()->id;
+        foreach ($tipoPersonas as $tipoPersona) {
+            $tarifa = new TarifaActividad();
+            $tarifa->actividad_id = $actividad_id;
+            $tarifa->tipo_persona_id = $tipoPersona->id;
+            $tarifa->precio = $input[$tipoPersona->descripcion];
+            $tarifa->save();
+        }
+
         return redirect('actividad/index')->with('stored', 'Se registró la actividad correctamente.');
     }
 
@@ -80,8 +92,8 @@ class ActividadController extends Controller
     public function edit($id)
     {
         $actividad=Actividad::find($id);
-        $tipoPersonas=TipoPersona::all();
-        return view('admin-registros.actividad.editActividad', compact('actividad','tipoPersonas'));
+        $tarifas = $actividad->tarifas;
+        return view('admin-registros.actividad.editActividad', compact('actividad','tarifas'));
     }
     //Se guarda la informacion modificada de la actividad en la BD
     public function update(EditActividadRequest $request, $id)
@@ -102,6 +114,22 @@ class ActividadController extends Controller
         }
         $actividad->update();
 
+        $tarifasAnt = TarifaActividad::where('actividad_id', '=', $id)->get();
+
+        foreach ($tarifasAnt as $tarifaAnt) {
+            $tarifaAnt->delete();
+        }
+
+
+        $tipoPersonas = TipoPersona::all();
+        foreach ($tipoPersonas as $tipoPersona) {
+            $tarifa = new TarifaActividad();
+            $tarifa->actividad_id = $id;
+            $tarifa->tipo_persona_id = $tipoPersona->id;
+            $tarifa->precio = $input[$tipoPersona->descripcion];
+            $tarifa->save();
+        }
+
         return redirect('actividad/index');
 
     }
@@ -109,8 +137,8 @@ class ActividadController extends Controller
     public function show($id)
     {
         $actividad=Actividad::find($id);
-        $tipoPersonas=TipoPersona::all();
-        return view('admin-registros.actividad.detailActividad', compact('actividad','tipoPersonas'));
+        $tarifas = $actividad->tarifas;
+        return view('admin-registros.actividad.detailActividad', compact('actividad','tarifas'));
     }
     public function destroy($id)
     {

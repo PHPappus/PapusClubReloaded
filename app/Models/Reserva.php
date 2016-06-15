@@ -29,4 +29,9 @@ class Reserva extends Model
         return $this->belongsTo('papusclub\Models\Persona', 'id_persona');
         
     }
+
+    public function actividad(){
+        return $this->belongsTo('papusclub\Models\Actividad', 'actividad_id');
+        
+    }
 }

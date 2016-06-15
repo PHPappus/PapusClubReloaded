@@ -129,6 +129,7 @@ class ReservarAmbienteController extends Controller
 
         $reserva->precio = 0;
         $reserva->estadoReserva = "En proceso";
+        $reserva->actividad_id = null;
         
         $reserva->save();
 
@@ -181,6 +182,7 @@ class ReservarAmbienteController extends Controller
 
         $reserva->precio = 0;
         $reserva->estadoReserva = "En proceso";
+        $reserva->actividad_id = null;
 
 
         $reserva->save();

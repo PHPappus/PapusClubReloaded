@@ -108,17 +108,6 @@ class AmbienteController extends Controller
         }
 
 
-        // $tarifas = $ambiente->tarifas;
-        // foreach ($tarifas as $tarifa) {
-
-        // //$tarifa_up = TarifaAmbientexTipoPersona::where('ambiente_id', '=', $tarifa->ambiente_id)->where('tipo_persona_id', '=', $tarifa->tipo_persona_id)->first();
-            
-        //     //$tarifa_up->precio = $input[$tarifa->tipo_persona->descripcion];
-                        
-        //     $tarifa->update(['precio'=>$input[$tarifa->tipo_persona->descripcion]]);
-        //     // $taller->tarifaTaller()->save($persona,['fecha_registro'=>$fecha,'precio'=>$input[$persona->descripcion],'estado'=>TRUE]);
-        // }
-
         $tipoPersonas = TipoPersona::all();
         foreach ($tipoPersonas as $tipoPersona) {
             $tarifa = new TarifaAmbientexTipoPersona();
