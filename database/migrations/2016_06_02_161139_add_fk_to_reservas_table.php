@@ -19,6 +19,9 @@ class AddFkToReservasTable extends Migration
             $table->foreign('id_persona')
                   ->references('id')
                   ->on('persona');
+            $table->foreign('actividad_id')
+                  ->references('id')
+                  ->on('actividad');
 
         });
     }
@@ -33,6 +36,7 @@ class AddFkToReservasTable extends Migration
         Schema::table('reserva', function (Blueprint $table) {
             $table->dropForeign('reserva_ambiente_id_foreign');
             $table->dropForeign('reserva_id_persona_foreign');
+            $table->dropForeign('reserva_actividad_id_foreign');
         });
     }
 }

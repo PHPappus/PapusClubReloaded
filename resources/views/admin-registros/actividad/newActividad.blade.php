@@ -13,7 +13,7 @@
 	
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-registros')
 @section('content')
 
 <!---Cuerpo -->
@@ -77,8 +77,19 @@
 			      		<input type="text" class="form-control" id="sedeInput" name="sede" value="{{$ambiente->sede->nombre}}"   readonly>
 			    	</div>
 			  	</div>
-
-				<div class="form-group required">
+			  	<div class="form-group required">
+			    	<label for="tipoActividadInput" class="col-sm-4 control-label">Tipo de Actividad</label>	
+			    	<div class="col-sm-5">
+				    	<select class="form-control" id="tipoActividadInput" name="tipo_actividad" style="max-width: 150px "  >
+				    						<option value="-1" default>Seleccione</option>
+							               	@foreach ($values as $value)      
+							                	<option value="{{$value->id}}">{{$value->valor}}</option>
+							               	@endforeach
+						</select>
+					</div>
+					<a class="btn btn-info" name="agregarTipoActividad" href="#"  title="Agregar Tipo de Actividad" data-toggle="modal" data-target="#modalAgregar"><i name="agregarTipoActividad" class="glyphicon glyphicon-plus"></i></a>
+			  	</div>
+			  	<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
 			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre de la actividad" value="{{old('nombre')}}" >
@@ -108,23 +119,7 @@
 			      		<textarea type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" style="resize: none"></textarea> 
 			    	</div>
 			  	</div>
-			  	<div class="form-group required">
-			    	<label for="tipoActividadInput" class="col-sm-4 control-label">Tipo de Actividad</label>	
-			    	<div class="col-sm-5">
-				    	<select class="form-control" id="tipoActividadInput" name="tipo_actividad" style="max-width: 150px "  >
-				    						<option value="-1" default>Seleccione</option>
-							               	@foreach ($values as $value)      
-							                	<option value="{{$value->id}}">{{$value->valor}}</option>
-							               	@endforeach
-						</select>
-					</div>
-			  	</div>
-			  	<div class="form-group required">
-			    	<label for="cant_ambientesInput" class="col-sm-4 control-label">Cantidad de ambientes a usar</label>
-			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="cant_ambientesInput" name="cant_ambientes" placeholder="Cantidad de ambientes" >
-			    	</div>
-			  	</div>
+			  	
 			  	<div class="form-group required">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad máxima</label>
 			    	<div class="col-sm-5">
@@ -136,31 +131,39 @@
 			  	<!-- EL ESTADO SIEMPRE VA EN TRUE PARA EL REGISTRAR -->
 			  	
 
-			  	<!-- INICIO  PRECIO POR TIPO DE PERSONA -->
-
+			<!-- INICIO  PRECIO POR TIPO DE PERSONA -->
 			  	<br/>
-			<div class="form-group "> 
-				<label for="precioTipo1" class="col-sm-4 control-label" width: 100px >Precios </label>
-			</div>
-			<div class="form-group required">
-			   	<label for="precioTipo1" class="col-sm-4 control-label">Trabajador</label>
-			   	<div class="col-sm-5">
-			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo1" name="precioTipo1" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" >
-			   	</div>
-			</div>	
-			<div class="form-group required">
-			   	<label for="precioTipo2" class="col-sm-4 control-label">Postulante</label>
-			   	<div class="col-sm-5">
-					<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo2" name="precioTipo2" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" >
-			   	</div>
-			</div>	
-			<div class="form-group required">
-			   	<label for="precioTipo3" class="col-sm-4 control-label">Socio</label>
-			   	<div class="col-sm-5">
-			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo3" name="precioTipo3" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" >
-			   	</div>
-			</div>	
-			  	
+			  	<br/>
+			  	<style>  				
+  				#myTable {
+    					    margin: 0 auto; 
+    			}			
+				</style>
+				<div class="container" style="width: 600px; margin-left: auto; margin-right: auto"  >
+				<table class="table table-bordered" >
+					<thead class="active" >	
+						<tr>							
+							<th class="col-sm-3" ><DIV ALIGN=center>Tipo Persona</th>
+							<th class="col-sm-3" ><DIV ALIGN=center>Moneda</th>
+							<th class="col-sm-3"><DIV ALIGN=center>Monto</th>
+						</tr>
+					</thead>
+					<tbody>
+							@foreach ($tipoPersonas as $tipoPersona)		
+						    	<tr>
+									<td align="center">{{$tipoPersona->descripcion}}</td>
+									<td align="center">  S/.</td>
+									<td align="center"> 
+										<div align="center">
+								      		<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'DoubleFormat')"   class="form-control" id="{{$tipoPersona->descripcion}}Input" name="{{$tipoPersona->descripcion}}" placeholder="Monto" >
+								    	</div>
+								</td>							        
+								</tr>
+							@endforeach
+					</tbody>													
+			</table>
+			</div>	  	
+
 			  	<!-- FIN     PRECIO POR TIPO DE PERSONA -->
 			  
 			  	
@@ -188,6 +191,49 @@
 	{!!Html::script('js/bootstrap.js')!!}
 	{!!Html::script('js/bootstrap-datepicker-sirve.js')!!}
 	{!!Html::script('locales/bootstrap-datepicker.es.min.js')!!}
+
+	<!-- Modal -->
+	<div id="modalAgregar" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->	    
+	    <div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Confirmar</h4>
+		</div>
+		<div class="container">
+			<form method="POST" action="/actividad/new/{{ $ambiente->id }}/tipoactividad" class="form-horizontal form-border">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+			<br>
+				<div class="form-group required">
+			    	<label for="valorInput" class="col-sm-1 control-label">Nombre</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="valor" name="valor" placeholder="Nombre del Tipo de Actividad" value="{{old('valor')}}">
+			    	</div>					    	
+				</div>									 
+
+				<div class="btn-inline">
+					<div class="btn-group col-sm-4"></div>
+					
+					<div class="btn-group ">
+						<input class="btn btn-primary" type="submit" value="Confirmar">
+					</div>
+					<div class="btn-group">
+						<a  data-dismiss="modal" class="btn btn-info">Cancelar</a>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	    <div class="modal-body">	      
+	    </div>
+		<div class="modal-footer">	                    
+		</div>
+	    </div>
+
+	  </div>
+	</div>
 	
 	<script>
 		var nowTemp = new Date();

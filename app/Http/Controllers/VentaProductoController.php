@@ -38,11 +38,7 @@ class VentaProductoController extends Controller
     public function store(StoreFacturacionRequest $request)
     {    	
     	$input = $request->all();
-        $persona = Persona::find($input['persona_id']);
-        if ($persona==null){
-            $errorPersona = 'ID de persona ingresado no es válido';
-            return back()->withErrors($errorPersona);
-        }
+      
         $factura = new Facturacion();
     	$factura->persona_id = $input['persona_id'];
 		$factura->tipo_pago = $input['tipo_pago'];
@@ -65,11 +61,14 @@ class VentaProductoController extends Controller
     public function storeVentaProducto(StoreProductoxFacturacionRequest $request)
     {   $cantidad = 0;
         $subtotal = 0;
-        $input = $request->all();
+        $input = $request->all();        
         $producto = Producto::find($input['producto_id']);
-        if ($producto==null){
-            $errorProducto = 'ID de producto ingresado no es válido';
-            return back()->withErrors($errorProducto);
+        if ($input['cantidad'] > $producto->stock){
+            return redirect()->back()->withErrors('No hay stock suficiente');
+        }
+        else{
+            $producto->stock = $producto->stock - $input['cantidad'];
+            $producto->save();
         }
 
         $productoxfacturacion = new ProductoxFacturacion();
@@ -125,14 +124,20 @@ class VentaProductoController extends Controller
 
     public function updateProducto(StoreProductoxFacturacionRequest $request, $id)
     {
-        $input = $request->all();
-        $producto = Producto::find($input['producto_id']);
-        if ($producto==null){
-            $errorProducto = 'ID de producto ingresado no es válido';
-            return back()->withErrors($errorProducto);
-        }
+        $input = $request->all();            
 
         $productoxfacturacion = ProductoxFacturacion::find($id);
+
+        $producto = Producto::find($input['producto_id']);
+        if (($input['cantidad']-$productoxfacturacion->cantidad) > $producto->stock){
+            return redirect()->back()->withErrors('No hay stock suficiente');
+        }
+        else{
+            $producto->stock = $producto->stock + $productoxfacturacion->cantidad;
+            $producto->stock = $producto->stock - $input['cantidad'];  
+            $producto->save();
+        }
+
         $productoxfacturacion->facturacion->total = $productoxfacturacion->facturacion->total - $productoxfacturacion->subtotal;
 
         $productoxfacturacion->producto_id = $input['producto_id'];
@@ -163,14 +168,29 @@ class VentaProductoController extends Controller
 
     public function destroyProducto($id)    
     {
-        $producto = ProductoxFacturacion::find($id);
+        $productoxfacturacion = ProductoxFacturacion::find($id);
         
-        $factura = Facturacion::find($producto->facturacion_id);
-        $factura->total = $factura->total - $producto->subtotal;
+        $producto = Producto::find($productoxfacturacion->producto_id);
+        $producto->stock = $producto->stock + $productoxfacturacion->cantidad;
+        $producto->save();
+
+        $factura = Facturacion::find($productoxfacturacion->facturacion_id);
+        $factura->total = $factura->total - $productoxfacturacion->subtotal;
         $factura->save();
-        $producto->delete();
+        $productoxfacturacion->delete();
 
         return view('admin-general.venta-producto.addVentaProducto', compact('factura'));
+    }
+
+     public function cancel($id)    
+    {
+        $factura = Facturacion::find($id);
+        
+        foreach ($factura->productoxfacturacion as $productoxfacturacion) {
+            VentaProductoController::destroyProducto($productoxfacturacion->id);
+        }       
+        $factura->delete();
+        return redirect('venta-producto/index');
     }
 
     //Se brinda informacion mas detallada del producto

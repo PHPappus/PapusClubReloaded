@@ -222,7 +222,7 @@
 
 														<br><br>
 
-														<!--<a href="#" id="try" data-link="{{ url('/test') }}">Try</a>-->>
+														<!--<a href="#" id="try" data-link="{{ url('/test') }}">Try</a>-->
 
 													</div>	
 											</div>
@@ -528,7 +528,7 @@
 				var url = $(this).attr("data-link");
 				$departamento_id=event.target.value;
 							//alert($departamento_id);
-				//alert(url);
+				alert(url);
 				$.ajax({
 			        url: "provincias",
 			        type:"POST",

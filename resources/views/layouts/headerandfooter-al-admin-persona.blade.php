@@ -86,7 +86,7 @@
               Usuario <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#" title="Asignar usuario" target="_self">Asignar</a></li>
+              <li><a href="{!!URL::to('/usuario')!!}" title="Asignar usuario" target="_self">Asignar</a></li>
             </ul>
           </li>
         </ul>

@@ -35,6 +35,7 @@ class ProductoController extends Controller
 		$producto->descripcion = $input['descripcion'];
 		$producto->estado = 1;
 		$producto->tipo_producto = $input['tipo_producto'];		
+        $producto->stock = 0;
     	
         $producto->save();	    
         

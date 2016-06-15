@@ -17,8 +17,8 @@
 			<div class="content-fluid" style="margin-left: 10%">
 				<div class="logo">
 					<div class="edit-logo">
-						<a href="/" title="Logo oficial de Papus Club">
-							<img src="images/logo.png" alt="Logo Papus Club" href="/">
+						<a href="{!!URL::to('/admin-general')!!}" title="Logo oficial de Papus Club">
+							<img src="{!!URL::to('/images/logo.png')!!}" alt="Logo Papus Club" href="/">
 						</a>
 					</div>
 				</div>
@@ -41,6 +41,8 @@
 						<li><a href="#">TRÁMITES</a></li>
 						<!-- Opción SEDE -->
 						<li><a href="#">VENTA</a></li>
+						<!-- MANTENIMIENTO DE PAGOS -->
+						<li><a href="{{url('/pagos/pago-seleccionar-socio')}}">PAGOS</a></li>
 					</ul>
 				</nav>
 			</div>

@@ -73,21 +73,19 @@
 
 						<li><a href="{!!URL::to('/sedes/index')!!}">SEDE<span class="despliegue">▼</span></a>
 							<ul>
-								<li><a href="{!!URL::to('/sorteo/index')!!}" title="Mantenimiento Sorteo" target="_self">SORTEO</a></li>
+								<li><a href="{!!URL::to('/sorteo/index')!!}" title="Mantenimiento Sorteo" target="_self"> MANTENIMIENTO SORTEO</a></li>
+								<li><a href="{!!URL::to('/sorteo/inscripcion')!!}" title="Inscripcion Sorteo" target="_self">INSCRIPCION SORTEO</a></li>
 							</ul>
 						</li>
-						<li><a href="{!!URL::to('/ambiente/index')!!}">AMBIENTE<span class="despliegue">▼</span></a>
-							<ul>
-								<li><a href="{!!URL::to('/reservar-ambiente/reservar-bungalow')!!}" title="ir a reserva de Bungalow" target="_self">RESERVAR BUNGALOW</a></li>
-								<li><a href="{!!URL::to('/reservar-ambiente/reservar-otros-ambientes')!!}" title="ir a reserva de Otros Ambientes" target="_self">RESERVAR OTRO AMBIENTES</a></li>
-							</ul>
+						<!-- <li><a href="{!!URL::to('/ambiente/index')!!}">AMBIENTE<span class="despliegue">▼</span></a>
+							
 						</li>
 
 						<li><a href="{!!URL::to('/actividad/index')!!}">ACTIVIDAD<span class="despliegue">▼</span></a>
 							<ul>
 								<li><a href="{!!URL::to('/inscripcion-actividad/inscripcion-actividades')!!}" title="ir a agregar sede" target="_self">INSCRIPCIÓN</a></li>
 							</ul>
-						</li>
+						</li> -->
 						<!-- Opción Actividades -->
 						<li><a href="{!!URL::to('/taller/')!!}">TALLER<span class="despliegue">▼</span></a>
 							<ul>
@@ -99,6 +97,7 @@
 						<li><a href="{!!URL::to('/producto/index')!!}">PRODUCTO<span class="despliegue">▼</span></a>
 							<ul>
 								<li><a href="{!!URL::to('/producto/index')!!}">PRODUCTOS</a></li>
+								<li><a href="{!!URL::to('/ingreso-producto/index')!!}">INGRESO DE PRODUCTOS</a></li>
 								<li><a href="{!!URL::to('/venta-producto/index')!!}">VENTAS DE PRODUCTOS</a></li>
 							</ul>
 						</li>
@@ -111,7 +110,7 @@
 						<!-- Opción Eventos -->
 						<li><a href="{!!URL::to('/proveedor/index')!!}">PROVEEDOR</a></li>
 						<!-- MANTENIMIENTO DE PAGOS -->
-						<li><a href="{{url('/pagos/pago-seleccionar-socio')}}">PAGOS</a></li>
+						<!-- <li><a href="{{url('/pagos/pago-seleccionar-socio')}}">PAGOS</a></li> -->
 
 					</ul>
 				</nav>
