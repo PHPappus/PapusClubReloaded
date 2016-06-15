@@ -29,6 +29,6 @@ class CreateAmbientesSorteoTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ambientesSorteo');
+        Schema::drop('ambientessorteo');
     }
 }
