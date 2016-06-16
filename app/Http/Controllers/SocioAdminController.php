@@ -7,15 +7,24 @@ use DateTime;
 use DateInterval;
 use Carbon\Carbon;
 use papusclub\Http\Requests;
+use papusclub\Models\Persona;
 use papusclub\Models\Socio;
 use papusclub\Models\Carnet;
+use papusclub\Models\Multa;
 use papusclub\Models\Configuracion;
 use papusclub\Http\Requests\EditSocioBasicoRequest;
 use papusclub\Http\Requests\EditSocioEstudioRequest;
 use papusclub\Http\Requests\EditSocioTrabajoRequest;
 use papusclub\Http\Requests\EditSocioContactoRequest;
+use papusclub\Http\Requests\StoreMultaxPersonaRequest;
+use papusclub\Http\Requests\EditSocioNacimientoRequest;
+use papusclub\Http\Requests\StoreInvitadoRequest;
+use papusclub\Models\Invitados;
 use papusclub\Models\TipoMembresia;
 use Illuminate\Support\Facades\Redirect;
+use papusclub\Models\Departamento;
+use papusclub\Models\Provincia;
+use papusclub\Models\Distrito;
 use Session;
 
 class SocioAdminController extends Controller
@@ -24,13 +33,13 @@ class SocioAdminController extends Controller
     {
         $socios = Socio::all();
         
-        return view('admin-general.persona.socio.index',compact('socios'));
+        return view('admin-persona.persona.socio.index',compact('socios'));
     }
 
     public function indexAll()
     {
         $socios = Socio::withTrashed()->get();
-        return view('admin-general.persona.socio.all',compact('socios'));
+        return view('admin-persona.persona.socio.all',compact('socios'));
     }
 
     public function show($id)
@@ -40,7 +49,7 @@ class SocioAdminController extends Controller
         $socio->carnet_actual()->fecha_emision=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_emision)->format('d/m/Y');
         $socio->carnet_actual()->fecha_vencimiento=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_vencimiento)->format('d/m/Y');
         $socio->postulante->persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d',$socio->postulante->persona->fecha_nacimiento)->format('d/m/Y');
-        return view('admin-general.persona.socio.showSocio',compact('socio'));
+        return view('admin-persona.persona.socio.showSocio',compact('socio'));
     }
 
     public function destroy(Socio $socio)
@@ -99,18 +108,21 @@ class SocioAdminController extends Controller
         $socio->carnet_actual()->fecha_emision=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_emision)->format('d/m/Y');
         $socio->carnet_actual()->fecha_vencimiento=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_vencimiento)->format('d/m/Y');
         $socio->postulante->persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d',$socio->postulante->persona->fecha_nacimiento)->format('d/m/Y');
-        return view('admin-general.persona.socio.editSocio',compact('socio','membresias'));        
+
+        $departamentos=Departamento::select('id','nombre')->get();
+
+        return view('admin-persona.persona.socio.editSocio',compact('socio','membresias', 'departamentos'));        
     }
 
     public function updateBasico(EditSocioBasicoRequest $request,$id)
     {
-        $carbon = new Carbon();
+        //$carbon = new Carbon();
 
         $socio = Socio::withTrashed()->find($id);
         $input=$request->all();
         $nombre = trim($input['nombre']);
-        $fecha_nac = str_replace('/', '-', $input['fecha_nacimiento']);
-        $socio->postulante->persona->fecha_nacimiento=$carbon->createFromFormat('d-m-Y', $fecha_nac)->toDateString();
+        //$fecha_nac = str_replace('/', '-', $input['fecha_nacimiento']);
+        //$socio->postulante->persona->fecha_nacimiento=$carbon->createFromFormat('d-m-Y', $fecha_nac)->toDateString();
         $socio->postulante->persona->nombre=$nombre;
         $socio->postulante->persona->save();
 
@@ -118,6 +130,55 @@ class SocioAdminController extends Controller
         //return view('admin-general.persona.socio.editSocio',compact('socio'));
         Session::flash('update','basico');
         return Redirect::action('SocioAdminController@edit',$socio->id)->with('cambios-bas','Cambios realizados con éxito');
+    }
+
+    public function updateNacimiento(EditSocioNacimientoRequest $request,$id)
+    {
+        $socio = Socio::withTrashed()->find($id);
+        $input=$request->all();
+
+        /*Fecha de nacimiento*/
+        $carbon = new Carbon();
+        $fecha_nac = str_replace('/', '-', $input['fecha_nacimiento']);
+        $socio->postulante->persona->fecha_nacimiento=$carbon->createFromFormat('d-m-Y', $fecha_nac)->toDateString();
+
+        /*Dirección de nacimiento*/
+        if($input['nacionalidad']=='peruano')
+        {
+            $departamento_id=$input['departamento'];
+            $provincia_id=$input['provincia'];
+            $distrito_id=$input['distrito'];
+            $direccion = $input['direccion_nacimiento'];
+
+            if($socio->postulante->departamento!=$departamento_id)
+            {
+                $depa = Departamento::find($departamento_id);
+                $socio->postulante->Departamento()->associate($depa);
+            }
+            if($socio->postulante->provincia!=$provincia_id)
+            {
+                $prov = Provincia::find($provincia_id);
+                $socio->postulante->Provincia()->associate($prov);
+            }
+            if($socio->postulante->distrito!=$distrito_id)
+            {
+                $dist = Distrito::find($distrito_id);
+                $socio->postulante->Distrito()->associate($dist);
+            }
+            $socio->postulante->direccion_nacimiento=$direccion;
+
+        }
+        else
+        {
+            $socio->postulante->pais_nacimiento=$input['pais_nacimiento'];
+            $socio->postulante->lugar_nacimiento=$input['lugar_nacimiento'];
+        }
+
+        $socio->postulante->save();
+        //$socio->postulante->persona->update(['nombre'=>$input['nombre'], 'fecha_nacimiento'=>$fecha_nac]);
+        //return view('admin-general.persona.socio.editSocio',compact('socio'));
+        Session::flash('update','nacimiento');
+        return Redirect::action('SocioAdminController@edit',$socio->id)->with('cambios-nac','Cambios realizados con éxito');
     }
 
     public function updateEstudio(EditSocioEstudioRequest $request, $id)
@@ -193,9 +254,11 @@ class SocioAdminController extends Controller
     {
         $socio = Socio::withTrashed()->find($id);
         $input=$request->all();
+
         
         /*Modificar tipo de membresia*/
         $id_membresia = $input['estado'];
+
         if($id_membresia!=$socio->membresia->id)
         {
             /*Actualizar foreign key*/
@@ -208,6 +271,7 @@ class SocioAdminController extends Controller
         if(!empty($input['estadoInv']))
         {
             $estado=$input['estadoInv'];
+
             if($estado==$socio->vigente())
             {
                 $socio->restore();
@@ -228,6 +292,10 @@ class SocioAdminController extends Controller
                     $fecha_vencimiento->add($intervalo);
                     $fecha_vencimiento=$fecha_vencimiento->format('Y-m-d');
                     $carnet->fecha_vencimiento = $fecha_vencimiento;
+                    if($input['descripcion']!="")
+                    {
+                        $carnet->descripcion=$input['descripcion'];
+                    }
                     $socio->addCarnet($carnet);                   
                 }
                 $socio->update(['estado'=>true]);
@@ -235,6 +303,7 @@ class SocioAdminController extends Controller
         }
         else if(!empty($input['estado-r']))
         {
+
                     /*Registro de un nuevo carnet*/
                     $anio = Configuracion::where('grupo',5)->first();
                     $tempcarnet = $socio->carnet_actual();
@@ -250,6 +319,10 @@ class SocioAdminController extends Controller
                     $fecha_vencimiento->add($intervalo);
                     $fecha_vencimiento=$fecha_vencimiento->format('Y-m-d');
                     $carnet->fecha_vencimiento = $fecha_vencimiento;
+                    if(!empty($input['descripcion']))
+                    {
+                        $carnet->descripcion = $input['descripcion'];
+                    }
 
 
                     $carnet_temp = $socio->carnet_actual();
@@ -265,13 +338,35 @@ class SocioAdminController extends Controller
             {
                 if($estado==$socio->inhabilitado())
                 {
+                    if(($input['descripcion']!=""))
+                    {
+                        $descripcion=$input['descripcion'];
+                    }
+                    else
+                    {
+                        $descripcion='El socio ha sido inhabilitado pero no se ha especificado el motivo.';
+                    }
+                    $socio->carnet_actual()->descripcion=$descripcion;
                     $socio->update(['estado'=>false]);
                     //$socio->delete();
                 }
                 else if($estado==$socio->carnet_inhabilitado())
                 {
+                    if(!empty($input['descripcion']!=""))
+                    {
+                        $descripcion=$input['descripcion'];
+                    }
+                    else
+                    {
+                        $descripcion='El carnet ha sido inhabilitado pero no se ha especificado el motivo.';
+                    }
+                    //var_dump($descripcion);
+                    //die();
                     $carnet = $socio->carnet_actual();
-                    $carnet->update(['estado'=>false]);
+                    //$carnet->update(['estado'=>false , 'descripcion'=>$descripcion]);
+                    $carnet->estado=false;
+                    $carnet->descripcion=$descripcion;
+                    $carnet->save();
                     $carnet->delete();
 
                     $socio->update(['estado'=>false]);
@@ -281,5 +376,135 @@ class SocioAdminController extends Controller
         }
         Session::flash('update','membresia');
         return Redirect::action('SocioAdminController@edit',$socio->id)->with('cambios-mem','Cambios realizados con éxito');         
+    }
+
+    public function indexRegMulta()
+    {
+        $socios = Socio::all();
+        $multas = Multa::all();
+
+        return view('admin-persona.multa.registrarMulta',compact('socios','multas'));
+    }
+
+    public function storeMulta(StoreMultaxPersonaRequest $request){
+
+        $input = $request->all();
+        $personas = $input['ch'];
+
+
+        $multa = Multa::find($input['tipoMulta']);
+
+        foreach ($personas as $persona) {
+            
+            $socio = Socio::find($persona); 
+            $fecha = new DateTime('today');
+            $fecha=$fecha->format('Y-m-d');
+            $socio->multaxpersona()->save($multa,['multa_modificada' => $multa->montoPenalidad, 'descripcion_detallada' => $input['descripcion'],'fecha_registro' => $fecha]);
+        }
+        return redirect('multas-s')->with('stored', 'Se registró la multa correctamente.');
+    }
+    /*INVITADOS*/
+
+    public function createInvitado($id)
+    {
+
+        $socio = Socio::withTrashed()->find($id);
+        $departamentos=Departamento::select('id','nombre')->get();
+
+        return view('admin-persona.persona.socio.invitado.newInvitado',compact('socio','departamentos'));
+    }
+
+    public function detailInvitado($id)
+    {   
+        $invitado = Invitados::find($id);
+        $socio = Socio::withTrashed()->find($invitado->persona_id);
+        $persona = Persona::find($invitado->invitado_id);
+        return view('admin-persona.persona.socio.invitado.detailInvitado',compact('persona','socio'));
+    }
+
+    public function storeInvitado(StoreInvitadoRequest $request, $id)
+    {
+        $socio = Socio::withTrashed()->find($id);
+        $input =$request->all();
+
+        $nacionalidad=$input['nacionalidad'];
+
+
+        $persona = new Persona();
+
+        if($nacionalidad=='peruano')
+        {
+            $doc_identidad = $input['doc_identidad'];
+            $persona = Persona::where(['doc_identidad'=>$doc_identidad])->get()->first();
+        }
+        else
+        {
+            $carnet_extranjeria = $input['carnet_extranjeria'];
+            $persona=Persona::where(['carnet_extranjeria'=>$carnet_extranjeria])->get()->first();
+        }
+
+        if($persona==null)
+        {
+            $persona = new Persona();
+            $carbon = new Carbon();
+
+
+            $persona->nombre = trim($input['nombre']);
+            $persona->ap_paterno = trim($input['ap_paterno']);
+            $persona->ap_materno = trim($input['ap_materno']);            
+            $persona->sexo=$input['sexo']; 
+            $persona->nacionalidad = $input['nacionalidad'];                       
+            if (empty($input['carnet_extranjeria'])) {
+                $persona->carnet_extranjeria ="";
+            }
+            else
+                $persona->carnet_extranjeria = $input['carnet_extranjeria'];
+
+            
+            if (empty($input['doc_identidad'])) {
+                $persona->doc_identidad ="";
+            }
+            else
+            {
+                $persona->doc_identidad = $input['doc_identidad'];             
+            }
+            if(empty($input['correo']))
+            {
+                $persona->correo='No ha registrado Correo';
+            }
+            else
+            {
+                $persona->correo=$input['correo'];
+            }
+            if (empty($input['fecha_nacimiento'])) {
+                $persona->fecha_nacimiento ="";            
+            }else{
+                $fecha_nac = str_replace('/', '-', $input['fecha_nacimiento']);      
+                $persona->fecha_nacimiento=$carbon->createFromFormat('d-m-Y', $fecha_nac)->toDateString();
+            }
+            $persona->id_tipo_persona = 3;
+            $persona->save();
+
+            $fecha = new DateTime("now");
+            $fecha=$fecha->format('Y-m-d');
+            $socio->postulante->persona->addInvitado($persona,$fecha);            
+        }
+        else
+        {
+            $fecha = new DateTime("now");
+            $fecha=$fecha->format('Y-m-d');
+            $socio->postulante->persona->addInvitado($persona,$fecha);          
+        }
+        return Redirect::action('SocioAdminController@edit',$socio->id)->with('storedInvitado', 'Se registró el Invitado correctamente.');
+    }
+
+    public function deleteInvitado(Request $request,$id)
+    {
+        $invitado = Invitados::find($id);
+        $invitado->delete();
+        //var_dump($invitado);
+        //die();
+        Session::flash('update','invitado');    
+        return back();
     }
 }

@@ -9,6 +9,8 @@ use papusclub\Http\Controllers\Controller;
 use DateTime;
 use papusclub\Models\Taller;
 use papusclub\Models\TarifaTaller;
+use papusclub\Models\Ambiente;
+use papusclub\Models\Sede;
 use papusclub\Models\TipoPersona;
 use papusclub\Http\Requests\StoreTallerRequest;
 use papusclub\Http\Requests\EditTallerRequest;
@@ -28,14 +30,17 @@ class TallerController extends Controller
             $taller->fecha_inicio=$carbon->createFromFormat('Y-m-d', $taller->fecha_inicio)->format('d/m/Y');
             $taller->fecha_fin=$carbon->createFromFormat('Y-m-d', $taller->fecha_fin)->format('d/m/Y');
         }
-        return view('admin-general.taller.index',compact('talleres'));
+        return view('admin-registros.taller.index',compact('talleres'));
     }
 
     public function create()
     {
+        $sedes = Sede::all();
+        $ambientes = Ambiente::all();
         $personas = TipoPersona::all();
 
-    	return view('admin-general.taller.newTaller',compact('personas'));
+       // return view('admin-general.ambiente.searchAmbiente', compact('ambientes'),compact('values'),compact('tipoPersonas'));
+    	return view('admin-registros.taller.newTaller', compact('sedes','ambientes','personas'));
     }
 
     public function show($id)
@@ -46,7 +51,7 @@ class TallerController extends Controller
         $taller->fecha_fin_inscripciones=$carbon->createFromFormat('Y-m-d', $taller->fecha_fin_inscripciones)->format('d/m/Y');
         $taller->fecha_inicio=$carbon->createFromFormat('Y-m-d', $taller->fecha_inicio)->format('d/m/Y');
         $taller->fecha_fin=$carbon->createFromFormat('Y-m-d', $taller->fecha_fin)->format('d/m/Y');
-        return view('admin-general.taller.showTaller',compact('taller'));
+        return view('admin-registros.taller.showTaller',compact('taller'));
     }
 
     public function edit ($id)
@@ -58,7 +63,7 @@ class TallerController extends Controller
         $taller->fecha_fin_inscripciones=$carbon->createFromFormat('Y-m-d', $taller->fecha_fin_inscripciones)->format('d/m/Y');
         $taller->fecha_inicio=$carbon->createFromFormat('Y-m-d', $taller->fecha_inicio)->format('d/m/Y');
         $taller->fecha_fin=$carbon->createFromFormat('Y-m-d', $taller->fecha_fin)->format('d/m/Y');
-        return view('admin-general.taller.editTaller',compact('taller'));
+        return view('admin-registros.taller.editTaller',compact('taller'));
     }
 
     public function store(StoreTallerRequest $request)

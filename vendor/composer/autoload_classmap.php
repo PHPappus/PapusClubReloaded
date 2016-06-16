@@ -20,6 +20,7 @@ return array(
     'AddFkToHistoricoInvitacion' => $baseDir . '/database/migrations/2016_06_09_191230_add_fk_to_historico_invitacion.php',
     'AddFkToInvitadoTable' => $baseDir . '/database/migrations/2016_06_09_165934_add_fk_to_invitado_table.php',
     'AddFkToMultaxpersonaTable' => $baseDir . '/database/migrations/2016_06_04_205656_add_fk_to_multaxpersona_table.php',
+    'AddFkToObservaciones' => $baseDir . '/database/migrations/2016_06_14_092945_add_fk_to_observaciones.php',
     'AddFkToPersona' => $baseDir . '/database/migrations/2016_05_24_201138_add_fk_to_persona.php',
     'AddFkToPersonaxactividadTable' => $baseDir . '/database/migrations/2016_06_04_203528_add_fk_to_personaxactividad_table.php',
     'AddFkToPersonaxsocioTable' => $baseDir . '/database/migrations/2016_06_05_025155_add_fk_to_personaxsocio_table.php',
@@ -65,6 +66,7 @@ return array(
     'CreateMaestroProveedorTable' => $baseDir . '/database/migrations/2016_05_06_042135_create_maestro_proveedor_table.php',
     'CreateMultaTable' => $baseDir . '/database/migrations/2016_05_24_220332_create_multa_table.php',
     'CreateMultaxpersonaTable' => $baseDir . '/database/migrations/2016_06_04_194018_create_multaxpersona_table.php',
+    'CreateObservacionesTable' => $baseDir . '/database/migrations/2016_06_14_092509_create_observaciones_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePerfilsTable' => $baseDir . '/database/migrations/2016_05_17_022327_create_perfils_table.php',
     'CreatePerfilxusuarioTable' => $baseDir . '/database/migrations/2016_06_06_151138_create_perfilxusuario_table.php',
@@ -85,7 +87,10 @@ return array(
     'CreateSocioTable' => $baseDir . '/database/migrations/2016_05_29_003232_create_socio_table.php',
     'CreateSocioxconcursoTable' => $baseDir . '/database/migrations/2016_06_06_151157_create_socioxconcurso_table.php',
     'CreateSorteoTable' => $baseDir . '/database/migrations/2016_05_20_005933_create_sorteo_table.php',
+<<<<<<< HEAD
     'CreateTableSedexservicio' => $baseDir . '/database/migrations/2016_06_14_065412_create_table_sedexservicio.php',
+=======
+>>>>>>> development
     'CreateTableSocioxsorteoTable' => $baseDir . '/database/migrations/2016_06_15_021841_create_table_socioxsorteo_table.php',
     'CreateTableTarifaFamiliar' => $baseDir . '/database/migrations/2016_06_12_075912_create_table_tarifa_familiar.php',
     'CreateTableTipoFamilia' => $baseDir . '/database/migrations/2016_06_12_074933_create_table_tipo_familia.php',

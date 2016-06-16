@@ -91,11 +91,7 @@
 										<li><a href="#" title="ir a inscribirse en curso" target="_self">INSCRIBIRSE</a></li>
 									</ul>						
 								</li>
-								<li><a href="#" title="ir a talleres" target="_self">TALLERES<span class="despliegue">▼</span></a>
-									<ul>
-										<li><a href="#" title="ir a ver taller" target="_self">VER</a></li>
-										<li><a href="#" title="ir a inscribirse en taller" target="_self">INSCRIBIRSE</a></li>
-									</ul>
+								<li><a href="{!!URL::to('/taller/')!!}" title="ir a talleres" target="_self">TALLERES<span class="despliegue">▼</span></a>
 								</li>
 								<li><a href="#" title="ir a eventos" target="_self">EVENTOS<span class="despliegue">▼</span></a>
 									<ul>

@@ -23,10 +23,13 @@ class EditMultaRequest extends Request
      */
     public function rules()
     {
+
+      //  var_dump($this->all());
+       //    die();       
         return [
-            'descripcion' =>'required|max:60|string',
-            'montoPenalidad' =>'required|min:0',
-            'estado' =>'required|max:30|string'
+            'nombre' => 'required|max:30|string',
+            'descripcion' =>'required|max:80|string',
+            'montoPenalidad' =>'min:0',
         ];
     }
 }

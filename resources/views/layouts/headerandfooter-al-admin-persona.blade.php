@@ -25,35 +25,29 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+
         <a href="{!!URL::to('/admin-persona')!!}" class="navbar-brand"><img alt="Brand" class="img-responsive" src="{!!URL::to('/images/logo.png')!!}" ></a>
+
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="navbar1">
         <ul class="nav navbar-nav">
           <li class="dropdown">
+            <li><a href="{!!URL::to('/trabajador/index')!!}" class="dropdown-toggle btn-lg" title="consultar Bungalows" target="_self">Trabajadores</a></li>
+          </li>
+        </ul>
+         <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <li><a href="{!!URL::to('/postulante/index')!!}" class="dropdown-toggle btn-lg" title="consultar Bungalows" target="_self">Postulante</a></li>
+          </li>
+        </ul>
+         <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <li><a href="{!!URL::to('/Socio/')!!}" class="dropdown-toggle btn-lg" title="consultar Bungalows" target="_self">Socio</a></li>
             <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
               Socio <span class="caret"></span>
             </a>
-            <ul class="dropdown-menu">
-                <li><a href="#" title="Consultar socio" target="_self">Consultar</a></li>
-                <li><a href="#" title="Registrar nuevo socio" target="_self">Registrar</a></li>
-                <li><a href="#" title="Anular socio" target="_self">Anular</a></li>
-            </ul>
-          </li>
-
-        </ul>
-        <ul class="nav navbar-nav">
-          <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
-          <li class="dropdown">
-            <a href="#" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" role="button" >
-              Postulante <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-                <li><a href="#" title="Consultar postulantes" target="_self">Consultar</a></li>
-                <li><a href="#" title="Registrar nuevo postulante" target="_self">Registrar</a></li>
-                <li><a href="#" title="Aprobar/Desaprobar postulante" target="_self">Aprobar/Desaprobar</a></li>
-            </ul>
           </li>
         </ul>
         <ul class="nav navbar-nav">
@@ -65,34 +59,28 @@
                 <li><a href="#" title="Consultar Proveedores" target="_self">Consultar</a></li>
                 <li><a href="#" title="Registrar nuevo proveedor" target="_self">Registrar</a></li>
                 <li><a href="#" title="Anular proveedor" target="_self">Anular</a></li>
-            </ul>
+            </ul>t
           </li>
         </ul>
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Trabajador <span class="caret"></span>
+              Talleres <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#" title="Consultar trabajador" target="_self">Consultar</a></li>
-                <li><a href="#" title="Registrar nuevo trabajador" target="_self">Registrar</a></li>
-                <li><a href="#" title="Anular trabajador" target="_self">Anular</a></li>
+              <li><a href="{!!URL::to('/talleres/index')!!}" title="consultar talleres" target="_self">Consultar</a></li>
+                <li><a href="{!!URL::to('/talleres/mis-inscripciones')!!}" title="inscripciones de talleres" target="_self">Mis Inscripciones</a></li>
             </ul>
           </li>
         </ul>
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Usuario <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="{!!URL::to('/usuario')!!}" title="Asignar usuario" target="_self">Asignar</a></li>
-            </ul>
+            <li><a href="{!!URL::to('/multas-s')!!}" class="dropdown-toggle btn-lg" title="registrar multas" target="_self">Multas</a></li>
           </li>
         </ul>
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <li><a href="#" class="dropdown-toggle btn-lg" title="Consultar Cuotas" target="_self">Cuotas</a></li>
+            <li><a href="#" class="dropdown-toggle btn-lg" title="Consultar Cuotas" target="_self">Cuotas</a></li> <!-- no sé qué es prros -->
           </li>
         </ul>
         <ul class="nav navbar-nav">

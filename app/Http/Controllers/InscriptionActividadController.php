@@ -13,6 +13,7 @@ use Hash;
 use papusclub\Models\Ambiente;
 use papusclub\Models\Actividad;
 use papusclub\Models\Sede;
+use papusclub\Models\Persona;
 use Carbon\Carbon;
 
 class InscriptionActividadController extends Controller
@@ -23,9 +24,8 @@ class InscriptionActividadController extends Controller
         $sedes = Sede::all();
         $actividades=Actividad::all();
         $ambientes = Ambiente::all();
-        
-
-        return view('socio.actividades.inscripcion', compact('sedes'),compact('actividades'));
+        $actividades_persona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->actividades;
+        return view('socio.actividades.inscripcion', compact('sedes','actividades','actividades_persona'));
     }
 
     //Se muestra la actividad a reservar y espera la confirmacion 

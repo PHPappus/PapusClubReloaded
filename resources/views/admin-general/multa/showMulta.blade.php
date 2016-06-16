@@ -29,29 +29,34 @@
 		<div class="container">
 			<form class="form-horizontal form-border">
 				<br/><br/>
-							
+				
+				<div class="form-group required">
+			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" value="{{$multa->nombre}}"  readonly>
+			    	</div>
+			  	</div>
 	    		
-			    <br>
-				<div class="form-group">
+			  	<div class="form-group">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" value="{{$multa->descripcion}}" readonly>
+			    		<textarea class="form-control" id="descripcionInput" name="descripcion" rows="3" cols="50" value = "{{$multa->id}}" readonly>{{$multa->descripcion}}</textarea>
 			    	</div>
-			  	</div>  	
+			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="montoPenalidadInput" class="col-sm-4 control-label">Monto de la Penalidad (S/.)</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" min ="0" step = "any" class="form-control" id="montoPenalidadInput" name="montoPenalidad" placeholder="Monto de la Penalidad" value="{{$multa->montoPenalidad}}" readonly required>
+			      		<input type="text" onkeypress="return inputLimiter(event,'DoubleFormat')" min ="0" step = "any" class="form-control" id="montoPenalidadInput" name="montoPenalidad" placeholder="Monto de la Penalidad" value="{{$multa->montoPenalidad}}" readonly required>
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
-			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="estadoInput" name="estado" placeholder="Estado" value="{{$multa->estado}}" readonly required>
+			    	<div class="col-sm-3">
+			      		<input type="checkbox" class="checkbox" id="estadoInput" name="estado" @if($multa['estado'] == TRUE) checked @endif disabled>
 			    	</div>
-			  	</div> 
+			  	</div>
 
 			  	<div class="form-group required">
 			  		<label for="fechaRegistroInput" class="col-sm-4 control-label">Fecha de Registro</label>

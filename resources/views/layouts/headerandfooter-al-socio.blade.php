@@ -84,6 +84,11 @@
         </ul>
         <ul class="nav navbar-nav">
           <li class="dropdown">
+            <li><a href="{!!URL::to('/observaciones-s')!!}" class="dropdown-toggle btn-lg" title="observaciones sobre postulantes" target="_self">Observaciones</a></li>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
             <li><a href="{!!URL::to('/pagos-s')!!}" class="dropdown-toggle btn-lg" title="Consultar Cuotas" target="_self">Cuotas</a></li>
           </li>
         </ul>

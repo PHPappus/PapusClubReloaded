@@ -31,4 +31,12 @@ class Taller extends Model
         return $this->belongsToMany(TipoPersona::class,'tarifataller','taller_id','tipo_persona_id')->withPivot('fecha_registro','precio','estado');
     }
 
+    public function sede(){
+        return $this->belongsTo(Sede::class, 'sede_id');
+    }
+
+    public function ambiente(){
+        return $this->belongsTo(Ambiente::class,'ambiente_id');
+    }
+
 }

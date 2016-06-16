@@ -5,7 +5,7 @@ namespace papusclub\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Sorteo extends Model
+class Sorteoxsocio extends Model
 {
 	use SoftDeletes;
 
