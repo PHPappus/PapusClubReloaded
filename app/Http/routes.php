@@ -64,6 +64,9 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('inscripcion-actividad/{id}/delete', 'InscriptionActividadController@removeInscriptionToPersona');
 
 
+	//Trámites Socio
+	Route::get('traspaso/','SocioController@traspmembresia');
+
 	//RESERVA DE AMBIENTES
 	Route::get('reservar-ambiente/reservar-bungalow', 'ReservarAmbienteController@reservarBungalow'); // REservar Bungalows
 	Route::get('reservar-ambiente/reservar-otros-ambientes', 'ReservarAmbienteController@reservarOtrosAmbientes'); // REservar otros ambientes distinto de bungalows
@@ -73,7 +76,6 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('reservar-ambiente/{id}/new-reserva-otro-ambiente', 'ReservarAmbienteController@createOtroTipoAmbiente');//
 	Route::post('reservar-ambiente/{id}/confirmacion-reserva-otro-ambiente', 'ReservarAmbienteController@storeOtroTipoAmbiente');//confirmacion para la reserva de otros ambientes distintos de bungalows
 	Route::get('reservar-ambiente/searchSocio', 'SocioController@searchSocio');
-	
 });
 
 
@@ -270,6 +272,8 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 //Administrador de Persona
 Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::resource('admin-persona','AdminPersonaController');
+
+	//ASIGNAR MULTAS A SOCIOS
 	Route::get('multas-s/','SocioAdminController@indexRegMulta');
 	Route::post('multas-s/save','SocioAdminController@storeMulta');
 

@@ -113,5 +113,10 @@ class Socio extends Model
         return $this->belongsToMany(Multa::class,'multaxpersona','socio_id','multa_id')->withPivot('multa_modificada','descripcion_detallada','fecha_registro');
     }
 
+    public function traspaso()
+    {
+        return $this->hasOne(Traspaso::class,'id');
+    }
+
     
 }
