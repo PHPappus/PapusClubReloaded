@@ -24,7 +24,7 @@ class StoreProductoxFacturacionRequest extends Request
     public function rules()
     {
          return [            
-            'producto_id'   =>  'required|integer',
+            'producto_id'   =>  'required|integer|exists:producto,id',
             'facturacion_id'   =>  'required|integer',            
             'cantidad'   =>  'required|integer|min:1|max:2147483647'
         ];

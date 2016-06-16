@@ -13,7 +13,7 @@
 	
 </head>
 <body>
-@extends('layouts.headerandfooter-al-socio')
+@extends('layouts.headerandfooter-al-publico')
 @section('content')
 <!---Cuerpo -->
 

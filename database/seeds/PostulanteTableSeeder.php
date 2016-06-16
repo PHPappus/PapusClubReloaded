@@ -17,6 +17,9 @@ class PostulanteTableSeeder extends Seeder
         	'direccion_nacimiento'=>'avenida prueba 123',
         	'pais_nacimiento'=>'Perú',
         	'lugar_nacimiento'=>'Lima',
+            'departamento'=>15,
+            'provincia'=>127,
+            'distrito'=>1263,
         	'colegio_primario'=>'maranguita',
         	'colegio_secundario'=>'piedras gordas',
         	'universidad'=>'Alcatraz',
@@ -28,13 +31,17 @@ class PostulanteTableSeeder extends Seeder
         	'nro_hijos'=>20,
         	'domicilio'=>'La perla',
         	'telefono_domicilio'=>84516235,
-        	'telefono_celular'=>989456123]);
+        	'telefono_celular'=>989456123
+        ]);
 
         Postulante::create([
         	'id_postulante'=>2,
         	'direccion_nacimiento'=>'avenida prueba 123',
         	'pais_nacimiento'=>'Perú',
         	'lugar_nacimiento'=>'Lima',
+            'departamento'=>15,
+            'provincia'=>127,
+            'distrito'=>1263,
         	'colegio_primario'=>'maranguita',
         	'colegio_secundario'=>'piedras gordas',
         	'universidad'=>'Alcatraz',
@@ -46,7 +53,9 @@ class PostulanteTableSeeder extends Seeder
         	'nro_hijos'=>20,
         	'domicilio'=>'La perla',
         	'telefono_domicilio'=>84516235,
-        	'telefono_celular'=>989456123]);
+        	'telefono_celular'=>989456123
+        ]);
+
 
         Postulante::create([
             'id_postulante'=>5,

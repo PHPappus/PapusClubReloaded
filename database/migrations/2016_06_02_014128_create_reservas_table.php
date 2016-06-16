@@ -19,7 +19,8 @@ class CreateReservasTable extends Migration
             $table->time('hora_inicio_reserva');
             $table->time('hora_fin_reserva');
             $table->integer('ambiente_id')->unsigned()->nullable();
-            $table->integer('id_persona')->unsigned()->nullable();
+            $table->integer('actividad_id')->unsigned()->nullable();
+            $table->integer('id_persona')->unsigned();
             $table->float('precio');
             $table->string('estadoReserva');//es el estado en que se encuentra la reserva,no el registro reserva en la DB
             $table->softDeletes();

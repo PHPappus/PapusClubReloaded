@@ -11,5 +11,9 @@ class Sorteo extends Model
 
     protected $table='sorteo';
     protected $dates = ['deleted_at'];
-    
+ 	
+ 	public function sede()
+ 	{
+ 		return $this->belongsTo('papusclub\Models\Sede','id_sede');
+ 	}
 }
