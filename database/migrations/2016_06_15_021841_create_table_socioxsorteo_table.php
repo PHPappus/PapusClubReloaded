@@ -14,8 +14,8 @@ class CreateTableSocioxsorteoTable extends Migration
     {
         Schema::create('socioxsorteo',function (Blueprint $table){
             //Estos son los atributos que estaban en el caso de uso
-            $table->integer('id');
-            $table->integer('id_socio')->unsigned()->nullable();            
+            $table->integer('id')->unsigned();
+            $table->integer('id_socio')->unsigned();           
             $table->Boolean('estado');
             $table->softDeletes();
             $table->timestamps();
