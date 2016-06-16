@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use papusclub\Http\Requests;
 use papusclub\Models\Socio;
+use papusclub\Models\Facturacion;
+use papusclub\Models\Configuracion;
 
 class PagosController extends Controller
 {
@@ -13,26 +15,38 @@ class PagosController extends Controller
     public function seleccionarSocio()
     {
     	$socios = Socio::all();
-        return view('admin-pagos.pagos.pago-seleccionar-socio',compact('socios'));
+        return view('admin-pagos.pagos.pago-seleccionar-socio', compact('socios'));
     }
      public function selectSocio($id) //una vez seleccionado el socio , voy a la sigueiten pantalla que sera las facturas del socio
     {
         $socio = Socio::find($id);
+        $persona = $socio->postulante->persona;
+        $facturaciones = $persona->facturacion;
        
-        return view('admin-pagos.pagos.lista-deudas-del-socio', compact('socio'));
+        return view('admin-pagos.pagos.lista-deudas-del-socio', compact('facturaciones'));
     }
   
     
-     public function registrarPago() /// registro que el socio ya realizo el pago de x producto
+     public function registrarPago($id) /// registro que el socio ya realizo el pago de x producto
     {   //Deberia buscar el ID de la factura , de donde se sacara el socio y de que fue la deuda
-       
-        return view('admin-pagos.pagos.registrar-pago');
+        $facturacion = Facturacion::find($id);
+
+        return view('admin-pagos.pagos.registrar-pago', compact('facturacion'));
     }
 
-    public function update()
-    {
-        return redirect('ambiente/index')->with('stored', 'Se registró el ambiente correctamente.');
+    public function storePago(Request $request, $id) /// registro que el socio ya realizo el pago de x producto
+    {   //Deberia buscar el ID de la factura , de donde se sacara el socio y de que fue la deuda
+        $input = $request->all();
+        $facturacion = Facturacion::find($id);
+        $estado_facturacion = Configuracion::where('grupo', '=', 7)->first();
+        $facturacion->numero_pago = $input['numero_pago'];
+        $facturacion->estado = $estado_facturacion->valor;
+        $facturacion->update();
+
+        return redirect('pagos/pago-seleccionar-socio')->with('stored', 'Se registró la facturacion correctamente.');
     }
+
+    
     //Se guarda la informacion del pago  del ambiente en la BD
     /*public function createPago(EditAmbienteRequest $request, $id)
     {

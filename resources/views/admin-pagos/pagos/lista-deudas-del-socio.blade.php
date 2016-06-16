@@ -39,6 +39,7 @@
 					<thead class="active">
 						<tr>
 							<th><DIV ALIGN=center>ID</th>
+							<th><DIV ALIGN=center>Tipo de Pago</th>
 							<th><DIV ALIGN=center>Monto</th>
 							<th><DIV ALIGN=center>Descripción</th>
 							<th><DIV ALIGN=center>estado</th>
@@ -48,17 +49,19 @@
 						</tr>
 					</thead>
 					<tbody>
-							<td> 20100001</td>
-							<td> 2500</td>
-							<td> Deuda de Alquiler de Bungalow</td>
-							<td> No Pagado</td>				
+						@foreach($facturaciones as $facturacion)
+							<td> {{$facturacion->id}}</td>
+							<td> {{$facturacion->tipo_pago}}</td>
+							<td> {{$facturacion->total}}</td>
+							<td> {{$facturacion->descripcions}}</td>
+							<td> {{$facturacion->estado}} </td>				
 						    <td>
 							    <a class="btn btn-info" href="#"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 							</td>
 							<td>
-							    <a class="btn btn-info" href="{{url('/pagos/registrar-pago')}}" title="Registrar Pago" ><i class="glyphicon glyphicon-pencil"></i></a>
+							    <a class="btn btn-info" href="{{url('/pagos/registrar-pago/'.$facturacion->id.'')}}" title="Registrar Pago" ><i class="glyphicon glyphicon-pencil"></i></a>
 							</td>
-							
+						@endforeach
 					</tbody>					
 												
 					

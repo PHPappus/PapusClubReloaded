@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [2016-06-14 21:20:42] local.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Interface 'Illuminate\Contracts\Queue\QueueableCollection' not found in /opt/lampp/htdocs/PapusClubReloaded/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Collection.php:10
 Stack trace:
 #0 {main}  
@@ -6578,3 +6579,5 @@ Stack trace:
 #24 C:\xampp\htdocs\JEFV\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #25 C:\xampp\htdocs\JEFV\PapusClubReloaded\artisan(29): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #26 {main}  
+=======
+>>>>>>> dfbc5c4df70069e747a94154b9a9a83de784c36c
