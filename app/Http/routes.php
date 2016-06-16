@@ -62,6 +62,9 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 
 	Route::get('inscripcion-actividad/mis-inscripciones','InscriptionActividadController@misinscripciones');
 	Route::get('inscripcion-actividad/{id}/delete', 'InscriptionActividadController@removeInscriptionToPersona');
+
+	//Trámites Socio
+	Route::get('traspaso/','SocioController@traspmembresia');
 });
 
 
@@ -232,6 +235,8 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 //Administrador de Persona
 Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::resource('admin-persona','AdminPersonaController');
+
+	//ASIGNAR MULTAS A SOCIOS
 	Route::get('multas-s/','SocioAdminController@indexRegMulta');
 	Route::post('multas-s/save','SocioAdminController@storeMulta');
 

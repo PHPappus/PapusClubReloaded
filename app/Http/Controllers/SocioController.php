@@ -13,6 +13,8 @@ use Redirect;
 use papusclub\Http\Controllers\Controller;
 use papusclub\User;
 use papusclub\Models\Socio;
+use papusclub\Models\Traspaso;
+use papusclub\Http\Requests\StoreTraspasoRequest;
 
 class SocioController extends Controller
 {
@@ -138,5 +140,23 @@ class SocioController extends Controller
     {
         $socios = Socio::all();
         return view('admin-general.persona.socio.buscarSocio',compact('socios'));
+    }
+
+    public function traspmembresia()
+    {
+        return view('socio.tramites.traspasarMembresia');
+    }
+
+    public function storeTraspaso(StoreTraspasoRequest $request){
+
+        $input = $request->all();
+
+        $traspaso = new Traspaso();
+
+        $traspaso->nombre = $input['nombre'];
+        $traspaso->apellido_paterno = $input['apP'];
+        $traspaso->apellido_materno = $input['apM'];
+        $traspaso->dni = $input['dni'];
+        $traspaso->estado = TRUE;
     }
 }
