@@ -170,7 +170,7 @@ class ReservarAmbienteController extends Controller
         $facturacion = new Facturacion();
         $facturacion->persona_id = $persona_id;
         $facturacion->reserva_id = $reserva->id;
-        //$facturacion->tipo_comprobante = $input['tipo_comprobante'];
+        $facturacion->tipo_comprobante = $input['tipo_comprobante'];
         $nombreReserva = $reserva->ambiente->nombre;
         $facturacion->descripcion = "Reserva de $nombreReserva";
         $facturacion->total = $reserva->precio;
@@ -178,6 +178,8 @@ class ReservarAmbienteController extends Controller
         $facturacion->estado = $estado->valor;
 
         $facturacion->save();
+
+
         DB::commit();
 
         return redirect('reservar-ambiente/reservar-bungalow')->with('stored', 'Se registró la reserva del bungalow correctamente.');        
@@ -233,10 +235,12 @@ class ReservarAmbienteController extends Controller
         $reserva->estadoReserva = "En proceso";
         $reserva->actividad_id = null;
 
+        $reserva->save();
+
         $facturacion = new Facturacion();
         $facturacion->persona_id = $persona_id;
         $facturacion->reserva_id = $reserva->id;
-        //$facturacion->tipo_comprobante = $input['tipo_comprobante'];
+        $facturacion->tipo_comprobante = $input['tipo_comprobante'];
         $nombreReserva = $reserva->ambiente->nombre;
         $facturacion->descripcion = "Reserva de $nombreReserva";
         $facturacion->total = $reserva->precio;
@@ -246,7 +250,6 @@ class ReservarAmbienteController extends Controller
         $facturacion->save();
 
 
-        $reserva->save();
         DB::commit();
         return redirect('reservar-ambiente/reservar-otros-ambientes')->with('stored', 'Se registró la reserva del ambiente correctamente.');
     }

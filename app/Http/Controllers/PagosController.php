@@ -49,6 +49,7 @@ class PagosController extends Controller
         $facturacion = Facturacion::find($id);
         $estado_facturacion = Configuracion::where('grupo', '=', 7)->first();
         $facturacion->numero_pago = $input['numero_pago'];
+        $facturacion->tipo_pago = $input['tipo_pago'];
         $facturacion->estado = $estado_facturacion->valor;
         $facturacion->update();
 

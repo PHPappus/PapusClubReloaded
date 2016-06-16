@@ -48,21 +48,21 @@
 							<th><DIV ALIGN=center>Registrar Pago</th>
 						</tr>
 					</thead>
-					<tbody>
-						@foreach($facturaciones as $facturacion)
-							<td> {{$facturacion->id}}</td>
-							<td> {{$facturacion->tipo_pago}}</td>
-							<td> {{$facturacion->total}}</td>
-							<td> {{$facturacion->descripcions}}</td>
-							<td> {{$facturacion->estado}} </td>				
-						   <!--  <td>
-							    <a class="btn btn-info" href="#"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-							</td> -->
-							<td>
-							    <a class="btn btn-info" href="{{url('/pagos/registrar-pago/'.$facturacion->id.'')}}" title="Registrar Pago" ><i class="glyphicon glyphicon-pencil"></i></a>
-							</td>
-						@endforeach
-					</tbody>					
+					@foreach($facturaciones as $facturacion)
+					<tbody>						
+						<td> {{$facturacion->id}}</td>
+						<td> {{$facturacion->tipo_pago}}</td>
+						<td> {{$facturacion->total}}</td>
+						<td> {{$facturacion->descripcion}}</td>
+						<td> {{$facturacion->estado}} </td>				
+						<!--  <td>
+						<a class="btn btn-info" href="#"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+						</td> -->
+						<td>
+						<a class="btn btn-info" href="{{url('/pagos/registrar-pago/'.$facturacion->id.'')}}" title="Registrar Pago" ><i class="glyphicon glyphicon-pencil"></i></a>
+						</td>						
+					</tbody>
+					@endforeach					
 												
 					
 			</table>		
