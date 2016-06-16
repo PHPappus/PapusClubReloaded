@@ -75,9 +75,9 @@
 			  	<div class="form-group required">
 			    	<label for="contactoInput" class="col-sm-4 control-label">Contacto</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="contactoInput" name="nombre_contacto" placeholder="Contacto" value="{{old('nombre_contacto')}}">
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="contactoInput" name="nombre_contacto" placeholder="Contacto" value="{{old('nombre_contacto')}}" >
 			    	</div>
-			    	<a class="btn btn-info" name="buscarContacto" href="#"  title="Buscar" ><i name="buscarContacto" class="glyphicon glyphicon-search"></i></a>
+			    	<a class="btn btn-info" name="buscarContacto" href="{!!URL::to('/sedes/contactos')!!}"  title="Buscar" ><i name="buscarContacto" class="glyphicon glyphicon-search"></i></a>
 			    	<!-- deberia ir a una pantalla que liste todos los contactos posibles del Club  -->
 			  	</div>	  	
 
