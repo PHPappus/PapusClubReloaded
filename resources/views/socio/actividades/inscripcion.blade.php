@@ -110,9 +110,12 @@
 						<tr>
 								<th><DIV ALIGN=center>SEDE</th>
 								<th><DIV ALIGN=center>AMBIENTE</th>
-								<th><DIV ALIGN=center>NOMBRE</th>
-								<th><DIV ALIGN=center>CAPACIDAD</th>
-								<th><DIV ALIGN=center>FECHA Y HORA</th>
+								<th><DIV ALIGN=center>NOMBRE DE LA ACTIVIDAD</th>
+								<th><DIV ALIGN=center>CUPOS DISPONIBLES</th>
+								<th><DIV ALIGN=center>FECHA</th>
+								<th><DIV ALIGN=center>HORA DE INICIO</th>
+								<th><DIV ALIGN=center>PRECIO</th>
+								<th><DIV ALIGN=center>ESTADO</th>
 								<th><DIV ALIGN=center>INSCRIBIRSE</th>
 						</tr>
 					</thead>
@@ -122,11 +125,21 @@
 					    		<td>{{ $actividad->ambiente->sede->nombre }}</td>
 					    		<td>{{ $actividad->ambiente->nombre }}</td>
 								<td>{{ $actividad->nombre }}</td>
-		 						<td>{{ $actividad->capacidad_maxima }}</td>
+		 						<td>{{ $actividad->cupos_disponibles }}</td>
 		 						<td>{{ $actividad->a_realizarse_en}}</td>
+		 						<td>{{ $actividad->hora_inicio}}</td>
+		 						<td>Nuevos Soles</td>
+		 						@if((count($actividades_persona->where('id',$actividad->id))!=0)||($actividad->cupos_disponibles<=0))
+		 						<td>Inscrito</td>
 								<td>
-						        <a class="btn btn-info" href="{{url('/inscripcion-actividad/'.$actividad->id.'/confirmacion-inscripcion-actividades')}}" title="Inscripcion" ><i class="glyphicon glyphicon-ok"></i></a>
-						        </td>						            
+						        	<a class="btn btn-info" href="#" title="Inscripcion" disabled><i class="glyphicon glyphicon-ok"></i></a>
+						        </td>				
+						        @else
+						        <td>No Inscrito</td>
+						        <td>
+						        	<a class="btn btn-info" href="{{url('/inscripcion-actividad/'.$actividad->id.'/confirmacion-inscripcion-actividades')}}" title="Inscripcion" ><i class="glyphicon glyphicon-ok"></i></a>
+						        </td>
+						        @endif	
 							</tr>
 						@endforeach
 					</tbody>									
