@@ -82,14 +82,13 @@
 					</div>			   		
 		    	</div>	
 			</div>
-		  	<div class="form-group required">
+		  	<!-- <div class="form-group required">
 			   	<label for="contactoInput" class="col-sm-4 control-label">Socio</label>
 			  	<div class="col-sm-5">
 			   		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="contactoInput" name="nombre_contacto" placeholder="Socio" value="{{}}">
 			   	</div>
 			   	<a class="btn btn-info" name="buscarSocio" href="{!!URL::to('/reservar-ambiente/searchSocio')!!}"  title="Buscar" ><i name="buscarSocio" class="glyphicon glyphicon-search"></i></a>
-			    	<!-- deberia ir a una pantalla que liste todos los contactos posibles del Club  -->
-			</div>	  
+			</div> -->	  
 
 		  	<div class="form-group ">
 		    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
