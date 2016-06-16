@@ -283,6 +283,8 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 
 	//Inscribirse en Sorteo
 	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
+	Route::post('sorteo/inscripcion/store','SorteoController@inscripcionStore');
+	Route::get('sorteo/inscripcion/mis_sorteos','SorteoController@indexMisInscripciones');
 
 	//MANTENIMIENTO DE SORTEO
 	Route::get('sorteo/index','SorteoController@index');

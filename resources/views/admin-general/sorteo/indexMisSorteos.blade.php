@@ -23,15 +23,14 @@
 		<br/><br/>		
 			<div class="row">
 				<a class="btn btn-link text-left withoutpadding" href="/">INICIO <span class="glyphicon glyphicon-chevron-right"></span></a>
-				<label class="text-left withoutpadding">INSCRIPCION SORTEOS</button></label>
+				<a class="btn btn-link text-left withoutpadding" href="/">SORTEO <span class="glyphicon glyphicon-chevron-right"></span></a>
+				<label class="text-left withoutpadding">MIS SORTEOS</button></label>
 			</div>
 		<br/>
 	</div>
-	<form method="POST" action="/sorteo/inscripcion/store" class="form-horizontal form-border">
-				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	<div class="container">
 		<div class="col-sm-12 text-left lead">
-				<strong>SORTEOS DISPONIBLES</strong>
+				<strong>MIS SORTEOS</strong>
 		</div>		
 	</div>
 	<!-- Mensaje de éxito luego de registrar -->
@@ -49,7 +48,7 @@
 					<div class=""></div>
 					
 					<div class="btn-group ">
-						<a class="btn btn-info" href="{{url('/sorteo/inscripcion/mis_sorteos')}}" >	Mis Sorteos</a>	
+						<a class="btn btn-info" href="{{url('/sorteo/inscripcion')}}" >	Retroceder</a>	
 
 					</div>
 					
@@ -63,7 +62,7 @@
 					<th><div align=center>FECHA INICIO DE SORTEO</div></th>
 					<th><div align=center>FECHA FIN DE SORTEO</div></th>
 					<th><div align=center>DESCRIPCION</div></th>
-					<th><div align=center>INSCRIPCION</div></th>
+					<th><div align=center>ELIMINAR INSCRIPCION</div></th>
 				</thead>	
 				<tbody>													
 					@foreach($sorteos as $sorteo)	
@@ -73,21 +72,11 @@
 							<td>{{$sorteo->fecha_cerrado}}</td>	
 							<td>{{$sorteo->descripcion}}</td>
 							<td>{{ Form::checkbox('ch[]', $sorteo->id, false) }}</td>
-						</tr>					
+						</tr>
+					</form>
 					 @endforeach
 				</tbody>			
 			</table>						
-			<br><br>
-				<div class="btn-inline">
-					<div class="btn-group col-sm-7"></div>
-					
-					<div class="btn-group ">
-						<input class="btn btn-primary" type="submit" value="Inscribirse en Sorteos">
-					</div>
-				</div>
-				</div>
-				</div>
-				</form>
 		</div>	
 	</div>	
 

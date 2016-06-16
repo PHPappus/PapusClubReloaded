@@ -28,7 +28,7 @@ class AddFkToAmbientesorteoTable extends Migration
     {
         Schema::table('ambientessorteo', function (Blueprint $table) {
             $table->dropForeign('ambientessorteo_id_ambiente_foreign');
-            $table->dropForeign('ambientessorteo_id_foreign');
+            $table->dropForeign('ambientessorteo_id_foreign');  
         });
     }
 }

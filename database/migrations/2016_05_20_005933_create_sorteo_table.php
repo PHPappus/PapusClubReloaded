@@ -17,7 +17,7 @@ class CreateSorteoTable extends Migration
             $table->increments('id');
             $table->string('nombre_sorteo');
             $table->string('descripcion');
-            $table->integer('id_sede')->unsigned()->nullable();
+            $table->integer('id_sede');
             $table->integer('numero_bungalows');
             $table->date('fecha_abierto');
             $table->date('fecha_cerrado');            
