@@ -84,7 +84,7 @@
         </ul>
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <li><a href="{!!URL::to('/pagos-s')!!}" class="dropdown-toggle btn-lg" title="Consultar Cuotas" target="_self">Cuotas</a></li>
+            <li><a href="{!!URL::to('pagos/facturacion-socio/')!!}" class="dropdown-toggle btn-lg" title="Consultar Pagos" target="_self">Pagos</a></li>
           </li>
         </ul>
         <ul class="nav navbar-nav">

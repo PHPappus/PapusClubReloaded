@@ -83,6 +83,20 @@
 			    	</div>
 			  	</div>
 
+			  	<div class="form-group required">
+			    	<label for="tipoPagoInput" class="col-sm-4 control-label">Tipo de Pago</label>
+			    	<div class="col-sm-5">
+			    	
+			      		<select class="form-control" id="tipo_pago" name="tipo_pago" >
+						<option value="" selected >Seleccionar tipo...</option>
+						@foreach($tipo_pagos as $tipo_pago)							
+							<option value="{{$tipo_pago->valor}}" >{{$tipo_pago->valor}}</option>
+						@endforeach						
+						</select>						
+						
+			    	</div>
+			  	</div>		
+
 			   
 			  	
 			  	<!-- EL ESTADO SIEMPRE VA EN TRUE PARA EL REGISTRAR -->
@@ -100,7 +114,8 @@
 						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
-						<a href="/pagos/pago-seleccionar-socio" class="btn btn-info">Cancelar</a>
+						<!-- <a href="/pagos/pago-seleccionar-socio" class="btn btn-info">Cancelar</a> -->
+						<a href="{{url('/pagos/'.$facturacion->persona_id.'/selectSocio')}}/" class="btn btn-info">Cancelar</a>
 						<!-- DEBERIA REGRESAR A LA LISTA DE LAS FACTURAS DEL SOCIO - FALTA LINQUEAR ESO -->
 					</div>
 				</div>

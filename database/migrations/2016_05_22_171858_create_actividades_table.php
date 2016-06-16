@@ -22,6 +22,8 @@ class CreateActividadesTable extends Migration
             $table->string('descripcion');
             $table->integer('cupos_disponibles');
             $table->boolean('estado');
+            $table->date('a_realizarse_en');
+            $table->time('hora_inicio');
             $table->softDeletes();
             $table->timestamps();
         });

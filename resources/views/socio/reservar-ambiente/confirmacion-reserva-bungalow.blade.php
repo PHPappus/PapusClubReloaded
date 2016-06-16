@@ -82,13 +82,6 @@
 					</div>			   		
 		    	</div>	
 			</div>
-		  	<!-- <div class="form-group required">
-			   	<label for="contactoInput" class="col-sm-4 control-label">Socio</label>
-			  	<div class="col-sm-5">
-			   		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="contactoInput" name="nombre_contacto" placeholder="Socio" value="{{}}">
-			   	</div>
-			   	<a class="btn btn-info" name="buscarSocio" href="{!!URL::to('/reservar-ambiente/searchSocio')!!}"  title="Buscar" ><i name="buscarSocio" class="glyphicon glyphicon-search"></i></a>
-			</div> -->	  
 
 		  	<div class="form-group ">
 		    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
@@ -96,6 +89,18 @@
 		      		<input type="text" class="form-control" id="precioInput" onkeypress="return inputLimiter(event,'Numbers')" name="ubicacion" value="FALTA CALCULAR EL PRECIO" readonly>
 		    	</div>
 		  	</div>
+		  	
+		  	<div class="form-group required">
+			   	<label for="tipoComprobanteInput" class="col-sm-4 control-label">Tipo de Comprobante</label>
+			   	<div class="col-sm-5">
+			    	<select class="form-control" id="tipo_comprobante" name="tipo_comprobante">
+						<option value="-1" selected >Seleccionar tipo...</option>
+						@foreach($tipo_comprobantes as $tipo_comprobante)
+						<option value="{{$tipo_comprobante->valor}}" >{{$tipo_comprobante->valor}}</option>
+						@endforeach						
+					</select>						
+			    </div>
+			</div>	
 		  	
 		  	</br>
 		  	</br>

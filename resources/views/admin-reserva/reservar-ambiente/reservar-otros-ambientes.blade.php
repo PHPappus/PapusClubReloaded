@@ -47,7 +47,7 @@
 	<br/>
 
 	<div class="container">
-		<form method="POST" class="form-horizontal form-border" action="/reservar-ambiente/reservar-otros-ambientes/search"> <!-- FALTA CAMBIAR LA ACTION =D -->
+		<form method="POST" class="form-horizontal form-border" action="/reservar-ambiente/reservar-otros-ambientes/search-adminR"> 
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<!-- VALIDACION CON FE INICIO -->
 			<br/>

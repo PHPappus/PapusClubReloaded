@@ -100,14 +100,14 @@
 			    	<label for="fechaInicioInput" class="col-sm-4 control-label">Fecha Inicio(dd/mm/aaaa)</label>
 			    	<div class="col-sm-5">
 			      		<!-- <input type="date" class="form-control" id="fechaInicioInput" name="fecha"> -->
-			      		<input type="date" id="fechaInicioInput" name="a_realizarse_en" value="{{$reserva->fecha_inicio_reserva}}" readonly>
+			      		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="fechaInicioInput" name="a_realizarse_en" placeholder="Fecha Inicio" style="max-width: 250px">
 			    	</div>
 			  	</div>
 			 
 			  	<div class="form-group required">
 			    	<label for="horaInicioInput" class="col-sm-4 control-label">Hora Inicio(HH:mm:ss)</label>
 			    	<div class="col-sm-5">
-			      		<input type="time" id="horaInicioInput" name="hora" value="{{$reserva->hora_inicio_reserva}}" readonly>
+			      		<input type="time" class="form-control" id="horaInicioInput" name="hora">
 			    	</div>
 			  	</div>
 

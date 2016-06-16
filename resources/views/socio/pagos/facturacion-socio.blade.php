@@ -47,7 +47,13 @@
 						</tr>
 					</thead>
 					<tbody>
-						
+						@foreach($facturaciones as $facturacion)
+							<td> {{$facturacion->id}}</td>
+							<td> {{$facturacion->tipo_pago}}</td>
+							<td> {{$facturacion->total}}</td>
+							<td> {{$facturacion->descripcions}}</td>
+							<td> {{$facturacion->estado}} </td>
+						@endforeach						
 					</tbody>					
 												
 					
