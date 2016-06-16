@@ -271,6 +271,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'ActividadTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ActividadTableSeeder.php',
         'AddFkToActividadesTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_22_172234_add_fk_to_actividades_table.php',
         'AddFkToAmbientesTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_20_163117_add_fk_to_ambientes_table.php',
+        'AddFkToAmbientesorteoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_12_215558_add_fk_to_ambientesorteo_table.php',
         'AddFkToCarnet' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_163738_add_fk_to_carnet.php',
         'AddFkToCarnetxsocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_031359_add_fk_to_carnetxsocio_table.php',
         'AddFkToFacturacionTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_235523_add_fk_to_facturacion_table.php',
