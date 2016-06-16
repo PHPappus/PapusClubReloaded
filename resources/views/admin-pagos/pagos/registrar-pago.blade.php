@@ -28,7 +28,7 @@
 		</div>
 		<div class="container">
 			<!--@include('errors.503')-->		
-			<form method="POST" action="pagos/registrar-pago/edit" class="form-horizontal form-border">
+			<form method="POST" action="/pagos/registrar-pago/update/{{$facturacion->id}}" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<!-- VALIDACION CON FE INICIO -->
@@ -60,27 +60,26 @@
 			  	<div class="form-group required">
 			    	<label for="ambienteInput" class="col-sm-4 control-label">Monto</label>
 			    	<div class="col-sm-5">
-			    		<input type="text" class="form-control" id="ambienteInput" name="ambiente" value="250"   readonly>
-			      	</div>
-			      	<a class="btn btn-info" name="buscarAmbiente" href="{!!URL::to('/ambiente/search')!!}"  title="Buscar" ><i name="buscarAmbiente" class="glyphicon glyphicon-search"></i></a>
+			    		<input type="text" class="form-control" id="total" name="total" value="{{$facturacion->total}}"   readonly>
+			      	</div>			      	
 			  	</div>
 			  	<div class="form-group required">
 			    	<label for="tipoambienteInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="tipoambienteInput" name="tipoambiente" value="Deuda de Alquiler de Bungalow"   readonly>
+			      		<input type="text" class="form-control" id="descripcion" name="descripcion" value="{{$facturacion->descripcion}}"   readonly>
 			    	</div>
 			  	</div>
 			  	<div class="form-group required">
 			    	<label for="sedeInput" class="col-sm-4 control-label">N° Factura</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="sedeInput" name="sede" value="48265"   readonly>
+			      		<input type="text" class="form-control" id="id" name="id" value="{{$facturacion->id}}"   readonly>
 			    	</div>
 			  	</div>
 
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">N° Pago</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="nombreInput" name="nombre" placeholder="Código del pago realizado" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="numero_pago" name="numero_pago"  placeholder="Código del pago realizado" @if ($facturacion->numero_pago) value = "{{$facturacion->numero_pago}}" @endif >
 			    	</div>
 			  	</div>
 
@@ -98,7 +97,7 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-primary" type="btn btn-info" value="Confirmar">
+						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
 						<a href="/pagos/pago-seleccionar-socio" class="btn btn-info">Cancelar</a>

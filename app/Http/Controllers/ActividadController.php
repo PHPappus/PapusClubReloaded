@@ -10,6 +10,7 @@ use papusclub\Models\Actividad;
 use papusclub\Models\Configuracion;
 use papusclub\Models\TipoPersona;
 use papusclub\Models\TarifaActividad;
+use papusclub\Models\Reserva;
 use papusclub\Http\Requests\StoreActividadRequest;
 use papusclub\Http\Requests\StoreConfiguracionRequest;
 use papusclub\Http\Requests\EditActividadRequest;
@@ -25,12 +26,13 @@ class ActividadController extends Controller
     public function create()
     {
     	/*PAra crear la ACtividad , primero se debe buscar el Ambiente*/
-    	$ambientes = Ambiente::all();
+    	$reservas = Reserva::all(); 
         $tipoPersonas = TipoPersona::all();
         
         $values=Configuracion::where('grupo','=','3')->get();
 
-        return view('admin-registros.ambiente.searchAmbiente', compact('ambientes', 'values', 'tipoPersonas'));
+        //debe mostrar todas las reservas realizadas
+        return view('admin-registros.actividad.listaReservas', compact('reservas', 'values', 'tipoPersonas'));
     	
     }
     public function store(StoreActividadRequest $request)
@@ -40,9 +42,10 @@ class ActividadController extends Controller
         $carbon=new Carbon(); 
         $actividad->nombre= $input['nombre'];
         //para agregar la actividades al ambiente
-        if($request['ambienteSelec'] != -1){
-            $parent = Ambiente::find($input['ambienteSelec']);
-            $actividad->ambiente_id = $parent->id;
+        if($request['reservaSelec'] != -1){
+            $parent = Reserva::find($input['reservaSelec']);
+            $actividad->reserva_id=$parent->id;
+            $actividad->ambiente_id = $parent->ambiente->id;
         }
         //
         $actividad->capacidad_maxima= $input['capacidad_maxima'];
@@ -51,13 +54,7 @@ class ActividadController extends Controller
         $actividad->descripcion= $input['descripcion'];
        // $actividad->cant_ambientes=$input['cant_ambientes'];
         
-        if (empty($input['a_realizarse_en'])) {
-                    $actividad->a_realizarse_en="";
-                }else{
-                    $a_realizarse_en = str_replace('/', '-', $input['a_realizarse_en']);      
-                    $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
-                    $actividad->hora_inicio=$carbon->createFromFormat('H:i', $input['hora'])->toTimeString();
-                }
+       
 
         $actividad->estado=false; 
         $actividad->save();
@@ -85,7 +82,7 @@ class ActividadController extends Controller
                
         $configuracion->save();      
         
-        return redirect('ambiente/'.$id.'/select');
+        return redirect('actividad/'.$id.'/select');
     }
 
     //Muestra el formulario para poder modificar una actividad
@@ -105,13 +102,7 @@ class ActividadController extends Controller
         $actividad->capacidad_maxima= $input['capacidad_maxima'];
         $actividad->tipo_actividad= $input['tipo_actividad'];
         $actividad->descripcion= $input['descripcion'];
-        if (empty($input['a_realizarse_en'])) {
-                    $actividad->a_realizarse_en="";
-                }else{
-                    $a_realizarse_en = str_replace('/', '-', $input['a_realizarse_en']);      
-                    $actividad->a_realizarse_en=$carbon->createFromFormat('Y-m-d', $a_realizarse_en)->toDateString();
-                    $actividad->hora_inicio=$carbon->createFromFormat('H:i', $input['hora'])->toTimeString();
-        }
+       
         $actividad->update();
 
         $tarifasAnt = TarifaActividad::where('actividad_id', '=', $id)->get();
@@ -153,4 +144,21 @@ class ActividadController extends Controller
         return back();
 
     }
+   
+     public function select($id)//cuando se selecciona la reserva
+    {
+        $reserva = Reserva::find($id);
+        $values=Configuracion::where('grupo','=','3')->get();
+        $tipoPersonas = TipoPersona::all();
+        
+        return view('admin-registros.actividad.newActividad', compact('reserva','values','tipoPersonas'));
+    }
+     public function searchReservas()
+    {
+        $ambientes = Ambiente::all();
+
+        $tipoPersonas = TipoPersona::all();
+        return view('admin-registros.actividad.listaReservas', compact('ambientes','tipoPersonas'));
+    }
+    
 }
