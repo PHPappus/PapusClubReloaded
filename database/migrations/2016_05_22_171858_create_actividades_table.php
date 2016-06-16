@@ -15,14 +15,13 @@ class CreateActividadesTable extends Migration
         Schema::create('actividad', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('ambiente_id')->unsigned()->nullable();
+            $table->integer('reserva_id')->unsigned()->nullable();
             $table->string('nombre');
             $table->string('tipo_actividad');
             $table->string('capacidad_maxima');
             $table->string('descripcion');
             $table->integer('cupos_disponibles');
             $table->boolean('estado');
-            $table->date('a_realizarse_en');
-            $table->time('hora_inicio');
             $table->softDeletes();
             $table->timestamps();
         });

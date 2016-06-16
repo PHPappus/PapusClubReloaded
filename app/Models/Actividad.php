@@ -14,13 +14,14 @@ class Actividad extends Model
     'tipo_actividad', 
     'capacidad_maxima', 
     'descripcion',
-    'a_realizarse_en',
-    'hora_inicio',
     'estado',
     ];
     protected $dates = ['deleted_at'];
     //funciones para las relaciones entre tablas
-    
+    public function reserva(){
+        return $this->belongsTo('papusclub\Models\Reserva');
+        
+    }
     public function ambiente(){
         return $this->belongsTo('papusclub\Models\Ambiente');
         

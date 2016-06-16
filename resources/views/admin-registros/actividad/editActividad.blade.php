@@ -82,7 +82,7 @@
 
 				    	<label for="fechaInicioInput" class="col-sm-4 control-label">Fecha Inicio</label>
 				    	<div class="col-sm-5">
-				      		<input type="date" id="fechaInicioInput" name="a_realizarse_en" value="{{$actividad->a_realizarse_en}}">
+				      		<input type="date" id="fechaInicioInput" name="a_realizarse_en" value="{{$actividad->reserva->fecha_inicio_reserva}}" readonly>
 				    	</div>
 				  	
 				 </div>
@@ -90,7 +90,7 @@
 				<div class="form-group required">
 				    	<label for="horaInicioInput" class="col-sm-4 control-label">Hora Inicio</label>
 				    	<div class="col-sm-5">
-				      		<input type="time" id="horaInicioInput" name="hora" value="{{$actividad->hora_inicio}}">
+				      		<input type="time" id="horaInicioInput" name="hora" value="{{$actividad->reserva->hora_inicio_reserva}}" readonly>
 				    	</div>
 				  	
 				</div>

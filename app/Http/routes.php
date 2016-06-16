@@ -97,6 +97,8 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::get('actividad/{id}/delete', 'ActividadController@destroy');
 	Route::get('actividad/{id}/show', 'ActividadController@show');
 	Route::post('actividad/new/{id}/tipoactividad', 'ActividadController@storeTipoActividad');
+	Route::get('actividad/searchReservas', 'ActividadController@searchReservas');/*lista todas las reservas*/	
+	Route::get('actividad/{id}/select', 'ActividadController@select');/*lleva a la pantalla principal de registrar*/
 
 	//MANTENIMIENTO DE AMBIENTES
 	Route::get('ambiente/index', 'AmbienteController@index');

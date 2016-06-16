@@ -20,7 +20,7 @@
 		<div class="row">
 			<div class="col-sm-12 text-center">
 				<br/><br/>
-				<p class="lead"><strong>AMBIENTES</strong></p>
+				<p class="lead"><strong>RESERVAS</strong></p>
 				<br/>
 			</div>
 			
@@ -30,30 +30,29 @@
 		</br>
 		</br>
 
+
 		
 		<div class="container">
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active">
 						<tr>
-							<th><DIV ALIGN=center>SEDE</th>
-							<th><DIV ALIGN=center>NOMBRE</th>
-							<th><DIV ALIGN=center>TIPO</th>
-							<th><DIV ALIGN=center>CAPACIDAD</th>
+							<th><DIV ALIGN=center>ID</th>
+							<th><DIV ALIGN=center>FECHA INICIO</th>
+							<th><DIV ALIGN=center>FECHA FIN</th>
+							<th><DIV ALIGN=center>HORA INICIO</th>
 							
 							<th><DIV ALIGN=center>SELECCIONAR</th>
 						</tr>
 					</thead>
 					<tbody>
-							@foreach($ambientes as $ambiente)						
+							@foreach($reservas as $reserva)						
 						    	<tr>
-						    		<td>{{ $ambiente->sede->nombre }}</td>
-									<td>{{ $ambiente->nombre }}</td>
-									<td>{{ $ambiente->tipo_ambiente }}</td>
-			 						<td>{{ $ambiente->capacidad_actual }}</td>
-									<td><a class="btn btn-info" href="{{url('/ambiente/'.$ambiente->id.'/select')}}"  title="OK" ><i class="glyphicon glyphicon-ok"></i></a>
+						    		<td>{{ $reserva->id }}</td>
+									<td>{{ $reserva->fecha_inicio_reserva }}</td>
+									<td>{{ $reserva->fecha_fin_reserva }}</td>
+			 						<td>{{ $reserva->hora_inicio_reserva }}</td>
+									<td><a class="btn btn-info" href="{{url('/actividad/'.$reserva->id.'/select')}}" ><i class="glyphicon glyphicon-ok"></i></a>
 							        </td>
-							        							            
-
 							            
 								</tr>
 							@endforeach
