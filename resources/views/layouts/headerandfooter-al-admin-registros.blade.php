@@ -1,3 +1,27 @@
+<script>
+		function inputLimiter(e,allow) {
+		    var AllowableCharacters = '';
+
+		    if (allow == 'Letters'){AllowableCharacters=' ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz';}
+		    if (allow == 'Numbers'){AllowableCharacters='1234567890';}
+		    if (allow == 'NameCharacters'){AllowableCharacters=' ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz-.\'._@';}
+		    if (allow == 'NameCharactersAndNumbers'){AllowableCharacters='1234567890 ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz-\'_.@';}
+		    if (allow == 'DoubleFormat'){AllowableCharacters='1234567890,.';}
+		    if (allow == 'Nulo'){AllowableCharacters='';} //sirve para colocarle a las fechas deben ser obligatoriamente ingresadas por el picker
+
+		    var k = document.all?parseInt(e.keyCode): parseInt(e.which);
+		    if (k!=13 && k!=8 && k!=0){
+		        if ((e.ctrlKey==false) && (e.altKey==false)) {
+		        return (AllowableCharacters.indexOf(String.fromCharCode(k))!=-1);
+		        } else {
+		        return true;
+		        }
+		    } else {
+		        return true;
+		    }
+		}
+  	</script>
+  	
 <!--Cabecera- Se separará espacio para el input de busqueda antes de la cabecera de menu-->
 <header class="header">
 		<div class="content clearfix">
@@ -84,17 +108,10 @@
 							</ul>					
 						</li>
 						<!-- Opción TRAMITES -->
-						<li><a href="#">AMBIENTE<span class="despliegue">▼</span></a>
-							<ul>
-								<li><a href="#" title="ir_tramites" target="_self">VER TRÁMITES<span class="despliegue">▼</span></a>
-									<ul>
-										<!-- <li><a href="#" title="Evento 1-1" target="_self">Evento 1.1</a></li> -->
-										<!-- <li><a href="#" title="Evento 1-2" target="_self">Evento 1.2</a></li> -->
-										<!-- <li><a href="#" title="Evento 1-3" target="_self">Evento 1.3</a></li> -->
-									</ul>
-								</li>
-							</ul>
+						<li><a href="{!!URL::to('/ambiente/index')!!}">AMBIENTE<span class="despliegue"></span></a>
+							
 						</li>
+
 						<!-- Opción MANTENIMIENTO -->
 						<li><a href="#">BUNGALOW<!-- <span class="despliegue">▼</span> --></a>
 							<ul>
@@ -103,16 +120,9 @@
 							</ul>
 						</li>
 												<!-- Opción Eventos -->
-						<li><a href="#">ACTIVIDAD<!-- <span class="despliegue">▼</span> --></a>
-							<!-- <ul>
-								<li><a href="#" title="Evento 1" target="_self">VER DETALLES<span class="despliegue">▼</span></a>
-									<ul>
-										<li><a href="#" title="Evento 1-1" target="_self">Evento 1.1</a></li>
-										<li><a href="#" title="Evento 1-2" target="_self">Evento 1.2</a></li>
-									</ul>
-								</li>
-							</ul> -->
-						</li>	
+						<li><a href="{!!URL::to('/actividad/index')!!}">ACTIVIDAD<span class="despliegue"></span></a>
+							
+						</li>
 					</ul>
 				</nav>
 				<nav class="menu" id="menu2">

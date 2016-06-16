@@ -24,7 +24,7 @@ class StoreConfiguracionRequest extends Request
     public function rules()
     {
         return [
-            'valor'            =>  'required|string',
+            'valor'            =>  'required|string|unique:configuracion,valor,NULL',
             'grupo'            =>  'integer',            
             'descripcion'      =>  'max:100|string'                     
         ];

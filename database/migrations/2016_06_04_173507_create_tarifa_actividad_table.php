@@ -16,7 +16,6 @@ class CreateTarifaActividadTable extends Migration
             $table->integer('actividad_id')->unsigned()->nullable();
             $table->integer('tipo_persona_id')->unsigned()->nullable();
             $table->float('precio');
-            $table->string('estado');
             $table->softDeletes();
             $table->timestamps();
         });

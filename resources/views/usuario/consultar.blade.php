@@ -12,12 +12,13 @@
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css">
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin-registros')
+@extends('layouts.headerandfooter-al-admin-persona')
 @section('content')
 
 	<div class="content" style="max-width: 100%;">
 		<!-- Utilizando Bootstrap -->
 		@include('alerts.success')
+		@include('alerts.errors')
 		<br/><br/>
 		<div class="container">
 			<div class="row">
@@ -73,7 +74,7 @@
 	<script src="js/MisScripts.js"></script>
 	<!-- {!!Html::script('js/jquery.dataTables.min.js')!!} -->
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
-	<<!-- script>
+	<!-- <script>
 		function registrarNuevoUsuario(){
 			location.href="usuario/create";
 		}

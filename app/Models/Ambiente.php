@@ -12,7 +12,7 @@ class Ambiente extends Model
     protected $fillable = 
     ['nombre', 
     'tipo_ambiente', 
-    'capacidad_actual', 
+    'capacidad_actual',     
     'ubicacion'
     ];
     protected $dates = ['deleted_at'];
@@ -33,5 +33,10 @@ class Ambiente extends Model
     
     public function talleres(){
         return $this->hasMany(Taller::class);
+    }
+
+    public function tarifas()
+    {
+        return $this->hasMany('papusclub\Models\TarifaAmbientexTipoPersona');
     }
 }
