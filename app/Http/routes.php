@@ -65,7 +65,8 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 
 
 	//RESERVA DE AMBIENTES
-	Route::get('reservar-ambiente/reservar-bungalow', 'ReservarAmbienteController@reservarBungalow'); // REservar Bungalows
+	Route::get('reservar-ambiente/reservar-bungalow', 'ReservarAmbienteController@reservarBungalow');
+	Route::post('reservar-ambiente/reservar-bungalow/search', 'ReservarAmbienteController@reservarBungalowFiltrados'); 
 	Route::get('reservar-ambiente/reservar-otros-ambientes', 'ReservarAmbienteController@reservarOtrosAmbientes'); // REservar otros ambientes distinto de bungalows
 	Route::post('reservar-ambiente/reservar-otros-ambientes/search','ReservarAmbienteController@reservarOtrosAmbientesFiltrados');
 	Route::get('reservar-ambiente/{id}/new-reserva-bungalow', 'ReservarAmbienteController@createBungalow');//
@@ -324,8 +325,11 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 
 	//RESERVA DE AMBIENTES
 	Route::get('reservar-ambiente/reservar-bungalow-adminR', 'ReservarAmbienteController@reservarBungalowAdminR'); // REservar Bungalows
+	Route::post('reservar-ambiente/reservar-bungalow-adminR/search-adminR', 'ReservarAmbienteController@reservarBungalowAdminFiltradoR');
+
 	Route::get('reservar-ambiente/reservar-otros-ambientes-adminR', 'ReservarAmbienteController@reservarOtrosAmbientesAdminR'); // REservar otros ambientes distinto de bungalows
 	Route::post('reservar-ambiente/reservar-otros-ambientes/search-adminR','ReservarAmbienteController@reservarOtrosAmbientesFiltradosAdminR');
+	
 	Route::get('reservar-ambiente/{id}/new-reserva-bungalow-adminR', 'ReservarAmbienteController@createBungalowAdminR');//
 	Route::post('reservar-ambiente/{id}/confirmacion-reserva-bungalow-adminR', 'ReservarAmbienteController@storeBungalowAdminR');//confirmacion para la reserva del bungalos
 	Route::get('reservar-ambiente/{id}/new-reserva-otro-ambiente-adminR', 'ReservarAmbienteController@createOtroTipoAmbienteAdminR');//

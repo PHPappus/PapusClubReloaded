@@ -234,6 +234,34 @@ class ReservarAmbienteController extends Controller
         $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();  
         return view('admin-reserva.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes'));
     }
+    public function reservarBungalowFiltradosR(Request $request){
+
+        $sedes = Sede::all();
+        $input = $request->all();
+        $carbon=new Carbon();
+        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();
+        $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
+        $fechaIni=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+        $a_realizarse_en = str_replace('/', '-', $input['fecha_fin']);
+        $fechaFin=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+
+        $reservas_caso_1=Reserva::whereBetween('fecha_inicio_reserva',[$fechaIni,$fechaFin])->get();
+        $reservas_caso_2=Reserva::whereBetween('fecha_fin_reserva',[$fechaIni,$fechaFin])->get();
+
+        foreach ($ambientes as $i=> $ambiente) {
+            foreach ($reservas_caso_1 as  $reserva) {
+                if($reserva->ambiente_id==$ambiente->id || $ambiente->capacidad_actual<$input['capacidad_actual'] )  unset($ambientes[$i]);
+                
+            }
+        }
+        foreach ($ambientes as $i => $ambiente) {
+             foreach ($reservas_caso_2 as  $reserva) {
+                if($reserva->ambiente_id==$ambiente->id ||$ambiente->capacidad_actual<$input['capacidad_actual']) unset($ambientes[$i]);
+                
+            }
+        }
+        return view('admin-reserva.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes'));
+    }
      //Muestra la pantalla para realizar la reserva de un ambiente que no sea bungalow
     public function reservarOtrosAmbientesAdminR()
     {
@@ -351,7 +379,7 @@ class ReservarAmbienteController extends Controller
         $ambiente = Ambiente::findOrFail($id);
         return view('admin-reserva.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente'));
     }
-
+    
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
     public function storeOtroTipoAmbienteAdminR($id, Request $request)
     {
