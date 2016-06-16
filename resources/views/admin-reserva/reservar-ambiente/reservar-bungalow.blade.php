@@ -45,7 +45,7 @@
 	<br/>
 
 	<div class="container">
-		<form method="POST" class="form-horizontal form-border" action="/reservar-ambiente/reservar-otros-ambientes/search-adminR"> 
+		<form method="POST" class="form-horizontal form-border" action="/reservar-ambiente/reservar-bungalow-adminR/search-adminR"> 
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<br/>
 			<div class="form-group">
