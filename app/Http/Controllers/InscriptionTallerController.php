@@ -12,6 +12,7 @@ use Session;
 use Redirect;
 
 use papusclub\Models\Taller;
+use papusclub\Models\Sede;
 use papusclub\User;
 use Auth;
 use Hash;
@@ -27,7 +28,8 @@ class InscriptionTallerController extends Controller
     {
         $talleres       = \papusclub\Models\Taller::All();
         $talleres_user  = Auth::user()->talleres;
-        return view('socio.talleres.index',compact('talleres','talleres_user'));
+        $sedes          = Sede::all();
+        return view('socio.talleres.index',compact('sedes','talleres','talleres_user'));
     }
 
     /**

@@ -37,7 +37,7 @@
 	<br/>
 
 	<div class="container">
-		<form method="POST" action="/inscripcion-actividad/inscripcion-actividades" class="form-horizontal form-border"> <!-- FALTA CAMBIAR LA ACTION =D -->
+		<form method="POST" action="/inscripcion-actividad/inscripcion-actividades" class="form-horizontal form-border"> 
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 			<br/>
@@ -64,9 +64,9 @@
 			 	<label for="fechaInput" class="col-sm-4 control-label">FECHA (dd/mm/aaaa) </label>
 			    <div class="col-sm-5">
 				  	<div class="input-group">
-			   		<input class="datepicker"  type="text"  id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" style="max-width: 250px">
+			   		<input class="datepicker form-control"  type="text"  id="fecha_inicio" name="fecha_inicio" placeholder="Fecha Inicio" value="{{old('fecha_inicio')}}" style="max-width: 250px" >
 			   		<span class="input-group-addon">-</span>
-			   		<input class="datepicker" type="text" id="dpd2" name="fecha_fin" placeholder="Fecha Fin" style="max-width: 250px">
+			   		<input class="datepicker form-control" type="text" id="fecha_fin" name="fecha_fin" placeholder="Fecha Fin" value="{{old('fecha_fin')}}" style="max-width: 250px">
 
 			   	 	</div>
 		    	</div>	
@@ -94,10 +94,14 @@
 		</form>
 	</div>
 	</div>
-	<br/>
-	<br/>
-
-	<br/>
+	<br/><br/><br/>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 text-center">
+				<p class="lead"><strong>A C T I V I D A D E S &nbsp;&nbsp; D I S P O N I B L E S</strong></p>
+			</div>
+		</div>
+	</div>
 	<div class="container">
 		<div class="form-group">
 				<div class="text-right">
@@ -130,11 +134,16 @@
 		 						<td>{{ $actividad->a_realizarse_en}}</td>
 		 						<td>{{ $actividad->hora_inicio}}</td>
 		 						<td>Nuevos Soles</td>
-		 						@if((count($actividades_persona->where('id',$actividad->id))!=0)||($actividad->cupos_disponibles<=0))
+		 						@if((count($actividades_persona->where('id',$actividad->id))!=0))
 		 						<td>Inscrito</td>
 								<td>
 						        	<a class="btn btn-info" title="Inscripcion" disabled><i class="glyphicon glyphicon-ok"></i></a>
-						        </td>				
+						        </td>	
+						        @elseif($actividad->cupos_disponibles<=0)
+						        <td>No hay cupos disponibles</td>	
+						        <td>
+						        	<a class="btn btn-info" title="Inscripcion" disabled><i class="glyphicon glyphicon-ok"></i></a>
+						        </td>
 						        @else
 						        <td>No Inscrito</td>
 						        <td>
@@ -145,6 +154,17 @@
 						@endforeach
 					</tbody>									
 			</table>	
+	</div>
+	<br/>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6 text-right">
+					<a href="{!!URL::to('/inscripcion-actividad/mis-inscripciones')!!}" title="Ver mis inscripciones" class="btn btn-lg btn-primary">Mis Inscripciones</a>		
+				</div>
+			<div class="col-sm-6 text-left">
+				<a href="{{url('/socio')}}" class="btn btn-lg btn-primary" title="Regresar a página de inicio">Regresar</a>			
+			</div>
+		</div>
 	</div>
 <br/>
 <br/>
