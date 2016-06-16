@@ -74,6 +74,10 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('reservar-ambiente/{id}/new-reserva-otro-ambiente', 'ReservarAmbienteController@createOtroTipoAmbiente');//
 	Route::post('reservar-ambiente/{id}/confirmacion-reserva-otro-ambiente', 'ReservarAmbienteController@storeOtroTipoAmbiente');//confirmacion para la reserva de otros ambientes distintos de bungalows
 	Route::get('reservar-ambiente/searchSocio', 'SocioController@searchSocio');
+
+	//PAGOS (deudas del socio)
+	Route::get('pagos/facturacion-socio/','PagosController@listarFacturacionSocio');//se lista a los socios
+	
 	
 });
 
