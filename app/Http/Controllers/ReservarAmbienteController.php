@@ -10,6 +10,7 @@ use papusclub\Models\Sede;
 use papusclub\Models\Persona;
 use papusclub\User;
 use papusclub\Models\Reserva;
+use papusclub\Models\Configuracion;
 use papusclub\Http\Requests\StoreReservaAmbiente;
 use Auth;
 use Session;
@@ -111,7 +112,8 @@ class ReservarAmbienteController extends Controller
     public function createBungalow($id)
     {   
         $ambiente = Ambiente::findOrFail($id);
-        return view('socio.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente'));
+        $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
+        return view('socio.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes'));
     }
 
     //Se muestra el Bungalow a reservar y espera su confirmacion para la reserva
@@ -168,7 +170,8 @@ class ReservarAmbienteController extends Controller
     public function createOtroTipoAmbiente($id)
     {   
         $ambiente = Ambiente::findOrFail($id);
-        return view('socio.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente'));
+        $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
+        return view('socio.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente','tipo_comprobantes'));
     }
 
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
@@ -312,7 +315,8 @@ class ReservarAmbienteController extends Controller
     public function createBungalowAdminR($id)
     {   
         $ambiente = Ambiente::findOrFail($id);
-        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente'));
+        $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
+        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes'));
     }
 
     //Se muestra el Bungalow a reservar y espera su confirmacion para la reserva
@@ -369,7 +373,8 @@ class ReservarAmbienteController extends Controller
     public function createOtroTipoAmbienteAdminR($id)
     {   
         $ambiente = Ambiente::findOrFail($id);
-        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente'));
+        $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
+        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente','tipo_comprobantes'));
     }
     
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
