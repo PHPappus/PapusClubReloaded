@@ -3872,3 +3872,18 @@ Stack trace:
 #68 C:\xampp\htdocs\JEFV\PapusClubReloaded\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #69 C:\xampp\htdocs\JEFV\PapusClubReloaded\server.php(21): require_once('C:\\xampp\\htdocs...')
 #70 {main}  
+[2016-06-16 16:04:16] local.ERROR: Symfony\Component\Console\Exception\CommandNotFoundException: Command "route:cleear" is not defined.
+
+Did you mean one of these?
+    route:clear
+    cache:clear
+    config:clear
+    view:clear
+    route:cache
+    route:list in C:\xampp\htdocs\JEFV\PapusClubReloaded_contacto\PapusClubReloaded\vendor\symfony\console\Application.php:512
+Stack trace:
+#0 C:\xampp\htdocs\JEFV\PapusClubReloaded_contacto\PapusClubReloaded\vendor\symfony\console\Application.php(183): Symfony\Component\Console\Application->find('route:cleear')
+#1 C:\xampp\htdocs\JEFV\PapusClubReloaded_contacto\PapusClubReloaded\vendor\symfony\console\Application.php(117): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#2 C:\xampp\htdocs\JEFV\PapusClubReloaded_contacto\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 C:\xampp\htdocs\JEFV\PapusClubReloaded_contacto\PapusClubReloaded\artisan(29): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 {main}  

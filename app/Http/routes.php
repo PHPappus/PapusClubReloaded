@@ -232,12 +232,12 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	});
 	Route::get('sedes/index', 'SedesController@index');
 	Route::get('sedes/new', 'SedesController@create');
+	Route::get('sedes/contactos', 'SedesController@contactosSede');
 	Route::post('sedes/new/sede', 'SedesController@store');
 	Route::get('sedes/{id}', 'SedesController@edit');
 	Route::post('sedes/{id}/edit', 'SedesController@update');
 	Route::get('sedes/{id}/delete', 'SedesController@destroy');
 	Route::get('sedes/{id}/show', 'SedesController@show');
-	Route::get('sedes/listaContactos', 'SedesController@listaContactos');
 	
 
 

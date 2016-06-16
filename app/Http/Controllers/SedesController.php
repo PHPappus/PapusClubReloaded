@@ -12,6 +12,8 @@ use papusclub\Http\Requests\EditSedeRequest;
 use papusclub\Models\Departamento;
 use papusclub\Models\Provincia;
 use papusclub\Models\Distrito;
+use papusclub\Models\Persona;
+use papusclub\Models\Trabajador;
 
 class SedesController extends Controller
 {
@@ -20,10 +22,6 @@ class SedesController extends Controller
     {
         $sedes = Sede::all();
         return view('admin-general.sede.index', compact('sedes'));
-    }
-    public function listaContactos()
-    {        
-        return view('admin-general.sede.lista-de-contactos');
     }
     //Muestra el formulario para poder registrar una nueva sede en BD
     public function create()
@@ -34,7 +32,15 @@ class SedesController extends Controller
         $departamentos=Departamento::select('id','nombre')->get();
         return view('admin-general.sede.newSede',compact('departamentos'));
     }
-
+    public function contactosSede()
+    {
+        //$mensaje = null;
+        /*$departamentos=Departamento::lists('nombre','id');
+        */
+        $departamentos=Departamento::select('id','nombre')->get();
+        $personas=Persona::where('id_tipo_persona','=','1')->get();
+        return view('admin-general.sede.lista-de-contactos',compact('departamentos','personas'));
+    }
     //Se almacena la nueva sede que se ha registrado en la BD
     public function store(StoreSedeRequest $request)
     {
