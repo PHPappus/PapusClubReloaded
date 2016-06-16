@@ -48,7 +48,7 @@
 		  		</div>
 			</div>
 			<br/>
-			<div class="form-group required ">
+			<div class="form-group ">
 			   	<label for="sedeInput" class="col-sm-4 control-label">SEDE</label>	
 				<div class="col-sm-5">
 				  	<select class="form-control" name="sedeSelec" style="max-width: 170px">
@@ -59,7 +59,7 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group required">
+			<div class="form-group">
 			 	<label for="fechaInput" class="col-sm-4 control-label">FECHA (dd/mm/aaaa) </label>
 			    <div class="col-sm-5">
 				  	<div class="input-group">
@@ -70,7 +70,7 @@
 			   	 	</div>
 		    	</div>	
 			</div>
-			<div class="form-group required">
+			<div class="form-group">
 			 	<label for="horaInput" class="col-sm-4 control-label">Hora (hh-mm) </label>
 			    <div class="col-sm-5">
 				   	<div class="input-group">
@@ -132,7 +132,7 @@
 		 						@if((count($actividades_persona->where('id',$actividad->id))!=0)||($actividad->cupos_disponibles<=0))
 		 						<td>Inscrito</td>
 								<td>
-						        	<a class="btn btn-info" href="#" title="Inscripcion" disabled><i class="glyphicon glyphicon-ok"></i></a>
+						        	<a class="btn btn-info" title="Inscripcion" disabled><i class="glyphicon glyphicon-ok"></i></a>
 						        </td>				
 						        @else
 						        <td>No Inscrito</td>
