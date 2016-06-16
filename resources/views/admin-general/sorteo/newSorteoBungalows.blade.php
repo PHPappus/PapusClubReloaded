@@ -75,7 +75,10 @@
 						<input class="btn btn-primary" type="submit" value="Continuar">
 					</div>
 					<div class="btn-group">
-						 <a class="btn btn-info"  title="Cancelar" data-href="{{url('/sorteo/'.$sorteo->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar">Cancelar</a>   
+						 <a class="btn btn-info"  title="Atras" href="{{url('/sorteo/'.$sorteo->id.'/atras')}}">Atras</a>   
+					</div>
+					<div class="btn-group">
+						 <a class="btn btn-info"  title="Cancelar" data-href="{{url('/sorteo/'.$sorteo->id.'/nuke')}}" data-toggle="modal" data-target="#modalEliminar">Cancelar</a>   
 					</div>
 				</div>
 				<br><br>

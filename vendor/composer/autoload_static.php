@@ -91,9 +91,9 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
     public static $prefixDirsPsr4 = array (
         'phpDocumentor\\Reflection\\' => 
         array (
-            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'papusclub\\' => 
         array (
@@ -294,6 +294,8 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'AddFkToReservasTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_02_161139_add_fk_to_reservas_table.php',
         'AddFkToReservaxactividadTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_203308_add_fk_to_reservaxactividad_table.php',
         'AddFkToSocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_29_004547_add_fk_to_socio_table.php',
+        'AddFkToSocioxsorteoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_15_022637_add_fk_to_socioxsorteo_table.php',
+        'AddFkToSorteoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_12_214455_add_fk_to_sorteo_table.php',
         'AddFkToTallerTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_025932_add_fk_to_taller_table.php',
         'AddFkToTallerUserTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_081850_add_fk_to_taller_user_table.php',
         'AddFkToTarifaActividadTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_203241_add_fk_to_tarifa_actividad_table.php',
@@ -348,6 +350,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'CreateSocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_29_003232_create_socio_table.php',
         'CreateSocioxconcursoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_151157_create_socioxconcurso_table.php',
         'CreateSorteoTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_20_005933_create_sorteo_table.php',
+        'CreateTableSocioxsorteoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_15_021841_create_table_socioxsorteo_table.php',
         'CreateTableTarifaFamiliar' => __DIR__ . '/../..' . '/database/migrations/2016_06_12_075912_create_table_tarifa_familiar.php',
         'CreateTableTipoFamilia' => __DIR__ . '/../..' . '/database/migrations/2016_06_12_074933_create_table_tipo_familia.php',
         'CreateTallerTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_23_000724_create_taller_table.php',
@@ -840,6 +843,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'PrecioProductoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PrecioProductoTableSeeder.php',
         'ProductoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductoTableSeeder.php',
         'ProductoxFacturacionTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductoxFacturacionTableSeeder.php',
+        'PromocionTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PromocionTableSeeder.php',
         'ProveedorTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProveedorTableSeeder.php',
         'ProvinciaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProvinciaTableSeeder.php',
         'ReservasTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ReservasTableSeeder.php',
@@ -882,6 +886,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'SedeTableSeeder' => __DIR__ . '/../..' . '/database/seeds/SedeTableSeeder.php',
         'SocioTableSeeder' => __DIR__ . '/../..' . '/database/seeds/SocioTableSeeder.php',
         'SorteoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/SorteoTableSeeder.php',
+        'TarifaAmbientexTipoPersonaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifaAmbientexTipoPersonaTableSeeder.php',
         'TarifaMembresiaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifaMembresiaTableSeeder.php',
         'TarifarioTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifarioTableSeeder.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',

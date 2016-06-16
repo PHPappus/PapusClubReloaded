@@ -20,7 +20,7 @@
 	
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-registros')
 @section('content')
 
 <!---Cuerpo -->
@@ -83,12 +83,7 @@
 		      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="capacidadInput" name="capacidad_actual" value="{{$ambiente->capacidad_actual}}" >
 		    	</div>
 		  	</div>	  	
-		  	<!-- <div class="form-group ">
-		    	<label for="capacidadDisponibleInput" class="col-sm-4 control-label">CAPACIDAD DISPONIBLE</label>
-		    	<div class="col-sm-5">
-		      		<input type="number" class="form-control" id="capacidadDisponibleInput" name="capacidad_disponible" placeholder="Capacidad Disponible" readonly>
-		    	</div>
-		  	</div> -->
+		  	
 		  	<div class="form-group required ">
 		    	<label for="ubicacionInput" class="col-sm-4 control-label">Ubicación</label>
 		    	<div class="col-sm-5">
@@ -97,32 +92,39 @@
 		  	</div>
 
 		  	<!-- INICIO  PRECIO POR TIPO DE PERSONA -->
-
 			  	<br/>
-			<div class="form-group "> 
-				<label for="precioTipo1" class="col-sm-4 control-label" width: 100px >Precios </label>
-			</div>
-			<div class="form-group required">
-			   	<label for="precioTipo1" class="col-sm-4 control-label">Trabajador</label>
-			   	<div class="col-sm-5">
-			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo1" name="precioTipo1" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" >
-			   	</div>
-			</div>	
-			<div class="form-group required">
-			   	<label for="precioTipo2" class="col-sm-4 control-label">Postulante</label>
-			   	<div class="col-sm-5">
-					<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo2" name="precioTipo2" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" >
-			   	</div>
-			</div>	
-			<div class="form-group required">
-			   	<label for="precioTipo3" class="col-sm-4 control-label">Socio</label>
-			   	<div class="col-sm-5">
-			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="precioTipo3" name="precioTipo3" placeholder="Precio (S/.)" value="{{old('capacidad_actual')}}" >
-			   	</div>
-			</div>	
-			  	
-			  	<!-- FIN     PRECIO POR TIPO DE PERSONA -->
+			  	<br/>
+			  	<style>  				
+  				#myTable {
+    					    margin: 0 auto; 
+    			}			
+				</style>
+				<div class="container" style="width: 600px; margin-left: auto; margin-right: auto"  >
+				<table class="table table-bordered" >
+					<thead class="active" >	
+						<tr>							
+							<th class="col-sm-3" ><DIV ALIGN=center>Tipo Persona</th>
+							<th class="col-sm-3" ><DIV ALIGN=center>Moneda</th>
+							<th class="col-sm-3"><DIV ALIGN=center>Monto</th>
+						</tr>
+					</thead>
+					<tbody>
+							@foreach ($tarifas as $tarifa)		
+						    	<tr>
+									<td align="center">{{$tarifa->tipo_persona->descripcion}}</td>
+									<td align="center">  S/.</td>
+									<td align="center"> 
+										<div align="center">
+								      		<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'DoubleFormat')"   class="form-control" id="{{$tarifa->tipo_persona->descripcion}}Input" name="{{$tarifa->tipo_persona->descripcion}}" value="{{$tarifa->precio}}" placeholder="Monto" >
+								    	</div>
+								</td>							        
+								</tr>
+							@endforeach
+					</tbody>													
+			</table>
+			</div>	  	
 
+			  	<!-- FIN     PRECIO POR TIPO DE PERSONA -->
 
 		  	
 

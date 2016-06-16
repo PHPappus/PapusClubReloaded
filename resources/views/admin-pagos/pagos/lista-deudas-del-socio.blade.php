@@ -15,7 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-pagos')
 
 @section('content')
 	<div class="container">
@@ -27,7 +27,8 @@
 			</div>
 			
 		</div>
-		
+		<h4>1. Lista de deudas del socio.</h4>
+
 
 		</br>
 		</br>
@@ -47,14 +48,17 @@
 						</tr>
 					</thead>
 					<tbody>
-							<!-- @foreach($socios as $socio)	 -->					
-						    	<td>
-							        <a class="btn btn-info" href="#"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-							    </td>
-								<td>
-							        <a class="btn btn-info" href="#" title="Registrar Pago" ><i class="glyphicon glyphicon-pencil"></i></a>
-							    </td>
-							<!-- @endforeach -->
+							<td> 20100001</td>
+							<td> 2500</td>
+							<td> Deuda de Alquiler de Bungalow</td>
+							<td> No Pagado</td>				
+						    <td>
+							    <a class="btn btn-info" href="#"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+							</td>
+							<td>
+							    <a class="btn btn-info" href="{{url('/pagos/registrar-pago')}}" title="Registrar Pago" ><i class="glyphicon glyphicon-pencil"></i></a>
+							</td>
+							
 					</tbody>					
 												
 					
