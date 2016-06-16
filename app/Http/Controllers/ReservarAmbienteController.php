@@ -10,10 +10,13 @@ use papusclub\Models\Sede;
 use papusclub\Models\Persona;
 use papusclub\User;
 use papusclub\Models\Reserva;
+use papusclub\Models\Configuracion;
+use papusclub\Models\Facturacion;
 use papusclub\Http\Requests\StoreReservaAmbiente;
 use Auth;
 use Session;
 use Carbon\Carbon;
+use DB;
 
 class ReservarAmbienteController extends Controller
 {
@@ -117,6 +120,8 @@ class ReservarAmbienteController extends Controller
     //Se muestra el Bungalow a reservar y espera su confirmacion para la reserva
     public function storeBungalow($id, StoreReservaAmbiente $request)
     {
+        DB::beginTransaction();
+
         $user_id = Auth::user()->id;
         $usuario = User::findOrFail($user_id);
         $persona_id = $usuario->persona->id;        
@@ -161,6 +166,19 @@ class ReservarAmbienteController extends Controller
         
         $reserva->save();
 
+        $facturacion = new Facturacion();
+        $facturacion->persona_id = $persona_id;
+        $facturacion->reserva_id = $reserva->id;
+        //$facturacion->tipo_comprobante = $input['tipo_comprobante'];
+        $nombreReserva = $reserva->ambiente->nombre;
+        $facturacion->descripcion = "Reserva de $nombreReserva";
+        $facturacion->total = $reserva->precio;
+        $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
+        $facturacion->estado = $estado->valor;
+
+        $facturacion->save();
+        DB::commit();
+
         return redirect('reservar-ambiente/reservar-bungalow')->with('stored', 'Se registró la reserva del bungalow correctamente.');        
     }
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
@@ -174,6 +192,7 @@ class ReservarAmbienteController extends Controller
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
     public function storeOtroTipoAmbiente($id, Request $request)
     {
+        DB::beginTransaction();
         $user_id = Auth::user()->id;
         $usuario = User::findOrFail($user_id);
         $persona_id = $usuario->persona->id;        
@@ -212,8 +231,21 @@ class ReservarAmbienteController extends Controller
         $reserva->estadoReserva = "En proceso";
         $reserva->actividad_id = null;
 
+        $facturacion = new Facturacion();
+        $facturacion->persona_id = $persona_id;
+        $facturacion->reserva_id = $reserva->id;
+        //$facturacion->tipo_comprobante = $input['tipo_comprobante'];
+        $nombreReserva = $reserva->ambiente->nombre;
+        $facturacion->descripcion = "Reserva de $nombreReserva";
+        $facturacion->total = $reserva->precio;
+        $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
+        $facturacion->estado = $estado->valor;
+
+        $facturacion->save();
+
 
         $reserva->save();
+        DB::commit();
         return redirect('reservar-ambiente/reservar-otros-ambientes')->with('stored', 'Se registró la reserva del ambiente correctamente.');
     }
 
