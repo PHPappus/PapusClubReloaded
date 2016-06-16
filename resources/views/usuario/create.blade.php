@@ -117,6 +117,7 @@
 					  				<li>Apellido Paterno</li>
 					  				<li>Apellido Materno</li>
 					  				<li>Nombre</li>
+					  				<li>Tipo de persona</li>
 					  				</ul>
 					  			</font>					  			
 					  		</div>
@@ -127,6 +128,7 @@
 									<th><div align=center>NOMBRES</div></th>
 									<th><div align=center>APELLIDO PATERNO</div></th>
 									<th><div align=center>APELLIDO MATERNO</div></th>
+									<th><div align=center>TIPO DE PERSONA</div></th>
 									<th><div align=center>SELECCIONAR</div></th>
 								</thead>
 								<tbody>
@@ -137,6 +139,7 @@
 											<td>{{$persona->nombre}}</td>		
 											<td>{{$persona->ap_paterno}}</td>
 											<td>{{$persona->ap_materno}}</td>
+											<td>{{$persona->tipopersona->descripcion}}</td>
 											<td>
 												<div class="radio">
   													<label><input type="radio" name="optradio" alt="{{$persona->nombre}} {{$persona->ap_paterno}}" value="{{$persona->id}}"></label>

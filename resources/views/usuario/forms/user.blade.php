@@ -30,8 +30,10 @@
 		<div class="col-sm-5">
 			<select id="perfil_id" class="form-control inputmodify" name="perfil_id" type="perfil_id" style="max-width: 280px " >
 				<option value=-1 default>Seleccione el perfil</option>
-					@foreach ($perfiles as $perfil)      
+					@foreach ($perfiles as $perfil)   
+						@if($perfil->description!='PUBLICO')   
 	                	<option value="{{$perfil->id}}">{{$perfil->description}}</option>
+	                	@endif
 	                @endforeach
 			</select>
 		</div>	

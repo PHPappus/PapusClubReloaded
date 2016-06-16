@@ -72,7 +72,7 @@ class UsuarioController extends Controller
     public function create()
     {   
         $perfiles=Perfil::all();
-        $personas = Persona::all();
+        $personas = Persona::where('id_tipo_persona','=',2)->get();
         return view('usuario.create',compact('perfiles','personas'));
     }
 
@@ -94,12 +94,12 @@ class UsuarioController extends Controller
             $user->perfil_id = $input['perfil_id'];
             $user->save();
             
-            Session::flash('message','Nuevo Usuario Creado Correctamente');
+            Session::flash('message','Nuevo Usuario Asignado Correctamente');
             return Redirect::to('/usuario');
         }
         else{
             $perfiles=Perfil::all();
-            $personas = Persona::all();
+            $personas = Persona::where('id_tipo_persona','=',2)->get();
             Session::flash('message-error','Seleccione un perfil para el usuario');
             return view('usuario.create',compact('perfiles','personas'));
         }
