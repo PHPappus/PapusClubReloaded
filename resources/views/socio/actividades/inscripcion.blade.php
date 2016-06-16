@@ -10,11 +10,12 @@
 	{!!Html::style('css/MisEstilos.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
 	{!!Html::style('css/bootstrap-datepicker3.css')!!}
-
-   
- 
-	<!-- PARA DATA TABLE -->
-	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
+	{!!Html::style('css/jquery.dataTables.css')!!}
+	<style>
+		.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td{
+			vertical-align: middle;
+		}
+	</style>
 	
 </head>
 <body>
@@ -40,13 +41,13 @@
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 			<br/>
-			<div class="form-group">
-		  		<div class="text-center ">
-		  			<font color="red"> 
-		  				(*) Dato Obligatorio
-		  			</font>
-		  		</div>
-			</div>
+			<!-- <div class="form-group">
+					  		<div class="text-center ">
+					  			<font color="red"> 
+					  				(*) Dato Obligatorio
+					  			</font>
+					  		</div>
+			</div> -->
 			<br/>
 			<div class="form-group ">
 			   	<label for="sedeInput" class="col-sm-4 control-label">SEDE</label>	
@@ -110,8 +111,8 @@
 						<tr>
 								<th><DIV ALIGN=center>SEDE</th>
 								<th><DIV ALIGN=center>AMBIENTE</th>
-								<th><DIV ALIGN=center>NOMBRE DE LA ACTIVIDAD</th>
-								<th><DIV ALIGN=center>CUPOS DISPONIBLES</th>
+								<th style="max-width:90px;"><DIV ALIGN=center>NOMBRE DE LA ACTIVIDAD</th>
+								<th style="max-width:90px;"><DIV ALIGN=center>CUPOS DISPONIBLES</th>
 								<th><DIV ALIGN=center>FECHA</th>
 								<th><DIV ALIGN=center>HORA DE INICIO</th>
 								<th><DIV ALIGN=center>PRECIO</th>
@@ -163,12 +164,14 @@
 	
 
 	<!-- Para Data TAble INICIO -->
-	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
+	<!-- <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script> -->
+	{!!Html::script('js/jquery.dataTables.js')!!}
 	<script>
 		$(document).ready(function() {
 		   $('#example').DataTable( {
 		       "language": {
-		           "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+		           "url": "{!!URL::to('/locales/Spanish.json')!!}"
+
 		       }
 		  	});
   		});
