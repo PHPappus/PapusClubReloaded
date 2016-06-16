@@ -52,7 +52,7 @@
 			   	<label for="sedeInput" class="col-sm-4 control-label">SEDE</label>	
 				<div class="col-sm-5">
 				  	<select class="form-control" name="sedeSelec" style="max-width: 170px">
-				  		<!-- <option value="-1" default>Todas las sedes</option> -->
+				  		<option value="-1" default>Todas las sedes</option>
 				        @foreach ($sedes as $sede)      
 				      	<option value="{{$sede->id}}">{{$sede->nombre}}</option>
 				        @endforeach
