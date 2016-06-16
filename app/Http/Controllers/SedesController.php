@@ -21,7 +21,10 @@ class SedesController extends Controller
         $sedes = Sede::all();
         return view('admin-general.sede.index', compact('sedes'));
     }
-
+    public function listaContactos()
+    {        
+        return view('admin-general.sede.lista-de-contactos');
+    }
     //Muestra el formulario para poder registrar una nueva sede en BD
     public function create()
     {
@@ -132,4 +135,7 @@ class SedesController extends Controller
             return Response::json($provincias);
         //}
     }
+
+    
+
 }

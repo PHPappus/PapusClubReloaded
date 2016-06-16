@@ -14,23 +14,25 @@ class ActividadTableSeeder extends Seeder
     {
         Actividad::insert([
             'nombre' => 'Papus FC vs Regatas FC', 
-        	'tipo_actividad' => 'Deportivo', 
-        	'capacidad_maxima' => '100', 
-        	'descripcion' => 'Final PapusCup', 
-        	'ambiente_id' => 1,
-            'reserva_id'=>1,
+            'tipo_actividad' => 'Deportivo', 
+            'capacidad_maxima' => '100', 
+            'descripcion' => 'Final PapusCup', 
+            'ambiente_id' => 1,
             'cupos_disponibles'=>1,
-            'estado'=>true
-        	]);
+            'estado'=>true,
+            'a_realizarse_en'=>Carbon::create(2016, 12, 12),
+            'hora_inicio'=>Carbon::createFromTime(8, 0, 0)
+            ]);
         Actividad::insert([
             'nombre' => 'Papus Club vs El bosque', 
             'tipo_actividad' => 'Deportivo', 
             'capacidad_maxima' => '90', 
             'descripcion' => 'Final Basketball PapusCup', 
             'ambiente_id' => 1,
-            'reserva_id'=>1,
             'cupos_disponibles'=>'80',
-            'estado'=>true
+            'estado'=>true,
+            'a_realizarse_en'=>Carbon::create(2016, 11, 10, 8, 0, 0),
+            'hora_inicio'=>Carbon::createFromTime(8, 0, 0)
         ]);
         Actividad::insert([
             'nombre' => 'Papus Club vs Geminis', 
@@ -38,9 +40,10 @@ class ActividadTableSeeder extends Seeder
             'capacidad_maxima' => '60', 
             'descripcion' => 'Final Voleyball PapusCup', 
             'ambiente_id' => 1,
-            'reserva_id'=>1,
             'cupos_disponibles'=>'55',
-            'estado'=>true
+            'estado'=>true,
+            'a_realizarse_en'=>Carbon::create(2016, 10, 9, 8, 0, 0),
+            'hora_inicio'=>Carbon::createFromTime(8, 0, 0)
         ]);
         Actividad::insert([
             'nombre' => 'Papus Club concert', 
@@ -48,9 +51,10 @@ class ActividadTableSeeder extends Seeder
             'capacidad_maxima' => '100', 
             'descripcion' => 'Concierto de RHCP', 
             'ambiente_id' => 1,
-            'reserva_id'=>1,
             'cupos_disponibles'=>'55',
-            'estado'=>true
+            'estado'=>true,
+            'a_realizarse_en'=>Carbon::create(2016, 8, 7, 10, 0, 0),
+            'hora_inicio'=>Carbon::createFromTime(8, 0, 0)
         ]);
     }
 }

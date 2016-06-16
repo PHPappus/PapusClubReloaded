@@ -237,6 +237,8 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('sedes/{id}/edit', 'SedesController@update');
 	Route::get('sedes/{id}/delete', 'SedesController@destroy');
 	Route::get('sedes/{id}/show', 'SedesController@show');
+	Route::get('sedes/listaContactos', 'SedesController@listaContactos');
+	
 
 
 	

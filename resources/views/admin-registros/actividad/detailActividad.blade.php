@@ -72,11 +72,11 @@
 		      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" value ="{{$actividad->descripcion}}" readonly>
 		    	</div> 
 		  	</div>
-		  	<div class="form-group required">
+		  		<div class="form-group required">
 
 			    	<label for="fechaInicioInput" class="col-sm-4 control-label">Fecha Inicio</label>
 			    	<div class="col-sm-5">
-			      		<input type="date" id="fechaInicioInput" value="{{$actividad->reserva->fecha_inicio_reserva}}"  readonly>
+			      		<input type="date" id="fechaInicioInput" value="{{$actividad->a_realizarse_en}}" readonly>
 			    	</div>
 			  	
 			 </div>
@@ -84,10 +84,11 @@
 			<div class="form-group required">
 			    	<label for="horaInicioInput" class="col-sm-4 control-label">Hora Inicio</label>
 			    	<div class="col-sm-5">
-			      		<input type="time" id="horaInicioInput" value="{{$actividad->reserva->hora_inicio_reserva}}" readonly>
+			      		<input type="time" id="horaInicioInput" value="{{$actividad->hora_inicio}}" readonly>
 			    	</div>
 			  	
 			 </div>
+
 
 		  	<div class="form-group required">
 		    	<label for="tipoActividadInput" class="col-sm-4 control-label">Tipo de Actividad</label>	
