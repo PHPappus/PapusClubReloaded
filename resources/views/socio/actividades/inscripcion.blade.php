@@ -180,31 +180,35 @@
 	
 
 	<!-- Para Fechas INICIO -->
-	<script>
+	<!-- <script>
 		var nowTemp = new Date();
 		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
- 
+	 
 		var checkin = $('#dpd1').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
-  			}
+	  			onRender: function(date) {
+	    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
+	  			}
 		}).on('changeDate', function(ev) {
-  			if (ev.date.valueOf() > checkout.date.valueOf()) {
-    			var newDate = new Date(ev.date);
-    			newDate.setDate(newDate.getDate() + 1);
-    			checkout.setValue(newDate);
-  			}
- 			checkin.hide();
-  			$('#dpd2')[0].focus();
+	  			if (ev.date.valueOf() > checkout.date.valueOf()) {
+	    			var newDate = new Date(ev.date);
+	    			newDate.setDate(newDate.getDate() + 1);
+	    			checkout.setValue(newDate);
+	  			}
+	 			checkin.hide();
+	  			$('#dpd2')[0].focus();
 		}).data('datepicker');
-
+	
 		var checkout = $('#dpd2').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-  			}
+	  			onRender: function(date) {
+	    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+	  			}
 		}).on('changeDate', function(ev) {
-  			checkout.hide();
+	  			checkout.hide();
 		}).data('datepicker');		
+	</script> -->
+	<script>
+		var nowDate = new Date();
+		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
 	</script>
 	<script>
 		$(function(){
@@ -212,6 +216,7 @@
 				format: "dd/mm/yyyy",
 		        language: "es",
 		        autoclose: true,
+		        startDate: today,
 			});
 		});
 	</script>
