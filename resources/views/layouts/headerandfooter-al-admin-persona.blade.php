@@ -70,6 +70,9 @@
             <a href="#" class="dropdown-toggle btn-lg" title="Realizar tramites" data-toggle="dropdown" role="button">
               Trámites</span>
             </a>
+            <ul class="dropdown-menu">
+                <li><a href="{!!URL::to('/traspasos-p')!!}" title="Consultar Proveedores" target="_self">Traspasos</a></li>
+            </ul>t
             <!-- <ul class="dropdown-menu">
               <li><a href="#">Item #1</a></li>
               <li><a href="#">Item #2</a></li>

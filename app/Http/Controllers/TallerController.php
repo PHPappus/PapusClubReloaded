@@ -74,6 +74,7 @@ class TallerController extends Controller
         $taller = new Taller();
         $taller->nombre = $input['nombre'];
         $taller->descripcion = $input['descripcion'];
+        $taller->profesor = $input['profe'];
 
 
         if (empty($input['vacantes'])) {
@@ -142,6 +143,7 @@ class TallerController extends Controller
 
         $taller->update(['nombre'=>$input['nombre'],
                         'descripcion'=>$input['descripcion'],
+                        'profesor' => $input['profe'];
                         'vacantes'=>$input['vacantes']
                          ]);
 

@@ -26,6 +26,7 @@ class EditTallerRequest extends Request
         return [
             'nombre' => 'required|max:60|string',
             'descripcion' =>'required|max:200|string',
+            'profesor' => 'required|max:60|string',
             'vacantes' =>'min:0',
             'cantidad_sesiones' => 'min:0',
             'trabajador' => 'required|float|min:0',

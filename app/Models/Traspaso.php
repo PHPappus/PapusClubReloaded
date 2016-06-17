@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Traspaso extends Model
 {
-    use SoftDeletes;
+    //use SoftDeletes;
     protected $table = 'traspaso';
     protected $fillable = 
     ['nombre',
