@@ -1,9 +1,7 @@
-<!-- Una lista de los oscios para elegir a cual le editare sus pagos -->
-
  <!DOCTYPE html>
 <html>
 <head>
-	<title>Seleccionar Persona</title>
+	<title>AMBIENTE</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,19 +13,19 @@
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-registros')
 
 @section('content')
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 text-center">
 				<br/><br/>
-				<p class="lead"><strong>Seleccionar Socio</strong></p>
+				<p class="lead"><strong>AMBIENTES</strong></p>
 				<br/>
 			</div>
 			
 		</div>
-		<h4>1. Selecciones el socio.</h4>
+		<h4>1. Selecciones el ambiente que desea para la actividad a registrar.</h4>
 
 		</br>
 		</br>
@@ -37,24 +35,31 @@
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active">
 						<tr>
-							<th><DIV ALIGN=center>ID</th>
+							<th><DIV ALIGN=center>SEDE</th>
 							<th><DIV ALIGN=center>NOMBRE</th>
-							<th><DIV ALIGN=center>APELLIDO PAT.</th>
-							<th><DIV ALIGN=center>APELLIDO MAT.</th>
+							<th><DIV ALIGN=center>TIPO</th>
+							<th><DIV ALIGN=center>CAPACIDAD</th>
 							<!-- <th><DIV ALIGN=center>DETALLE</th> -->
 							<th><DIV ALIGN=center>SELECCIONAR</th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($socios as $socio)		
-							
-						   	<tr>
-						   	<td>{{$socio->postulante->id_postulante}}</td>
-						   	<td>{{$socio->postulante->persona->nombre}}</td>						    		
-							<td><a class="btn btn-info" href="#"  title="OK" ><i class="glyphicon glyphicon-ok"></i></a>
-						    </td>
-							</tr>
-						@endforeach
+							@foreach($ambientes as $ambiente)						
+						    	<tr>
+						    		<td>{{ $ambiente->sede->nombre }}</td>
+									<td>{{ $ambiente->nombre }}</td>
+									<td>{{ $ambiente->tipo_ambiente }}</td>
+			 						<td>{{ $ambiente->capacidad_actual }}</td>
+									<!-- <td>
+							        <a class="btn btn-info" href="{{url('/ambiente/'.$ambiente->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+							        </td> -->
+									<td><a class="btn btn-info" href="{{url('/ambiente/'.$ambiente->id.'/select')}}"  title="OK" ><i class="glyphicon glyphicon-ok"></i></a>
+							        </td>
+							        							            
+
+							            
+								</tr>
+							@endforeach
 					</tbody>					
 												
 					

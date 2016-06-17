@@ -5,14 +5,12 @@
     <!--Input de buscador de la parte superior derecha-->
 
     <nav class="search">
-
       <div class="search_box">
-
         <form action="#" id="search-box" method="get">
-          <!-- <label class="hidden" for="inputbusqueda">Buscar</label> -->
-                    <input type="text" placeholder="Ingresa tu búsqueda" id="inputbusqueda" name="conte" style="max-width:150px;">
-                    <!-- <span class="glyphicon glyphicon-search" href="#"></span> -->
-                    <button style="background-color:transparent;border:none;"><span class="glyphicon glyphicon-search" href="#"></span></button>
+                <!-- <label class="hidden" for="inputbusqueda">Buscar</label> -->
+                <input type="text" placeholder="Ingresa tu búsqueda" id="inputbusqueda" name="conte" style="max-width:145px;">
+                <!-- <span class="glyphicon glyphicon-search" href="#"></span> -->
+                <button style="background-color:transparent;border:none;"><span class="glyphicon glyphicon-search" href="#"></span></button>
         </form>
       </div>
     </nav>
@@ -28,7 +26,9 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a href="{!!URL::to('/socio')!!}" class="navbar-brand"><img alt="Brand" class="img-responsive" src="{!!URL::to('/images/logo.png')!!}" ></a>
+
+        <a href="{!!URL::to('/admin-persona')!!}" class="navbar-brand"><img alt="Brand" class="img-responsive" src="{!!URL::to('/images/logo.png')!!}" ></a>
+
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -51,11 +51,12 @@
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Talleres <span class="caret"></span>
+              Proveedor <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="{!!URL::to('/talleres/index')!!}" title="consultar talleres" target="_self">Consultar</a></li>
-                <li><a href="{!!URL::to('/talleres/mis-inscripciones')!!}" title="inscripciones de talleres" target="_self">Mis Inscripciones</a></li>
+                <li><a href="#" title="Consultar Proveedores" target="_self">Consultar</a></li>
+                <li><a href="#" title="Registrar nuevo proveedor" target="_self">Registrar</a></li>
+                <li><a href="#" title="Anular proveedor" target="_self">Anular</a></li>
             </ul>
           </li>
         </ul>
@@ -66,12 +67,7 @@
         </ul>
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <li><a href="{!!URL::to('/-s')!!}" class="dropdown-toggle btn-lg" title="consultar Bungalows" target="_self">Cuotas</a></li>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+            <a href="#" class="dropdown-toggle btn-lg" title="Realizar tramites" data-toggle="dropdown" role="button">
               Trámites</span>
             </a>
             <!-- <ul class="dropdown-menu">
@@ -80,15 +76,6 @@
               <li class="divider"></li>
               <li><a href="#">Item #4</a></li>
             </ul> -->
-          </li>
-        </ul>
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg">Sorteos <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#" title="consultar Bungalows" target="_self">Consultar</a></li>
-                <li><a href="#" title="reserva de bungalows" target="_self">Reservar</a></li>
-            </ul>
           </li>
         </ul>
 

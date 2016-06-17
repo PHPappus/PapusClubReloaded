@@ -15,10 +15,9 @@ class CreateAmbientesSorteoTable extends Migration
         Schema::create('ambientessorteo',function (Blueprint $table){
             //Estos son los atributos que estaban en el caso de uso
             $table->integer('id')->unsigned();
-            $table->integer('id_ambiente')->unsigned();            
+            $table->integer('id_ambiente')->unsigned();    
             $table->softDeletes();
             $table->timestamps();
-            //$table->primary(['id_sorteo', 'id_ambiente']);
         });
     }
 

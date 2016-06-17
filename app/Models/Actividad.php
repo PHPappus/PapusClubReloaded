@@ -15,7 +15,7 @@ class Actividad extends Model
     'capacidad_maxima', 
     'descripcion',
     'a_realizarse_en',
-    'cant_ambientes',
+    'hora_inicio',
     'estado',
     ];
     protected $dates = ['deleted_at'];
@@ -30,5 +30,10 @@ class Actividad extends Model
     }
     public function sede(){
         return $this->belongsTo('papusclub\Models\Sede');
+    }
+
+    public function tarifas()
+    {
+        return $this->hasMany('papusclub\Models\TarifaActividad');
     }
 }

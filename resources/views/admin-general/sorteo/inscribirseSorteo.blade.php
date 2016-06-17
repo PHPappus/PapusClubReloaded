@@ -27,9 +27,11 @@
 			</div>
 		<br/>
 	</div>
+	<form method="POST" action="/sorteo/inscripcion/store" class="form-horizontal form-border">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	<div class="container">
 		<div class="col-sm-12 text-left lead">
-				<strong>SORTEOS ABIERTOS</strong>
+				<strong>SORTEOS DISPONIBLES</strong>
 		</div>		
 	</div>
 	<!-- Mensaje de éxito luego de registrar -->
@@ -41,6 +43,18 @@
 						<strong>¡Éxito!</strong> {{session('stored')}}
 				</div>
 	@endif
+	<br>
+			<div class="">
+
+					<div class=""></div>
+					
+					<div class="btn-group ">
+						<a class="btn btn-info" href="{{url('/sorteo/inscripcion/mis_sorteos')}}" >	Mis Sorteos</a>	
+
+					</div>
+					
+			</div>	
+	<br>
 	<div class="table-responsive">
 		<div class="container">
 			<table class="table table-bordered table-hover text-center display" id="example">
@@ -49,6 +63,7 @@
 					<th><div align=center>FECHA INICIO DE SORTEO</div></th>
 					<th><div align=center>FECHA FIN DE SORTEO</div></th>
 					<th><div align=center>DESCRIPCION</div></th>
+					<th><div align=center>INSCRIPCION</div></th>
 				</thead>	
 				<tbody>													
 					@foreach($sorteos as $sorteo)	
@@ -56,14 +71,26 @@
 							<td>{{$sorteo->nombre_sorteo}}</td>
 							<td>{{$sorteo->fecha_abierto}}</td>
 							<td>{{$sorteo->fecha_cerrado}}</td>	
-							<td>{{$sorteo->descripcion}}</td>										            	
-						</tr>
-					</form>
+							<td>{{$sorteo->descripcion}}</td>
+							<td>{{ Form::checkbox('ch[]', $sorteo->id, false) }}</td>
+						</tr>					
 					 @endforeach
 				</tbody>			
 			</table>						
+			<br><br>
+				<div class="btn-inline">
+					<div class="btn-group col-sm-7"></div>
+					
+					<div class="btn-group ">
+						<input class="btn btn-primary" type="submit" value="Inscribirse en Sorteos">
+					</div>
+				</div>
+				</div>
+				</div>
+				</form>
 		</div>	
-	</div>			
+	</div>	
+
 @stop
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	{!!Html::script('js/bootstrap.js')!!}
