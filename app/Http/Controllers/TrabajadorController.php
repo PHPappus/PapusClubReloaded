@@ -20,7 +20,7 @@ class TrabajadorController extends Controller
     public function index()
     {
         $personas=Persona::where('id_tipo_persona','=','1')->get();
-        return view('admin-general.persona.trabajador.index', compact('personas'));
+        return view('admin-persona.persona.trabajador.index', compact('personas'));
     }
 
     public function show($id)

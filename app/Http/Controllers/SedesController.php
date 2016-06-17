@@ -7,13 +7,16 @@ use papusclub\Http\Controllers\Controller;
 use papusclub\Http\Requests;
 use papusclub\Models\Sede;
 use papusclub\Models\Servicio;
+use papusclub\Models\Sedexservicio;
+use papusclub\Models\Departamento;
 use papusclub\Http\Requests\StoreSedeRequest;
 use papusclub\Http\Requests\EditSedeRequest;
-use papusclub\Models\Departamento;
+use Illuminate\Support\Facades\Input;
 use papusclub\Models\Provincia;
 use papusclub\Models\Distrito;
 use papusclub\Models\Persona;
 use papusclub\Models\Trabajador;
+use papusclub\Models\Configuracion;
 
 class SedesController extends Controller
 {
@@ -127,10 +130,34 @@ class SedesController extends Controller
 
     public function agregarservicios($id)
     {
+        
         $sede = Sede::find($id);
-        $servicios = Servicio::all();        
-        return view('admin-general.sede.serviciosdesede', compact('sede', 'servicios'));
+        $servicios = Servicio::all();
+        $tiposServicio=Configuracion::where('grupo','=','4')->get();
+
+        return view('admin-general.sede.serviciosescoger', compact('sede', 'servicios','tiposServicio'));
     }
+
+
+     public function storeservicios($id){
+        $servciosEscogidos = Input::get('ch');
+        $sede = Sede::find($id);
+        $servicios = Servicio::all();  
+        $tiposServicio=Configuracion::where('grupo','=','4')->get();
+
+        foreach ($servciosEscogidos as $serID) {
+            foreach ($servicios as $servicio){
+                if ( $serID== $servicio->id){                    
+                        $s = new Sedexservicio();
+                        $s->idsede =  (int) $id;
+                        $s->idservicio = (int)$serID;
+                        $s->save();
+                }   
+            }
+        }
+
+        return view('admin-general.sede.serviciosdesedeindex', compact('sede', 'servicios','servciosEscogidos','id','tiposServicio'));
+     }
 
 
     //Para el desplegable de provincias-distrito-departamento
@@ -141,7 +168,4 @@ class SedesController extends Controller
             return Response::json($provincias);
         //}
     }
-
-    
-
 }

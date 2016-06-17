@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>DETALLE DE TALLER</title>
+	<title>REGISTRAR TALLER</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +22,7 @@
 
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-registros')
 @section('content')
 
 <!---Cuerpo -->
@@ -32,7 +32,7 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>DETALLE DE TALLER</strong>
+					<strong>REGISTRAR TALLER</strong>
 			</div>		
 		</div>
 		<div class="container">
@@ -62,63 +62,91 @@
 			  	</br>
 			  	</br>
 				
+			  	<div class="form-group required">
+			    	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>	
+			    	<div class="col-sm-5">
+				    	<select class="form-control" id="sedeInput" name="sede" style="max-width: 150px "  >
+				    						<option value="-1" default>Seleccione</option>
+							               	@foreach ($sedes as $sede)      
+							                	<option value="{{$sede->id}}">{{$sede->nombre}}</option>
+							               	@endforeach
+						</select>
+					</div>
+			  	</div>
+
+			  	<div class="form-group required">
+			    	<label for="ambienteInput" class="col-sm-4 control-label">Tipo de Ambiente</label>	
+			    	<div class="col-sm-5">
+				    	<select class="form-control" id="ambienteInput" name="ambiente" style="max-width: 150px "  >
+				    						<option value="-1" default>Seleccione</option>
+							               	@foreach ($ambientes as $ambiente)      
+							                	<option value="{{$ambiente->id}}">{{$ambiente->nombre}}</option>
+							               	@endforeach
+						</select>
+					</div>
+			  	</div>
+
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="dInput" name="nombre" placeholder="Nombre" value="{{$taller->nombre}}" readonly>
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="dInput" name="nombre" placeholder="Nombre" value="{{old('nombre')}}">
 			    	</div>
 			  	</div> 
 
-			  	<div class="form-group required">
+			  	<div class="form-group ">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			    		<textarea class="form-control" id="descripcionInput" name="descripcion" rows="3" cols="50" value = "{{$taller->descripcion}}" readonly>{{$taller->descripcion}}</textarea>
+			    		<textarea class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" rows="3" cols="50" value="{{old('descripcion')}}"></textarea>
 			    	</div>
 			  	</div>
 
-			  	<div class="form-group">
+			  	<div class="form-group required">
 			    	<label for="vacantesInput" class="col-sm-4 control-label">Vacantes</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" min ="0" step="any" class="form-control" id="vacantesInput" name="vacantes" placeholder="Vacantes" value="{{$taller->vacantes}}" readonly>
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" min ="0" step="any" class="form-control" id="vacantesInput" name="vacantes" placeholder="Vacantes" value="{{old('vacantes')}}">
 			    	</div>
 			  	</div>
 
-			  	<div class="form-group">
-					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Inicio Inscripciones</label>
+			  	<div class="form-group required">
+					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Inicio de Inscripciones</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIniIns" placeholder="Fecha Inicio Inscripciones" value="{{$taller->fecha_inicio_inscripciones}}" readonly>
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIniIns" placeholder="Fecha Inicio Inscripciones" value="{{old('fecFinIns')}}">
 					</div>	
 				</div>
 
-			  	<div class="form-group">
-					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Fin Inscripciones</label>
+			  	<div class="form-group required">
+					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Fin de Inscripciones</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFinIns" placeholder="Fecha Fin Inscripciones" value="{{$taller->fecha_fin_inscripciones}}" readonly>
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFinIns" placeholder="Fecha Fin Inscripciones" value="{{old('fecIniIns')}}">
 					</div>	
 				</div>
 
-				<div class="form-group">
-					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Inicio Taller</label>
+				<div class="form-group required">
+					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Inicio de Taller</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIni" placeholder="Fecha Inicio Taller" value="{{$taller->fecha_inicio}}" readonly>
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIni" placeholder="Fecha Inicio Taller" value="{{old('fecIni')}}">
 					</div>	
 				</div>
 
-			  	<div class="form-group">
-					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Fin Taller</label>
+			  	<div class="form-group required">
+					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Fin de Taller</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFin" placeholder="Fecha Fin Taller"  value="{{$taller->fecha_fin}}" readonly>
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFin" placeholder="Fecha Fin Taller"  value="{{old('fecFin')}}">
 					</div>	
 				</div>
 
-				<div class="form-group">
+				<div class="form-group required">
 			    	<label for="cantSesInput" class="col-sm-4 control-label">Cantidad de Sesiones</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" min ="0" step="any" class="form-control" id="cantSesInput" name="cantSes" placeholder="Cantidad de Sesiones" value="{{$taller->cantidad_sesiones}}" readonly>
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" min ="0" step="any" class="form-control" id="cantSesInput" name="cantSes" placeholder="Cantidad de Sesiones">
 			    	</div>
 			  	</div>
 
 			  	 </br>
+
+			  	 <div class="form-group">
+			    	<label for="capacidadSocioInput" class="col-sm-7 control-label">TARIFAS ESPECIALES POR FAMILIAR</label>
+			  	</div>
 
 				<style>  				
   				#myTable {
@@ -134,13 +162,19 @@
 						</tr>
 					</thead>
 					<tbody>
-							@foreach ($taller->tarifaTaller as $persona)		
+							@foreach ($personas as $persona)		
 						    	<tr>
-									<td align="center">  {{ $persona->descripcion }}</td>
+						    		@if ($persona->descripcion == 'trabajador')
+										<td align="center">Trabajador</td>
+									@elseif ($persona->descripcion == 'postulante')
+										<td align="center">Socio</td>
+									@elseif ($persona->descripcion == 'tercero')
+										<td align="center">Tercero</td>
+									@endif
 									<td align="center">  S/.</td>
 									<td align="center"> 
 									<div align="center">
-							      		<input style="text-align:center;" type="number" min ="0" step="any" class="form-control" id="{{$persona->descripcion}}Input" name="{{$persona->descripcion}}" placeholder="" value="{{$persona->pivot->precio}}" readonly>
+							      		<input style="text-align:center;" type="text" onkeypress="return inputLimiter(event,'DoubleFormat')" min ="0" step="any" class="form-control" id="{{$persona->descripcion}}Input" name="{{$persona->descripcion}}" placeholder="">
 							    	</div>
 								</td>							        
 								</tr>
@@ -154,9 +188,12 @@
 			  	</br>
 				<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
-				
+					
+					<div class="btn-group ">
+						<input class="btn btn-primary" type="submit" value="Confirmar">
+					</div>
 					<div class="btn-group">
-						<a href="/taller/" class="btn btn-info">Regresar</a>
+						<a href="/taller/" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>

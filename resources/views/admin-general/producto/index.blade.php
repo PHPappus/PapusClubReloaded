@@ -9,7 +9,7 @@
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
-	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
+	{!!Html::style('/css/DataTable.css')!!}	
 </head>
 <body>
 @extends('layouts.headerandfooter-al-admin')
@@ -52,6 +52,7 @@
 						<th><div align=center>PRODUCTO</div></th>
 						<th><div align=center>PRECIO</div></th>
 						<th><div align=center>TIPO</div></th>							
+						<th><div align=center>STOCK</div></th>	
 						<th><div align=center>DETALLE</div></th>
 						<th><div align=center>EDITAR</div></th>
 						<th><div align=center>ELIMINAR</div></th>
@@ -64,6 +65,7 @@
 							<td>{{ $producto->nombre }}</td>
 							<td>{{ $producto->precioproducto->first()['precio'] }}</td>			
 							<td>{{ $producto->tipo_producto }}</td>
+							<td>{{ $producto->stock }}</td>
 							<td>
 				              <a class="btn btn-info" href="{{url('/producto/'.$producto->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 				            </td>
@@ -99,8 +101,8 @@
 	{!!Html::script('js/bootstrap.js')!!}
 	{!!Html::script('js/jquery.bxslider.min.js')!!}
 	{!!Html::script('js/MisScripts.js')!!}
-	<!-- {!!Html::script('js/jquery.dataTables.min.js')!!} -->
-	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
+	{!!Html::script('js/jquery.dataTables.js')!!}
+	
 	<script>
 		$(document).ready(function() {
 		   $('#example').DataTable( {

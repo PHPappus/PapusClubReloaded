@@ -47,8 +47,21 @@ class ConfiguracionTableSeeder extends Seeder
         Configuracion::insert(['valor'=>'Hijo','grupo'=>'9','descripcion'=>'tipo relacion familiar']);
         Configuracion::insert(['valor'=>'Hija','grupo'=>'9','descripcion'=>'tipo relacion familiar']);
 
+
+        Configuracion::insert([ 'valor' => 'Deportivo' , 'grupo' => '4', 'descripcion'=>'tipo de servicio']);
+        Configuracion::insert([ 'valor' => 'Ocio' , 'grupo' => '4', 'descripcion'=>'tipo de servicio']);
+        Configuracion::insert([
+         'valor' => 'Recreacional' , 'grupo' => '4', 'descripcion'=>'tipo de servicio']);
+        Configuracion::insert([ 'valor' => 'A Bungalow' , 'grupo' => '4', 'descripcion'=>'tipo de servicio']);
+
+
         Configuracion::insert(['valor'=>'Boleta','grupo'=>'10','descripcion'=>'tipo de comprobante']);
         Configuracion::insert(['valor'=>'Factura','grupo'=>'10','descripcion'=>'tipo de comprobante']);
+
+        Configuracion::insert(['valor'=>'Soltero(a)','grupo'=>'11','descripcion'=>'estado civil']);
+        Configuracion::insert(['valor'=>'Casado(a)','grupo'=>'11','descripcion'=>'estado civil']);
+        Configuracion::insert(['valor'=>'Viudo(a)','grupo'=>'11','descripcion'=>'estado civil']);
+        Configuracion::insert(['valor'=>'Divorciado(a)','grupo'=>'11','descripcion'=>'estado civil']);
 
     }
 }

@@ -9,6 +9,7 @@ use papusclub\Http\Requests\UserCreateRequest;
 use papusclub\Http\Requests\ChangePasswordRequest;
 use papusclub\User;
 use papusclub\Perfil;
+use papusclub\Models\Persona;
 use Auth;
 use Session;
 use Redirect;
@@ -71,7 +72,8 @@ class UsuarioController extends Controller
     public function create()
     {   
         $perfiles=Perfil::all();
-        return view('usuario.create',compact('perfiles'));
+        $personas = Persona::where('id_tipo_persona','=',2)->get();
+        return view('usuario.create',compact('perfiles','personas'));
     }
 
     /**
@@ -83,17 +85,25 @@ class UsuarioController extends Controller
     public function store(UserCreateRequest $request)
     {
         $input = $request->all();
-
-        $user = new User();
-        $user->name = $input['name'];
-        $user->email = $input['email'];
-        /*$user->password = bcrypt($input['password']);*/
-        $user->password = $input['password'];
-        $user->perfil_id = $input['perfil_id'];
-        $user->save();
+        if($input['perfil_id']!=-1){
+            $user = new User();
+            $user->name = $input['name'];
+            $user->email = $input['email'];
+            /*$user->password = bcrypt($input['password']);*/
+            $user->password = $input['password'];
+            $user->perfil_id = $input['perfil_id'];
+            $user->save();
+            
+            Session::flash('message','Nuevo Usuario Asignado Correctamente');
+            return Redirect::to('/usuario');
+        }
+        else{
+            $perfiles=Perfil::all();
+            $personas = Persona::where('id_tipo_persona','=',2)->get();
+            Session::flash('message-error','Seleccione un perfil para el usuario');
+            return view('usuario.create',compact('perfiles','personas'));
+        }
         
-        Session::flash('message','Nuevo Usuario Creado Correctamente');
-        return Redirect::to('/usuario');
     }
     public function changepassword(){
         $perfil = 'socio';

@@ -6,6 +6,7 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
+	{!!Html::style('css/jquery.bxslider.css')!!}
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
@@ -33,14 +34,14 @@
 	</style>
 
 
-	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<!-- 	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&libraries=places"></script>
 
 </head>
 <body>
 
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-persona')
 @section('content')
 		<div class="container">
 			<div class="row">
@@ -278,19 +279,12 @@
 
 @stop
 
-<!-- 	<script src="../js/jquery-1.12.4.min.js"></script> -->
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
-	<!-- Bootstrap -->
-	<script type="text/javascript" src="../js/bootstrap.js"></script>
-
  	{!!Html::script('js/bootstrap.js')!!}
-	<!-- BXSlider -->
-
-	<!-- Mis Scripts -->
-
+	{!!Html::script('js/jquery.bxslider.min.js')!!}
 	{!!Html::script('js/bootstrap-datepicker.js')!!}
-
-	
+	{!!Html::script('js/MisScripts.js')!!}
+s	
 	
 	<script>
 		$(document).ready(function(){
