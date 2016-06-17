@@ -141,7 +141,7 @@ class SorteoController extends Controller
     public function removeCheckedBungalows(StoreAmbientexSorteoRequest $request, $id){
         $bungalows = Input::get('ch');
         $sorteo=Sorteo::find($id);        
-        $ambienteXsorteo = AmbientexSorteo::find($id);
+        $ambienteXsorteo = AmbientexSorteo::where('id','=',$id)->get();
         if($bungalows!=NULL)            
             foreach ($ambienteXsorteo as $temp) {
                 foreach ($bungalows as $bungalow) {

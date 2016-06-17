@@ -17,6 +17,7 @@ class CreateTallerTable extends Migration
             $table->integer('reserva_id')->unsigned()->index()->nullable();
             $table->string('nombre');
             $table->string('descripcion');
+            $table->string('profesor')->nullable();
             $table->integer('vacantes');
             $table->date('fecha_inicio_inscripciones');
             $table->date('fecha_fin_inscripciones');

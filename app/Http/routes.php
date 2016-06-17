@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('pagos-s','SocioController@pagos');
 	//Socio.talleres  : INSCRIPCION DE TALLERES
 	Route::get('talleres/index','InscriptionTallerController@index');
+	Route::post('talleres/index','InscriptionTallerController@filterTalleres');
 	Route::get('talleres/{id}/show','InscriptionTallerController@show');
 	Route::get('talleres/{id}/confirm','InscriptionTallerController@confirmInscription');
 	Route::post('talleres/{id}/confirm/save','InscriptionTallerController@makeInscriptionToUser');
@@ -272,6 +273,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 //Administrador de Persona
 Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::resource('admin-persona','AdminPersonaController');
+	Route::resource('usuario','UsuarioController');
 	Route::get('multas-s/','SocioAdminController@indexRegMulta');
 	Route::post('multas-s/save','SocioAdminController@storeMulta');
 
@@ -373,7 +375,7 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::patch('membresia/{id}/edit','MembresiaController@update'); 
 
 
-	Route::resource('usuario','UsuarioController');
+	
 
 });
 //Administrador de Reserva

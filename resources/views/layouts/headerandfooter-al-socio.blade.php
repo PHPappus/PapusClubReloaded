@@ -9,9 +9,9 @@
 
         <form action="#" id="search-box" method="get">
           <!-- <label class="hidden" for="inputbusqueda">Buscar</label> -->
-                    <input type="text" placeholder="Ingresa tu búsqueda" id="inputbusqueda" name="conte" style="max-width:145px;">
-                    <!-- <span class="glyphicon glyphicon-search" href="#"></span> -->
-                    <button style="background-color:transparent;border:none;"><span class="glyphicon glyphicon-search" href="#"></span></button>
+                <input type="text" placeholder="Ingresa tu búsqueda" id="inputbusqueda" name="conte" style="max-width:145px;">
+                <!-- <span class="glyphicon glyphicon-search" href="#"></span> -->
+                <button style="background-color:transparent;border:none;"><span class="glyphicon glyphicon-search" href="#"></span></button>
         </form>
       </div>
     </nav>
@@ -42,7 +42,17 @@
               <li><a href="{!!URL::to('/inscripcion-actividad/mis-inscripciones')!!}" title="Inscripciones de actividades realizadas" target="_self">Inscripciones</a></li>
             </ul>
           </li>
-
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Talleres <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{!!URL::to('/talleres/index')!!}" title="Consultar talleres" target="_self">Consultar</a></li>
+                <li><a href="{!!URL::to('/talleres/mis-inscripciones')!!}" title="Inscripciones de talleres realizados" target="_self">Mis Inscripciones</a></li>
+            </ul>
+          </li>
         </ul>
         <ul class="nav navbar-nav">
           <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
@@ -73,18 +83,11 @@
         </ul>
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Talleres <span class="caret"></span>
-            </a>
+            <a href="#" class="dropdown-toggle btn-lg">Sorteos <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="{!!URL::to('/talleres/index')!!}" title="Consultar talleres" target="_self">Consultar</a></li>
-                <li><a href="{!!URL::to('/talleres/mis-inscripciones')!!}" title="Inscripciones de talleres realizados" target="_self">Mis Inscripciones</a></li>
+              <li><a href="#" title="Consultar Sorteos" target="_self">Consultar</a></li>
+                <li><a href="#" title="Reservar y entrar a sorteo" target="_self">Reservar</a></li>
             </ul>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <li><a href="{!!URL::to('/observaciones-s')!!}" class="dropdown-toggle btn-lg" title="observaciones sobre postulantes" target="_self">Observaciones</a></li>
           </li>
         </ul>
         <ul class="nav navbar-nav">
@@ -95,8 +98,11 @@
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" title="Realizar tramites" data-toggle="dropdown" role="button">
-              Trámites</span>
+              Trámites<span class="caret"></span>
             </a>
+            <ul class="dropdown-menu">
+              <li><a href="{!!URL::to('/observaciones-s')!!}" title="Observaciones sobre postulantes" target="_self">Observaciones</a></li>
+            </ul>
             <!-- <ul class="dropdown-menu">
               <li><a href="#">Item #1</a></li>
               <li><a href="#">Item #2</a></li>
@@ -105,15 +111,7 @@
             </ul> -->
           </li>
         </ul>
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg">Sorteos <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#" title="Consultar Sorteos" target="_self">Consultar</a></li>
-                <li><a href="#" title="Reservar y entrar a sorteo" target="_self">Reservar</a></li>
-            </ul>
-          </li>
-        </ul>
+        
 
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
