@@ -25,6 +25,16 @@
 	
 <main class="main">
 <div class="content" style="max-width: 100%;">
+	<div class="container">
+		<div class="row" style="max-width: 940px">
+			<div class="col-sm-3">
+				<ol class="breadcrumb" style="background:none;">
+					<li><a href="/socio"><span class="glyphicon glyphicon-home"></span></a></li>
+					<li class="active">Consultar Actividades</li>
+				</ol>
+			</div>				
+		</div>
+	</div>
 	<br/>
 	<br/>
 	@include('alerts.errors')

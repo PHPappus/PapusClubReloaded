@@ -28,7 +28,7 @@ class InscriptionTallerController extends Controller
      */
     public function index()
     {
-        $talleres=Taller::where('fecha_inicio_inscripciones','<=',Carbon::now('America/Lima')->format('Y-m-d'))->get();
+        $talleres=Taller::where('fecha_inicio_inscripciones','<=',Carbon::now('America/Lima')->format('Y-m-d'))->where('fecha_fin_inscripciones','>=',Carbon::now('America/Lima')->format('Y-m-d'))->get();
         $talleresxpersona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->talleres;
         $sedes          = Sede::all();
         return view('socio.talleres.index',compact('sedes','talleres','talleresxpersona'));
@@ -155,28 +155,36 @@ class InscriptionTallerController extends Controller
 
 
         $fecha_inicio   = new Carbon('America/Lima');
-        $fecha_fin   = new Carbon('America/Lima'); 
+        /*$fecha_fin   = new Carbon('America/Lima'); */
         
         $fecha_inicio=$fecha_inicio->toDateString();
-        $fecha_fin = Carbon::now()->addYears(1)->toDateString();
-
+        /*$fecha_fin = Carbon::now('America/Lima')->addYears(1)->toDateString();*/
+        
+        $talleres=array();
         
         if(!empty($input['fecha_inicio'])){
             $date=str_replace('/', '-', $input['fecha_inicio']);
             $fecha_inicio=date("Y-m-d",strtotime($date));
+            $talleres=Taller::where('fecha_inicio_inscripciones','<=',Carbon::now('America/Lima')->format('Y-m-d')) 
+                            ->where('fecha_fin_inscripciones','>=',Carbon::now('America/Lima')->format('Y-m-d'))
+                            ->where('fecha_inicio','<=',$fecha_inicio)
+                            ->where('fecha_fin','>=',$fecha_inicio)->get();
+                               /*->where('fecha_fin_inscripciones','>=',$fecha_fin)
+                               ->orwhere('fecha_fin_inscripciones','<',$fecha_fin)*/
+                               /*->whereBetween('fecha_inicio_inscripciones',[$fecha_inicio,$fecha_fin])*/
+                               /*->get();*/
         }
-        
-        if(!empty($input['fecha_fin'])){
+        else{
+            $talleres=Taller::where('fecha_inicio_inscripciones','<=',Carbon::now('America/Lima')->format('Y-m-d')) ->where('fecha_fin_inscripciones','>=',Carbon::now('America/Lima')->format('Y-m-d'))->get();
+        }
+        /*if(!empty($input['fecha_fin'])){
             $date=str_replace('/', '-', $input['fecha_fin']);
             $fecha_fin=date("Y-m-d",strtotime($date));
-        }
+        }*/
         /*Se terminó de preparar las fechas*/
+       /* dd($fecha_fin);*/
 
-
-        $talleres=Taller::where('fecha_inicio_inscripciones','<=',Carbon::now('America/Lima')->format('Y-m-d'))
-                               ->where('fecha_inicio_inscripciones','>=',$fecha_inicio)
-                               ->where('fecha_fin_inscripciones','<=',$fecha_fin)
-                               ->get();
+        
 
    
         if($input['sedeSelec']!=-1){ //No son todas las sedes
