@@ -54,13 +54,13 @@ class ActividadController extends Controller
         $actividad->descripcion= $input['descripcion'];
        // $actividad->cant_ambientes=$input['cant_ambientes'];
         
-        // if (empty($input['a_realizarse_en'])) {
-        //             $actividad->a_realizarse_en="";
-        //         }else{
-        //             $a_realizarse_en = str_replace('/', '-', $input['a_realizarse_en']);      
-        //             $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
-        //             $actividad->hora_inicio=$carbon->createFromFormat('H:i', $input['hora'])->toTimeString();
-        //         }
+        if (empty($input['a_realizarse_en'])) {
+                    $actividad->a_realizarse_en="";
+                }else{
+                    $a_realizarse_en = str_replace('/', '-', $input['a_realizarse_en']);      
+                    $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+                    $actividad->hora_inicio=$carbon->createFromFormat('H:i', $input['hora'])->toTimeString();
+                }
        
 
         $actividad->estado=false; 

@@ -285,5 +285,6 @@
 			document.getElementsByTagName('header')[0].style.zIndex = 3;
 		}
   	</script>
+  	{!!Html::script('js/MisScripts.js')!!}
 </body>
 </html>
