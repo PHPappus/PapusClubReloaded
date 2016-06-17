@@ -57,7 +57,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach(Auth::user()->talleres as $taller)
+							@foreach($talleresxpersona as $taller)
 							<tr>
 								<td>{{$taller->nombre}}</td>
 								<td>{{$taller->profesor}}</td>

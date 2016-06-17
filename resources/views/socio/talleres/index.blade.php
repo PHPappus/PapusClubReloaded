@@ -6,11 +6,11 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	{!!Html::style('css/jquery.bxslider.css')!!}
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
-	<!-- DataTable -->
+	{!!Html::style('css/datepicker.css')!!}
+	{!!Html::style('css/bootstrap-datepicker3.css')!!}
 	{!!Html::style('css/jquery.dataTables.css')!!}
 	<style>
 		.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td{
@@ -65,16 +65,6 @@
 				   	 	</div>
 			    	</div>	
 				</div>
-				<div class="form-group">
-				 	<label for="horaInput" class="col-sm-4 control-label">Hora (hh-mm) </label>
-				    <div class="col-sm-5">
-					   	<div class="input-group">
-					   		<input name="horaInicio" id="horaInicio" type="time"  class="form-control">
-				       		<span class="input-group-addon">-</span>
-				       		<input name="horaFin" id="horaFin" type="time"  class="form-control">
-				   	   	</div>
-			    	</div>	
-				</div>
 				<!-- Boton Buscar INICIO -->
 				<div class="btn-inline">
 					<div class="btn-group col-sm-8"></div>
@@ -119,11 +109,11 @@
 							<tr>
 								<td>{{$taller->nombre}}</td>
 								<td>{{$taller->profesor}}</td>
-								<td>{{date("d-m-Y",strtotime($taller->inicio_incripcion))}}</td>
+								<td>{{date("d-m-Y",strtotime($taller->fecha_inicio))}}</td>
 								<td>{{date("d-m-Y",strtotime($taller->fecha_fin))}}</td>
 								<td>{{$taller->vacantes}}</td>								
 								<td>
-						    		@if(count($talleres_user->where('id',$taller->id))!=0)
+						    		@if(count($talleresxpersona->where('id',$taller->id))!=0)
 						    			Inscrito
 						    		@elseif($taller->vacantes <= 0)
 						    			No hay vancantes
@@ -137,7 +127,7 @@
 
 								</td>
 								<td>
-									@if((count($talleres_user->where('id',$taller->id))!=0)||($taller->vacantes<=0))
+									@if((count($talleresxpersona->where('id',$taller->id))!=0)||($taller->vacantes<=0))
 						    			<a class="btn btn-info" title="Inscribirse" disabled><i class="glyphicon glyphicon-pencil"></i></a>
 						    		@else
 						    			<a class="btn btn-info" title="Inscribirse" href="{{url('/talleres/'.$taller->id.'/confirm')}}"><i class="glyphicon glyphicon-pencil"></i></a>
@@ -162,26 +152,39 @@
 		</div>	
 	</div>
 @stop
-<!-- JQuery -->
+	<!-- JQuery -->
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	<!-- Bootstrap -->
 	{!!Html::script('js/bootstrap.js')!!}
-	<!-- BXSlider -->
-	{!!Html::script('js/jquery.bxslider.min.js')!!}
-	<!-- Mis Scripts -->
-	{!!Html::script('js/MisScripts.js')!!}
-	
-	<!-- DataTable -->
-	{!!Html::script('js/jquery.dataTables.js')!!}
+
+	{!!Html::script('js/bootstrap-datepicker.js')!!}
+	 <!-- Languaje -->
+    {!!Html::script('js/bootstrap-datepicker.es.min.js')!!}
+	<!-- Data Table -->
+    {!!Html::script('js/jquery.dataTables.js')!!}
 	<script>
 		$(document).ready(function() {
 		   $('#talleresTable').DataTable( {
 		       "language": {
-		           "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+		           "url": "{!!URL::to('/locales/Spanish.json')!!}"
 		       }
 		  	});
   		});
 		
+	</script>
+	<script>
+		var nowDate = new Date();
+		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+	</script>
+	<script>
+		$(function(){
+			$('.datepicker').datepicker({
+				format: "dd/mm/yyyy",
+		        language: "es",
+		        autoclose: true,
+		        startDate: today,
+			});
+		});
 	</script>
 
 </body>
