@@ -24,7 +24,7 @@ class Socio extends Model
 
     public function postulante()
     {
-    	return $this->belongsTo(Postulante::class,'postulante_id','id_postulante');
+    	return $this->belongsTo(Postulante::class,'postulante_id');
     }
 
     public function carnets()
