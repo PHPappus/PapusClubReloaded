@@ -26,7 +26,7 @@ class ActividadController extends Controller
     public function create()
     {
     	/*PAra crear la ACtividad , primero se debe buscar el Ambiente*/
-    	$reservas = Reserva::all(); 
+    	$reservas = Reserva::where('actividad_id','!=','null'); 
         $tipoPersonas = TipoPersona::all();
         
         $values=Configuracion::where('grupo','=','3')->get();
@@ -150,11 +150,11 @@ class ActividadController extends Controller
     {
         $actividad=Actividad::find($id);
         
-        // if($actividad->reservas->count()){
-        //     return redirect('actividad/index')->with('delete', 'No se puede eliminar esta actividad, posee dependencias.');
-        // }
-        // else
-        //     $actividad->delete();
+        if($actividad->reserva_id==null){
+            return redirect('actividad/index')->with('delete', 'No se puede eliminar esta actividad, posee dependencias.');
+        }
+        else
+            $actividad->delete();
         
         return back();
 
