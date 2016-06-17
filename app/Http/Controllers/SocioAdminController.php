@@ -533,9 +533,15 @@ class SocioAdminController extends Controller
         $socio->fecha_ingreso = date('now');
         $socio->postulante()->save($postulante);
         $socio->membresia()->save($traspaso->socio->carnet_actual);
-
+        $traspaso->socio->estado = FALSE;
         $socio->save();
 
         return redirect('traspasos-p')->with('stored','Se aprobó el traspaso');
+    }
+
+    public function cancelarTraspaso(Traspaso $traspaso)
+    {
+        $traspaso->estado = FALSE;
+        return redirect('traspasos-p')->with('Se canceló el traspaso');
     }
 }
