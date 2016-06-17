@@ -65,7 +65,16 @@
 					@endforeach					
 												
 					
-			</table>		
+			</table>
+
+			<br/>
+			<br/>
+			<div class="btn-inline">
+					<div class="btn-group col-sm-11"></div>
+					<div class="btn-group">
+						<a href="/pagos/pago-seleccionar-socio" class="btn btn-info">Regresar</a>
+					</div>
+				</div>		
 			
 		</div>
 	</div>
