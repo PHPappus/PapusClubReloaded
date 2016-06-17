@@ -40,7 +40,7 @@
 			</div>		
 		</div>
 		<div class="container">
-			<form method="POST" action="/inscripcion-actividad/inscripcion-actividades" class="form-horizontal form-border"> <!-- FALTA CAMBIAR LA ACTION =D -->
+			<form method="POST" action="/talleres/index" class="form-horizontal form-border"> <!-- FALTA CAMBIAR LA ACTION =D -->
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<br/><br/>
 				<div class="form-group ">
@@ -95,11 +95,13 @@
 						<tr class="active">
 							<th><div align=center>NOMBRE</div></th>	
 							<th><div align=center>PROFESOR</div></th>				
-							<th style="max-width:100px;"><div align=center>FECHA DE INICIO</div></th>
-							<th style="max-width:100px;"><div align=center>FECHA DE FIN</div></th>
+							<th style="max-width:100px;"><div align=center>EMPIEZA</div></th>
+							<th style="max-width:100px;"><div align=center>TERMINA</div></th>
 							<th style="max-width:100px;"><div align=center>VACANTES DISPONIBLES</div></th>
-							<th><div align=center>ESTADO</div></th>
+							
 							<th><div align=center>PRECIO</div></th>
+							<th style="max-width:180px;"><div align=center>FIN DE LA INSCRIPCIÓN</div></th>
+							<th><div align=center>ESTADO</div></th>
 							<th><div align=center>DETALLE</div></th>
 							<th><div align=center>INSCRIBIRSE</div></th>
 						</tr>
@@ -112,6 +114,10 @@
 								<td>{{date("d-m-Y",strtotime($taller->fecha_inicio))}}</td>
 								<td>{{date("d-m-Y",strtotime($taller->fecha_fin))}}</td>
 								<td>{{$taller->vacantes}}</td>								
+								
+								<td>{{$taller->precio_base}} Nuevos Soles</td>
+								<td>{{date("d-m-Y",strtotime($taller->fecha_fin_inscripciones))}}
+								</td>
 								<td>
 						    		@if(count($talleresxpersona->where('id',$taller->id))!=0)
 						    			Inscrito
@@ -121,7 +127,6 @@
 						    			Disponible
 						    		@endif
 						    	</td>
-								<td>{{$taller->precio_base}} Nuevos Soles</td>
 								<td> 
 									<a class="btn btn-info" href="{{url('/talleres/'.$taller->id.'/show')}}"  title="Detalle"><i class="glyphicon glyphicon-list-alt"></i></a>
 

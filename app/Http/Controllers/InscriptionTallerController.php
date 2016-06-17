@@ -28,7 +28,7 @@ class InscriptionTallerController extends Controller
      */
     public function index()
     {
-        $talleres=Taller::where('fecha_inicio_inscripciones','>=',Carbon::now())->get();
+        $talleres=Taller::where('fecha_inicio_inscripciones','<=',Carbon::now('America/Lima')->format('Y-m-d'))->get();
         $talleresxpersona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->talleres;
         $sedes          = Sede::all();
         return view('socio.talleres.index',compact('sedes','talleres','talleresxpersona'));
@@ -173,9 +173,7 @@ class InscriptionTallerController extends Controller
         /*Se terminó de preparar las fechas*/
 
 
-
-        $talleres=Actividad::where('estado','=',1)
-                               ->where('fecha_inicio_inscripciones','>=',Carbon::now()->format('d-m-Y'))
+        $talleres=Taller::where('fecha_inicio_inscripciones','<=',Carbon::now('America/Lima')->format('Y-m-d'))
                                ->where('fecha_inicio_inscripciones','>=',$fecha_inicio)
                                ->where('fecha_fin_inscripciones','<=',$fecha_fin)
                                ->get();
