@@ -27,6 +27,8 @@ class EditPostulanteEstudioRequest extends Request
      */
     public function rules()
     {
+        var_dump($this->all());
+        die();
         return [
             'colegio_primaria'=>'required|alpha_spaces|max:100',
             'colegio_secundaria'=>'required|alpha_spaces|max:100',
