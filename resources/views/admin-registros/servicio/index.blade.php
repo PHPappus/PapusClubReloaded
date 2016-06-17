@@ -19,7 +19,7 @@
 		<div class="row">
 			<div class="col-sm-12 text-left">
 				<br/><br/>
-				<p class="lead"><strong>SERVICIOS ADICIONAL</strong></p>
+				<p class="lead"><strong>SERVICIOS ADICIONALES</strong></p>
 				<br/>
 			</div>
 			
@@ -57,7 +57,13 @@
 								<tr>
 								<td>{{ $servicio->nombre }}</td>
 								<td>{{ $servicio->descripcion }}</td>
-	 							<td>{{ $servicio->tipo_servicio }}</td>								
+	 							<td>
+	 								@foreach($tiposServicio as $tserv)	
+	 									@if ($tserv->id == $servicio->tipo_servicio)
+	 										{{$tserv->valor	}}
+	 									@endif
+	 								@endforeach
+	 							</td>					
 	 							<td>
 	 							<?php if ($servicio->estado == 1)  echo "ACTIVO";
 									  else echo "INACTIVO";	?>

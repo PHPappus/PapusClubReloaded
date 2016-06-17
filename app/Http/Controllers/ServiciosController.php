@@ -18,9 +18,10 @@ class ServiciosController extends Controller
 {
     public function index()
     {
+        $tiposServicio=Configuracion::where('grupo','=','4')->get();
         $servicios = Servicio::all();
         $mensaje  = null;
-        return view('admin-registros.servicio.index', compact('servicios'));
+        return view('admin-registros.servicio.index', compact('servicios','tiposServicio'));
     }
 
     public function create()
@@ -33,6 +34,7 @@ class ServiciosController extends Controller
 
     public function store(StoreServicioRequest $request)
     {
+        $tiposServicio=Configuracion::where('grupo','=','4')->get();
         $tipo_persona = "0";
         $mensaje = 'Se registró el producto correctamente.';
         $input = $request->all();            

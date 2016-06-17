@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>AGREGAR SERVICIOS ADICIONALES</title>
+	<title>AGREGAR SERVICIOS ADICIONALES </title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,13 @@
 		
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>AGREGAR SERVICIOS ADICIONALES A LA SEDE</strong>
+					<strong>AGREGAR SERVICIOS ADICIONALES A LA SEDE
+					
+					<?php 
+					  echo strtoupper($sede->nombre)
+					 ?>
+					 
+					 </strong>
 			</div>		
 			<div></div>
 		</div>
@@ -32,10 +38,7 @@
 			<form method="POST" action="agregarservicios/store" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
-					<p>						
-						ERROR DE STORED	
-					</p>
-					
+				
 				<div class="table-responsive">
 					<div class="container">
 						<table class="table table-bordered table-hover text-center display" id=	"example">
@@ -48,15 +51,21 @@
 							<tbody>													
 								
 								@foreach($servicios as $servicio)	
-									
+										@if ($servicio->estado == 1)
 										<tr>																				
 											<td>{{$servicio->nombre}}</td>
 											<td>{{$servicio->descripcion}}</td>
-											<td>{{$servicio->tipo_servicio}}</td>
-											<td>{{ Form::checkbox('ch[]', $servicio->id, false) }}</td>
+											<td>
+	 											@foreach($tiposServicio as $tserv)	
+	 												@if ($tserv->id == $servicio->tipo_servicio)
+	 													{{$tserv->valor	}}
+	 												@endif
+	 											@endforeach
+	 										</td>	
+											<td>{{ Form::checkbox('ch[]', $servicio->id, false) }}</td>	
 														
 										</tr>
-									
+										@endif
 								 @endforeach
 								
 							</tbody>			

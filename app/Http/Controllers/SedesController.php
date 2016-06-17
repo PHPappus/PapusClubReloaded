@@ -14,6 +14,7 @@ use papusclub\Http\Requests\EditSedeRequest;
 use Illuminate\Support\Facades\Input;
 use papusclub\Models\Provincia;
 use papusclub\Models\Distrito;
+use papusclub\Models\Configuracion;
 
 
 class SedesController extends Controller
@@ -123,8 +124,10 @@ class SedesController extends Controller
     {
         
         $sede = Sede::find($id);
-        $servicios = Servicio::all();        
-        return view('admin-general.sede.serviciosescoger', compact('sede', 'servicios'));
+        $servicios = Servicio::all();
+        $tiposServicio=Configuracion::where('grupo','=','4')->get();
+
+        return view('admin-general.sede.serviciosescoger', compact('sede', 'servicios','tiposServicio'));
     }
 
 
@@ -132,7 +135,7 @@ class SedesController extends Controller
         $servciosEscogidos = Input::get('ch');
         $sede = Sede::find($id);
         $servicios = Servicio::all();  
-
+        $tiposServicio=Configuracion::where('grupo','=','4')->get();
 
         foreach ($servciosEscogidos as $serID) {
             foreach ($servicios as $servicio){
@@ -145,7 +148,7 @@ class SedesController extends Controller
             }
         }
 
-        return view('admin-general.sede.serviciosdesedeindex', compact('sede', 'servicios','servciosEscogidos'));
+        return view('admin-general.sede.serviciosdesedeindex', compact('sede', 'servicios','servciosEscogidos','id','tiposServicio'));
      }
 
 
