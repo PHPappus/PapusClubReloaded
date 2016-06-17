@@ -271,6 +271,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 //Administrador de Persona
 Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::resource('admin-persona','AdminPersonaController');
+	Route::resource('usuario','UsuarioController');
 	Route::get('multas-s/','SocioAdminController@indexRegMulta');
 	Route::post('multas-s/save','SocioAdminController@storeMulta');
 
@@ -372,7 +373,7 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::patch('membresia/{id}/edit','MembresiaController@update'); 
 
 
-	Route::resource('usuario','UsuarioController');
+	
 
 });
 //Administrador de Reserva
