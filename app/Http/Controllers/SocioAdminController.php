@@ -518,4 +518,24 @@ class SocioAdminController extends Controller
 
         return view('admin-persona.tramites.traspasos',compact('traspasos'));
     }
+
+    public function validarTraspaso(Traspaso $traspaso)
+    {
+
+        $postulante = 0;
+        $persona = DB::table('persona')->select('id')->where('doc_identidad',$traspaso->dni)->orwhere('carnet_extranjeria',$traspaso->dni)->get();
+        if ($postulante <= 0)
+            return redirect('traspasos-p')->with('No se encontró al postulante');
+        $postulante = Postulante::find($persona_id)->first();
+        $traspaso->estado = FALSE;
+        $socio = new Socio();
+        $socio->estado = TRUE;
+        $socio->fecha_ingreso = date('now');
+        $socio->postulante()->save($postulante);
+        $socio->membresia()->save($traspaso->socio->carnet_actual);
+
+        $socio->save();
+
+        return redirect('traspasos-p')->with('stored','Se aprobó el traspaso');
+    }
 }

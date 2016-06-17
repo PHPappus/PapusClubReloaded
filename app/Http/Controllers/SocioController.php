@@ -173,7 +173,21 @@ class SocioController extends Controller
 
         $traspaso->save();
 
-        return redirect('traspaso')->with('stored', 'Se registró el traspaso correctamente. Acercarse a la oficina a entregar los documentos del nuevo socio a transferir');
+        return redirect('traspasos-p')->with('stored', 'Se registró el traspaso correctamente. Acercarse a la oficina a entregar los documentos del nuevo socio a transferir');
 
+    }
+
+    public function misMultas()
+    {
+        $user_id = Auth::user()->id;
+        $usuario = User::findOrFail($user_id);
+        $persona_id = $usuario->persona->id;
+
+        $postulante = Postulante::find($persona_id)->first();
+        $socio = $postulante->socio;
+
+        $multas = $socio->multaxpersona;
+
+        return view('socio.multas.mismultasindex',compact('multas'));
     }
 }

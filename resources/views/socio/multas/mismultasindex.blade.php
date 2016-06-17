@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>TRASPASOS</title>
+	<title>MULTAS</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,14 +12,14 @@
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin-persona')
+@extends('layouts.headerandfooter-al-admin')
 
 @section('content')
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 text-left">
 				<br/><br/>
-				<p class="lead"><strong>TRASPASOS</strong></p>
+				<p class="lead"><strong>MULTAS</strong></p>
 				<br/>
 			</div>
 			
@@ -51,34 +51,24 @@
 				<table class="table table-bordered table-hover text-center display" id="example">
 						<thead class="active">
 							
-							<th><div align=center>NOMBRE SOCIO</div> </th>
-							<th><div align=center>DNI SOCIO</div></th>
-							<th><div align=center>NOMBRE POSTULANTE</div></th>
-							<th><div align=center>DNI POSTULANTE</div></th>
-							<th><div align=center>ACEPTAR</div></th>
-							<th><div align=center>RECHAZAR</div></th>
+							<th><div align=center>ID</div></th>
+							<th><div align=center>NOMBRE</div> </th>
+							<th><div align=center>MONEDA</div> </th>
+							<th><div align=center>MONTO PENALIDAD</div></th>
+							<th><div align=center>DESCRIPCIÓN</div></th>
 	
 						</thead>
 						<tbody>
-							@foreach($traspasos as $traspaso)						
-								@if ($traspaso->estado == TRUE)
+							@foreach($multas as $multa)						
 								<tr>
-									<td>{{$traspaso->socio->postulante->persona->nombre}}</td>
-									@if ($traspaso->socio->postulante->persona->doc_identidad) 
-										<td>{{$traspaso->socio->postulante->persona->doc_identidad}}</td>
-									@else
-										<td>{{$traspaso->socio->postulante->persona->carnet_extranjeria}}</td>
-									@endif
-									<td>{{$traspaso->nombre}}</td>
-									<td>{{$traspaso->dni}}</td>
-					            	<td>
-					              	<a class="btn btn-info" href="#" title="Aceptar" data-href="{{url('/traspaso/'.$traspaso->id.'/aceptar')}}"><i class="glyphicon glyphicon-ok"></i></a>
-					            	</td>
-					            	<td>
-					              	<a class="btn btn-info" href="#" title="Rechazar" data-href="{{url('/traspaso/'.$traspaso->id.'/rechazar')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
-					            	</td>
-					            </tr>
-					            @endif
+									
+									<td>{{$multa->pivot->multa_id}}</td>
+									<td>{{$multa->nombre}}</td>
+									<td>S/.</td>
+									<td>{{$multa->montoPenalidad}}</td>
+									<td>{{$multa->pivot->descripcion_detallada}}</td>
+					            </tr>				            
+						
 							@endforeach
 						</tbody>
 				</table>
@@ -89,7 +79,6 @@
 					<input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
 
 					<div class="btn-group col-sm-10"></div>
-
 					
 				</div>	
 
@@ -126,7 +115,7 @@
 	        <h4 class="modal-title">Confirmar</h4>
 	      </div>
 	      <div class="modal-body">
-	        <p>¿Está seguro que desea rechazar el traspaso?</p>
+	        <p>¿Está seguro que desea eliminar el proveedor?</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
