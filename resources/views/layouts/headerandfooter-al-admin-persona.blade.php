@@ -1,3 +1,4 @@
+
 <header class="header">
 
   <div class="content clearfix">
@@ -45,9 +46,6 @@
          <ul class="nav navbar-nav">
           <li class="dropdown">
             <li><a href="{!!URL::to('/Socio/')!!}" class="dropdown-toggle btn-lg" title="consultar Bungalows" target="_self">Socio</a></li>
-            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Socio <span class="caret"></span>
-            </a>
           </li>
         </ul>
         <ul class="nav navbar-nav">
@@ -59,28 +57,12 @@
                 <li><a href="#" title="Consultar Proveedores" target="_self">Consultar</a></li>
                 <li><a href="#" title="Registrar nuevo proveedor" target="_self">Registrar</a></li>
                 <li><a href="#" title="Anular proveedor" target="_self">Anular</a></li>
-            </ul>t
-          </li>
-        </ul>
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Talleres <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="{!!URL::to('/talleres/index')!!}" title="consultar talleres" target="_self">Consultar</a></li>
-                <li><a href="{!!URL::to('/talleres/mis-inscripciones')!!}" title="inscripciones de talleres" target="_self">Mis Inscripciones</a></li>
             </ul>
           </li>
         </ul>
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <li><a href="{!!URL::to('/multas-s')!!}" class="dropdown-toggle btn-lg" title="registrar multas" target="_self">Multas</a></li>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <li><a href="#" class="dropdown-toggle btn-lg" title="Consultar Cuotas" target="_self">Cuotas</a></li> <!-- no sé qué es prros -->
           </li>
         </ul>
         <ul class="nav navbar-nav">

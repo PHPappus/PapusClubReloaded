@@ -77,8 +77,8 @@
 								<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Paso 2: Nacimiento</a></li>
 								<li role="presentation"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Paso 3: Educacion</a></li>
 								<li role="presentation"><a href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab">Paso 4: Empleo</a></li>
-								<!-- <li role="presentation"><a href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab">Paso 5: Familiares</a></li>
-								<li role="presentation"><a href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab">Paso 6: Vivienda</a></li>
+								<li role="presentation"><a href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab">Paso 5: Contacto</a></li>
+								<!--<li role="presentation"><a href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab">Paso 6: Vivienda</a></li>
 								<li role="presentation"><a href="#seccion6" aria-controls="seccion7" data-toggle="tab" role="tab">Paso 7: Contactos</a></li> -->
 							</ul>
 						</div>
@@ -145,8 +145,8 @@
 												<label for="" class="control-label">Nacionalidad:</label>
 											</div>
 											<div class="col-sm-6 text-left" >
-													<input checked onchange="document.getElementById('doc_identidad').disabled = false; document.getElementById('carnet_extranjeria').disabled = true;" onclick=" document.getElementById('carnet_extranjeria').value = '';" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : '' }}/>Peruano&nbsp&nbsp&nbsp
-													<input onchange="document.getElementById('carnet_extranjeria').disabled = false; document.getElementById('doc_identidad').disabled = true;" onclick=" document.getElementById('doc_identidad').value = ''; " type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "extranjero") ? 'checked="true"' : '' }}/>Extranjero
+													<input checked onchange="seleccionaPeruano()" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : '' }}/>Peruano&nbsp&nbsp&nbsp
+													<input onchange="seleccionaExtranjero()" type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "extranjero") ? 'checked="true"' : '' }}/>Extranjero
 
 											</div>
 										</div>
@@ -186,17 +186,20 @@
 								<br>
 
 
-
 								<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Fecha de Nacimiento</label>
+												<label for="" class="control-label">&nbspFecha de Nacimiento</label>
 											</div>
 											<div class="col-sm-6">
 												<input style="width: 250px" class="datepicker" type="text" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha Nacimiento" readonly="true" value="{{old('fecha_nacimiento')}}" >
 											</div>	
 										</div>
 								</div>
+
+									<div class="text-left" style="margin-left: 1cm; color:red">
+											<label for="" class="control-label">(*) Llenar los combos solo si es peruano</label>
+									</div><br>
 
 									<div class="form-group required">
 											<div class="col-sm-6">
@@ -207,7 +210,7 @@
 														<select class="form-control" id="departamento" name="departamento" style="max-width: 250px " data-link="{{ url('/provincias') }}">
 															<option value="-1" default>--Departamento--</option>
 																@foreach ($departamentos as $depa)      
-												                	<option value="{{$depa->id}}"  @if (old('departamento') == $depa->id) selected="selected" @endif  >{{$depa->nombre}}</option>
+												                	<option value="{{$depa->id}}"   >{{$depa->nombre}}</option>
 												                @endforeach
 														</select>
 														
@@ -220,9 +223,9 @@
 															<option  value="-1" default>--Distrito--</option>
 														</select>
 
-														<br><br>
+														
 
-														<!--<a href="#" id="try" data-link="{{ url('/test') }}">Try</a>-->>
+														<!--<a href="#" id="try" data-link="{{ url('/test') }}">Try</a>-->
 
 													</div>	
 											</div>
@@ -235,6 +238,31 @@
 											</div>
 											<div class="col-sm-6">
 												<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{old('direccion_nacimiento')}}">
+											</div>		
+										</div>
+									</div>
+
+									<div class="text-left" style="margin-left: 1cm; color:red">
+											<label for="" class="control-label">(*) Llenar los combos solo si es extranjero</label>
+									</div><br>
+
+									<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Pais de Nacimiento:</label>
+											</div>
+											<div class="col-sm-6">
+												<input  disabled="true" type="text" class="form-control" id="pais_nacimiento" name="pais_nacimiento" placeholder="Pais de Nacimiento" style="max-width: 250px" value="{{old('pais_nacimiento')}}">
+											</div>		
+										</div>
+									</div>
+									<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Ciudad de Nacimiento:</label>
+											</div>
+											<div class="col-sm-6">
+												<input disabled="true" type="text" class="form-control" id="lugar_nacimiento" name="lugar_nacimiento" placeholder="Ciudad de Nacimiento" style="max-width: 250px" value="{{old('lugar_nacimiento')}}">
 											</div>		
 										</div>
 									</div>
@@ -253,7 +281,7 @@
 												<label for="" class="control-label">Educacion Primaria:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="educacion_primaria" name="educacion_primaria" placeholder="Educacion Primaria" style="max-width: 250px" value="{{old('educacion_primaria')}}">
+												<input type="text" class="form-control" id="colegio_primario" name="colegio_primario" placeholder="Educacion Primaria" style="max-width: 250px" value="{{old('colegio_primario')}}">
 											</div>		
 										</div>
 								</div>
@@ -263,7 +291,7 @@
 												<label for="" class="control-label">Educacion secundaria:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="educacion_secundaria" name="educacion_secundaria" placeholder="Educacion Secundaria" style="max-width: 250px" value="{{old('educacion_secundaria')}}">
+												<input type="text" class="form-control" id="colegio_secundario" name="colegio_secundario" placeholder="Educacion Secundaria" style="max-width: 250px" value="{{old('colegio_secundario')}}">
 											</div>		
 										</div>
 								</div>
@@ -329,6 +357,48 @@
 										</div>
 								</div>
 								
+							
+							</div>
+
+							<div role="tabpanel" class="tab-pane" id="seccion5">
+								<br>
+										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+								<br>
+								
+
+								<div class="form-group ">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Telefono Fijo:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" onkeypress="return inputLimiter(event,'Numbers')" maxlength="7" id="telefono_domicilio" name="telefono_domicilio" placeholder="Telefono fijo" style="max-width: 250px" value="{{old('telefono_domicilio')}}">
+											</div>		
+										</div>
+								</div>
+
+								<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Telefono Celular:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" onkeypress="return inputLimiter(event,'Numbers')" maxlength="9" id="telefono_celular" name="telefono_celular" placeholder="Telefono celular" style="max-width: 250px" value="{{old('telefono_celular')}}">
+											</div>		
+										</div>
+								</div>
+
+								<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Correo:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" style="max-width: 250px" value="{{old('correo')}}">
+											</div>		
+										</div>
+								</div>
+								
 								<br><br>
 								<div class="form-group required" >
 										<div class="btn-group col-sm-5" ></div>
@@ -341,10 +411,6 @@
 										</div>
 								</div>
 							</div>
-
-<!-- 							<div role="tabpanel" class="tab-pane" id="seccion5">
-								section 5
-							</div> -->
 
 							<!-- <div role="tabpanel" class="tab-pane" id="seccion6">
 								<div class="container">
@@ -616,6 +682,35 @@
 		});
 
 
+	</script>
+
+	<script>
+		//Script en el caso en que se seleccione el combo peruano
+
+		function seleccionaPeruano() {
+	    	document.getElementById('departamento').disabled = false;
+	    	document.getElementById('doc_identidad').disabled = false;
+	    	document.getElementById('direccion_nacimiento').disabled = false;
+	    	document.getElementById('carnet_extranjeria').disabled = true;
+	    	document.getElementById('pais_nacimiento').disabled = true;
+	    	document.getElementById('lugar_nacimiento').disabled = true;
+	    	//antes onclick
+			document.getElementById('carnet_extranjeria').value = '';	
+			document.getElementById('pais_nacimiento').value = '';	
+			document.getElementById('lugar_nacimiento').value = '';	
+		}
+
+		function seleccionaExtranjero(){
+	    	document.getElementById('departamento').disabled = true;
+	    	document.getElementById('carnet_extranjeria').disabled = false;
+	    	document.getElementById('direccion_nacimiento').disabled = true;
+	    	document.getElementById('doc_identidad').disabled = true;
+	    	document.getElementById('pais_nacimiento').disabled = false;
+	    	document.getElementById('lugar_nacimiento').disabled = false;
+	    	//antes onclick
+	    	document.getElementById('doc_identidad').value = ''; 
+	    	document.getElementById('direccion_nacimiento').value = ''; 
+		}
 	</script>
 
 	</body>

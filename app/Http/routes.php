@@ -304,9 +304,11 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 
 	/*editar*/
 	Route::patch('postulante/{id}/editBasico','PostulanteController@updateBasico');
+	Route::patch('postulante/{id}/editNacimiento','PostulanteController@updateNacimiento');
 	Route::patch('postulante/{id}/editEstudio','PostulanteController@updateEstudio');
 	Route::patch('postulante/{id}/editTrabajo','PostulanteController@updateTrabajo');
 	Route::patch('postulante/{id}/editContacto','PostulanteController@updateContacto');
+	
 /*	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');*/
 
 	//Route::get('/provincias','PostulanteController@getProvincias');
@@ -321,6 +323,16 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
     	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
 	});
 	Route::post('postulante/distritos', function(){
+		$prov_id=Input::get('id');
+    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
+	});
+
+	/*Ajax para que funcion los list de departamento en el editar*/
+	Route::post('postulante/provinciasEdit', function(){
+		$dep_id=Input::get('id');
+    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
+	});
+	Route::post('postulante/distritosEdit', function(){
 		$prov_id=Input::get('id');
     	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
 	});
