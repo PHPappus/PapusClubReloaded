@@ -20,6 +20,7 @@ use papusclub\Http\Requests\EditSocioContactoRequest;
 use papusclub\Http\Requests\StoreMultaxPersonaRequest;
 use papusclub\Http\Requests\EditSocioNacimientoRequest;
 use papusclub\Http\Requests\StoreInvitadoRequest;
+use papusclub\Http\Requests\SaveSocioRequest;
 use papusclub\Models\Invitados;
 use papusclub\Models\TipoMembresia;
 use Illuminate\Support\Facades\Redirect;
@@ -520,23 +521,25 @@ class SocioAdminController extends Controller
         return view('admin-persona.tramites.traspasos',compact('traspasos'));
     }
 
-    public function validarTraspaso(Traspaso $traspaso)
+    public function validarTraspaso(SaveSocioRequest $request)
     {
 
-        $postulante = 0;
-        var_dump($traspaso->nombre);
-        die();
-        $persona=Persona::where('doc_identidad','=',$traspaso->dni)->orwhere('carnet_extranjeria','=',$traspaso->dni)->first();
+        $input = $request->all();
+       // var_dump($input);
+       // die();
+        $persona=Persona::where('doc_identidad','=',$input['dni'])->orwhere('carnet_extranjeria','=',$input['dni'])->first();
      //   if ($postulante->dni == 0)
        //     return redirect('traspasos-p')->with('No se encontró al postulante');
-        $postulante = Postulante::where('id_postulante','=',$persona->id);
+        $postulante = Postulante::where('id_postulante','=',$persona->id)->first();
+        $traspaso = Traspaso::where('dni','=',$input['dniP']);
         $traspaso->estado = FALSE;
         $socio = new Socio();
         $socio->estado = TRUE;
         $socio->fecha_ingreso = date('now');
-        $socio->postulante->save($postulante);
-        $socio->membresia()->save($traspaso->socio->carnet_actual);
-        $traspaso->socio->estado = FALSE;
+        $socio->postulante_id = $postulante->id_postulante;
+        $socio->tipo_membresia_id = $postulante->socio->membresia->id;
+        $membresia = TipoMembresia::find($socio->tipo_membresia_id);
+        $membresia->socio()->save($socio);
         $socio->save();
 
         return redirect('admin-persona')->with('stored','Se aprobó el traspaso');

@@ -283,7 +283,7 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	//EVALUAR TRASPASO DE MEMBRESIA
 	Route::get('traspasos-p/','SocioAdminController@indexTraspasos');
 	Route::get('traspaso/{id}/ver','SocioAdminController@showTraspaso');
-	Route::get('traspaso/{id}/aceptar','SocioAdminController@validarTraspaso');
+	Route::post('traspaso/new/save','SocioAdminController@validarTraspaso');
 
 	//MANTENIMIENTO DE TRABAJADOR
 	Route::get('trabajador/index','TrabajadorController@index');//ya
