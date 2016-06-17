@@ -25,6 +25,23 @@
 					<strong>TRASPASAR MEMBRESÍA</strong>
 			</div>		
 		</div>
+
+
+		@if (session('stored'))
+			<script>$("#modalSuccess").modal("show");</script>
+			
+			<div class="alert alert-success fade in">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>¡Éxito!</strong> {{session('stored')}}
+			</div>
+		@endif
+		@if (session('eliminated'))			
+			<div class="alert alert-warning fade in">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>Aviso</strong> {{session('eliminated')}}
+			</div>
+		@endif
+		
 		<div class="container">
 			<form method="POST" action="/traspaso/new/save" class="form-horizontal form-border">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -51,7 +68,8 @@
 			  		</font>		  			
 				</div>			
 			  	</br>
-			  	
+
+
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">

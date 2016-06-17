@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Redirect;
 use papusclub\Models\Departamento;
 use papusclub\Models\Provincia;
 use papusclub\Models\Distrito;
+use papusclub\Models\Traspaso;
 use Session;
 
 class SocioAdminController extends Controller
@@ -377,7 +378,7 @@ class SocioAdminController extends Controller
         Session::flash('update','membresia');
         return Redirect::action('SocioAdminController@edit',$socio->id)->with('cambios-mem','Cambios realizados con éxito');         
     }
-
+    /* MULTAS */
     public function indexRegMulta()
     {
         $socios = Socio::all();
@@ -403,6 +404,7 @@ class SocioAdminController extends Controller
         }
         return redirect('multas-s')->with('stored', 'Se registró la multa correctamente.');
     }
+
     /*INVITADOS*/
 
     public function createInvitado($id)
@@ -506,5 +508,14 @@ class SocioAdminController extends Controller
         //die();
         Session::flash('update','invitado');    
         return back();
+    }
+
+    /*TRASPASOS*/
+
+    public function indexTraspasos()
+    {
+        $traspasos = Traspaso::all();
+
+        return view('admin-persona.tramites.traspasos',compact('traspasos'));
     }
 }

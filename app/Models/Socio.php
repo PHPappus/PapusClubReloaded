@@ -115,7 +115,7 @@ class Socio extends Model
 
     public function traspaso()
     {
-        return $this->hasOne(Traspaso::class,'id');
+        return $this->hasMany(Traspaso::class);
     }
 
     
