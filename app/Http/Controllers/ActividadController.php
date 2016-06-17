@@ -26,9 +26,8 @@ class ActividadController extends Controller
     public function create()
     {
     	/*PAra crear la ACtividad , primero se debe buscar el Ambiente*/
-    	$reservas = Reserva::where('actividad_id','!=','null'); 
+    	$reservas = Reserva::where('actividad_id','=',null)->get(); 
         $tipoPersonas = TipoPersona::all();
-        
         $values=Configuracion::where('grupo','=','3')->get();
 
         //debe mostrar todas las reservas realizadas
@@ -59,7 +58,7 @@ class ActividadController extends Controller
                 }else{
                     $a_realizarse_en = str_replace('/', '-', $input['a_realizarse_en']);      
                     $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
-                    $actividad->hora_inicio=$carbon->createFromFormat('H:i', $input['hora'])->toTimeString();
+                    $actividad->hora_inicio=$carbon->createFromFormat('H:i:s', $input['hora'])->toTimeString();
                 }
        
 
@@ -115,7 +114,7 @@ class ActividadController extends Controller
                 }else{
                     $a_realizarse_en = str_replace('/', '-', $input['a_realizarse_en']);      
                     $actividad->a_realizarse_en=$carbon->createFromFormat('Y-m-d', $a_realizarse_en)->toDateString();
-                    $actividad->hora_inicio=$carbon->createFromFormat('H:i', $input['hora'])->toTimeString();
+                    $actividad->hora_inicio=$carbon->createFromFormat('H:i:s', $input['hora'])->toTimeString();
         }
         
         $actividad->update();
@@ -150,7 +149,7 @@ class ActividadController extends Controller
     {
         $actividad=Actividad::find($id);
         
-        if($actividad->reserva_id==null){
+        if($actividad->reserva_id!=null){
             return redirect('actividad/index')->with('delete', 'No se puede eliminar esta actividad, posee dependencias.');
         }
         else
