@@ -53,9 +53,7 @@
 							
 							<th><div align=center>NOMBRE SOCIO</div> </th>
 							<th><div align=center>DNI SOCIO</div></th>
-							<th><div align=center>NOMBRE POSTULANTE</div></th>
-							<th><div align=center>DNI POSTULANTE</div></th>
-							<th><div align=center>ACEPTAR</div></th>
+							<th><div align=center>VER</div></th>
 							<th><div align=center>RECHAZAR</div></th>
 	
 						</thead>
@@ -69,10 +67,8 @@
 									@else
 										<td>{{$traspaso->socio->postulante->persona->carnet_extranjeria}}</td>
 									@endif
-									<td>{{$traspaso->nombre}}</td>
-									<td>{{$traspaso->dni}}</td>
 					            	<td>
-					              	<a class="btn btn-info" href="#" title="Aceptar" data-href="{{url('/traspaso/'.$traspaso->id.'/aceptar')}}"><i class="glyphicon glyphicon-ok"></i></a>
+					              	<a class="btn btn-info" href="{{url('/traspaso/'.$traspaso->id.'/ver')}}" title="Ver" ><i class="glyphicon glyphicon-list-alt"></i></a>
 					            	</td>
 					            	<td>
 					              	<a class="btn btn-info" href="#" title="Rechazar" data-href="{{url('/traspaso/'.$traspaso->id.'/rechazar')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>

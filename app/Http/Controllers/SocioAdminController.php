@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use papusclub\Http\Requests;
 use papusclub\Models\Persona;
 use papusclub\Models\Socio;
+use papusclub\Models\Postulante;
 use papusclub\Models\Carnet;
 use papusclub\Models\Multa;
 use papusclub\Models\Configuracion;
@@ -523,19 +524,33 @@ class SocioAdminController extends Controller
     {
 
         $postulante = 0;
-        $persona = DB::table('persona')->select('id')->where('doc_identidad',$traspaso->dni)->orwhere('carnet_extranjeria',$traspaso->dni)->get();
-        if ($postulante <= 0)
-            return redirect('traspasos-p')->with('No se encontró al postulante');
-        $postulante = Postulante::find($persona_id)->first();
+        var_dump($traspaso->nombre);
+        die();
+        $persona=Persona::where('doc_identidad','=',$traspaso->dni)->orwhere('carnet_extranjeria','=',$traspaso->dni)->first();
+     //   if ($postulante->dni == 0)
+       //     return redirect('traspasos-p')->with('No se encontró al postulante');
+        $postulante = Postulante::where('id_postulante','=',$persona->id);
         $traspaso->estado = FALSE;
         $socio = new Socio();
         $socio->estado = TRUE;
         $socio->fecha_ingreso = date('now');
-        $socio->postulante()->save($postulante);
+        $socio->postulante->save($postulante);
         $socio->membresia()->save($traspaso->socio->carnet_actual);
-
+        $traspaso->socio->estado = FALSE;
         $socio->save();
 
-        return redirect('traspasos-p')->with('stored','Se aprobó el traspaso');
+        return redirect('admin-persona')->with('stored','Se aprobó el traspaso');
+    }
+
+    public function cancelarTraspaso(Traspaso $traspaso)
+    {
+        $traspaso->estado = FALSE;
+        return redirect('traspasos-p')->with('Se canceló el traspaso');
+    }
+
+    public function showTraspaso($id)
+    {
+        $traspaso = Traspaso::find($id);
+        return view('admin-persona.tramites.showTraspaso',compact('traspaso'));
     }
 }
