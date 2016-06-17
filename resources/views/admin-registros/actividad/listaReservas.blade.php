@@ -37,6 +37,7 @@
 					<thead class="active">
 						<tr>
 							<th><DIV ALIGN=center>ID</th>
+							<th><DIV ALIGN=center>AMBIENTE</th>
 							<th><DIV ALIGN=center>FECHA INICIO</th>
 							<th><DIV ALIGN=center>FECHA FIN</th>
 							<th><DIV ALIGN=center>HORA INICIO</th>
@@ -48,6 +49,7 @@
 							@foreach($reservas as $reserva)						
 						    	<tr>
 						    		<td>{{ $reserva->id }}</td>
+						    		<td>{{ $reserva->ambiente->nombre}}</td>
 									<td>{{ $reserva->fecha_inicio_reserva }}</td>
 									<td>{{ $reserva->fecha_fin_reserva }}</td>
 			 						<td>{{ $reserva->hora_inicio_reserva }}</td>
