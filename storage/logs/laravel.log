@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 [2016-06-17 04:37:01] local.ERROR: ErrorException: Trying to get property of non-object in C:\xampp\htdocs\PapusClubReloaded\storage\framework\views\d17b8c379784a618f578582645db8b570335a988.php:72
 Stack trace:
@@ -1467,3 +1468,5 @@ Stack trace:
 #78 C:\xampp\htdocs\PapusClubReloaded\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #79 C:\xampp\htdocs\PapusClubReloaded\server.php(21): require_once('C:\\xampp\\htdocs...')
 #80 {main}  
+=======
+>>>>>>> mjjj
