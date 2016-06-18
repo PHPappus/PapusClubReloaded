@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 use papusclub\Http\Requests;
 use papusclub\Http\Controllers\Controller;
 
-class PublicoController extends Controller
+class ControlIngresosController extends Controller
 {
     public function index()
     {
-        return view('publico.inicio-al-publico');
+        return view('control-ingresos.inicio-al-control-ingresos');
     }
 }

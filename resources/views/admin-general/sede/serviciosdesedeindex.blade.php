@@ -5,8 +5,7 @@
 <html>
 <head>
 	<title>AGREGAR SERVICIOS ADICIONALES 
-	 </title>
-	}
+	 </title>	
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,13 +53,13 @@
 							<tbody>													
 								
 								@foreach($servicios as $servicio)	
-									   @foreach ($servciosEscogidos as $ser_id)		
+									   @foreach ($servciosescogidos as $ser_id)		
 											@if($ser_id == $servicio->id)
 											<tr>									
 												<td>{{$servicio->nombre}}</td>
 												<td>{{$servicio->descripcion}}</td>
 											<td>
-	 											@foreach($tiposServicio as $tserv)	
+	 											@foreach($tiposservicio as $tserv)	
 	 												@if ($tserv->id == $servicio->tipo_servicio)
 	 													{{$tserv->valor	}}
 	 												@endif

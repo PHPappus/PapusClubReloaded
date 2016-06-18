@@ -19,7 +19,7 @@ class PerfilTableSeeder extends Seeder
         Perfil::insert(['description'=>'GERENTE']);
         Perfil::insert(['description'=>'ADMINISTRADOR DE PERSONA']);
         Perfil::insert(['description'=>'ADMINISTRADOR DE RESERVA']);
-        Perfil::insert(['description'=>'PUBLICO']);
+        Perfil::insert(['description'=>'CONTROL DE INGRESOS']);
 
     }
 }
