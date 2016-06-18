@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('pagos-s','SocioController@pagos');
 	//Socio.talleres  : INSCRIPCION DE TALLERES
 	Route::get('talleres/index','InscriptionTallerController@index');
+	Route::post('talleres/index','InscriptionTallerController@filterTalleres');
 	Route::get('talleres/{id}/show','InscriptionTallerController@show');
 	Route::get('talleres/{id}/confirm','InscriptionTallerController@confirmInscription');
 	Route::post('talleres/{id}/confirm/save','InscriptionTallerController@makeInscriptionToUser');
@@ -90,6 +91,16 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::get('ambientes-ar','AdminRegistrosController@ambientes');
 	Route::get('registrar-ambiente','AdminRegistrosController@registrar');
 	Route::get('modificar-ambiente','AdminRegistrosController@modificar');
+
+	// Mantenimiento de Servicios Lol by Brayan
+
+	Route::get('servicios/index', 'ServiciosController@index');	
+	Route::get('servicios/new', 'ServiciosController@create');
+	Route::post('servicios/new/servicio', 'ServiciosController@store');
+	Route::get('servicios/{id}', 'ServiciosController@edit');
+	Route::post('servicios/{id}/edit', 'ServiciosController@update');
+	Route::get('servicios/{id}/delete', 'ServiciosController@destroy');
+	Route::get('servicios/{id}/show', 'ServiciosController@show');	
 
 
 	//MANTENIMIENTO DE TALLERES
@@ -188,18 +199,10 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 
 
 	
-	// Mantenimiento de Servicios LOL
-
-	Route::get('servicios/index', 'ServiciosController@index');	
-	Route::get('servicios/new', 'ServiciosController@create');
-	Route::post('servicios/new/servicio', 'ServiciosController@store');
-	Route::get('servicios/{id}', 'ServiciosController@edit');
-	Route::post('servicios/{id}/edit', 'ServiciosController@update');
-	Route::get('servicios/{id}/delete', 'ServiciosController@destroy');
-	Route::get('servicios/{id}/show', 'ServiciosController@show');	
 
 	// Agregar Servicios a las sedes2
-		Route::get('sedes/{id}/agregarservicios', 'SedesController@agregarservicios');
+	  Route::get('sedes/{id}/agregarservicios', 'SedesController@agregarservicios');
+	  Route::post('sedes/{id}/agregarservicios/store','SedesController@storeservicios');
 	
 	
 	//MANTENIMIENTO DE PROVEEDORES
@@ -277,6 +280,7 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::resource('admin-persona','AdminPersonaController');
 
 	//ASIGNAR MULTAS A SOCIOS
+	Route::resource('usuario','UsuarioController');
 	Route::get('multas-s/','SocioAdminController@indexRegMulta');
 	Route::post('multas-s/save','SocioAdminController@storeMulta');
 
@@ -394,7 +398,7 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::patch('membresia/{id}/edit','MembresiaController@update'); 
 
 
-	Route::resource('usuario','UsuarioController');
+	
 
 });
 //Administrador de Reserva

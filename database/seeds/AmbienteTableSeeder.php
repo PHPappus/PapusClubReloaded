@@ -14,11 +14,25 @@ class AmbienteTableSeeder extends Seeder
     {
         Ambiente::insert([
             'nombre' => 'Cancha 10', 
-        	'tipo_ambiente' => 'Cancha', 
-        	'capacidad_actual' => '100', 
-        	'ubicacion' => 'Sede Callao-cerca de la entrada', 
-        	'sede_id' => 1 
-        	]);
+            'tipo_ambiente' => 'Cancha', 
+            'capacidad_actual' => '100', 
+            'ubicacion' => 'Sede Callao-cerca de la entrada', 
+            'sede_id' => 1 
+            ]);
+        Ambiente::insert([
+            'nombre' => 'Cancha 09', 
+            'tipo_ambiente' => 'Cancha', 
+            'capacidad_actual' => '100', 
+            'ubicacion' => 'Sede Chosica-cerca de las piscinas', 
+            'sede_id' => 2 
+            ]);
+        Ambiente::insert([
+            'nombre' => 'Cancha 08', 
+            'tipo_ambiente' => 'Cancha', 
+            'capacidad_actual' => '100', 
+            'ubicacion' => 'Sede Piura-cerca de la entrada', 
+            'sede_id' => 3 
+            ]);
         Ambiente::insert([
             'nombre' => 'Bungalow Callao 10', 
             'tipo_ambiente' => 'Bungalow', 

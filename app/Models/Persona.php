@@ -36,6 +36,10 @@ class Persona extends Model
         return $this->belongsToMany('papusclub\Models\Actividad')->withPivot('precio');
     }
 
+    public function talleres(){
+        return $this->belongsToMany(Taller::class,'personaxtaller','persona_id','taller_id')->withPivot('precio')->whereNull('personaxtaller.deleted_at')->withTimestamps();
+    }
+
     public function usuario(){
         return $this->belongsTo('papusclub\User','id');
     }
