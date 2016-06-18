@@ -132,23 +132,23 @@ class SedesController extends Controller
 
 
      public function storeservicios($id){
-        $servciosEscogidos = Input::get('ch');
+        $servciosescogidos = Input::get('ch');
         $sede = Sede::find($id);
         $servicios = Servicio::all();  
-        $tiposServicio=Configuracion::where('grupo','=','4')->get();
+        $tiposservicio=Configuracion::where('grupo','=','4')->get();
 
-        foreach ($servciosEscogidos as $serID) {
+        foreach ($servciosescogidos as $serid) {
             foreach ($servicios as $servicio){
-                if ( $serID== $servicio->id){                    
+                if ( $serid== $servicio->id){                    
                         $s = new Sedexservicio();
                         $s->idsede =  (int) $id;
-                        $s->idservicio = (int)$serID;
+                        $s->idservicio = (int)$serid;
                         $s->save();
                 }   
             }
         }
 
-        return view('admin-general.sede.serviciosdesedeindex', compact('sede', 'servicios','servciosEscogidos','id','tiposServicio'));
+        return view('admin-general.sede.serviciosdesedeindex', compact('sede', 'servicios','servciosescogidos','id','tiposservicio'));
      }
 
 
