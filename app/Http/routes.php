@@ -405,9 +405,9 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::resource('admin-reserva','AdminReservaController');
 });
-//Publico
-Route::group(['middleware' => ['auth', 'publico']], function () {
-	Route::resource('public','PublicoController');
+//Control de ingresos
+Route::group(['middleware' => ['auth', 'controlingresos']], function () {
+	Route::resource('control-ingresos','ControlIngresosController');
 });
 
 /*Route::get('sede-a','SedesController@index');

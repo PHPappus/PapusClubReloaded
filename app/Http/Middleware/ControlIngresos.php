@@ -4,7 +4,7 @@ namespace papusclub\Http\Middleware;
 
 use Closure;
 
-class Publico
+class ControlIngresos
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class Publico
     public function handle($request, Closure $next)
     {   
         if (\Auth::user()->perfil_id != '8') {
-            $request->session()->flash('message', 'Usted no esta autorizado!.');
+            $request->session()->flash('message-error', 'Usted no esta autorizado!.');
             $request->session()->flash('alert-class', 'alert-danger');
             switch (\Auth::user()->perfil_id) {
                 case '1':
@@ -41,7 +41,7 @@ class Publico
                     return redirect('/admin-reserva');
                     break;
                 /*case '8':
-                    return redirect('/public');
+                    return redirect('/control-ingresos');
                     break;*/
                 default:
                     return redirect('/');
