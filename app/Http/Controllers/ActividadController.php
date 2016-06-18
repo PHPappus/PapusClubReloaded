@@ -66,7 +66,8 @@ class ActividadController extends Controller
         $actividad->save();
 
         $tipoPersonas = TipoPersona::all();
-        $actividad_id = Actividad::all()->last()->id;
+        $actividad_id = $actividad->id;
+
         foreach ($tipoPersonas as $tipoPersona) {
             $tarifa = new TarifaActividad();
             $tarifa->actividad_id = $actividad_id;
