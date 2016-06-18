@@ -16,7 +16,7 @@ class AdminReserva
     public function handle($request, Closure $next)
     {   
         if (\Auth::user()->perfil_id != '7') {
-            $request->session()->flash('message', 'Usted no esta autorizado!.');
+            $request->session()->flash('message-error', 'Usted no esta autorizado!.');
             $request->session()->flash('alert-class', 'alert-danger');
             switch (\Auth::user()->perfil_id) {
                 case '1':
