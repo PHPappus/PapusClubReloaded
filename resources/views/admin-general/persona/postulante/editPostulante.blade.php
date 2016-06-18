@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>EDITAR SOCIO</title>
+	<title>EDITAR POSTULANTE</title>
 	<meta charset="UTF-8">
 
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	{!!Html::style('css/jquery.bxslider.css')!!}
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
+	{!!Html::style('css/jquery.bxslider.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
+
+
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
-	<style>
+<!-- 	<style>
 		.modal-backdrop.in{
 			z-index: 1;
 		}
@@ -33,11 +35,11 @@
 		}
 }
 
-	</style>
+	</style> -->
 
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-persona')
 @section('content')
 
 
@@ -45,7 +47,7 @@
 		<div class="row">
 			<div class="col-sm-12 text-left">
 				<br/><br/>
-				<p class="lead"><strong>EDITAR SOCIO</strong></p>
+				<p class="lead"><strong>EDITAR POSTULANTE</strong></p>
 				<br/>
 			</div>
 			
@@ -99,16 +101,7 @@
 							<li role="presentation"><a href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab">Contacto</a></li>
 						@endif
 
-						<!--DATOS INVITADOS-->
-							<li role="presentation"><a href="#seccion8" aria-controls="seccion8" data-toggle="tab" role="tab">Invitados</a></li>
-
-						<!--DATOS MEMBRESIA-->
-						@if(Session::get('update')=='membresia')
-							<li role="presentation" class="active"> <a href="#seccion9" aria-controls="seccion9" data-toggle="tab" role="tab">Membresía</a></li>
-						@else
-							<li role="presentation"><a href="#seccion9" aria-controls="seccion9" data-toggle="tab" role="tab">Membresía</a></li>
-						@endif													
-
+						
 						</ul>
 					</div>
 					<div class="tab-content">
@@ -124,7 +117,7 @@
 					@else
 						<div role="tabpanel" class="tab-pane" id="seccion1">
 					@endif
-							<form method="POST" action="/Socio/{{$socio->id}}/editBasico" class="form-horizontal form-border">
+							<form method="POST" action="/postulante/{{$postulante->persona->id}}/editBasico" class="form-horizontal form-border">
 								{{method_field('PATCH')}}
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -170,7 +163,7 @@
 											<label for="" class="control-label">Nombre:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" onkeypress="return inputLimiter(event,'Letters')" id="nombre" name="nombre" placeholder="Nombre" value="{{$socio->postulante->persona->nombre}}" >
+											<input type="text" class="form-control" onkeypress="return inputLimiter(event,'Letters')" id="nombre" name="nombre" placeholder="Nombre" value="{{$postulante->persona->nombre}}" >
 										</div>	
 									</div>
 								</div>
@@ -180,7 +173,7 @@
 											<label for="" class="control-label">Apellido Paterno:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="apellidoPat" name="apellidoPat" placeholder="Apellido Paterno" value="{{$socio->postulante->persona->ap_paterno}}" disabled>
+											<input type="text" class="form-control" id="apellidoPat" name="apellidoPat" placeholder="Apellido Paterno" value="{{$postulante->persona->ap_paterno}}" >
 										</div>	
 									</div>
 								</div>
@@ -190,28 +183,28 @@
 											<label for="" class="control-label">Apellido Materno:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="apellidoMat" name="apellidoMat" placeholder="Apellido Materno" value="{{$socio->postulante->persona->ap_materno}}" disabled>
+											<input type="text" class="form-control" id="apellidoMat" name="apellidoMat" placeholder="Apellido Materno" value="{{$postulante->persona->ap_materno}}" >
 										</div>	
 									</div>
 								</div>
 																
-								<div class="form-group required">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Sexo:</label>
+
+									<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Sexo:</label>
+											</div>
+											<div class="col-sm-6 text-left" style="float: right">											
+													<div>
+														
+															{{ Form::radio('sexo', 'masculino', (($postulante->persona['sexo']=="masculino" )? true : false)) }}Masculino
+															</div>
+															<div>
+															{{ Form::radio('sexo', 'femenino', (($postulante->persona['sexo']=="femenino" )? true : false)) }}Femenino
+													</div>
+											</div>	
 										</div>
-										<div class="col-sm-6 text-left" >
-										@if(strcmp($socio->postulante->persona->sexo,'masculino')==0)
-												<input type="radio" name="genero" value="Masculino"  checked disabled> Masculino
-												<input type="radio" name="genero" value="Femenino" style="margin-left: 35px;" disabled> Femenino
-										@else
-												<input type="radio" name="genero" value="Masculino"  disabled> Masculino
-												<input type="radio" name="genero" value="Femenino" style="margin-left: 35px;"  checked disabled> Femenino
-										@endif										
-										</div>	
 									</div>
-								
-								</div>
 								
 								<div class="form-group required">
 									<div class="col-sm-6">
@@ -219,75 +212,51 @@
 											<label for="" class="control-label">Fecha de Nacimiento(dd/mm/aaaa):</label>
 										</div>
 										<div class="col-sm-6">
-											<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" value="{{$socio->postulante->persona->fecha_nacimiento}}"style="width: 250px"  >
+											<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" value="{{$postulante->persona->fecha_nacimiento}}" style="width: 250px"  >
 
 										</div>	
 									</div>
 								</div>
-								@if(strcmp($socio->postulante->persona->nacionalidad,'peruano')==0)
-								<div class="form-group required">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Nacionalidad:</label>
-										</div>
-										<div class="col-sm-6 text-left" >
-												<input  type="radio" name="nacionalidad" value="Peruano"  @{{$nac=per}} checked disabled> Peruano  
-												<input  type="radio" name="nacionalidad" value="Extranjero" style="margin-left: 50px;"@{{$nac=otro}} disabled> Extranjero	
-										</div>	
-									</div>
-								</div>
-								<!--Debe ir un if si es extranjero-->																
-								<div class="form-group required">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">DNI:</label>
-										</div>
+
+								<div class="form-group">
 										<div class="col-sm-6">
-											<input type="text" class="form-control inputmodify" id="docidentity" placeholder="#######" style="max-width: 250px" value="{{$socio->postulante->persona->doc_identidad}}"disabled>
-										</div>	
-									</div>
-								</div>
-								@else
-								<div class="form-group required">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Nacionalidad:</label>
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Nacionalidad:</label>
+											</div>
+											<div class="col-sm-6 text-left" >
+												
+												<input onchange="es_peruano()" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : ''}} {{($postulante->persona->nacionalidad == "peruano") ? 'checked="true"':''}}/>Peruano&nbsp&nbsp&nbsp
+												
+												<input onchange="es_extranjero()" type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "extranjero") ? 'checked="true"' : ''  }} {{($postulante->persona->nacionalidad == "extranjero") ? 'checked="true"':''}}/>Extranjero
+
+											</div>	
 										</div>
-										<div class="col-sm-6 text-left" >
-												<input  type="radio" name="nacionalidad" value="Peruano"  @{{$nac=per}}  disabled> Peruano  
-												<input  type="radio" name="nacionalidad" value="Extranjero" style="margin-left: 50px;"@{{$nac=otro}} checked disabled> Extranjero	
-										</div>	
-									</div>
 								</div>
-								<!--Debe ir un if si es extranjero-->																
+
 								<div class="form-group required">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Carnet de Extranjería:</label>
-										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control inputmodify" id="docidentity" placeholder="#######" style="max-width: 250px" value="{{$socio->postulante->persona->carnet_extranjeria}}"disabled>
-										</div>	
-									</div>
-								</div>
-								@endif
-								<div class="form-group required">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Estado Civil:</label>
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">DNI:</label>
+											</div>
+											<div class="col-sm-6">
+											<!--Se hace validacion para que acepte solo numeros pero que sea un texto-->
+													<input  type="text" onkeypress="return inputLimiter(event,'Numbers')"  @if ($postulante->persona->nacionalidad!="peruano") disabled  @endif  class="form-control" id="doc_identidad" name="doc_identidad" placeholder="DNI" maxlength="8" style="max-width: 250px" value="{{$postulante->persona->doc_identidad}}" value="{{old('doc_identidad')}}"  >
+											</div>	
 										</div>
-										<div class="col-sm-6">
-											<select class="form-control inputmodify" name="sede" style="max-width: 250px "disabled>
-								                <option value="Soltero" default>Soltero (a)</option>
-												<option value="Casado">Casado (a)</option>
-												<option value="Divorciado">Divorciado (a)</option>
-												<option value="Separado">Separado (a)</option>
-												<option value="Unión Libre">Unión Libre</option>
-												<option value="Viudo">Viudo (a)</option>
-					    					</select>
-										</div>	
-									</div>
 								</div>
+
+								<div class="form-group required">
+										<div class="col-sm-6">	
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Carnet de extranjeria:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" onkeypress="return inputLimiter(event,'Numbers')" @if ($postulante->persona->nacionalidad!="extranjero") disabled  @endif class="form-control" id="carnet_extranjeria" name="carnet_extranjeria" placeholder="Carnet de Extranjeria" maxlength="12" style="max-width: 250px" value="{{$postulante->persona->carnet_extranjeria}}" value="{{old('carnet_extranjeria')}}" >
+											</div>	
+										</div>
+								</div>
+
+								
 						<!--MODAL CONFIRMACION-->
 							<!-- Modal -->
 								<div class = "modal fade" id = "confirmation" tabindex = "-1" role = "dialog" 
@@ -302,7 +271,7 @@
 								            </button>
 								            
 								            <h4 class = "modal-title" id = "myModalLabel">
-								               EDITAR SOCIO
+								               EDITAR POSTULANTE
 								            </h4>
 								         </div>
 								         
@@ -330,7 +299,7 @@
 											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Confirmar">
 										</div>
 										<div class="btn-group">
-											<a href="/Socio" class="btn btn-info">Retornar</a>
+											<a href="/postulante/index" class="btn btn-info">Retornar</a>
 										</div>
 								</div>														<!---->																
 							</form>
@@ -355,6 +324,8 @@
 										</div>
 								</div>																				
 						</div>
+
+
 										<!--DATOS FAMILIARES-->
 						<div role="tabpanel" class="tab-pane" id="seccion3">
 								<div class="form-group required" >
@@ -371,6 +342,25 @@
 										<div class="btn-group">
 											<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
 										</div>
+
+										<div class="form-group required">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Estado Civil:</label>
+												</div>
+												<div class="col-sm-6">
+													<select class="form-control" id="estado_civil" name="estado_civil" style="max-width: 150px "   >
+															<option value="-1">Seleccione</option>
+																@foreach ($estadocivil as $estcivil)      
+
+												                	<option value="{{$estcivil->id}}" @if($estado['id']==$estcivil->id) selected @endif >{{$estcivil->valor}}</option>
+
+												                @endforeach
+														</select>
+												</div>	
+											</div>
+										</div>
+
 								</div>
 						</div>
 										<!--DATOS VIVIENDA-->
@@ -398,7 +388,7 @@
 						<div role="tabpanel" class="tab-pane" id="seccion5">
 					@endif
 
-							<form method="POST" action="/Socio/{{$socio->id}}/editEstudio" class="form-horizontal form-border">
+							<form method="POST" action="/postulante/{{$postulante->id}}/editPostulante" class="form-horizontal form-border">
 								{{method_field('PATCH')}}
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -442,7 +432,7 @@
 											<label for="" class="control-label">Colegio Primaria:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="colegio_primaria" name="colegio_primaria" placeholder="Colegio de Primaria" value="{{$socio->postulante->colegio_primario}}" >
+											<input type="text" class="form-control" id="colegio_primaria" name="colegio_primaria" placeholder="Colegio de Primaria" value="{{$postulante->colegio_primario}}" >
 										</div>	
 									</div>
 								</div>
@@ -452,7 +442,7 @@
 											<label for="" class="control-label">Colegio Secundaria:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="colegio_secundaria" name="colegio_secundaria" placeholder="Colegio de Secundaria" value="{{$socio->postulante->colegio_secundario}}" >
+											<input type="text" class="form-control" id="colegio_secundaria" name="colegio_secundaria" placeholder="Colegio de Secundaria" value="{{$postulante->colegio_secundario}}" >
 										</div>	
 									</div>								
 								</div>
@@ -462,7 +452,7 @@
 											<label for="" class="control-label">Universidad:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="universidad" name="universidad" placeholder="Universidad" value="{{$socio->postulante->universidad}}" >
+											<input type="text" class="form-control" id="universidad" name="universidad" placeholder="Universidad" value="{{$postulante->universidad}}" >
 										</div>	
 									</div>
 								</div>
@@ -472,7 +462,7 @@
 											<label for="" class="control-label">Carrera:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="carrera" name="carrera" placeholder="Carrera" value="{{$socio->postulante->profesion}}" >
+											<input type="text" class="form-control" id="carrera" name="carrera" placeholder="Carrera" value="{{$postulante->profesion}}" >
 										</div>	
 									</div>
 								</div>
@@ -490,7 +480,7 @@
 								            </button>
 								            
 								            <h4 class = "modal-title" id = "myModalLabel">
-								               EDITAR SOCIO
+								               EDITAR POSTULANTE
 								            </h4>
 								         </div>
 								         
@@ -518,7 +508,7 @@
 											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationEstudio" onclick="ventana()" value="Confirmar">
 										</div>
 										<div class="btn-group">
-											<a href="/Socio" class="btn btn-info">Retornar</a>
+											<a href="/postulante" class="btn btn-info">Retornar</a>
 										</div>
 								</div>																																							
 							</form>
@@ -532,7 +522,7 @@
 						<div role="tabpanel" class="tab-pane" id="seccion6">
 					@endif						
 
-							<form method="POST" action="/Socio/{{$socio->id}}/editTrabajo" class="form-horizontal form-border">
+							<form method="POST" action="/postulante/{{$postulante->id}}/ediPostulante" class="form-horizontal form-border">
 								{{method_field('PATCH')}}
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -576,7 +566,7 @@
 											<label for="" class="control-label">Centro de Trabajo:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="centrotrabajo" name="centrotrabajo" placeholder="Centro de Trabajo" value="{{$socio->postulante->centro_trabajo}}" >
+											<input type="text" class="form-control" id="centrotrabajo" name="centrotrabajo" placeholder="Centro de Trabajo" value="{{$postulante->centro_trabajo}}" >
 										</div>	
 									</div>
 								</div>
@@ -586,7 +576,7 @@
 											<label for="" class="control-label">Cargo en Trabajo:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="cargocentrotrabajo" name="cargocentrotrabajo" placeholder="Cargo en Trabajo" value="{{$socio->postulante->cargo_trabajo}}" >
+											<input type="text" class="form-control" id="cargocentrotrabajo" name="cargocentrotrabajo" placeholder="Cargo en Trabajo" value="{{$postulante->cargo_trabajo}}" >
 										</div>	
 									</div>									
 								</div>
@@ -596,7 +586,7 @@
 											<label for="" class="control-label">Direccion Laboral:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="direccionlaboral" name="direccionlaboral" placeholder="Direccion" value="{{$socio->postulante->direccion_laboral}}" >
+											<input type="text" class="form-control" id="direccionlaboral" name="direccionlaboral" placeholder="Direccion" value="{{$postulante->direccion_laboral}}" >
 										</div>	
 									</div>
 								</div>
@@ -614,7 +604,7 @@
 								            </button>
 								            
 								            <h4 class = "modal-title" id = "myModalLabel">
-								               EDITAR SOCIO
+								               EDITAR POSTULANTE
 								            </h4>
 								         </div>
 								         
@@ -641,7 +631,7 @@
 											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationTrabajo" onclick="ventana()" value="Confirmar">
 										</div>
 										<div class="btn-group">
-											<a href="/Socio" class="btn btn-info">Retornar</a>
+											<a href="/postulante" class="btn btn-info">Retornar</a>
 										</div>
 								</div>																																								
 							</form>
@@ -654,7 +644,7 @@
 						<div role="tabpanel" class="tab-pane" id="seccion7">
 					@endif											
 
-							<form method="POST" action="/Socio/{{$socio->id}}/editContacto" class="form-horizontal form-border">
+							<form method="POST" action="/postulante/{{$postulante->id}}/editPostulante" class="form-horizontal form-border">
 								{{method_field('PATCH')}}
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -698,7 +688,7 @@
 											<label for="" class="control-label">Telefono:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="telefono" name="telefono_domicilio" placeholder="Telefono de Contacto" value="{{$socio->postulante->telefono_domicilio}}" >
+											<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="telefono" name="telefono_domicilio" placeholder="Telefono de Contacto" value="{{$postulante->telefono_domicilio}}" >
 										</div>	
 									</div>
 								</div>
@@ -708,7 +698,7 @@
 											<label for="" class="control-label">Telefono Celular:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="celular" name="telefono_celular" placeholder="Celular" value="{{$socio->postulante->telefono_celular}}" >
+											<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="celular" name="telefono_celular" placeholder="Celular" value="{{$postulante->telefono_celular}}" >
 										</div>	
 									</div>									
 								</div>
@@ -718,12 +708,12 @@
 											<label for="" class="control-label">Correo:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" value="{{$socio->postulante->persona->correo}}" >
+											<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" value="{{$postulante->persona->correo}}" >
 										</div>	
 									</div>
 								</div>
-						<!--MODAL CONFIRMACION-->
-							<!-- Modal -->
+								<!--MODAL CONFIRMACION-->
+								<!-- Modal -->
 								<div class = "modal fade" id = "confirmationContacto" tabindex = "-1" role = "dialog" 
 								   aria-labelledby = "myModalLabel" aria-hidden = "true">
 								   
@@ -736,7 +726,7 @@
 								            </button>
 								            
 								            <h4 class = "modal-title" id = "myModalLabel">
-								               EDITAR SOCIO
+								               EDITAR POSTULANTE
 								            </h4>
 								         </div>
 								         
@@ -764,276 +754,11 @@
 											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationContacto" onclick="ventana()" value="Confirmar">
 										</div>
 										<div class="btn-group">
-											<a href="/Socio" class="btn btn-info">Retornar</a>
+											<a href="/postulante" class="btn btn-info">Retornar</a>
 										</div>
 								</div>																																							
 							</form>						
 						</div>
-										<!--DATOS DE INVITADOS-->
-						<div role="tabpanel" class="tab-pane" id="seccion8">
-							<form action="" class="form-horizontal form-border">
-								<br/><br/><br>
-								<div class="form-group required" >
-										<div class="btn-group col-sm-4" ></div>
-										<div class="btn-group col-sm-4"></div>
-										<div class="btn-group col-sm-4"></div>
-										<div class="btn-group col-sm-4" ></div>
-										<div class="btn-group col-sm-4"></div>
-										
-										<div class="btn-group">
-											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-										</div>
-										<div class="btn-group">
-											<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
-										</div>
-								</div>								
-									<div class="table-responsive">
-										<div class="container">
-											<table class="table table-bordered table-hover text-center display" id="example">
-													<thead class="active">
-														<th><div algin=center>DOCUMENTO</div></th>
-														<th><div align=center>NOMBRE</div> </th>
-														<th><div align=center>APELLIDO PATERNO</div></th>
-														<th><div align=center>APELLIDO MATERNO</div></th>
-														<th><div align="center">CORREO</div></th>
-														<th><div align=center>DETALLE</div></th>
-														<th><div align=center>EDITAR</div></th>
-														<th><div align=center>ELIMINAR</div></th>													
-													</thead>
-													<tbody>
-														@foreach($socio->postulante->persona->invitados as $invitado)					
-																<tr>
-																@if(strcmp($invitado->nacionalidad,'peruano')==0)
-																	<td>{{$invitado->doc_identidad}}</td>
-																@else
-																	<td>{{$invitado->carnet_extranjeria}}</td>
-																@endif
-																	<td>{{$invitado->nombre}}</td>
-																	<td>{{$invitado->ap_paterno}}</td>
-																	<td>{{$invitado->ap_materno}}</td>
-																	<td>{{$invitado->correo}}</td>
-																	<td>
-													              	<a class="btn btn-info" href="#"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-													            	</td>
-													            	<td>
-															        <a class="btn btn-info" href="#" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
-															        </td>
-													            	<td>
-															        <a class="btn btn-info"  title="Eliminar" data-href="#" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
-													            	</td>																	
-													            </tr>				            		
-														@endforeach
-													</tbody>
-											</table>
-											<br><br><br>
-											<div class="btn-inline">
-												<div class="btn-group col-sm-10"></div>										
-												<div class="btn-group ">
-													<a href="#" class="btn btn-info" type="submit">Registrar Invitado</a>
-												</div>
-											</div>
-											<br><br><br>								
-										</div>		
-									</div>														
-							</form>						
-						</div>
-
-					@if(Session::get('update')=='membresia')
-						<div role="tabpanel" class="tab-pane active" id="seccion9">
-					@else
-						<div role="tabpanel" class="tab-pane" id="seccion9">
-					@endif										<!--DATOS DE MEMBRESIA -->
-							<form method="POST" action="/Socio/{{$socio->id}}/editMembresia" class="form-horizontal form-border">
-								{{method_field('PATCH')}}
-
-								@if(session('cambios-mem'))
-									<div class="alert alert-success fade in">
-											<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-											<strong>¡Éxito!</strong> {{session('cambios-mem')}}
-									</div>								
-								@endif
-								<br><br><br>									
-								<div class="form-group required" >
-										<div class="btn-group col-sm-4" ></div>
-										<div class="btn-group col-sm-4"></div>
-										<div class="btn-group col-sm-4"></div>
-										<div class="btn-group col-sm-4" ></div>
-										<div class="btn-group col-sm-4"></div>
-										
-										
-										<div class="btn-group">
-											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-										</div>
-										<div class="btn-group">
-											<a href="#" class="btn btn-info cont" disabled><span class="glyphicon glyphicon-chevron-right"></span></a>
-										</div>
-								</div>								
-								<input type="hidden" name="_token" value="{{ csrf_token() }}">
-								<div class="form-group">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Número de Carnet:</label>
-										</div>
-										<div class="col-sm-6">
-											<input type="text" class="form-control" id="numerocarnet" name="numerocarnet" placeholder="Numero de Carnet" value="{{$socio->carnet_actual()->nro_carnet}}" disabled>
-										</div>	
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Tipo Membresía:</label>
-										</div>
-										<div class="col-sm-6">
-								      		<select class="form-control" id="estado_select" name="estado" onchange="mostrar_precio()">
-								    		@foreach ($membresias as $membresia)
-								    			<option value={{$membresia->id}}
-								    			@if($socio->membresia->id==$membresia->id) selected @endif>{{$membresia->descripcion}}</option>
-								    		@endforeach												
-											</select>											
-										</div>	
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Cuota:</label>
-										</div>
-										<div class="col-sm-6">
-								      		<select class="form-control" id="cuota_select" name="cuota" disabled>
-								    		@foreach ($membresias as $membresia)
-								    			<option value={{$membresia->id}}
-								    			@if($socio->membresia->id==$membresia->id) selected @endif>{{$membresia->tarifa->monto}}</option>
-								    		@endforeach												
-											</select>											
-										</div>										
-									</div>									
-								</div>
-								@if($socio->estado()==$socio->vigente())
-								<div class="form-group">								
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Estado:</label>
-										</div>
-										<div class="col-sm-6">									
-											<div class="input-group">
-						                        <input type="text" class="form-control" name="estadoVig" value="{{$socio->estado()}}" readonly id="estado_socio">
-						                        <div class="input-group-btn">
-						                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Estado <span class="caret"></span></button>
-						                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-						                                <li><a href="#" onclick="vigente()">{{$socio->vigente()}}</a></li>
-						                                <li><a href="#" onclick="inhabilitado()">{{$socio->inhabilitado()}}</a></li>
-						                                <li><a href="#" onclick="carnet_inhabilitado()">{{$socio->carnet_inhabilitado()}}</a></li>
-						                            </ul>
-						                        </div><!-- /btn-group -->
-						                    </div><!-- /input-group -->
-									    </div>
-								    </div>
-								</div>								
-								@elseif($socio->estado()==$socio->inhabilitado() || $socio->estado()==$socio->carnet_inhabilitado())
-								<div class="form-group">								
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Estado:</label>
-										</div>
-										<div class="col-sm-6">									
-										    <div class="input-group" style="width: 254px">
-										      <input type="text"  class="form-control" placeholder="Estado" name="estadoInv" id="estado_socio_2" value="{{$socio->estado()}}" readonly>
-										      <span class="input-group-btn">
-										        <button class="btn btn-secondary" onclick="reactivar()" type="button">Reactivar</button>
-										      </span>
-										    </div>
-									    </div>
-								    </div>
-								</div>									    								
-								@else
-								<div class="form-group">								
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Estado:</label>
-										</div>
-										<div class="col-sm-6">									
-										    <div class="input-group" style="width: 254px">
-										      <input type="text"  class="form-control" placeholder="Estado" name="estado-r" id="estado_socio_3" value="{{$socio->estado()}}" readonly>
-										      <span class="input-group-btn">
-										        <button class="btn btn-secondary" onclick="reactivar2()" type="button">Renovar</button>
-										      </span>
-										    </div>
-									    </div>
-								    </div>
-								</div>								
-								@endif	
-
-								<div class="form-group">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Emisión Carnet(dd/mm/aaaa):</label>
-										</div>
-										<div class="col-sm-6">
-											<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_emision" placeholder="Fecha Emisión" value="{{$socio->carnet_actual()->fecha_emision}}"style="width: 250px"  disabled>
-
-										</div>	
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Vencimiento Carnet(dd/mm/aaaa):</label>
-										</div>
-										<div class="col-sm-6">
-											<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_vencimiento" placeholder="Fecha Vencimiento" value="{{$socio->carnet_actual()->fecha_vencimiento}}"style="width: 250px"  disabled>
-
-										</div>	
-									</div>
-								</div>
-						<!--MODAL CONFIRMACION-->
-							<!-- Modal -->
-								<div class = "modal fade" id = "confirmationMembresia" tabindex = "-1" role = "dialog" 
-								   aria-labelledby = "myModalLabel" aria-hidden = "true">
-								   
-								   <div class = "modal-dialog">
-								      <div class = "modal-content">
-								         
-								         <div class = "modal-header">
-								            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
-												<span aria-hidden="true" onclick="cerrarventana()">&times;</span>
-								            </button>
-								            
-								            <h4 class = "modal-title" id = "myModalLabel">
-								               EDITAR SOCIO
-								            </h4>
-								         </div>
-								         
-								         <div class = "modal-body">
-								            <p>¿Desea guardar los cambios realizados?</p>
-								         </div>
-								         
-								         <div class = "modal-footer">
-											<button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cerrar</button>
-								            
-								            <button type = "submit" class = "btn btn-primary">
-								               Confirmar
-								            </button>
-								         </div>
-								         
-								      </div><!-- /.modal-content -->
-								   </div><!-- /.modal-dialog -->
-								  
-								</div><!-- /.modal -->	
-								<br><br>
-								<div class="form-group required" >
-										<div class="btn-group col-sm-5" ></div>
-										
-										<div class="btn-group">
-											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationMembresia" onclick="ventana()" value="Confirmar">
-										</div>
-										<div class="btn-group">
-											<a href="/Socio" class="btn btn-info">Retornar</a>
-										</div>
-								</div>																																						
-							</form>
-						</div>
-						
 					</div>
 				</div>
 			</div> 	
@@ -1047,7 +772,7 @@
 @stop
 <!-- JQuery -->
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
-	{!!Html::script('js/jquery.bxslider.min.js')!!}
+
 	{!!Html::script('js/bootstrap.js')!!}
 
 	{!!Html::script('js/bootstrap-datepicker.js')!!}
@@ -1084,33 +809,6 @@
 
     });
 	</script>	
-
-	<script>
-	function vigente() {
-    	document.getElementById("estado_socio").value = "{{$socio->vigente()}}";
-	}
-
-	function inhabilitado() {
-    	document.getElementById("estado_socio").value = "{{$socio->inhabilitado()}}";
-	}
-
-	function carnet_inhabilitado() {
-    	document.getElementById("estado_socio").value = "{{$socio->carnet_inhabilitado()}}";
-	}
-
-	function reactivar() {
-    	document.getElementById("estado_socio_2").value = "{{$socio->vigente()}}";
-	}
-
-	function reactivar2() {
-    	document.getElementById("estado_socio_3").value = "Renovar al Guardar";
-	}
-
-	function mostrar_precio(){
-		var x = document.getElementById("estado_select").value;
-		document.getElementById("cuota_select").value = x;
-	}
-	</script>
 
 
 
@@ -1164,7 +862,25 @@
 		}
   	</script>
 
-	
+	<script>
+		function es_peruano(){
+			document.getElementById('doc_identidad').disabled = false; 
+			document.getElementById('carnet_extranjeria').disabled = true;
+			document.getElementById('carnet_extranjeria').value = '';
+
+			document.getElementById('nacimiento_peruano').style.display="block";
+			document.getElementById('nacimiento_extranjero').style.display="none";
+		}
+
+		function es_extranjero(){
+			document.getElementById('carnet_extranjeria').disabled = false; 
+			document.getElementById('doc_identidad').disabled = true; 
+			document.getElementById('doc_identidad').value = '';
+
+			document.getElementById('nacimiento_peruano').style.display="none";
+			document.getElementById('nacimiento_extranjero').style.display="block"; 
+		}
+	</script>
 
 
 </body>

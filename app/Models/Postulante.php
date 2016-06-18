@@ -69,5 +69,21 @@ class Postulante extends Model
     {
         return $this->hasOne(Socio::class,'id');
     }
+
+    public function Departamento()
+    {
+        return $this->belongsTo(Departamento::class,'departamento');
+    }
+
+    public function Provincia()
+    {
+        return $this->belongsTo(Provincia::class,'provincia');
+    }
+
+    public function Distrito()
+    {
+        return $this->belongsTo(Distrito::class,'distrito');
+    }
+
     
 }

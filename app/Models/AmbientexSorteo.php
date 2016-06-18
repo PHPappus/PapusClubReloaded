@@ -12,4 +12,12 @@ class AmbientexSorteo extends Model
     protected $table='ambientessorteo';
     protected $dates = ['deleted_at'];
     
+    public function ambiente(){
+        return $this->belongsTo('papusclub\Models\Ambiente','id_ambiente');
+    }
+
+    public function sorteo(){
+        return $this->belongsTo('papusclub\Models\Sorteo','id_sorteo');
+    }
+
 }

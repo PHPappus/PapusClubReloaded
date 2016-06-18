@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>DETALLE DE servicio</title>
+	<title>DETALLE DE SERVICIO EXTRA</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,7 @@
 </head>
 
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-registros')
 @section('content')
 <!---Cuerpo -->
 <main class="main">
@@ -22,7 +22,7 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>DETALLE DE servicio</strong>
+					<strong>DETALLE DE SERVICIO EXTRA</strong>
 			</div>		
 		</div>
 
@@ -45,7 +45,7 @@
 			  	</div>
 
 			  	<div class="form-group">
-			    	<label for="contactoInput" class="col-sm-4 control-label">Contacto</label>
+			    	<label for="contactoInput" class="col-sm-4 control-label">Tipo de Servicio</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="contactoInput" name="tipo_servicio" value="{{$servicio->tipo_servicio}}" readonly>
 			    	</div>

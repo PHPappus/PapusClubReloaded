@@ -33,4 +33,8 @@ class Sede extends Model
     function invitaciones(){
         return $this->hasMany(HistoricoInvitacion::class);
     }
+
+    public function talleres(){
+        return $this->hasMany(Taller::class);
+    }
 }
