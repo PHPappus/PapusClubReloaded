@@ -91,6 +91,14 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::get('registrar-ambiente','AdminRegistrosController@registrar');
 	Route::get('modificar-ambiente','AdminRegistrosController@modificar');
 
+	//MANTENIMIENTO DE PROMOCIONES
+	Route::get('promociones/index', 'PromocionesController@index');
+	Route::get('promociones/new', 'PromocionesController@create');
+	Route::post('promociones/new/promocion', 'PromocionesController@store');
+	Route::get('promociones/{id}', 'PromocionesController@edit');
+	Route::post('promociones/{id}/edit', 'PromocionesController@update');
+	Route::get('promociones/{id}/delete', 'PromocionesController@destroy');
+	Route::get('promociones/{id}/show', 'PromocionesController@show');
 
 
 	///MANTENIMIENTO DE ACTIVIDADES
