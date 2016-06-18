@@ -14,7 +14,7 @@ class AddFkToMultaxpersonaTable extends Migration
     {
         Schema::table('multaxpersona', function (Blueprint $table) {
             $table->foreign('multa_id')->references('id')->on('multa')->onDelete('cascade');
-            $table->foreign('persona_id')->references('id')->on('persona')->onDelete('cascade');
+            $table->foreign('socio_id')->references('id')->on('socio')->onDelete('cascade');
         });
     }
 
@@ -28,7 +28,7 @@ class AddFkToMultaxpersonaTable extends Migration
         Schema::table('multaxpersona', function (Blueprint $table) {
 
             $table->dropForeign('multaxpersona_multa_id_foreign');
-            $table->dropForeign('multaxpersona_persona_id_foreign');
+            $table->dropForeign('multaxpersona_socio_id_foreign');
         });
     }
 }

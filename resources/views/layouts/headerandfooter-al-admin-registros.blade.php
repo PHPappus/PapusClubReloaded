@@ -51,6 +51,11 @@
 								</li>
 							</ul> -->
 						</li>
+						<li><a href="{!!URL::to('/promociones/index')!!}">PROMOCIONES</a>
+							<ul>
+								<!-- <li><a href="{!!URL::to('/sorteo/new')!!}" title="Mantenimiento Sorteo" target="_self">SORTEO</a></li> -->
+							</ul>
+						</li>
 						<!-- Opción Actividades -->
 						<li><a href="#">TALLER<span class="despliegue">▼</span></a>
 							<ul>
@@ -67,11 +72,7 @@
 										<li><a href="#" title="ir a inscribirse en curso" target="_self">INSCRIBIRSE</a></li>
 									</ul>						
 								</li>
-								<li><a href="#" title="ir a talleres" target="_self">TALLERES<span class="despliegue">▼</span></a>
-									<ul>
-										<li><a href="#" title="ir a ver taller" target="_self">VER</a></li>
-										<li><a href="#" title="ir a inscribirse en taller" target="_self">INSCRIBIRSE</a></li>
-									</ul>
+								<li><a href="{!!URL::to('/taller/')!!}" title="ir a talleres" target="_self">TALLERES<span class="despliegue">▼</span></a>
 								</li>
 								<li><a href="#" title="ir a eventos" target="_self">EVENTOS<span class="despliegue">▼</span></a>
 									<ul>
@@ -110,6 +111,17 @@
 						<li><a href="#">TRAMITES</a></li>
 						<li><a href="{!!URL::to('/usuario')!!}">Usuarios</a></li>
 						<li><a href="#">PRODUCTO</a></li>
+
+						<li><a href="#" target="_self" >SERVICIOS<span class="despliegue">▼</span> </a>
+
+				<ul><li><a href="{!!URL::to('/servicios/index')!!}" title="Listar Servicios" target="_self" >Listar Servicios</a></li>
+					<li><a href="{!!URL::to('/servicios/new')!!}" title="Registrar Servicios" target="_self">	Registrar Servicio</a></li>
+				</ul>
+
+				
+				
+				
+						</li>
 					</ul>
 				</nav>
 			</div>

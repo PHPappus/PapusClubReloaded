@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>REGISTRAR TALLER</title>
+	<title>DETALLE DE TALLER</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +22,7 @@
 
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-registros')
 @section('content')
 
 <!---Cuerpo -->
@@ -32,7 +32,7 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>REGISTRAR TALLER</strong>
+					<strong>DETALLE DE TALLER</strong>
 			</div>		
 		</div>
 		<div class="container">
@@ -65,60 +65,64 @@
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="dInput" name="nombre" placeholder="Nombre" value="{{old('nombre')}}">
+			      		<input type="text" class="form-control" id="dInput" name="nombre" placeholder="Nombre" value="{{$taller->nombre}}" readonly>
 			    	</div>
 			  	</div> 
 
-			  	<div class="form-group required">
+			  	<div class="form-group">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			    		<textarea class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" rows="3" cols="50" value="{{old('descripcion')}}"></textarea>
+			    		<textarea class="form-control" id="descripcionInput" name="descripcion" rows="3" cols="50" value = "{{$taller->descripcion}}" readonly>{{$taller->descripcion}}</textarea>
 			    	</div>
 			  	</div>
 
-			  	<div class="form-group">
+			  	<div class="form-group required">
 			    	<label for="vacantesInput" class="col-sm-4 control-label">Vacantes</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" min ="0" step="any" class="form-control" id="vacantesInput" name="vacantes" placeholder="Vacantes" value="{{old('vacantes')}}">
+			      		<input type="number" min ="0" step="any" class="form-control" id="vacantesInput" name="vacantes" placeholder="Vacantes" value="{{$taller->vacantes}}" readonly>
 			    	</div>
 			  	</div>
 
-			  	<div class="form-group">
+			  	<div class="form-group required">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Inicio Inscripciones</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIniIns" placeholder="Fecha Inicio Inscripciones" value="{{old('fecFinIns')}}">
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIniIns" placeholder="Fecha Inicio Inscripciones" value="{{$taller->fecha_inicio_inscripciones}}" readonly>
 					</div>	
 				</div>
 
-			  	<div class="form-group">
+			  	<div class="form-group required">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Fin Inscripciones</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFinIns" placeholder="Fecha Fin Inscripciones" value="{{old('fecIniIns')}}">
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFinIns" placeholder="Fecha Fin Inscripciones" value="{{$taller->fecha_fin_inscripciones}}" readonly>
 					</div>	
 				</div>
 
-				<div class="form-group">
+				<div class="form-group required">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Inicio Taller</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIni" placeholder="Fecha Inicio Taller" value="{{old('fecIni')}}">
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIni" placeholder="Fecha Inicio Taller" value="{{$taller->fecha_inicio}}" readonly>
 					</div>	
 				</div>
 
-			  	<div class="form-group">
+			  	<div class="form-group required">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Fin Taller</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFin" placeholder="Fecha Fin Taller"  value="{{old('fecFin')}}">
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFin" placeholder="Fecha Fin Taller"  value="{{$taller->fecha_fin}}" readonly>
 					</div>	
 				</div>
 
-				<div class="form-group">
+				<div class="form-group required">
 			    	<label for="cantSesInput" class="col-sm-4 control-label">Cantidad de Sesiones</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" min ="0" step="any" class="form-control" id="cantSesInput" name="cantSes" placeholder="Cantidad de Sesiones">
+			      		<input type="number" min ="0" step="any" class="form-control" id="cantSesInput" name="cantSes" placeholder="Cantidad de Sesiones" value="{{$taller->cantidad_sesiones}}" readonly>
 			    	</div>
 			  	</div>
 
 			  	 </br>
+			  	 
+			  	 <div class="form-group">
+			    	<label for="capacidadSocioInput" class="col-sm-7 control-label">TARIFAS ESPECIALES POR FAMILIAR</label>
+			  	</div>
 
 				<style>  				
   				#myTable {
@@ -134,13 +138,19 @@
 						</tr>
 					</thead>
 					<tbody>
-							@foreach ($personas as $persona)		
+							@foreach ($taller->tarifaTaller as $persona)		
 						    	<tr>
-									<td align="center">  {{ $persona->descripcion }}</td>
+						    		@if ($persona->descripcion == 'trabajador')
+										<td align="center">Trabajador</td>
+									@elseif ($persona->descripcion == 'postulante')
+										<td align="center">Socio</td>
+									@elseif ($persona->descripcion == 'tercero')
+										<td align="center">Tercero</td>
+									@endif
 									<td align="center">  S/.</td>
 									<td align="center"> 
 									<div align="center">
-							      		<input style="text-align:center;" type="number" min ="0" step="any" class="form-control" id="{{$persona->descripcion}}Input" name="{{$persona->descripcion}}" placeholder="">
+							      		<input style="text-align:center;" type="text" onkeypress="return inputLimiter(event,'DoubleFormat')" min ="0" step="any" class="form-control" id="{{$persona->descripcion}}Input" name="{{$persona->descripcion}}" placeholder="" value="{{$persona->pivot->precio}}" readonly>
 							    	</div>
 								</td>							        
 								</tr>
@@ -154,12 +164,9 @@
 			  	</br>
 				<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
-					
-					<div class="btn-group ">
-						<input class="btn btn-primary" type="submit" value="Confirmar">
-					</div>
+				
 					<div class="btn-group">
-						<a href="/taller/" class="btn btn-info">Cancelar</a>
+						<a href="/taller/" class="btn btn-info">Regresar</a>
 					</div>
 				</div>
 				</br>

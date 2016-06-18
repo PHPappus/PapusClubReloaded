@@ -73,7 +73,8 @@
 
 						<li><a href="{!!URL::to('/sedes/index')!!}">SEDE<span class="despliegue">▼</span></a>
 							<ul>
-								<li><a href="{!!URL::to('/sorteo/index')!!}" title="Mantenimiento Sorteo" target="_self">SORTEO</a></li>
+								<li><a href="{!!URL::to('/sorteo/index')!!}" title="Mantenimiento Sorteo" target="_self"> MANTENIMIENTO SORTEO</a></li>
+								<li><a href="{!!URL::to('/sorteo/inscripcion')!!}" title="Inscripcion Sorteo" target="_self">INSCRIPCION SORTEO</a></li>
 							</ul>
 						</li>
 						<!-- <li><a href="{!!URL::to('/ambiente/index')!!}">AMBIENTE<span class="despliegue">▼</span></a>
@@ -96,6 +97,7 @@
 						<li><a href="{!!URL::to('/producto/index')!!}">PRODUCTO<span class="despliegue">▼</span></a>
 							<ul>
 								<li><a href="{!!URL::to('/producto/index')!!}">PRODUCTOS</a></li>
+								<li><a href="{!!URL::to('/ingreso-producto/index')!!}">INGRESO DE PRODUCTOS</a></li>
 								<li><a href="{!!URL::to('/venta-producto/index')!!}">VENTAS DE PRODUCTOS</a></li>
 							</ul>
 						</li>

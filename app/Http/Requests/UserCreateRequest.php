@@ -24,10 +24,22 @@ class UserCreateRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|max:100',
+            'persona_id' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:8|confirmed',
-            'password_confirmation' => 'required|min:8',
+            'password' => 'required|confirmed|min:8|max:16',
+            'password_confirmation' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'persona_id.required'   => 'Es necesario asignar a una persona',
+            'email.required'                 => 'El correo es obligatorio',
+            'password.required'     => 'La contraseña es obligatoria',
+            'password_confirmation.required' => 'La confirmación de la contraseña es obligatoria',
+            'password.min' => 'La contraseña debe contener como minimo 8 caracteres',
+            'password.max' => 'La contraseña debe contener como máximo 16 caracteres',
+            'password.confirmed' => 'La contraseña y la confirmación de la contraseña no coinciden',
         ];
     }
 }

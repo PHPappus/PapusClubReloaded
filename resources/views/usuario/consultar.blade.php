@@ -18,6 +18,7 @@
 	<div class="content" style="max-width: 100%;">
 		<!-- Utilizando Bootstrap -->
 		@include('alerts.success')
+		@include('alerts.errors')
 		<br/><br/>
 		<div class="container">
 			<div class="row">

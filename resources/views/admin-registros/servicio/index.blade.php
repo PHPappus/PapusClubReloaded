@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SERVICIO OFRECIDOS</title>
+	<title>SERVICIO EXTRAS OFRECIDOS</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,14 +12,14 @@
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-registros')
 
 @section('content')
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 text-left">
 				<br/><br/>
-				<p class="lead"><strong>SERVICIOS</strong></p>
+				<p class="lead"><strong>SERVICIOS ADICIONALES</strong></p>
 				<br/>
 			</div>
 			
@@ -57,7 +57,13 @@
 								<tr>
 								<td>{{ $servicio->nombre }}</td>
 								<td>{{ $servicio->descripcion }}</td>
-	 							<td>{{ $servicio->tipo_servicio }}</td>								
+	 							<td>
+	 								@foreach($tiposServicio as $tserv)	
+	 									@if ($tserv->id == $servicio->tipo_servicio)
+	 										{{$tserv->valor	}}
+	 									@endif
+	 								@endforeach
+	 							</td>					
 	 							<td>
 	 							<?php if ($servicio->estado == 1)  echo "ACTIVO";
 									  else echo "INACTIVO";	?>

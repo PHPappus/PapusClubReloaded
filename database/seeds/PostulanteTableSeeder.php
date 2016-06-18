@@ -17,6 +17,9 @@ class PostulanteTableSeeder extends Seeder
         	'direccion_nacimiento'=>'avenida prueba 123',
         	'pais_nacimiento'=>'Perú',
         	'lugar_nacimiento'=>'Lima',
+            'departamento'=>15,
+            'provincia'=>127,
+            'distrito'=>1263,
         	'colegio_primario'=>'maranguita',
         	'colegio_secundario'=>'piedras gordas',
         	'universidad'=>'Alcatraz',
@@ -36,6 +39,9 @@ class PostulanteTableSeeder extends Seeder
         	'direccion_nacimiento'=>'avenida prueba 123',
         	'pais_nacimiento'=>'Perú',
         	'lugar_nacimiento'=>'Lima',
+            'departamento'=>15,
+            'provincia'=>127,
+            'distrito'=>1263,
         	'colegio_primario'=>'maranguita',
         	'colegio_secundario'=>'piedras gordas',
         	'universidad'=>'Alcatraz',
@@ -70,8 +76,6 @@ class PostulanteTableSeeder extends Seeder
             'nro_hijos'=>1,
             'domicilio'=>'Av. Las torres 515',
             'telefono_domicilio'=>3265025,
-
-            'telefono_celular'=>9927458451
-            ]);
+            'telefono_celular'=>992745845]);
     }
 }

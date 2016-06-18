@@ -20,6 +20,7 @@ class CreateMaestroProductoTable extends Migration
             $table->string('descripcion');
             $table->integer('estado');
             $table->string('tipo_producto'); //¿Esta dentro de la tabla de configuracion?
+            $table->integer('stock');
             $table->timestamps();
             $table->softDeletes();
         });

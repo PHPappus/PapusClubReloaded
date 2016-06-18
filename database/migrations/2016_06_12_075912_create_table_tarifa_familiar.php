@@ -16,7 +16,7 @@ class CreateTableTarifaFamiliar extends Migration
             $table->increments('id');
             $table->integer('tipo_membresia_id')->unsigned()->nullable();
             $table->integer('tipo_familia_id')->unsigned()->nullable();
-            $table->double('monto');
+            $table->double('descuento');
             $table->date('fecha_registro');
             $table->timestamps();
         });
