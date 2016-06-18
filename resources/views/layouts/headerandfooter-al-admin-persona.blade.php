@@ -33,18 +33,18 @@
       <div class="collapse navbar-collapse" id="navbar1">
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+            <a href="{!!URL::to('/Socio/')!!}" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
               Socio <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
 
 <!--Aqui es papu-->
 
-                <li><a href="{!!URL::to('/Socio/')!!}" class="dropdown-toggle btn-lg" title="consultar Bungalows" target="_self">Socio</a></li>
+                <li><a href="#" class="dropdown-toggle btn-lg" title="consultar Bungalows" target="_self">Socio</a></li>
 
 
 
-
+                <li><a href="{!!URL::to('/multas-s')!!}" title="Asignar Multa" target="_self">Asignar Multa</a></li>
                 <li><a href="#" title="Consultar socio" target="_self">Consultar</a></li>
                 <li><a href="#" title="Registrar nuevo socio" target="_self">Registrar</a></li>
                 <li><a href="#" title="Anular socio" target="_self">Anular</a></li>
@@ -55,7 +55,7 @@
         <ul class="nav navbar-nav">
           <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
           <li class="dropdown">
-            <a href="#" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" role="button" >
+            <a href="{!!URL::to('/postulante/index')!!}" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" role="button" >
               Postulante <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
@@ -79,7 +79,7 @@
         </ul>
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+            <a href="{!!URL::to('/trabajador/index')!!}" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
               Trabajador <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
