@@ -243,9 +243,11 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	//Inscribirse en Sorteo
 	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
 	Route::post('sorteo/inscripcion/store','SorteoController@inscripcionStore');
+	Route::post('sorteo/inscripcion/delete','SorteoController@inscripcionDelete');
 	Route::get('sorteo/inscripcion/mis_sorteos','SorteoController@indexMisInscripciones');
 
 	//MANTENIMIENTO DE SORTEO
+	Route::get('sorteo/index/{id}/ejecutar','SorteoController@loscohibaspapa');
 	Route::get('sorteo/index','SorteoController@index');
 	Route::get('sorteo/new','SorteoController@create');	
 	Route::post('sorteo/new/sorteo','SorteoController@store');
