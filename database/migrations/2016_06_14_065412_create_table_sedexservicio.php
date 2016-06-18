@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateServiciosxsedes extends Migration
+class CreateTableSedexservicio extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,10 @@ class CreateServiciosxsedes extends Migration
      */
     public function up()
     {
-        Schema::create('serviciosxsedes', function (Blueprint $table) {
+        Schema::create('sedexservicio', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_servicio');
-            $table->integer('id_sede');
-            $table->boolean('estado');
+            $table->integer('idsede');
+            $table->integer('idservicio');            
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateServiciosxsedes extends Migration
      */
     public function down()
     {
-        Schema::drop('serviciosxsedes');
+        Schema::drop('sedexservicio');
     }
 }

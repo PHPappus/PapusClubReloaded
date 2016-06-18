@@ -99,7 +99,7 @@
 				
 				<div class="form-group">
 					<div class="col-sm-12">
-						@if((count($talleres_user->where('id',$taller->id))<=0) and ($taller->vacantes>0))
+						@if((count($talleresxpersona->where('id',$taller->id))<=0) and ($taller->vacantes>0))
 						<div class="col-sm-6 text-right">
 							<a href="{{url('/talleres/'.$taller->id.'/confirm')}}" class="btn btn-primary" >Inscribirse</a>		
 						</div>		

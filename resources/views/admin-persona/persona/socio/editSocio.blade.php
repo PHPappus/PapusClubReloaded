@@ -650,8 +650,8 @@
 										</div>	
 									</div>
 								</div>
-						<!--MODAL CONFIRMACION-->
-							<!-- Modal -->
+								<!--MODAL CONFIRMACION-->
+									<!-- Modal -->
 								<div class = "modal fade" id = "confirmationEstudio" tabindex = "-1" role = "dialog" 
 								   aria-labelledby = "myModalLabel" aria-hidden = "true">
 								   

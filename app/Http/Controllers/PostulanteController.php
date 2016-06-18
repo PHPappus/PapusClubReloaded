@@ -283,6 +283,7 @@ class PostulanteController extends Controller
     }
 
     public function updateEstudio(EditPostulanteEstudioRequest $request, $id){
+
         $postulante = Postulante::withTrashed()->find($id);
         $input=$request->all();
         $postulante->colegio_primario=trim($input['colegio_primaria']);

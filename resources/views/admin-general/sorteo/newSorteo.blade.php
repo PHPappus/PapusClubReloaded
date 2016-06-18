@@ -110,7 +110,7 @@
 	{!!Html::script('js/jquery-1.12.4.min.js')!!}
 	{!!Html::script('js/bootstrap.js')!!}
 	{!!Html::script('js/bootstrap-datepicker-sirve.js')!!}
-
+	
 
 
 		
@@ -146,7 +146,8 @@
 						$('.datepicker').datepicker({
 							format: 'dd/mm/yyyy',
 					        language: "es",
-					        autoclose: true
+					        autoclose: true,
+					        startDate: new Date(today.getFullYear(), today.getMonth() + 1, today.getDate())
 						});
 					});
 			});

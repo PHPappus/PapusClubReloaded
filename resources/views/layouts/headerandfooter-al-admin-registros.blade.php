@@ -129,6 +129,17 @@
 						<li><a href="#">TRAMITES</a></li>
 						<li><a href="{!!URL::to('/usuario')!!}">Usuarios</a></li>
 						<li><a href="#">PRODUCTO</a></li>
+
+						<li><a href="#" target="_self" >SERVICIOS<span class="despliegue">▼</span> </a>
+
+				<ul><li><a href="{!!URL::to('/servicios/index')!!}" title="Listar Servicios" target="_self" >Listar Servicios</a></li>
+					<li><a href="{!!URL::to('/servicios/new')!!}" title="Registrar Servicios" target="_self">	Registrar Servicio</a></li>
+				</ul>
+
+				
+				
+				
+						</li>
 					</ul>
 				</nav>
 			</div>
