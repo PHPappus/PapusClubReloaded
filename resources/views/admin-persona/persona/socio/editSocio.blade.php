@@ -72,7 +72,7 @@
 						@endif
 
 						<!--DATOS DE NACIMIENTO-->
-							@if(Session::get('update')=='estudio' || $errors->estudio->any())
+							@if(Session::get('update')=='estudio' || $errors->nacimiento->any())
 							<li role="presentation" class="active"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Nacimiento</a></li>
 						@else
 							<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Nacimiento</a></li>
@@ -650,8 +650,8 @@
 										</div>	
 									</div>
 								</div>
-						<!--MODAL CONFIRMACION-->
-							<!-- Modal -->
+								<!--MODAL CONFIRMACION-->
+									<!-- Modal -->
 								<div class = "modal fade" id = "confirmationEstudio" tabindex = "-1" role = "dialog" 
 								   aria-labelledby = "myModalLabel" aria-hidden = "true">
 								   

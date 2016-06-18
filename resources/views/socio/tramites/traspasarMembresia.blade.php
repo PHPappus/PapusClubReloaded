@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>REGISTRAR MULTA</title>
+	<title>TRASPASAR MEMBRESÍA</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +12,7 @@
 	
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-socio')
 @section('content')
 
 <!---Cuerpo -->
@@ -22,11 +22,28 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>REGISTRAR MULTA</strong>
+					<strong>TRASPASAR MEMBRESÍA</strong>
 			</div>		
 		</div>
+
+
+		@if (session('stored'))
+			<script>$("#modalSuccess").modal("show");</script>
+			
+			<div class="alert alert-success fade in">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>¡Éxito!</strong> {{session('stored')}}
+			</div>
+		@endif
+		@if (session('eliminated'))			
+			<div class="alert alert-warning fade in">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>Aviso</strong> {{session('eliminated')}}
+			</div>
+		@endif
+		
 		<div class="container">
-			<form method="POST" action="/multa/new/save" class="form-horizontal form-border">
+			<form method="POST" action="/traspaso/new/save" class="form-horizontal form-border">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			
 				<div class="col-sm-4"></div>
@@ -51,25 +68,33 @@
 			  		</font>		  			
 				</div>			
 			  	</br>
-			  	
+
+
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" onkeypress="return inputLimiter(event,'Letters')" id="nombreInput" name="nombre" placeholder="Nombre">
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre">
 			    	</div>
 			  	</div>
 
-				<div class="form-group ">
-			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
+			  	<div class="form-group required">
+			    	<label for="apPInput" class="col-sm-4 control-label">Apellido Paterno</label>
 			    	<div class="col-sm-5">
-			    		<textarea class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" rows="3" cols="50" value="{{old('descripcion')}}"></textarea>
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="apPInput" name="apP" placeholder="Apellido Paterno">
 			    	</div>
-			  	</div>	
+			  	</div>
 
 			  	<div class="form-group required">
-			    	<label for="montoPenalidadInput" class="col-sm-4 control-label">Monto de la Penalidad (S/.)</label>
+			    	<label for="apMInput" class="col-sm-4 control-label">Apellido Materno</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" onkeypress="return inputLimiter(event,'DoubleFormat')" min ="0" step="any" class="form-control" id="montoPenalidadInput" name="montoPenalidad" placeholder="Monto de la Penalidad">
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="apMInput" name="apM" placeholder="Apellido Materno">
+			    	</div>
+			  	</div>
+
+			  	<div class="form-group required">
+			    	<label for="dniInput" class="col-sm-4 control-label">DNI/Carnet Extranjería</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" min ="0" step="any" class="form-control" id="dniInput" name="dni" placeholder="DNI/Carnet Extranjería">
 			    	</div>
 			  	</div>
 

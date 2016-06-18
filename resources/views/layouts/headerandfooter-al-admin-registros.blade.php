@@ -21,7 +21,6 @@
 		    }
 		}
   	</script>
-  	
 <!--Cabecera- Se separará espacio para el input de busqueda antes de la cabecera de menu-->
 <header class="header">
 		<div class="content clearfix">

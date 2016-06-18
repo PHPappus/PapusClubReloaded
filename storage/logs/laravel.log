@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 [2016-06-16 16:33:39] local.ERROR: Symfony\Component\Debug\Exception\FatalThrowableError: Parse error: syntax error, unexpected 'public' (T_PUBLIC) in /var/www/html/papusclub/app/Models/Ambiente.php:37
 Stack trace:
 #0 /var/www/html/papusclub/vendor/composer/ClassLoader.php(301): Composer\Autoload\includeFile('/var/www/html/p...')
@@ -2303,3 +2305,4 @@ Stack trace:
 #72 C:\xampp\htdocs\PapusClubReloaded\public\index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #73 C:\xampp\htdocs\PapusClubReloaded\server.php(21): require_once('C:\\xampp\\htdocs...')
 #74 {main}  
+>>>>>>> development

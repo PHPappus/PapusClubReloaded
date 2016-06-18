@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use papusclub\Http\Requests;
 use papusclub\Models\Persona;
 use papusclub\Models\Socio;
+use papusclub\Models\Postulante;
 use papusclub\Models\Carnet;
 use papusclub\Models\Multa;
 use papusclub\Models\Configuracion;
@@ -25,6 +26,7 @@ use Illuminate\Support\Facades\Redirect;
 use papusclub\Models\Departamento;
 use papusclub\Models\Provincia;
 use papusclub\Models\Distrito;
+use papusclub\Models\Traspaso;
 use Session;
 
 class SocioAdminController extends Controller
@@ -377,7 +379,7 @@ class SocioAdminController extends Controller
         Session::flash('update','membresia');
         return Redirect::action('SocioAdminController@edit',$socio->id)->with('cambios-mem','Cambios realizados con éxito');         
     }
-
+    /* MULTAS */
     public function indexRegMulta()
     {
         $socios = Socio::all();
@@ -403,6 +405,7 @@ class SocioAdminController extends Controller
         }
         return redirect('multas-s')->with('stored', 'Se registró la multa correctamente.');
     }
+
     /*INVITADOS*/
 
     public function createInvitado($id)
@@ -506,5 +509,48 @@ class SocioAdminController extends Controller
         //die();
         Session::flash('update','invitado');    
         return back();
+    }
+
+    /*TRASPASOS*/
+
+    public function indexTraspasos()
+    {
+        $traspasos = Traspaso::all();
+
+        return view('admin-persona.tramites.traspasos',compact('traspasos'));
+    }
+
+    public function validarTraspaso(Traspaso $traspaso)
+    {
+
+        $postulante = 0;
+        var_dump($traspaso->nombre);
+        die();
+        $persona=Persona::where('doc_identidad','=',$traspaso->dni)->orwhere('carnet_extranjeria','=',$traspaso->dni)->first();
+     //   if ($postulante->dni == 0)
+       //     return redirect('traspasos-p')->with('No se encontró al postulante');
+        $postulante = Postulante::where('id_postulante','=',$persona->id);
+        $traspaso->estado = FALSE;
+        $socio = new Socio();
+        $socio->estado = TRUE;
+        $socio->fecha_ingreso = date('now');
+        $socio->postulante->save($postulante);
+        $socio->membresia()->save($traspaso->socio->carnet_actual);
+        $traspaso->socio->estado = FALSE;
+        $socio->save();
+
+        return redirect('admin-persona')->with('stored','Se aprobó el traspaso');
+    }
+
+    public function cancelarTraspaso(Traspaso $traspaso)
+    {
+        $traspaso->estado = FALSE;
+        return redirect('traspasos-p')->with('Se canceló el traspaso');
+    }
+
+    public function showTraspaso($id)
+    {
+        $traspaso = Traspaso::find($id);
+        return view('admin-persona.tramites.showTraspaso',compact('traspaso'));
     }
 }
