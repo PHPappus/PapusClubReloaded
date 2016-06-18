@@ -101,4 +101,8 @@ class Persona extends Model
             }
         }
     }
+
+     public function ingresoproducto(){
+        return $this->hasMany('papusclub\Models\IngresoProducto');
+    }
 }

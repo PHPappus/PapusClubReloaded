@@ -273,8 +273,8 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('venta-producto/{id}/show', 'VentaProductoController@show');
 	Route::get('venta-producto/new/venta-producto/{id}', 'VentaProductoController@createVentaProducto');
 	Route::post('venta-producto/new/venta-producto/add', 'VentaProductoController@storeVentaProducto');
-	Route::get('venta-producto/{id}', 'VentaProductoController@editProducto');
-	Route::post('venta-producto/{id}/edit', 'VentaProductoController@updateProducto');
+	Route::get('venta-producto/new/{id}', 'VentaProductoController@editProducto');
+	Route::post('venta-producto/new/{id}/editProducto', 'VentaProductoController@updateProducto');
 	Route::get('venta-producto/{id}/deleteProducto', 'VentaProductoController@destroyProducto');
 	Route::get('venta-producto/{id}/back', 'VentaProductoController@back');
 	Route::get('venta-producto/{id}/cancel', 'VentaProductoController@cancel');
