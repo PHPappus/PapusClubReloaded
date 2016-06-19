@@ -887,6 +887,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'TipoFamiliaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TipoFamiliaTableSeeder.php',
         'TipoMembresiaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TipoMembresiaTableSeeder.php',
         'TipoPersonaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TipoPersonaTableSeeder.php',
+        'servicioSeeder' => __DIR__ . '/../..' . '/database/seeds/servicioSeeder.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -635,4 +635,5 @@ return array(
     'TipoFamiliaTableSeeder' => $baseDir . '/database/seeds/TipoFamiliaTableSeeder.php',
     'TipoMembresiaTableSeeder' => $baseDir . '/database/seeds/TipoMembresiaTableSeeder.php',
     'TipoPersonaTableSeeder' => $baseDir . '/database/seeds/TipoPersonaTableSeeder.php',
+    'servicioSeeder' => $baseDir . '/database/seeds/servicioSeeder.php',
 );
