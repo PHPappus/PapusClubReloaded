@@ -67,7 +67,7 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 
 	//Trámites Socio
 	Route::get('traspaso/','SocioController@traspmembresia');
-	Route::post('traspaso/new/save','SocioController@storeTraspaso');
+	Route::post('traspaso/nuevo','SocioController@storeTraspaso');
 	Route::get('mis-multas/','SocioController@misMultas');
 
 
@@ -288,6 +288,7 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::get('traspasos-p/','SocioAdminController@indexTraspasos');
 	Route::get('traspaso/{id}/ver','SocioAdminController@showTraspaso');
 	Route::post('traspaso/new/save','SocioAdminController@validarTraspaso');
+	Route::get('traspaso/{id}/rechazar', 'SocioAdminController@cancelarTraspaso');
 
 	//MANTENIMIENTO DE TRABAJADOR
 	Route::get('trabajador/index','TrabajadorController@index');//ya

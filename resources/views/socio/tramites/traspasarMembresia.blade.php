@@ -43,7 +43,7 @@
 		@endif
 		
 		<div class="container">
-			<form method="POST" action="/traspaso/new/save" class="form-horizontal form-border">
+			<form method="POST" action="/traspaso/nuevo" class="form-horizontal form-border">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			
 				<div class="col-sm-4"></div>
@@ -128,4 +128,26 @@
 
 
 </body>
+
+<!-- Modal Success -->
+	<div id="modalSuccess" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">¡Éxito!</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>{{session('stored')}}</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>           
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
 </html>

@@ -517,38 +517,42 @@ class SocioAdminController extends Controller
     public function indexTraspasos()
     {
         $traspasos = Traspaso::all();
-
         return view('admin-persona.tramites.traspasos',compact('traspasos'));
     }
 
     public function validarTraspaso(SaveSocioRequest $request)
     {
-
         $input = $request->all();
        // var_dump($input);
        // die();
-        $persona=Persona::where('doc_identidad','=',$input['dni'])->orwhere('carnet_extranjeria','=',$input['dni'])->first();
+        $persona=Persona::where('doc_identidad','=',$input['dniP'])->orwhere('carnet_extranjeria','=',$input['dniP'])->first();
      //   if ($postulante->dni == 0)
        //     return redirect('traspasos-p')->with('No se encontró al postulante');
         $postulante = Postulante::where('id_postulante','=',$persona->id)->first();
-        $traspaso = Traspaso::where('dni','=',$input['dniP']);
-        $traspaso->estado = FALSE;
+        $traspaso = Traspaso::where('dni','=',$input['dniP'])->first();
+        $traspaso->socio->update(['estado' => FALSE]);
+        $traspaso->update(['estado'=>FALSE]);
         $socio = new Socio();
         $socio->estado = TRUE;
-        $socio->fecha_ingreso = date('now');
+        $fecha = Date('now');
+        $socio->fecha_ingreso=$fecha;
         $socio->postulante_id = $postulante->id_postulante;
-        $socio->tipo_membresia_id = $postulante->socio->membresia->id;
+        $socio->tipo_membresia_id = 1;
         $membresia = TipoMembresia::find($socio->tipo_membresia_id);
         $membresia->socio()->save($socio);
-        $socio->save();
 
-        return redirect('admin-persona')->with('stored','Se aprobó el traspaso');
+        $socio->save();
+        $carnet = create_carnet($socio);
+
+        return redirect('traspasos-p')->with('stored','Se aprobó el traspaso');
+
     }
 
-    public function cancelarTraspaso(Traspaso $traspaso)
+    public function cancelarTraspaso($id)
     {
-        $traspaso->estado = FALSE;
-        return redirect('traspasos-p')->with('Se canceló el traspaso');
+        $traspaso = Traspaso::find($id);
+        $traspaso->update(['estado'=>FALSE]);
+        return back();
     }
 
     public function showTraspaso($id)
