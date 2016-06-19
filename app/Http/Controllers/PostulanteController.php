@@ -11,6 +11,7 @@ use papusclub\Models\Postulante;
 use papusclub\Http\Requests\StorePostulanteRequest;
 use papusclub\Http\Requests\EditPostulanteBasicoRequest;
 use papusclub\Http\Requests\EditPostulanteNacimientoRequest;
+use papusclub\Http\Requests\EditPostulanteViviendaRequest;
 use papusclub\Http\Requests\EditPostulanteEstudioRequest;
 use papusclub\Http\Requests\EditPostulanteTrabajoRequest;
 use papusclub\Http\Requests\EditPostulanteContactoRequest;
@@ -107,6 +108,17 @@ class PostulanteController extends Controller
             $postulante->direccion_nacimiento=$input['direccion_nacimiento'];
         }
 
+        /*Datos de provincia*/
+            if(isset($input['departamento_vivienda']))
+                $postulante->departamento_vivienda=$input['departamento_vivienda'];
+            if(isset($input['provincia_vivienda']))
+                $postulante->provincia_vivienda=$input['provincia_vivienda'];
+            if(isset($input['distrito_vivienda']))
+                $postulante->distrito_vivienda=$input['distrito_vivienda']; 
+            $postulante->domicilio=$input['domicilio'];
+            $postulante->referencia_vivienda=$input['referencia_vivienda'];
+
+        /*=======*/
         $postulante->colegio_primario=$input['colegio_primario'];
         $postulante->colegio_secundario=$input['colegio_secundario'];
         
@@ -282,12 +294,31 @@ class PostulanteController extends Controller
         return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('cambios-nac','Cambios realizados con éxito');
     }
 
+    public function updateVivienda(EditPostulanteViviendaRequest $request, $id){
+
+        $postulante = Postulante::withTrashed()->find($id);
+        $input=$request->all();
+        if(isset($input['departamento_vivienda']))
+            $postulante->departamento_vivienda=$input['departamento_vivienda'];
+        if(isset($input['provincia_vivienda']))
+            $postulante->provincia_vivienda=$input['provincia_vivienda'];
+        if(isset($input['distrito_vivienda']))
+            $postulante->distrito_vivienda=$input['distrito_vivienda'];
+
+        $postulante->domicilio=$input['domicilio'];
+        $postulante->referencia_vivienda=$input['referencia_vivienda'];
+
+        $postulante->save();
+        Session::flash('update','vivienda');
+        return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('cambios-viv','Cambios realizados con éxito');
+    }
+
     public function updateEstudio(EditPostulanteEstudioRequest $request, $id){
 
         $postulante = Postulante::withTrashed()->find($id);
         $input=$request->all();
-        $postulante->colegio_primario=trim($input['colegio_primaria']);
-        $postulante->colegio_secundario=trim($input['colegio_secundaria']);
+        $postulante->colegio_primario=trim($input['colegio_primario']);
+        $postulante->colegio_secundario=trim($input['colegio_secundario']);
         $postulante->universidad=trim($input['universidad']);
         $postulante->profesion=trim($input['carrera']);
 

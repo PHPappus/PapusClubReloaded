@@ -59,7 +59,7 @@
 						<ul class="nav nav-pills nav-justified" id="pills-edit" role="tablist">
 	
 							<!--DATOS BASICOS-->
-							@if(!Session::has('update') && !$errors->basico->any() && !$errors->nacimiento->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any())									
+							@if(!Session::has('update') && !$errors->basico->any() && !$errors->nacimiento->any() && !$errors->vivienda->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any())									
 								<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Básico</a></li>
 							@elseif(Session::get('update')=='basico' || $errors->basico->any())
 								<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Básico</a></li>
@@ -72,6 +72,20 @@
 								<li role="presentation" class="active"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Nacimiento</a></li>
 							@else
 								<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Nacimiento</a></li>
+							@endif
+
+							<!--DATOS DE FAMILIA
+							@if(Session::get('update')=='familia' || $errors->familia->any())
+								<li role="presentation" class="active"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Familia</a></li>
+							@else
+								<li role="presentation"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Familia</a></li>
+							@endif-->
+
+							<!--DATOS DE VIVIENDA-->
+							@if(Session::get('update')=='vivienda' || $errors->vivienda->any())
+								<li role="presentation" class="active"><a href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab">Vivienda</a></li>
+							@else
+								<li role="presentation"><a href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab">Vivienda</a></li>
 							@endif
 							
 							<!--DATOS DE ESTUDIOS-->
@@ -98,7 +112,7 @@
 					</div>
 
 					<div class="tab-content">
-						@if(!Session::has('update') && !$errors->basico->any() && !$errors->nacimiento->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any())									
+						@if(!Session::has('update') && !$errors->basico->any() && !$errors->nacimiento->any() && !$errors->vivienda->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any())									
 							<div role="tabpanel" class="tab-pane active" id="seccion1">
 						@elseif(Session::get('update')=='basico' || $errors->basico->any())
 							<div role="tabpanel" class="tab-pane active" id="seccion1">
@@ -480,7 +494,168 @@
 									</div>	
 								</form>
 							</div>
+						<!--===================================-->
+						@if(Session::get('update')=='vivienda' || $errors->vivienda->any())
+							<div role="tabpanel" class="tab-pane active" id="seccion4">
+						@else
+							<div role="tabpanel" class="tab-pane" id="seccion4">
+						@endif
+								<form method="POST" action="/postulante/{{$postulante->persona->id}}/editVivienda" class="form-horizontal form-border">
+									{{method_field('PATCH')}}
+									<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
+									<div class="col-sm-4"></div>
+									<div class=""> 
+										@if ($errors->vivienda->any())
+							  				<ul class="alert alert-danger fade in">
+							  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							  					@foreach ($errors->vivienda->all() as $error)
+							  						<li>{{$error}}</li>
+							  					@endforeach
+							  				</ul>
+							  			@endif
+										@if(session('cambios-viv'))
+											<div class="alert alert-success fade in">
+													<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+													<strong>¡Éxito!</strong> {{session('cambios-viv')}}
+											</div>								
+										@endif						  			
+									</div>
+									<br><br><br>
+									<div class="form-group required" >
+											<div class="btn-group col-sm-4" ></div>
+											<div class="btn-group col-sm-4">
+												<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+											</div>
+
+											<div class="btn-group col-sm-4" ></div>
+													
+											<div class="btn-group">
+												<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+											</div>
+											<div class="btn-group">
+												<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
+											</div>
+
+									</div>
+									<div class="form-group required">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Departamento:</label>
+												</div>
+												<div class="col-sm-6">
+													<select class="form-control" id="departamento_vivienda" name="departamento_vivienda" style="max-width: 250px" data-link="{{ url('/provincias_viviendaEdit') }}">
+														<option value="-1" default>--Departamento--</option>
+															@foreach ($departamentos as $depa)      
+											                	<option value="{{$depa->id}}"  @if($postulante->departamento==$depa->id) selected @endif>{{$depa->nombre}}</option>
+											                @endforeach
+													</select>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group required">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Provincia:</label>
+												</div>
+												<div class="col-sm-6">
+													<select class="form-control" id="provincia_vivienda" name="provincia_vivienda" style="max-width: 250px " data-link="{{ url('/distritos_viviendaEdit') }}">
+														<option  value="-1" default disab>--Provincia--</option>
+															@foreach ($postulante->Departamento->provincias as $provincia)      
+											                	<option value="{{$provincia->id}}"  @if($postulante->provincia==$provincia->id) selected @endif>{{$provincia->nombre}}</option>
+											                @endforeach												
+													</select>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group required">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Distrito:</label>
+												</div>
+
+												<div class="col-sm-6">
+													<select class="form-control" id="distrito_vivienda" name="distrito_vivienda" style="max-width: 250px">
+														<option  value="-1" default>--Distrito--</option>
+															@foreach ($postulante->Provincia->distritos as $distrito)      
+											                	<option value="{{$distrito->id}}"  @if($postulante->distrito==$distrito->id) selected @endif>{{$distrito->nombre}}</option>
+											                @endforeach													
+													</select>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group required">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Direccion Vivienda</label>
+												</div>
+												<div class="col-sm-6">
+													<input type="text" class="form-control" id="domicilio" name="domicilio" placeholder="Direccion Laboral" style="max-width: 250px" value="{{$postulante->domicilio}}" value="{{old('domicilio')}}">
+												</div>		
+											</div>
+										</div>
+
+										<div class="form-group required">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Referencia Vivienda</label>
+												</div>
+												<div class="col-sm-6">
+													<textarea rows="4" cols="50" id="referencia_vivienda" name="referencia_vivienda" placeholder="Referencia" style="max-width: 820px; max-height: 300px;">{{$postulante->referencia_vivienda}}</textarea>
+												</div>		
+											</div>
+										</div>
+
+										<div class = "modal fade" id = "confirmationVivienda" tabindex = "-1" role = "dialog" 
+									   aria-labelledby = "myModalLabel" aria-hidden = "true">
+									   
+									   	<div class = "modal-dialog">
+									      <div class = "modal-content">
+									         
+									         <div class = "modal-header">
+									            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+													<span aria-hidden="true" onclick="cerrarventana()">&times;</span>
+									            </button>
+									            
+									            <h4 class = "modal-title" id = "myModalLabel">
+									               EDITAR POSTULANTE
+									            </h4>
+									         </div>
+									         
+									         <div class = "modal-body">
+									            <p>¿Desea guardar los cambios realizados?</p>
+									         </div>
+									         
+									         <div class = "modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cerrar</button>
+									            
+									            <button type = "submit" class = "btn btn-primary">
+									               Confirmar
+									            </button>
+									         </div>
+									         
+									      </div><!-- /.modal-content -->
+									   	</div><!-- /.modal-dialog -->
+									  
+										</div><!-- /.modal -->							
+										<br><br>
+										<div class="form-group required" >
+												<div class="btn-group col-sm-5" ></div>
+												
+												<div class="btn-group">
+													<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationVivienda" onclick="ventana()" value="Confirmar">
+												</div>
+												<div class="btn-group">
+													<a href="/postulante/index" class="btn btn-info">Retornar</a>
+												</div>
+										</div>	
+
+								</form>
+							</div>
+						<!--===================================-->
 						@if(Session::get('update')=='estudio' || $errors->estudio->any())
 							<div role="tabpanel" class="tab-pane active" id="seccion5">
 						@else
@@ -530,7 +705,7 @@
 												<label for="" class="control-label">Colegio Primaria:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="colegio_primaria" name="colegio_primaria" placeholder="Colegio de Primaria" value="{{$postulante->colegio_primario}}" >
+												<input type="text" class="form-control" id="colegio_primario" name="colegio_primario" placeholder="Colegio de Primaria" value="{{$postulante->colegio_primario}}" >
 											</div>	
 										</div>
 									</div>
@@ -540,7 +715,7 @@
 												<label for="" class="control-label">Colegio Secundaria:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="colegio_secundaria" name="colegio_secundaria" placeholder="Colegio de Secundaria" value="{{$postulante->colegio_secundario}}" >
+												<input type="text" class="form-control" id="colegio_secundario" name="colegio_secundario" placeholder="Colegio de Secundaria" value="{{$postulante->colegio_secundario}}" >
 											</div>	
 										</div>								
 									</div>
@@ -956,6 +1131,88 @@
 		});
 
 	</script>
+
+
+		<script>
+		$(document).ready(function(){
+			$("#departamento_vivienda").change(function(event){
+				document.getElementById("provincia_vivienda").disabled = false;
+				document.getElementById("distrito_vivienda").disabled = true;
+			    $("#distrito_vivienda").empty();
+			    $("#distrito_vivienda").append("<option  value='-1' default>--Distrito--</option>");
+				var url = $(this).attr("data-link");
+				$departamento_id=event.target.value;
+							//alert($departamento_id);
+				//alert(url);
+				$.ajax({
+			        url: "provincias_viviendaEdit",
+			        type:"POST",
+				    headers: {
+				        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				    },			        
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { id: $departamento_id},
+			        success:function(data){
+			        	$("#provincia_vivienda").empty();
+			        	$("#provincia_vivienda").append("<option  value='-1' default>--Provincia--</option>");
+			        	$.each(data,function(index,elememt){
+			        		
+			        		$("#provincia_vivienda").append("<option value='"+elememt.id+"'>"+elememt.nombre+"</option>");
+			           		 console.log("mensaje que quieras");
+				       	});
+				       },error:function(){ 
+				           alert("error!!!!");
+				       }
+				   }); //end of ajax
+			});
+
+
+			$("#provincia_vivienda").change(function(event){
+				document.getElementById("distrito_vivienda").disabled = false;
+				var url = $(this).attr("data-link");
+				$provincia_id=event.target.value;
+							//alert($provincia_id);
+				//alert(url);
+				//alert($provincia_id);
+				
+				$.ajax({
+			        url: "distritos_viviendaEdit",
+			        type:"POST",
+				    headers: {
+				        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				    },				        
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { id: $provincia_id},
+			        success:function(data){
+			        	$("#distrito_vivienda").empty();
+			        	$("#distrito_vivienda").append("<option  value='-1' default>--Distrito--</option>");
+			        	$.each(data,function(index,elememt){
+								//alert(elememt.id);
+				        		//alert(element.nombre);
+			        		$("#distrito_vivienda").append("<option value='"+elememt.id+"'>"+elememt.nombre+"</option>");
+			        	});
+				            //alert(data);
+			        },error:function(){ 
+			            alert("error!!!!");
+			        }
+			    }); //end of ajax
+			});
+		});
+
+	</script>
+
+
+
 
 	<script>
 		function ventana(){

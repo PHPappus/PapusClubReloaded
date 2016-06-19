@@ -78,11 +78,11 @@
 							<ul class="nav nav-pills nav-tabs" role="tablist">
 								<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Paso 1: Datos Básicos</a></li>
 								<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Paso 2: Nacimiento</a></li>
-								<li role="presentation"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Paso 3: Educacion</a></li>
-								<li role="presentation"><a href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab">Paso 4: Empleo</a></li>
-								<li role="presentation"><a href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab">Paso 5: Contacto</a></li>
-								<li role="presentation"><a href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab">Paso 6: Vivienda</a></li>
-								<!--<li role="presentation"><a href="#seccion6" aria-controls="seccion7" data-toggle="tab" role="tab">Paso 7: Contactos</a></li> -->
+								<li role="presentation"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Paso 3: Familia</a></li>
+								<li role="presentation"><a href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab">Paso 4: Vivienda</a></li>
+								<li role="presentation"><a href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab">Paso 5: Estudio</a></li>
+								<li role="presentation"><a href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab">Paso 6: Trabajo</a></li>
+								<li role="presentation"><a href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab">Paso 7: Contactos</a></li> 
 							</ul>
 						</div>
 
@@ -273,9 +273,116 @@
 							</div>
 
 							<div role="tabpanel" class="tab-pane" id="seccion3">
+								<form action="" class="form-horizontal form-border">
+								</form>
+							</div>
+
+							<div role="tabpanel" class="tab-pane" id="seccion4">
+								<br>
+										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+								<br>
+
+								<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Lugar de vivienda</label>
+											</div>
+											<div class="col-sm-6">
+													<select class="form-control" id="departamento_vivienda" name="departamento_vivienda" style="max-width: 250px " data-link="{{ url('/provincias_vivienda') }}">
+														<option value="-1" default>--Departamento--</option>
+															@foreach ($departamentos as $depavivienda)      
+											                	<option value="{{$depavivienda->id}}"   >{{$depavivienda->nombre}}</option>
+											                @endforeach
+													</select>
+													
+													<br>
+													<select class="form-control" id="provincia_vivienda" name="provincia_vivienda" style="max-width: 250px " data-link="{{ url('/distritos_vivienda') }}" disabled="true">
+														<option  value="-1" default disab>--Provincia--</option>
+													</select>
+													<br>
+													<select class="form-control" id="distrito_vivienda" name="distrito_vivienda" style="max-width: 250px " disabled="true">
+														<option  value="-1" default>--Distrito--</option>
+													</select>
+											</div>
+
+										</div>
+								</div>
+
+								<div class="form-group required">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Direccion Vivienda</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="domicilio" name="domicilio" placeholder="Direccion Laboral" style="max-width: 250px" value="{{old('domicilio')}}">
+										</div>		
+									</div>
+								</div>
+
+								<div class="form-group required">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Referencia Vivienda</label>
+										</div>
+										<div class="col-sm-6">
+											<textarea rows="4" cols="50" id="referencia_vivienda" name="referencia_vivienda" placeholder="Referencia" style="max-width: 820px; max-height: 300px;">{{old('referencia_vivienda')}}</textarea>
+										</div>		
+									</div>
+								</div>
+
+								<div class="form-group required">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Direccion Laboral</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="searchmap" name="direccion_vivienda" placeholder="Direccion Laboral" style="max-width: 250px" value="{{old('direccion_laboral')}}">
+										</div>		
+									</div>
+								</div>
+
+								<div class="form-group required">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Mapa: </label>
+										</div>
+										<div class="col-sm-6">
+											<div id="map" width="600" height="450" frameborder="0" style="border:0"  allowfullscreen></div>
+<!-- 											<iframe width="600" height="450" frameborder="0" style="border:0"  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&q=Space+Needle,Seattle+WA" allowfullscreen></iframe> -->
+										</div>		
+									</div>
+								</div>
+
+								<div class="form-group required">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Longitud: </label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="longitud" name="longitud" placeholder="Correo" style="max-width: 250px" value="{{old('longitud')}}">
+										</div>		
+									</div>
+								</div>	
+
+								<div class="form-group required">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Longitudc: </label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="latitud" name="latitud" placeholder="Correo" style="max-width: 250px" value="{{old('latitud')}}">
+										</div>		
+									</div>
+								</div>	
+
+								<!-- <input id="submit" type="button" value="Reverse Geocode"> -->								
+
+							</div> 
+
+
+							<div role="tabpanel" class="tab-pane" id="seccion5">
 
 							<br>
-								
 										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 							<br>
 								<div class="form-group required">
@@ -284,7 +391,7 @@
 												<label for="" class="control-label">Educacion Primaria:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="colegio_primario" name="colegio_primario" placeholder="Educacion Primaria" style="max-width: 250px" value="{{old('colegio_primario')}}">
+												<input type="text" class="form-control" id="colegio_primario" name="colegio_primario" placeholder="Educacion Primario" style="max-width: 250px" value="{{old('colegio_primario')}}">
 											</div>		
 										</div>
 								</div>
@@ -294,7 +401,7 @@
 												<label for="" class="control-label">Educacion secundaria:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="colegio_secundario" name="colegio_secundario" placeholder="Educacion Secundaria" style="max-width: 250px" value="{{old('colegio_secundario')}}">
+												<input type="text" class="form-control" id="colegio_secundario" name="colegio_secundario" placeholder="Educacion Secundario" style="max-width: 250px" value="{{old('colegio_secundario')}}">
 											</div>		
 										</div>
 								</div>
@@ -321,7 +428,7 @@
 								</div>
 							</div>
 
-							<div role="tabpanel" class="tab-pane" id="seccion4">
+							<div role="tabpanel" class="tab-pane" id="seccion6">
 								<br>
 										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 								<br>
@@ -363,7 +470,7 @@
 							
 							</div>
 
-							<div role="tabpanel" class="tab-pane" id="seccion5">
+							<div role="tabpanel" class="tab-pane" id="seccion7">
 								<br>
 										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 								<br>
@@ -415,77 +522,7 @@
 								</div>
 							</div>
 
-							<div role="tabpanel" class="tab-pane" id="seccion6">
-								<br>
-										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
-								<br>
-
-								<div class="form-group required">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Lugar de vivienda</label>
-											</div>
-											<div class="col-sm-6">
-													<select class="form-control" id="departamento_vivienda" name="departamento_vivienda" style="max-width: 250px " data-link="{{ url('/provincias_vivienda') }}">
-														<option value="-1" default>--Departamento--</option>
-															@foreach ($departamentos as $depavivienda)      
-											                	<option value="{{$depavivienda->id}}"   >{{$depavivienda->nombre}}</option>
-											                @endforeach
-													</select>
-													
-													<br>
-													<select class="form-control" id="provincia_vivienda" name="provincia_vivienda" style="max-width: 250px " data-link="{{ url('/distritos_vivienda') }}" disabled="true">
-														<option  value="-1" default disab>--Provincia--</option>
-													</select>
-													<br>
-													<select class="form-control" id="distrito_vivienda" name="distrito_vivienda" style="max-width: 250px " disabled="true">
-														<option  value="-1" default>--Distrito--</option>
-													</select>
-											</div>
-
-										</div>
-								</div>
-
-								<div class="form-group required">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Direccion Laboral</label>
-										</div>
-										<div class="col-sm-6">
-											<input type="text" class="form-control" id="searchmap" name="direccion_vivienda" placeholder="Direccion Laboral" style="max-width: 250px" value="{{old('direccion_laboral')}}">
-										</div>		
-									</div>
-								</div>
-
-								<div class="form-group required">
-									<div class="col-sm-6">
-										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Mapa: </label>
-										</div>
-										<div class="col-sm-6">
-											<div id="map" width="600" height="450" frameborder="0" style="border:0"  allowfullscreen></div>
-<!-- 											<iframe width="600" height="450" frameborder="0" style="border:0"  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&q=Space+Needle,Seattle+WA" allowfullscreen></iframe> -->
-										</div>		
-									</div>
-								</div>								
-
-								<div class="container">
-									
-
-										<div class="form-group">
-											<label for="">Lat</label>
-											<input type="text" class="form-control input-sm" name="lat" id="lat">
-										</div>
-
-										<div class="form-group">
-											<label for="">Lng</label>
-											<input type="text" class="form-control input-sm" name="lng" id="lng">
-										</div>
-
-										<button class="btn btn-sm btn-danger">Save</button>
-
-								</div>      
-							</div> 
+							
 
 
 						</div>
@@ -515,26 +552,137 @@
 	 -->
 	 
 	<script>
-    var script = document.createElement('script');
-    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&signed_in=true&callback=initMap";
-    document.getElementsByTagName('head')[0].appendChild(script);
+	    var script = document.createElement('script');
+	    script.src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&signed_in=true&libraries=places&callback=initMap";
+/*	    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&signed_in=true&callback=initMap";*/
+	    document.getElementsByTagName('head')[0].appendChild(script);
 	</script>
 
 	<script>
 
 			function initMap() {
-			  var mapDiv = document.getElementById("map");
-			  var map = new google.maps.Map(mapDiv, {
-			    zoom: 8,
-			    center: new google.maps.LatLng(-34.397, 150.644)
-			  });
+				var myLatlng = {lat: -12.089279446409028, lng: -77.02249328165635};
+			 	var mapDiv = document.getElementById("map");
+			 	var map = new google.maps.Map(mapDiv, {
+					zoom: 15,
+					center: myLatlng,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				});
+
+				var geocoder = new google.maps.Geocoder;
+			 	// Create the search box and link it to the UI element.
+				var input = document.getElementById('searchmap');
+				var autocomplete = new google.maps.places.Autocomplete(input);
+				autocomplete.bindTo('bounds', map);
+
+
+				var infowindow = new google.maps.InfoWindow();
+				var marker = new google.maps.Marker({
+					map: map,
+					anchorPoint: new google.maps.Point(0, -29),
+					draggable:true
+				});
 
 			  // We add a DOM event here to show an alert if the DIV containing the
 			  // map is clicked.
-			  google.maps.event.addDomListener(window, 'load', initMap);
-			  google.maps.event.addDomListener(mapDiv, 'click', function() {
-			    window.alert('Map was clicked!');
-			  });
+				google.maps.event.addDomListener(window, 'load', initMap);
+
+				marker.addListener('click', function() {
+				  infowindow.open(marker.get('map'), marker);
+				});
+
+				autocomplete.addListener('place_changed', function() {
+					infowindow.close();
+					marker.setVisible(false);
+					var place = autocomplete.getPlace();
+					if (!place.geometry) {
+					   window.alert("Autocomplete's returned place contains no geometry");
+					   return;
+					}
+
+					// If the place has a geometry, then present it on a map.
+					if (place.geometry.viewport) {
+						map.fitBounds(place.geometry.viewport);
+					} else {
+						map.setCenter(place.geometry.location);
+						map.setZoom(15);  // Why 17? Because it looks good.
+					}
+						
+					marker.setIcon(/** @type {google.maps.Icon} */({
+						url: place.icon,
+					    size: new google.maps.Size(71, 71),
+					    origin: new google.maps.Point(0, 0),
+					    anchor: new google.maps.Point(17, 34),
+					    scaledSize: new google.maps.Size(35, 35)
+					 }));
+
+					var address = '';
+				    if (place.address_components) {
+				      address = [
+				        (place.address_components[0] && place.address_components[0].short_name || ''),
+				        (place.address_components[1] && place.address_components[1].short_name || ''),
+				        (place.address_components[2] && place.address_components[2].short_name || '')
+				      ].join(' ');
+				    }
+
+
+					marker.setPosition(place.geometry.location);
+					marker.setVisible(true);
+				    infowindow.open(map, marker);
+
+				    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+    				infowindow.open(map, marker);
+
+				    //Esto es para obtener la longitud y latitud
+    				var lat=marker.getPosition().lat();
+					var lng=marker.getPosition().lng();
+					//alert(lat);
+
+					$('#latitud').val(lat);
+					$('#longitud').val(lng);
+
+				 });
+
+				google.maps.event.addListener(marker, 'dragend', function (event) {
+
+				    document.getElementById("latitud").value = this.getPosition().lat();
+				    document.getElementById("longitud").value = this.getPosition().lng();
+
+				    geocodeLatLng(geocoder, map, infowindow);
+				    
+				});
+
+
+/*				  document.getElementById('submit').addEventListener('click', function() {
+				    geocodeLatLng(geocoder, map, infowindow);
+				  });*/
+
+				/*Obtener el nombre de la direccion*/
+				function geocodeLatLng(geocoder, map, infowindow) {
+				  var latitud= document.getElementById('latitud').value;
+				  var longitud= document.getElementById('longitud').value;
+				  var latlng = {lat: parseFloat(latitud), lng: parseFloat(longitud)};
+				  geocoder.geocode({'location': latlng}, function(results, status) {
+				    if (status === google.maps.GeocoderStatus.OK) {
+				      if (results[1]) {
+				        marker.setPosition(latlng);
+				        marker.setMap(map);
+				        map.setZoom(15	);
+/*				        var marker = new google.maps.Marker({
+				          position: latlng,
+				          map: map
+				        });*/
+				        infowindow.setContent(results[1].formatted_address);
+				        infowindow.open(map, marker);
+				      } else {
+				        window.alert('No results found');
+				      }
+				    } else {
+				      window.alert('Geocoder failed due to: ' + status);
+				    }
+				  });
+				}
+
 			}
 	</script>
 
