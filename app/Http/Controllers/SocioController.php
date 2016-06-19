@@ -173,7 +173,7 @@ class SocioController extends Controller
 
         $traspaso->save();
 
-        return redirect('traspasos-p')->with('stored', 'Se registró el traspaso correctamente. Acercarse a la oficina a entregar los documentos del nuevo socio a transferir');
+        return redirect('socio.tramites.traspasarMembresia')->with('stored', 'Se registró el traspaso correctamente. Acercarse a la oficina a entregar los documentos del nuevo socio a transferir');
 
     }
 
