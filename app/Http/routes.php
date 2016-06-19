@@ -317,7 +317,7 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	{
 	    return 'Success! ajax in laravel 5';
 	});
-	//Route::get('/information/create/ajax-departamento','UbicacionController@getProvincias');
+	/*Ajax para el registro de nacimiento en registrar postulante*/
 	Route::post('postulante/provincias', function(){
 		$dep_id=Input::get('id');
     	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
@@ -326,6 +326,18 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 		$prov_id=Input::get('id');
     	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
 	});
+
+	/*Ajax para el registro de vivienda en registrar postulante*/
+	Route::post('postulante/provincias_vivienda', function(){
+		$dep_id=Input::get('id');
+    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
+	});
+	Route::post('postulante/distritos_vivienda', function(){
+		$prov_id=Input::get('id');
+    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
+	});
+
+	/*===============================================*/
 
 	/*Ajax para que funcion los list de departamento en el editar*/
 	Route::post('postulante/provinciasEdit', function(){
