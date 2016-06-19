@@ -234,7 +234,7 @@ class SorteoController extends Controller
         $date = str_replace('/', '-', $input['fecha_abierto']);
         $temp = $carbon->createFromFormat('d-m-Y', $date)->toDateString();
 
-        $sorteo->fecha_fin_sorteo =($carbon::parse($temp))->addDays(-7);
+        $sorteo->fecha_fin_sorteo =$carbon::parse($temp)->addDays(-7);
 
         //$date = str_replace('/', '-', $input['fecha_abierto']);      
         $sorteo->fecha_abierto=$carbon->createFromFormat('d-m-Y', $date)->toDateString();
