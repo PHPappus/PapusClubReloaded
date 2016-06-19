@@ -13,7 +13,7 @@
 	
 </head>
 <body>
-@extends('layouts.headerandfooter-al-publico')
+@extends('layouts.headerandfooter-al-control-ingresos')
 @section('content')
 <!---Cuerpo -->
 
@@ -35,7 +35,7 @@
 				<div class="col-sm-12 text-center">
 					<div class="header">
 					  <h1 style="color:green">Bienvenido <strong>{!!Auth::user()->name!!}</strong></h1>
-					  <h2 style="color:green">usted se ha logueado como <strong>usuario público</strong> del Club Pappus</h2>
+					  <h2 style="color:green">usted se ha logueado como <strong>usuario de control de ingresos</strong> del Club Pappus</h2>
 					</div>
 					
 				</div>
