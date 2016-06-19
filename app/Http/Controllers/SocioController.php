@@ -166,7 +166,7 @@ class SocioController extends Controller
         $usuario = User::findOrFail($user_id);
         $persona_id = $usuario->persona->id;
 
-        $postulante = Postulante::find($persona_id)->first();
+        $postulante = Postulante::find($persona_id);
         $socio = $postulante->socio;
 
         $socio->traspaso()->save($traspaso);
@@ -183,7 +183,7 @@ class SocioController extends Controller
         $usuario = User::findOrFail($user_id);
         $persona_id = $usuario->persona->id;
 
-        $postulante = Postulante::find($persona_id)->first();
+        $postulante = Postulante::find($persona_id);
         $socio = $postulante->socio;
 
         $multas = $socio->multaxpersona;
