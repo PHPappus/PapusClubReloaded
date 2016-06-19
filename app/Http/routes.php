@@ -201,9 +201,10 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	
 
 	// Agregar Servicios a las sedes2
+	 Route::get('select/sede', 'SedesController@indexselecttoservicio');
 	  Route::get('sedes/{id}/agregarservicios', 'SedesController@agregarservicios');
 	  Route::post('sedes/{id}/agregarservicios/store','SedesController@storeservicios');
-	
+	  Route::get('sedes/{id}/verservicios', 'SedesController@indexserviciosdesede');
 	
 	//MANTENIMIENTO DE PROVEEDORES
 	Route::get('proveedor/index/', 'ProveedorController@index');

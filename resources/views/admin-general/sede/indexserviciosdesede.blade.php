@@ -1,8 +1,14 @@
-
+	<!--p>@foreach($serviciosdesede as $sdesede)
+		{{$sdesede->idsede}}
+		{{$sdesede->idservicio}}
+		<br/>
+	@endforeach
+	</p-->
 <!DOCTYPE html>
 <html>
 <head>
-	<title>AGREGAR SERVICIOS ADICIONALES </title>
+	<title>AGREGAR SERVICIOS ADICIONALES 
+	 </title>	
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,13 +30,12 @@
 		
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>AGREGAR SERVICIOS ADICIONALES A LA SEDE
-					
+					<strong>SERVICIOS ADICIONALES DE LA SEDE
 					<?php 
 					  echo strtoupper($sede->nombre)
 					 ?>
 					 
-					 </strong>
+					</strong>
 			</div>		
 			<div></div>
 		</div>
@@ -38,55 +43,51 @@
 			<form method="POST" action="agregarservicios/store" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
-							
+					
 				<div class="table-responsive">
 					<div class="container">
-						@if($servicios)
-						<h4> <strong> SERVICIOS DISPONIBLES</strong></h4>		
-						@endif	
 						<table class="table table-bordered table-hover text-center display" id=	"example">
-
-
 							<thead class="active" data-sortable="true">								
 								<th><div align=center>NOMBRE</div></th>	
 								<th><div align=center>DESCRIPCIÓN</div></th>	
 								<th><div align=center>TIPO DE SERVICIO</div></th>	
-								<th><div align=center>SELECCIONAR</div></th>
-							</thead>	
-							<tbody>													
 								
-								@foreach($servicios as $servicio)	
-										@if ($servicio->estado == 1)
-										<tr>																				
-											<td>{{$servicio->nombre}}</td>
-											<td>{{$servicio->descripcion}}</td>
+							</thead>	
+							<tbody>										@foreach($serviciosdesede as $sdesede)
+									@foreach($servicios as $serv)
+										@if($serv->id == $sdesede->idservicio)
+										<tr>
+
+											<td>{{$serv->nombre}}</td>
+											<td>{{$serv->descripcion}}</td>
 											<td>
-	 											@foreach($tiposServicio as $tserv)	
-	 												@if ($tserv->id == $servicio->tipo_servicio)
+											@foreach($tiposservicio as $tserv)	
+	 												@if ($tserv->id == $serv->tipo_servicio)
 	 													{{$tserv->valor	}}
 	 												@endif
 	 											@endforeach
-	 										</td>	
-											<td>{{ Form::checkbox('ch[]', $servicio->id, false) }}</td>	
-														
+											</td>
 										</tr>
+											
 										@endif
-								 @endforeach
-								
+									@endforeach
+								@endforeach			
 							</tbody>			
 						</table>						
 					</div>	
 				</div>
 				<br><br>
 				<div class="btn-inline">
-					<div class="btn-group col-sm-7"></div>
+					<div class="btn-group col-sm-6"></div>
 					
-					<div class="btn-group ">
+					<!--div class="btn-group ">
 						<input class="btn btn-primary" type="submit" value="Continuar">
+					</div-->
+					<!div class="btn-group">
+						 <a class="btn btn-info"  title="Terminar" data-href="" data-toggle="" >Terminar</a>   
 					</div>
-					<div class="btn-group">
-						 <a class="btn btn-info"  title="Cancelar" data-href="" data-toggle="modal" data-target="#modalEliminar">Cancelar</a>   
-					</div>
+					<br/>
+					<br/>
 				</div>
 				<br><br>
 

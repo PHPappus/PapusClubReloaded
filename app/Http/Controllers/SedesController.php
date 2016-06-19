@@ -22,12 +22,28 @@ class SedesController extends Controller
     //Muestra la lista de sedes que se encuentran en BD, estas se pueden modificar, cambiar el estado, ver mas detalle o registrar una nueva sede
     public function index()
     {
-        $sedes = Sede::all();
+        $sedes = Sede::all();        
         return view('admin-general.sede.index', compact('sedes'));
     }
 
+    public function indexserviciosdesede($id)
+    {
+        $sede = Sede::find($id);
+        $serviciosdesede = Sedexservicio::where('idsede','=',$id)->get();
+        $servicios = Servicio::all();
+        $tiposservicio=Configuracion::where('grupo','=','4')->get();
+        return view('admin-general.sede.indexserviciosdesede', compact('sede','serviciosdesede','servicios','tiposservicio'));
+    }
+    
+
+    public function indexselecttoservicio()
+    {
+        $sedes = Sede::all();
+        return view('admin-general.sede.indexselecttoservicio', compact('sedes'));
+    }
     //Muestra el formulario para poder registrar una nueva sede en BD
     public function create()
+
     {
         //$mensaje = null;
         /*$departamentos=Departamento::lists('nombre','id');

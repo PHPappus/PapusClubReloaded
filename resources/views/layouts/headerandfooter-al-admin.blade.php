@@ -75,6 +75,7 @@
 							<ul>
 								<li><a href="{!!URL::to('/sorteo/index')!!}" title="Mantenimiento Sorteo" target="_self"> MANTENIMIENTO SORTEO</a></li>
 								<li><a href="{!!URL::to('/sorteo/inscripcion')!!}" title="Inscripcion Sorteo" target="_self">INSCRIPCION SORTEO</a></li>
+								<li><a href="{!!URL::to('/select/sede')!!}" title="Agregar Servicios" target="_self">AGREGAR SERVICIOS</a></li>
 							</ul>
 						</li>
 						<!-- <li><a href="{!!URL::to('/ambiente/index')!!}">AMBIENTE<span class="despliegue">▼</span></a>
