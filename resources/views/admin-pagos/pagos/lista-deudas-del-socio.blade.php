@@ -42,8 +42,8 @@
 							<th><DIV ALIGN=center>Tipo de Pago</th>
 							<th><DIV ALIGN=center>Monto</th>
 							<th><DIV ALIGN=center>Descripción</th>
-							<th><DIV ALIGN=center>estado</th>
-							<!-- <th><DIV ALIGN=center>DETALLE</th> -->
+							<th><DIV ALIGN=center>Estado</th>
+							<th><DIV ALIGN=center>Detalle</th>
 							<!-- <th><DIV ALIGN=center>Detalle</th> -->
 							<th><DIV ALIGN=center>Registrar Pago</th>
 						</tr>
@@ -55,9 +55,9 @@
 						<td> {{$facturacion->total}}</td>
 						<td> {{$facturacion->descripcion}}</td>
 						<td> {{$facturacion->estado}} </td>				
-						<!--  <td>
-						<a class="btn btn-info" href="#"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-						</td> -->
+						 <td>
+						<a class="btn btn-info" href="{{url('/pagos/'.$facturacion->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+						</td>
 						<td>
 						<a class="btn btn-info" href="{{url('/pagos/registrar-pago/'.$facturacion->id.'')}}" title="Registrar Pago" ><i class="glyphicon glyphicon-pencil"></i></a>
 						</td>						

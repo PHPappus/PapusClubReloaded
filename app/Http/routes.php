@@ -80,7 +80,8 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	
 	//PAGOS (deudas del socio)
 	Route::get('pagos/facturacion-socio/','PagosController@listarFacturacionSocio');//se lista a los socios
-	
+	Route::get('pagos-del-socio/{id}/show', 'PagosController@showAlSocio'); // Detalle del pago
+		
 	
 });
 
@@ -165,6 +166,7 @@ Route::group(['middleware' => ['auth', 'adminpagos']], function () {
 	Route::get('pagos/{id}/selectSocio/', 'PagosController@selectSocio');//lista las deudas de los socios
 	Route::get('pagos/registrar-pago/{id}', 'PagosController@registrarPago');
     Route::post('pagos/registrar-pago/update/{id}', 'PagosController@storePago');
+    Route::get('pagos/{id}/show', 'PagosController@showSocio'); // Detalle del pago
     /*Route::post('pagos/{id}/createPago', 'PagosController@createPago');*/
 });
 
