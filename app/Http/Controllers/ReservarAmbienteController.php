@@ -13,6 +13,7 @@ use papusclub\Models\Reserva;
 use papusclub\Models\Configuracion;
 use papusclub\Models\Facturacion;
 use papusclub\Http\Requests\StoreReservaAmbiente;
+use papusclub\Models\Socio;
 use Auth;
 use Session;
 use Carbon\Carbon;
@@ -260,6 +261,16 @@ class ReservarAmbienteController extends Controller
         return view('socio.persona.socio.buscarSocio');
     }
 
+     public function listaReservas() // va  a la lista la reserva de los socios
+    {
+        $user_id = Auth::user()->id;
+        $usuario = User::findOrFail($user_id);
+        $persona = $usuario->persona;  
+
+        return view('socio.reservar-ambiente.lista-reservas'); //debe pasarse la lsita de reservas del socio 
+    }
+
+    
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
     ////////////////ADMIN  RESERVA =D

@@ -22,7 +22,7 @@
 		<div class="row">
 			<div class="col-sm-12 text-center">
 				<br/><br/>
-				<p class="lead"><strong>Deudas del Socio</strong></p>
+				<p class="lead"><strong>Pagos</strong></p>
 				<br/>
 			</div>
 			
