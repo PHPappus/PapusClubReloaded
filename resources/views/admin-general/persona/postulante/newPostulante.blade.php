@@ -9,8 +9,8 @@
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
-	{!!Html::style('css/MisEstilos.css')!!}
 	{!!Html::style('css/jquery.bxslider.css')!!}
+	{!!Html::style('css/MisEstilos.css')!!}
 	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
 	<!-- PARA DATA TABLE -->
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
@@ -39,7 +39,7 @@
 </head>
 <body>
 
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-persona')
 @section('content')
 
 		<br>
@@ -222,7 +222,7 @@
 
 														<br><br>
 
-														<!--<a href="#" id="try" data-link="{{ url('/test') }}">Try</a>-->>
+														<!--<a href="#" id="try" data-link="{{ url('/test') }}">Try</a>-->
 
 													</div>	
 											</div>
@@ -528,7 +528,7 @@
 				var url = $(this).attr("data-link");
 				$departamento_id=event.target.value;
 							//alert($departamento_id);
-				//alert(url);
+				alert(url);
 				$.ajax({
 			        url: "provincias",
 			        type:"POST",

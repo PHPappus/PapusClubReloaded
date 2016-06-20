@@ -12,7 +12,8 @@ class Producto extends Model
     ['nombre',
      'descripcion',
      'estado',
-     'tipo_producto'];
+     'tipo_producto',
+     'stock'];
     protected $dates = ['deleted_at'];
      
     public function productoxfacturacion(){

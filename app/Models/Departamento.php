@@ -11,5 +11,11 @@ class Departamento extends Model
     protected $table = 'departamento';
     protected $fillable = ['nombre'];
     protected $dates = ['deleted_at'];
+
+
+    public function provincias()
+    {
+    	return $this->hasMany(Provincia::class);
+    }
     
 }

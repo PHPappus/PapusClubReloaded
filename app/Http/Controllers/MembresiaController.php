@@ -7,6 +7,7 @@ use DateTime;
 use papusclub\Http\Requests;
 use papusclub\Models\TipoMembresia;
 use papusclub\Models\TarifaMembresia;
+use papusclub\Models\TipoFamilia;
 use papusclub\Http\Requests\StoreMembresiaRequest;
 use papusclub\Http\Requests\EditMembresiaRequest;
 use Illuminate\Support\Facades\Redirect;
@@ -27,7 +28,8 @@ class MembresiaController extends Controller
 
     public function create()
     {
-    	return view('admin-general.membresia.newMembresia');
+        $tipofamilias=TipoFamilia::all();
+    	return view('admin-general.membresia.newMembresia',compact('tipofamilias'));
     }
 
     //public function show(TipoMembresia $membresia)
@@ -59,7 +61,14 @@ class MembresiaController extends Controller
         $membresia->numMaxInvitados=$input['numMax'];
         $tarifa->addTipo($membresia);
 
-        //return redirect()->action('MembresiaController@index', ['stored' => 'Se registró la sede correctamente.']);
+        $descuentos_familiares = $input['descuentos'];
+
+        foreach($descuentos_familiares as $key =>$val)
+        {
+            $tipofamilia = TipoFamilia::find($key);
+            $membresia->add_tarifaFamilia($tipofamilia,$val,$fecha);
+        }
+ 
         return redirect('membresia')->with('stored', 'Se registró la membresía correctamente.');
     }
 
@@ -79,6 +88,14 @@ class MembresiaController extends Controller
         $membresia->update(['descripcion'=>$input['nombre'],
                             'numMaxInvitados'=>$input['numMax']]);
 
+        $descuentos_familiares = $input['descuentos'];
+
+        foreach($descuentos_familiares as $key =>$val)
+        {
+            //$tipofamilia = TipoFamilia::find($key);
+            $membresia->update_tarifaFamilia($key,$val);
+        }        
+
         return Redirect::action('MembresiaController@index')->with('stored','Se actualizo la membresía correctamente');
     }
 
@@ -92,8 +109,9 @@ class MembresiaController extends Controller
         else
         {
             $tarifa = $membresia->tarifa;
-            $tarifa->forceDelete();
             $membresia->forceDelete();
+            $tarifa->forceDelete();
+
             return back();
         }
     }

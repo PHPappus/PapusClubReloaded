@@ -13,6 +13,7 @@ use Hash;
 use papusclub\Models\Ambiente;
 use papusclub\Models\Actividad;
 use papusclub\Models\Sede;
+use papusclub\Models\Persona;
 use Carbon\Carbon;
 
 class InscriptionActividadController extends Controller
@@ -21,11 +22,11 @@ class InscriptionActividadController extends Controller
     public function inscriptionActividad()
     {
         $sedes = Sede::all();
-        $actividades=Actividad::all();
-        $ambientes = Ambiente::all();
-        
-
-        return view('socio.actividades.inscripcion', compact('sedes'),compact('actividades'));
+        /*Filtrar las actividades que estan disponibles (>= que la fecha actual) y con estado 1 */
+        $actividades=Actividad::where('estado','=',1)->where('a_realizarse_en','>=',Carbon::now())->get();
+        /*Se envia las actividades a las cuales se encuentra inscrita la persona*/
+        $actividades_persona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->actividades;
+        return view('socio.actividades.inscripcion', compact('sedes','actividades','actividades_persona'));
     }
 
     //Se muestra la actividad a reservar y espera la confirmacion 
@@ -36,61 +37,59 @@ class InscriptionActividadController extends Controller
     }
 
     public function filterActividades(Request $request){
-        $sedes= Sede::all();
         $input= $request->all();
-        /*Se prepara las fechas para ser comparadas*/
-        $fecha_inicio   = new Carbon(); 
-        $fecha_fin      = new Carbon();
+        $sedes= Sede::all();     
+        /*Se envia las actividades a las cuales se encuentra inscrita la persona*/
+        $actividades_persona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->actividades;
+
+
+        $fecha_inicio   = new Carbon('America/Lima');
+        $fecha_fin   = new Carbon('America/Lima'); 
         
-        if(empty($input['fecha_inicio'])){
-            $fecha_inicio=Carbon::now();
-        }
-        else{
-            $date = str_replace('/', '-', $input['fecha_inicio']);
-            $fecha_inicio=$fecha_inicio->createFromFormat('d-m-Y', $date)->toDateTimeString(); 
-        }
+        $fecha_inicio=$fecha_inicio->toDateString();
+        $fecha_fin = Carbon::now()->addYears(1)->toDateString();
 
-        if(empty($input['fecha_fin'])){
-            $fecha_fin=Carbon::createFromDate(Carbon::now()->year, 12, 31); 
-        }
-        else{
-            $date2 = str_replace('/', '-', $input['fecha_fin']);      
-            $fecha_fin=$fecha_fin->createFromFormat('d-m-Y', $date2)->toDateTimeString(); 
-        }
-
-        /*if($input['sedeSelec']!=-1){
-            $sede = Sede::find($input['sedeSelec']);//Esta es la sede que se filtro
-            $ambientes=$sede->ambientes();
-            /*$actividades=Actividad::where('id_ambiente','=','')*/
-           /* dd($sede->actividades);*/
-           /*$actividades=array();
-           dd($ambientes);
-           foreach ($ambientes as $ambiente) {
-                if($ambiente->sede()->id==$input['sedeSelec'])
-                 $actividades=$actividades + $ambiente->sede();
-           }*/
-           /*dd($actividades);*/
-            /*$actividades=$actividades->where('estado','=',true)
-                    ->where('a_realizarse_en','>=',Carbon::now())
-                    ->where('a_realizarse_en','>=',$fecha_inicio)
-                    ->where('a_realizarse_en','<=',$fecha_fin)
-                    ->get();*/
-        /*}
-        else{*/
-            $actividades=Actividad::where('estado','=',true)
-                    ->where('a_realizarse_en','>=',Carbon::now())
-                    ->where('a_realizarse_en','>=',$fecha_inicio)
-                    ->where('a_realizarse_en','<=',$fecha_fin)
-                    ->get();
-        /*}*/
-
-        /*dd($fecha_inicio);*/
-        /*$var=Actividad::find(1);
-        dd($var->a_realizarse_en);
-        $date_at = strtotime(date("Y-m-d H:i:s"));*/
         
+        if(!empty($input['fecha_inicio'])){
+            $date=str_replace('/', '-', $input['fecha_inicio']);
+            $fecha_inicio=date("Y-m-d",strtotime($date));
+        }
+        
+        if(!empty($input['fecha_fin'])){
+            $date=str_replace('/', '-', $input['fecha_fin']);
+            $fecha_fin=date("Y-m-d",strtotime($date));
+        }
+        /*Se terminó de preparar las fechas*/
 
-        return view('socio.actividades.inscripcion', compact('sedes'),compact('actividades'));
+        /*Se prepara las horas para ser comparadas*/
+        $horaInicio=$input['horaInicio'];
+        $horaFin=$input['horaFin'];
+
+        if(empty($input['horaInicio'])){
+            $horaInicio="00:00";
+        }
+        if(empty($input['horaFin'])){
+            $horaFin="23:59" ;
+        }
+        /*Se terminó de preparar las horas*/
+
+
+        $actividades=Actividad::where('estado','=',1)
+                               ->where('a_realizarse_en','>=',Carbon::now()->format('d-m-Y'))
+                               ->where('a_realizarse_en','>=',$fecha_inicio)
+                               ->where('a_realizarse_en','<=',$fecha_fin)
+                               ->whereBetween('hora_inicio',[$horaInicio,$horaFin])
+                               ->get();
+
+        /*$actividadesxsede=Actividad::all();*/
+   
+        if($input['sedeSelec']!=-1){ //No son todas las sedes
+            foreach ($actividades as $i => $actividad) {             
+                    if($actividad->ambiente->sede->id!=$input['sedeSelec'])  unset($actividades[$i]);
+            }
+        }        
+
+        return view('socio.actividades.inscripcion', compact('sedes','actividades','actividades_persona'));
 
     }
 
@@ -121,7 +120,7 @@ class InscriptionActividadController extends Controller
             
             if(!$flag){
                 $actividades=Actividad::all();
-                Session::flash('message','Ya se encuentra inscrito en esta actividad');
+                Session::flash('message-error','Ya se encuentra inscrito en esta actividad');
                 return view('socio.actividades.inscripciones',compact('sedes'),compact('actividades'));
             }
             else{
@@ -143,7 +142,7 @@ class InscriptionActividadController extends Controller
     public function removeInscriptionToPersona($id)
     {
         $usuario  = Auth::user();
-        $persona=$usuario->persona;
+        $persona  = $usuario->persona;
         $actividad   = Actividad::find($id);
 
 

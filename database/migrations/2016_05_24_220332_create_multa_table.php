@@ -14,10 +14,11 @@ class CreateMultaTable extends Migration
     {
         Schema::create('multa', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre');
             $table->string('descripcion');
             $table->double('montoPenalidad');
-            $table->string('estado');
-            $table->dateTime('fecha_registro');
+            $table->boolean('estado')->default(TRUE);
+            $table->date('fecha_registro');
             $table->softDeletes();
             $table->timestamps();
         });

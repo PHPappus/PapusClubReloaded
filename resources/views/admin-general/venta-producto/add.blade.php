@@ -114,8 +114,8 @@
 	{!!Html::script('../js/bootstrap.js')!!}
 	{!!Html::script('../js/jquery.bxslider.min.js')!!}
 	{!!Html::script('../js/MisScripts.js')!!}
+	{!!Html::script('js/jquery.dataTables.js')!!}
 
-	<script src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
 	<script>		
 		$(document).ready(function() {
 		   $('#example').DataTable( {
@@ -152,10 +152,9 @@
 					  			<font color="black"> 
 					  				Ingresar alguno de los siguientes campos:
 					  				<ul>
-					  				<li>DNI</li>
-					  				<li>Apellido Paterno</li>
-					  				<li>Apellido Materno</li>
 					  				<li>Nombre</li>
+					  				<li>Descripción</li>
+					  				<li>Tipo de producto</li>
 					  				</ul>
 					  			</font>					  			
 					  		</div>
@@ -166,6 +165,7 @@
 									<th><div align=center>DESCRIPCION</div></th>
 									<th><div align=center>TIPO PRODUCTO</div></th>
 									<th><div align=center>PRECIO</div></th>
+									<th><div align=center>STOCK</div></th>
 									<th><div align=center>SELECCIONAR</div></th>
 								</thead>
 								<tbody>
@@ -176,6 +176,7 @@
 											<td>{{$producto->descripcion}}</td>		
 											<td>{{$producto->tipo_producto}}</td>
 											<td>{{$producto->precioproducto->first()['precio']}}</td>
+											<td>{{$producto->stock}}</td>
 											<td>
 												<div class="radio">
   													<label><input type="radio" name="optradio" value="{{$producto->id}}"></label>

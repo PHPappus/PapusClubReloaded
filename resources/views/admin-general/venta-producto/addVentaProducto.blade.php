@@ -141,7 +141,7 @@
 						</div>
 					@endif
 					<div class="btn-group">
-						<a href="{{url('/venta-producto/'.$factura->id.'/delete')}}" class="btn btn-info">Cancelar</a>
+						<a href="{{url('/venta-producto/'.$factura->id.'/cancel')}}" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>

@@ -18,7 +18,7 @@ class TestUserTableSeeder extends Seeder
 	    			   'password' => bcrypt('123456')]);//Perfil Administrador General
 	    User::insert([ 'name' => 'Carlos Chavez' , 'email' => 'adminp@mail.com', 'perfil_id'=>3,
 	    			   'password' => bcrypt('123456')]);//Perfil Administrador de Pagos
-	    User::insert([ 'name' => 'Juan Perez' , 'email' => 'adminr@mail.com', 'perfil_id'=>4,
+	    User::insert([ 'name' => 'Elba Lazo' , 'email' => 'adminr@mail.com', 'perfil_id'=>4,
 	    			   'password' => bcrypt('123456')]);//Perfil Administrador de Registros
 	    User::insert([ 'name' => 'Jose Quispe' , 'email' => 'gerente@mail.com', 'perfil_id'=>5,
 	    			   'password' => bcrypt('123456')]);//Perfil Gerente 
@@ -27,7 +27,7 @@ class TestUserTableSeeder extends Seeder
 	    			   'password' => bcrypt('123456')]);//Perfil Administrador de Persona 
 	    User::insert([ 'name' => 'Elvis Nieto' , 'email' => 'adminreserva@mail.com', 'perfil_id'=>7,
 	    			   'password' => bcrypt('123456')]);//Perfil Administrador de Reserva 
-	    User::insert([ 'name' => 'Elgar Gajo' , 'email' => 'publico@mail.com', 'perfil_id'=>8,
+	    User::insert([ 'name' => 'Elgar Gajo' , 'email' => 'controlingresos@mail.com', 'perfil_id'=>8,
 	    			   'password' => bcrypt('123456')]);//Perfil Publico   
     }
 }

@@ -9,7 +9,9 @@ use papusclub\Models\Ambiente;
 use papusclub\Models\Actividad;
 use papusclub\Models\Configuracion;
 use papusclub\Models\TipoPersona;
+use papusclub\Models\TarifaActividad;
 use papusclub\Http\Requests\StoreActividadRequest;
+use papusclub\Http\Requests\StoreConfiguracionRequest;
 use papusclub\Http\Requests\EditActividadRequest;
 use Carbon\Carbon;
 class ActividadController extends Controller
@@ -18,7 +20,7 @@ class ActividadController extends Controller
     public function index()
     {
         $actividades=Actividad::all();
-        return view('admin-general.actividad.index',compact('actividades'));
+        return view('admin-registros.actividad.index',compact('actividades'));
     }
     public function create()
     {
@@ -28,7 +30,7 @@ class ActividadController extends Controller
         
         $values=Configuracion::where('grupo','=','3')->get();
 
-        return view('admin-general.ambiente.searchAmbiente', compact('ambientes'),compact('values'),compact('tipoPersonas'));
+        return view('admin-registros.ambiente.searchAmbiente', compact('ambientes', 'values', 'tipoPersonas'));
     	
     }
     public function store(StoreActividadRequest $request)
@@ -44,33 +46,61 @@ class ActividadController extends Controller
         }
         //
         $actividad->capacidad_maxima= $input['capacidad_maxima'];
-        $actividad->tipo_actividad= $input['tipo_actividad'];
+        $tipoActividad = Configuracion::find($input['tipo_actividad']);
+        $actividad->tipo_actividad= $tipoActividad->valor;
         $actividad->descripcion= $input['descripcion'];
-        $actividad->cant_ambientes=$input['cant_ambientes'];
+       // $actividad->cant_ambientes=$input['cant_ambientes'];
         
         if (empty($input['a_realizarse_en'])) {
                     $actividad->a_realizarse_en="";
                 }else{
                     $a_realizarse_en = str_replace('/', '-', $input['a_realizarse_en']);      
-                    $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->createFromFormat('H:i:s', $input['hora'])->toDateTimeString();
+                    $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+                    $actividad->hora_inicio=$carbon->createFromFormat('H:i', $input['hora'])->toTimeString();
                 }
 
         $actividad->estado=false; 
         $actividad->save();
+
+        $tipoPersonas = TipoPersona::all();
+        $actividad_id = Actividad::all()->last()->id;
+        foreach ($tipoPersonas as $tipoPersona) {
+            $tarifa = new TarifaActividad();
+            $tarifa->actividad_id = $actividad_id;
+            $tarifa->tipo_persona_id = $tipoPersona->id;
+            $tarifa->precio = $input[$tipoPersona->descripcion];
+            $tarifa->save();
+        }
+
         return redirect('actividad/index')->with('stored', 'Se registró la actividad correctamente.');
     }
+
+    public function storeTipoActividad(StoreConfiguracionRequest $request, $id)
+    {       
+        $input = $request->all();
+        $configuracion = new Configuracion();
+        $configuracion->valor = $input['valor'];
+        $configuracion->grupo = 3;
+        $configuracion->descripcion = 'Tipos de Actividades';
+               
+        $configuracion->save();      
+        
+        return redirect('ambiente/'.$id.'/select');
+    }
+
     //Muestra el formulario para poder modificar una actividad
     public function edit($id)
     {
         $actividad=Actividad::find($id);
-        return view('admin-general.actividad.editActividad', compact('actividad'));
+        $tarifas = $actividad->tarifas;
+        return view('admin-registros.actividad.editActividad', compact('actividad','tarifas'));
     }
     //Se guarda la informacion modificada de la actividad en la BD
     public function update(EditActividadRequest $request, $id)
     {
         $input = $request->all();
         $actividad = Actividad::find($id);
-
+        $carbon=new Carbon(); 
         $actividad->nombre= $input['nombre'];
         $actividad->capacidad_maxima= $input['capacidad_maxima'];
         $actividad->tipo_actividad= $input['tipo_actividad'];
@@ -79,9 +109,27 @@ class ActividadController extends Controller
                     $actividad->a_realizarse_en="";
                 }else{
                     $a_realizarse_en = str_replace('/', '-', $input['a_realizarse_en']);      
-                    $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->createFromFormat('H:i:s', $input['hora'])->toDateTimeString();
+                    $actividad->a_realizarse_en=$carbon->createFromFormat('Y-m-d', $a_realizarse_en)->toDateString();
+                    $actividad->hora_inicio=$carbon->createFromFormat('H:i', $input['hora'])->toTimeString();
         }
-        $actividad->save();
+        $actividad->update();
+
+        $tarifasAnt = TarifaActividad::where('actividad_id', '=', $id)->get();
+
+        foreach ($tarifasAnt as $tarifaAnt) {
+            $tarifaAnt->delete();
+        }
+
+
+        $tipoPersonas = TipoPersona::all();
+        foreach ($tipoPersonas as $tipoPersona) {
+            $tarifa = new TarifaActividad();
+            $tarifa->actividad_id = $id;
+            $tarifa->tipo_persona_id = $tipoPersona->id;
+            $tarifa->precio = $input[$tipoPersona->descripcion];
+            $tarifa->save();
+        }
+
         return redirect('actividad/index');
 
     }
@@ -89,12 +137,20 @@ class ActividadController extends Controller
     public function show($id)
     {
         $actividad=Actividad::find($id);
-        return view('admin-general.actividad.detailActividad', compact('actividad'));
+        $tarifas = $actividad->tarifas;
+        return view('admin-registros.actividad.detailActividad', compact('actividad','tarifas'));
     }
     public function destroy($id)
     {
         $actividad=Actividad::find($id);
-        $actividad->delete();
+        
+        // if($actividad->reservas->count()){
+        //     return redirect('actividad/index')->with('delete', 'No se puede eliminar esta actividad, posee dependencias.');
+        // }
+        // else
+        //     $actividad->delete();
+        
         return back();
+
     }
 }
