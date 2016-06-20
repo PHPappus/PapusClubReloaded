@@ -16,7 +16,7 @@ use papusclub\Models\Provincia;
 use papusclub\Models\Distrito;
 use papusclub\Models\Configuracion;
 
-
+use papusclub\Http\Requests\StoreServicioxSedeRequest;
 class SedesController extends Controller
 {
     //Muestra la lista de sedes que se encuentran en BD, estas se pueden modificar, cambiar el estado, ver mas detalle o registrar una nueva sede
@@ -31,8 +31,9 @@ class SedesController extends Controller
         $sede = Sede::find($id);
         $serviciosdesede = Sedexservicio::where('idsede','=',$id)->get();
         $servicios = Servicio::all();
-        $tiposservicio=Configuracion::where('grupo','=','4')->get();
-        return view('admin-general.sede.indexserviciosdesede', compact('sede','serviciosdesede','servicios','tiposservicio'));
+        $tiposservicio=Configuracion::where('grupo','=','4')->get();   
+        $mensaje = ""     ;
+        return view('admin-general.sede.indexserviciosdesede', compact('sede','serviciosdesede','servicios','tiposservicio','mensaje'));
     }
     
 
@@ -140,15 +141,32 @@ class SedesController extends Controller
     {
         
         $sede = Sede::find($id);
-        $servicios = Servicio::all();
-        $tiposServicio=Configuracion::where('grupo','=','4')->get();
+        
+        $tiposServicio=Configuracion::where('grupo','=','4')->get();        
+        $serviciosdesede = Sedexservicio::where('idsede','=',$id)->get();
+        $serviciostodos = Servicio::all();
 
+
+
+        $servicios=array();
+        foreach ($serviciostodos as $sv) {
+            $foo = false;
+            foreach ($serviciosdesede as $servdsede) {
+                    if ($sv->id == $servdsede->idservicio  ){
+                        $foo = True;
+                        break;      
+                    }
+            }            
+            if ($foo==false) { // SI NO SE ENCONTRO SE METE EL SERVICIO lol
+                array_push($servicios,$sv);
+            }            
+        }
         return view('admin-general.sede.serviciosescoger', compact('sede', 'servicios','tiposServicio'));
     }
 
 
-     public function storeservicios($id){
-        $servciosescogidos = Input::get('ch');
+     public function storeservicios(StoreServicioxSedeRequest $rquest,$id){
+        $servciosescogidos = Input::get('Seleccionar');
         $sede = Sede::find($id);
         $servicios = Servicio::all();  
         $tiposservicio=Configuracion::where('grupo','=','4')->get();
@@ -164,7 +182,13 @@ class SedesController extends Controller
             }
         }
 
-        return view('admin-general.sede.serviciosdesedeindex', compact('sede', 'servicios','servciosescogidos','id','tiposservicio'));
+        // sede
+        // tiposervicio
+        // servicios        
+        $mensaje = 'Se registró el servicio a la sede correctamente.';
+        $serviciosdesede = Sedexservicio::where('idsede','=',$id)->get();
+        return view('admin-general.sede.indexserviciosdesede', compact('sede','serviciosdesede','servicios','tiposservicio','mensaje'));
+        
      }
 
 

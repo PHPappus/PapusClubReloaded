@@ -28,7 +28,17 @@
 		<!-- Utilizando Bootstrap -->
 		<br/><br/>
 		
+		
+
 		<div class="container">
+			@if ($mensaje)
+					<script>$("#modalSuccess").modal("show");</script>
+			
+					<div class="alert alert-success fade in">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong> {{$mensaje}} </strong> 
+					</div>
+			@endif
 			<div class="col-sm-12 text-left lead">
 					<strong>SERVICIOS ADICIONALES DE LA SEDE
 					<?php 
@@ -78,13 +88,14 @@
 				</div>
 				<br><br>
 				<div class="btn-inline">
-					<div class="btn-group col-sm-6"></div>
+					<div class="btn-group col-sm-9"></div>
 					
 					<!--div class="btn-group ">
 						<input class="btn btn-primary" type="submit" value="Continuar">
 					</div-->
-					<!div class="btn-group">
-						 <a class="btn btn-info"  title="Terminar" data-href="" data-toggle="" >Terminar</a>   
+					<div class="btn-group">
+						 <a class="btn btn-info"  href="{{url('/sedes/'.$sede->id.'/agregarservicios')}}" 
+						 title="Agregar Servicios" data-href="" data-toggle="" >Agregar Servicios</a>   
 					</div>
 					<br/>
 					<br/>
@@ -113,6 +124,27 @@
 	</script>
 </body>
 <!-- Modal -->
+   <div id="modalSuccess" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">¡Éxito!</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p> {{$mensaje}} </p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>           
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
+
 	<div id="modalEliminar" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
 
