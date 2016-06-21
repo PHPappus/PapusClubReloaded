@@ -22,7 +22,7 @@
 		<div class="row">
 			<div class="col-sm-12 text-center">
 				<br/><br/>
-				<p class="lead"><strong>Deudas del Socio</strong></p>
+				<p class="lead"><strong>Pagos</strong></p>
 				<br/>
 			</div>
 			
@@ -43,6 +43,7 @@
 							<th><DIV ALIGN=center>Monto</th>
 							<th><DIV ALIGN=center>Descripción</th>
 							<th><DIV ALIGN=center>estado</th>
+							<th><DIV ALIGN=center>Detalle</th>
 							
 						</tr>
 					</thead>
@@ -53,6 +54,9 @@
 							<td> {{$facturacion->total}}</td>
 							<td> {{$facturacion->descripcions}}</td>
 							<td> {{$facturacion->estado}} </td>
+							<td>
+							<a class="btn btn-info" href="{{url('/pagos-del-socio/'.$facturacion->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+							</td>
 						@endforeach						
 					</tbody>					
 												

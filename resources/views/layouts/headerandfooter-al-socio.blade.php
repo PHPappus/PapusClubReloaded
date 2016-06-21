@@ -97,6 +97,11 @@
         </ul>
         <ul class="nav navbar-nav">
           <li class="dropdown">
+            <li><a href="{!!URL::to('reservar-ambiente/lista-reservas/')!!}" class="dropdown-toggle btn-lg" title="Consultar Pagos" target="_self">Reservas</a></li>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" title="Realizar tramites" data-toggle="dropdown" role="button">
               Trámites<span class="caret"></span>
             </a>

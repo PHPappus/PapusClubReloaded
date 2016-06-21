@@ -75,10 +75,13 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('reservar-ambiente/{id}/new-reserva-otro-ambiente', 'ReservarAmbienteController@createOtroTipoAmbiente');//
 	Route::post('reservar-ambiente/{id}/confirmacion-reserva-otro-ambiente', 'ReservarAmbienteController@storeOtroTipoAmbiente');//confirmacion para la reserva de otros ambientes distintos de bungalows
 	Route::get('reservar-ambiente/searchSocio', 'SocioController@searchSocio');
-
+	//Lista de Reservas Hechas
+	Route::get('reservar-ambiente/lista-reservas', 'ReservarAmbienteController@listaReservas');
+	
 	//PAGOS (deudas del socio)
 	Route::get('pagos/facturacion-socio/','PagosController@listarFacturacionSocio');//se lista a los socios
-	
+	Route::get('pagos-del-socio/{id}/show', 'PagosController@showAlSocio'); // Detalle del pago
+		
 	
 });
 
@@ -163,6 +166,7 @@ Route::group(['middleware' => ['auth', 'adminpagos']], function () {
 	Route::get('pagos/{id}/selectSocio/', 'PagosController@selectSocio');//lista las deudas de los socios
 	Route::get('pagos/registrar-pago/{id}', 'PagosController@registrarPago');
     Route::post('pagos/registrar-pago/update/{id}', 'PagosController@storePago');
+    Route::get('pagos/{id}/show', 'PagosController@showSocio'); // Detalle del pago
     /*Route::post('pagos/{id}/createPago', 'PagosController@createPago');*/
 });
 

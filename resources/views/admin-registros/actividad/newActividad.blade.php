@@ -92,7 +92,7 @@
 			  	<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre de la actividad" value="{{old('nombre')}}" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre de la actividad" value="{{old('nombre')}}" >
 			    	</div>
 			  	</div>
 
