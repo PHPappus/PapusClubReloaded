@@ -14,7 +14,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TestUserTableSeeder::class);
         $this->call(PerfilTableSeeder::class);
         $this->call(SedeTableSeeder::class);
-        $this->call(TarifarioTableSeeder::class);
 		$this->call(ProductoTableSeeder::class);
 		$this->call(ProveedorTableSeeder::class);
 		$this->call(SorteoTableSeeder::class);
@@ -38,6 +37,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProvinciaTableSeeder::class);
         $this->call(DistritoTableSeeder::class);
         $this->call(TarifaAmbientexTipoPersonaTableSeeder::class);
+        $this->call(TarifaFamiliarTableSeeder::class);
 		
         Model::reguard();
     }
