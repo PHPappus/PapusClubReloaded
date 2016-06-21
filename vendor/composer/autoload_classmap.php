@@ -623,6 +623,7 @@ return array(
     'SedeTableSeeder' => $baseDir . '/database/seeds/SedeTableSeeder.php',
     'SocioTableSeeder' => $baseDir . '/database/seeds/SocioTableSeeder.php',
     'SorteoTableSeeder' => $baseDir . '/database/seeds/SorteoTableSeeder.php',
+    'TarifaActividadTableSeeder' => $baseDir . '/database/seeds/TarifaActividadTableSeeder.php',
     'TarifaAmbientexTipoPersonaTableSeeder' => $baseDir . '/database/seeds/TarifaAmbientexTipoPersonaTableSeeder.php',
     'TarifaMembresiaTableSeeder' => $baseDir . '/database/seeds/TarifaMembresiaTableSeeder.php',
     'TarifarioTableSeeder' => $baseDir . '/database/seeds/TarifarioTableSeeder.php',

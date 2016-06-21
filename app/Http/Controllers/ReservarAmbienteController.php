@@ -124,7 +124,7 @@ class ReservarAmbienteController extends Controller
         DB::beginTransaction();
 
         $user_id = Auth::user()->id;
-        $usuario = User::findOrFail($user_id);
+        $usuario = User::find($user_id);
         $persona_id = $usuario->persona->id;        
         $ambiente_id = $id;
 
@@ -198,7 +198,7 @@ class ReservarAmbienteController extends Controller
     {
         DB::beginTransaction();
         $user_id = Auth::user()->id;
-        $usuario = User::findOrFail($user_id);
+        $usuario = User::find($user_id);
         $persona_id = $usuario->persona->id;        
         $ambiente_id = $id;
 
@@ -357,7 +357,7 @@ class ReservarAmbienteController extends Controller
     public function storeBungalowAdminR($id, StoreReservaAmbiente $request)
     {
         $user_id = Auth::user()->id;
-        $usuario = User::findOrFail($user_id);
+        $usuario = User::find($user_id);
         $persona_id = $usuario->persona->id;        
         $ambiente_id = $id;
 
@@ -415,7 +415,7 @@ class ReservarAmbienteController extends Controller
     public function storeOtroTipoAmbienteAdminR($id, Request $request)
     {
         $user_id = Auth::user()->id;
-        $usuario = User::findOrFail($user_id);
+        $usuario = User::find($user_id);
         $persona_id = $usuario->persona->id;        
         $ambiente_id = $id;
 
