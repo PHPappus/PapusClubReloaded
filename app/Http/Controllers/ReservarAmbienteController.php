@@ -116,6 +116,7 @@ class ReservarAmbienteController extends Controller
     {   
         $ambiente = Ambiente::findOrFail($id);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
+      
         return view('socio.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes'));
     }
 
@@ -361,7 +362,8 @@ class ReservarAmbienteController extends Controller
     {   
         $ambiente = Ambiente::findOrFail($id);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
-        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes'));
+        $personas = Persona::all();
+        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes','personas'));
     }
 
     //Se muestra el Bungalow a reservar y espera su confirmacion para la reserva
@@ -419,7 +421,8 @@ class ReservarAmbienteController extends Controller
     {   
         $ambiente = Ambiente::findOrFail($id);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
-        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente','tipo_comprobantes'));
+        $personas = Persona::all();
+        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente','tipo_comprobantes','personas'));
     }
     
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
