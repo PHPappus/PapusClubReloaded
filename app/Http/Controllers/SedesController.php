@@ -33,7 +33,8 @@ class SedesController extends Controller
         /*$departamentos=Departamento::lists('nombre','id');
         */
         $departamentos=Departamento::select('id','nombre')->get();
-        return view('admin-general.sede.newSede',compact('departamentos'));
+        $personas = Persona::all();
+        return view('admin-general.sede.newSede',compact('departamentos','personas'));
     }
     public function contactosSede()
     {
