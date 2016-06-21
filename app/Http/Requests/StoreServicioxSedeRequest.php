@@ -4,7 +4,7 @@ namespace papusclub\Http\Requests;
 
 use papusclub\Http\Requests\Request;
 
-class StoreSocioxSorteoRequest extends Request
+class StoreServicioxSedeRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,7 @@ class StoreSocioxSorteoRequest extends Request
      */
     public function rules()
     {
-        return ['ch'=>'required'
-                              
+        return ['Seleccionar'=>'required'                              
         ];
     }
 }

@@ -55,9 +55,11 @@
 			<table class="table table-bordered table-hover text-center display" id="example">
 				<thead class="active" data-sortable="true">
 					<th><div align=center>NOMBRE SORTEO</div> </th>
-					<th><div align=center>FECHA INICIO DE SORTEO</div></th>
-					<th><div align=center>FECHA FIN DE SORTEO</div></th>
+					<th><div align=center>FECHA CIERRE DE SORTEO</div></th>
+					<th><div align=center>FECHA INICIO DE RESERVA</div></th>
+					<th><div align=center>FECHA FIN DE RESERVA</div></th>
 					<th><div align=center>DESCRIPCION</div></th>
+					<th><div align=center>EJECUTAR</div></th>
 					<th><div align=center>DETALLE</div></th>
 					<th><div align=center>MODIFICAR</div></th>
 					<th><div align=center>ELIMINAR</div></th>
@@ -65,11 +67,14 @@
 				<tbody>													
 					@foreach($sorteos as $sorteo)	
 					
-						<tr>									
+						<tr>	
 							<td>{{$sorteo->nombre_sorteo}}</td>
+							<td>{{$sorteo->fecha_fin_sorteo}}</td>
 							<td>{{$sorteo->fecha_abierto}}</td>
 							<td>{{$sorteo->fecha_cerrado}}</td>	
 							<td>{{$sorteo->descripcion}}</td>
+							<td><a class="btn btn-info" href="{{url('/sorteo/index/'.$sorteo->id.'/ejecutar')}}"  ><i class="glyphicon glyphicon-flash"></i></a>
+							        </td></td>
 							<td>
 							        <a class="btn btn-info" href="{{url('/sorteo/'.$sorteo->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 							        </td>
@@ -78,7 +83,7 @@
 			              	</td>
 			              	<td>
 					            <a class="btn btn-info"  title="Eliminar" data-href="{{url('/sorteo/'.$sorteo->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
-					        </td>			            	
+					        </td>
 						</tr>
 					</form>
 					 @endforeach
@@ -97,7 +102,9 @@
 					</div>
 					
 			</div>						
-					
+			</div>
+			</div>
+				
 		</div>	
 	</div>
 		

@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProvinciaTableSeeder::class);
         $this->call(DistritoTableSeeder::class);
         $this->call(TarifaAmbientexTipoPersonaTableSeeder::class);
-		
+		$this->call(servicioSeeder::class);
         Model::reguard();
     }
 }

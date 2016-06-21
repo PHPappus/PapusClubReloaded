@@ -82,8 +82,9 @@
 					<!--div class="btn-group ">
 						<input class="btn btn-primary" type="submit" value="Continuar">
 					</div-->
-					<!div class="btn-group">
-						 <a class="btn btn-info"  title="Terminar" data-href="" data-toggle="" >Terminar</a>   
+					
+					<div class="btn-group">
+						 <a class="btn btn-info"  href="{{url('/sedes/'.$sede->id.'/agregarservicios')}}"  title="Agregar Servicior" data-href="" data-toggle="" >Agregar Servicio</a> 
 					</div>
 					<br/>
 					<br/>

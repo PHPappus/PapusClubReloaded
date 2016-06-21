@@ -163,7 +163,8 @@ class SocioController extends Controller
         
 
         $user_id = Auth::user()->id;
-        $usuario = User::findOrFail($user_id);
+        //$usuario = User::findOrFail($user_id);
+	$usuario = $User::find($user_id);
         $persona_id = $usuario->persona->id;
 
         $postulante = Postulante::find($persona_id);
@@ -180,8 +181,9 @@ class SocioController extends Controller
     public function misMultas()
     {
         $user_id = Auth::user()->id;
-        $usuario = User::findOrFail($user_id);
-        $persona_id = $usuario->persona->id;
+       // $usuario = User::findOrFail($user_id);
+        $usuario  = User::find($user_id);
+	$persona_id = $usuario->persona->id;
 
         $postulante = Postulante::find($persona_id);
         $socio = $postulante->socio;
