@@ -85,5 +85,19 @@ class Postulante extends Model
         return $this->belongsTo(Distrito::class,'distrito');
     }
 
+        public function DepartamentoVivienda()
+    {
+        return $this->belongsTo(Departamento::class,'departamento_vivienda');
+    }
+
+    public function ProvinciaVivienda()
+    {
+        return $this->belongsTo(Provincia::class,'provincia_vivienda');
+    }
+
+    public function DistritoVivienda()
+    {
+        return $this->belongsTo(Distrito::class,'distrito_vivienda');
+    }
     
 }

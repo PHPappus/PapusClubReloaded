@@ -51,6 +51,7 @@
 			<div class="row">
 				<div class="col-sm-12 text-left">
 					<p class="lead"><strong>REGISTRAR POSTULANTE</strong></p>
+					<p style="color:red" >Para guardar al postulante debe completar todos los pasos de inscripción</p>
 				</div>
 			</div>	
 		</div>
@@ -78,11 +79,10 @@
 							<ul class="nav nav-pills nav-tabs" role="tablist">
 								<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Paso 1: Datos Básicos</a></li>
 								<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Paso 2: Nacimiento</a></li>
-								<li role="presentation"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Paso 3: Familia</a></li>
-								<li role="presentation"><a href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab">Paso 4: Vivienda</a></li>
-								<li role="presentation"><a href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab">Paso 5: Estudio</a></li>
-								<li role="presentation"><a href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab">Paso 6: Trabajo</a></li>
-								<li role="presentation"><a href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab">Paso 7: Contactos</a></li> 
+								<li role="presentation"><a href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab">Paso 3: Vivienda</a></li>
+								<li role="presentation"><a href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab">Paso 4: Estudio</a></li>
+								<li role="presentation"><a href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab">Paso 5: Trabajo</a></li>
+								<li role="presentation"><a href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab">Paso 6: Contactos</a></li> 
 							</ul>
 						</div>
 
@@ -272,10 +272,7 @@
 
 							</div>
 
-							<div role="tabpanel" class="tab-pane" id="seccion3">
-								<form action="" class="form-horizontal form-border">
-								</form>
-							</div>
+							
 
 							<div role="tabpanel" class="tab-pane" id="seccion4">
 								<br>
@@ -329,7 +326,7 @@
 										</div>		
 									</div>
 								</div>
-
+<!-- 
 								<div class="form-group required">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
@@ -348,7 +345,7 @@
 										</div>
 										<div class="col-sm-6">
 											<div id="map" width="600" height="450" frameborder="0" style="border:0"  allowfullscreen></div>
-<!-- 											<iframe width="600" height="450" frameborder="0" style="border:0"  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&q=Space+Needle,Seattle+WA" allowfullscreen></iframe> -->
+											<iframe width="600" height="450" frameborder="0" style="border:0"  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&q=Space+Needle,Seattle+WA" allowfullscreen></iframe>
 										</div>		
 									</div>
 								</div>
@@ -373,7 +370,7 @@
 											<input type="text" class="form-control" id="latitud" name="latitud" placeholder="Correo" style="max-width: 250px" value="{{old('latitud')}}">
 										</div>		
 									</div>
-								</div>	
+								</div>	 -->
 
 								<!-- <input id="submit" type="button" value="Reverse Geocode"> -->								
 
@@ -509,6 +506,8 @@
 										</div>
 								</div>
 								
+								<hr  width="70%" size="5" noshade>
+								<p style="color:red"><b>El registro de familiares se realizara luego de registrar al postulante. En la vista de edicion</b></p>
 								<br><br>
 								<div class="form-group required" >
 										<div class="btn-group col-sm-5" ></div>
@@ -749,6 +748,7 @@
 					format: "dd/mm/yyyy",
 			        language: "es",
 			        autoclose: true,
+    				
 			        //beforeShowDay:function (date){return false}
 				});
 
@@ -758,6 +758,7 @@
 		$('.datepicker').on('changeDate', function(ev){
 			    $(this).datepicker('hide');
 		});
+
 			
 	</script>	
 

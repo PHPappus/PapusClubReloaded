@@ -74,12 +74,12 @@
 								<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Nacimiento</a></li>
 							@endif
 
-							<!--DATOS DE FAMILIA
+							<!--DATOS DE FAMILIA-->
 							@if(Session::get('update')=='familia' || $errors->familia->any())
 								<li role="presentation" class="active"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Familia</a></li>
 							@else
 								<li role="presentation"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Familia</a></li>
-							@endif-->
+							@endif
 
 							<!--DATOS DE VIVIENDA-->
 							@if(Session::get('update')=='vivienda' || $errors->vivienda->any())
@@ -495,6 +495,83 @@
 								</form>
 							</div>
 						<!--===================================-->
+						@if(Session::get('update')=='familia' || $errors->familia->any())
+							<div role="tabpanel" class="tab-pane active" id="seccion3">
+						@else
+							<div role="tabpanel" class="tab-pane" id="seccion3">
+						@endif
+								<form method="POST" action="/postulante/{{$postulante->persona->id}}/editFamilia" class="form-horizontal form-border">
+									{{method_field('PATCH')}}
+<!-- 
+									<div class="col-sm-4"></div> -->
+									<br><br><br>
+									<p><b>REGISTRO DE FAMILIARES</b></p>
+									<br>
+									<div class=""> 
+										@if ($errors->familia->any())
+							  				<ul class="alert alert-danger fade in">
+							  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							  					@foreach ($errors->familia->all() as $error)
+							  						<li>{{$error}}</li>
+							  					@endforeach
+							  				</ul>
+							  			@endif
+										@if(session('cambios-fam'))
+											<div class="alert alert-success fade in">
+													<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+													<strong>¡Éxito!</strong> {{session('cambios-fam')}}
+											</div>								
+										@endif						  			
+									</div>
+
+									<div class="table-responsive">
+										<div class="container">	
+											<table class="table table-bordered table-hover text-center display" id="example">
+													<thead class="active">
+														<th><div algin=center>DOCUMENTO</div></th>
+														<th><div align=center>NOMBRE</div> </th>
+														<th><div align=center>APELLIDO PATERNO</div></th>
+														<th><div align=center>APELLIDO MATERNO</div></th>
+														<th><div align="center">CORREO</div></th>
+														<th><div align=center>DETALLE</div></th>
+														<th><div align=center>ELIMINAR</div></th>													
+													</thead>
+													<tbody>
+														@foreach($postulante->familiarxpostulante as $familiar)
+															<tr>
+																@if(strcmp($familiar->nacionalidad,'peruano')==0)
+																	<td>{{$familiar->doc_identidad}}</td>
+																@else
+																	<td>{{$familiar->carnet_extranjeria}}</td>
+																@endif
+																	<td>{{$familiar->nombre}}</td>
+																	<td>{{$familiar->ap_paterno}}</td>
+																	<td>{{$familiar->ap_materno}}</td>
+																	<td>{{$familiar->correo}}</td>
+																	<td>
+													              		<a class="btn btn-info" href="{{url('/postulante/familiar/'.$familiar->id.'/'.$postulante->persona->id)}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+													            	</td>
+													            	<td>												           
+																		<a class="btn btn-info"  title="Eliminar" data-href="{{url('/postulante/'.$familiar->id.'/familiar/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+													            	</td>		
+
+															</tr>
+														@endforeach
+													</tbody>
+											</table>
+											<br><br><br>
+											<div class="btn-inline">
+												<div class="btn-group col-sm-10"></div>										
+												<div class="btn-group ">
+													<a href="{{url('postulante/	'.$postulante->persona->id.'/familiar/new')}}" class="btn btn-info" type="submit">Registrar Familiar</a>
+												</div>
+											</div>
+											<br><br><br>								
+										</div>		
+									</div>
+								</form>
+							</div>
+						<!--===================================-->
 						@if(Session::get('update')=='vivienda' || $errors->vivienda->any())
 							<div role="tabpanel" class="tab-pane active" id="seccion4">
 						@else
@@ -546,8 +623,8 @@
 												<div class="col-sm-6">
 													<select class="form-control" id="departamento_vivienda" name="departamento_vivienda" style="max-width: 250px" data-link="{{ url('/provincias_viviendaEdit') }}">
 														<option value="-1" default>--Departamento--</option>
-															@foreach ($departamentos as $depa)      
-											                	<option value="{{$depa->id}}"  @if($postulante->departamento==$depa->id) selected @endif>{{$depa->nombre}}</option>
+															@foreach ($departamentos as $depa_vivienda)   
+											                	<option value="{{$depa_vivienda->id}}"  @if($postulante->departamento_vivienda==$depa_vivienda->id) selected @endif>{{$depa_vivienda->nombre}}</option>
 											                @endforeach
 													</select>
 												</div>
@@ -562,8 +639,8 @@
 												<div class="col-sm-6">
 													<select class="form-control" id="provincia_vivienda" name="provincia_vivienda" style="max-width: 250px " data-link="{{ url('/distritos_viviendaEdit') }}">
 														<option  value="-1" default disab>--Provincia--</option>
-															@foreach ($postulante->Departamento->provincias as $provincia)      
-											                	<option value="{{$provincia->id}}"  @if($postulante->provincia==$provincia->id) selected @endif>{{$provincia->nombre}}</option>
+															@foreach ($postulante->DepartamentoVivienda->provincias as $provincia_vivienda)      
+											                	<option value="{{$provincia_vivienda->id}}"  @if($postulante->provincia_vivienda==$provincia_vivienda->id) selected @endif>{{$provincia_vivienda->nombre}}</option>
 											                @endforeach												
 													</select>
 												</div>
@@ -579,8 +656,8 @@
 												<div class="col-sm-6">
 													<select class="form-control" id="distrito_vivienda" name="distrito_vivienda" style="max-width: 250px">
 														<option  value="-1" default>--Distrito--</option>
-															@foreach ($postulante->Provincia->distritos as $distrito)      
-											                	<option value="{{$distrito->id}}"  @if($postulante->distrito==$distrito->id) selected @endif>{{$distrito->nombre}}</option>
+															@foreach ($postulante->ProvinciaVivienda->distritos as $distrito_vivienda)      
+											                	<option value="{{$distrito_vivienda->id}}"  @if($postulante->distrito_vivienda==$distrito_vivienda->id) selected @endif>{{$distrito_vivienda->nombre}}</option>
 											                @endforeach													
 													</select>
 												</div>
@@ -1142,7 +1219,8 @@
 			    $("#distrito_vivienda").append("<option  value='-1' default>--Distrito--</option>");
 				var url = $(this).attr("data-link");
 				$departamento_id=event.target.value;
-							//alert($departamento_id);
+			           		 
+				//			alert($departamento_id);
 				//alert(url);
 				$.ajax({
 			        url: "provincias_viviendaEdit",
@@ -1163,7 +1241,7 @@
 			        	$.each(data,function(index,elememt){
 			        		
 			        		$("#provincia_vivienda").append("<option value='"+elememt.id+"'>"+elememt.nombre+"</option>");
-			           		 console.log("mensaje que quieras");
+			           		 console.log(elememt);
 				       	});
 				       },error:function(){ 
 				           alert("error!!!!");
@@ -1260,6 +1338,39 @@
 			    $(this).datepicker('hide');
 		});
 			
-	</script>	
+	</script>
+
+		<!-- Modal -->
+	<div id="modalEliminar" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Confirmar</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>¿Está seguro que desea eliminar a este persona de su lista de Familiares?</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-danger btn-ok">Confirmar</a>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
+	<!-- Modal Event-->
+	<!-- Modal Event-->
+	<script>
+		$('#modalEliminar').on('show.bs.modal', function(e) {
+   			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+		});
+	</script>
+
+
+
 </body>
 </html>

@@ -8,6 +8,7 @@ use papusclub\Models\Departamento;
 use papusclub\Models\Provincia;
 use papusclub\Models\Distrito;
 use papusclub\Models\Postulante;
+use papusclub\Models\TipoFamilia;
 use papusclub\Http\Requests\StorePostulanteRequest;
 use papusclub\Http\Requests\EditPostulanteBasicoRequest;
 use papusclub\Http\Requests\EditPostulanteNacimientoRequest;
@@ -15,6 +16,7 @@ use papusclub\Http\Requests\EditPostulanteViviendaRequest;
 use papusclub\Http\Requests\EditPostulanteEstudioRequest;
 use papusclub\Http\Requests\EditPostulanteTrabajoRequest;
 use papusclub\Http\Requests\EditPostulanteContactoRequest;
+use papusclub\Http\Requests\StoreFamiliarRequest;
 use papusclub\Http\Controllers\Controller;
 use papusclub\Http\Requests;
 use papusclub\Models\Configuracion;
@@ -45,7 +47,8 @@ class PostulanteController extends Controller
     public function registrar()
     {
         $departamentos=Departamento::select('id','nombre')->get();
-        return view('admin-persona.persona.postulante.newPostulante',compact('departamentos'));
+        $estadocivil= Configuracion::where('grupo','=','11')->get();
+        return view('admin-persona.persona.postulante.newPostulante',compact('departamentos','estadocivil'));
     }
 
     public function store(StorePostulanteRequest $request){
@@ -363,5 +366,112 @@ class PostulanteController extends Controller
         return back();
 
     }
+
+    public function createFamiliar($id)
+    {
+
+        $tipo_relacion= TipoFamilia::all();
+        $postulante = Postulante::withTrashed()->find($id);
+
+        return view('admin-persona.persona.postulante.familiar.newFamiliar',compact('postulante','tipo_relacion'));
+        
+    }
+
+     public function storeFamiliar(StoreFamiliarRequest $request, $id)
+    {
+        $postulante = Postulante::withTrashed()->find($id);
+        $input =$request->all();
+
+        $nacionalidad=$input['nacionalidad'];
+
+
+        $persona = new Persona();
+        $relacion=$input['tipo_relacion'];
+        if($nacionalidad=='peruano')
+        {
+            $doc_identidad = $input['doc_identidad'];
+            $persona = Persona::where(['doc_identidad'=>$doc_identidad])->get()->first();
+        }
+        else
+        {
+            $carnet_extranjeria = $input['carnet_extranjeria'];
+            $persona=Persona::where(['carnet_extranjeria'=>$carnet_extranjeria])->get()->first();
+        }
+
+        if($persona==null)
+        {
+            $persona = new Persona();
+            $carbon = new Carbon();
+
+
+            $persona->nombre = trim($input['nombre']);
+            $persona->ap_paterno = trim($input['ap_paterno']);
+            $persona->ap_materno = trim($input['ap_materno']);            
+            $persona->sexo=$input['sexo']; 
+            $persona->nacionalidad = $input['nacionalidad'];                       
+            if (empty($input['carnet_extranjeria'])) {
+                $persona->carnet_extranjeria ="";
+            }
+            else
+                $persona->carnet_extranjeria = $input['carnet_extranjeria'];
+
+            
+            if (empty($input['doc_identidad'])) {
+                $persona->doc_identidad ="";
+            }
+            else
+            {
+                $persona->doc_identidad = $input['doc_identidad'];             
+            }
+            if(empty($input['correo']))
+            {
+                $persona->correo='No ha registrado Correo';
+            }
+            else
+            {
+                $persona->correo=$input['correo'];
+            }
+            if (empty($input['fecha_nacimiento'])) {
+                $persona->fecha_nacimiento ="";            
+            }else{
+                $fecha_nac = str_replace('/', '-', $input['fecha_nacimiento']);      
+                $persona->fecha_nacimiento=$carbon->createFromFormat('d-m-Y', $fecha_nac)->toDateString();
+            }
+            $persona->id_tipo_persona = 3;
+            $persona->correo=$input['correo'];
+            $persona->save();
+/*            var_dump($persona);
+            die();*/
+        }
+
+        $postulante->addFamiliar($persona,$relacion);
+        return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('storedFamiliar', 'Se registró el Familiar correctamente.');
+    }
+
+    public function deleteFamiliar(Request $request,$id)
+    {
+        $familiar = Persona::find($id);
+        //$familiar->delete();
+        $familiar->forceDelete();
+
+        Session::flash('update','familia');    
+        return back();
+    }
+
+    public function detailFamiliar($id,$id_postulante)
+    {   
+        $familiar=Persona::find($id);
+        $postulante=Persona::find($id_postulante);
+        //$relacion=2;
+        $relacion_id=$familiar->familiarxpostulante->where('id_postulante',$postulante->id)->first()->pivot->tipo_familia_id;
+        $relacion=TipoFamilia::find($relacion_id)->nombre;
+        //$invitado = Invitados::find($id);
+        /*var_dump($relacion);
+        die();*/
+        /*$socio = Socio::withTrashed()->find($invitado->persona_id);
+        $persona = Persona::find($invitado->invitado_id);*/
+        return view('admin-persona.persona.postulante.familiar.detailFamiliar',compact('familiar','postulante','relacion'));
+    }
+
 }
     
