@@ -265,6 +265,18 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 		Route::get('sorteo/edit/remove/sorteo/bungalows/{id}','SorteoController@removebungalows');
 		Route::post('sorteo/new/sorteo/bungalows/{id}/remove','SorteoController@removeCheckedBungalows');
 		//Agregar Sorteo
+
+
+	//MANTENIMIENTO DE MEMBRESIA
+	Route::get('membresia/','MembresiaController@index');
+	Route::get('membresia/all','MembresiaController@indexAll');
+	Route::get('membresia/new','MembresiaController@create');
+	Route::get('membresia/{id}/','MembresiaController@show');
+	Route::post('membresia/new/save','MembresiaController@store');
+	Route::get('membresia/{id}/editar','MembresiaController@edit');
+	Route::get('membresia/{membresia}/delete', 'MembresiaController@destroy');
+	Route::get('membresia/{id}/activate','MembresiaController@activate');
+	Route::patch('membresia/{id}/edit','MembresiaController@update'); 
 		
 
 	
@@ -398,16 +410,7 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	});
 
 	
-	//MANTENIMIENTO DE MEMBRESIA
-	Route::get('membresia/','MembresiaController@index');
-	Route::get('membresia/all','MembresiaController@indexAll');
-	Route::get('membresia/new','MembresiaController@create');
-	Route::get('membresia/{id}/','MembresiaController@show');
-	Route::post('membresia/new/save','MembresiaController@store');
-	Route::get('membresia/{id}/editar','MembresiaController@edit');
-	Route::get('membresia/{membresia}/delete', 'MembresiaController@destroy');
-	Route::get('membresia/{id}/activate','MembresiaController@activate');
-	Route::patch('membresia/{id}/edit','MembresiaController@update'); 
+
 
 
 	
