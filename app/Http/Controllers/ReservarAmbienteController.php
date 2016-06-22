@@ -267,10 +267,35 @@ class ReservarAmbienteController extends Controller
         $user_id = Auth::user()->id;
         $usuario = User::findOrFail($user_id);
         $persona = $usuario->persona;  
-
-        return view('socio.reservar-ambiente.lista-reservas'); //debe pasarse la lsita de reservas del socio 
+        $reservas=Reserva::where('id_persona','=',$persona->id)->get();
+        return view('socio.reservar-ambiente.lista-reservas',compact('reservas')); //debe pasarse la lsita de reservas del socio 
     }
+     public function showReserva($id) // va  a la lista la reserva de los socios
+    {
+        $user_id = Auth::user()->id;
+        $usuario = User::findOrFail($user_id);
+        $persona = $usuario->persona;  
+        $reservas= Reserva::where('id_persona','=',$persona->id)->get();
+        $reserva = Reserva::find($id);
+        return view('socio.reservar-ambiente.detail-reserva',compact('reserva')); //debe pasarse la lsita de reservas del socio 
+    }
+    
+    public function eliminarReserva($id){
+        $reserva=Reserva::findOrFail($id);
+        $today=Carbon::now();
+        $carbon=new Carbon();
+        $fechaInicio=$carbon->createFromFormat('Y-m-d', $reserva->fecha_inicio_reserva);
+        $diff=$fechaInicio->diffInDays($today);
+        if($diff >= 4){
+            $reserva->delete();
+        }
+        else{
+            return redirect('reservar-ambiente/lista-reservas')->with('delete', 'No se puede eliminar esta reserva,se vencio el plazo maximo para su anulacion.');
+        }
 
+        return back();
+        
+    }
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
@@ -475,6 +500,16 @@ class ReservarAmbienteController extends Controller
     {
         
         return view('admin-reserva.persona.socio.buscarSocio');
+    }
+    public function consultarReservaBungalowAdminR()
+    {
+        $reservas = Reserva::all();
+        return view('admin-reserva.reservar-ambiente.consultar-reserva-bungalow',compact('reservas'));
+    }
+    public function consultarReservaOtroAmbienteAdminR()
+    {
+        $reservas = Reserva::all();
+        return view('admin-reserva.reservar-ambiente.consultar-reserva-otros-ambientes',compact('reservas'));
     }
 
 

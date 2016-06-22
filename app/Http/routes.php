@@ -77,7 +77,8 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('reservar-ambiente/searchSocio', 'SocioController@searchSocio');
 	//Lista de Reservas Hechas
 	Route::get('reservar-ambiente/lista-reservas', 'ReservarAmbienteController@listaReservas');
-	
+	Route::get('reservar-ambiente/{id}/show', 'ReservarAmbienteController@showReserva'); // Detalle del la reserva hecha por el socio
+	Route::get('reservar-ambiente/{id}/delete','ReservarAmbienteController@eliminarReserva');
 	//PAGOS (deudas del socio)
 	Route::get('pagos/facturacion-socio/','PagosController@listarFacturacionSocio');//se lista a los socios
 	Route::get('pagos-del-socio/{id}/show', 'PagosController@showAlSocio'); // Detalle del pago
@@ -409,6 +410,7 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::get('reservar-ambiente/reservar-bungalow-adminR', 'ReservarAmbienteController@reservarBungalowAdminR'); // REservar Bungalows
 	Route::post('reservar-ambiente/reservar-bungalow-adminR/search-adminR', 'ReservarAmbienteController@reservarBungalowFiltradosAdminR');
 
+
 	Route::get('reservar-ambiente/reservar-otros-ambientes-adminR', 'ReservarAmbienteController@reservarOtrosAmbientesAdminR'); // REservar otros ambientes distinto de bungalows
 	Route::post('reservar-ambiente/reservar-otros-ambientes/search-adminR','ReservarAmbienteController@reservarOtrosAmbientesFiltradosAdminR');
 	
@@ -417,6 +419,10 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::get('reservar-ambiente/{id}/new-reserva-otro-ambiente-adminR', 'ReservarAmbienteController@createOtroTipoAmbienteAdminR');//
 	Route::post('reservar-ambiente/{id}/confirmacion-reserva-otro-ambiente-adminR', 'ReservarAmbienteController@storeOtroTipoAmbienteAdminR');//confirmacion para la reserva de otros ambientes distintos de bungalows
 	Route::get('reservar-ambiente/searchSocio-adminR', 'SocioController@searchSocioAdminR');
+
+	//para consultar las reservas y poder cancelarlas
+	Route::get('reservar-ambiente/consultar-otros-ambientes-adminR', 'ReservarAmbienteController@consultarReservaOtroAmbienteAdminR'); 
+	Route::get('reservar-ambiente/consultar-bungalow-adminR', 'ReservarAmbienteController@consultarReservaBungalowAdminR'); 
 });
 
 
