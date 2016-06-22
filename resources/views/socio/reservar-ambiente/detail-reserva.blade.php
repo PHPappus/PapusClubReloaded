@@ -40,7 +40,7 @@
 			  	<div class="form-group">
 			    	<label for="telefonoInput" class="col-sm-4 control-label">Fecha Inicio</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" class="form-control" id="telefonoInput" name="telefono" value="{{$reserva->fecha_inicio_reserva}}" readonly>
+			      		<input type="text" class="form-control" id="telefonoInput" name="telefono" value="{{$reserva->fecha_inicio_reserva}}" readonly>
 			    	</div>
 			  	</div>
 
@@ -54,14 +54,14 @@
 			  	<div class="form-group">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">Hora Inicio</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" class="form-control" id="capacidadInput" name="capacidad_maxima" value="{{$reserva->hora_inicio_reserva}}" readonly>
+			      		<input type="time" class="form-control" id="capacidadInput" name="capacidad_maxima" value="{{$reserva->hora_inicio_reserva}}" readonly>
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group">
 			    	<label for="capacidadSocioInput" class="col-sm-4 control-label">Hora Fin</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" class="form-control" id="capacidadSocioInput" name="capacidad_socio" value="{{$reserva->hora_fin_reserva}}" readonly>
+			      		<input type="time" class="form-control" id="capacidadSocioInput" name="capacidad_socio" value="{{$reserva->hora_fin_reserva}}" readonly>
 			    	</div>
 			  	</div>
 			  	
