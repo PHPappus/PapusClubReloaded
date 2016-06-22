@@ -55,7 +55,11 @@ class PagosController extends Controller
 
         return redirect('pagos/pago-seleccionar-socio')->with('stored', 'Se registró la facturacion correctamente.');
     }
-
+     public function showSocio($id)
+    {
+        $facturacion = Facturacion::find($id);
+        return view('admin-pagos.pagos.detail-pago', compact('facturacion'));
+    }
     
     //Se guarda la informacion del pago  del ambiente en la BD
     /*public function createPago(EditAmbienteRequest $request, $id)
@@ -82,5 +86,9 @@ class PagosController extends Controller
         $facturaciones = $persona->facturacion;
         return view('socio.pagos.facturacion-socio',compact('facturaciones'));
     }
-    
+     public function showAlSocio($id)
+    {
+        $facturacion = Facturacion::find($id);
+        return view('socio.pagos.detail-pago', compact('facturacion'));
+    }
 }

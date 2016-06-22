@@ -13,6 +13,7 @@ use papusclub\Models\Reserva;
 use papusclub\Models\Configuracion;
 use papusclub\Models\Facturacion;
 use papusclub\Http\Requests\StoreReservaAmbiente;
+use papusclub\Models\Socio;
 use Auth;
 use Session;
 use Carbon\Carbon;
@@ -115,6 +116,7 @@ class ReservarAmbienteController extends Controller
     {   
         $ambiente = Ambiente::findOrFail($id);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
+      
         return view('socio.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes'));
     }
 
@@ -124,7 +126,7 @@ class ReservarAmbienteController extends Controller
         DB::beginTransaction();
 
         $user_id = Auth::user()->id;
-        $usuario = User::findOrFail($user_id);
+        $usuario = User::find($user_id);
         $persona_id = $usuario->persona->id;        
         $ambiente_id = $id;
 
@@ -198,7 +200,7 @@ class ReservarAmbienteController extends Controller
     {
         DB::beginTransaction();
         $user_id = Auth::user()->id;
-        $usuario = User::findOrFail($user_id);
+        $usuario = User::find($user_id);
         $persona_id = $usuario->persona->id;        
         $ambiente_id = $id;
 
@@ -260,6 +262,16 @@ class ReservarAmbienteController extends Controller
         return view('socio.persona.socio.buscarSocio');
     }
 
+     public function listaReservas() // va  a la lista la reserva de los socios
+    {
+        $user_id = Auth::user()->id;
+        $usuario = User::findOrFail($user_id);
+        $persona = $usuario->persona;  
+
+        return view('socio.reservar-ambiente.lista-reservas'); //debe pasarse la lsita de reservas del socio 
+    }
+
+    
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
     ////////////////ADMIN  RESERVA =D
@@ -350,14 +362,15 @@ class ReservarAmbienteController extends Controller
     {   
         $ambiente = Ambiente::findOrFail($id);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
-        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes'));
+        $personas = Persona::all();
+        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes','personas'));
     }
 
     //Se muestra el Bungalow a reservar y espera su confirmacion para la reserva
     public function storeBungalowAdminR($id, StoreReservaAmbiente $request)
     {
         $user_id = Auth::user()->id;
-        $usuario = User::findOrFail($user_id);
+        $usuario = User::find($user_id);
         $persona_id = $usuario->persona->id;        
         $ambiente_id = $id;
 
@@ -408,14 +421,15 @@ class ReservarAmbienteController extends Controller
     {   
         $ambiente = Ambiente::findOrFail($id);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
-        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente','tipo_comprobantes'));
+        $personas = Persona::all();
+        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente','tipo_comprobantes','personas'));
     }
     
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
     public function storeOtroTipoAmbienteAdminR($id, Request $request)
     {
         $user_id = Auth::user()->id;
-        $usuario = User::findOrFail($user_id);
+        $usuario = User::find($user_id);
         $persona_id = $usuario->persona->id;        
         $ambiente_id = $id;
 
