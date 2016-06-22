@@ -74,24 +74,17 @@
 			  	<div class="form-group required">
 			    	<label for="descuentoInput" class="col-sm-4 control-label">Monto Descuento</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="descuentoInput" name="montoDescuento" placeholder="Monto descuento" value="{{old('descuento')}}">
+			      		<input type="text"  onkeypress="return inputLimiter(event,'DoubleFormat')" class="form-control" id="descuentoInput" name="montoDescuento" placeholder="Monto descuento" value="{{old('descuento')}}">
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="porcentajeInput" class="col-sm-4 control-label">Porcentaje Descuento</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="porcentajeInput" name="porcentajeDescuento" placeholder="Porcentaje descuento" value="{{old('porcentaje')}}" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'DoubleFormat')" class="form-control" id="porcentajeInput" name="porcentajeDescuento" placeholder="Porcentaje descuento" value="{{old('porcentaje')}}" >
 			    	</div>
 			  	</div>	  	
-		  	
-			  	<div class="form-group">
-			    	<label for="fechaInicioInput" class="col-sm-4 control-label">Fecha Registro(dd/mm/aaaa)</label>
-			    	<div class="col-sm-5">
-			      		<!-- <input type="date" class="form-control" id="fechaInicioInput" name="fecha"> -->
-			      		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="a_realizarse_en" placeholder="Fecha Inicio" style="max-width: 250px">
-			    	</div>
-			  	</div>		
+		  		
 
 			  	</br>
 			  	</br>
