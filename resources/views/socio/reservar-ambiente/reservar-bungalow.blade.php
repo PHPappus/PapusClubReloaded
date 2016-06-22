@@ -5,7 +5,6 @@
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	{!!Html::style('css/jquery.bxslider.css')!!}
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
@@ -184,8 +183,6 @@
 	<!-- Bootstrap -->
 	{!!Html::script('js/bootstrap.js')!!}
 	
-	<!-- BXSlider -->
-	{!!Html::script('js/jquery.bxslider.min.js')!!}
 	<!-- Mis Scripts -->
 	{!!Html::script('js/MisScripts.js')!!}
 
