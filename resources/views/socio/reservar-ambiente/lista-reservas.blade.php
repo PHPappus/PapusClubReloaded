@@ -47,19 +47,23 @@
 						</tr>
 					</thead>
 					<tbody>
-						
-							<td> FAlta </td>
-							<td> FAlta</td>
-							<td>FAlta</td>
-							<td> FAlta</td>
-							<td> FAlta </td>
-							<td>
-				              	<a class="btn btn-info" href="#"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-				            </td>							
-				            <td>
-				              	<a class="btn btn-info"  title="Eliminar" data-href="#" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>           
-				            </td>
-									
+						@foreach($reservas as $reserva)						
+						    	<tr>
+									<td>{{ $reserva->id }}</td>
+									<td>{{ $reserva->ambiente->tipo_ambiente }}</td>
+									<td>{{ $reserva->precio }}</td>
+			 						<td>{{ $reserva->estadoReserva }}</td>
+									<td>{{ $reserva->fecha_inicio_reserva }}</td>
+									<td>
+						              	<a class="btn btn-info" href="#"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+						            </td>							
+						            <td>
+						              	<a class="btn btn-info"  title="Eliminar" data-href="#" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>           
+						            </td>
+							            
+								</tr>
+						@endforeach
+							
 					</tbody>					
 												
 					

@@ -267,8 +267,8 @@ class ReservarAmbienteController extends Controller
         $user_id = Auth::user()->id;
         $usuario = User::findOrFail($user_id);
         $persona = $usuario->persona;  
-
-        return view('socio.reservar-ambiente.lista-reservas'); //debe pasarse la lsita de reservas del socio 
+        $reservas=Reserva::where('id_persona','=',$persona->id)->get();
+        return view('socio.reservar-ambiente.lista-reservas',compact('reservas')); //debe pasarse la lsita de reservas del socio 
     }
 
     
