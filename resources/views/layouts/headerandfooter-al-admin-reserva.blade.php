@@ -40,6 +40,7 @@
             <ul class="dropdown-menu">
               <!-- <li><a href="#" title="Consultar Bungalows con solicitud de reserva" target="_self">Consultar</a></li> -->
               <li><a href="{!!URL::to('/reservar-ambiente/reservar-bungalow-adminR')!!}" title="Reservar Bungalow" target="_self">Reservar</a></li>
+              <li><a href="{!!URL::to('/reservar-ambiente/consultar-bungalow-adminR')!!}" title="Reservas de ambientes realizados" target="_self">Consultar</a></li>
             </ul>
           </li>
 
@@ -74,7 +75,8 @@
             </a>
             <ul class="dropdown-menu">
               <!-- <li><a href="#" title="Consultar ambientes" target="_self">Consultar</a></li> -->
-                <li><a href="{!!URL::to('/reservar-ambiente/reservar-otros-ambientes-adminR')!!}" title="Reservas de ambientes realizados" target="_self">Reservas</a></li>
+                <li><a href="{!!URL::to('/reservar-ambiente/reservar-otros-ambientes-adminR')!!}" title="Reservas de ambientes realizados" target="_self">Reservar</a></li>
+                <li><a href="{!!URL::to('/reservar-ambiente/consultar-otros-ambientes-adminR')!!}" title="Reservas de ambientes realizados" target="_self">Consultar</a></li>
             </ul>
           </li>
         </ul>

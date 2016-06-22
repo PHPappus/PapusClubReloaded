@@ -486,6 +486,16 @@ class ReservarAmbienteController extends Controller
         
         return view('admin-reserva.persona.socio.buscarSocio');
     }
+    public function consultarReservaBungalowAdminR()
+    {
+        $reservas = Reserva::all();
+        return view('admin-reserva.reservar-ambiente.consultar-reserva-bungalow',compact('reservas'));
+    }
+    public function consultarReservaOtroAmbienteAdminR()
+    {
+        $reservas = Reserva::all();
+        return view('admin-reserva.reservar-ambiente.consultar-reserva-otros-ambientes',compact('reservas'));
+    }
 
 
        
