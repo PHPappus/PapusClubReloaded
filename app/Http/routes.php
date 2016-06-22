@@ -280,6 +280,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('venta-producto/{id}/cancel', 'VentaProductoController@cancel');
 	//INGRESO DE PRODUCTOS
 	Route::get('ingreso-producto/index', 'IngresoProductoController@index');
+	Route::get('ingreso-producto/new', 'IngresoProductoController@create');
 
 	//Inscribirse en Sorteo
 	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
