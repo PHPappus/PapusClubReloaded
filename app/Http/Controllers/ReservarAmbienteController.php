@@ -280,7 +280,22 @@ class ReservarAmbienteController extends Controller
         return view('socio.reservar-ambiente.detail-reserva',compact('reserva')); //debe pasarse la lsita de reservas del socio 
     }
     
+    public function eliminarReserva($id){
+        $reserva=Reserva::findOrFail($id);
+        $today=Carbon::now();
+        $carbon=new Carbon();
+        $fechaInicio=$carbon->createFromFormat('Y-m-d', $reserva->fecha_inicio_reserva);
+        $diff=$fechaInicio->diffInDays($today);
+        if($diff >= 4){
+            $reserva->delete();
+        }
+        else{
+            return redirect('reservar-ambiente/lista-reservas')->with('delete', 'No se puede eliminar esta reserva,se vencio el plazo maximo para su anulacion.');
+        }
 
+        return back();
+        
+    }
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
