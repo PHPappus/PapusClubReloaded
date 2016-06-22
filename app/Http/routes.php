@@ -67,7 +67,7 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 
 	//Trámites Socio
 	Route::get('traspaso/','SocioController@traspmembresia');
-	Route::post('traspaso/new/save','SocioController@storeTraspaso');
+	Route::post('traspaso/nuevo','SocioController@storeTraspaso');
 	Route::get('mis-multas/','SocioController@misMultas');
 
 
@@ -268,6 +268,18 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 		Route::get('sorteo/edit/remove/sorteo/bungalows/{id}','SorteoController@removebungalows');
 		Route::post('sorteo/new/sorteo/bungalows/{id}/remove','SorteoController@removeCheckedBungalows');
 		//Agregar Sorteo
+
+
+	//MANTENIMIENTO DE MEMBRESIA
+	Route::get('membresia/','MembresiaController@index');
+	Route::get('membresia/all','MembresiaController@indexAll');
+	Route::get('membresia/new','MembresiaController@create');
+	Route::get('membresia/{id}/','MembresiaController@show');
+	Route::post('membresia/new/save','MembresiaController@store');
+	Route::get('membresia/{id}/editar','MembresiaController@edit');
+	Route::get('membresia/{membresia}/delete', 'MembresiaController@destroy');
+	Route::get('membresia/{id}/activate','MembresiaController@activate');
+	Route::patch('membresia/{id}/edit','MembresiaController@update'); 
 		
 
 	
@@ -290,7 +302,8 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	//EVALUAR TRASPASO DE MEMBRESIA
 	Route::get('traspasos-p/','SocioAdminController@indexTraspasos');
 	Route::get('traspaso/{id}/ver','SocioAdminController@showTraspaso');
-	Route::get('traspaso/{id}/aceptar','SocioAdminController@validarTraspaso');
+	Route::post('traspaso/new/save','SocioAdminController@validarTraspaso');
+	Route::get('traspaso/{id}/rechazar', 'SocioAdminController@cancelarTraspaso');
 
 	//MANTENIMIENTO DE TRABAJADOR
 	Route::get('trabajador/index','TrabajadorController@index');//ya
@@ -324,7 +337,7 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	{
 	    return 'Success! ajax in laravel 5';
 	});
-	//Route::get('/information/create/ajax-departamento','UbicacionController@getProvincias');
+	/*Ajax para el registro de nacimiento en registrar postulante*/
 	Route::post('postulante/provincias', function(){
 		$dep_id=Input::get('id');
     	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
@@ -333,6 +346,18 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 		$prov_id=Input::get('id');
     	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
 	});
+
+	/*Ajax para el registro de vivienda en registrar postulante*/
+	Route::post('postulante/provincias_vivienda', function(){
+		$dep_id=Input::get('id');
+    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
+	});
+	Route::post('postulante/distritos_vivienda', function(){
+		$prov_id=Input::get('id');
+    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
+	});
+
+	/*===============================================*/
 
 	/*Ajax para que funcion los list de departamento en el editar*/
 	Route::post('postulante/provinciasEdit', function(){
@@ -389,16 +414,7 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	});
 
 	
-	//MANTENIMIENTO DE MEMBRESIA
-	Route::get('membresia/','MembresiaController@index');
-	Route::get('membresia/all','MembresiaController@indexAll');
-	Route::get('membresia/new','MembresiaController@create');
-	Route::get('membresia/{id}/','MembresiaController@show');
-	Route::post('membresia/new/save','MembresiaController@store');
-	Route::get('membresia/{id}/editar','MembresiaController@edit');
-	Route::get('membresia/{membresia}/delete', 'MembresiaController@destroy');
-	Route::get('membresia/{id}/activate','MembresiaController@activate');
-	Route::patch('membresia/{id}/edit','MembresiaController@update'); 
+
 
 
 	
@@ -411,6 +427,17 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 //Control de ingresos
 Route::group(['middleware' => ['auth', 'controlingresos']], function () {
 	Route::resource('control-ingresos','ControlIngresosController');
+	Route::get('ingreso-personal','ControlIngresosController@indexpersonal');
+	Route::post('/resultado-busqueda-personal','ControlIngresosController@buscarpersonal');
+	Route::post('/marcar-ingreso-personal','ControlIngresosController@ingresopersonal');
+
+	route::get('ingreso-terceros','ControlIngresosController@indextercero');
+	Route::post('/resultado-busqueda-tercero','ControlIngresosController@buscartercero');
+	Route::post('/marcar-ingreso-tercero','ControlIngresosController@ingresotercero');
+
+	route::get('ingreso-socio','ControlIngresosController@indexsocio');
+	Route::post('/resultado-busqueda-socio','ControlIngresosController@buscarsocio');
+	Route::post('/marcar-ingreso-socio','ControlIngresosController@ingresosocio');
 });
 
 /*Route::get('sede-a','SedesController@index');

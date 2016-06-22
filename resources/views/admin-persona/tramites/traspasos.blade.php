@@ -71,7 +71,7 @@
 					              	<a class="btn btn-info" href="{{url('/traspaso/'.$traspaso->id.'/ver')}}" title="Ver" ><i class="glyphicon glyphicon-list-alt"></i></a>
 					            	</td>
 					            	<td>
-					              	<a class="btn btn-info" href="#" title="Rechazar" data-href="{{url('/traspaso/'.$traspaso->id.'/rechazar')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+					              	<a class="btn btn-info" href="#" data-href="{{url('/traspaso/'.$traspaso->id.'/rechazar')}}" title="Rechazar" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
 					            	</td>
 					            </tr>
 					            @endif
