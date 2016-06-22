@@ -55,7 +55,7 @@
 			 						<td>{{ $reserva->estadoReserva }}</td>
 									<td>{{ $reserva->fecha_inicio_reserva }}</td>
 									<td>
-						              	<a class="btn btn-info" href="#"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+						              	<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$reserva->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 						            </td>							
 						            <td>
 						              	<a class="btn btn-info"  title="Eliminar" data-href="#" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>           

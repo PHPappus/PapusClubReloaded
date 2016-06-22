@@ -77,7 +77,8 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('reservar-ambiente/searchSocio', 'SocioController@searchSocio');
 	//Lista de Reservas Hechas
 	Route::get('reservar-ambiente/lista-reservas', 'ReservarAmbienteController@listaReservas');
-	
+	Route::get('reservar-ambiente/{id}/show', 'ReservarAmbienteController@showReserva'); // Detalle del la reserva hecha por el socio
+
 	//PAGOS (deudas del socio)
 	Route::get('pagos/facturacion-socio/','PagosController@listarFacturacionSocio');//se lista a los socios
 	Route::get('pagos-del-socio/{id}/show', 'PagosController@showAlSocio'); // Detalle del pago
