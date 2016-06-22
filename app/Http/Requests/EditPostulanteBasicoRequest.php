@@ -27,6 +27,8 @@ class EditPostulanteBasicoRequest extends Request
      */
     public function rules()
     {
+/*        var_dump($this->all());
+        die();*/
         return [
             'nombre' =>'required|alpha_spaces|max:100',
             'apellidoPat' =>'required|alpha_spaces|max:100',

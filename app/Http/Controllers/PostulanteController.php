@@ -250,7 +250,11 @@ class PostulanteController extends Controller
         else
             $postulante->persona->doc_identidad = $input['doc_identidad'];
 
+        $postulante->estado_civil=$input['estado_civil'];
+/*                var_dump($postulante);
+        die();*/
         $postulante->persona->save();
+        $postulante->save();
 
 
         //$socio->postulante->persona->update(['nombre'=>$input['nombre'], 'fecha_nacimiento'=>$fecha_nac]);

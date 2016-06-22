@@ -46,7 +46,8 @@
 				<div class="col-sm-12 text-left">
 					<br/><br/>
 					<p class="lead"><strong>EDITAR POSTULANTE</strong></p>
-					<br/>
+					<p style="color:red"><strong>Puuede guardar los cambios de cada una de las pestañas</strong></p>
+					<br>
 				</div>
 			
 			</div>
@@ -151,14 +152,6 @@
 												<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 											</div>
 
-											<div class="btn-group col-sm-4" ></div>
-											
-											<div class="btn-group">
-												<a href="#"  class="btn btn-info back" disabled><span class="glyphicon glyphicon-chevron-left"></span></a>
-											</div>
-											<div class="btn-group">
-												<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
-											</div>
 									</div>										
 									<br>								
 									<div class="form-group required">
@@ -253,7 +246,7 @@
 												<label for="" class="control-label">Estado Civil:</label>
 											</div>
 											<div class="col-sm-6">
-												<select class="form-control" id="estadocivil" name="estadocivil" style="max-width: 150px "   >
+												<select class="form-control" id="estado_civil" name="estado_civil" style="max-width: 150px "   >
 													<option value="-1">Seleccione</option>
 														@foreach ($estadocivil as $estcivil)      
 
@@ -360,14 +353,6 @@
 												<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 											</div>
 
-											<div class="btn-group col-sm-4" ></div>
-													
-											<div class="btn-group">
-												<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-											</div>
-											<div class="btn-group">
-												<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
-											</div>
 
 									</div>																				
 
@@ -622,14 +607,6 @@
 												<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 											</div>
 
-											<div class="btn-group col-sm-4" ></div>
-													
-											<div class="btn-group">
-												<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-											</div>
-											<div class="btn-group">
-												<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
-											</div>
 
 									</div>
 									<div class="form-group required">
@@ -783,14 +760,6 @@
 												<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 											</div>
 
-											<div class="btn-group col-sm-4" ></div>
-											
-											<div class="btn-group">
-												<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-											</div>
-											<div class="btn-group">
-												<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
-											</div>
 									</div>
 									<br>
 									<div class="form-group required">
@@ -914,14 +883,6 @@
 													<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 												</div>
 
-												<div class="btn-group col-sm-4" ></div>
-												
-												<div class="btn-group">
-													<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-												</div>
-												<div class="btn-group">
-													<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
-												</div>
 										</div>
 										<br>
 										<div class="form-group required">
@@ -1037,14 +998,6 @@
 												<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 											</div>
 
-											<div class="btn-group col-sm-4" ></div>
-											
-											<div class="btn-group">
-												<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-											</div>
-											<div class="btn-group">
-												<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
-											</div>
 									</div>
 
 									<br>

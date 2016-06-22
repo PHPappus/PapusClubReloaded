@@ -187,7 +187,7 @@
 												<select class="form-control" id="estado_civil" name="estado_civil" style="width: 250px " >
 													<option value="-1" default>Seleccione</option>
 														@foreach ($estadocivil as $estado)      
-										                	<option value="{{$estado->id}}" @if (old('puestoSelect') == $estado->id) selected="selected" @endif >{{$estado->valor}}</1option>
+										                	<option value="{{$estado->id}}" @if (old('estado_civil') == $estado->id) selected="selected" @endif >{{$estado->valor}}</1option>
 										                @endforeach
 												</select>
 											</div>
