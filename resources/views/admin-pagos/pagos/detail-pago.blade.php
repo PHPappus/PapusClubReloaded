@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>DETALLE DE SEDE</title>
+	<title>DETALLE DE FACTURACION</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,51 +31,51 @@
 				<br/><br/>
 
 				<div class="form-group">
-		    		<label for="nombreInput" class="col-sm-4 control-label">Id Factura</label>
+		    		<label for="idInput" class="col-sm-4 control-label">Id Factura</label>
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="nombreInput" name="nombre" value="" readonly>
+		      			<input type="text" class="form-control" id="idInput" name="id" value="{{$factura->id}}" readonly>
 		    		</div>
 		  		</div>
 
 			  	<div class="form-group">
-			    	<label for="telefonoInput" class="col-sm-4 control-label">Descripción</label>
+			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" class="form-control" id="telefonoInput" name="telefono" value="" readonly>
+			      		<input type="number" class="form-control" id="descripcionInput" name="descripcion" value="{{$factura->descripcion}}" readonly>
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group">
-			    	<label for="contactoInput" class="col-sm-4 control-label">Tipo de Pago</label>
+			    	<label for="tipo_pagoInput" class="col-sm-4 control-label">Tipo de Pago</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="contactoInput" name="nombre_contacto" value="" readonly>
+			      		<input type="text" class="form-control" id="tipo_pagoInput" name="tipo_pago" value="{{$factura->tipo_pago}}" readonly>
 			    	</div>
 			  	</div>	  	
 
 			  	<div class="form-group">
-			    	<label for="capacidadInput" class="col-sm-4 control-label">Tipo de Comprobante</label>
+			    	<label for="tipo_comprobanteInput" class="col-sm-4 control-label">Tipo de Comprobante</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" class="form-control" id="capacidadInput" name="capacidad_maxima" value="" readonly>
+			      		<input type="number" class="form-control" id="tipo_comprobanteInput" name="tipo_comprobante" value="{{$factura->tipo_comprobante}}" readonly>
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group">
-			    	<label for="capacidadSocioInput" class="col-sm-4 control-label">Número de Pago</label>
+			    	<label for="numero_pagoInput" class="col-sm-4 control-label">Número de Pago</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" class="form-control" id="capacidadSocioInput" name="capacidad_socio" value="" readonly>
+			      		<input type="number" class="form-control" id="numero_pagoInput" name="numero_pago" value="{{$factura->numero_pago}}" readonly>
 			    	</div>
 			  	</div>
 			  	
 			  	<div class="form-group">
-			    	<label for="departamentoInput" class="col-sm-4 control-label">Estado</label>
+			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="departamentoInput" name="departamento" value="" readonly >
+			      		<input type="text" class="form-control" id="estadoInput" name="estado" value="{{$factura->estado}}" readonly >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group">
-			    	<label for="provinciaInput" class="col-sm-4 control-label">Fecha de registro de pago</label>
+			    	<label for="fecha_pagoInput" class="col-sm-4 control-label">Fecha de registro de pago</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="provinciaInput" name="provincia" value="" readonly >
+			      		<input type="text" class="form-control" id="fecha_pagoInput" name="fecha_pago" value="" readonly >
 			    	</div>
 			  	</div>		  	
 
