@@ -62,5 +62,7 @@ class ConfiguracionTableSeeder extends Seeder
         Configuracion::insert(['valor'=>'Viudo(a)','grupo'=>'11','descripcion'=>'estado civil']);
         Configuracion::insert(['valor'=>'Divorciado(a)','grupo'=>'11','descripcion'=>'estado civil']);
 
+        Configuracion::insert(['valor'=>'15.50','grupo'=>'12','descripcion'=>'Precio, en soles, de la entrada en las sedes']);
+
     }
 }

@@ -23,5 +23,6 @@ class Carnet extends Model
     {
     	return $this->belongsTo(Socio::class,'socio_id');
     }
+           
 
 }

@@ -62,7 +62,6 @@
 							<th><div align=center>ESTADO</div></th>
 							<th><div align=center>DETALLE</div></th>
 							<th><div align=center>EDITAR</div></th>
-							<th><div align=center>ESTADO</div></th>
 						</thead>
 						<tbody>
 							@foreach($socios as $socio)						
@@ -80,9 +79,6 @@
 					            	<td>
 							        	<a class="btn btn-info" href="{{url('/Socio/'.$socio->id)}}/editar" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 							        </td>
-					            	<td>
-										<a class="btn btn-info"  title="Habilitar" data-href="{{url('/Socio/'.$socio->id.'/activate')}}" data-toggle="modal" data-target="#modalActivar"><i class="glyphicon-unchecked unchecked"></i></a>
-					            	</td>
 									@else
 									<td>
 					              		<a class="btn btn-info" href="{{url('/Socio/'.$socio->id)}}/"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
@@ -90,15 +86,6 @@
 					            	<td>
 							        	<a class="btn btn-info" href="{{url('/Socio/'.$socio->id)}}/editar" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 							        </td>
-							        @if(strcmp($socio->estado(), $socio->vigente())==0)
-						            	<td>
-											<a class="btn btn-info"  title="Deshabilitar" data-href="{{url('/Socio/'.$socio->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-check"></i></a>
-						            	</td>
-					            	@else
-						            	<td>
-											<a class="btn btn-info"  title="Habilitar" data-href="{{url('/Socio/'.$socio->id.'/activate')}}" data-toggle="modal" data-target="#modalActivar"><i class="glyphicon-unchecked unchecked"></i></a>
-						            	</td>					            	
-					            	@endif
 									@endif
 
 					            </tr>				            		

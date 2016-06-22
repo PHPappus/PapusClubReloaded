@@ -160,27 +160,24 @@ class SocioController extends Controller
         $traspaso->dni = $input['dni'];
         $traspaso->estado = TRUE;
 
-        
-
         $user_id = Auth::user()->id;
-        $usuario = User::findOrFail($user_id);
+        $usuario = User::find($user_id);
         $persona_id = $usuario->persona->id;
 
         $postulante = Postulante::find($persona_id)->first();
         $socio = $postulante->socio;
 
         $socio->traspaso()->save($traspaso);
-
         $traspaso->save();
 
-        return redirect('traspasos-p')->with('stored', 'Se registró el traspaso correctamente. Acercarse a la oficina a entregar los documentos del nuevo socio a transferir');
+        return redirect('traspaso/')->with('stored', 'Se registró el traspaso correctamente. Acercarse a la oficina a entregar los documentos del nuevo socio a transferir');
 
     }
 
     public function misMultas()
     {
         $user_id = Auth::user()->id;
-        $usuario = User::findOrFail($user_id);
+        $usuario = User::find($user_id);
         $persona_id = $usuario->persona->id;
 
         $postulante = Postulante::find($persona_id)->first();
