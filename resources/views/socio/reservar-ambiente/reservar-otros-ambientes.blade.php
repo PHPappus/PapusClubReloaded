@@ -70,24 +70,24 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group required">
-			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha (dd/mm/aaaa) </label>
+			<div class="form-group">
+			 	<label for="fechaInput" class="col-sm-4 control-label">FECHA (dd/mm/aaaa) </label>
 			    <div class="col-sm-5">
-				  	
-			   	 	<div class="input-group">
-			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" style="max-width: 250px">
+				  	<div class="input-group">
+			   		<input class="datepicker form-control"  type="text"  id="fecha_inicio" name="fecha_inicio" placeholder="Fecha Inicio" value="{{old('fecha_inicio')}}" style="max-width: 250px" >
 			   		<span class="input-group-addon">-</span>
-			   		<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_fin" placeholder="Fecha Fin" style="max-width: 250px">
-					</div>			   		
+			   		<input class="datepicker form-control" type="text" id="fecha_fin" name="fecha_fin" placeholder="Fecha Fin" value="{{old('fecha_fin')}}" style="max-width: 250px">
+
+			   	 	</div>
 		    	</div>	
 			</div>
-			<div class="form-group required">
+			<div class="form-group">
 			 	<label for="horaInput" class="col-sm-4 control-label">Hora (hh-mm) </label>
 			    <div class="col-sm-5">
 				   	<div class="input-group">
-				   		<input name="horaInicio" id="horaInicio" type="time" required class="form-control">
+				   		<input name="horaInicio" id="horaInicio" type="time"  class="form-control">
 			       		<span class="input-group-addon">-</span>
-			       		<input name="horaFin" id="horaFin" type="time" required class="form-control">
+			       		<input name="horaFin" id="horaFin" type="time"  class="form-control">
 			   	   	</div>
 		    	</div>	
 			</div>
@@ -181,71 +181,78 @@
 <br/>
 <br/>
  @stop
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<!-- JQuery -->
+ <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+	<!-- JQuery -->
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	<!-- Bootstrap -->
 	{!!Html::script('js/bootstrap.js')!!}
-	
-	<!-- BXSlider -->
-	{!!Html::script('js/jquery.bxslider.min.js')!!}
-	<!-- Mis Scripts -->
-	{!!Html::script('js/MisScripts.js')!!}
 
 	{!!Html::script('js/bootstrap-datepicker.js')!!}
+	 <!-- Languaje -->
+    {!!Html::script('js/bootstrap-datepicker.es.min.js')!!}
+	<!-- {!!Html::script('js/bootstrap-datepicker-sirve.js')!!} -->
+	<!-- {!!Html::script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.js')!!} -->
+	
 
 	<!-- Para Data TAble INICIO -->
-	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
+	<!-- <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script> -->
+	{!!Html::script('js/jquery.dataTables.js')!!}
 	<script>
 		$(document).ready(function() {
 		   $('#example').DataTable( {
 		       "language": {
-		           "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+		           "url": "{!!URL::to('/locales/Spanish.json')!!}"
+
 		       }
 		  	});
   		});
 	</script>
 	<!-- Para Data TAble FIN -->
-
+	
 
 	<!-- Para Fechas INICIO -->
-	<script>
-
+	<!-- <script>
 		var nowTemp = new Date();
 		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
- 	
+	 
 		var checkin = $('#dpd1').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
-  			}
+	  			onRender: function(date) {
+	    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
+	  			}
 		}).on('changeDate', function(ev) {
-  			if (ev.date.valueOf() > checkout.date.valueOf()) {
-    			var newDate = new Date(ev.date)
-    			newDate.setDate(newDate.getDate() + 1);
-    			checkout.setValue(newDate);
-  			}
- 			checkin.hide();
-  			$('#dpd2')[0].focus();
+	  			if (ev.date.valueOf() > checkout.date.valueOf()) {
+	    			var newDate = new Date(ev.date);
+	    			newDate.setDate(newDate.getDate() + 1);
+	    			checkout.setValue(newDate);
+	  			}
+	 			checkin.hide();
+	  			$('#dpd2')[0].focus();
 		}).data('datepicker');
-		var checkout = $('#dpd2').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-  			}
-		}).on('changeDate', function(ev) {
-  			checkout.hide();
-		}).data('datepicker');		
-		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
-
 	
+		var checkout = $('#dpd2').datepicker({
+	  			onRender: function(date) {
+	    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+	  			}
+		}).on('changeDate', function(ev) {
+	  			checkout.hide();
+		}).data('datepicker');		
+	</script> -->
+	<script>
+		var nowDate = new Date();
+		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
 	</script>
 	<script>
 		$(function(){
 			$('.datepicker').datepicker({
-				format: 'dd/mm/yyyy'
+				format: "dd/mm/yyyy",
+		        language: "es",
+		        autoclose: true,
+		        startDate: today,
 			});
 		});
 	</script>
+
 
 	<!-- Para Fecha FIN -->
 </body>
