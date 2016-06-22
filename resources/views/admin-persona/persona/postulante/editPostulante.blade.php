@@ -247,6 +247,23 @@
 												</div>	
 											</div>
 									</div>
+									<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Estado Civil:</label>
+											</div>
+											<div class="col-sm-6">
+												<select class="form-control" id="estadocivil" name="estadocivil" style="max-width: 150px "   >
+													<option value="-1">Seleccione</option>
+														@foreach ($estadocivil as $estcivil)      
+
+										                	<option value="{{$estcivil->id}}" @if($postulante['estado_civil']==$estcivil->id) selected @endif >{{$estcivil->valor}}</option>
+
+										                @endforeach
+												</select>
+											</div>
+										</div>
+									</div>
 			
 									<!--MODAL CONFIRMACION-->
 									<!-- Modal -->

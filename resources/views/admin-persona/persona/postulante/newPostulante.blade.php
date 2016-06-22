@@ -178,6 +178,22 @@
 										</div>
 									</div>
 
+									<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Estado Civil:</label>
+											</div>
+											<div class="col-sm-6">
+												<select class="form-control" id="estado_civil" name="estado_civil" style="width: 250px " >
+													<option value="-1" default>Seleccione</option>
+														@foreach ($estadocivil as $estado)      
+										                	<option value="{{$estado->id}}" @if (old('puestoSelect') == $estado->id) selected="selected" @endif >{{$estado->valor}}</1option>
+										                @endforeach
+												</select>
+											</div>
+										</div>
+									</div>
+
 								</form>
 
 							</div>

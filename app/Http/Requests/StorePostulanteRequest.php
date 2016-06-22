@@ -32,7 +32,7 @@ class StorePostulanteRequest extends Request
             'ap_materno' => 'required|max:100|string',
             'doc_identidad'=> 'required_if:nacionalidad,peruano', //| unique:persona,doc_identidad,NULL',
             'carnet_extranjeria'=> 'required_if:nacionalidad,extranjero',//  | unique:persona,carnet_extranjeria,NULL',
-
+            'estado_civil'=>'required|exists:configuracion,id',
             //'correo'=>'required|string',
             //'puestoSelect' => 'required|exists:configuracion,id'
 

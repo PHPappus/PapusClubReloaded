@@ -155,7 +155,7 @@ class PostulanteController extends Controller
         
         $postulante->telefono_domicilio=$input['telefono_celular'];
         $postulante->correo=$input['correo'];
-        //$postulante->estado_civil['estado_civil'];
+        $postulante->estado_civil['estado_civil'];
 
         
 
@@ -202,6 +202,8 @@ class PostulanteController extends Controller
         $postulante = Postulante::find($id);
         $estadocivil= Configuracion::where('grupo','=','11')->get();
         $estado=Configuracion::find($postulante->estado_civil);
+/*        var_dump($postulante);
+        die();*/
         
         $carbon=new Carbon();
         if((strtotime($postulante->persona['fecha_nacimiento']) < 0))
