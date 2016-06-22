@@ -39,6 +39,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TarifaAmbientexTipoPersonaTableSeeder::class);
 	$this->call(servicioSeeder::class);
         $this->call(TarifaFamiliarTableSeeder::class);
+        $this->call(TarifaActividadTableSeeder::class);
 		
         Model::reguard();
     }

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>RESERVAR BUNGALOW</title>
+	<title>RESERVAR OTROS AMBIENTES</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{!!Html::style('css/jquery.bxslider.css')!!}
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
@@ -12,10 +13,10 @@
 	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
 	<!-- PARA DATA TABLE -->
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
-	
+
 </head>
 <body>
-@extends('layouts.headerandfooter-al-socio')
+@extends('layouts.headerandfooter-al-admin-reserva')
 
 @section('content')
 
@@ -31,6 +32,8 @@
 		@endif
 
 
+
+
 	
 <main class="main">
 <div class="content" style="max-width: 100%;">
@@ -38,14 +41,15 @@
 	<br/>
 	<div class="container">
 		<div class="col-sm-12 text-left lead">
-			<strong>RESERVAR BUNGALOW</strong>
+			<strong>RESERVAR OTROS AMBIENTES</strong>
 		</div>		
 	</div>
 	<br/>
 
 	<div class="container">
-		<form method="POST" class="form-horizontal form-border" action="/reservar-ambiente/reservar-bungalow/search-adminR">
+		<form method="POST" class="form-horizontal form-border" action="/reservar-ambiente/reservar-otros-ambientes/search-adminR"> 
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				<!-- VALIDACION CON FE INICIO -->
 			<br/>
 			<div class="form-group">
 		  		<div class="text-center ">
@@ -54,6 +58,7 @@
 		  			</font>
 		  		</div>
 			</div>
+
 			<br/>
 			<div class="form-group required ">
 			   	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>	
@@ -68,33 +73,31 @@
 			<div class="form-group required">
 			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha (dd/mm/aaaa) </label>
 			    <div class="col-sm-5">
-				  	<div class="input-group">
+				  	
+			   	 	<div class="input-group">
 			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" style="max-width: 250px">
 			   		<span class="input-group-addon">-</span>
 			   		<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_fin" placeholder="Fecha Fin" style="max-width: 250px">
-			   		
-			   		<!-- <input name="fechaInicio" id="fechaInicio" type="text" required class="form-control">
-			       		<span class="input-group-addon">-</span>
-			       	<input name="fechaFin" id="fechaFin" type="text" required class="form-control"> -->
-			   	 	</div>
+					</div>			   		
 		    	</div>	
 			</div>
-			<!-- <div class="form-group required">
-			 	<label for="horaInput" class="col-sm-4 control-label">HORA </label>
+			<div class="form-group required">
+			 	<label for="horaInput" class="col-sm-4 control-label">Hora (hh-mm) </label>
 			    <div class="col-sm-5">
 				   	<div class="input-group">
-				   		<input name="horaInicio" id="horaInicio" type="text" required class="form-control">
+				   		<input name="horaInicio" id="horaInicio" type="time" required class="form-control">
 			       		<span class="input-group-addon">-</span>
-			       		<input name="horaFin" id="horaFin" type="text" required class="form-control">
+			       		<input name="horaFin" id="horaFin" type="time" required class="form-control">
 			   	   	</div>
 		    	</div>	
-			</div> -->
+			</div>
 			<div class="form-group required">
-			   	<label for="numHabitacionInput" class="col-sm-4 control-label">Número de habitaciones</label>
+			   	<label for="numHabitacionInput" class="col-sm-4 control-label">Capacidad</label>
 			   	<div class="col-sm-5">
-			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="numHabitacionInput" name="capacidad_actual" placeholder="Número de habitaciones"  style="max-width: 175px">
+			   		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="numHabitacionInput" name="capacidad_actual" placeholder="Capacidad" style="max-width: 100px" >
 			   	</div>
 			</div>	
+				
 			<!-- Boton Buscar INICIO -->
 			<div class="btn-inline">
 				<div class="btn-group col-sm-8"></div>
@@ -127,12 +130,12 @@
 	<br/>
 	<div class="container">
 		<div class="form-group">
-				<div class="text-right">
-					<font color="black"> 
-						Filtra por todos los campos
-					</font>
-				</div>
-		 </div>
+			<div class="text-right">
+				<font color="black"> 
+					Filtra por todos los campos
+				</font>
+			</div>
+		</div>
 		<table class="table table-bordered table-hover text-center display" id="example">
 			<thead class="active">
 				<tr>
@@ -140,8 +143,8 @@
 				<th><DIV ALIGN=center>NOMBRE</th>
 				<th><DIV ALIGN=center>TIPO</th>
 				<th><DIV ALIGN=center>CAPACIDAD</th>
+				
 				<th><DIV ALIGN=center>RESERVAR</th>
-
 				</tr>
 				</thead>
 				<tbody>
@@ -151,9 +154,10 @@
 					<td>{{ $ambiente->nombre }}</td>
 					<td>{{ $ambiente->tipo_ambiente }}</td>
 					<td>{{ $ambiente->capacidad_actual }}</td>
-
+					
+				
 					<td>
-					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/new-reserva-bungalow')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
+					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/new-reserva-otro-ambiente-adminR')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
 
 
 			        </td>
@@ -163,6 +167,7 @@
 		</table>		
 	</div>
 
+	
 
 	
 	
@@ -183,11 +188,12 @@
 	<!-- Bootstrap -->
 	{!!Html::script('js/bootstrap.js')!!}
 	
+	<!-- BXSlider -->
+	{!!Html::script('js/jquery.bxslider.min.js')!!}
 	<!-- Mis Scripts -->
 	{!!Html::script('js/MisScripts.js')!!}
 
 	{!!Html::script('js/bootstrap-datepicker.js')!!}
-
 
 	<!-- Para Data TAble INICIO -->
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
@@ -201,7 +207,7 @@
   		});
 	</script>
 	<!-- Para Data TAble FIN -->
-	
+
 
 	<!-- Para Fechas INICIO -->
 	<script>
@@ -242,8 +248,6 @@
 	</script>
 
 	<!-- Para Fecha FIN -->
-
-
 </body>
 
 <!-- Modal Success -->

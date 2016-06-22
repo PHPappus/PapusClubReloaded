@@ -1,9 +1,7 @@
-<!-- Una lista las deudas del socios -->
-
  <!DOCTYPE html>
 <html>
 <head>
-	<title>Pagos</title>
+	<title>AMBIENTE</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,23 +13,23 @@
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
 </head>
 <body>
-@extends('layouts.headerandfooter-al-socio')
+@extends('layouts.headerandfooter-al-admin-registros')
 
 @section('content')
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 text-center">
 				<br/><br/>
-				<p class="lead"><strong>Deudas del Socio</strong></p>
+				<p class="lead"><strong>RESERVAS</strong></p>
 				<br/>
 			</div>
 			
 		</div>
-		<h4>1. Lista de deudas del socio.</h4>
-
+		<h4>1. Selecciones la reserva del ambiente para la actividad.</h4>
 
 		</br>
 		</br>
+
 
 		
 		<div class="container">
@@ -39,15 +37,27 @@
 					<thead class="active">
 						<tr>
 							<th><DIV ALIGN=center>ID</th>
-							<th><DIV ALIGN=center>Tipo de Pago</th>
-							<th><DIV ALIGN=center>Monto</th>
-							<th><DIV ALIGN=center>Descripción</th>
-							<th><DIV ALIGN=center>estado</th>
+							<th><DIV ALIGN=center>AMBIENTE</th>
+							<th><DIV ALIGN=center>FECHA INICIO</th>
+							<th><DIV ALIGN=center>FECHA FIN</th>
+							<th><DIV ALIGN=center>HORA INICIO</th>
 							
+							<th><DIV ALIGN=center>SELECCIONAR</th>
 						</tr>
 					</thead>
 					<tbody>
-						
+							@foreach($reservas as $reserva)						
+						    	<tr>
+						    		<td>{{ $reserva->id }}</td>
+						    		<td>{{ $reserva->ambiente->nombre}}</td>
+									<td>{{ $reserva->fecha_inicio_reserva }}</td>
+									<td>{{ $reserva->fecha_fin_reserva }}</td>
+			 						<td>{{ $reserva->hora_inicio_reserva }}</td>
+									<td><a class="btn btn-info" href="{{url('/actividad/'.$reserva->id.'/select')}}" ><i class="glyphicon glyphicon-ok"></i></a>
+							        </td>
+							            
+								</tr>
+							@endforeach
 					</tbody>					
 												
 					

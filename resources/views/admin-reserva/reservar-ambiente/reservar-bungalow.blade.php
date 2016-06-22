@@ -5,17 +5,19 @@
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{!!Html::style('css/jquery.bxslider.css')!!}
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
+	{!!Html::style('/css/DataTable.css')!!}	
 	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
 	<!-- PARA DATA TABLE -->
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
 	
 </head>
 <body>
-@extends('layouts.headerandfooter-al-socio')
+@extends('layouts.headerandfooter-al-admin-reserva')
 
 @section('content')
 
@@ -44,7 +46,7 @@
 	<br/>
 
 	<div class="container">
-		<form method="POST" class="form-horizontal form-border" action="/reservar-ambiente/reservar-bungalow/search-adminR">
+		<form method="POST" class="form-horizontal form-border" action="/reservar-ambiente/reservar-bungalow-adminR/search-adminR"> 
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<br/>
 			<div class="form-group">
@@ -153,7 +155,7 @@
 					<td>{{ $ambiente->capacidad_actual }}</td>
 
 					<td>
-					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/new-reserva-bungalow')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
+					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/new-reserva-bungalow-adminR')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
 
 
 			        </td>
@@ -183,6 +185,8 @@
 	<!-- Bootstrap -->
 	{!!Html::script('js/bootstrap.js')!!}
 	
+	<!-- BXSlider -->
+	{!!Html::script('js/jquery.bxslider.min.js')!!}
 	<!-- Mis Scripts -->
 	{!!Html::script('js/MisScripts.js')!!}
 
