@@ -482,6 +482,8 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::post('/resultado-busqueda-socio','ControlIngresosController@buscarsocio');
 	Route::post('/marcar-ingreso-socio','ControlIngresosController@ingresosocio');
 
+});
+
 
 //Publico
 	Route::group(['middleware' => ['auth', 'publico']], function () {
