@@ -161,10 +161,12 @@ class SocioController extends Controller
         $traspaso->estado = TRUE;
 
         $user_id = Auth::user()->id;
+
         $usuario = User::find($user_id);
+
         $persona_id = $usuario->persona->id;
 
-        $postulante = Postulante::find($persona_id)->first();
+        $postulante = Postulante::find($persona_id);
         $socio = $postulante->socio;
 
         $socio->traspaso()->save($traspaso);
@@ -177,10 +179,11 @@ class SocioController extends Controller
     public function misMultas()
     {
         $user_id = Auth::user()->id;
+
         $usuario = User::find($user_id);
         $persona_id = $usuario->persona->id;
 
-        $postulante = Postulante::find($persona_id)->first();
+        $postulante = Postulante::find($persona_id);
         $socio = $postulante->socio;
 
         $multas = $socio->multaxpersona;

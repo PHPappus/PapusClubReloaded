@@ -25,9 +25,9 @@ class EditPromocionRequest extends Request
         return [
             'estado'                =>  'required|max:12|string',
             'descripcion'           =>  'required|max:100|string',
-            'montoDescuento'        =>  'required|double|min:1',
-            'porcentajeDescuento'   =>  'required|double|min:1',
-            'fecha_registro'        =>  'date|required'
+            'montoDescuento'        =>  'double|min:0',
+            'porcentajeDescuento'   =>  'double|min:0'
+           
             
             
             

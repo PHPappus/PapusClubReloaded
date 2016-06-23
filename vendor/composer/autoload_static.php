@@ -878,10 +878,10 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'SedeTableSeeder' => __DIR__ . '/../..' . '/database/seeds/SedeTableSeeder.php',
         'SocioTableSeeder' => __DIR__ . '/../..' . '/database/seeds/SocioTableSeeder.php',
         'SorteoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/SorteoTableSeeder.php',
+        'TarifaActividadTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifaActividadTableSeeder.php',
         'TarifaAmbientexTipoPersonaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifaAmbientexTipoPersonaTableSeeder.php',
         'TarifaFamiliarTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifaFamiliarTableSeeder.php',
         'TarifaMembresiaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifaMembresiaTableSeeder.php',
-        'TarifarioTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifarioTableSeeder.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'TestTallerTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TestTallerTableSeeder.php',
         'TestUserTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TestUserTableSeeder.php',
@@ -889,6 +889,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'TipoFamiliaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TipoFamiliaTableSeeder.php',
         'TipoMembresiaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TipoMembresiaTableSeeder.php',
         'TipoPersonaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TipoPersonaTableSeeder.php',
+        'servicioSeeder' => __DIR__ . '/../..' . '/database/seeds/servicioSeeder.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

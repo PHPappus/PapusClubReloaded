@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use papusclub\Models\Promocion;
 
 class PromocionTableSeeder extends Seeder
 {
@@ -11,15 +12,12 @@ class PromocionTableSeeder extends Seeder
      */
     public function run()
     {
-        //
         Promocion::insert([
         	'estado' => 'Activo',
         	'descripcion' => 'Toneando con Tongo', 
-        	'montoDescuento' => 70.8, 
-            'porcentajeDescuento'=> 1.5,
-            'fecha_registro'=>=>Carbon::create(1994,1,24)->toDateString()
+        	'montoDescuento' => '70.8', 
+            'porcentajeDescuento'=> '1.5'
         	]);
-
         
     }
 }

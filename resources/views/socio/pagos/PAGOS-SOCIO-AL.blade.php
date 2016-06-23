@@ -1,74 +1,80 @@
-<!DOCTYPE html>
+<!-- Una lista las deudas del socios -->
+
+ <!DOCTYPE html>
 <html>
 <head>
-	<title>Home Page</title>
+	<title>Pagos</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/jquery.bxslider.css">
-	<link rel="stylesheet" href="css/font-awesome.css">
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/MisEstilos.css">
-	
+	{!!Html::style('css/jquery.bxslider.css')!!}
+	{!!Html::style('css/font-awesome.css')!!}
+	{!!Html::style('css/bootstrap.css')!!}
+	{!!Html::style('css/MisEstilos.css')!!}
+	<!-- PARA DATA TABLE -->
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
 </head>
 <body>
 @extends('layouts.headerandfooter-al-socio')
+
 @section('content')
-<!---Cuerpo -->
-
-<main class="main">
-	<div class="content" style="max-width: 100%;">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-2">
-					<ol class="breadcrumb">
-						<li><a href="socio"><span class="glyphicon glyphicon-home"></span></a></li>
-						<li class="active">Pagos</li>
-					</ol>
-				</div>				
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 text-center">
+				<br/><br/>
+				<p class="lead"><strong>Deudas del Socio</strong></p>
+				<br/>
 			</div>
+			
 		</div>
-		<!-- Utilizando Bootstrap -->
-		<br/><br/>
+		<h4>1. Lista de deudas del socio.</h4>
+
+
+		</br>
+		</br>
+
+		
 		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 text-left">
+			<table class="table table-bordered table-hover text-center display" id="example">
+					<thead class="active">
+						<tr>
+							<th><DIV ALIGN=center>ID</th>
+							<th><DIV ALIGN=center>Tipo de Pago</th>
+							<th><DIV ALIGN=center>Monto</th>
+							<th><DIV ALIGN=center>Descripción</th>
+							<th><DIV ALIGN=center>estado</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>					
+												
 					
-					<p class="lead"><strong>PAGOS PENDIENTES</strong></p>
-					<p class="lead"><pre><strong>PAGO # - FECHA DE VENCIMIENTO- MONTO- MORA(SI LO HAY)- MONTO TOTAL -   MONEDA     -  ESTADO</strong></pre></p>
-					<br/>
-					<p><pre>PAGO 6  -     12/06/2016     - 1000 -       --       -    1000     - NUEVOS SOLES -  PENDIENTE</pre></p>
-					<p><pre>PAGO 7  -     12/07/2016     - 1000 -       --       -    1000     - NUEVOS SOLES -  PENDIENTE</pre></p>
-					<p><pre>PAGO 8  -     12/08/2016     - 1000 -       --       -    1000     - NUEVOS SOLES -  PENDIENTE</pre></p>
-					<p><pre>PAGO 9  -     12/09/2016     - 1000 -       --       -    1000     - NUEVOS SOLES -  PENDIENTE</pre></p>
-					<p><pre>PAGO 10 -     12/10/2016     - 1000 -       --       -    1000     - NUEVOS SOLES -  PENDIENTE</pre></p>
-					<p><pre>PAGO 11 -     12/11/2016     - 1000 -       --       -    1000     - NUEVOS SOLES -  PENDIENTE</pre></p>
-					<p><pre>PAGO 12 -     12/12/2016     - 1000 -       --       -    1000     - NUEVOS SOLES -  PENDIENTE</pre></p>
-					<p class="lead"><strong>PAGOS CANCELADOS</strong></p>
-					<p class="lead"><pre><strong>PAGO # - FECHA DE VENCIMIENTO- MONTO- MORA(SI LO HAY)- MONTO TOTAL -   MONEDA     -  ESTADO</strong></pre></p>
-					<br/>
-					<p><pre>PAGO 1 -      12/01/2016     - 1000 -       --       -    1000     - NUEVOS SOLES -  CANCELADA</pre></p>
-					<p><pre>PAGO 2 -      12/02/2016     - 1000 -       100      -    1100     - NUEVOS SOLES -  CANCELADA</pre></p>
-					<p><pre>PAGO 3 -      12/03/2016     - 1000 -       --       -    1000     - NUEVOS SOLES -  CANCELADA</pre></p>
-					<p><pre>PAGO 4 -      12/04/2016     - 1000 -       --       -    1000     - NUEVOS SOLES -  CANCELADA</pre></p>
-					<p><pre>PAGO 5 -      12/05/2016     - 1000 -       --       -    1000     - NUEVOS SOLES -  CANCELADA</pre></p>
-				</div>	
-			</div>
+			</table>		
+			
 		</div>
-	</div>		
-</main>
+	</div>
+</br></br></br></br></br>
+		
 
-<!--Pie de págna-->
+
 @stop
-<!-- JQuery -->
-	<script src="js/jquery-1.11.3.min.js"></script>
-	<!-- Bootstrap -->
-	<script type="text/javascript" src="js/bootstrap.js"></script>
-	<!-- BXSlider -->
-	<script src="js/jquery.bxslider.min.js"></script>
-	<!-- Mis Scripts -->
-	<script src="js/MisScripts.js"></script>
-
+{!!Html::script('js/jquery-1.11.3.min.js')!!}
+	{!!Html::script('js/bootstrap.js')!!}
+	{!!Html::script('js/jquery.bxslider.min.js')!!}
+	{!!Html::script('js/MisScripts.js')!!}
+	<!-- {!!Html::script('js/jquery.dataTables.min.js')!!} -->
+	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
+	<script>
+		$(document).ready(function() {
+		   $('#example').DataTable( {
+		       "language": {
+		           "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+		       }
+		  	});
+  		});
+	</script>
 
 </body>
 </html>

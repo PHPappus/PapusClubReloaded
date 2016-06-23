@@ -74,6 +74,11 @@
 								</li>
 							</ul> -->
 						</li>
+						<li><a href="{!!URL::to('/promociones/index')!!}">PROMOCIONES</a>
+							<ul>
+								<!-- <li><a href="{!!URL::to('/sorteo/new')!!}" title="Mantenimiento Sorteo" target="_self">SORTEO</a></li> -->
+							</ul>
+						</li>
 						<!-- Opción Actividades -->
 						<li><a href="#">TALLER<span class="despliegue">▼</span></a>
 							<ul>

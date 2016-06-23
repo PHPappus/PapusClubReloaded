@@ -624,10 +624,10 @@ return array(
     'SedeTableSeeder' => $baseDir . '/database/seeds/SedeTableSeeder.php',
     'SocioTableSeeder' => $baseDir . '/database/seeds/SocioTableSeeder.php',
     'SorteoTableSeeder' => $baseDir . '/database/seeds/SorteoTableSeeder.php',
+    'TarifaActividadTableSeeder' => $baseDir . '/database/seeds/TarifaActividadTableSeeder.php',
     'TarifaAmbientexTipoPersonaTableSeeder' => $baseDir . '/database/seeds/TarifaAmbientexTipoPersonaTableSeeder.php',
     'TarifaFamiliarTableSeeder' => $baseDir . '/database/seeds/TarifaFamiliarTableSeeder.php',
     'TarifaMembresiaTableSeeder' => $baseDir . '/database/seeds/TarifaMembresiaTableSeeder.php',
-    'TarifarioTableSeeder' => $baseDir . '/database/seeds/TarifarioTableSeeder.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'TestTallerTableSeeder' => $baseDir . '/database/seeds/TestTallerTableSeeder.php',
     'TestUserTableSeeder' => $baseDir . '/database/seeds/TestUserTableSeeder.php',
@@ -635,4 +635,5 @@ return array(
     'TipoFamiliaTableSeeder' => $baseDir . '/database/seeds/TipoFamiliaTableSeeder.php',
     'TipoMembresiaTableSeeder' => $baseDir . '/database/seeds/TipoMembresiaTableSeeder.php',
     'TipoPersonaTableSeeder' => $baseDir . '/database/seeds/TipoPersonaTableSeeder.php',
+    'servicioSeeder' => $baseDir . '/database/seeds/servicioSeeder.php',
 );

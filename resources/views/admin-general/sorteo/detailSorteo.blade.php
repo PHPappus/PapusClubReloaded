@@ -31,34 +31,41 @@
 				<br/><br/>
 
 				<div class="form-group">
-		    		<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
+		    		<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
 		    		<div class="col-sm-5">
 		      			<input type="text" class="form-control" id="nombreInput" name="nombre" value="{{$sorteo->nombre_sorteo}}" readonly>
 		    		</div>
 		  		</div>
 
 			  	<div class="form-group">
-			    	<label for="telefonoInput" class="col-sm-4 control-label">Descripcion</label>
+			    	<label for="telefonoInput" class="col-sm-4 control-label">DESCRIPCIÓN</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="telefonoInput" name="telefono" value="{{$sorteo->descripcion}}" readonly>
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group">
-			    	<label for="contactoInput" class="col-sm-4 control-label">Fecha Abierto Sorteo</label>
+			    	<label for="contactoInput" class="col-sm-4 control-label">FECHA CIERRE DE SORTEO</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" class="form-control" id="contactoInput" name="nombre_contacto" value="{{$sorteo->fecha_fin_sorteo}}" readonly>
+			    	</div>
+			  	</div>	
+
+			  	<div class="form-group">
+			    	<label for="contactoInput" class="col-sm-4 control-label">FECHA INICIO DE RESERVA</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="contactoInput" name="nombre_contacto" value="{{$sorteo->fecha_abierto}}" readonly>
 			    	</div>
 			  	</div>	  	
 
 			  	<div class="form-group">
-			    	<label for="capacidadInput" class="col-sm-4 control-label">Fecha Cerrado Sorteo</label>
+			    	<label for="capacidadInput" class="col-sm-4 control-label">FECHA FIN DE RESERVA</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="capacidadInput" name="capacidad_maxima" value="{{$sorteo->fecha_cerrado}}" readonly>
 			    	</div>
 			  	</div>
 			  	<div class="form-group">
-			    	<label for="capacidadInput" class="col-sm-4 control-label">Sede</label>
+			    	<label for="capacidadInput" class="col-sm-4 control-label">SEDE</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="capacidadInput" name="capacidad_maxima" value="{{$sede->nombre}}" readonly>
 			    	</div>
@@ -70,7 +77,7 @@
 				
 				<div class="form-group">
 					<div class="col-sm-8"> </div>
-					<a href="/sorteo/index" class="btn btn-info">Regresar</a>				
+					<a href="#" onclick="history.back();" class="btn btn-info">Regresar</a>				
 				</div>
 
 			</form>

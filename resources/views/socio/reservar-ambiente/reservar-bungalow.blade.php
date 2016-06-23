@@ -5,7 +5,6 @@
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	{!!Html::style('css/jquery.bxslider.css')!!}
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
@@ -45,8 +44,8 @@
 	<br/>
 
 	<div class="container">
-		<form  class="form-horizontal form-border"> <!-- FALTA CAMBIAR LA ACTION =D -->
-			
+		<form method="POST" class="form-horizontal form-border" action="/reservar-ambiente/reservar-bungalow/search-adminR">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<br/>
 			<div class="form-group">
 		  		<div class="text-center ">
@@ -184,8 +183,6 @@
 	<!-- Bootstrap -->
 	{!!Html::script('js/bootstrap.js')!!}
 	
-	<!-- BXSlider -->
-	{!!Html::script('js/jquery.bxslider.min.js')!!}
 	<!-- Mis Scripts -->
 	{!!Html::script('js/MisScripts.js')!!}
 
