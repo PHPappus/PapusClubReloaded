@@ -7,6 +7,7 @@
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{!!Html::style('css/jquery.bxslider.css')!!}
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
@@ -77,6 +78,7 @@
 @stop
 {!!Html::script('js/jquery-1.11.3.min.js')!!}
 	{!!Html::script('js/bootstrap.js')!!}
+	{!!Html::script('js/jquery.bxslider.min.js')!!}
 	{!!Html::script('js/MisScripts.js')!!}
 	<!-- {!!Html::script('js/jquery.dataTables.min.js')!!} -->
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
@@ -137,6 +139,7 @@
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>           
 	      </div>
 	    </div>
+
 
 	  </div>
 	</div>
