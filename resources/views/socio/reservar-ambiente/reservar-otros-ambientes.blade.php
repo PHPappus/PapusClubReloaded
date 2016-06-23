@@ -62,7 +62,8 @@
 			<div class="form-group required ">
 			   	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>	
 				<div class="col-sm-5">
-				  	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >
+				  	<select class="form-control" id="sedeSelec" name="sedeSelec" style="max-width: 150px "  >
+				  		<option value="-1">Todas las Sedes</option>
 				        @foreach ($sedes as $sede)      
 				      	<option value="{{$sede->id}}">{{$sede->nombre}}</option>
 				        @endforeach
