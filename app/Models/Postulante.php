@@ -85,5 +85,10 @@ class Postulante extends Model
         return $this->belongsTo(Distrito::class,'distrito');
     }
 
+    public function observacion()
+    {
+        return $this->belongsToMany(Socio::class,'observaciones','postulante_id','socio_id')->withPivot('observacion');
+    }
+
     
 }

@@ -149,14 +149,6 @@ class PostulanteController extends Controller
         return redirect('postulante/index')->with('stored', 'Se registró el postulante correctamente.');
     }
 
-/*    public function getProvincias(){
-        //if($request->ajax()){
-            $dep_id=Input::get('dep_id');
-            $provincias=Provincia::provincias($dep_id);
-            return Response::json($provincias);
-        //}
-    }*/
-
     public function show($id){
 
         $postulante=Postulante::find($id);
@@ -235,9 +227,6 @@ class PostulanteController extends Controller
 
         $postulante->persona->save();
 
-
-        //$socio->postulante->persona->update(['nombre'=>$input['nombre'], 'fecha_nacimiento'=>$fecha_nac]);
-        //return view('admin-general.persona.socio.editSocio',compact('socio'));
         Session::flash('update','basico');
         return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('cambios-bas','Cambios realizados con éxito');
     }
@@ -268,7 +257,7 @@ class PostulanteController extends Controller
             if(isset($input['distrito']))
                 $postulante->distrito=$input['distrito'];
 
-            $postulante->   direccion_nacimiento = $input['direccion_nacimiento'];
+            $postulante->direccion_nacimiento = $input['direccion_nacimiento'];
         }
         else
         {
