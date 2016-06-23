@@ -361,6 +361,7 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::post('postulante/{id}/familiar/save','PostulanteController@storeFamiliar');
 	Route::get('postulante/{id}/familiar/delete','PostulanteController@deleteFamiliar');
 	Route::get('postulante/familiar/{id}/{id_postulante}','PostulanteController@detailFamiliar');
+	Route::get('postulante/familiar/{id}/{id_postulante}/detail','PostulanteController@detailFamiliarPostulante');
 
 
 

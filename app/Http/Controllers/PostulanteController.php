@@ -176,7 +176,7 @@ class PostulanteController extends Controller
     public function show($id){
 
         $postulante=Postulante::find($id);
-
+        $estado_civil=Configuracion::find($postulante->estado_civil);
 
         $carbon=new Carbon();
         if((strtotime($postulante->persona->fecha_nacimiento) < 0))
@@ -194,7 +194,16 @@ class PostulanteController extends Controller
         array_push($arregloLugar,$provincia);
         array_push($arregloLugar,$distrito);
         
-        return view('admin-persona.persona.postulante.detailPostulante',compact('postulante','arregloLugar'));
+        $departamentoVivienda = Departamento::find($postulante['departamento_vivienda']);
+        $provinciaVivienda = Provincia::find($postulante['provincia_vivienda']);
+        $distritoVivienda = Distrito::find($postulante['distrito_vivienda']);
+
+        $arregloLugarVivienda=array();
+        array_push($arregloLugarVivienda,$departamentoVivienda);
+        array_push($arregloLugarVivienda,$provinciaVivienda);
+        array_push($arregloLugarVivienda,$distritoVivienda);
+        
+        return view('admin-persona.persona.postulante.detailPostulante',compact('postulante','arregloLugar','estado_civil','arregloLugarVivienda'));
 
     }
 
@@ -478,6 +487,22 @@ class PostulanteController extends Controller
         /*$socio = Socio::withTrashed()->find($invitado->persona_id);
         $persona = Persona::find($invitado->invitado_id);*/
         return view('admin-persona.persona.postulante.familiar.detailFamiliar',compact('familiar','postulante','relacion'));
+    }
+
+
+    public function detailFamiliarPostulante($id,$id_postulante)
+    {   
+        $familiar=Persona::find($id);
+        $postulante=Persona::find($id_postulante);
+        //$relacion=2;
+        $relacion_id=$familiar->familiarxpostulante->where('id_postulante',$postulante->id)->first()->pivot->tipo_familia_id;
+        $relacion=TipoFamilia::find($relacion_id)->nombre;
+        //$invitado = Invitados::find($id);
+        /*var_dump($relacion);
+        die();*/
+        /*$socio = Socio::withTrashed()->find($invitado->persona_id);
+        $persona = Persona::find($invitado->invitado_id);*/
+        return view('admin-persona.persona.postulante.familiar.detailFamiliarPostulante',compact('familiar','postulante','relacion'));
     }
 
 }

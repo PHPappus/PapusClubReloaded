@@ -148,7 +148,7 @@
 											<label for="" class="control-label">Carnet de Extranjería:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control inputmodify" id="docidentity" placeholder="#######" style="max-width: 250px" value="{{$postulante->persona->carnet_extranjeria}}"disabled>
+											<input type="text" class="form-control inputmodify" id="docidentity" placeholder="#######" style="max-width: 250px" value="{{$postulante->persona->carnet_extranjeria}}" disabled>
 										</div>	
 									</div>
 								</div>
@@ -159,14 +159,7 @@
 											<label for="" class="control-label">Estado Civil:</label>
 										</div>
 										<div class="col-sm-6">
-											<select class="form-control inputmodify" name="sede" style="max-width: 250px " disabled>
-								                <option value="Soltero" default>Soltero (a)</option>
-												<option value="Casado">Casado (a)</option>
-												<option value="Divorciado">Divorciado (a)</option>
-												<option value="Separado">Separado (a)</option>
-												<option value="Unión Libre">Unión Libre</option>
-												<option value="Viudo">Viudo (a)</option>
-					    					</select>
+											<input type="text" class="form-control inputmodify" id="docidentity" placeholder="#######" style="max-width: 250px" value="{{$estado_civil->valor}}" disabled>
 										</div>	
 									</div>
 								</div>	
@@ -256,34 +249,148 @@
 						</div>
 										<!--DATOS FAMILIARES-->
 						<div role="tabpanel" class="tab-pane" id="seccion3">
-							<br><br><br>
-							<div class="form-group required" >
-									<div class="btn-group col-sm-4" ></div>
-									<div class="btn-group col-sm-4"></div>
-									<div class="btn-group col-sm-4"></div>
-									<div class="btn-group col-sm-4" ></div>
-									<div class="btn-group col-sm-4"></div>
-									
-									
-							</div>
+							<form action="" class="form-horizontal form-border">
+								<div class="form-group required" >
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+
+										<br><br><br>
+										<p><b>REGISTRO DE FAMILIARES</b></p>
+										<br>
+										<div class=""> 
+											@if ($errors->familia->any())
+								  				<ul class="alert alert-danger fade in">
+								  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+								  					@foreach ($errors->familia->all() as $error)
+								  						<li>{{$error}}</li>
+								  					@endforeach
+								  				</ul>
+								  			@endif
+											@if(session('cambios-fam'))
+												<div class="alert alert-success fade in">
+														<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+														<strong>¡Éxito!</strong> {{session('cambios-fam')}}
+												</div>								
+											@endif						  			
+										</div>
+
+										<div class="table-responsive">
+											<div class="container">	
+												<table class="table table-bordered table-hover text-center display" id="example">
+														<thead class="active">
+															<th><div algin=center>DOCUMENTO</div></th>
+															<th><div align=center>NOMBRE</div> </th>
+															<th><div align=center>APELLIDO PATERNO</div></th>
+															<th><div align=center>APELLIDO MATERNO</div></th>
+															<th><div align="center">CORREO</div></th>
+															<th><div align=center>DETALLE</div></th>													
+														</thead>
+														<tbody>
+															@foreach($postulante->familiarxpostulante as $familiar)
+																<tr>
+																	@if(strcmp($familiar->nacionalidad,'peruano')==0)
+																		<td>{{$familiar->doc_identidad}}</td>
+																	@else
+																		<td>{{$familiar->carnet_extranjeria}}</td>
+																	@endif
+																		<td>{{$familiar->nombre}}</td>
+																		<td>{{$familiar->ap_paterno}}</td>
+																		<td>{{$familiar->ap_materno}}</td>
+																		<td>{{$familiar->correo}}</td>
+																		<td>
+														              		<a class="btn btn-info" href="{{url('/postulante/familiar/'.$familiar->id.'/'.$postulante->persona->id.'/detail')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+														            	</td>	
+
+																</tr>
+															@endforeach
+														</tbody>
+												</table>
+												<br><br><br>
+											</div>		
+										</div>
+										
+										
+								</div>
+							</form>
 						</div>
 										<!--DATOS VIVIENDA-->
 						<div role="tabpanel" class="tab-pane" id="seccion4">
-							<br><br><br>
-							<div class="form-group required" >
-									<div class="btn-group col-sm-4" ></div>
-									<div class="btn-group col-sm-4"></div>
-									<div class="btn-group col-sm-4"></div>
-									<div class="btn-group col-sm-4" ></div>
-									<div class="btn-group col-sm-4"></div>
-									
-									<div class="btn-group">
-										<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-									</div>
-									<div class="btn-group">
-										<a href="#" class="btn btn-info cont" ><span class="glyphicon glyphicon-chevron-right"></span></a>
-									</div>
-							</div>
+							<form action="" class="form-horizontal form-border">
+								<br><br><br>
+								<div class="form-group required" >
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4"></div>
+										<div class="btn-group col-sm-4" ></div>
+										<div class="btn-group col-sm-4"></div>
+										
+								</div>
+
+
+
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Departamento:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="departamento" name="departamento" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{array_values($arregloLugarVivienda)[0]['nombre']}}" disabled>
+											</div>		
+										</div>
+								</div>
+
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Provincia:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="provincia" name="provincia" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{array_values($arregloLugarVivienda)[1]['nombre']}}" disabled>
+											</div>		
+										</div>
+								</div>
+
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Distrito:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="distrito" name="distrito" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{array_values($arregloLugarVivienda)[2]['nombre']}}" disabled>
+											</div>		
+										</div>
+								</div>
+
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Direccion Nacimiento:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{$postulante->domicilio}}" disabled>
+											</div>		
+										</div>
+								</div>
+
+								<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Referencia:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{$postulante->referencia_vivienda}}" disabled>
+											</div>		
+										</div>
+								</div>
+
+								<div class="form-group">
+									<div class="col-sm-5"> </div>
+										<a class="btn btn-info" href="/postulante/index" title="Editar" >Regresar</a>			
+								</div>	
+							</form>	
 						</div>
 										<!--DATOS ESTUDIO-->
 						<div role="tabpanel" class="tab-pane" id="seccion5">
@@ -296,12 +403,7 @@
 										<div class="btn-group col-sm-4" ></div>
 										<div class="btn-group col-sm-4"></div>
 										
-										<div class="btn-group">
-											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-										</div>
-										<div class="btn-group">
-											<a href="#" class="btn btn-info cont" ><span class="glyphicon glyphicon-chevron-right"></span></a>
-										</div>
+										
 								</div>
 								<div class="form-group">
 									<div class="col-sm-6">
@@ -360,12 +462,6 @@
 										<div class="btn-group col-sm-4" ></div>
 										<div class="btn-group col-sm-4"></div>
 										
-										<div class="btn-group">
-											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-										</div>
-										<div class="btn-group">
-											<a href="#" class="btn btn-info cont" ><span class="glyphicon glyphicon-chevron-right"></span></a>
-										</div>
 								</div>
 								<div class="form-group">
 									<div class="col-sm-6">
@@ -415,12 +511,7 @@
 										<div class="btn-group col-sm-4" ></div>
 										<div class="btn-group col-sm-4"></div>
 										
-										<div class="btn-group">
-											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-										</div>
-										<div class="btn-group">
-											<a href="#" class="btn btn-info cont" ><span class="glyphicon glyphicon-chevron-right"></span></a>
-										</div>
+										
 								</div>
 								<div class="form-group">
 									<div class="col-sm-6">
