@@ -17,7 +17,6 @@ class CreateObservacionesTable extends Migration
             $table->integer('socio_id')->unsigned()->index();
             $table->integer('postulante_id')->unsigned()->index();
             $table->string('observacion');
-            $table->string('detalle');
         });
     }
 

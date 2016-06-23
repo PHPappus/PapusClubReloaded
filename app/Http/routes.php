@@ -71,6 +71,7 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('mis-multas/','SocioController@misMultas');
 	Route::get('ver-postulantes/','SocioController@verPostulantes');
 	Route::get('socio-postulante/{id}/obs','SocioController@agregarObs');
+	Route::post('observacion/new/save','SocioController@storeObservacion');
 
 
 	//RESERVA DE AMBIENTES

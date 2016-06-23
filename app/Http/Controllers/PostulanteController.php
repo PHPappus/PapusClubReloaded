@@ -194,14 +194,6 @@ class PostulanteController extends Controller
         return redirect('postulante/index')->with('stored', 'Se registró el postulante correctamente.');
     }
 
-/*    public function getProvincias(){
-        //if($request->ajax()){
-            $dep_id=Input::get('dep_id');
-            $provincias=Provincia::provincias($dep_id);
-            return Response::json($provincias);
-        //}
-    }*/
-
     public function show($id){
 
         $postulante=Postulante::find($id);
@@ -295,9 +287,6 @@ class PostulanteController extends Controller
         $postulante->persona->save();
         $postulante->save();
 
-
-        //$socio->postulante->persona->update(['nombre'=>$input['nombre'], 'fecha_nacimiento'=>$fecha_nac]);
-        //return view('admin-general.persona.socio.editSocio',compact('socio'));
         Session::flash('update','basico');
         return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('cambios-bas','Cambios realizados con éxito');
     }
@@ -328,7 +317,7 @@ class PostulanteController extends Controller
             if(isset($input['distrito']))
                 $postulante->distrito=$input['distrito'];
 
-            $postulante->   direccion_nacimiento = $input['direccion_nacimiento'];
+            $postulante->direccion_nacimiento = $input['direccion_nacimiento'];
         }
         else
         {
@@ -486,17 +475,18 @@ class PostulanteController extends Controller
             $persona->correo=$input['correo'];
 
 
-            $match=['postulante_id'=>$id,'persona_id'=>$persona->id];
-            $relacion = DB::table('familiarxpostulante')->where($match)->get();
-            if($relacion==null){
+            //$match=['postulante_id'=>$id,'persona_id'=>$persona->id];
+            
                 $persona->save();    
-            }
+            
             
 /*            var_dump($persona);
             die();*/
         }
-
-        $postulante->addFamiliar($persona,$relacion);
+        $existerela = DB::table('familiarxpostulante')->where([['postulante_id','=',$id],['persona_id','=',$persona->id]])->get();
+            if($existerela==null){
+                $postulante->addFamiliar($persona,$relacion);
+            }
         return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('storedFamiliar', 'Se registró el Familiar correctamente.');
     }
 
