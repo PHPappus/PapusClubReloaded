@@ -53,16 +53,18 @@ class ReservarAmbienteController extends Controller
 
         $reservas_caso_1=Reserva::whereBetween('fecha_inicio_reserva',[$fechaIni,$fechaFin])->get();
         $reservas_caso_2=Reserva::whereBetween('fecha_fin_reserva',[$fechaIni,$fechaFin])->get();
-
+        foreach ($ambientes as $i=> $ambiente) {
+                if($ambiente->capacidad_actual<$capacidad)  unset($ambientes[$i]);
+        }
         foreach ($ambientes as $i=> $ambiente) {
             foreach ($reservas_caso_1 as  $reserva) {
-                if($reserva->ambiente_id==$ambiente->id || $ambiente->capacidad_actual<$capacidad)  unset($ambientes[$i]);
+                if($reserva->ambiente_id==$ambiente->id)  unset($ambientes[$i]);
                 
             }
         }
         foreach ($ambientes as $i => $ambiente) {
              foreach ($reservas_caso_2 as  $reserva) {
-                if($reserva->ambiente_id==$ambiente->id ||$ambiente->capacidad_actual<$capacidad) unset($ambientes[$i]);
+                if($reserva->ambiente_id==$ambiente->id) unset($ambientes[$i]);
                 
             }
         }
@@ -116,16 +118,18 @@ class ReservarAmbienteController extends Controller
         $reservas_caso_1=Reserva::where('fecha_inicio_reserva','=',$fechaIni )->whereBetween('hora_inicio_reserva',[$horaInicio,$horaFin])->get();
 
         $reservas_caso_2=Reserva::where('fecha_inicio_reserva','=', $fechaFin)->whereBetween('hora_fin_reserva',[$horaInicio,$horaFin])->get();
-
+        foreach ($ambientes as $i=> $ambiente) {
+                if($ambiente->capacidad_actual<$capacidad)  unset($ambientes[$i]);
+        }
         foreach ($ambientes as $i=> $ambiente) {
             foreach ($reservas_caso_1 as  $reserva) {
-                if($reserva->ambiente_id==$ambiente->id || $ambiente->capacidad_actual<$capacidad)  unset($ambientes[$i]);
+                if($reserva->ambiente_id==$ambiente->id)  unset($ambientes[$i]);
                 
             }
         }
         foreach ($ambientes as $i => $ambiente) {
              foreach ($reservas_caso_2 as  $reserva) {
-                if($reserva->ambiente_id==$ambiente->id ||$ambiente->capacidad_actual<$capacidad) unset($ambientes[$i]);
+                if($reserva->ambiente_id==$ambiente->id) unset($ambientes[$i]);
                 
             }
         }
