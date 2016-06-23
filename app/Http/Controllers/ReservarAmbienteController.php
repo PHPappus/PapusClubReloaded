@@ -135,7 +135,7 @@ class ReservarAmbienteController extends Controller
 
     public function createBungalow($id)
     {   
-        $ambiente = Ambiente::findOrFail($id);
+        $ambiente = Ambiente::find($id);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
       
         return view('socio.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes'));
@@ -211,7 +211,7 @@ class ReservarAmbienteController extends Controller
 
     public function createOtroTipoAmbiente($id)
     {   
-        $ambiente = Ambiente::findOrFail($id);
+        $ambiente = Ambiente::find($id);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
         return view('socio.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente','tipo_comprobantes'));
     }
@@ -286,7 +286,7 @@ class ReservarAmbienteController extends Controller
      public function listaReservas() // va  a la lista la reserva de los socios
     {
         $user_id = Auth::user()->id;
-        $usuario = User::findOrFail($user_id);
+        $usuario = User::find($user_id);
         $persona = $usuario->persona;  
         $reservas=Reserva::where('id_persona','=',$persona->id)->get();
         return view('socio.reservar-ambiente.lista-reservas',compact('reservas')); //debe pasarse la lsita de reservas del socio 
@@ -294,7 +294,7 @@ class ReservarAmbienteController extends Controller
      public function showReserva($id) // va  a la lista la reserva de los socios
     {
         $user_id = Auth::user()->id;
-        $usuario = User::findOrFail($user_id);
+        $usuario = User::find($user_id);
         $persona = $usuario->persona;  
         $reservas= Reserva::where('id_persona','=',$persona->id)->get();
         $reserva = Reserva::find($id);
@@ -302,7 +302,7 @@ class ReservarAmbienteController extends Controller
     }
     
     public function eliminarReserva($id){
-        $reserva=Reserva::findOrFail($id);
+        $reserva=Reserva::find($id);
         $today=Carbon::now();
         $carbon=new Carbon();
         $fechaInicio=$carbon->createFromFormat('Y-m-d', $reserva->fecha_inicio_reserva);
@@ -313,6 +313,7 @@ class ReservarAmbienteController extends Controller
         else{
             return redirect('reservar-ambiente/lista-reservas')->with('delete', 'No se puede eliminar esta reserva,se vencio el plazo maximo para su anulacion.');
         }
+        $reserva->facturacion->delete();
 
         return back();
         
@@ -406,7 +407,7 @@ class ReservarAmbienteController extends Controller
 
     public function createBungalowAdminR($id)
     {   
-        $ambiente = Ambiente::findOrFail($id);
+        $ambiente = Ambiente::find($id);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
         $personas = Persona::all();
         return view('admin-reserva.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes','personas'));
@@ -465,7 +466,7 @@ class ReservarAmbienteController extends Controller
 
     public function createOtroTipoAmbienteAdminR($id)
     {   
-        $ambiente = Ambiente::findOrFail($id);
+        $ambiente = Ambiente::find($id);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
         $personas = Persona::all();
         return view('admin-reserva.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente','tipo_comprobantes','personas'));

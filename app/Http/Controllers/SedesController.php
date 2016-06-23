@@ -121,15 +121,11 @@ class SedesController extends Controller
         $sede->direccion = $input['direccion'];
         $sede->referencia = $input['referencia'];
         $sede->nombre_contacto = $input['nombre_contacto'];
-        $sede->capacidad_maxima = $input['capacidad_maxima'];
-        if($input['capacidad_maxima']<=$sede->maximo_actual) // se asigna una nueva capacidad máxima menor al máximo actual por lo cual debe actualizarse a cero
-        {
-            $sede->maximo_actual=0;
-        }
-        else
-        {
-            $sede->maximo_actual= $sede->maximo_actual + $input['capacidad_maxima'];
-        }
+        /*Modificando capacidad*/
+        $nueva_capacidad = $input['capacidad_maxima'];
+        $ingresantes = $sede->capacidad_maxima - $sede->maximo_actual; 
+        $sede->maximo_actual=$nueva_capacidad-$ingresantes;
+        $sede->capacidad_maxima=$nueva_capacidad;
 
         $sede->capacidad_socio = $input['capacidad_socio'];
         $sede->save();
