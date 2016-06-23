@@ -65,10 +65,12 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('inscripcion-actividad/{id}/delete', 'InscriptionActividadController@removeInscriptionToPersona');
 
 
-	//Trámites Socio
+	//Trámites SocioF
 	Route::get('traspaso/','SocioController@traspmembresia');
 	Route::post('traspaso/nuevo','SocioController@storeTraspaso');
 	Route::get('mis-multas/','SocioController@misMultas');
+	Route::get('ver-postulantes/','SocioController@verPostulantes');
+	Route::get('socio-postulante/{id}/obs','SocioController@agregarObs');
 
 
 	//RESERVA DE AMBIENTES

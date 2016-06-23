@@ -127,7 +127,8 @@
             </a>
             <ul class="dropdown-menu">
               <li><a href="{!!URL::to('/traspaso')!!}" title="solicitar traspasos" target="_self">Traspasos</a></li>
-              <li><a href="{!!URL::to('/mis-multas')!!}" title="solicitar traspasos" target="_self">Mis Multas</a></li>
+              <li><a href="{!!URL::to('/mis-multas')!!}" title="ver multas" target="_self">Mis Multas</a></li>
+              <li><a href="{!!URL::to('/ver-postulantes')!!}" title="calificar postulantes" target="_self">Postulantes</a></li>
             </ul>
           </li>
         </ul>
