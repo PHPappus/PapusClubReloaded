@@ -303,14 +303,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('membresia/{id}/editar','MembresiaController@edit');
 	Route::get('membresia/{membresia}/delete', 'MembresiaController@destroy');
 	Route::get('membresia/{id}/activate','MembresiaController@activate');
-	Route::patch('membresia/{id}/edit','MembresiaController@update'); 
-		
-
-	
-	
-
-	
-
+	Route::patch('membresia/{id}/edit','MembresiaController@update');
 });
 
 
@@ -481,7 +474,7 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	route::get('ingreso-socio','ControlIngresosController@indexsocio');
 	Route::post('/resultado-busqueda-socio','ControlIngresosController@buscarsocio');
 	Route::post('/marcar-ingreso-socio','ControlIngresosController@ingresosocio');
-
+});
 
 //Publico
 	Route::group(['middleware' => ['auth', 'publico']], function () {
