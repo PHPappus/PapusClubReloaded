@@ -1,4 +1,6 @@
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 [2016-06-22 06:15:13] local.ERROR: InvalidArgumentException: View [socio.postulantes.crerObservacion] not found. in C:\xampp\htdocs\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php:137
 Stack trace:
 #0 C:\xampp\htdocs\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\View\FileViewFinder.php(79): Illuminate\View\FileViewFinder->findInPaths('socio.postulant...', Array)
@@ -168,6 +170,7 @@ Stack trace:
 #26 C:\xampp\htdocs\PapusClubReloaded\artisan(29): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #27 {main}  
 >>>>>>> mjjj
+<<<<<<< HEAD
 [2016-06-23 16:34:36] local.ERROR: Symfony\Component\Console\Exception\CommandNotFoundException: Command "make:migrate" is not defined.
 
 Did you mean one of these?
@@ -907,3 +910,6 @@ Stack trace:
 #72 C:\xampp\htdocs\PapusClubReloaded\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #73 C:\xampp\htdocs\PapusClubReloaded\server.php(21): require_once('C:\\xampp\\htdocs...')
 #74 {main}  
+=======
+>>>>>>> mjjj
+>>>>>>> mjjj

@@ -57,12 +57,7 @@
 										<div class="btn-group col-sm-4" ></div>
 										<div class="btn-group col-sm-4"></div>
 										
-										<div class="btn-group">
-											<a href="#"  class="btn btn-info back" disabled><span class="glyphicon glyphicon-chevron-left"></span></a>
-										</div>
-										<div class="btn-group">
-											<a href="#" class="btn btn-info cont" ><span class="glyphicon glyphicon-chevron-right"></span></a>
-										</div>
+										
 								</div>
 								<div class="form-group">
 									<div class="col-sm-6">
@@ -194,12 +189,6 @@
 										<div class="btn-group col-sm-4" ></div>
 										<div class="btn-group col-sm-4"></div>
 										
-										<div class="btn-group">
-											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-										</div>
-										<div class="btn-group">
-											<a href="#" class="btn btn-info cont" ><span class="glyphicon glyphicon-chevron-right"></span></a>
-										</div>
 								</div>
 
 
@@ -275,12 +264,7 @@
 									<div class="btn-group col-sm-4" ></div>
 									<div class="btn-group col-sm-4"></div>
 									
-									<div class="btn-group">
-										<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-									</div>
-									<div class="btn-group">
-										<a href="#" class="btn btn-info cont" ><span class="glyphicon glyphicon-chevron-right"></span></a>
-									</div>
+									
 							</div>
 						</div>
 										<!--DATOS VIVIENDA-->

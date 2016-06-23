@@ -49,10 +49,11 @@ class CreatePostulanteTable extends Migration
             $table->integer('nro_hijos');
 
             //DATOS DE VIVIENDA
-/*            $table->integer('departamento');
-            $table->integer('provincia');
-            $table->integer('distrito');*/
+            $table->integer('departamento_vivienda');
+            $table->integer('provincia_vivienda');
+            $table->integer('distrito_vivienda');
             $table->string('domicilio');
+            $table->string('referencia_vivienda');
 
             //CONTACTO
             $table->integer('telefono_domicilio');

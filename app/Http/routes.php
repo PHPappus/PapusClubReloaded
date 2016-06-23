@@ -352,10 +352,20 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	/*editar*/
 	Route::patch('postulante/{id}/editBasico','PostulanteController@updateBasico');
 	Route::patch('postulante/{id}/editNacimiento','PostulanteController@updateNacimiento');
+	Route::patch('postulante/{id}/editVivienda','PostulanteController@updateVivienda');
 	Route::patch('postulante/{id}/editEstudio','PostulanteController@updateEstudio');
 	Route::patch('postulante/{id}/editTrabajo','PostulanteController@updateTrabajo');
 	Route::patch('postulante/{id}/editContacto','PostulanteController@updateContacto');
-	
+
+	/*FAMILIAR*/
+	Route::get('postulante/{id}/familiar/new','PostulanteController@createFamiliar');
+	Route::post('postulante/{id}/familiar/save','PostulanteController@storeFamiliar');
+	Route::get('postulante/{id}/familiar/delete','PostulanteController@deleteFamiliar');
+	Route::get('postulante/familiar/{id}/{id_postulante}','PostulanteController@detailFamiliar');
+
+
+
+
 /*	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');*/
 
 	//Route::get('/provincias','PostulanteController@getProvincias');
@@ -395,8 +405,16 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 		$prov_id=Input::get('id');
     	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
 	});
-	//Route::get('api/repairdropdown', 'UbicacionController@dropdown');
 
+	/*Ajax para el registro de vivienda en registrar postulante*/
+	Route::post('postulante/provincias_viviendaEdit', function(){
+		$dep_id=Input::get('id');
+    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
+	});
+	Route::post('postulante/distritos_viviendaEdit', function(){
+		$prov_id=Input::get('id');
+    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
+	});
 
 	//MANTENIMIENTO DE SOCIO
 	Route::get('Socio/','SocioAdminController@index');

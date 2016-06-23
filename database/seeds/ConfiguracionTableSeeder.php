@@ -50,7 +50,7 @@ class ConfiguracionTableSeeder extends Seeder
 
         Configuracion::insert([ 'valor' => 'Deportivo' , 'grupo' => '4', 'descripcion'=>'tipo de servicio']);
         Configuracion::insert([ 'valor' => 'Ocio' , 'grupo' => '4', 'descripcion'=>'tipo de servicio']);
-        Configuracion::insert(['valor' => 'Recreacional' , 'grupo' => '4', 'descripcion'=>'tipo de servicio']);
+        Configuracion::insert([ 'valor' => 'Recreacional' , 'grupo' => '4', 'descripcion'=>'tipo de servicio']);
         Configuracion::insert([ 'valor' => 'A Bungalow' , 'grupo' => '4', 'descripcion'=>'tipo de servicio']);
 
 
