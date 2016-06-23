@@ -94,7 +94,7 @@ class PersonaTableSeeder extends Seeder
             'sexo'=>'hombre',
             'correo'=>'j.loayza@hotmail.com',
             'fecha_nacimiento'=>'1993-11-01',
-            'id_tipo_persona'=>3,
+            'id_tipo_persona'=>2,
             'id_usuario'=>3]);
 
         Persona::create([

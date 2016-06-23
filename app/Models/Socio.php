@@ -24,7 +24,7 @@ class Socio extends Model
 
     public function postulante()
     {
-    	return $this->belongsTo(Postulante::class,'postulante_id','id_postulante');
+    	return $this->belongsTo(Postulante::class,'postulante_id');
     }
 
     public function carnets()
@@ -111,6 +111,11 @@ class Socio extends Model
     public function multaxpersona()
     {
         return $this->belongsToMany(Multa::class,'multaxpersona','socio_id','multa_id')->withPivot('multa_modificada','descripcion_detallada','fecha_registro');
+    }
+
+    public function traspaso()
+    {
+        return $this->hasMany(Traspaso::class);
     }
 
     

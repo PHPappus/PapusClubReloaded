@@ -23,7 +23,7 @@ class StoreSocioxSorteoRequest extends Request
      */
     public function rules()
     {
-        return [
+        return ['ch'=>'required'
                               
         ];
     }
