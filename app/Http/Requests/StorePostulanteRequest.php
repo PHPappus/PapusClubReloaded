@@ -32,7 +32,7 @@ class StorePostulanteRequest extends Request
             'ap_materno' => 'required|max:100|string',
             'doc_identidad'=> 'required_if:nacionalidad,peruano', //| unique:persona,doc_identidad,NULL',
             'carnet_extranjeria'=> 'required_if:nacionalidad,extranjero',//  | unique:persona,carnet_extranjeria,NULL',
-
+            'estado_civil'=>'required|exists:configuracion,id',
             //'correo'=>'required|string',
             //'puestoSelect' => 'required|exists:configuracion,id'
 
@@ -46,6 +46,13 @@ class StorePostulanteRequest extends Request
             'pais_nacimiento'=>'required_if:nacionalidad,extranjero',
             'lugar_nacimiento'=>'required_if:nacionalidad,extranjero',
 
+            //Vivienda            'puestoSelect' => 'required|exists:configuracion,id'
+            'departamento_vivienda' => 'required|exists:departamento,id',
+            'provincia_vivienda' => 'required|exists:provincia,id',
+            'distrito_vivienda' => 'required|exists:distrito,id',
+            'domicilio'=>'required',
+            'referencia_vivienda'=>'required',
+
             //educacion
             'colegio_primario'=>'required|max:100|string',
             'colegio_secundario'=>'required|max:100|string',
@@ -57,6 +64,7 @@ class StorePostulanteRequest extends Request
             //Contacto
             'telefono_celular'=>'required|string|max:12',
             'correo'=>'required|email'
+
             
             //'distrito' => 'required | exists:distrito,id',
             //solo pedira que se ingrese si es peruano ya en el store se registrara si el ingresado existe

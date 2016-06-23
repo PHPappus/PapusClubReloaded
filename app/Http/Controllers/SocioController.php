@@ -190,4 +190,23 @@ class SocioController extends Controller
 
         return view('socio.multas.mismultasindex',compact('multas'));
     }
+
+    public function verPostulantes()
+    {
+        $personas=Postulante::all();
+        $postulantes=array();
+        foreach ($personas as $per) {
+            if($per->socio==NULL)
+                array_push($postulantes,$per);
+        }
+
+        return view('socio.postulantes.verPostulantes',compact('postulantes'));
+    }
+
+    public function agregarObs($id)
+    {
+        $postulante=Postulante::find($id);
+
+        return view('socio.postulantes.crearObservacion',compact('postulante'));    
+    }
 }
