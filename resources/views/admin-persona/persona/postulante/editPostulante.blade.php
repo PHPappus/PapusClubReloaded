@@ -225,7 +225,7 @@
 												</div>
 												<div class="col-sm-6">
 												<!--Se hace validacion para que acepte solo numeros pero que sea un texto-->
-														<input  type="text" onkeypress="return inputLimiter(event,'Numbers')"  @if ($postulante->persona->nacionalidad!="peruano") disabled  @endif  class="form-control" id="doc_identidad" name="doc_identidad" placeholder="DNI" maxlength="8" style="max-width: 250px" value="{{$postulante->persona->doc_identidad}}" value="{{old('doc_identidad')}}"  >
+														<input  type="text" onkeypress="return inputLimiter(event,'Numbers')"fape  @if ($postulante->persona->nacionalidad!="peruano") disabled  @endif  class="form-control" id="doc_identidad" name="doc_identidad" placeholder="DNI" maxlength="8" style="max-width: 250px" value="{{$postulante->persona->doc_identidad}}" value="{{old('doc_identidad')}}"  >
 												</div>	
 											</div>
 									</div>
@@ -609,7 +609,7 @@
 
 
 									</div>
-									<div class="form-group required">
+										<div class="form-group required">
 											<div class="col-sm-6">
 												<div class="col-sm-6 text-left">
 													<label for="" class="control-label">Departamento:</label>
@@ -711,7 +711,7 @@
 										     	</div><!-- /.modal-content -->
 									   		</div><!-- /.modal-dialog -->
 										</div><!-- /.modal -->
-							
+
 										<br><br>
 										<div class="form-group required" >
 												<div class="btn-group col-sm-5" ></div>
@@ -723,7 +723,6 @@
 													<a href="/postulante/index" class="btn btn-info">Retornar</a>
 												</div>
 										</div>	
-
 								</form>
 							</div>
 						<!--===================================-->
