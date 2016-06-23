@@ -61,6 +61,7 @@ class PostulanteController extends Controller
         $persona->ap_paterno = trim($input['ap_paterno']);
         $persona->ap_materno = trim($input['ap_materno']);
 
+        
         $persona->id_tipo_persona = 2;
         $persona->sexo=$input['sexo'];
 
