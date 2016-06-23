@@ -554,7 +554,7 @@
 													              		<a class="btn btn-info" href="{{url('/postulante/familiar/'.$familiar->id.'/'.$postulante->persona->id)}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 													            	</td>
 													            	<td>												           
-																		<a class="btn btn-info"  title="Eliminar" data-href="{{url('/postulante/'.$familiar->id.'/familiar/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+																		<a class="btn btn-info"  title="Eliminar" data-href="{{url('/postulante/'.$familiar->id.'/'.$postulante->id_postulante.'/familiar/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
 													            	</td>		
 
 															</tr>

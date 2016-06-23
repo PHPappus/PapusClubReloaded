@@ -9,6 +9,7 @@ use papusclub\Models\Provincia;
 use papusclub\Models\Distrito;
 use papusclub\Models\Postulante;
 use papusclub\Models\TipoFamilia;
+use papusclub\Models\FamiliarxPostulante;
 use papusclub\Http\Requests\StorePostulanteRequest;
 use papusclub\Http\Requests\EditPostulanteBasicoRequest;
 use papusclub\Http\Requests\EditPostulanteNacimientoRequest;
@@ -22,7 +23,7 @@ use papusclub\Http\Requests;
 use papusclub\Models\Configuracion;
 use Illuminate\Support\Facades\Redirect;
 use Session;
-
+use DB;
 use Carbon\Carbon;
 
 class PostulanteController extends Controller
@@ -483,7 +484,14 @@ class PostulanteController extends Controller
             }
             $persona->id_tipo_persona = 3;
             $persona->correo=$input['correo'];
-            $persona->save();
+
+
+            $match=['postulante_id'=>$id,'persona_id'=>$persona->id];
+            $relacion = DB::table('familiarxpostulante')->where($match)->get();
+            if($relacion==null){
+                $persona->save();    
+            }
+            
 /*            var_dump($persona);
             die();*/
         }
@@ -492,11 +500,15 @@ class PostulanteController extends Controller
         return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('storedFamiliar', 'Se registró el Familiar correctamente.');
     }
 
-    public function deleteFamiliar(Request $request,$id)
+    public function deleteFamiliar(Request $request,$id,$id_postulante)
     {
-        $familiar = Persona::find($id);
+        $match=['postulante_id'=>$id_postulante,'persona_id'=>$id];
+        DB::table('familiarxpostulante')->where($match)->delete();
+        /*$familiar = FamiliarxPostulante::where($match)->first();*/
+        /*var_dump($familiar);
+        die();*/
         //$familiar->delete();
-        $familiar->forceDelete();
+       /* $familiar->delete();*/
 
         Session::flash('update','familia');    
         return back();
