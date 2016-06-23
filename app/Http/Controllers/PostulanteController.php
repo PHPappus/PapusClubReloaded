@@ -131,6 +131,11 @@ class PostulanteController extends Controller
                     $postulante->distrito=$input['distrito']; 
                 $postulante->direccion_nacimiento=$input['direccion_nacimiento'];
             }
+            else{
+                $postulante->pais_nacimiento=$input['pais_nacimiento'];
+                $postulante->lugar_nacimiento=$input['lugar_nacimiento'];
+
+            }
 
             /*Datos de provincia*/
                 if(isset($input['departamento_vivienda']))

@@ -196,50 +196,74 @@
 										</div>	
 									</div>
 								</div>
-
-								<div class="form-group">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Departamento:</label>
-											</div>
+								@if(strcmp($postulante->persona->nacionalidad,'peruano')==0)
+									<div class="form-group">
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="departamento" name="departamento" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{array_values($arregloLugar)[0]['nombre']}}" disabled>
-											</div>		
-										</div>
-								</div>
-
-								<div class="form-group">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Provincia:</label>
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Departamento:</label>
+												</div>
+												<div class="col-sm-6">
+													<input type="text" class="form-control" id="departamento" name="departamento" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{array_values($arregloLugar)[0]['nombre']}}" disabled>
+												</div>		
 											</div>
-											<div class="col-sm-6">
-												<input type="text" class="form-control" id="provincia" name="provincia" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{array_values($arregloLugar)[1]['nombre']}}" disabled>
-											</div>		
-										</div>
-								</div>
+									</div>
 
-								<div class="form-group">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Distrito:</label>
-											</div>
+									<div class="form-group">
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="distrito" name="distrito" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{array_values($arregloLugar)[2]['nombre']}}" disabled>
-											</div>		
-										</div>
-								</div>
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Provincia:</label>
+												</div>
+												<div class="col-sm-6">
+													<input type="text" class="form-control" id="provincia" name="provincia" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{array_values($arregloLugar)[1]['nombre']}}" disabled>
+												</div>		
+											</div>
+									</div>
 
-								<div class="form-group">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Direccion Nacimiento:</label>
-											</div>
+									<div class="form-group">
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{$postulante->direccion_nacimiento}}" disabled>
-											</div>		
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Distrito:</label>
+												</div>
+												<div class="col-sm-6">
+													<input type="text" class="form-control" id="distrito" name="distrito" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{array_values($arregloLugar)[2]['nombre']}}" disabled>
+												</div>		
+											</div>
+									</div>
+
+									<div class="form-group">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Direccion Nacimiento:</label>
+												</div>
+												<div class="col-sm-6">
+													<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{$postulante->direccion_nacimiento}}" disabled>
+												</div>		
+											</div>
+									</div>
+								@else
+										<div class="form-group required">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">País de Nacimiento:</label>
+												</div>
+												<div class="col-sm-6">
+													<input type="text" class="form-control" id="pais_nacimiento" name="pais_nacimiento" placeholder="Pais de  Nacimiento" style="max-width: 250px" value="{{$postulante->pais_nacimiento}}" disabled="true">
+												</div>		
+											</div>
 										</div>
-								</div>
+
+										<div class="form-group ">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Ciudad de Nacimiento:</label>
+												</div>
+												<div class="col-sm-6">
+													<input type="text" class="form-control" id="lugar_nacimiento" name="lugar_nacimiento" placeholder="Lugar de Nacimiento" style="max-width: 250px" value="{{$postulante->lugar_nacimiento}}" disabled="true">
+												</div>		
+											</div>
+										</div>
+
+								@endif
 
 								<div class="form-group">
 									<div class="col-sm-5"> </div>
