@@ -34,24 +34,35 @@ class ReservarAmbienteController extends Controller
         $sedes = Sede::all();
         $input = $request->all();
         $carbon=new Carbon();
+        $fechaIni   = new Carbon('America/Lima');
+        $fechaFin   = new Carbon('America/Lima'); 
+
         $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();
-        $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
-        $fechaIni=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
-        $a_realizarse_en = str_replace('/', '-', $input['fecha_fin']);
+        if(!empty($input['fecha_inicio'])){
+            $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
+            $fechaIni=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+        }
+        if(!empty($input['fecha_fin'])){
+            $a_realizarse_en = str_replace('/', '-', $input['fecha_fin']);
         $fechaFin=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+        }
+         if(!empty($input['capacidad_actual'])){
+            $capacidad=$input['capacidad_actual'];
+         }else
+            $capacidad=0;
 
         $reservas_caso_1=Reserva::whereBetween('fecha_inicio_reserva',[$fechaIni,$fechaFin])->get();
         $reservas_caso_2=Reserva::whereBetween('fecha_fin_reserva',[$fechaIni,$fechaFin])->get();
 
         foreach ($ambientes as $i=> $ambiente) {
             foreach ($reservas_caso_1 as  $reserva) {
-                if($reserva->ambiente_id==$ambiente->id || $ambiente->capacidad_actual<$input['capacidad_actual'] )  unset($ambientes[$i]);
+                if($reserva->ambiente_id==$ambiente->id || $ambiente->capacidad_actual<$capacidad)  unset($ambientes[$i]);
                 
             }
         }
         foreach ($ambientes as $i => $ambiente) {
              foreach ($reservas_caso_2 as  $reserva) {
-                if($reserva->ambiente_id==$ambiente->id ||$ambiente->capacidad_actual<$input['capacidad_actual']) unset($ambientes[$i]);
+                if($reserva->ambiente_id==$ambiente->id ||$ambiente->capacidad_actual<$capacidad) unset($ambientes[$i]);
                 
             }
         }
@@ -70,44 +81,54 @@ class ReservarAmbienteController extends Controller
     public function reservarOtrosAmbientesFiltrados(Request $request)
     {
 
+       
         $sedes = Sede::all();
         $input = $request->all();
         $carbon=new Carbon();
-        $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
-        $fecha=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+        $fechaIni   = new Carbon('America/Lima');
+        $fechaFin   = new Carbon('America/Lima'); 
 
         $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->get();
+        if(!empty($input['fecha_inicio'])){
+            $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
+            $fechaIni=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+        }
+        if(!empty($input['fecha_fin'])){
+            $a_realizarse_en = str_replace('/', '-', $input['fecha_fin']);
+        $fechaFin=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+        }
+         if(!empty($input['capacidad_actual'])){
+            $capacidad=$input['capacidad_actual'];
+         }else
+            $capacidad=0;
+         /*Se prepara las horas para ser comparadas*/
+        $horaInicio=$input['horaInicio'];
+        $horaFin=$input['horaFin'];
 
-        $reservas_caso_1=Reserva::where('fecha_inicio_reserva','=',$fecha )->whereBetween('hora_inicio_reserva',[$input['horaInicio'],$input['horaFin']])->get();
+        if(empty($input['horaInicio'])){
+            $horaInicio="00:00";
+        }
+        if(empty($input['horaFin'])){
+            $horaFin="23:59" ;
+        }
+        /*Se terminó de preparar las horas*/
+            
+        $reservas_caso_1=Reserva::where('fecha_inicio_reserva','=',$fechaIni )->whereBetween('hora_inicio_reserva',[$horaInicio,$horaFin])->get();
 
-        $reservas_caso_2=Reserva::where('fecha_inicio_reserva','=', $fecha)->whereBetween('fecha_fin_reserva', [$input['horaInicio'], $input['horaFin']])->get();
+        $reservas_caso_2=Reserva::where('fecha_inicio_reserva','=', $fechaFin)->whereBetween('hora_fin_reserva',[$horaInicio,$horaFin])->get();
 
-        //$reservas_caso_3=Reserva::where('fecha_inicio_reserva','!=',$fecha)->get();
-
-        // echo $fecha;
-        // echo $reservas_caso_1;
-        // echo $reservas_caso_2;
-        //echo $reservas_caso_3;
-        //return exit;
-        
         foreach ($ambientes as $i=> $ambiente) {
             foreach ($reservas_caso_1 as  $reserva) {
-                if($reserva->ambiente_id==$ambiente->id || $ambiente->capacidad_actual< $input['capacidad_actual'])  unset($ambientes[$i]);
+                if($reserva->ambiente_id==$ambiente->id || $ambiente->capacidad_actual<$capacidad)  unset($ambientes[$i]);
                 
             }
         }
         foreach ($ambientes as $i => $ambiente) {
              foreach ($reservas_caso_2 as  $reserva) {
-                if($reserva->ambiente_id==$ambiente->id || $ambiente->capacidad_actual< $input['capacidad_actual']) unset($ambientes[$i]);
+                if($reserva->ambiente_id==$ambiente->id ||$ambiente->capacidad_actual<$capacidad) unset($ambientes[$i]);
                 
             }
         }
-        // foreach ($ambientes as $i => $ambiente) {
-        //      foreach ($reservas_caso_3 as  $reserva) {
-        //         if($reserva->ambiente_id==$ambiente->id) unset($ambientes[$i]);
-                
-        //     }
-        // }
         return view('socio.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes'));
         
     }
