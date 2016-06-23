@@ -55,9 +55,9 @@
 						<tr>
 							<th><DIV ALIGN=center>Nombre Ambiente</th>
 							<th><DIV ALIGN=center>Socio</th>
-							<th><DIV ALIGN=center>Id Socio</th>
 							<th><DIV ALIGN=center>Fecha Inicio</th>
 							<th><DIV ALIGN=center>HoraInicio</th>
+							<th><DIV ALIGN=center>Estado Reserva</th>
 							<th><DIV ALIGN=center>CANCELAR</th>
 							
 						</tr>
@@ -65,11 +65,11 @@
 					<tbody>
 							@foreach($reservas as $reserva)						
 						    	<tr>
-						    		<td>{{ $reserva->id }}</td>
-									<td>{{ $reserva->id }}</td>
-									<td>{{ $reserva->id }}</td>
-			 						<td>{{ $reserva->id }}</td>
-			 						<td>{{ $reserva->id }}</td>
+						    		<td>{{ $reserva->ambiente->nombre }}</td>
+									<td>{{ $reserva->persona->nombre }}</td>
+									<td>{{ $reserva->fecha_inicio_reserva }}</td>
+			 						<td>{{ $reserva->hora_inicio_reserva }}</td>
+			 						<td>{{ $reserva->estadoReserva }}</td>
 							        <td>
 							        <a class="btn btn-info"  title="Cancelar" data-href="#" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a> 
 							        </td>

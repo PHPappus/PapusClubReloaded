@@ -13,7 +13,7 @@ class Ambiente extends Model
     ['nombre', 
     'tipo_ambiente', 
     'capacidad_actual',     
-    'ubicacion'
+    'descripcion'
     ];
     protected $dates = ['deleted_at'];
     //funciones para las relaciones entre tablas
