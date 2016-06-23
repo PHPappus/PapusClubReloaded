@@ -24,7 +24,7 @@ class PersonaTableSeeder extends Seeder
         	'sexo'=>'hombre',
         	'correo'=>'mvilcapoma@gmail.com',
         	'fecha_nacimiento'=>'1991-07-15',
-        	'id_tipo_persona'=>3,
+        	'id_tipo_persona'=>1,
         	'id_usuario'=>1]);
 
         Persona::create([
@@ -36,7 +36,7 @@ class PersonaTableSeeder extends Seeder
             'sexo'=>'hombre',
             'correo'=>'chebasgods@yahoo.com',
             'fecha_nacimiento'=>'1993-04-24',
-            'id_tipo_persona'=>2]);
+            'id_tipo_persona'=>1]);
 
         Persona::create([       
             'nacionalidad'=>'peruano',
