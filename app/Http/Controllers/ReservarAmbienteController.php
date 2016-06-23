@@ -313,11 +313,33 @@ class ReservarAmbienteController extends Controller
         else{
             return redirect('reservar-ambiente/lista-reservas')->with('delete', 'No se puede eliminar esta reserva,se vencio el plazo maximo para su anulacion.');
         }
-        $reserva->facturacion->delete();
+        if($reserva->facturacion)
+            $reserva->facturacion->delete();
 
         return back();
         
     }
+
+    public function eliminarReservaAdminR($id){
+        $reserva=Reserva::find($id);
+        $today=Carbon::now();
+        $carbon=new Carbon();
+        $fechaInicio=$carbon->createFromFormat('Y-m-d', $reserva->fecha_inicio_reserva);
+        $diff=$fechaInicio->diffInDays($today);
+        if($diff >= 4){
+            $reserva->delete();
+        }
+        else{
+            return redirect('reservar-ambiente/lista-reservas')->with('delete', 'No se puede eliminar esta reserva,se vencio el plazo maximo para su anulacion.');
+        }
+        if($reserva->facturacion)
+            $reserva->facturacion->delete();
+
+        return back();
+        
+    }
+
+    
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
