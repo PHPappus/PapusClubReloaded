@@ -27,5 +27,103 @@ class TarifaAmbientexTipoPersonaTableSeeder extends Seeder
         	'tipo_persona_id'=>3,
         	'precio'=>25,
         	]);
+
+        TarifaAmbientexTipoPersona::create([
+            'ambiente_id'=>2,
+            'tipo_persona_id'=>1,
+            'precio'=>10,
+            ]);
+        TarifaAmbientexTipoPersona::create([
+            'ambiente_id'=>2,
+            'tipo_persona_id'=>2,
+            'precio'=>15,
+            ]);
+        TarifaAmbientexTipoPersona::create([
+            'ambiente_id'=>2,
+            'tipo_persona_id'=>3,
+            'precio'=>25,
+            ]);
+
+        TarifaAmbientexTipoPersona::create([
+            'ambiente_id'=>3,
+            'tipo_persona_id'=>1,
+            'precio'=>10,
+            ]);
+        TarifaAmbientexTipoPersona::create([
+            'ambiente_id'=>3,
+            'tipo_persona_id'=>2,
+            'precio'=>15,
+            ]);
+        TarifaAmbientexTipoPersona::create([
+            'ambiente_id'=>3,
+            'tipo_persona_id'=>3,
+            'precio'=>25,
+            ]);
+
+        TarifaAmbientexTipoPersona::create([
+            'ambiente_id'=>4,
+            'tipo_persona_id'=>1,
+            'precio'=>10,
+            ]);
+        TarifaAmbientexTipoPersona::create([
+            'ambiente_id'=>4,
+            'tipo_persona_id'=>2,
+            'precio'=>15,
+            ]);
+        TarifaAmbientexTipoPersona::create([
+            'ambiente_id'=>4,
+            'tipo_persona_id'=>3,
+            'precio'=>25,
+            ]);
+
+        TarifaAmbientexTipoPersona::create([
+            'ambiente_id'=>5,
+            'tipo_persona_id'=>1,
+            'precio'=>10,
+            ]);
+        TarifaAmbientexTipoPersona::create([
+            'ambiente_id'=>5,
+            'tipo_persona_id'=>2,
+            'precio'=>15,
+            ]);
+        TarifaAmbientexTipoPersona::create([
+            'ambiente_id'=>5,
+            'tipo_persona_id'=>3,
+            'precio'=>25,
+            ]);
+
+        TarifaAmbientexTipoPersona::create([
+            'ambiente_id'=>6,
+            'tipo_persona_id'=>1,
+            'precio'=>10,
+            ]);
+        TarifaAmbientexTipoPersona::create([
+            'ambiente_id'=>6,
+            'tipo_persona_id'=>2,
+            'precio'=>15,
+            ]);
+        TarifaAmbientexTipoPersona::create([
+            'ambiente_id'=>6,
+            'tipo_persona_id'=>3,
+            'precio'=>25,
+            ]);
+
+        TarifaAmbientexTipoPersona::create([
+            'ambiente_id'=>7,
+            'tipo_persona_id'=>1,
+            'precio'=>10,
+            ]);
+        TarifaAmbientexTipoPersona::create([
+            'ambiente_id'=>7,
+            'tipo_persona_id'=>2,
+            'precio'=>15,
+            ]);
+        TarifaAmbientexTipoPersona::create([
+            'ambiente_id'=>7,
+            'tipo_persona_id'=>3,
+            'precio'=>25,
+            ]);
+
+
     }
 }

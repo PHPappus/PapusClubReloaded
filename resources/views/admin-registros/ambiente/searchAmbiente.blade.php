@@ -25,7 +25,7 @@
 			</div>
 			
 		</div>
-		<h4>1. Selecciones el ambiente que desea para la actividad a registrar.</h4>
+		<h4>1. Selecciones la reserva del ambiente para la actividad.</h4>
 
 		</br>
 		</br>
@@ -39,7 +39,7 @@
 							<th><DIV ALIGN=center>NOMBRE</th>
 							<th><DIV ALIGN=center>TIPO</th>
 							<th><DIV ALIGN=center>CAPACIDAD</th>
-							<!-- <th><DIV ALIGN=center>DETALLE</th> -->
+							
 							<th><DIV ALIGN=center>SELECCIONAR</th>
 						</tr>
 					</thead>
@@ -50,9 +50,6 @@
 									<td>{{ $ambiente->nombre }}</td>
 									<td>{{ $ambiente->tipo_ambiente }}</td>
 			 						<td>{{ $ambiente->capacidad_actual }}</td>
-									<!-- <td>
-							        <a class="btn btn-info" href="{{url('/ambiente/'.$ambiente->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-							        </td> -->
 									<td><a class="btn btn-info" href="{{url('/ambiente/'.$ambiente->id.'/select')}}"  title="OK" ><i class="glyphicon glyphicon-ok"></i></a>
 							        </td>
 							        							            

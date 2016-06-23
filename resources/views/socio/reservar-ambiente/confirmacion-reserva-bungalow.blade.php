@@ -5,7 +5,6 @@
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	{!!Html::style('../css/jquery.bxslider.css')!!}
 	{!!Html::style('../css/font-awesome.css')!!}
 	{!!Html::style('../css/bootstrap.css')!!}
 	{!!Html::style('../css/MisEstilos.css')!!}
@@ -77,24 +76,30 @@
 			   	 	<div class="input-group">
 			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" style="max-width: 250px" >
 			   		<span class="input-group-addon">-</span>
+			   		
 			   		<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_fin" placeholder="Fecha Fin" style="max-width: 250px">
 					</div>			   		
 		    	</div>	
 			</div>
-		  	<div class="form-group required">
-			   	<label for="contactoInput" class="col-sm-4 control-label">Socio</label>
-			  	<div class="col-sm-5">
-			   		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="contactoInput" name="nombre_contacto" placeholder="Socio" value="{{old('nombre_contacto')}}">
-			   	</div>
-			   	<a class="btn btn-info" name="buscarSocio" href="{!!URL::to('/reservar-ambiente/searchSocio')!!}"  title="Buscar" ><i name="buscarSocio" class="glyphicon glyphicon-search"></i></a>
-			    	<!-- deberia ir a una pantalla que liste todos los contactos posibles del Club  -->
-			</div>	  
+
 		  	<div class="form-group ">
 		    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="precioInput" onkeypress="return inputLimiter(event,'Numbers')" name="ubicacion" value="FALTA CALCULAR EL PRECIO" readonly>
 		    	</div>
 		  	</div>
+		  	
+		  	<div class="form-group required">
+			   	<label for="tipoComprobanteInput" class="col-sm-4 control-label">Tipo de Comprobante</label>
+			   	<div class="col-sm-5">
+			    	<select class="form-control" id="tipo_comprobante" name="tipo_comprobante">
+						<option value="-1" selected >Seleccionar tipo...</option>
+						@foreach($tipo_comprobantes as $tipo_comprobante)
+						<option value="{{$tipo_comprobante->valor}}" >{{$tipo_comprobante->valor}}</option>
+						@endforeach						
+					</select>						
+			    </div>
+			</div>	
 		  	
 		  	</br>
 		  	</br>
@@ -123,8 +128,6 @@
 	<script src="../js/jquery-1.11.3.min.js"></script>
 	<!-- Bootstrap -->
 	<script type="text/javascript" src="../js/bootstrap.js"></script>
-	<!-- BXSlider -->
-	<script src="../js/jquery.bxslider.min.js"></script>
 	<!-- Mis Scripts -->
 	<script src="../js/MisScripts.js"></script>
 

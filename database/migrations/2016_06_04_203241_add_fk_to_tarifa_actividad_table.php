@@ -16,7 +16,7 @@ class AddFkToTarifaActividadTable extends Migration
             
             $table->foreign('actividad_id')
                   ->references('id')
-                  ->on('ambiente');
+                  ->on('actividad');
             $table->foreign('tipo_persona_id')
                   ->references('id')
                   ->on('tipopersona');

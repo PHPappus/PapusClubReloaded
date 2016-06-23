@@ -25,8 +25,8 @@ class StorePromocionRequest extends Request
         return [
             'estado'                =>  'required|max:12|string',
             'descripcion'           =>  'required|max:100|string',
-            'montoDescuento'        =>  'required|integer|min:1',
-            'porcentajeDescuento'   =>  'required|integer|min:1'
+             'montoDescuento'        =>  'float|min:0',
+             'porcentajeDescuento'   =>  'float|min:0'
             // 'fecha_registro'        =>  'date'
             
             
