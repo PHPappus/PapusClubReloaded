@@ -161,10 +161,12 @@ class SocioController extends Controller
         $traspaso->estado = TRUE;
 
         $user_id = Auth::user()->id;
+
         $usuario = User::find($user_id);
+
         $persona_id = $usuario->persona->id;
 
-        $postulante = Postulante::find($persona_id)->first();
+        $postulante = Postulante::find($persona_id);
         $socio = $postulante->socio;
 
         $socio->traspaso()->save($traspaso);
@@ -177,14 +179,34 @@ class SocioController extends Controller
     public function misMultas()
     {
         $user_id = Auth::user()->id;
+
         $usuario = User::find($user_id);
         $persona_id = $usuario->persona->id;
 
-        $postulante = Postulante::find($persona_id)->first();
+        $postulante = Postulante::find($persona_id);
         $socio = $postulante->socio;
 
         $multas = $socio->multaxpersona;
 
         return view('socio.multas.mismultasindex',compact('multas'));
+    }
+
+    public function verPostulantes()
+    {
+        $personas=Postulante::all();
+        $postulantes=array();
+        foreach ($personas as $per) {
+            if($per->socio==NULL)
+                array_push($postulantes,$per);
+        }
+
+        return view('socio.postulantes.verPostulantes',compact('postulantes'));
+    }
+
+    public function agregarObs($id)
+    {
+        $postulante=Postulante::find($id);
+
+        return view('socio.postulantes.crearObservacion',compact('postulante'));    
     }
 }

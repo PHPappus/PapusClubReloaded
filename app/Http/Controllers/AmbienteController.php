@@ -110,11 +110,11 @@ class AmbienteController extends Controller
 
         $tipoPersonas = TipoPersona::all();
         foreach ($tipoPersonas as $tipoPersona) {
-            $tarifa = new TarifaAmbientexTipoPersona();
-            $tarifa->ambiente_id = $id;
-            $tarifa->tipo_persona_id = $tipoPersona->id;
-            $tarifa->precio = $input[$tipoPersona->descripcion];
-            $tarifa->save();
+                $tarifa = new TarifaAmbientexTipoPersona();
+                $tarifa->ambiente_id = $id;
+                $tarifa->tipo_persona_id = $tipoPersona->id;
+                $tarifa->precio = $input[$tipoPersona->descripcion];
+                $tarifa->save();
         }
 
         return redirect('ambiente/index');

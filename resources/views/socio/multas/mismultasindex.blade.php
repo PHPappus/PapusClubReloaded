@@ -21,8 +21,7 @@
 				<br/><br/>
 				<p class="lead"><strong>MULTAS</strong></p>
 				<br/>
-			</div>
-			
+			</div>			
 		</div>
 	</div>
 	</br>

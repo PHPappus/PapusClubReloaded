@@ -116,7 +116,12 @@
         </ul>
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <li><a href="{!!URL::to('/pagos-s')!!}" class="dropdown-toggle btn-lg" title="Consultar Cuotas" target="_self">Cuotas</a></li>
+            <li><a href="{!!URL::to('pagos/facturacion-socio/')!!}" class="dropdown-toggle btn-lg" title="Consultar Pagos" target="_self">Pagos</a></li>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <li><a href="{!!URL::to('reservar-ambiente/lista-reservas/')!!}" class="dropdown-toggle btn-lg" title="Consultar Pagos" target="_self">Reservas</a></li>
           </li>
         </ul>
 
@@ -127,7 +132,8 @@
             </a>
             <ul class="dropdown-menu">
               <li><a href="{!!URL::to('/traspaso')!!}" title="solicitar traspasos" target="_self">Traspasos</a></li>
-              <li><a href="{!!URL::to('/mis-multas')!!}" title="solicitar traspasos" target="_self">Mis Multas</a></li>
+              <li><a href="{!!URL::to('/mis-multas')!!}" title="ver multas" target="_self">Mis Multas</a></li>
+              <li><a href="{!!URL::to('/ver-postulantes')!!}" title="calificar postulantes" target="_self">Postulantes</a></li>
             </ul>
           </li>
         </ul>
