@@ -5,10 +5,11 @@
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	{!!Html::style('css/jquery.bxslider.css')!!}
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
+	{!!Html::style('css/datepicker.css')!!}
+	{!!Html::style('css/bootstrap-datepicker3.css')!!}
 	<!-- PARA DATA TABLE -->
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
 
@@ -180,20 +181,15 @@
 <br/>
  @stop
  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
- 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
-	<!-- JQuery -->
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+ <!-- JQuery -->
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	<!-- Bootstrap -->
 	{!!Html::script('js/bootstrap.js')!!}
-	
-	<!-- Mis Scripts -->
-	{!!Html::script('js/MisScripts.js')!!}
 
 	{!!Html::script('js/bootstrap-datepicker.js')!!}
 	 <!-- Languaje -->
     {!!Html::script('js/bootstrap-datepicker.es.min.js')!!}
-	<!-- {!!Html::script('js/bootstrap-datepicker-sirve.js')!!} -->
-	<!-- {!!Html::script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.js')!!} -->
 	
 
 	<!-- Para Data TAble INICIO -->
