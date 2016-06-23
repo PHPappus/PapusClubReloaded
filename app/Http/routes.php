@@ -281,6 +281,8 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	//INGRESO DE PRODUCTOS
 	Route::get('ingreso-producto/index', 'IngresoProductoController@index');
 	Route::get('ingreso-producto/new', 'IngresoProductoController@create');
+	Route::post('ingreso-producto/new/ingreso-producto', 'IngresoProductoController@store');
+	
 
 	//Inscribirse en Sorteo
 	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');

@@ -26,7 +26,7 @@
 			</div>		
 		</div>
 		<div class="container">
-			<form method="POST" action="/venta-producto/new/venta-producto" class="form-horizontal form-border">
+			<form method="POST" action="/ingreso-producto/new/ingreso-producto" class="form-horizontal form-border">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<div class="col-sm-4"></div>
