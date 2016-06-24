@@ -15,5 +15,6 @@ class ServicioxSedexPersona extends Model
     'id_persona',
     'precio',
     'fecha_registro',
+    'calificacion'
     ];    
 }

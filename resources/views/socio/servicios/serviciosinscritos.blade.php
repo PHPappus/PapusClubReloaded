@@ -55,7 +55,7 @@ echo $msj;
 		</div>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-				<strong>INSCRIPCIÓN EN SERVICIOS DISPONIBLES</strong>
+				<strong>MIS SERVICIOS INSCRITOS</strong>
 			</div>		
 		</div>
 		<div class="container">
@@ -98,7 +98,7 @@ echo $msj;
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-center">
-					<p class="lead"><strong>S E R V I C I O S &nbsp;&nbsp; D I S P O N I B L E S</strong></p>
+					<p class="lead"><strong>M I S &nbsp;&nbsp; S E R V I C I O S &nbsp;&nbsp; I N S C R I T O S  &nbsp;&nbsp;  </strong></p>
 				</div>
 			</div>
 		</div>
@@ -107,19 +107,19 @@ echo $msj;
 		</div>
 		<div class="table-responsive" >
 			<div class="container">
-				<table id="talleresTable" class="table table-bordered table-hover text-center display">
+				<table id="talleresTable" class="table text-center table-bordered table-hover  display">
 					<thead class="active">
 						<tr class="active">
 							<th><div align=center>NOMBRE</div></th>	
 							<th><div align=center>DESCRIPCIÓN</div></th>				
 							<th style="max-width:100px;"><div align=center>TIPO DE SERVICIO</div></th>
-							<th style="max-width:100px;"><div align=center>ESTADO</div></th>
+							
 							<th style="max-width:100px;"><div align=center>PRECIO SOCIO S/</div></th>
 							
-							<th><div align=center>PRECIO TRABAJADOR S/</div></th>
-							<th style="max-width:180px;"><div align=center>PRECIO INVITADOS/</div></th>							
+							
+							
 							<th><div align=center>SEDE</div></th>					
-							<th><div align=center>INSCRIBIRSE</div></th>
+							
 						</tr>
 					</thead>
 					<tbody>
@@ -141,13 +141,7 @@ echo $msj;
 	 								@endforeach
 	 							</td>					
 
-								<td>
-								@if($servicio->estado == 1)
-									ACTIVO 
-								@else 
-									INACTIVO
-								@endif
-								</td>
+							
 								@foreach($tarifarioservicios as $tser)
 								  @if( $tser->idservicio ==  $servicio->id)
 								      <td>{{$tser->precio}}</td>
@@ -165,10 +159,8 @@ echo $msj;
 						@endforeach 
 
 							
-						{{$sxs->idservicio}}
-									<td> 
-							        <a class="btn btn-info" href="{{url('/servicioalsocio/'.$sxs->id.'/confirm')}}" title="agregarservicio" ><i class="glyphicon glyphicon-ok"></i> {{$sxs->id}} </a>
-								    </td> 
+						
+		
 						</tr>
 					@endforeach 
 				

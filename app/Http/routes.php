@@ -44,11 +44,14 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('anular-reserva-ambiente-b-s','SocioController@anularReservaAmbienteB');
 	Route::get('pagos-s','SocioController@pagos');
 
-	// SOCIO INCRIPCION DE SERVICIOS LOL IF YOU REAAD THIS
+	// SOCIO INCRIPCION DE SERVICIOS LOL IF YOU READ THIS
 	Route::get('servicioalsocio/index','ServicioalsocioController@index');
 	Route::post('servicioalsocio/index','ServicioalsocioController@filtroServicio');
+	Route::get('servicioalsocio/{id}/confirm','ServicioalsocioController@confirmareleccion');
 
-	
+	Route::post('servicioalsocio/{id}/confirm/save','ServicioalsocioController@confirmareleccionsave');
+	Route::get('servicios/mis-inscripciones','ServicioalsocioController@misinscripciones');
+
 
 	//Socio.talleres  : INSCRIPCION DE TALLERES
 	Route::get('talleres/index','InscriptionTallerController@index');

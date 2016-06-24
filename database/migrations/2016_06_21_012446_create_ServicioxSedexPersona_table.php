@@ -19,6 +19,7 @@ class CreateServicioxSedexPersonaTable extends Migration
             $table->integer('id_persona');
             $table->double('precio');
             $table->date('fecha_registro');
+            $table->integer('calificacion');
             $table->timestamps();
         });
     }
