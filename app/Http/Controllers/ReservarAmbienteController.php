@@ -612,7 +612,7 @@ class ReservarAmbienteController extends Controller
 
         $facturacion->save();
 
-        return redirect('reservar-ambiente/reservar-bungalow')->with('stored', 'Se registró la reserva del bungalow correctamente.');        
+        return redirect('reservar-ambiente/reservar-bungalow-adminR')->with('stored', 'Se registró la reserva del bungalow correctamente.');        
     }
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
 
@@ -686,7 +686,7 @@ class ReservarAmbienteController extends Controller
         $facturacion->estado = $estado->valor;
 
         $facturacion->save();
-        return redirect('reservar-ambiente/reservar-otros-ambientes')->with('stored', 'Se registró la reserva del ambiente correctamente.');
+        return redirect('reservar-ambiente/reservar-otros-ambientes-adminR')->with('stored', 'Se registró la reserva del ambiente correctamente.');
     }
 
      public function searchSocioAdminR() // va  a la lista de los socios
