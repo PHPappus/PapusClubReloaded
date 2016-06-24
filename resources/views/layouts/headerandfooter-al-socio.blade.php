@@ -1,3 +1,12 @@
+<style>
+        /*Reparando desajuste*/
+        @media (min-width: 1350px){
+            #navbar1 {
+                width: 1250px;
+            }
+        }
+</style>
+
 
 <header class="header">
 
@@ -132,7 +141,7 @@ Papu.. aca termino comentario
 
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             {!!Auth::user()->name!!} <span class="glyphicon glyphicon-user"><span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
