@@ -98,7 +98,7 @@
 												<label for="" class="control-label">Nombre:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" style="max-width: 250px" value="{{old('nombre')}}" >
+												<input type="text" class="form-control" id="nombre" name="nombre" onkeypress="return inputLimiter(event,'Letters')" placeholder="Nombre" style="max-width: 250px" value="{{old('nombre')}}" >
 											</div>	
 										</div>
 									</div>
@@ -109,7 +109,7 @@
 												<label for="" class="control-label">Apellido Paterno:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="ap_paterno" name="ap_paterno" placeholder="Apellido Paterno" style="max-width: 250px" value="{{old('ap_paterno')}}">
+												<input type="text" class="form-control" id="ap_paterno" name="ap_paterno" onkeypress="return inputLimiter(event,'Letters')" placeholder="Apellido Paterno" style="max-width: 250px" value="{{old('ap_paterno')}}">
 											</div>	
 										</div>
 									</div>
@@ -120,7 +120,7 @@
 												<label for="" class="control-label">Apellido Materno:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="ap_materno" name="ap_materno" placeholder="Apellido Materno" style="max-width: 250px" value="{{old('ap_materno')}}">
+												<input type="text" class="form-control" id="ap_materno" name="ap_materno" onkeypress="return inputLimiter(event,'Letters')" placeholder="Apellido Materno" style="max-width: 250px" value="{{old('ap_materno')}}">
 											</div>	
 										</div>
 									</div>
