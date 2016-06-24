@@ -12,8 +12,8 @@ class Promocion extends Model
     ['estado',
     'descripcion' ,
     'montoDescuento' ,
-    'porcentajeDescuento',
-    'fecha_registro'
+    'porcentajeDescuento'
+    //'fecha_registro'
     ];
 
     

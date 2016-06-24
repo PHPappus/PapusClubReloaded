@@ -27,16 +27,59 @@ class SorteoController extends Controller
 
     public function loscohibaspapa($id)
     {
-        $lista_socios=Sorteoxsocio::find($id);
-        $lista_bungalows=AmbientexSorteo::find($id);
+        $sorteo=Sorteo::find($id);
+        $lista_socios=Sorteoxsocio::where('id','=',$id)->get();
+        $lista_bungalows=AmbientexSorteo::where('id','=',$id)->get();
 
         $num_socios=$lista_socios->count();
         $num_bungalows=$lista_bungalows->count();
-        echo $id;
-        echo $lista_socios;
-        echo $lista_bungalows;
-        echo $num_socios;
-        echo $num_bungalows;
+        
+        //dos casos: muchos bungalows y muchas o igual personas
+
+        /*if($num_socios<$num_bungalows)
+        {
+
+        }
+        else
+        {
+
+        }*/
+        /*
+        if($bungalows!=NULL)            
+            foreach ($ambienteXsorteo as $temp) {
+                foreach ($bungalows as $bungalow) {
+                    if($temp->id_ambiente==$bungalow)
+                    {
+                        $reservas=Reserva::where('fecha_fin_reserva','=',$sorteo->fecha_cerrado)->where('fecha_inicio_reserva','=',$sorteo->fecha_abierto)->where('ambiente_id','=',$bungalow)->get();
+                        foreach ($reservas as $reserva) {
+                            $reserva->delete();                            
+                        }
+                        $temp->delete();
+                        break;
+                    }
+            }
+        }
+        */
+        foreach($lista_bungalows as $bungalow)
+        {
+            //Posible error reservas y foreach
+            $reservas=Reserva::where('fecha_fin_reserva','=',$sorteo->fecha_cerrado)->where('fecha_inicio_reserva','=',$sorteo->fecha_abierto)->where('ambiente_id','=',$bungalow->id_ambiente)->get();
+            foreach ($reservas as $reserva) {
+                if(!$lista_socios->isEmpty())
+                {
+                    $temp_socio=$lista_socios->random();
+                    $reserva->id_persona=$temp_socio->id_socio;
+                    $lista_socios->pull($lista_socios->search($temp_socio));
+                }
+                else
+                {
+                    $reserva->delete();
+                }
+            }
+            
+        }
+
+        return redirect('sorteo/index')->with('stored','Se proceso el sorteo seleccionado');
     }
 
     public function inscripcionDelete(DeleteSorteoSocioRequest $request)

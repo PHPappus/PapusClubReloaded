@@ -20,7 +20,8 @@ class SedeTableSeeder extends Seeder
         	'direccion' => 'Av. Grau 457', 
         	'referencia' => 'Alt. Comisaria La Punta', 
         	'nombre_contacto' => 'Francisco Beingolea', 
-        	'capacidad_maxima' => 10000, 
+        	'capacidad_maxima' => 10000,
+            'maximo_actual'=> 10000,
         	'capacidad_socio' => 50 
         	]);
         Sede::create(['nombre' => 'Chosica', 
@@ -31,7 +32,8 @@ class SedeTableSeeder extends Seeder
             'direccion' => 'Av. Grau 457', 
             'referencia' => 'Alt. Comisaria La Punta', 
             'nombre_contacto' => 'Francisco Beingolea', 
-            'capacidad_maxima' => 10000, 
+            'capacidad_maxima' => 10000,
+            'maximo_actual'=> 10000,
             'capacidad_socio' => 50 
             ]);
 
@@ -43,7 +45,8 @@ class SedeTableSeeder extends Seeder
             'direccion' => 'Av. Grau 457', 
             'referencia' => 'Alt. Comisaria La Punta', 
             'nombre_contacto' => 'Francisco Beingolea', 
-            'capacidad_maxima' => 10000, 
+            'capacidad_maxima' => 10000,
+            'maximo_actual'=> 10000,
             'capacidad_socio' => 50 
             ]);
     }

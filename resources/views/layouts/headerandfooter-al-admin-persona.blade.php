@@ -55,11 +55,11 @@
         <ul class="nav navbar-nav">
           <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
           <li class="dropdown">
-            <a href="{!!URL::to('/postulante/index')!!}" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" role="button" >
+            <a href="#" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" role="button" >
               Postulante <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="#" title="Consultar postulantes" target="_self">Consultar</a></li>
+                <li><a href="{!!URL::to('/postulante/index')!!}" title="Consultar postulantes" target="_self">Consultar</a></li>
                 <li><a href="#" title="Registrar nuevo postulante" target="_self">Registrar</a></li>
                 <li><a href="#" title="Aprobar/Desaprobar postulante" target="_self">Aprobar/Desaprobar</a></li>
             </ul>

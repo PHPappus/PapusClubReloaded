@@ -143,7 +143,7 @@ class TallerController extends Controller
 
         $taller->update(['nombre'=>$input['nombre'],
                         'descripcion'=>$input['descripcion'],
-                        'profesor' => $input['profe'];
+                        'profesor' => $input['profe'],
                         'vacantes'=>$input['vacantes']
                          ]);
 

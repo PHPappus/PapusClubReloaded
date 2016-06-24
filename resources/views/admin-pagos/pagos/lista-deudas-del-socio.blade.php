@@ -39,30 +39,42 @@
 					<thead class="active">
 						<tr>
 							<th><DIV ALIGN=center>ID</th>
+							<th><DIV ALIGN=center>Tipo de Pago</th>
 							<th><DIV ALIGN=center>Monto</th>
 							<th><DIV ALIGN=center>Descripción</th>
-							<th><DIV ALIGN=center>estado</th>
-							<!-- <th><DIV ALIGN=center>DETALLE</th> -->
+							<th><DIV ALIGN=center>Estado</th>
 							<th><DIV ALIGN=center>Detalle</th>
+							<!-- <th><DIV ALIGN=center>Detalle</th> -->
 							<th><DIV ALIGN=center>Registrar Pago</th>
 						</tr>
 					</thead>
-					<tbody>
-							<td> 20100001</td>
-							<td> 2500</td>
-							<td> Deuda de Alquiler de Bungalow</td>
-							<td> No Pagado</td>				
-						    <td>
-							    <a class="btn btn-info" href="#"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-							</td>
-							<td>
-							    <a class="btn btn-info" href="{{url('/pagos/registrar-pago')}}" title="Registrar Pago" ><i class="glyphicon glyphicon-pencil"></i></a>
-							</td>
-							
-					</tbody>					
+					@foreach($facturaciones as $facturacion)
+					<tbody>						
+						<td> {{$facturacion->id}}</td>
+						<td> {{$facturacion->tipo_pago}}</td>
+						<td> {{$facturacion->total}}</td>
+						<td> {{$facturacion->descripcion}}</td>
+						<td> {{$facturacion->estado}} </td>				
+						 <td>
+						<a class="btn btn-info" href="{{url('/pagos/'.$facturacion->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+						</td>
+						<td>
+						<a class="btn btn-info" href="{{url('/pagos/registrar-pago/'.$facturacion->id.'')}}" title="Registrar Pago" ><i class="glyphicon glyphicon-pencil"></i></a>
+						</td>						
+					</tbody>
+					@endforeach					
 												
 					
-			</table>		
+			</table>
+
+			<br/>
+			<br/>
+			<div class="btn-inline">
+					<div class="btn-group col-sm-11"></div>
+					<div class="btn-group">
+						<a href="/pagos/pago-seleccionar-socio" class="btn btn-info">Regresar</a>
+					</div>
+				</div>		
 			
 		</div>
 	</div>

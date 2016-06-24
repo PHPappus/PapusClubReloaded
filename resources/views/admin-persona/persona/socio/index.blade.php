@@ -62,7 +62,6 @@
 							<th><div align=center>ESTADO</div></th>
 							<th><div align=center>DETALLE</div></th>
 							<th><div align=center>EDITAR</div></th>
-							<th><div align=center>ESTADO</div></th>
 						</thead>
 						<tbody>
 							@foreach($socios as $socio)
@@ -80,9 +79,6 @@
 						            	<td>
 								        <a class="btn btn-info" href="{{url('/Socio/'.$socio->id)}}/editar" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 								        </td>
-						            	<td>
-								        <a class="btn btn-info"  title="Deshabilitar" data-href="{{url('/Socio/'.$socio->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-check"></i></a>
-						            	</td>
 						            </tr>
 					            @endif				            		
 							@endforeach
