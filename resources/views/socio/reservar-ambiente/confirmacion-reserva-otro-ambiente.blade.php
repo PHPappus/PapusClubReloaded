@@ -61,9 +61,9 @@
 		    	</div>
 		  	</div> -->
 		  	<div class="form-group ">
-		    	<label for="ubicacionInput" class="col-sm-4 control-label">Ubicación</label>
+		    	<label for="ubicacionInput" class="col-sm-4 control-label">Descripción</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->ubicacion}}" readonly>
+		      		<input type="text" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->descripcion}}" readonly>
 		    	</div>
 		  	</div>
 		  	<div class="form-group">
@@ -91,7 +91,7 @@
 			<div class="form-group ">
 		    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="precioInput" onkeypress="return inputLimiter(event,'Numbers')" name="ubicacion" value="FALTA CALCULAR EL PRECIO" readonly>
+		      		<input type="text" class="form-control" id="precioInput" onkeypress="return inputLimiter(event,'Numbers')" name="ubicacion" value="{{$ambiente->precio($tipo_persona, $ambiente->tarifas)}}" readonly>
 		    	</div>
 		  	</div>  
 

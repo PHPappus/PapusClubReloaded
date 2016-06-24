@@ -137,8 +137,13 @@ class ReservarAmbienteController extends Controller
     {   
         $ambiente = Ambiente::find($id);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
+        $user_id = Auth::user()->id;
+        $usuario = User::find($user_id);
+        $persona_id = $usuario->persona->id;  
+        $persona = Persona::find($persona_id);
+        $tipo_persona = $persona->tipopersona->id;
       
-        return view('socio.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes'));
+        return view('socio.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes', 'tipo_persona'));
     }
 
     //Se muestra el Bungalow a reservar y espera su confirmacion para la reserva
@@ -184,7 +189,15 @@ class ReservarAmbienteController extends Controller
             $reserva->hora_fin_reserva=Carbon::createFromTime(0, 0, 0);
         }
 
-        $reserva->precio = 0;
+        $ambiente = Ambiente::find($ambiente_id);
+        $persona = Persona::find($persona_id);
+        $tipo_persona = $persona->tipopersona;
+        $tarifas = $ambiente->tarifas;
+        foreach ($tarifas as $tarifa) {
+            if($tarifa->tipo_persona == $tipo_persona)
+                $reserva->precio = $tarifa->precio;        
+        }
+        //$reserva->precio = 0;
         $reserva->estadoReserva = "En proceso";
         $reserva->actividad_id = null;
         
@@ -213,7 +226,12 @@ class ReservarAmbienteController extends Controller
     {   
         $ambiente = Ambiente::find($id);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
-        return view('socio.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente','tipo_comprobantes'));
+        $user_id = Auth::user()->id;
+        $usuario = User::find($user_id);
+        $persona_id = $usuario->persona->id;  
+        $persona = Persona::find($persona_id);
+        $tipo_persona = $persona->tipopersona->id;
+        return view('socio.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente','tipo_comprobantes', 'tipo_persona'));
     }
 
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
@@ -254,7 +272,15 @@ class ReservarAmbienteController extends Controller
             $reserva->hora_fin_reserva=$carbon->createFromFormat('H:i', $input['hora_fin_reserva'])->toTimeString();
         }
 
-        $reserva->precio = 0;
+        $ambiente = Ambiente::find($ambiente_id);
+        $persona = Persona::find($persona_id);
+        $tipo_persona = $persona->tipopersona;
+        $tarifas = $ambiente->tarifas;
+        foreach ($tarifas as $tarifa) {
+            if($tarifa->tipo_persona == $tipo_persona)
+                $reserva->precio = $tarifa->precio;        
+        }
+        //$reserva->precio = 0;
         $reserva->estadoReserva = "En proceso";
         $reserva->actividad_id = null;
 
@@ -309,18 +335,19 @@ class ReservarAmbienteController extends Controller
         $diff=$fechaInicio->diffInDays($today);
         if($diff >= 4){
             $reserva->delete();
+            if($reserva->facturacion)
+                $reserva->facturacion->delete();
         }
         else{
             return redirect('reservar-ambiente/lista-reservas')->with('delete', 'No se puede eliminar esta reserva,se vencio el plazo maximo para su anulacion.');
         }
-        if($reserva->facturacion)
-            $reserva->facturacion->delete();
+        
 
         return back();
         
     }
 
-    public function eliminarReservaAdminR($id){
+    public function eliminarReservaBungalowAdminR($id){
         $reserva=Reserva::find($id);
         $today=Carbon::now();
         $carbon=new Carbon();
@@ -328,13 +355,32 @@ class ReservarAmbienteController extends Controller
         $diff=$fechaInicio->diffInDays($today);
         if($diff >= 4){
             $reserva->delete();
+            if($reserva->facturacion)
+                $reserva->facturacion->delete();
         }
         else{
-            return redirect('reservar-ambiente/lista-reservas')->with('delete', 'No se puede eliminar esta reserva,se vencio el plazo maximo para su anulacion.');
+            return redirect('reservar-ambiente/consultar-bungalow-adminR')->with('delete', 'No se puede eliminar esta reserva, se vencio el plazo maximo para su anulacion.');
         }
-        if($reserva->facturacion)
-            $reserva->facturacion->delete();
+        
+        return back();
+        
+    }
 
+    public function eliminarReservaOtrosAdminR($id){
+        $reserva=Reserva::find($id);
+        $today=Carbon::now();
+        $carbon=new Carbon();
+        $fechaInicio=$carbon->createFromFormat('Y-m-d', $reserva->fecha_inicio_reserva);
+        $diff=$fechaInicio->diffInDays($today);
+        if($diff >= 4){
+            $reserva->delete();
+            if($reserva->facturacion)
+                $reserva->facturacion->delete();
+        }
+        else{
+            return redirect('reservar-ambiente/consultar-otros-ambientes-adminR')->with('delete', 'No se puede eliminar esta reserva, se vencio el plazo maximo para su anulacion.');
+        }
+        
         return back();
         
     }
@@ -352,6 +398,7 @@ class ReservarAmbienteController extends Controller
         $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();  
         return view('admin-reserva.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes'));
     }
+
     public function reservarBungalowFiltradosAdminR(Request $request){
 
         $sedes = Sede::all();
@@ -431,16 +478,13 @@ class ReservarAmbienteController extends Controller
     {   
         $ambiente = Ambiente::find($id);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
-        $personas = Persona::all();
-        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes','personas'));
+        $socios = Socio::all();
+        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes','socios'));
     }
 
     //Se muestra el Bungalow a reservar y espera su confirmacion para la reserva
     public function storeBungalowAdminR($id, StoreReservaAmbiente $request)
     {
-        $user_id = Auth::user()->id;
-        $usuario = User::find($user_id);
-        $persona_id = $usuario->persona->id;        
         $ambiente_id = $id;
 
         $input = $request->all();
@@ -448,7 +492,10 @@ class ReservarAmbienteController extends Controller
 
         $reserva = new Reserva();
         $reserva->ambiente_id = $ambiente_id;
+        $persona_id = $input['id_persona'];
         $reserva->id_persona = $persona_id;
+        
+
         if (empty($input['fecha_inicio_reserva'])) {
             $reserva->fecha_inicio_reserva="";
         }else{
@@ -476,11 +523,32 @@ class ReservarAmbienteController extends Controller
             $reserva->hora_fin_reserva=Carbon::createFromTime(0, 0, 0);
         }
 
-        $reserva->precio = 0;
+        $ambiente = Ambiente::find($ambiente_id);
+        $persona = Persona::find($persona_id);
+        $tipo_persona = $persona->tipopersona;
+        $tarifas = $ambiente->tarifas;
+        foreach ($tarifas as $tarifa) {
+            if($tarifa->tipo_persona == $tipo_persona)
+                $reserva->precio = $tarifa->precio;        
+        }
+        //$reserva->precio = 0;
+
         $reserva->estadoReserva = "En proceso";
         $reserva->actividad_id = null;
         
         $reserva->save();
+
+        $facturacion = new Facturacion();
+        $facturacion->persona_id = $persona_id;
+        $facturacion->reserva_id = $reserva->id;
+        $facturacion->tipo_comprobante = $input['tipo_comprobante'];
+        $nombreReserva = $reserva->ambiente->nombre;
+        $facturacion->descripcion = "Reserva de $nombreReserva";
+        $facturacion->total = $reserva->precio;
+        $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
+        $facturacion->estado = $estado->valor;
+
+        $facturacion->save();
 
         return redirect('reservar-ambiente/reservar-bungalow')->with('stored', 'Se registró la reserva del bungalow correctamente.');        
     }
@@ -490,16 +558,14 @@ class ReservarAmbienteController extends Controller
     {   
         $ambiente = Ambiente::find($id);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
-        $personas = Persona::all();
-        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente','tipo_comprobantes','personas'));
+        $socios = Socio::all();
+        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente','tipo_comprobantes','socios'));
     }
     
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
     public function storeOtroTipoAmbienteAdminR($id, Request $request)
     {
-        $user_id = Auth::user()->id;
-        $usuario = User::find($user_id);
-        $persona_id = $usuario->persona->id;        
+        
         $ambiente_id = $id;
 
         $input = $request->all();
@@ -507,6 +573,7 @@ class ReservarAmbienteController extends Controller
 
         $reserva = new Reserva();
         $reserva->ambiente_id = $ambiente_id;
+        $persona_id = $input['id_persona'];
         $reserva->id_persona = $persona_id;
         
 
@@ -531,12 +598,32 @@ class ReservarAmbienteController extends Controller
             $reserva->hora_fin_reserva=$carbon->createFromFormat('H:i', $input['hora_fin_reserva'])->toTimeString();
         }
 
-        $reserva->precio = 0;
+        $ambiente = Ambiente::find($ambiente_id);
+        $persona = Persona::find($persona_id);
+        $tipo_persona = $persona->tipopersona;
+        $tarifas = $ambiente->tarifas;
+        foreach ($tarifas as $tarifa) {
+            if($tarifa->tipo_persona == $tipo_persona)
+                $reserva->precio = $tarifa->precio;        
+        }
+        //$reserva->precio = 0;
         $reserva->estadoReserva = "En proceso";
         $reserva->actividad_id = null;
 
 
         $reserva->save();
+
+        $facturacion = new Facturacion();
+        $facturacion->persona_id = $persona_id;
+        $facturacion->reserva_id = $reserva->id;
+        $facturacion->tipo_comprobante = $input['tipo_comprobante'];
+        $nombreReserva = $reserva->ambiente->nombre;
+        $facturacion->descripcion = "Reserva de $nombreReserva";
+        $facturacion->total = $reserva->precio;
+        $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
+        $facturacion->estado = $estado->valor;
+
+        $facturacion->save();
         return redirect('reservar-ambiente/reservar-otros-ambientes')->with('stored', 'Se registró la reserva del ambiente correctamente.');
     }
 

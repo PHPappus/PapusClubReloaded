@@ -39,4 +39,13 @@ class Ambiente extends Model
     {
         return $this->hasMany('papusclub\Models\TarifaAmbientexTipoPersona');
     }
+
+    public function precio($tipo_persona, $tarifas)
+    {
+        foreach ($tarifas as $tarifa) {
+            if($tarifa->tipo_persona_id == $tipo_persona)
+                return $tarifa->precio;
+        }
+        return 0;
+    }
 }

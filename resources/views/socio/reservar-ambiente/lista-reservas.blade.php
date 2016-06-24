@@ -31,6 +31,9 @@
 		</br>
 		</br>
 
+		@if (session('delete'))
+			<script>$("#modalError").modal("show");</script>						
+		@endif
 		
 		<div class="container">
 			<table class="table table-bordered table-hover text-center display" id="example">
@@ -143,4 +146,25 @@
 
 	  </div>
 	</div>
+
+	<div id="modalError" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">¡Error!</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>{{session('delete')}}</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>           
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
 </html>

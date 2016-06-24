@@ -74,7 +74,7 @@
 				 						<td>{{ $reserva->hora_inicio_reserva }}</td>
 				 						<td>{{ $reserva->estadoReserva }}</td>
 								        <td>
-								        <a class="btn btn-info"  title="Cancelar" data-href="{{url('/reservar-ambiente/'.$reserva->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a> 
+								        <a class="btn btn-info"  title="Cancelar" data-href="{{url('/reservar-ambiente/'.$reserva->id.'/deleteBungalowAdminR')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a> 
 								        </td>
 								            
 									</tr>
