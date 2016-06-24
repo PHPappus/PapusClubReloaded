@@ -444,9 +444,13 @@ Route::get('registrar-nuevo-producto-al','FrontController@registrar_nuevo_produc
 Route::get('registrar-precio-especial-membresia-al','FrontController@registrar_precio_especial_membresia_al');
 Route::get('registrar-precio-pref-bungalows-1-al','FrontController@registrar_precio_pref_bungalows_1_al');
 Route::get('registrar-precio-especial-membresia-1-al','FrontController@registrar_precio_especial_membresia_1_al');
-
-
-
+Route::get('mesa-directiva', 'FrontController@mesa_directiva');
+Route::get('reglamento-club', 'FrontController@reglamento_club');
+Route::get('historia-sede-surquillo', 'FrontController@historia_sede_surquillo');
+Route::get('historia-sede-barranco', 'FrontController@historia_sede_barranco');
+Route::get('natacion', 'FrontController@natacion');
+Route::get('karate', 'FrontController@karate');
+Route::get('publico/convenios', 'FrontController@convenios');
 
 
 Route::get('token',function(){

@@ -43,8 +43,8 @@
 					<li><a href="#">PAPUS CLUB<span class="despliegue">▼</span></a>
 						<ul>
 							<li><a href="historia-papusclub" title="A cerca del club" target="_self">Acerca del Club</a></li>
-							<li><a href="#" title="Mesa directiva" target="_self">Mesa Directiva</a></li>
-							<li><a href="#" title="Reglas del club" target="_self">Reglamento del Club</a></li>
+							<li><a href="mesa-directiva" title="Mesa directiva" target="_self">Mesa Directiva</a></li>
+							<li><a href="reglamento-club" title="Reglas del club" target="_self">Reglamento del Club</a></li>
 						</ul>
 					</li>
 					<!-- Sedes -->
@@ -171,20 +171,23 @@
 				<strong>HISTORIA DEL CLUB</strong>
 				<p>
 					<br/>
-					El club Papus fue fundado el xx de xxxxxx de xxxx Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure odit totam voluptate, quisquam earum facere fugiat harum non iste voluptatibus rerum dolorum, pariatur, aut natus dolor. Est vitae expedita ipsam.lore
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, ipsam, quos. In animi aliquid debitis officia officiis tempore labore ipsum placeat harum, vitae fuga perspiciatis possimus odit. Aut, nisi, tempore!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa ipsam atque inventore non ipsum repellendus, minus commodi velit odit ex vitae alias ipsa consequuntur iure quaerat, et quos blanditiis repudiandae?
-
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem sunt eveniet maiores quas molestiae expedita. Laboriosam id, illum beatae sequi sapiente, voluptatem architecto tenetur, aspernatur laudantium odit commodi autem assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab illo iure molestiae reiciendis a, veritatis nihil laboriosam nam cupiditate consequuntur voluptatem vitae at aliquid ut autem voluptatibus enim recusandae ullam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus magnam id consequatur perspiciatis corporis sit obcaecati ab omnis minus nisi facere recusandae ex, neque maiores eum quia error eligendi incidunt!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates quae rerum itaque eveniet vitae sequi quos fugiat autem voluptatibus laudantium odit rem distinctio consequatur ex totam laborum at velit, quasi!
+					El club Papus fue fundado el 6 de Abril del 2016, por 12 integrantes, quienes no tenian idea cómo iniciaria este proyecto. Fueron escogidos a dedo en una clase de un Miercoles por la tarde, despidiendo el verano,
+					con reglas que nadie entendía, sin embargo, se respetaba; uno a uno fueron nombrados por sus habilidades, aunque en realidad no, solo fue favoritismo xd. Todos temerosos ,del futuro y la nota, de este proyecto
+					aceptaron el reto de crear un sistema antibugs y errores, más solo fue una ilusión; pero se hizo lo que se pudo :D . Con todo el esfuerzo y ahinco se logró un sistema que tiene parte de nuestro tiempo, esfuerzo y sacrificio
+					apuntando a un objetivo, el más importante, la base de todo esto, el eje circular y sustancial, casi vital, cumplir los requerimientos del profe XD. Y pasar el curso obviamente XD.
 					<br/><br/>
 					<strong id="marca">MISIÓN</strong>
 					<br/><br/>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem sunt eveniet maiores quas molestiae expedita. Laboriosam id, illum beatae sequi sapiente, voluptatem architecto tenetur, aspernatur laudantium odit commodi autem assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab illo iure molestiae reiciendis a, veritatis nihil laboriosam nam cupiditate consequuntur voluptatem vitae at aliquid ut autem voluptatibus enim recusandae ullam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus magnam id consequatur perspiciatis corporis sit obcaecati ab omnis minus nisi facere recusandae ex, neque maiores eum quia error eligendi incidunt!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates quae rerum itaque eveniet vitae sequi quos fugiat autem voluptatibus laudantium odit rem distinctio consequatur ex totam laborum at velit, quasi!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem sunt eveniet maiores quas molestiae expedita. Laboriosam id, illum beatae sequi sapiente, voluptatem architecto tenetur, aspernatur laudantium odit commodi autem assumenda?
+					Brindar al usuario, al profesor y al jefe de práctica, todas las comodidades de un sistema completo, funcional y con buen look and feel, respetando los
+					valores éticos de la universidad y personales, de modo que asi obtengamos una calificación aprobatoria por encima de la media xD. 
 					<br/><br/>
 					<strong>VISIÓN</strong>
 					<br/><br/>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab illo iure molestiae reiciendis a, veritatis nihil laboriosam nam cupiditate consequuntur voluptatem vitae at aliquid ut autem voluptatibus enim recusandae ullam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus magnam id consequatur perspiciatis corporis sit obcaecati ab omnis minus nisi facere recusandae ex, neque maiores eum quia error eligendi incidunt!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates quae rerum itaque eveniet vitae sequi quos fugiat autem voluptatibus laudantium odit rem distinctio consequatur ex totam laborum at velit, quasi!
+					Ser un grupo reconocido por su esfuerzo, capacidad y código, que al ser formado integralmente por los cursos y profesores, logre el exito profesional. 
 
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem sunt eveniet maiores quas molestiae expedita. Laboriosam id, illum beatae sequi sapiente, voluptatem architecto tenetur, aspernatur laudantium odit commodi autem assumenda?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab illo iure molestiae reiciendis a, veritatis nihil laboriosam nam cupiditate consequuntur voluptatem vitae at aliquid ut autem voluptatibus enim recusandae ullam.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus magnam id consequatur perspiciatis corporis sit obcaecati ab omnis minus nisi facere recusandae ex, neque maiores eum quia error eligendi incidunt!Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates quae rerum itaque eveniet vitae sequi quos fugiat autem voluptatibus laudantium odit rem distinctio consequatur ex totam laborum at velit, quasi!
+					
+
+					
 				</p>
 			</div>
 		</div>

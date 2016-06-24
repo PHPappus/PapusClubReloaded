@@ -53,5 +53,26 @@ class FrontController extends Controller
     public function prueba(){
         return view('prueba');
     }
+     public function mesa_directiva(){
+        return view('mesa-directiva');
+    }
+     public function reglamento_club(){
+        return view('reglamento-club');
+    }
+    public function historia_sede_surquillo() {
+        return view('historia-sede-surquillo');
+    }
+    public function historia_sede_barranco() {
+        return view('historia-sede-barranco');
+    }
+    public function natacion() {
+        return view('natacion');
+    }
+    public function karate() {
+        return view('karate');
+    }
+    public function convenios() {
+        return view('publico.convenios');
+    }
     
 }

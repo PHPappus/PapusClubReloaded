@@ -36,15 +36,13 @@
 		<div class="row">
   			<div class="col-sm-12 withoutpadding">
   			<!-- bxslider es un plugin que permite crear sucesión de imagenes -->
-                <ul class="bxslider">
-                	<li><img class="slider img-responsive" src="images/bungalow4.jpg" /></li>
-                    <li><img class="slider img-responsive" src="images/bungalow3.jpg" /></li> 
                     <li><img class="slider img-responsive" src="images/bungalow1.jpg" /></li>  
-                </ul>  						
+                 						
   			</div>
   			
 		</div>
 	</div>
+	<br>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 text-center">
@@ -56,60 +54,20 @@
 				<strong>Historia</strong>
 				<p>
 					<br/>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure odit totam voluptate, quisquam earum facere fugiat harum non iste voluptatibus rerum dolorum, pariatur, aut natus dolor. Est vitae expedita ipsam.lore
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, ipsam, quos. In animi aliquid debitis officia officiis tempore labore ipsum placeat harum, vitae fuga perspiciatis possimus odit. Aut, nisi, tempore!
+					El Callao fue fundada por los colonizadores españoles en 1537, sólo dos años después de Lima (1535). Pronto se convirtió en el principal puerto para el comercio español en el Pacífico. El origen de su nombre es desconocido, tanto la India (especialmente Yunga, o la costa peruana) y fuentes españolas se acreditan, pero lo cierto es que se le conocía por ese nombre desde 1550. 
+A la altura del Virreinato, prácticamente todos los bienes producidos en el Perú, Bolivia y Argentina se llevaron a través de los Andes a lomo de mula hasta el Callao, para ser enviado a Panamá, llevado por tierra, y luego transportados a España, vía Cuba. 
+El 20 de agosto de 1836, durante la Confederación Perú-Boliviana, el presidente Andrés de Santa Cruz dispuso la creación de la Provincia Litoral del Callao (Provincia Litoral del Callao del), que tiene autonomía política en sus asuntos internos. Durante el gobierno del presidente Ramón Castilla, Callao se le dio el nombre de Provincia Constitucional (Provincia Constitucional), el 22 de abril 1857, antes de eso, Callao tenía el nombre de la provincia del Litoral. Todas las otras provincias peruanas habían dado sus nombres por la ley, mientras que el Callao fue dado por mandato constitucional.
 				</p>
 			</div>
 			<div class="col-sm-12 text-left">
 				<strong>Infraestructura</strong>	
 				<p>
 					<br/>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus excepturi distinctio quis quia culpa aliquam inventore sint maxime eveniet est voluptates eius quam, dolorem laborum odio rem voluptatibus eum harum!
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam quia deserunt veniam maiores tenetur autem doloribus eum illo nulla inventore ducimus, commodi enim! Amet voluptatum libero quo exercitationem, porro quibusdam!
-
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi pariatur qui sint eaque. Quos odio iste tempore 
+					La infraestructura del puerto ha mejorado en los últimos años debido a distintas inversiones que se han hecho producto de las concesiones. En El Callao existen cinco muelles (1,2,3,4 y Norte), que son de atraque directo, tipo espigón. Los cuatro primeros muelles tienen exactamente las mismas características: 182.80 metros de lado. Dos muelles tienen 30 metros de ancho y los otros dos tienen 86. Existen dos amarraderos por muelle, entre 31 y 34 pies de profundidad y una longitud de 182.8 metros. Además, el muelle Norte tiene cuatro amarraderos, de una profundidad de entre 34 y 36 pies. Cada amarradero tiene una longitud de entre 20 y 30 metros. Los muelles están especializados para contenedores, graneles y multipropósito.
 				</p>
 			</div>
 		</div>
 	</div>
-
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6 text-left">
-					<button class="btn btn-link" onclick="openHistoriaCallao()">Continuar leyendo</button>			
-				</div>
-				<div class="col-sm-6 text-right">
-					<button class="btn btn-link" href="#">Ver en Mapa</button>
-				</div>
-			</div>
-			<br/>
-			<br/>
-		</div>
-		<div class="container">
-			<!-- Button trigger modal -->
-			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="ventana()">
-			  Launch demo modal
-			</button>
-
-			<!-- Modal -->
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cerrarventana()"><span aria-hidden="true">&times;</span></button>
-			        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-			      </div>
-			      <div class="modal-body">
-			        ...
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Close</button>
-			        <button type="button" class="btn btn-primary">Save changes</button>
-			      </div>
-			    </div>
-			  </div>
-			</div>
-		</div>
 			
 	</div>
 @stop
@@ -120,14 +78,7 @@
   <script src="js/jquery.bxslider.min.js"></script>
   <!-- Mis Scripts -->
   <script src="js/MisScripts.js"></script>    
-  <script>
-		function ventana(){
-			document.getElementsByTagName('header')[0].style.zIndex = 1;
-		}
-		function cerrarventana(){
-			document.getElementsByTagName('header')[0].style.zIndex = 3;
-		}
-  </script>
+ 
   
 
 </body>

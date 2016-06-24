@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Cursos Deportivos Papus Club</title>
+	<title>Historia Papus Club</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,7 +33,7 @@
 			<div class="logo">
 				<div class="edit-logo">
 					<a href="/" title="Logo oficial de Papus Club">
-						<img src="images/logo.png" alt="Logo Papus Club" >
+						<img src="images/logo.png" alt="Logo Papus Club" href="/">
 					</a>
 				</div>
 			</div>
@@ -43,8 +43,8 @@
 					<li><a href="#">PAPUS CLUB<span class="despliegue">▼</span></a>
 						<ul>
 							<li><a href="historia-papusclub" title="A cerca del club" target="_self">Acerca del Club</a></li>
-							<li><a href="#" title="Mesa directiva" target="_self">Mesa Directiva</a></li>
-							<li><a href="#" title="Reglas del club" target="_self">Reglamento del Club</a></li>
+							<li><a href="mesa-directiva" title="Mesa directiva" target="_self">Mesa Directiva</a></li>
+							<li><a href="reglamento-club" title="Reglas del club" target="_self">Reglamento del Club</a></li>
 						</ul>
 					</li>
 					<!-- Sedes -->
@@ -126,7 +126,7 @@
 						</ul>
 					</li>
 					<!-- Opción Login -->
-					<li><a href="login">LOGIN <span class="glyphicon glyphicon-user"></span></a></li>
+					<li><a href="login">LOGIN <span class="glyphicon glyphicon-user"></span> </a></li>
 				</ul>
 			</nav>
 		</div>
@@ -141,19 +141,20 @@
 		<br/>
 		<div class="row">
 			<a class="btn btn-link text-left withoutpadding" href="/">INICIO <span class="glyphicon glyphicon-chevron-right"></span></a>
-			<button class="btn btn-link text-left withoutpadding" href="#">ACTIVIDADES <span class="glyphicon glyphicon-chevron-right"></span></button>
-			<button class="btn btn-link text-left withoutpadding" href="#">CURSOS<span class="glyphicon glyphicon-chevron-right"></span></button>
-			<label class="text-left withoutpadding">FUTBOL</button></label>
+			<button class="btn btn-link text-left withoutpadding" href="/">PAPUS CLUB <span class="glyphicon glyphicon-chevron-right"></span></button>
+			<label class="text-left withoutpadding">MESA DIRECTIVA </button></label>
+
 		</div>
 		<br/>
-		</div>
 	</div>
 	<div class="container">
 		<div class="row">
   			<div class="col-sm-12 withoutpadding">
   			<!-- bxslider es un plugin que permite crear sucesión de imagenes -->
-                    <li><img class="slider img-responsive" src="images/canchafutbol1.jpg" /></li>  
-               						
+                <ul class="bxslider">
+                	<li><img class="slider img-responsive " alt="Chania" src="images/phpseniors.jpg" width="2000" height="400" /></li>
+                    <li><img class="slider img-responsive center-block" alt="Chania" src="images/grupo.jpg" /></li>  
+                </ul>  						
   			</div>
   			
 		</div>
@@ -161,71 +162,21 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 text-center">
-				<p><strong>FUTBOL- ABRIL a DICIEMBRE 2016</strong></p>
+				<p class="lead"><strong>MESA DIRECTIVA</strong></p>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-6 text-left">
-				<p>LUGAR: CANCHA DE FULBITO (CALLAO)</p>
-			</div>
-			<div class="col-sm-6 text-right">
-				<p>DÍAS: LUNES-MIERCOLES-VIERNES</p>
+			<div class="col-sm-12 text-left">
+				<strong>MIEMBROS</strong>
+				<p>
+					<br/>
+					A lo largo de sus años de existencia desde su fundación el 6 de abril de 2016, el Club de PAPUSCLUB "Lima" ha sido presidido por ilustres alumnos que de manera sabia han llevado las riendas de nuestra prestigioso sistema a un sitial de reconocimiento a nivel casi-casi-estatal. ¡Gracias señores miembros!
+					Sebastian, Cesar, Juan (Oso), Victor, Brayan, Jhoseline, Joe, Francisco, Marcelo, Christian, Juani y Edgar . :')
+					 
+				</p>
 			</div>
 		</div>
 	</div>
-		<div class="table-responsive">
-			<div class="container">
-				<table class="table table-bordered table-hover text-center">
-					<tr class="active">
-						<td>CÓDIGO</td>
-						<td>EDAD</td>
-						<td>NIVEL</td>
-						<td>HORARIO</td>
-						<td>PROFESOR</td>
-						<td>COSTO</td>
-						<td>SELECCIONAR</td>
-					</tr>
-					<tr>
-						<td>30701</td>
-						<td>5 A 8</td>
-						<td>Principiante</td>
-						<td>15:00-16:45</td>
-						<td>Profesor Futboloncio</td>
-						<td>1 Mes: 220 Soles, 3 Meses: 600 Soles</td>
-						<td><input type="radio" aria-label=""></td>
-					</tr>
-					<tr>
-						<td>30702</td>
-						<td>9 A 13</td>
-						<td>Principiante</td>
-						<td>13:00-14:55</td>
-						<td>Profesor Jugadorazo</td>
-						<td>1 Mes: 220 Soles, 3 Meses: 600 Soles</td>
-						<td><input type="radio" aria-label=""></td>
-					</tr>
-					<tr>
-						<td>30703</td>
-						<td>14 A 16</td>
-						<td>Intermedio</td>
-						<td>17:00-18:55</td>
-						<td>Profesor Pelotudo</td>
-						<td>1 Mes: 220 Soles, 3 Meses: 600 Soles</td>
-						<td><input type="radio" aria-label=""></td>
-					</tr>
-				</table>
-			</div>	
-		</div>
-
-
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 text-right">
-				<!--aqui debe haber una validacion si está logueado o no-->
-					<button class="btn btn-primary" onclick="openLogin()">MATRICULATE AQUI</button>			
-				</div>
-			</div>
-		</div>
-			
 	</div>
 </main>
 

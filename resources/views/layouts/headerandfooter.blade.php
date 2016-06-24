@@ -28,8 +28,8 @@
 						<li><a href="#">PAPUS CLUB<span class="despliegue">▼</span></a>
 							<ul>
 								<li><a href="historia-papusclub" title="A cerca del club" target="_self">Acerca del Club</a></li>
-								<li><a href="#" title="Mesa directiva" target="_self">Mesa Directiva</a></li>
-								<li><a href="#" title="Reglas del club" target="_self">Reglamento del Club</a></li>
+								<li><a href="mesa-directiva" title="Mesa directiva" target="_self">Mesa Directiva</a></li>
+								<li><a href="reglamento-club" title="Reglas del club" target="_self">Reglamento del Club</a></li>
 							</ul>
 						</li>
 						<!-- Sedes -->
@@ -42,14 +42,14 @@
 										<li><a href="reserva-bungalow" title="Bungalows" target="_self">Bungalows</a></li>
 									</ul>
 								</li>
-								<li><a href="#" title="Surquillo" target="_self">Surquillo<span class="despliegue">▼</span></a>
+								<li><a href="historia-sede-surquillo" title="Surquillo" target="_self">Surquillo<span class="despliegue">▼</span></a>
 									<ul>
 										<li><a href="#" title="Concesiones" target="_self">Concesiones</a></li>
 										<li><a href="#" title="Servicios" target="_self">Servicios</a></li>
 										<li><a href="#" title="Bungalows" target="_self">Bungalows</a></li>
 									</ul>						
 								</li>
-								<li><a href="#" title="Barranco" target="_self">Barranco<span class="despliegue">▼</span></a>
+								<li><a href="historia-sede-barranco" title="Barranco" target="_self">Barranco<span class="despliegue">▼</span></a>
 									<ul>
 										<li><a href="#" title="Concesiones" target="_self">Concesiones</a></li>
 										<li><a href="#" title="Servicios" target="_self">Servicios</a></li>
@@ -64,8 +64,8 @@
 								<li><a href="#" title="ir a cursos" target="_self">TALLERES<span class="despliegue">▼</span></a>
 									<ul>
 										<li><a href="futbol" title="ir a futbol" target="_self">Futbol</a></li>
-										<li><a href="#" title="Actividad 1.2" target="_self">Actividad 1.2</a></li>
-										<li><a href="#" title="Actividad 1.3" target="_self">Actividad 1.3</a></li>
+										<li><a href="natacion" title="Actividad 1.2" target="_self">Natación</a></li>
+										<li><a href="karate" title="Actividad 1.3" target="_self">Karate</a></li>
 									</ul>
 								</li>
 								<li><a href="#" title="Actividad 2" target="_self">Actividad 2<span class="despliegue">▼</span></a>

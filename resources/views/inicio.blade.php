@@ -22,6 +22,9 @@
 	<div class="content" style="max-width: 100%;">
 		<!-- Utilizando Bootstrap -->
 		<br/><br/>
+		<br/><br/>
+		<br/><br/>
+
 		<div class="container">
 			<div class="row">
 			<!-- col-sm-4 crea 3 columnas del mismo tamaño -->
@@ -52,7 +55,7 @@
 		<div class="container">
 			<div class="content">
 				<div class="row">
-							<a class="convenios col-sm-2 text-center" href="#" title="Convenios">
+							<a class="convenios col-sm-2 text-center" href="publico/convenios" title="Convenios">
 								<img alt="convenio" src="images/conection.png">CONVENIOS
 							</a>					
 				

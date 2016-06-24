@@ -141,9 +141,9 @@
 		<br/>
 		<div class="row">
 			<a class="btn btn-link text-left withoutpadding" href="/">INICIO <span class="glyphicon glyphicon-chevron-right"></span></a>
-			<button class="btn btn-link text-left withoutpadding" href="#">ACTIVIDADES <span class="glyphicon glyphicon-chevron-right"></span></button>
+			<button class="btn btn-link text-left withoutpadding" href="#">TALLERES <span class="glyphicon glyphicon-chevron-right"></span></button>
 			<button class="btn btn-link text-left withoutpadding" href="#">CURSOS<span class="glyphicon glyphicon-chevron-right"></span></button>
-			<label class="text-left withoutpadding">FUTBOL</button></label>
+			<label class="text-left withoutpadding">NATACION</button></label>
 		</div>
 		<br/>
 		</div>
@@ -152,21 +152,25 @@
 		<div class="row">
   			<div class="col-sm-12 withoutpadding">
   			<!-- bxslider es un plugin que permite crear sucesión de imagenes -->
-                    <li><img class="slider img-responsive" src="images/canchafutbol1.jpg" /></li>  
-               						
+               
+                	<li><img class="img-responsive center-block" src="images/natacion.jpg" weith="" /></li>
+                 
+             					
   			</div>
-  			
+
 		</div>
 	</div>
 	<div class="container">
+		<br>
+  			<br>
 		<div class="row">
 			<div class="col-sm-12 text-center">
-				<p><strong>FUTBOL- ABRIL a DICIEMBRE 2016</strong></p>
+				<p><strong>NATACION- ABRIL a DICIEMBRE 2016</strong></p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-6 text-left">
-				<p>LUGAR: CANCHA DE FULBITO (CALLAO)</p>
+				<p>LUGAR: PISCINA CENTRAL (CALLAO)</p>
 			</div>
 			<div class="col-sm-6 text-right">
 				<p>DÍAS: LUNES-MIERCOLES-VIERNES</p>
@@ -186,30 +190,30 @@
 						<td>SELECCIONAR</td>
 					</tr>
 					<tr>
-						<td>30701</td>
+						<td>40701</td>
 						<td>5 A 8</td>
 						<td>Principiante</td>
-						<td>15:00-16:45</td>
-						<td>Profesor Futboloncio</td>
-						<td>1 Mes: 220 Soles, 3 Meses: 600 Soles</td>
+						<td>8:00-10:00</td>
+						<td>Prof Rigo </td>
+						<td>1 Mes: 300 Soles, 3 Meses: 900 Soles</td>
 						<td><input type="radio" aria-label=""></td>
 					</tr>
 					<tr>
-						<td>30702</td>
+						<td>40702</td>
 						<td>9 A 13</td>
 						<td>Principiante</td>
-						<td>13:00-14:55</td>
-						<td>Profesor Jugadorazo</td>
-						<td>1 Mes: 220 Soles, 3 Meses: 600 Soles</td>
+						<td>12:00-14:55</td>
+						<td>Prof Carl </td>
+						<td>1 Mes: 420 Soles, 3 Meses: 1000 Soles</td>
 						<td><input type="radio" aria-label=""></td>
 					</tr>
 					<tr>
-						<td>30703</td>
+						<td>40703</td>
 						<td>14 A 16</td>
 						<td>Intermedio</td>
 						<td>17:00-18:55</td>
-						<td>Profesor Pelotudo</td>
-						<td>1 Mes: 220 Soles, 3 Meses: 600 Soles</td>
+						<td>Prof Tommy</td>
+						<td>1 Mes: 700 Soles, 3 Meses: 1500 Soles</td>
 						<td><input type="radio" aria-label=""></td>
 					</tr>
 				</table>

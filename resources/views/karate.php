@@ -141,9 +141,8 @@
 		<br/>
 		<div class="row">
 			<a class="btn btn-link text-left withoutpadding" href="/">INICIO <span class="glyphicon glyphicon-chevron-right"></span></a>
-			<button class="btn btn-link text-left withoutpadding" href="#">ACTIVIDADES <span class="glyphicon glyphicon-chevron-right"></span></button>
-			<button class="btn btn-link text-left withoutpadding" href="#">CURSOS<span class="glyphicon glyphicon-chevron-right"></span></button>
-			<label class="text-left withoutpadding">FUTBOL</button></label>
+			<button class="btn btn-link text-left withoutpadding" href="#">TALLERES <span class="glyphicon glyphicon-chevron-right"></span></button>
+			<label class="text-left withoutpadding">KARATE</button></label>
 		</div>
 		<br/>
 		</div>
@@ -152,21 +151,23 @@
 		<div class="row">
   			<div class="col-sm-12 withoutpadding">
   			<!-- bxslider es un plugin que permite crear sucesión de imagenes -->
-                    <li><img class="slider img-responsive" src="images/canchafutbol1.jpg" /></li>  
-               						
+                	<li><img class="slider img-responsive center-block" src="images/karate.jpg" /></li>
+				
   			</div>
   			
 		</div>
 	</div>
 	<div class="container">
+		<br>
+		<br>
 		<div class="row">
 			<div class="col-sm-12 text-center">
-				<p><strong>FUTBOL- ABRIL a DICIEMBRE 2016</strong></p>
+				<p><strong>Karate- ABRIL a DICIEMBRE 2016</strong></p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-6 text-left">
-				<p>LUGAR: CANCHA DE FULBITO (CALLAO)</p>
+				<p>LUGAR: GIMNACIO (SURQUILLO)</p>
 			</div>
 			<div class="col-sm-6 text-right">
 				<p>DÍAS: LUNES-MIERCOLES-VIERNES</p>
