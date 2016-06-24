@@ -226,6 +226,7 @@ class ReservarAmbienteController extends Controller
         $nombreReserva = $reserva->ambiente->nombre;
         $facturacion->descripcion = "Reserva de $nombreReserva";
         $facturacion->total = $reserva->precio;
+        $facturacion->tipo_pago = "No se ha cancelado";
         $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
         $facturacion->estado = $estado->valor;
 
@@ -309,6 +310,7 @@ class ReservarAmbienteController extends Controller
         $nombreReserva = $reserva->ambiente->nombre;
         $facturacion->descripcion = "Reserva de $nombreReserva";
         $facturacion->total = $reserva->precio;
+        $facturacion->tipo_pago = "No se ha cancelado";
         $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
         $facturacion->estado = $estado->valor;
 
@@ -414,7 +416,18 @@ class ReservarAmbienteController extends Controller
         $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();  
         return view('admin-reserva.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes'));
     }
-
+    public function seleccionarSocioBungalowAdminR($id)
+    {
+        $ambiente = Ambiente::find($id);
+        $socios = Socio::all();
+        return view('admin-reserva.reservar-ambiente.reservar-bungalow-seleccionarSocio', compact('ambiente','socios'));
+    }
+    public function seleccionarSocioOtrosAmbientesAdminR($id)
+    {
+        $ambiente = Ambiente::find($id);
+        $socios = Socio::all();
+        return view('admin-reserva.reservar-ambiente.reservar-otros-ambientes-seleccionarSocio', compact('ambiente','socios'));
+    }
     public function reservarBungalowFiltradosAdminR(Request $request){
 
         $sedes = Sede::all();
@@ -536,12 +549,12 @@ class ReservarAmbienteController extends Controller
         
     }
 
-    public function createBungalowAdminR($id)
+    public function createBungalowAdminR($idambiente,$idsocio)
     {   
-        $ambiente = Ambiente::find($id);
+        $ambiente = Ambiente::find($idambiente);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
-        $socios = Socio::all();
-        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes','socios'));
+        $socio = Socio::find($idsocio);
+        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes','socio'));
     }
 
     //Se muestra el Bungalow a reservar y espera su confirmacion para la reserva
@@ -607,6 +620,7 @@ class ReservarAmbienteController extends Controller
         $nombreReserva = $reserva->ambiente->nombre;
         $facturacion->descripcion = "Reserva de $nombreReserva";
         $facturacion->total = $reserva->precio;
+        $facturacion->tipo_pago = "No se ha cancelado";
         $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
         $facturacion->estado = $estado->valor;
 
@@ -616,12 +630,12 @@ class ReservarAmbienteController extends Controller
     }
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
 
-    public function createOtroTipoAmbienteAdminR($id)
+    public function createOtroTipoAmbienteAdminR($idambiente,$idsocio)
     {   
-        $ambiente = Ambiente::find($id);
+        $ambiente = Ambiente::find($idambiente);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
-        $socios = Socio::all();
-        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente','tipo_comprobantes','socios'));
+        $socio = Socio::find($idsocio);
+        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente','tipo_comprobantes','socio'));
     }
     
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
@@ -682,6 +696,7 @@ class ReservarAmbienteController extends Controller
         $nombreReserva = $reserva->ambiente->nombre;
         $facturacion->descripcion = "Reserva de $nombreReserva";
         $facturacion->total = $reserva->precio;
+        $facturacion->tipo_pago = "No se ha cancelado";
         $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
         $facturacion->estado = $estado->valor;
 

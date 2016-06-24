@@ -77,9 +77,9 @@
 			<div class="form-group required">
 			    	<label for="persona_id" class="col-sm-4 control-label">Socio</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="persona_id" name="id_persona" placeholder="ID de la Persona" value="{{old('id_persona')}}">
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="persona_id" name="id_persona" placeholder="ID de la Persona" value="{{$socio->id}}" readonly>
 			    	</div>
-			    	<a class="btn btn-info" name="buscarPersona" href="#"  title="Buscar Persona" data-toggle="modal" data-target="#modalBuscar"><i name="buscarPersona" class="glyphicon glyphicon-search"></i></a>
+			    	<a class="btn btn-info" name="buscarReserva" href="{{url('/reservar-ambiente/'.$ambiente->id.'/searchSocio-bungalow-adminR/')}}" title="Buscar" ><i name="buscarReserva" class="glyphicon glyphicon-search"></i></a>
 			</div>
 
 		  	<div class="form-group ">
@@ -149,106 +149,7 @@
 			});
 		});
 	</script>
-	<!-- DATA TABLE INICIO BUSCAR CONTACTO-->
-	<script>		
-		$(document).ready(function() {
-		   $('#example').DataTable( {
-		       "language": {
-		           "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-		       },		       
-		       "dom": '<"pull-left"f><"pull-right"l>tip',
-		       "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Todos"]]
-		  	});
-  		});		
-  		
-		function getPersona(){								
-								document.getElementById('persona_id').value =  $('#example input:radio:checked').val();
-								
-							}
-	</script>
-	<!-- Modal -->
-	<div id="modalBuscar" class="modal fade" role="dialog">
-	  <div class="modal-dialog modal-lg">
 
-	    <!-- Modal content-->	    
-	    <div class="modal-content">
-			
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">BUSCAR SOCIO</h4>
-			</div>
 
-			<div class="modal-body">	      	  
-				<div class="container">					
-					<div class="table-responsive">
-						<div class="container" id="TableContainer">
-							<div class="text-left">
-					  			<font color="black"> 
-					  				Ingresar alguno de los siguientes campos:
-					  				<ul>
-					  				<li>DNI</li>
-					  				<li>Apellido Paterno</li>
-					  				<li>Apellido Materno</li>
-					  				<li>Nombre</li>
-					  				</ul>
-					  			</font>					  			
-					  		</div>
-					  		<br>
-							<table class="table table-bordered table-hover text-center display" id="example" width="100%">
-								<thead class="active" data-sortable="true">									
-									<th><div align=center>DNI</div> </th>
-									<th><div align=center>NOMBRES</div></th>
-									<th><div align=center>APELLIDO PATERNO</div></th>
-									<th><div align=center>APELLIDO MATERNO</div></th>
-									<th><div align=center>SELECCIONAR</div></th>
-								</thead>
-								<tbody>
-									
-									@foreach($socios as $socio)						
-										<tr>											
-											<td>{{$socio->postulante->persona->doc_identidad}}</td>
-											<td>{{$socio->postulante->persona->nombre}}</td>		
-											<td>{{$socio->postulante->persona->ap_paterno}}</td>
-											<td>{{$socio->postulante->persona->ap_materno}}</td>
-											<td>
-												<div class="radio">
-  													<label><input type="radio" name="optradio" value="{{$socio->postulante->persona->id}}"></label>
-												</div>
-											</td>
-							            </tr>				            		
-									@endforeach
-									
-								</tbody>
-							</table>																		
-						</div>								
-					</div>		
-				</div>
-			</div>								
-			<div class="modal-footer">	                    
-				<div class="btn-inline">
-					<div class="btn-group col-sm-4"></div>														
-					<div class="btn-group ">
-						<input class="btn btn-primary" onclick="getPersona()" data-dismiss="modal" value="Confirmar">					
-					</div>
-					<div class="btn-group">
-						<a  data-dismiss="modal" class="btn btn-info">Cancelar</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	  </div>
-	</div>
-	<style type="text/css">
-    @media screen and (min-width: 992px) {
-        #modalBuscar .modal-lg {
-          width: 90%; /* New width for large modal */         
-        }                       
-
-		#TableContainer.container {
-	        width: 80%;
-	    }        
-    }
-	</style>
-	<!-- DATA TABLE FIN BUSCAR CONTACTO -->
 </body>
 </html>
