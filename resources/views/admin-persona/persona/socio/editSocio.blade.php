@@ -502,7 +502,7 @@
 																	<td>{{$familiar->ap_materno}}</td>
 																	<td>{{$familiar->correo}}</td>
 																	<td>
-													              	<a class="btn btn-info" href="{{url('/Socio/familiar/'.$familiar->pivot->id.'/')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+													              	<a class="btn btn-info" href="{{url('/Socio/familiar/'.$familiar->id.'/')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 													            	</td>
 													            	<td>												           
 																		<a class="btn btn-info"  title="Eliminar" data-href="{{url('/Socio/'.$familiar->id.'/'.$socio->postulante->id_postulante.'/familiar/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>

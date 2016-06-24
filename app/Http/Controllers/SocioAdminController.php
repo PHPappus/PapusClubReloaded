@@ -52,11 +52,14 @@ class SocioAdminController extends Controller
     public function show($id)
     {
         $socio = Socio::withTrashed()->find($id);
+        var_dump($socio);
+        die();
+        $estado_civil=Configuracion::find($socio->postulante->estado_civil);
         $carbon=new Carbon();
         $socio->carnet_actual()->fecha_emision=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_emision)->format('d/m/Y');
         $socio->carnet_actual()->fecha_vencimiento=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_vencimiento)->format('d/m/Y');
         $socio->postulante->persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d',$socio->postulante->persona->fecha_nacimiento)->format('d/m/Y');
-        return view('admin-persona.persona.socio.showSocio',compact('socio'));
+        return view('admin-persona.persona.socio.showSocio',compact('socio','estado_civil'));
     }
 
     public function destroy(Socio $socio)
