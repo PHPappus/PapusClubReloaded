@@ -21,7 +21,7 @@ class Facturacion extends Model
     }
 
     public function reserva(){
-        return $this->belongsTo('papusclub\Models\Reserva');
+        return $this->belongsTo('papusclub\Models\Reserva', 'reserva_id');
     }
 
     public function productoxfacturacion(){

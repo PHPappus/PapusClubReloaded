@@ -93,7 +93,10 @@ class UsuarioController extends Controller
             $user->password = $input['password'];
             $user->perfil_id = $input['perfil_id'];
             $user->save();
-            
+            dd($input['persona_id']);
+            $persona=Persona::find($input['persona_id']);
+            $person->id_usuario=$user->id;
+            $person->save();
             Session::flash('message','Nuevo Usuario Asignado Correctamente');
             return Redirect::to('/usuario');
         }

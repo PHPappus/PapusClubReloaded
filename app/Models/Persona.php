@@ -4,6 +4,8 @@ namespace papusclub\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
+
 class Persona extends Model
 {
     use SoftDeletes;
@@ -106,5 +108,23 @@ class Persona extends Model
         }
     }
 
+    public function socio($socios)
+    {
+        
+        foreach ($socios as $socio) {
+            //echo $socio->postulante->persona->id;
+            //echo $this->id;
+            if($socio->postulante->persona->id == $this->id)
+                return $socio;
+        }
+    
+        return null;
+
+    }
+
+    
+     public function ingresoproducto(){
+        return $this->hasMany('papusclub\Models\IngresoProducto');
+    }
     
 }

@@ -76,7 +76,7 @@
 			<div class="form-group required">
 			    	<label for="persona_id" class="col-sm-4 control-label">Socio</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="persona_id" name="nombre_contacto" placeholder="ID de la Persona" value="{{old('persona_id')}}">
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="persona_id" name="id_persona" placeholder="ID de la Persona" value="{{old('id_persona')}}">
 			    	</div>
 			    	<a class="btn btn-info" name="buscarPersona" href="#"  title="Buscar Persona" data-toggle="modal" data-target="#modalBuscar"><i name="buscarPersona" class="glyphicon glyphicon-search"></i></a>
 			</div>
@@ -155,7 +155,7 @@
 			
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">BUSCAR PERSONA</h4>
+				<h4 class="modal-title">BUSCAR SOCIO</h4>
 			</div>
 
 			<div class="modal-body">	      	  
@@ -184,15 +184,15 @@
 								</thead>
 								<tbody>
 									
-									@foreach($personas as $persona)						
+									@foreach($socios as $socio)						
 										<tr>											
-											<td>{{$persona->doc_identidad}}</td>
-											<td>{{$persona->nombre}}</td>		
-											<td>{{$persona->ap_paterno}}</td>
-											<td>{{$persona->ap_materno}}</td>
+											<td>{{$socio->postulante->persona->doc_identidad}}</td>
+											<td>{{$socio->postulante->persona->nombre}}</td>		
+											<td>{{$socio->postulante->persona->ap_paterno}}</td>
+											<td>{{$socio->postulante->persona->ap_materno}}</td>
 											<td>
 												<div class="radio">
-  													<label><input type="radio" name="optradio" value="{{$persona->id}}"></label>
+  													<label><input type="radio" name="optradio" value="{{$socio->postulante->persona->id}}"></label>
 												</div>
 											</td>
 							            </tr>				            		

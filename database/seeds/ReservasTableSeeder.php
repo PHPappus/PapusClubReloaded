@@ -25,7 +25,7 @@ class ReservasTableSeeder extends Seeder
         Reserva::insert([
             'estadoReserva' => 'Activo', 
             'precio' => 100, 
-            'id_persona'=> 1,
+            'id_persona'=> 2,
             'ambiente_id' => 2,
             'fecha_inicio_reserva'=>Carbon::create(2016, 12, 12),
             'fecha_fin_reserva'=>Carbon::create(2016, 12, 15)
@@ -45,6 +45,24 @@ class ReservasTableSeeder extends Seeder
             'precio' => 20, 
             'id_persona'=> 4,
             'ambiente_id' => 4,
+            'fecha_inicio_reserva'=>Carbon::create(2016, 12, 12),
+            'fecha_fin_reserva'=>Carbon::create(2016, 12, 13)
+            ]);
+
+        Reserva::insert([
+            'estadoReserva' => 'Activo', 
+            'precio' => 20, 
+            'id_persona'=> 4,
+            'ambiente_id' => 3,
+            'fecha_inicio_reserva'=>Carbon::create(2016, 10, 12),
+            'fecha_fin_reserva'=>Carbon::create(2016, 10, 13)
+            ]);
+
+        Reserva::insert([
+            'estadoReserva' => 'Activo', 
+            'precio' => 20, 
+            'id_persona'=> 4,
+            'ambiente_id' => 2,
             'fecha_inicio_reserva'=>Carbon::create(2016, 12, 12),
             'fecha_fin_reserva'=>Carbon::create(2016, 12, 13)
             ]);

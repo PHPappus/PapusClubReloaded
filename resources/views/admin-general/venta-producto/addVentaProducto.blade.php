@@ -101,7 +101,7 @@
 								<td>{{ $producto->producto->precioproducto->first()['precio']}}</td>
 								<td>{{ $producto->cantidad}}</td>			
 								<td>{{ $producto->subtotal }}</td>
-								<td><a class="btn btn-info" href="{{url('/venta-producto/'.$producto->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a></td>
+								<td><a class="btn btn-info" href="{{url('/venta-producto/new/'.$producto->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a></td>
 								<td>
 					              <a class="btn btn-info"  title="Eliminar" data-href="{{url('/venta-producto/'.$producto->id.'/deleteProducto')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
 					            </td>

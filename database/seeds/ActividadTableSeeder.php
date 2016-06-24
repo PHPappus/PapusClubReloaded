@@ -89,6 +89,17 @@ class ActividadTableSeeder extends Seeder
             'a_realizarse_en'=>Carbon::create(2017, 01, 01),
             'hora_inicio'=>Carbon::createFromTime(18, 30, 0)
         ]);
+        Actividad::create([
+            'nombre' => 'Papus Club Día del amigo', 
+            'tipo_actividad' => 'Evento', 
+            'capacidad_maxima' => '100', 
+            'descripcion' => 'Celebra el día del amigo con una reunión memorable', 
+            'ambiente_id' => 2,
+            'cupos_disponibles'=>'1',
+            'estado'=>true,
+            'a_realizarse_en'=>Carbon::create(2016, 06, 26),
+            'hora_inicio'=>Carbon::createFromTime(18, 30, 0)
+        ]);
 
         
     }
