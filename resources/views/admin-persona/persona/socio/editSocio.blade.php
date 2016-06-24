@@ -50,7 +50,7 @@
 			<div class="row">
 				<div class="col-sm-12 text-left">
 					<br/><br/>
-					<p class="lead"><strong>EDITAR Socio</strong></p>
+					<p class="lead"><strong>Editar Socio</strong></p>
 					<p style="color:red"><strong>Puede guardar los cambios de cada una de las pestañas</strong></p>
 					<br>
 				</div>
@@ -64,7 +64,7 @@
 						<ul class="nav nav-pills nav-justified" id="pills-edit" role="tablist">
 
 						<!--DATOS BASICOS-->
-						@if(!Session::has('update') &&  !session('storedInvitado') && !session('storedInvitado')  && !$errors->basico->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any() && !$errors->nacimiento->any() && !$errors->vivienda->any() )									
+						@if(!Session::has('update') &&  !session('storedInvitado') && !session('storedFamiliar')  && !$errors->basico->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any() && !$errors->nacimiento->any() && !$errors->vivienda->any() )									
 							<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Básico</a></li>
 						@elseif(Session::get('update')=='basico' || $errors->basico->any())
 							<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Básico</a></li>

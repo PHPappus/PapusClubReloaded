@@ -34,13 +34,4 @@ class TipoPersona extends Model
         return $this->hasMany('papusclub\Models\TarifaActividad');
     }
 
-    public function tarifasAmbiente()
-    {
-        return $this->hasMany('papusclub\Models\TarifaAmbientexTipoPersona');
-    }
-
-    public function tarifasActividad()
-    {
-        return $this->hasMany('papusclub\Models\TarifaActividad');
-    }
 }
