@@ -940,3 +940,6 @@ Stack trace:
 #72 C:\Users\victo\Desktop\BIOSCIENCE\PapusClubReloaded\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #73 C:\Users\victo\Desktop\BIOSCIENCE\PapusClubReloaded\server.php(21): require_once('C:\\Users\\victo\\...')
 #74 {main}  
+[2016-06-24 03:28:53] local.ERROR: Symfony\Component\Debug\Exception\FatalErrorException: Interface 'Illuminate\Contracts\Queue\QueueableCollection' not found in C:\xampp\htdocs\JEFV\Version Finañ\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Collection.php:10
+Stack trace:
+#0 {main}  

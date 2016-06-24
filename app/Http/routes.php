@@ -161,6 +161,17 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 //Gerente
 Route::group(['middleware' => ['auth', 'gerente']], function () {
 	Route::resource('gerente','GerenteController');
+
+	//Reportes
+	//reporte 1
+	Route::get('reporte/invitado-por-sede', 'ReporteController@reporte1');
+	Route::post('reporte/invitado-por-sede/reporte', 'ReporteController@reporte1Final');//resultado del reporte
+	//reporte 2
+	Route::get('reporte/morosos', 'ReporteController@reporte2');
+	Route::post('reporte/morosos/reporte', 'ReporteController@reporte2Final');//resultado del reporte
+	//reporte 3
+	Route::get('reporte/reserva-de-bungalow', 'ReporteController@reporte3');
+	Route::post('reporte/reserva-de-bungalow/reporte', 'ReporteController@reporte3Final');//resultado del reporte
 });
 
 //Administrados de pagos

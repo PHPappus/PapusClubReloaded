@@ -39,7 +39,13 @@
 						<!-- Opción SEDE -->
 						<li><a href="#">SEDE</a></li>		
 						<!-- Opción REPORTES -->
-						<li><a href="#">REPORTES FINANCIEROS</a></li>
+						<li><a href="#">REPORTES</a>
+							<ul>
+								<li><a href="{!!URL::to('/reporte/invitado-por-sede')!!}" title="" target="_self">Invitador por Sede</a></li>
+								<li><a href="{!!URL::to('/reporte/morosos')!!}" title="" target="_self">Morosos</a></li>
+								<li><a href="{!!URL::to('/reporte/reserva-de-bungalow')!!}" title="" target="_self">Reserva de Bungalow</a></li>
+							</ul>
+						</li>
 						<!-- Opción TRÁMITES -->
 						<li><a href="#">TRÁMITES</a></li>
 					</ul>
