@@ -5,10 +5,11 @@
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	{!!Html::style('/css/jquery.bxslider.css')!!}
-	{!!Html::style('/css/font-awesome.css')!!}
-	{!!Html::style('/css/bootstrap.css')!!}
-	{!!Html::style('/css/MisEstilos.css')!!}
+	{!!Html::style('css/font-awesome.css')!!}
+	{!!Html::style('css/bootstrap.css')!!}
+	{!!Html::style('css/MisEstilos.css')!!}
+	{!!Html::style('css/datepicker.css')!!}
+	{!!Html::style('css/bootstrap-datepicker3.css')!!}
 	{!!Html::style('/css/DataTable.css')!!}	
 	
 </head>
@@ -61,15 +62,15 @@
 		      		<input type="text" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->ubicacion}}" readonly>
 		    	</div>
 		  	</div>
-		  	<div class="form-group required">
-			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha (dd/mm/aaaa) </label>
+		  	<div class="form-group">
+			 	<label for="fechaInput" class="col-sm-4 control-label">FECHA (dd/mm/aaaa) </label>
 			    <div class="col-sm-5">
-				  	
-			   	 	<div class="input-group">
-			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" style="max-width: 250px" >
+				  	<div class="input-group">
+			   		<input class="datepicker form-control"  type="text"  id="fecha_inicio_reserva" name="fecha_inicio_reserva" placeholder="Fecha Inicio" value="{{old('fecha_inicio')}}" style="max-width: 250px" >
 			   		<span class="input-group-addon">-</span>
-			   		<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_fin" placeholder="Fecha Fin" style="max-width: 250px">
-					</div>			   		
+			   		<input class="datepicker form-control" type="text" id="fecha_fin_reserva" name="fecha_fin_reserva" placeholder="Fecha Fin" value="{{old('fecha_fin')}}" style="max-width: 250px">
+
+			   	 	</div>
 		    	</div>	
 			</div>
 		  	
@@ -123,13 +124,31 @@
 		</div>
 	</div>		
 @stop
-<!-- JQuery -->
-	{!!Html::script('js/jquery-1.11.3.min.js')!!}
-	{!!Html::script('js/bootstrap.js')!!}
-	{!!Html::script('js/jquery.bxslider.min.js')!!}
-	{!!Html::script('js/MisScripts.js')!!}
 	{!!Html::script('js/jquery.dataTables.js')!!}
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+ <!-- JQuery -->
+	{!!Html::script('js/jquery-1.11.3.min.js')!!}
+	<!-- Bootstrap -->
+	{!!Html::script('js/bootstrap.js')!!}
 
+	{!!Html::script('js/bootstrap-datepicker.js')!!}
+	 <!-- Languaje -->
+    {!!Html::script('js/bootstrap-datepicker.es.min.js')!!}
+<script>
+		var nowDate = new Date();
+		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+	</script>
+	<script>
+		$(function(){
+			$('.datepicker').datepicker({
+				format: "dd/mm/yyyy",
+		        language: "es",
+		        autoclose: true,
+		        startDate: today,
+			});
+		});
+	</script>
 	<!-- DATA TABLE INICIO BUSCAR CONTACTO-->
 	<script>		
 		$(document).ready(function() {
