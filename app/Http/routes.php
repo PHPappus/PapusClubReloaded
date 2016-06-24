@@ -257,13 +257,19 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('venta-producto/{id}/show', 'VentaProductoController@show');
 	Route::get('venta-producto/new/venta-producto/{id}', 'VentaProductoController@createVentaProducto');
 	Route::post('venta-producto/new/venta-producto/add', 'VentaProductoController@storeVentaProducto');
-	Route::get('venta-producto/{id}', 'VentaProductoController@editProducto');
-	Route::post('venta-producto/{id}/edit', 'VentaProductoController@updateProducto');
+	Route::get('venta-producto/new/{id}', 'VentaProductoController@editProducto');
+	Route::post('venta-producto/new/{id}/editProducto', 'VentaProductoController@updateProducto');
 	Route::get('venta-producto/{id}/deleteProducto', 'VentaProductoController@destroyProducto');
 	Route::get('venta-producto/{id}/back', 'VentaProductoController@back');
 	Route::get('venta-producto/{id}/cancel', 'VentaProductoController@cancel');
 	//INGRESO DE PRODUCTOS
 	Route::get('ingreso-producto/index', 'IngresoProductoController@index');
+	Route::get('ingreso-producto/new', 'IngresoProductoController@create');
+	Route::post('ingreso-producto/new/ingreso-producto', 'IngresoProductoController@store');
+	
+
+	//Inscribirse en Sorteo
+	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
 
 	//Inscribirse en Sorteo
 	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');

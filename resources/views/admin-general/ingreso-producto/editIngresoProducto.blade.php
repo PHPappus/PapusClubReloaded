@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>REGISTRAR VENTA</title>
+	<title>MODIFICAR VENTA</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,12 +27,12 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>REGISTRAR VENTA</strong>
+					<strong>EDITAR VENTA</strong>
 			</div>		
 		</div>
 		<div class="container">
 			<!--@include('errors.503')-->		
-			<form method="POST" action="/venta-producto/new/venta-producto/{{ $factura->id }}" class="form-horizontal form-border">
+			<form method="POST" action="/venta-producto/{{ $factura->id }}/edit" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<!-- Mensajes de error de validación del Request -->
@@ -71,14 +71,27 @@
 			  	<div class="form-group">
 			    	<label for="tipoPagoInput" class="col-sm-4 control-label" >Tipo de Pago</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="tipoPagoInput" name="tipoPago" value="{{$factura->tipo_pago}}" readonly>
+			      		<input type="text" class="form-control" id="tipoPagoInput" name="tipoPago" 
+			    		value="{{$factura->tipo_pago}}"
+			      		readonly>
 			    	</div>			      					      		
 			  	</div>	
 						
 			  	<div class="form-group">
 			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
-			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="estadoInput" name="estado" value="{{$factura->estado}}" readonly>
+			    	<div class="col-sm-5">			    	
+			      		<select class="form-control" id="estado" name="estado" >
+						<!-- Las opciones se deberían extraer de la tabla configuracion-->
+						<option value="" >Seleccionar tipo...</option>
+						@foreach($estados as $estado)
+							<option value="{{$estado->valor}}" 
+							@if (strcmp($estado->valor, $factura->estado)==0)		
+									selected
+							@endif
+							>{{$estado->valor}}</option>
+						@endforeach						
+						</select>													
+						
 			    	</div>
 			  	</div>		
 				<br/><br/>
@@ -90,21 +103,17 @@
 							<th><div align=center>PRODUCTO</div></th>
 							<th><div align=center>PRECIO</div></th>
 							<th><div align=center>CANTIDAD</div></th>
-							<th><div align=center>SUBTOTAL</div></th>
-							<th><div align=center>EDITAR</div></th>
-							<th><div align=center>ELIMINAR</div></th>
-						</thead>											
+							<th><div align=center>SUBTOTAL</div></th>							
+						</thead>
+
+												
 						<tbody>
 						@foreach($factura->productoxfacturacion as $producto)
 							<tr>
 								<td>{{ $producto->producto->nombre}}</td>
 								<td>{{ $producto->producto->precioproducto->first()['precio']}}</td>
 								<td>{{ $producto->cantidad}}</td>			
-								<td>{{ $producto->subtotal }}</td>
-								<td><a class="btn btn-info" href="{{url('/venta-producto/new/'.$producto->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a></td>
-								<td>
-					              <a class="btn btn-info"  title="Eliminar" data-href="{{url('/venta-producto/'.$producto->id.'/deleteProducto')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
-					            </td>
+								<td>{{ $producto->subtotal }}</td>								
 				            </tr>
 						@endforeach
 						<tr>
@@ -116,37 +125,43 @@
 						</tbody>													
 					</table>						
 				</div>
-
-				<div class="container">
-					<div class="form-group">
-						<div class="col-sm-10 text-right">
-							<a class="btn btn-info" href="{{url('/venta-producto/new/venta-producto/'.$factura->id.'')}}" title="Agregar" >Agregar<i class="glyphicon" ></i> </a>	
-						</div>
-					</div>
-					<br/>
-				</div>
 					<!-- FIN FIN FIN  -->				
 			
 				</br>
 			  	</br>
 				<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
-					@if (count($factura->productoxfacturacion)>0)						
-						<div class="btn-group ">
-							<a class="btn btn-primary" href="/venta-producto/index">Confirmar</a>
-						</div>						
-					@else
-						<div class="btn-group ">
-							<a class="btn btn-primary" disabled >Confirmar</a>
-						</div>
-					@endif
+					
+					<div class="btn-group ">
+						<input class="btn btn-primary" data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Aceptar">
+					</div>
 					<div class="btn-group">
-						<a href="{{url('/venta-producto/'.$factura->id.'/cancel')}}" class="btn btn-info">Cancelar</a>
+						<a href="/venta-producto/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>
 				</br>
-				
+
+				<!-- Ventana modal de Confirmación -->			  	
+				<div class="modal fade" id="confirmation" tabindex="-1" role="dialog" data-backdrop="static">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<!-- Header de la ventana -->
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" onclick="cerrarventana()">&times;</span></button>
+								<h4 class="modal-title">EDITAR PRODUCTO</h4>
+							</div>
+							<!-- Contenido de la ventana -->
+							<div class="modal-body">
+								<p>¿Desea guardar los cambios realizados?</p>
+							</div>
+							<div class="modal-footer">
+						        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cancelar</button>
+						        <button type="submit" class="btn btn-primary">Confirmar</button>
+					      	</div>
+						</div>
+					</div>
+				</div>
 				
 			</form>
 		</div>
@@ -157,35 +172,14 @@
 	{!!Html::script('../js/bootstrap.js')!!}
 	{!!Html::script('../js/jquery.bxslider.min.js')!!}
 	{!!Html::script('../js/MisScripts.js')!!}
-
-</body>
-	<!-- Modal -->
-	<div id="modalEliminar" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
-
-	    <!-- Modal content-->
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Confirmar</h4>
-	      </div>
-	      <div class="modal-body">
-	        <p>¿Está seguro que desea eliminar el producto?</p>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-danger btn-ok">Confirmar</a>
-	      </div>
-	    </div>
-
-	  </div>
-	</div>
-
-	<!-- Modal Event-->
+	<!-- Javascript -->
 	<script>
-		$('#modalEliminar').on('show.bs.modal', function(e) {
-   			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-		});
-	</script>
-
+		function ventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 1;
+		}
+		function cerrarventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 3;
+		}
+  	</script>
+</body>
 </html>
