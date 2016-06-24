@@ -12,23 +12,23 @@ class servicioSeeder extends Seeder
     public function run()
     {
         Servicio::insert(['nombre' => 'Alquiler de microondas', 
-        	'descripcion' => 'Servicio destinado a alquiler de microondas en un bungalow',         	
+        	'descripcion' => 'Servicio exclusivo para Bungalows Microondas tipos Microwave Oven 100% Rentable',         	
         	'tipo_servicio' => 31, 
         	'estado' => true
         	]);
         Servicio::insert(['nombre' => 'Alquiler de Tennis de Mesa', 
-        	'descripcion' => 'El servicio contiene todos los instrumentos necesarios para jugar tennis',         	
+        	'descripcion' => 'El servicio contiene todos los instrumentos necesarios para jugar tennis en un mesa',         	
         	'tipo_servicio' => 30, 
         	'estado' => true
         	]);
-        Servicio::insert(['nombre' => 'Alquiler de Raquetas', 
-        	'descripcion' => 'Raquetas de todos precios',         	
+        Servicio::insert(['nombre' => 'Alquiler de Raquetas de Beisbol', 
+        	'descripcion' => 'Raquetas de oro y plata para clientes miembros exclusivos',         	
         	'tipo_servicio' => 30, 
         	'estado' => true
         	]);
         
-    Servicio::insert(['nombre' => 'Alquiler de caballos xvrs',
-            'descripcion' => 'Caballos para montar por los campos del club ingluye seguro de vida por si sucede un percance',         	
+    Servicio::insert(['nombre' => 'Paseo a Caballos de Raza Arco Iris',
+            'descripcion' => 'Caballos para montar por los campos o canchas del club. No incluye seguro de vida.',         	
         	'tipo_servicio' => 29, 
         	'estado' => true
         	]);

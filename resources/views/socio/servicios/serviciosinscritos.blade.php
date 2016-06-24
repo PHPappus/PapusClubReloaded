@@ -32,7 +32,7 @@ echo $msj;
 	{!!Html::style('css/bootstrap-datepicker3.css')!!}
 	{!!Html::style('css/jquery.dataTables.css')!!}
 	<style>
-		.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child > td{
+		.table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > th, .table > caption + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > td, .table > thead:first-child > tr:first-child> td{
 			vertical-align: middle;
 		}
 	</style>
@@ -67,7 +67,7 @@ echo $msj;
 					<strong>¡Éxito!</strong> {{$mensaje}}
 				</div>
 			@endif
-			<form method="POST" action="/servicioalsocio/index" class="form-horizontal form-border"> <!-- FALTA CAMBIAR LA ACTION =D -->
+			<form method="POST" action="/servicios/mis-inscripciones" class="form-horizontal form-border"> <!-- FALTA CAMBIAR LA ACTION =D -->
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<br/><br/>
 				<div class="form-group ">

@@ -51,6 +51,7 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 
 	Route::post('servicioalsocio/{id}/confirm/save','ServicioalsocioController@confirmareleccionsave');
 	Route::get('servicios/mis-inscripciones','ServicioalsocioController@misinscripciones');
+	Route::post('servicios/mis-inscripciones','ServicioalsocioController@filtromisinscripciones');
 
 
 	//Socio.talleres  : INSCRIPCION DE TALLERES

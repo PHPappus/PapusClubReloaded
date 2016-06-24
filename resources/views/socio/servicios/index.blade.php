@@ -113,12 +113,13 @@ echo $msj;
 							<th><div align=center>NOMBRE</div></th>	
 							<th><div align=center>DESCRIPCIÓN</div></th>				
 							<th style="max-width:100px;"><div align=center>TIPO DE SERVICIO</div></th>
-							<th style="max-width:100px;"><div align=center>ESTADO</div></th>
+							<th style="max-width:100px;"><div align=center>ESTADO SERVICIO</div></th>
 							<th style="max-width:100px;"><div align=center>PRECIO SOCIO S/</div></th>
 							
 							<th><div align=center>PRECIO TRABAJADOR S/</div></th>
 							<th style="max-width:180px;"><div align=center>PRECIO INVITADOS/</div></th>							
-							<th><div align=center>SEDE</div></th>					
+							<th><div align=center>SEDE</div></th>				
+							<th><div align=center>ESTADO INSCRIPCIÓN.</div></th>
 							<th><div align=center>INSCRIBIRSE</div></th>
 						</tr>
 					</thead>
@@ -163,9 +164,22 @@ echo $msj;
 								</td>
 							@endif
 						@endforeach 
-
-							
-						{{$sxs->idservicio}}
+						<?php 	
+							$encontrado = false ; 
+						
+            			foreach ($sedexservicioxpersona as $sxsxper){
+                    			if($sxs->idsede == $sxsxper->id_sede 
+                        			& $sxs->idservicio== $sxsxper->id_servicio){
+                        			$encontrado = true ; 
+                        	 		break;
+                    				}
+            			}
+    					
+    					if ($encontrado	)
+							echo "<td> INSCRITO </td>";	
+						else
+							echo "<td> NO INSCRITO </td>";
+						 ?>
 									<td> 
 							        <a class="btn btn-info" href="{{url('/servicioalsocio/'.$sxs->id.'/confirm')}}" title="agregarservicio" ><i class="glyphicon glyphicon-ok"></i> {{$sxs->id}} </a>
 								    </td> 

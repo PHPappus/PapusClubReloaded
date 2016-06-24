@@ -23,49 +23,95 @@ use Carbon\Carbon;
 
 class ServicioalsocioController extends Controller
 {
-   public function misinscripciones(){
-    // Identificacion persona_id 
-    $user_id = Auth::user()->id;
-    $usuario = User::find($user_id);
-    $persona_id = $usuario->persona->id;
+    public function filtromisinscripciones(Request $request){
+        $user_id = Auth::user()->id;
+        $usuario = User::find($user_id);
+        $persona_id = $usuario->persona->id;
 
-    // Se extrae lo mismo del index
-    $sedes = Sede::all();   
-    $servicios = Servicio::all();
-    $estadosregistros = array();
-    $tarifarioservicios = TarifarioServicio::where('idtipopersona','=','1')->get();  // socio
-    $tiposServicio=Configuracion::where('grupo','=','4')->get();
-    $sedexservicioall = Sedexservicio::all();    
-    $mensaje = Null ; 
-    
-    // Pero solo se extrae la informacion concerniente  a la persona 
-    $sedexservicioxpersona = ServicioxSedexPersona::where('id_persona','=',$persona_id)->get();
+        // Se extrae lo mismo del index
+        $sedes = Sede::all();   
+        $servicios = Servicio::all();
+        $estadosregistros = array();
+        $tarifarioservicios = TarifarioServicio::where('idtipopersona','=','1')->get();  // socio
+        $tiposServicio=Configuracion::where('grupo','=','4')->get();
+        $sedexservicioall = Sedexservicio::all();    
+        $mensaje = Null ; 
+        
+        // Pero solo se extrae la informacion concerniente  a la persona 
+        $sedexservicioxpersona = ServicioxSedexPersona::where('id_persona','=',$persona_id)->get();
 
-    $sedexservicio = array();
-    foreach ($sedexservicioall as $sxsall){
-            foreach ($sedexservicioxpersona as $sxsxper){
-                    if($sxsall->idsede == $sxsxper->id_sede 
-                        & $sxsall->idservicio== $sxsxper->id_servicio){
-                        array_push($sedexservicio, $sxsall);
-                        break;
-                    }
+        $sedexservicio = array();
+        foreach ($sedexservicioall as $sxsall){
+                foreach ($sedexservicioxpersona as $sxsxper){
+                        if($sxsall->idsede == $sxsxper->id_sede 
+                            & $sxsall->idservicio== $sxsxper->id_servicio){
+                            array_push($sedexservicio, $sxsall);
+                            break;
+                        }
+                }
+        }
+        $input= $request->all(); // 941802191
+        
+            // Fitrado pes LOL 
+            $sedexservicioaux = array();
+            if ($input['sedeSelec']==-1) {
+                $sedexservicioaux = $sedexservicio;
+            }else{                
+                foreach ($sedexservicio as $sst) {                        
+                    if ($sst->idsede == $input['sedeSelec'] ){
+                        array_push($sedexservicioaux,$sst);
+                    }            
+                }       
             }
-    }
+                $sedexservicio = $sedexservicioaux;
+        //return view('socio.servicios.prueba2',compact('sedexservicioxpersona'));
+            return view('socio.servicios.serviciosinscritos',compact('servicios','sedes','tarifarioservicios','tiposServicio','sedexservicio','mensaje'));    
 
-    //return view('socio.servicios.prueba2',compact('sedexservicioxpersona'));
-        return view('socio.servicios.serviciosinscritos',compact('servicios','sedes','tarifarioservicios','tiposServicio','sedexservicio','mensaje'));
+    }
+   public function misinscripciones(){
+        // Identificacion persona_id 
+        $user_id = Auth::user()->id;
+        $usuario = User::find($user_id);
+        $persona_id = $usuario->persona->id;
+
+        // Se extrae lo mismo del index
+        $sedes = Sede::all();   
+        $servicios = Servicio::all();
+        $estadosregistros = array();
+        $tarifarioservicios = TarifarioServicio::where('idtipopersona','=','1')->get();  // socio
+        $tiposServicio=Configuracion::where('grupo','=','4')->get();
+        $sedexservicioall = Sedexservicio::all();    
+        $mensaje = Null ; 
+        
+        // Pero solo se extrae la informacion concerniente  a la persona 
+        $sedexservicioxpersona = ServicioxSedexPersona::where('id_persona','=',$persona_id)->get();
+
+        $sedexservicio = array();
+        foreach ($sedexservicioall as $sxsall){
+                foreach ($sedexservicioxpersona as $sxsxper){
+                        if($sxsall->idsede == $sxsxper->id_sede 
+                            & $sxsall->idservicio== $sxsxper->id_servicio){
+                            array_push($sedexservicio, $sxsall);
+                            break;
+                        }
+                }
+        }
+
+        //return view('socio.servicios.prueba2',compact('sedexservicioxpersona'));
+            return view('socio.servicios.serviciosinscritos',compact('servicios','sedes','tarifarioservicios','tiposServicio','sedexservicio','mensaje'));
    }
+
     public function index(){	
 
-    $sedes = Sede::all();	
-   	$servicios = Servicio::all();
-    $estadosregistros = array();
-    $tarifarioservicios = TarifarioServicio::all();	
-    $tiposServicio=Configuracion::where('grupo','=','4')->get();
-    $sedexservicio = Sedexservicio::all();
-    $sedexservicioxpersona = ServicioxSedexPersona::all();
-    $mensaje = Null ; 
-    return view('socio.servicios.index',compact('servicios','sedes','tarifarioservicios','tiposServicio','sedexservicio','sedexservicioxpersona', 'mensaje'));
+            $sedes = Sede::all();	
+            	$servicios = Servicio::all();
+            $estadosregistros = array();
+            $tarifarioservicios = TarifarioServicio::all();	
+            $tiposServicio=Configuracion::where('grupo','=','4')->get();
+            $sedexservicio = Sedexservicio::all();
+            $sedexservicioxpersona = ServicioxSedexPersona::all();
+            $mensaje = Null ; 
+            return view('socio.servicios.index',compact('servicios','sedes','tarifarioservicios','tiposServicio','sedexservicio','sedexservicioxpersona', 'mensaje'));
     }
 
     public function filtroServicio(Request $request){
@@ -90,7 +136,8 @@ class ServicioalsocioController extends Controller
     $tarifarioservicios = TarifarioServicio::all();	
     $tiposServicio=Configuracion::where('grupo','=','4')->get();
     $mensaje = NUll;
-        return view('socio.servicios.index',compact('servicios','sedes','tarifarioservicios','tiposServicio','sedexservicio','mensaje'));
+    $sedexservicioxpersona = ServicioxSedexPersona::all();
+        return view('socio.servicios.index',compact('servicios','sedes','tarifarioservicios','tiposServicio','sedexservicio','mensaje','sedexservicioxpersona'));
     }
 
     public function confirmareleccionsave($id){
@@ -128,6 +175,7 @@ class ServicioalsocioController extends Controller
 
     /*return view('socio.servicios.prueba',compact('sedexservicio','tarifserv'));
     */
+        $sedexservicioxpersona = ServicioxSedexPersona::all();
     return view('socio.servicios.index',compact('servicios','sedes','tarifarioservicios','tiposServicio','sedexservicio','sedexservicioxpersona','mensaje'));
     }
     public function confirmareleccion(Request $request, $id){
@@ -149,14 +197,14 @@ class ServicioalsocioController extends Controller
         $mensaje  = "";
 
         foreach ($servxsedexpersonatodos as $sxsxp){
-            if ($sxsxp->id_persona==$codigo 
-                && $sxsxp->id_sede == $sedexservicio->idsede 
-                && $sxsxp->id_servicio == $sedexservicio->idservicio){
-                $foo = true ; 
-                $mensaje  = "Usted ya esta inscrito en este servicio";          
-                break;
-            }
-        }
+                    if ($sxsxp->id_persona==$codigo 
+                        && $sxsxp->id_sede == $sedexservicio->idsede 
+                        && $sxsxp->id_servicio == $sedexservicio->idservicio){
+                        $foo = true ; 
+                        $mensaje  = "Usted ya esta inscrito en este servicio";
+                        break;
+                    }
+                }
 
             $sedes = Sede::all();   
             $servicios = Servicio::all();
@@ -185,7 +233,8 @@ class ServicioalsocioController extends Controller
 
         if ($foo){            
             $mensaje  = "Usted ya esta inscrito en este servicio";             
-            return view('socio.servicios.index',compact('servicios','sedes','tarifarioservicios','tiposServicio','sedexservicio','mensaje','tip_s','precio'));        
+            $sedexservicioxpersona = ServicioxSedexPersona::all();
+            return view('socio.servicios.index',compact('servicios','sedes','tarifarioservicios','tiposServicio','sedexservicio','mensaje','tip_s','precio','sedexservicioxpersona'));
         }else{        
 
             return view('socio.servicios.indexdetalle',compact('servicios','sedes','tarifarioservicios','tiposServicio','sedexservicio','id','servicindentificado','tip_s','precio'));
