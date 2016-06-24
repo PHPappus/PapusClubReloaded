@@ -463,10 +463,7 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	//RESERVA DE AMBIENTES
 	Route::get('reservar-ambiente/reservar-bungalow-adminR', 'ReservarAmbienteController@reservarBungalowAdminR'); // REservar Bungalows
 	Route::post('reservar-ambiente/reservar-bungalow-adminR/search-adminR', 'ReservarAmbienteController@reservarBungalowFiltradosAdminR');
-	Route::get('reservar-ambiente/{id}/deleteBungalowAdminR','ReservarAmbienteController@eliminarReservaBungalowAdminR');
-	Route::get('reservar-ambiente/{id}/deleteOtrosAdminR','ReservarAmbienteController@eliminarReservaOtrosAdminR');
-
-
+	
 	Route::get('reservar-ambiente/reservar-otros-ambientes-adminR', 'ReservarAmbienteController@reservarOtrosAmbientesAdminR'); // REservar otros ambientes distinto de bungalows
 	Route::post('reservar-ambiente/reservar-otros-ambientes/search-adminR','ReservarAmbienteController@reservarOtrosAmbientesFiltradosAdminR');
 	
@@ -479,6 +476,9 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	//para consultar las reservas y poder cancelarlas
 	Route::get('reservar-ambiente/consultar-otros-ambientes-adminR', 'ReservarAmbienteController@consultarReservaOtroAmbienteAdminR'); 
 	Route::get('reservar-ambiente/consultar-bungalow-adminR', 'ReservarAmbienteController@consultarReservaBungalowAdminR'); 
+	Route::get('reservar-ambiente/{id}/deleteBungalowAdminR','ReservarAmbienteController@eliminarReservaBungalowAdminR');
+	Route::get('reservar-ambiente/{id}/deleteOtrosAdminR','ReservarAmbienteController@eliminarReservaOtrosAdminR');
+
 });
 //Control de ingresos
 	Route::group(['middleware' => ['auth', 'controlingresos']], function () {

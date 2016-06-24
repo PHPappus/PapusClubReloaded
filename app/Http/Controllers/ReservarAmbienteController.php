@@ -12,7 +12,10 @@ use papusclub\User;
 use papusclub\Models\Reserva;
 use papusclub\Models\Configuracion;
 use papusclub\Models\Facturacion;
-use papusclub\Http\Requests\StoreReservaAmbiente;
+use papusclub\Http\Requests\StoreReservaBungalowSocio;
+use papusclub\Http\Requests\StoreReservaBungalowAdminR;
+use papusclub\Http\Requests\StoreReservaOtroAmbienteSocio;
+use papusclub\Http\Requests\StoreReservaOtroAmbienteAdminR;
 use papusclub\Models\Socio;
 use Auth;
 use Session;
@@ -163,10 +166,9 @@ class ReservarAmbienteController extends Controller
     }
 
     //Se muestra el Bungalow a reservar y espera su confirmacion para la reserva
-    public function storeBungalow($id, StoreReservaAmbiente $request)
+    public function storeBungalow($id, StoreReservaBungalowSocio $request)
     {
-        DB::beginTransaction();
-
+        
         $user_id = Auth::user()->id;
         $usuario = User::find($user_id);
         $persona_id = $usuario->persona->id;        
@@ -232,7 +234,7 @@ class ReservarAmbienteController extends Controller
         $facturacion->save();
 
 
-        DB::commit();
+       
 
         return redirect('reservar-ambiente/reservar-bungalow')->with('stored', 'Se registró la reserva del bungalow correctamente.');        
     }
@@ -251,7 +253,7 @@ class ReservarAmbienteController extends Controller
     }
 
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
-    public function storeOtroTipoAmbiente($id, Request $request)
+    public function storeOtroTipoAmbiente($id, StoreReservaOtroAmbienteSocio $request)
     {
         DB::beginTransaction();
         $user_id = Auth::user()->id;
@@ -545,7 +547,7 @@ class ReservarAmbienteController extends Controller
     }
 
     //Se muestra el Bungalow a reservar y espera su confirmacion para la reserva
-    public function storeBungalowAdminR($id, StoreReservaAmbiente $request)
+    public function storeBungalowAdminR($id, StoreReservaBungalowAdminR $request)
     {
         $ambiente_id = $id;
 
@@ -625,7 +627,7 @@ class ReservarAmbienteController extends Controller
     }
     
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
-    public function storeOtroTipoAmbienteAdminR($id, Request $request)
+    public function storeOtroTipoAmbienteAdminR($id, StoreReservaOtroAmbienteAdminR $request)
     {
         
         $ambiente_id = $id;

@@ -57,9 +57,9 @@
 		  	</div>	  	
 		  	
 		  	<div class="form-group ">
-		    	<label for="ubicacionInput" class="col-sm-4 control-label">UBICACIÓN</label>
+		    	<label for="ubicacionInput" class="col-sm-4 control-label">DESCRIPCIÓN</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->ubicacion}}" readonly>
+		      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" value="{{$ambiente->ubicacion}}" readonly>
 		    	</div>
 		  	</div>
 		  	<div class="form-group">
@@ -85,7 +85,7 @@
 		  	<div class="form-group ">
 		    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="precioInput" onkeypress="return inputLimiter(event,'Numbers')" name="ubicacion" value="FALTA CALCULAR EL PRECIO" readonly>
+		      		<input type="text" class="form-control" id="precioInput" onkeypress="return inputLimiter(event,'Numbers')" name="precio" value="FALTA CALCULAR EL PRECIO" readonly>
 		    	</div>
 		  	</div>
 		  	
@@ -93,7 +93,7 @@
 			   	<label for="tipoComprobanteInput" class="col-sm-4 control-label">Tipo de Comprobante</label>
 			   	<div class="col-sm-5">
 			    	<select class="form-control" id="tipo_comprobante" name="tipo_comprobante">
-						<option value="-1" selected >Seleccionar tipo...</option>
+						<option value="" selected >Seleccionar tipo...</option>
 						@foreach($tipo_comprobantes as $tipo_comprobante)
 						<option value="{{$tipo_comprobante->valor}}" >{{$tipo_comprobante->valor}}</option>
 						@endforeach						

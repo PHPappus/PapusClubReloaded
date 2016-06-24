@@ -105,7 +105,7 @@
 			   	<label for="tipoComprobanteInput" class="col-sm-4 control-label">Tipo de Comprobante</label>
 			   	<div class="col-sm-5">
 			    	<select class="form-control" id="tipo_comprobante" name="tipo_comprobante">
-						<option value="-1" selected >Seleccionar tipo...</option>
+						<option value="" selected >Seleccionar tipo...</option>
 						@foreach($tipo_comprobantes as $tipo_comprobante)
 						<option value="{{$tipo_comprobante->valor}}" >{{$tipo_comprobante->valor}}</option>
 						@endforeach						
