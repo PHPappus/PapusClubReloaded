@@ -526,9 +526,11 @@ class SocioAdminController extends Controller
        // var_dump($input);
        // die();
         $persona=Persona::where('doc_identidad','=',$input['dniP'])->orwhere('carnet_extranjeria','=',$input['dniP'])->first();
+        $oldpersona = Persona::where('doc_identidad','=',$input['dni'])->orwhere('carnet_extranjeria','=',$input['dni'])->first();
      //   if ($postulante->dni == 0)
        //     return redirect('traspasos-p')->with('No se encontró al postulante');
         $postulante = Postulante::where('id_postulante','=',$persona->id)->first();
+        $oldpostulante = Postulante::where('id_postulante','=',$oldpersona->id)->first();
         $traspaso = Traspaso::where('dni','=',$input['dniP'])->first();
         $traspaso->socio->update(['estado' => FALSE]);
         $traspaso->update(['estado'=>FALSE]);
@@ -537,7 +539,7 @@ class SocioAdminController extends Controller
         $fecha = Date('now');
         $socio->fecha_ingreso=$fecha;
         $socio->postulante_id = $postulante->id_postulante;
-        $socio->tipo_membresia_id = 1;
+        $socio->tipo_membresia_id = $oldpostulante->socio->tipo_membresia_id;
         $membresia = TipoMembresia::find($socio->tipo_membresia_id);
         $membresia->socio()->save($socio);
 
