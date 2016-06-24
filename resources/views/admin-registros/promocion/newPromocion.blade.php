@@ -60,28 +60,28 @@
 				<div class="form-group required">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripcion</label>
 			    	<div class="col-sm-5">
-			      		<textarea   type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"  class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripcion" value="{{old('descripcion')}}"></textarea> 
+			      		<textarea   type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"  class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripcion" value="{{old('descripcion')}}" style="resize: none"  maxlength="100" ></textarea> 
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="estadoInput" name="estado" placeholder="Estado" value="{{old('estado')}}">
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="estadoInput" name="estado" placeholder="Estado" value="{{old('estado')}}"  maxlength="50" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="descuentoInput" class="col-sm-4 control-label">Monto Descuento</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'DoubleFormat')" class="form-control" id="descuentoInput" name="montoDescuento" placeholder="Monto descuento" value="{{old('descuento')}}">
+			      		<input type="text"  onkeypress="return inputLimiter(event,'DoubleFormat')" class="form-control" id="descuentoInput" name="montoDescuento" placeholder="Monto descuento" value="{{old('descuento')}}"  maxlength="5" >
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="porcentajeInput" class="col-sm-4 control-label">Porcentaje Descuento</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'DoubleFormat')" class="form-control" id="porcentajeInput" name="porcentajeDescuento" placeholder="Porcentaje descuento" value="{{old('porcentaje')}}" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'DoubleFormat')" class="form-control" id="porcentajeInput" name="porcentajeDescuento" placeholder="Porcentaje descuento" value="{{old('porcentaje')}}"  maxlength="5"  >
 			    	</div>
 			  	</div>	  	
 		  		
