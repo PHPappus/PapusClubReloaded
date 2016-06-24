@@ -556,13 +556,18 @@ class ReservarAmbienteController extends Controller
         $ambiente = Ambiente::find($idambiente);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
         $socio = Socio::find($idsocio);
-        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes','socio'));
+        $persona = $socio->postulante->persona;  
+        $tipo_persona = $persona->tipopersona->id;
+
+        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes','socio', 'tipo_persona'));
     }
 
     //Se muestra el Bungalow a reservar y espera su confirmacion para la reserva
-    public function storeBungalowAdminR($id, StoreReservaBungalowAdminR $request)
+    public function storeBungalowAdminR($idambiente, $idsocio, StoreReservaBungalowAdminR $request)
     {
-        $ambiente_id = $id;
+        $ambiente_id = $idambiente;
+        $socio = Socio::find($idsocio);
+        $persona_id = $socio->postulante->persona->id;
 
         $input = $request->all();
         $carbon=new Carbon(); 
@@ -632,19 +637,24 @@ class ReservarAmbienteController extends Controller
     }
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
 
-    public function createOtroTipoAmbienteAdminR($idambiente,$idsocio)
+    public function createOtroTipoAmbienteAdminR($idambiente, $idsocio)
     {   
         $ambiente = Ambiente::find($idambiente);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
         $socio = Socio::find($idsocio);
-        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente','tipo_comprobantes','socio'));
+        $persona = $socio->postulante->persona;  
+        $tipo_persona = $persona->tipopersona->id;
+        
+        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente','tipo_comprobantes','socio', 'tipo_persona'));
     }
     
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
-    public function storeOtroTipoAmbienteAdminR($id, StoreReservaOtroAmbienteAdminR $request)
+    public function storeOtroTipoAmbienteAdminR($idambiente, $idsocio, StoreReservaOtroAmbienteAdminR $request)
     {
         
-        $ambiente_id = $id;
+        $ambiente_id = $idambiente;
+        $socio = Socio::find($idsocio);
+        $persona_id = $socio->postulante->persona->id;
 
         $input = $request->all();
         $carbon=new Carbon(); 

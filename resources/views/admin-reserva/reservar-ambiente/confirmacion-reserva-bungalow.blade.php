@@ -29,7 +29,7 @@
 		</div>
 		<div class="container">
 			<!--@include('errors.503')-->		
-			<form method="POST" action="/reservar-ambiente/{{ $ambiente->id }}/confirmacion-reserva-bungalow-adminR" class="form-horizontal form-border"> 
+			<form method="POST" action="/reservar-ambiente/{{ $ambiente->id }}/{{ $socio->id }}/confirmacion-reserva-bungalow-adminR" class="form-horizontal form-border"> 
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<br/><br/>
 
@@ -85,7 +85,7 @@
 		  	<div class="form-group ">
 		    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="precioInput" onkeypress="return inputLimiter(event,'Numbers')" name="precio" value="FALTA CALCULAR EL PRECIO" readonly>
+		      		<input type="text" class="form-control" id="precioInput" onkeypress="return inputLimiter(event,'Numbers')" name="precio" value="{{$ambiente->precio($tipo_persona, $ambiente->tarifas)}}" readonly>
 		    	</div>
 		  	</div>
 		  	
