@@ -2229,6 +2229,7 @@ return array(
     'SedeTableSeeder' => $baseDir . '/database/seeds/SedeTableSeeder.php',
     'SocioTableSeeder' => $baseDir . '/database/seeds/SocioTableSeeder.php',
     'SorteoTableSeeder' => $baseDir . '/database/seeds/SorteoTableSeeder.php',
+<<<<<<< HEAD
     'SuperClosure\\Analyzer\\AstAnalyzer' => $vendorDir . '/jeremeamia/SuperClosure/src/Analyzer/AstAnalyzer.php',
     'SuperClosure\\Analyzer\\ClosureAnalyzer' => $vendorDir . '/jeremeamia/SuperClosure/src/Analyzer/ClosureAnalyzer.php',
     'SuperClosure\\Analyzer\\Token' => $vendorDir . '/jeremeamia/SuperClosure/src/Analyzer/Token.php',
@@ -2741,6 +2742,8 @@ return array(
     'Symfony\\Polyfill\\Util\\BinaryNoFuncOverload' => $vendorDir . '/symfony/polyfill-util/BinaryNoFuncOverload.php',
     'Symfony\\Polyfill\\Util\\BinaryOnFuncOverload' => $vendorDir . '/symfony/polyfill-util/BinaryOnFuncOverload.php',
     'Symfony\\Polyfill\\Util\\TestListener' => $vendorDir . '/symfony/polyfill-util/TestListener.php',
+=======
+>>>>>>> d382c79951ccce8fbbe27bbe5dd1a0131e322078
     'TarifaActividadTableSeeder' => $baseDir . '/database/seeds/TarifaActividadTableSeeder.php',
     'TarifaAmbientexTipoPersonaTableSeeder' => $baseDir . '/database/seeds/TarifaAmbientexTipoPersonaTableSeeder.php',
     'TarifaFamiliarTableSeeder' => $baseDir . '/database/seeds/TarifaFamiliarTableSeeder.php',

@@ -2491,6 +2491,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'SedeTableSeeder' => __DIR__ . '/../..' . '/database/seeds/SedeTableSeeder.php',
         'SocioTableSeeder' => __DIR__ . '/../..' . '/database/seeds/SocioTableSeeder.php',
         'SorteoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/SorteoTableSeeder.php',
+<<<<<<< HEAD
         'SuperClosure\\Analyzer\\AstAnalyzer' => __DIR__ . '/..' . '/jeremeamia/SuperClosure/src/Analyzer/AstAnalyzer.php',
         'SuperClosure\\Analyzer\\ClosureAnalyzer' => __DIR__ . '/..' . '/jeremeamia/SuperClosure/src/Analyzer/ClosureAnalyzer.php',
         'SuperClosure\\Analyzer\\Token' => __DIR__ . '/..' . '/jeremeamia/SuperClosure/src/Analyzer/Token.php',
@@ -3003,6 +3004,8 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'Symfony\\Polyfill\\Util\\BinaryNoFuncOverload' => __DIR__ . '/..' . '/symfony/polyfill-util/BinaryNoFuncOverload.php',
         'Symfony\\Polyfill\\Util\\BinaryOnFuncOverload' => __DIR__ . '/..' . '/symfony/polyfill-util/BinaryOnFuncOverload.php',
         'Symfony\\Polyfill\\Util\\TestListener' => __DIR__ . '/..' . '/symfony/polyfill-util/TestListener.php',
+=======
+>>>>>>> d382c79951ccce8fbbe27bbe5dd1a0131e322078
         'TarifaActividadTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifaActividadTableSeeder.php',
         'TarifaAmbientexTipoPersonaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifaAmbientexTipoPersonaTableSeeder.php',
         'TarifaFamiliarTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifaFamiliarTableSeeder.php',

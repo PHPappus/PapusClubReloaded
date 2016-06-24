@@ -3,7 +3,6 @@
 
   <div class="content clearfix">
     <!--Input de buscador de la parte superior derecha-->
-
     <nav class="search">
       <div class="search_box">
         <form action="#" id="search-box" method="get">
@@ -31,40 +30,61 @@
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="navbar1">
+        <!-- Tercero -->
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="{!!URL::to('/Socio/')!!}" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Socio <span class="caret"></span>
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Tercero <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-
-<!--Aqui es papu-->
-
-                <li><a href="#" class="dropdown-toggle btn-lg" title="consultar Bungalows" target="_self">Socio</a></li>
-
-
-
-                <li><a href="{!!URL::to('/multas-s')!!}" title="Asignar Multa" target="_self">Asignar Multa</a></li>
-                <li><a href="#" title="Consultar socio" target="_self">Consultar</a></li>
-                <li><a href="#" title="Registrar nuevo socio" target="_self">Registrar</a></li>
-                <li><a href="#" title="Anular socio" target="_self">Anular</a></li>
+                <li><a href="#" title="Consultar tercero" target="_self">Consultar</a></li>
+                <li><a href="#" title="Registrar nuevo tercero" target="_self">Registrar</a></li>
             </ul>
           </li>
-
         </ul>
+        
+        <!-- Trabajador -->
         <ul class="nav navbar-nav">
-          <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Trabajador <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{!!URL::to('/trabajador/index')!!}" title="Consultar trabajador" target="_self">Consultar</a></li>
+                <li><a href="{!!URL::to('/trabajador/new')!!}" title="Registrar nuevo trabajador" target="_self">Registrar</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <!-- Postulante -->
+        <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" role="button" >
               Postulante <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
                 <li><a href="{!!URL::to('/postulante/index')!!}" title="Consultar postulantes" target="_self">Consultar</a></li>
-                <li><a href="#" title="Registrar nuevo postulante" target="_self">Registrar</a></li>
+                <li><a href="{!!URL::to('/postulante/new')!!}" title="Registrar nuevo postulante" target="_self">Registrar</a></li>
                 <li><a href="#" title="Aprobar/Desaprobar postulante" target="_self">Aprobar/Desaprobar</a></li>
             </ul>
           </li>
         </ul>
+        
+        <!-- Socio -->
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Socio <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">    
+                <li><a href="{!!URL::to('/Socio/')!!}" title="Consultar socio" target="_self">Consultar</a></li>
+                <li><a href="#" title="Registrar nuevo socio" target="_self">Registrar</a></li>
+                <li><a href="{!!URL::to('/multas-s')!!}" title="Asignar Multa" target="_self">Asignar Multa</a></li>
+            </ul>
+          </li>
+        </ul>
+        
+        <!-- Proveedor -->
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
@@ -73,22 +93,11 @@
             <ul class="dropdown-menu">
                 <li><a href="#" title="Consultar Proveedores" target="_self">Consultar</a></li>
                 <li><a href="#" title="Registrar nuevo proveedor" target="_self">Registrar</a></li>
-                <li><a href="#" title="Anular proveedor" target="_self">Anular</a></li>
             </ul>
           </li>
         </ul>
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="{!!URL::to('/trabajador/index')!!}" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Trabajador <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#" title="Consultar trabajador" target="_self">Consultar</a></li>
-                <li><a href="#" title="Registrar nuevo trabajador" target="_self">Registrar</a></li>
-                <li><a href="#" title="Anular trabajador" target="_self">Anular</a></li>
-            </ul>
-          </li>
-        </ul>
+        
+        <!-- Usuario -->
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
@@ -99,22 +108,19 @@
             </ul>
           </li>
         </ul>
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <li><a href="#" class="dropdown-toggle btn-lg" title="Consultar Cuotas" target="_self">Cuotas</a></li>
-          </li>
-        </ul>
+        
+        <!-- Trámites -->
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" title="Realizar tramites" data-toggle="dropdown" role="button">
               Trámites</span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="{!!URL::to('/traspasos-p')!!}" title="Consultar Proveedores" target="_self">Traspasos</a></li>
+                <li><a href="{!!URL::to('/traspasos-p')!!}" title="Traspasos" target="_self">Traspasos</a></li>
             </ul>
           </li>
         </ul>
-
+            
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">

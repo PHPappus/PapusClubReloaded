@@ -34,4 +34,9 @@ class Reserva extends Model
         return $this->belongsTo('papusclub\Models\Actividad', 'actividad_id');
         
     }
+
+    public function facturacion()
+    {
+        return $this->hasOne('papusclub\Models\Facturacion');
+    }
 }
