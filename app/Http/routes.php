@@ -429,16 +429,14 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::post('Socio/{id}/invitado/save','SocioAdminController@storeInvitado');
 	Route::get('Socio/{id}/invitado/delete','SocioAdminController@deleteInvitado');
 	Route::get('Socio/invitado/{id}/','SocioAdminController@detailInvitado');
-		/*Departamento, provincia, distrito*/
-		Route::post('Socio/{id}/invitado/provincias', function(){
-			$dep_id=Input::get('id');
-	    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
-		});
-		Route::post('Socio/{id}/invitado/distritos', function(){
-			$prov_id=Input::get('id');
-	    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
-		});
-	/**/
+
+
+	/*Familiar*/
+	Route::get('Socio/{id}/familiar/new','SocioAdminController@createFamiliar');
+	Route::post('Socio/{id}/familiar/save','SocioAdminController@storeFamiliar');
+	Route::get('Socio/{id}/familiar/delete','SocioAdminController@deleteFamiliar');
+
+
 
 	/*editar*/
 	Route::patch('Socio/{id}/editBasico','SocioAdminController@updateBasico');

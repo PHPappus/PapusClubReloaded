@@ -63,7 +63,7 @@
 						<ul class="nav nav-pills nav-justified" id="pills-edit" role="tablist">
 
 						<!--DATOS BASICOS-->
-						@if(!Session::has('update') &&  !session('storedInvitado')   && !$errors->basico->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any() && !$errors->nacimiento->any() && !$errors->vivienda->any() )									
+						@if(!Session::has('update') &&  !session('storedInvitado') && !session('storedInvitado')  && !$errors->basico->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any() && !$errors->nacimiento->any() && !$errors->vivienda->any() )									
 							<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Básico</a></li>
 						@elseif(Session::get('update')=='basico' || $errors->basico->any())
 							<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Básico</a></li>
@@ -80,9 +80,11 @@
 
 
 						<!--DATOS DE FAMILIA-->
-
+						@if(session('storedInvitado') || Session::get('update')=='familiar')
+							<li role="presentation" class="active"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Familia</a></li>
+						@else
 							<li role="presentation"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Familia</a></li>
-
+						@endif
 							<!--DATOS DE VIVIENDA-->
 						@if(Session::get('update')=='vivienda' || $errors->vivienda->any())
 							<li role="presentation" class="active"><a href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab">Vivienda</a></li>
@@ -135,7 +137,7 @@
 						
 
 
-					@if(!Session::has('update') &&  !session('storedInvitado')  && !$errors->basico->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any() && !$errors->nacimiento->any() && !$errors->vivienda->any())									
+					@if(!Session::has('update') &&  !session('storedInvitado') && !session('storedFamiliar')  && !$errors->basico->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any() && !$errors->nacimiento->any() && !$errors->vivienda->any())									
 						<div role="tabpanel" class="tab-pane active" id="seccion1">
 					@elseif(Session::get('update')=='basico' || $errors->basico->any())
 						<div role="tabpanel" class="tab-pane active" id="seccion1">

@@ -22,8 +22,10 @@ use papusclub\Http\Requests\StoreMultaxPersonaRequest;
 use papusclub\Http\Requests\EditSocioNacimientoRequest;
 use papusclub\Http\Requests\StoreInvitadoRequest;
 use papusclub\Http\Requests\SaveSocioRequest;
+use papusclub\Http\Requests\StoreFamiliarSocioRequest;
 use papusclub\Models\Invitados;
 use papusclub\Models\TipoMembresia;
+use papusclub\Models\TipoFamilia;
 use Illuminate\Support\Facades\Redirect;
 use papusclub\Models\Departamento;
 use papusclub\Models\Provincia;
@@ -531,11 +533,105 @@ class SocioAdminController extends Controller
     {
         $invitado = Invitados::find($id);
         $invitado->delete();
-        //var_dump($invitado);
-        //die();
+
         Session::flash('update','invitado');    
         return back();
     }
+
+
+    /*FAMILIAR*/
+
+    public function createFamiliar($id)
+    {
+        $socio = Socio::withTrashed()->find($id);
+        $tipo_relacion= TipoFamilia::all();
+        return view('admin-persona.persona.socio.familiar.newFamiliar',compact('socio','tipo_relacion'));               
+    }
+
+    public function storeFamiliar(StoreFamiliarSocioRequest $request, $id)
+    {
+        $socio = Socio::withTrashed()->find($id);
+        $input =$request->all();
+
+        $nacionalidad=$input['nacionalidad'];
+
+
+        $persona = new Persona();
+        $relacion=$input['tipo_relacion'];
+        if($nacionalidad=='peruano')
+        {
+            $doc_identidad = $input['doc_identidad'];
+            $persona = Persona::where(['doc_identidad'=>$doc_identidad])->get()->first();
+        }
+        else
+        {
+            $carnet_extranjeria = $input['carnet_extranjeria'];
+            $persona=Persona::where(['carnet_extranjeria'=>$carnet_extranjeria])->get()->first();
+        }
+
+        if($persona==null)
+        {
+            $persona = new Persona();
+            $carbon = new Carbon();
+
+
+            $persona->nombre = trim($input['nombre']);
+            $persona->ap_paterno = trim($input['ap_paterno']);
+            $persona->ap_materno = trim($input['ap_materno']);            
+            $persona->sexo=$input['sexo']; 
+            $persona->nacionalidad = $input['nacionalidad'];                       
+            if (empty($input['carnet_extranjeria'])) {
+                $persona->carnet_extranjeria ="";
+            }
+            else
+                $persona->carnet_extranjeria = $input['carnet_extranjeria'];
+
+            
+            if (empty($input['doc_identidad'])) {
+                $persona->doc_identidad ="";
+            }
+            else
+            {
+                $persona->doc_identidad = $input['doc_identidad'];             
+            }
+            if(empty($input['correo']))
+            {
+                $persona->correo='No ha registrado Correo';
+            }
+            else
+            {
+                $persona->correo=$input['correo'];
+            }
+            if (empty($input['fecha_nacimiento'])) {
+                $persona->fecha_nacimiento ="";            
+            }else{
+                $fecha_nac = str_replace('/', '-', $input['fecha_nacimiento']);      
+                $persona->fecha_nacimiento=$carbon->createFromFormat('d-m-Y', $fecha_nac)->toDateString();
+            }
+            $persona->id_tipo_persona = 3;
+            $persona->correo=$input['correo'];
+            $persona->save();
+        }
+
+        $socio->postulante->addFamiliar($persona,$relacion);
+        return Redirect::action('SocioAdminController@edit',$socio->id)->with('storedFamiliar', 'Se registró el Familiar correctamente.');        
+    }
+
+    public function deleteFamiliar(Request $request, $id)
+    {
+        $invitado = Invitados::find($id);
+        $invitado->delete();
+
+        Session::flash('update','familiar');    
+        return back();
+    }
+
+
+
+
+
+
+
 
     /*TRASPASOS*/
 
