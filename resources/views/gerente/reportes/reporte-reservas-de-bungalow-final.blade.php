@@ -42,26 +42,25 @@
 				 	<label for="" class="col-sm-3 control-label">Sede</label>
 				    <div class="col-sm-5">
 					   	<div class="input-group">
-					   		<label for="" class="col-sm-4 control-label">Sede</label>			       		
+					   		<label for="" class="col-sm-4 control-label">Callao</label>			       		
 				   	   	</div>
 				       	
 			    	</div>	
 			</div>
-			<div class="form-group ">
-			 	<label for="" class="col-sm-3 control-label ">Fecha Consultada</label>
-			    <div class="col-sm-5">				  	
-			   	 	<div class="input-group">
-			   		<label for="fechaInput" class="col-sm-4 control-label"> dd/mm/aaaa </label>
-			   		<label for="fechaInput" class="col-sm-4 control-label"> -  </label>
-			   		<label for="fechaInput" class="col-sm-4 control-label"> dd/mm/aaaa </label>
-					</div>			   		
-		    	</div>	
-			</div>
 			<div class="form-group">
-				 	<label for="" class="col-sm-3 control-label">Fecha actual</label>
+				 	<label for="" class="col-sm-3 control-label">Mes</label>
 				    <div class="col-sm-5">
 					   	<div class="input-group">
-					   		<label for="" class="col-sm-4 control-label">dd/mm/aaaa</label>			       		
+					   		<label for="" class="col-sm-4 control-label">Junio</label>			       		
+				   	   	</div>
+				       	
+			    	</div>	
+			</div>
+			<div class="form-group">
+				 	<label for="" class="col-sm-3 control-label">Año</label>
+				    <div class="col-sm-5">
+					   	<div class="input-group">
+					   		<label for="" class="col-sm-4 control-label">2015</label>			       		
 				   	   	</div>
 				       	
 			    	</div>	
@@ -79,21 +78,26 @@
 		<table class="table table-bordered table-hover text-center display" id="example">
 			<thead class="active">
 				<tr>
-				<th><DIV ALIGN=center>ID PERSONA</th>
-				<th><DIV ALIGN=center>NOMBRE</th>
+				<th><DIV ALIGN=center>ID BUNGALOW</th>
+				<th><DIV ALIGN=center>N° DÍAS USADOS</th>
+				<th><DIV ALIGN=center>ID SOCIO</th>
+				<th><DIV ALIGN=center>MONTO (S/.)</th>
 				</tr>
 				</thead>
 				<tbody>
 					@foreach($sedes as $sede)						
 			    	<tr>
-		    		<td>{{ $sede->nombre }}</td>
-					<td>{{ $sede->nombre }}</td>
+		    		<td>00001</td>
+					<td>5</td>
+					<td>002</td>
+					<td>5000</td>
 					</tr>
 					@endforeach
 					<tr>
-						
 						<td><b>TOTAL</b></td>
-						<td>{{ $sede->nombre}}</td>								
+						<td><b>15</b></td>
+						<td><b>TOTAL</b></td>
+						<td>500</td>								
 				    </tr>
 				</tbody>
 		</table>		

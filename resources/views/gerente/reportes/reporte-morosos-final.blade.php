@@ -38,15 +38,7 @@
 				   	   	</div>
 			    	</div>	
 			</div>
-			<div class="form-group">
-				 	<label for="" class="col-sm-3 control-label">Sede</label>
-				    <div class="col-sm-5">
-					   	<div class="input-group">
-					   		<label for="" class="col-sm-4 control-label">Sede</label>			       		
-				   	   	</div>
-				       	
-			    	</div>	
-			</div>
+
 			<div class="form-group ">
 			 	<label for="" class="col-sm-3 control-label ">Fecha Consultada</label>
 			    <div class="col-sm-5">				  	
@@ -81,6 +73,7 @@
 				<tr>
 				<th><DIV ALIGN=center>ID PERSONA</th>
 				<th><DIV ALIGN=center>NOMBRE</th>
+				<th><DIV ALIGN=center>DEUDA (S/.) </th>
 				</tr>
 				</thead>
 				<tbody>
@@ -88,12 +81,13 @@
 			    	<tr>
 		    		<td>{{ $sede->nombre }}</td>
 					<td>{{ $sede->nombre }}</td>
+					<td> 500 </td>
 					</tr>
 					@endforeach
 					<tr>
-						
+						<td><b></b></td>
 						<td><b>TOTAL</b></td>
-						<td>{{ $sede->nombre}}</td>								
+						<td> 5000</td>								
 				    </tr>
 				</tbody>
 		</table>		

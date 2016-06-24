@@ -74,26 +74,42 @@
 					</select>
 				</div>
 			</div>
-			
-
-			<div class="form-group required">
-			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha (dd/mm/aaaa) </label>
-			    <div class="col-sm-5">
-				  	<div class="input-group">
-			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" style="max-width: 250px">
-			   		<span class="input-group-addon">-</span>
-			   		<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_fin" placeholder="Fecha Fin" style="max-width: 250px">
-			   	 	</div>
-		    	</div>	
+			<div class="form-group">
+			   	<label for="sedeInput" class="col-sm-4 control-label">Mes</label>	
+				<div class="col-sm-5">
+				  	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >				            
+				      	<option value="1">Enero</option>
+				      	<option value="2">Febrero</option>
+				      	<option value="3">Marzo</option>
+				      	<option value="4">Abril</option>
+				      	<option value="5">Mayo</option>
+				      	<option value="6">Junio</option>
+				      	<option value="7">Julio</option>
+				      	<option value="8">Agosto</option>
+				      	<option value="9">Septiembre</option>
+				      	<option value="10">Octubre</option>
+				      	<option value="11">Noviembre</option>
+				      	<option value="12">Diciembre</option>				        
+					</select>
+				</div>
 			</div>
-		<!-- 	<div class="form-group required">
-			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha Actual (dd/mm/aaaa) </label>
-			    <div class="col-sm-5">
-				  	<div class="input-group">
-			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio" placeholder="Fecha Actual" style="max-width: 250px">			   		
-			   	 	</div>
-		    	</div>	
-			</div> -->
+			<div class="form-group">
+			   	<label for="sedeInput" class="col-sm-4 control-label">Año</label>	
+				<div class="col-sm-5">
+				  	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >				            
+				      	<option value="1">2016</option>
+				      	<option value="2">2015</option>
+				      	<option value="3">2014</option>
+				      	<option value="4">2013</option>
+				      	<option value="5">2012</option>
+				      	<option value="6">2011</option>
+				      	<option value="7">2010</option>
+				      	<option value="8">2009</option>
+				      	<option value="9">2008</option>			        
+					</select>
+				</div>
+			</div>
+
 			
 			<!-- Boton Buscar INICIO -->
 			<br/>

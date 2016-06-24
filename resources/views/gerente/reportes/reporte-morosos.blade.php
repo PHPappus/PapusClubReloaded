@@ -50,31 +50,8 @@
 		<form method="POST" class="form-horizontal form-border" action="/reporte/morosos/reporte"> 
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<br/>
-			<div class="form-group">
-		  		<div class="text-center ">
-		  			<font color="red"> 
-		  				(*) Dato Obligatorio
-		  			</font>
-		  		</div>
-			</div>
+
 			<br/>
-			<!-- <div class="form-group ">
-			    	<label for="nombreInput" class="col-sm-4 control-label">Usuario</label>
-			    	<div class="col-sm-5">
-			      		<input type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" value="Poner el nombre del gerente que se a logueado" readonly>
-			    	</div>
-			</div> -->
-			<div class="form-group">
-			   	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>	
-				<div class="col-sm-5">
-				  	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >
-				        @foreach ($sedes as $sede)      
-				      	<option value="{{$sede->id}}">{{$sede->nombre}}</option>
-				        @endforeach
-					</select>
-				</div>
-			</div>
-			
 
 			<div class="form-group required">
 			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha (dd/mm/aaaa) </label>
@@ -86,15 +63,7 @@
 			   	 	</div>
 		    	</div>	
 			</div>
-		<!-- 	<div class="form-group required">
-			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha Actual (dd/mm/aaaa) </label>
-			    <div class="col-sm-5">
-				  	<div class="input-group">
-			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio" placeholder="Fecha Actual" style="max-width: 250px">			   		
-			   	 	</div>
-		    	</div>	
-			</div> -->
-			
+
 			<!-- Boton Buscar INICIO -->
 			<br/>
 			<div class="btn-inline">
