@@ -505,7 +505,7 @@ class PostulanteController extends Controller
         $familiar=Persona::find($id);
         $postulante=Persona::find($id_postulante);
         //$relacion=2;
-        $relacion_id=$familiar->familiarxpostulante->where('id_postulante',$postulante->id)->first()->pivot->tipo_familia_id;
+        $relacion_id=$familiar->familiarxpostulante()->where('id_postulante',$postulante->id)->first()->pivot->tipo_familia_id;
         $relacion=TipoFamilia::find($relacion_id)->nombre;
         //$invitado = Invitados::find($id);
         /*var_dump($relacion);
@@ -521,7 +521,7 @@ class PostulanteController extends Controller
         $familiar=Persona::find($id);
         $postulante=Persona::find($id_postulante);
         //$relacion=2;
-        $relacion_id=$familiar->familiarxpostulante->where('id_postulante',$postulante->id)->first()->pivot->tipo_familia_id;
+        $relacion_id=$familiar->familiarxpostulante()->where('id_postulante',$postulante->id)->first()->pivot->tipo_familia_id;
         $relacion=TipoFamilia::find($relacion_id)->nombre;
         //$invitado = Invitados::find($id);
         /*var_dump($relacion);

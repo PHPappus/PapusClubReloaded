@@ -81,7 +81,7 @@
 
 
 						<!--DATOS DE FAMILIA-->
-						@if(session('storedInvitado') || Session::get('update')=='familiar')
+						@if(session('storedFamiliar') || Session::get('update')=='familiar')
 							<li role="presentation" class="active"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Familia</a></li>
 						@else
 							<li role="presentation"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Familia</a></li>
@@ -502,7 +502,7 @@
 																	<td>{{$familiar->ap_materno}}</td>
 																	<td>{{$familiar->correo}}</td>
 																	<td>
-													              	<a class="btn btn-info" href="{{url('/Socio/familiar/'.$familiar->pivot->id.'/')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+													              	<a class="btn btn-info" href="{{url('/Socio/familiar/'.$familiar->id.'/'.$socio->postulante->id_postulante)}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 													            	</td>
 													            	<td>												           
 																		<a class="btn btn-info"  title="Eliminar" data-href="{{url('/Socio/'.$familiar->id.'/'.$socio->postulante->id_postulante.'/familiar/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
