@@ -9,6 +9,8 @@
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
+	{!!Html::style('css/bootstrap-datepicker3.css')!!}
+
 	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
 	<!-- PARA DATA TABLE -->
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
@@ -44,7 +46,7 @@
 	<br/>
 
 	<div class="container">
-		<form method="POST" class="form-horizontal form-border" action="/reservar-ambiente/reservar-bungalow/search-adminR">
+		<form method="POST" class="form-horizontal form-border" action="/reservar-ambiente/reservar-bungalow/search">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<br/>
 			<div class="form-group">
@@ -58,24 +60,22 @@
 			<div class="form-group required ">
 			   	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>	
 				<div class="col-sm-5">
-				  	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >
+				  	<select class="form-control" id="sedeSelec" name="sedeSelec" style="max-width: 150px "  >
+				  		<option value="-1">Todas las Sedes</option>
 				        @foreach ($sedes as $sede)      
 				      	<option value="{{$sede->id}}">{{$sede->nombre}}</option>
 				        @endforeach
 					</select>
 				</div>
 			</div>
-			<div class="form-group required">
-			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha (dd/mm/aaaa) </label>
+			<div class="form-group">
+			 	<label for="fechaInput" class="col-sm-4 control-label">FECHA (dd/mm/aaaa) </label>
 			    <div class="col-sm-5">
 				  	<div class="input-group">
-			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" style="max-width: 250px">
+			   		<input class="datepicker form-control"  type="text"  id="fecha_inicio" name="fecha_inicio" placeholder="Fecha Inicio" value="{{old('fecha_inicio')}}" style="max-width: 250px" >
 			   		<span class="input-group-addon">-</span>
-			   		<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_fin" placeholder="Fecha Fin" style="max-width: 250px">
-			   		
-			   		<!-- <input name="fechaInicio" id="fechaInicio" type="text" required class="form-control">
-			       		<span class="input-group-addon">-</span>
-			       	<input name="fechaFin" id="fechaFin" type="text" required class="form-control"> -->
+			   		<input class="datepicker form-control" type="text" id="fecha_fin" name="fecha_fin" placeholder="Fecha Fin" value="{{old('fecha_fin')}}" style="max-width: 250px">
+
 			   	 	</div>
 		    	</div>	
 			</div>
@@ -176,17 +176,16 @@
 <br/>
 <br/>
  @stop
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<!-- JQuery -->
+ <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+ <!-- JQuery -->
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	<!-- Bootstrap -->
 	{!!Html::script('js/bootstrap.js')!!}
-	
-	<!-- Mis Scripts -->
-	{!!Html::script('js/MisScripts.js')!!}
 
 	{!!Html::script('js/bootstrap-datepicker.js')!!}
+	 <!-- Languaje -->
+    {!!Html::script('js/bootstrap-datepicker.es.min.js')!!}
 
 
 	<!-- Para Data TAble INICIO -->
@@ -204,12 +203,12 @@
 	
 
 	<!-- Para Fechas INICIO -->
-	<script>
+	<!-- <script>
 
 		var nowTemp = new Date();
 		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
  	
-		var checkin = $('#dpd1').datepicker({
+		var checkin = $('#fecha_inicio').datepicker({
   			onRender: function(date) {
     			return date.valueOf() < now.valueOf() ? 'disabled' : '';
   			}
@@ -220,23 +219,30 @@
     			checkout.setValue(newDate);
   			}
  			checkin.hide();
-  			$('#dpd2')[0].focus();
+  			$('#fecha_fin')[0].focus();
 		}).data('datepicker');
-		var checkout = $('#dpd2').datepicker({
+		var checkout = $('#fecha_fin').datepicker({
   			onRender: function(date) {
     			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
   			}
 		}).on('changeDate', function(ev) {
   			checkout.hide();
 		}).data('datepicker');		
-		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
+		var date = $('#fecha_inicio').datepicker({ dateFormat: 'dd-mm-yy' }).val();
 
 	
+	</script> -->
+	<script>
+		var nowDate = new Date();
+		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
 	</script>
 	<script>
 		$(function(){
 			$('.datepicker').datepicker({
-				format: 'dd/mm/yyyy'
+				format: "dd/mm/yyyy",
+		        language: "es",
+		        autoclose: true,
+		        startDate: today,
 			});
 		});
 	</script>

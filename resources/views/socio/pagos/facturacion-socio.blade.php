@@ -37,6 +37,7 @@
 		<div class="container">
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active">
+
 						<tr>
 							<th><DIV ALIGN=center>ID</th>
 							<th><DIV ALIGN=center>Tipo de Pago</th>
@@ -47,8 +48,8 @@
 							
 						</tr>
 					</thead>
-					<tbody>
-						@foreach($facturaciones as $facturacion)
+					@foreach($facturaciones as $facturacion)
+					<tbody>						
 							<td> {{$facturacion->id}}</td>
 							<td> {{$facturacion->tipo_pago}}</td>
 							<td> {{$facturacion->total}}</td>
@@ -56,10 +57,9 @@
 							<td> {{$facturacion->estado}} </td>
 							<td>
 							<a class="btn btn-info" href="{{url('/pagos-del-socio/'.$facturacion->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-							</td>
-						@endforeach						
+							</td>										
 					</tbody>					
-												
+					@endforeach									
 					
 			</table>		
 			

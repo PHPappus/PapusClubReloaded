@@ -32,7 +32,7 @@
 		</div>
 		<div class="container">
 			<!--@include('errors.503')-->		
-			<form method="POST" action="/venta-producto/{{ $producto->id }}/edit" class="form-horizontal form-border">
+			<form method="POST" action="/venta-producto/new/{{ $producto->id }}/editProducto" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<!-- Mensajes de error de validación del Request -->

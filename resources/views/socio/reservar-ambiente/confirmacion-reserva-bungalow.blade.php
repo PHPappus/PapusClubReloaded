@@ -5,9 +5,11 @@
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	{!!Html::style('../css/font-awesome.css')!!}
-	{!!Html::style('../css/bootstrap.css')!!}
-	{!!Html::style('../css/MisEstilos.css')!!}
+	{!!Html::style('css/font-awesome.css')!!}
+	{!!Html::style('css/bootstrap.css')!!}
+	{!!Html::style('css/MisEstilos.css')!!}
+	{!!Html::style('css/datepicker.css')!!}
+	{!!Html::style('css/bootstrap-datepicker3.css')!!}
 	
 </head>
 <body>
@@ -59,33 +61,27 @@
 		    	</div>
 		  	</div> -->
 		  	<div class="form-group ">
-		    	<label for="ubicacionInput" class="col-sm-4 control-label">UBICACIÓN</label>
+		    	<label for="ubicacionInput" class="col-sm-4 control-label">DESCRIPCIÓN</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->ubicacion}}" readonly>
+		      		<input type="text" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->descripcion}}" readonly>
 		    	</div>
 		  	</div>
-		  	<div class="form-group required">
-			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha (dd/mm/aaaa) </label>
+		  	<div class="form-group">
+			 	<label for="fechaInput" class="col-sm-4 control-label">FECHA (dd/mm/aaaa) </label>
 			    <div class="col-sm-5">
-				  	<!-- <div class="input-group">
-			   		<input name="fechaInicio" id="fechaInicio" type="text" required class="form-control">
-			       		<span class="input-group-addon">-</span>
-			       		<input name="fechaFin" id="fechaFin" type="text" required class="form-control">
-			   	 	</div>
- -->
-			   	 	<div class="input-group">
-			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" style="max-width: 250px" >
+				  	<div class="input-group">
+			   		<input class="datepicker form-control"  type="text"  id="fecha_inicio_reserva" name="fecha_inicio_reserva" placeholder="Fecha Inicio" value="{{old('fecha_inicio')}}" style="max-width: 250px" >
 			   		<span class="input-group-addon">-</span>
-			   		
-			   		<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_fin" placeholder="Fecha Fin" style="max-width: 250px">
-					</div>			   		
+			   		<input class="datepicker form-control" type="text" id="fecha_fin_reserva" name="fecha_fin_reserva" placeholder="Fecha Fin" value="{{old('fecha_fin')}}" style="max-width: 250px">
+
+			   	 	</div>
 		    	</div>	
 			</div>
 
 		  	<div class="form-group ">
 		    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="precioInput" onkeypress="return inputLimiter(event,'Numbers')" name="ubicacion" value="FALTA CALCULAR EL PRECIO" readonly>
+		      		<input type="text" class="form-control" id="precioInput" onkeypress="return inputLimiter(event,'Numbers')" name="precio" value="{{$ambiente->precio($tipo_persona, $ambiente->tarifas)}}" readonly>
 		    	</div>
 		  	</div>
 		  	
@@ -124,13 +120,30 @@
 		</div>
 	</div>		
 @stop
-<!-- JQuery -->
-	<script src="../js/jquery-1.11.3.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+ <!-- JQuery -->
+	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	<!-- Bootstrap -->
-	<script type="text/javascript" src="../js/bootstrap.js"></script>
-	<!-- Mis Scripts -->
-	<script src="../js/MisScripts.js"></script>
+	{!!Html::script('js/bootstrap.js')!!}
 
+	{!!Html::script('js/bootstrap-datepicker.js')!!}
+	 <!-- Languaje -->
+    {!!Html::script('js/bootstrap-datepicker.es.min.js')!!}
+<script>
+		var nowDate = new Date();
+		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+	</script>
+	<script>
+		$(function(){
+			$('.datepicker').datepicker({
+				format: "dd/mm/yyyy",
+		        language: "es",
+		        autoclose: true,
+		        startDate: today,
+			});
+		});
+	</script>
 
 </body>
 </html>

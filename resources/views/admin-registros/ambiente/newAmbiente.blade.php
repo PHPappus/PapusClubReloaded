@@ -98,9 +98,9 @@
 			  	</div>	  	
 			  	
 			  	<div class="form-group required">
-			    	<label for="ubicacionInput" class="col-sm-4 control-label">Ubicación</label>
+			    	<label for="ubicacionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			      		<textarea type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="ubicacionInput" name="ubicacion" placeholder="Ubicacion" value="{{old('ubicacion')}}" style="resize: none"></textarea>
+			      		<textarea type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="descripcionInput" name="descripcion" placeholder="descripcion" value="{{old('descripcion')}}" style="resize: none"></textarea>
 			    	</div>
 			  	</div>
 			  
