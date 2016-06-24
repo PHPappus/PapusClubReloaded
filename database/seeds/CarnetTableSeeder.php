@@ -32,5 +32,23 @@ class CarnetTableSeeder extends Seeder
         	'fecha_emision'=>'2016-06-06',
         	'estado'=>false,
         	'fecha_vencimiento'=>'2024-06-06']);
+
+        Carnet::create([
+            'socio_id'=>3,
+            'nro_carnet'=>20160003,
+            'fecha_emision'=>'2008-06-06',
+            'fecha_vencimiento'=>'2016-06-08']);
+
+        Carnet::create([
+            'socio_id'=>4,
+            'nro_carnet'=>20160004,
+            'fecha_emision'=>'2008-06-06',
+            'fecha_vencimiento'=>'2016-06-08']);
+
+        Carnet::create([
+            'socio_id'=>5,
+            'nro_carnet'=>20160005,
+            'fecha_emision'=>'2008-06-06',
+            'fecha_vencimiento'=>'2016-06-08']);
     }
 }
