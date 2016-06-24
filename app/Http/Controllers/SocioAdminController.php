@@ -15,6 +15,7 @@ use papusclub\Models\Multa;
 use papusclub\Models\Configuracion;
 use papusclub\Http\Requests\EditSocioBasicoRequest;
 use papusclub\Http\Requests\EditSocioEstudioRequest;
+use papusclub\Http\Requests\EditSocioViviendaRequest;
 use papusclub\Http\Requests\EditSocioTrabajoRequest;
 use papusclub\Http\Requests\EditSocioContactoRequest;
 use papusclub\Http\Requests\StoreMultaxPersonaRequest;
@@ -107,6 +108,7 @@ class SocioAdminController extends Controller
     {
         $socio = Socio::withTrashed()->find($id);
         $membresias = TipoMembresia::all();
+        $estadocivil= Configuracion::where('grupo','=','11')->get();
         $carbon=new Carbon();
         $socio->carnet_actual()->fecha_emision=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_emision)->format('d/m/Y');
         $socio->carnet_actual()->fecha_vencimiento=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_vencimiento)->format('d/m/Y');
@@ -114,7 +116,7 @@ class SocioAdminController extends Controller
 
         $departamentos=Departamento::select('id','nombre')->get();
 
-        return view('admin-persona.persona.socio.editSocio',compact('socio','membresias', 'departamentos'));        
+        return view('admin-persona.persona.socio.editSocio',compact('socio','membresias', 'departamentos','estadocivil'));        
     }
 
     public function updateBasico(EditSocioBasicoRequest $request,$id)
@@ -123,11 +125,11 @@ class SocioAdminController extends Controller
 
         $socio = Socio::withTrashed()->find($id);
         $input=$request->all();
-        $nombre = trim($input['nombre']);
+        $estado_civil = $input['estado_civil'];
         //$fecha_nac = str_replace('/', '-', $input['fecha_nacimiento']);
         //$socio->postulante->persona->fecha_nacimiento=$carbon->createFromFormat('d-m-Y', $fecha_nac)->toDateString();
-        $socio->postulante->persona->nombre=$nombre;
-        $socio->postulante->persona->save();
+        $socio->postulante->estado_civil=$estado_civil;
+        $socio->postulante->save();
 
         //$socio->postulante->persona->update(['nombre'=>$input['nombre'], 'fecha_nacimiento'=>$fecha_nac]);
         //return view('admin-general.persona.socio.editSocio',compact('socio'));
@@ -182,6 +184,29 @@ class SocioAdminController extends Controller
         //return view('admin-general.persona.socio.editSocio',compact('socio'));
         Session::flash('update','nacimiento');
         return Redirect::action('SocioAdminController@edit',$socio->id)->with('cambios-nac','Cambios realizados con éxito');
+    }
+
+    public function updateVivienda(EditSocioViviendaRequest $request, $id)
+    {
+        $socio=Socio::withTrashed()->find($id);
+        $input=$request->all();
+
+        $dep = $input['departamento_vivienda'];
+        $prov = $input['provincia_vivienda'];
+        $dist = $input['distrito_vivienda'];
+        $domicilio  =$input['domicilio'];
+        $referencia_vivienda =$input['referencia_vivienda'];
+
+        $socio->postulante->departamento_vivienda=$dep;
+        $socio->postulante->provincia_vivienda=$prov;
+        $socio->postulante->distrito_vivienda=$dist;
+
+        $socio->postulante->domicilio = $domicilio;
+        $socio->postulante->referencia_vivienda=$referencia_vivienda;
+
+        $socio->postulante->save();
+        Session::flash('update','vivienda');
+        return Redirect::action('SocioAdminController@edit',$socio->id)->with('cambios-viv','Cambios realizados con éxito');      
     }
 
     public function updateEstudio(EditSocioEstudioRequest $request, $id)

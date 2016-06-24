@@ -443,6 +443,7 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::patch('Socio/{id}/editBasico','SocioAdminController@updateBasico');
 	Route::patch('Socio/{id}/editNacimiento','SocioAdminController@updateNacimiento');
 	Route::patch('Socio/{id}/editEstudio','SocioAdminController@updateEstudio');
+	Route::patch('Socio/{id}/editVivienda','SocioAdminController@updateVivienda');	
 	Route::patch('Socio/{id}/editTrabajo','SocioAdminController@updateTrabajo');
 	Route::patch('Socio/{id}/editContacto','SocioAdminController@updateContacto');
 	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');
@@ -456,6 +457,19 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 		$prov_id=Input::get('id');
     	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
 	});
+
+	/*Ajax para que funcionen los list de departamento en el editar*/
+	Route::post('Socio/{id}/provincias_viviendaEdit', function(){
+		$dep_id=Input::get('id');
+    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
+	});
+	Route::post('Socio/{id}/distritos_viviendaEdit', function(){
+		$prov_id=Input::get('id');
+    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
+	});
+
+
+
 
 	
 
