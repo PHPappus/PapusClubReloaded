@@ -14,11 +14,7 @@
 	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
 	<!-- PARA DATA TABLE -->
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
-		<script type="text/javascript">
-		function procesar(xform){
-		window.open(xform, 'nventana', 'width=450,height=300,status=yes,resizable=yes,scrollbars=yes');
-		}
-	</script>
+	
 </head>
 <body>
 @extends('layouts.headerandfooter-al-gerente')
@@ -88,38 +84,6 @@
 
 
 	<br/>
-<!-- 	<div class="container">
-		<div class="form-group">
-				<div class="text-right">
-					<font color="black"> 
-						Filtra por todos los campos
-					</font>
-				</div>
-		 </div>
-		<table class="table table-bordered table-hover text-center display" id="example">
-			<thead class="active">
-				<tr>
-				<th><DIV ALIGN=center>ID PERSONA</th>
-				<th><DIV ALIGN=center>NOMBRE</th>
-				</tr>
-				</thead>
-				<tbody>
-					@foreach($sedes as $sede)						
-			    	<tr>
-		    		<td>{{ $sede->nombre }}</td>
-					<td>{{ $sede->nombre }}</td>
-					</tr>
-					@endforeach
-					<tr>
-						
-						<td><b>TOTAL</b></td>
-						<td>{{ $sede->nombre}}</td>								
-				    </tr>
-				</tbody>
-		</table>		
-	</div> -->
-
-<!-- </div> -->
 
 
 
@@ -195,6 +159,13 @@
 	</script>
 
 	<!-- Para Fecha FIN -->
+	<!-- Para MAndar Reporte a nueva ventana    INICIO -->
+	<script type="text/javascript">
+		function procesar(xform){
+		window.open(xform, 'nventana', 'width='+(screen.availWidth)+',height ='+(screen.availHeight)+',status=yes,resizable=yes,scrollbars=yes');
+		}
+	</script>
+	<!-- Para MAndar Reporte a nueva ventana   FIN-->
 
 
 </body>

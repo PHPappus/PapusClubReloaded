@@ -47,7 +47,7 @@
 	<br/>
 
 	<div class="container">
-		<form method="POST" class="form-horizontal form-border" action="/reporte/invitado-por-sede/reporte"> 
+		<form method="POST" class="form-horizontal form-border" action="/reporte/invitado-por-sede/reporte" target="nventana"  onsubmit="procesar(this.action);"> 
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<br/>
 			<div class="form-group">
@@ -114,39 +114,6 @@
 	<br/>
 
 
-	<br/>
-<!-- 	<div class="container">
-		<div class="form-group">
-				<div class="text-right">
-					<font color="black"> 
-						Filtra por todos los campos
-					</font>
-				</div>
-		 </div>
-		<table class="table table-bordered table-hover text-center display" id="example">
-			<thead class="active">
-				<tr>
-				<th><DIV ALIGN=center>ID PERSONA</th>
-				<th><DIV ALIGN=center>NOMBRE</th>
-				</tr>
-				</thead>
-				<tbody>
-					@foreach($sedes as $sede)						
-			    	<tr>
-		    		<td>{{ $sede->nombre }}</td>
-					<td>{{ $sede->nombre }}</td>
-					</tr>
-					@endforeach
-					<tr>
-						
-						<td><b>TOTAL</b></td>
-						<td>{{ $sede->nombre}}</td>								
-				    </tr>
-				</tbody>
-		</table>		
-	</div> -->
-
-<!-- </div> -->
 
 
 
@@ -182,6 +149,13 @@
 	</script>
 	<!-- Para Data TAble FIN -->
 	
+	<!-- Para MAndar Reporte a nueva ventana    INICIO -->
+	<script type="text/javascript">
+		function procesar(xform){
+		window.open(xform, 'nventana', 'width='+(screen.availWidth)+',height ='+(screen.availHeight)+',status=yes,resizable=yes,scrollbars=yes');
+		}
+	</script>
+	<!-- Para MAndar Reporte a nueva ventana   FIN-->
 
 	<!-- Para Fechas INICIO -->
 	<script>

@@ -163,6 +163,7 @@
   		
 		function getPersona(){								
 								document.getElementById('persona_id').value =  $('#example input:radio:checked').val();
+								
 							}
 	</script>
 	<!-- Modal -->
