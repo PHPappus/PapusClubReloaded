@@ -14,7 +14,7 @@
 	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
 	<!-- PARA DATA TABLE -->
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
-	
+
 </head>
 <body>
 

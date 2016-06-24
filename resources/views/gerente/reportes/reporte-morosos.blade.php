@@ -14,7 +14,11 @@
 	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
 	<!-- PARA DATA TABLE -->
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
-	
+		<script type="text/javascript">
+		function procesar(xform){
+		window.open(xform, 'nventana', 'width=450,height=300,status=yes,resizable=yes,scrollbars=yes');
+		}
+	</script>
 </head>
 <body>
 @extends('layouts.headerandfooter-al-gerente')
@@ -47,7 +51,7 @@
 	<br/>
 
 	<div class="container">
-		<form method="POST" class="form-horizontal form-border" action="/reporte/morosos/reporte"> 
+		<form method="POST" class="form-horizontal form-border" action="/reporte/morosos/reporte"  target="nventana"  onsubmit="procesar(this.action);"> 
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<br/>
 
