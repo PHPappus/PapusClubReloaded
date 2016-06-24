@@ -79,7 +79,7 @@
 							        <a class="btn btn-info"  title="Eliminar" data-href="{{url('/postulante/'.$postulante->id_postulante.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a> 
 							        </td>
 							        <td>
-							        <a class="btn btn-info"  title="Aceptar" data-href="{{url('/postulante/'.$postulante->id_postulante.'/nuevo')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-ok"></i></a> 
+							        <a class="btn btn-info" href="{{url('/postulante/'.$postulante->id_postulante.'/newSocio')}}" title="Aceptar"><i class="glyphicon glyphicon-ok"></i></a> 
 							        </td>
 							            
 								</tr>

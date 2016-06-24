@@ -206,6 +206,7 @@ class PostulanteController extends Controller
             $postulante->persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d', $postulante->persona->fecha_nacimiento)->format('d/m/Y');
 
 
+
         $departamento = Departamento::find($postulante['departamento']);
         $provincia = Provincia::find($postulante['provincia']);
         $distrito = Distrito::find($postulante['distrito']);
@@ -535,5 +536,20 @@ class PostulanteController extends Controller
         return view('admin-persona.persona.postulante.familiar.detailFamiliarPostulante',compact('familiar','postulante','relacion'));
     }
 
+    public function registaSocio($id){
+        $postulante=Postulante::find($id);
+        $estado_civil=Configuracion::find($postulante->estado_civil);
+/*        var_dump($estado_civil);
+        die();*/
+        $carbon=new Carbon();
+        if((strtotime($postulante->persona->fecha_nacimiento) < 0))
+            $postulante->persona->fecha_nacimiento=NULL;
+        else
+            $postulante->persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d', $postulante->persona->fecha_nacimiento)->format('d/m/Y');
+
+
+        return view('admin-persona.persona.postulante.aceptarSocio',compact('postulante','estado_civil'));
+
+    }
 }
     
