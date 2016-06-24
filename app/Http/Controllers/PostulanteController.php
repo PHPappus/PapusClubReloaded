@@ -9,6 +9,7 @@ use papusclub\Models\Provincia;
 use papusclub\Models\Distrito;
 use papusclub\Models\Postulante;
 use papusclub\Models\TipoFamilia;
+use papusclub\Models\FamiliarxPostulante;
 use papusclub\Http\Requests\StorePostulanteRequest;
 use papusclub\Http\Requests\EditPostulanteBasicoRequest;
 use papusclub\Http\Requests\EditPostulanteNacimientoRequest;
@@ -22,7 +23,7 @@ use papusclub\Http\Requests;
 use papusclub\Models\Configuracion;
 use Illuminate\Support\Facades\Redirect;
 use Session;
-
+use DB;
 use Carbon\Carbon;
 
 class PostulanteController extends Controller
@@ -54,113 +55,141 @@ class PostulanteController extends Controller
     public function store(StorePostulanteRequest $request){
         $carbon=new Carbon(); 
         $input = $request->all();
-        $persona = new Persona();
-        
-        //DATOS BASICOS
-        $persona->nombre = trim($input['nombre']);
-        $persona->ap_paterno = trim($input['ap_paterno']);
-        $persona->ap_materno = trim($input['ap_materno']);
 
-        
-        $persona->id_tipo_persona = 2;
-        $persona->sexo=$input['sexo'];
+        $nacionalidad=$input['nacionalidad'];
 
 
-        $persona->nacionalidad = $input['nacionalidad'];
+        /*=============*/
 
-        if (empty($input['carnet_extranjeria'])) {
-            $persona->carnet_extranjeria ="";
+        if($nacionalidad=='peruano')
+        {
+            $doc_identidad = $input['doc_identidad'];
+            $personaBuscada = Persona::where(['doc_identidad'=>$doc_identidad])->get()->first();
         }
         else
-            $persona->carnet_extranjeria = $input['carnet_extranjeria'];
-
-        
-        if (empty($input['doc_identidad'])) {
-            $persona->doc_identidad ="";
-        }
-        else
-            $persona->doc_identidad = $input['doc_identidad'];
-        
-        //NACIMIENTO
-
-        if (empty($input['fecha_nacimiento'])) {
-            $persona->fecha_nacimiento ="";            
-        }else{
-            $fecha_nac = str_replace('/', '-', $input['fecha_nacimiento']);      
-            $persona->fecha_nacimiento=$carbon->createFromFormat('d-m-Y', $fecha_nac)->toDateString();
+        {
+            $carnet_extranjeria = $input['carnet_extranjeria'];
+            $personaBuscada=Persona::where(['carnet_extranjeria'=>$carnet_extranjeria])->get()->first();
         }
 
+        if($personaBuscada==null)
+        {
+            $persona = new Persona();
+            //DATOS BASICOS
+            $persona->nombre = trim($input['nombre']);
+            $persona->ap_paterno = trim($input['ap_paterno']);
+            $persona->ap_materno = trim($input['ap_materno']);
 
-        $persona->save();
-        //$persona->correo=trim($input['correo']);
+            
+            $persona->id_tipo_persona = 2;
+            $persona->sexo=$input['sexo'];
+
+            $persona->nacionalidad = $input['nacionalidad'];
+
+            /*=============*/
+            if (empty($input['carnet_extranjeria'])) {
+                $persona->carnet_extranjeria ="";
+            }
+            else
+                $persona->carnet_extranjeria = $input['carnet_extranjeria'];
+
+            
+            if (empty($input['doc_identidad'])) {
+                $persona->doc_identidad ="";
+            }
+            else
+                $persona->doc_identidad = $input['doc_identidad'];
+            
+            //NACIMIENTO
+
+            if (empty($input['fecha_nacimiento'])) {
+                $persona->fecha_nacimiento ="";            
+            }else{
+                $fecha_nac = str_replace('/', '-', $input['fecha_nacimiento']);      
+                $persona->fecha_nacimiento=$carbon->createFromFormat('d-m-Y', $fecha_nac)->toDateString();
+            }
+            
+            $persona->correo=$input['correo'];
 
 
-        $idPersona = $persona->id; //obtiene el id de la persona ingresada
-        //Aqui hago el registro del trabajador una vez registraa la persona
+            $persona->save();
+            //$persona->correo=trim($input['correo']);
 
-        $postulante = new Postulante();
-        //si es peruano 
-        $postulante->id_postulante=$idPersona;
 
-        if($persona->nacionalidad =="peruano"){
-            if(isset($input['departamento']))
-                $postulante->departamento=$input['departamento'];
-            if(isset($input['provincia']))
-                $postulante->provincia=$input['provincia'];
-            if(isset($input['distrito']))
-                $postulante->distrito=$input['distrito']; 
-            $postulante->direccion_nacimiento=$input['direccion_nacimiento'];
+            $idPersona = $persona->id; //obtiene el id de la persona ingresada
+            //Aqui hago el registro del trabajador una vez registraa la persona
+
+            $postulante = new Postulante();
+            //si es peruano 
+            $postulante->id_postulante=$idPersona;
+
+            if($persona->nacionalidad =="peruano"){
+                if(isset($input['departamento']))
+                    $postulante->departamento=$input['departamento'];
+                if(isset($input['provincia']))
+                    $postulante->provincia=$input['provincia'];
+                if(isset($input['distrito']))
+                    $postulante->distrito=$input['distrito']; 
+                $postulante->direccion_nacimiento=$input['direccion_nacimiento'];
+            }
+            else{
+                $postulante->pais_nacimiento=$input['pais_nacimiento'];
+                $postulante->lugar_nacimiento=$input['lugar_nacimiento'];
+
+            }
+
+            /*Datos de provincia*/
+                if(isset($input['departamento_vivienda']))
+                    $postulante->departamento_vivienda=$input['departamento_vivienda'];
+                if(isset($input['provincia_vivienda']))
+                    $postulante->provincia_vivienda=$input['provincia_vivienda'];
+                if(isset($input['distrito_vivienda']))
+                    $postulante->distrito_vivienda=$input['distrito_vivienda']; 
+                $postulante->domicilio=$input['domicilio'];
+                $postulante->referencia_vivienda=$input['referencia_vivienda'];
+
+            /*=======*/
+            $postulante->colegio_primario=$input['colegio_primario'];
+            $postulante->colegio_secundario=$input['colegio_secundario'];
+            
+            if (empty($input['universidad'])) {
+                $postulante->universidad ="";            
+            }else{
+                $postulante->universidad=$input['universidad'];
+            }
+
+            if (empty($input['profesion'])) {
+                $postulante->profesion= "";            
+            }else{
+                $postulante->profesion=$input['profesion'];
+            }
+            
+            $postulante->centro_trabajo=$input['centro_trabajo'];
+            
+            if (empty($input['cargo_trabajo'])) {
+                $postulante->cargo_trabajo="";            
+            }else{
+                $postulante->cargo_trabajo=$input['cargo_trabajo'];
+            }
+
+            $postulante->direccion_laboral=$input['direccion_laboral'];
+            
+            if (empty($input['telefono_domicilio'])) {
+               $postulante->telefono_domicilio="";            
+            }else{
+               $postulante->telefono_domicilio=$input['telefono_domicilio'];
+            }
+            
+            $postulante->telefono_celular=$input['telefono_celular'];
+            $postulante->estado_civil=$input['estado_civil'];
+
+            
+
+            $postulante->save();
+
+
         }
-
-        /*Datos de provincia*/
-            if(isset($input['departamento_vivienda']))
-                $postulante->departamento_vivienda=$input['departamento_vivienda'];
-            if(isset($input['provincia_vivienda']))
-                $postulante->provincia_vivienda=$input['provincia_vivienda'];
-            if(isset($input['distrito_vivienda']))
-                $postulante->distrito_vivienda=$input['distrito_vivienda']; 
-            $postulante->domicilio=$input['domicilio'];
-            $postulante->referencia_vivienda=$input['referencia_vivienda'];
-
-        /*=======*/
-        $postulante->colegio_primario=$input['colegio_primario'];
-        $postulante->colegio_secundario=$input['colegio_secundario'];
         
-        if (empty($input['universidad'])) {
-            $postulante->universidad ="";            
-        }else{
-            $postulante->universidad=$input['universidad'];
-        }
-
-        if (empty($input['profesion'])) {
-            $postulante->profesion= "";            
-        }else{
-            $postulante->profesion=$input['profesion'];
-        }
-        
-        $postulante->centro_trabajo=$input['centro_trabajo'];
-        
-        if (empty($input['cargo_trabajo'])) {
-            $postulante->cargo_trabajo="";            
-        }else{
-            $postulante->cargo_trabajo=$input['cargo_trabajo'];
-        }
-
-        $postulante->direccion_laboral=$input['direccion_laboral'];
-        
-        if (empty($input['telefono_domicilio'])) {
-           $postulante->telefono_domicilio="";            
-        }else{
-           $postulante->telefono_domicilio=$input['telefono_domicilio'];
-        }
-        
-        $postulante->telefono_domicilio=$input['telefono_celular'];
-        $postulante->correo=$input['correo'];
-        $postulante->estado_civil['estado_civil'];
-
-        
-
-        $postulante->save();
 
         return redirect('postulante/index')->with('stored', 'Se registró el postulante correctamente.');
     }
@@ -168,13 +197,14 @@ class PostulanteController extends Controller
     public function show($id){
 
         $postulante=Postulante::find($id);
-
+        $estado_civil=Configuracion::find($postulante->estado_civil);
 
         $carbon=new Carbon();
         if((strtotime($postulante->persona->fecha_nacimiento) < 0))
             $postulante->persona->fecha_nacimiento=NULL;
         else
             $postulante->persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d', $postulante->persona->fecha_nacimiento)->format('d/m/Y');
+
 
 
         $departamento = Departamento::find($postulante['departamento']);
@@ -186,7 +216,16 @@ class PostulanteController extends Controller
         array_push($arregloLugar,$provincia);
         array_push($arregloLugar,$distrito);
         
-        return view('admin-persona.persona.postulante.detailPostulante',compact('postulante','arregloLugar'));
+        $departamentoVivienda = Departamento::find($postulante['departamento_vivienda']);
+        $provinciaVivienda = Provincia::find($postulante['provincia_vivienda']);
+        $distritoVivienda = Distrito::find($postulante['distrito_vivienda']);
+
+        $arregloLugarVivienda=array();
+        array_push($arregloLugarVivienda,$departamentoVivienda);
+        array_push($arregloLugarVivienda,$provinciaVivienda);
+        array_push($arregloLugarVivienda,$distritoVivienda);
+        
+        return view('admin-persona.persona.postulante.detailPostulante',compact('postulante','arregloLugar','estado_civil','arregloLugarVivienda'));
 
     }
 
@@ -435,20 +474,27 @@ class PostulanteController extends Controller
             }
             $persona->id_tipo_persona = 3;
             $persona->correo=$input['correo'];
-            $persona->save();
+
+
+            //$match=['postulante_id'=>$id,'persona_id'=>$persona->id];
+            
+                $persona->save();    
+            
+            
 /*            var_dump($persona);
             die();*/
         }
-
-        $postulante->addFamiliar($persona,$relacion);
+        $existerela = DB::table('familiarxpostulante')->where([['postulante_id','=',$id],['persona_id','=',$persona->id]])->get();
+            if($existerela==null){
+                $postulante->addFamiliar($persona,$relacion);
+            }
         return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('storedFamiliar', 'Se registró el Familiar correctamente.');
     }
 
-    public function deleteFamiliar(Request $request,$id)
+    public function deleteFamiliar(Request $request,$id,$id_postulante)
     {
-        $familiar = Persona::find($id);
-        //$familiar->delete();
-        $familiar->forceDelete();
+        $match=['postulante_id'=>$id_postulante,'persona_id'=>$id];
+        DB::table('familiarxpostulante')->where($match)->delete();
 
         Session::flash('update','familia');    
         return back();
@@ -469,5 +515,36 @@ class PostulanteController extends Controller
         return view('admin-persona.persona.postulante.familiar.detailFamiliar',compact('familiar','postulante','relacion'));
     }
 
+
+    public function detailFamiliarPostulante($id,$id_postulante)
+    {   
+        $familiar=Persona::find($id);
+        $postulante=Persona::find($id_postulante);
+        //$relacion=2;
+        $relacion_id=$familiar->familiarxpostulante->where('id_postulante',$postulante->id)->first()->pivot->tipo_familia_id;
+        $relacion=TipoFamilia::find($relacion_id)->nombre;
+        //$invitado = Invitados::find($id);
+        /*var_dump($relacion);
+        die();*/
+        /*$socio = Socio::withTrashed()->find($invitado->persona_id);
+        $persona = Persona::find($invitado->invitado_id);*/
+        return view('admin-persona.persona.postulante.familiar.detailFamiliarPostulante',compact('familiar','postulante','relacion'));
+    }
+
+    public function registaSocio($id){
+        $postulante=Postulante::find($id);
+        $estado_civil=Configuracion::find($postulante->estado_civil);
+/*        var_dump($estado_civil);
+        die();*/
+        $carbon=new Carbon();
+        if((strtotime($postulante->persona->fecha_nacimiento) < 0))
+            $postulante->persona->fecha_nacimiento=NULL;
+        else
+            $postulante->persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d', $postulante->persona->fecha_nacimiento)->format('d/m/Y');
+
+
+        return view('admin-persona.persona.postulante.aceptarSocio',compact('postulante','estado_civil'));
+
+    }
 }
     

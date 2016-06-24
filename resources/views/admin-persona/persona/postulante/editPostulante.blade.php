@@ -225,7 +225,7 @@
 												</div>
 												<div class="col-sm-6">
 												<!--Se hace validacion para que acepte solo numeros pero que sea un texto-->
-														<input  type="text" onkeypress="return inputLimiter(event,'Numbers')"  @if ($postulante->persona->nacionalidad!="peruano") disabled  @endif  class="form-control" id="doc_identidad" name="doc_identidad" placeholder="DNI" maxlength="8" style="max-width: 250px" value="{{$postulante->persona->doc_identidad}}" value="{{old('doc_identidad')}}"  >
+														<input  type="text" onkeypress="return inputLimiter(event,'Numbers')"fape  @if ($postulante->persona->nacionalidad!="peruano") disabled  @endif  class="form-control" id="doc_identidad" name="doc_identidad" placeholder="DNI" maxlength="8" style="max-width: 250px" value="{{$postulante->persona->doc_identidad}}" value="{{old('doc_identidad')}}"  >
 												</div>	
 											</div>
 									</div>
@@ -554,7 +554,7 @@
 													              		<a class="btn btn-info" href="{{url('/postulante/familiar/'.$familiar->id.'/'.$postulante->persona->id)}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 													            	</td>
 													            	<td>												           
-																		<a class="btn btn-info"  title="Eliminar" data-href="{{url('/postulante/'.$familiar->id.'/familiar/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+																		<a class="btn btn-info"  title="Eliminar" data-href="{{url('/postulante/'.$familiar->id.'/'.$postulante->id_postulante.'/familiar/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
 													            	</td>		
 
 															</tr>
@@ -609,7 +609,7 @@
 
 
 									</div>
-									<div class="form-group required">
+										<div class="form-group required">
 											<div class="col-sm-6">
 												<div class="col-sm-6 text-left">
 													<label for="" class="control-label">Departamento:</label>
@@ -683,35 +683,35 @@
 										<div class = "modal fade" id = "confirmationVivienda" tabindex = "-1" role = "dialog" 
 									   aria-labelledby = "myModalLabel" aria-hidden = "true">
 									   
-									   	<div class = "modal-dialog">
-									      <div class = "modal-content">
-									         
-									         <div class = "modal-header">
-									            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
-													<span aria-hidden="true" onclick="cerrarventana()">&times;</span>
-									            </button>
-									            
-									            <h4 class = "modal-title" id = "myModalLabel">
-									               EDITAR POSTULANTE
-									            </h4>
-									         </div>
-									         
-									         <div class = "modal-body">
-									            <p>¿Desea guardar los cambios realizados?</p>
-									         </div>
-									         
-									         <div class = "modal-footer">
-												<button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cerrar</button>
-									            
-									            <button type = "submit" class = "btn btn-primary">
-									               Confirmar
-									            </button>
-									         </div>
-									         
-									      </div><!-- /.modal-content -->
-									   	</div><!-- /.modal-dialog -->
-									  
-										</div><!-- /.modal -->							
+										   	<div class = "modal-dialog">
+										      <div class = "modal-content">
+										         
+										         <div class = "modal-header">
+										            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+														<span aria-hidden="true" onclick="cerrarventana()">&times;</span>
+										            </button>
+										            
+										            <h4 class = "modal-title" id = "myModalLabel">
+										               EDITAR POSTULANTE
+										            </h4>
+										         </div>
+										         
+										         <div class = "modal-body">
+										            <p>¿Desea guardar los cambios realizados?</p>
+										         </div>
+										         
+										         <div class = "modal-footer">
+													<button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cerrar</button>
+										            
+										            <button type = "submit" class = "btn btn-primary">
+										               Confirmar
+										            </button>
+										         </div>
+										         
+										     	</div><!-- /.modal-content -->
+									   		</div><!-- /.modal-dialog -->
+										</div><!-- /.modal -->
+
 										<br><br>
 										<div class="form-group required" >
 												<div class="btn-group col-sm-5" ></div>
@@ -723,7 +723,6 @@
 													<a href="/postulante/index" class="btn btn-info">Retornar</a>
 												</div>
 										</div>	
-
 								</form>
 							</div>
 						<!--===================================-->

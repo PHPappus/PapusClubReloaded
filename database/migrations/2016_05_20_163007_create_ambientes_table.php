@@ -18,7 +18,7 @@ class CreateAmbientesTable extends Migration
             $table->string('nombre');
             $table->string('tipo_ambiente');
             $table->string('capacidad_actual');
-            $table->string('ubicacion');
+            $table->string('descripcion');
             $table->softDeletes();
             $table->timestamps();
         });
