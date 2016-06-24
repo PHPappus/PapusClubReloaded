@@ -495,11 +495,6 @@ class PostulanteController extends Controller
     {
         $match=['postulante_id'=>$id_postulante,'persona_id'=>$id];
         DB::table('familiarxpostulante')->where($match)->delete();
-        /*$familiar = FamiliarxPostulante::where($match)->first();*/
-        /*var_dump($familiar);
-        die();*/
-        //$familiar->delete();
-       /* $familiar->delete();*/
 
         Session::flash('update','familia');    
         return back();

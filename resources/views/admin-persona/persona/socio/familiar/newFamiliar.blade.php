@@ -193,7 +193,7 @@
 											<input class="btn btn-primary"  type="submit" value="Confirmar">
 										</div>
 										<div class="btn-group">
-											<a href="{{url('Socio/'.$socio->id)}}" class="btn btn-info">Cancelar</a>
+											<a href="{{url('Socio/'.$socio->id .'/editar')}}" class="btn btn-info">Cancelar</a>
 										</div>
 								</div>																
 							</form>

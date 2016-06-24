@@ -32,6 +32,7 @@ use papusclub\Models\Provincia;
 use papusclub\Models\Distrito;
 use papusclub\Models\Traspaso;
 use Session;
+use DB; 
 
 class SocioAdminController extends Controller
 {
@@ -610,17 +611,20 @@ class SocioAdminController extends Controller
             }
             $persona->id_tipo_persona = 3;
             $persona->correo=$input['correo'];
-            $persona->save();
+            
+            $persona->save();    
         }
-
-        $socio->postulante->addFamiliar($persona,$relacion);
-        return Redirect::action('SocioAdminController@edit',$socio->id)->with('storedFamiliar', 'Se registró el Familiar correctamente.');        
+        $existerela = DB::table('familiarxpostulante')->where([['postulante_id','=',$socio->postulante->id_postulante],['persona_id','=',$persona->id]])->get();
+            if($existerela==null){
+                $socio->postulante->addFamiliar($persona,$relacion);
+            }
+        return Redirect::action('SocioAdminController@edit',$socio->postulante->persona->id)->with('storedFamiliar', 'Se registró el Familiar correctamente.');        
     }
 
-    public function deleteFamiliar(Request $request, $id)
+    public function deleteFamiliar(Request $request, $id_fam, $id_post)
     {
-        $invitado = Invitados::find($id);
-        $invitado->delete();
+        $match=['postulante_id'=>$id_post,'persona_id'=>$id_fam];
+        DB::table('familiarxpostulante')->where($match)->delete();
 
         Session::flash('update','familiar');    
         return back();

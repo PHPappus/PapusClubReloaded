@@ -46,16 +46,17 @@
 	@endif
 
 
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12 text-left">
-				<br/><br/>
-				<p class="lead"><strong>EDITAR SOCIO</strong></p>
-				<br/>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 text-left">
+					<br/><br/>
+					<p class="lead"><strong>EDITAR Socio</strong></p>
+					<p style="color:red"><strong>Puede guardar los cambios de cada una de las pestañas</strong></p>
+					<br>
+				</div>
+			
 			</div>
-		
 		</div>
-	</div>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-16 text-center">
@@ -504,7 +505,7 @@
 													              	<a class="btn btn-info" href="{{url('/Socio/familiar/'.$familiar->pivot->id.'/')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 													            	</td>
 													            	<td>												           
-																		<a class="btn btn-info"  title="Eliminar" data-href="{{url('/Socio/'.$familiar->pivot->id.'/familiar/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+																		<a class="btn btn-info"  title="Eliminar" data-href="{{url('/Socio/'.$familiar->id.'/'.$socio->postulante->id_postulante.'/familiar/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
 													            	</td>																	
 													            </tr>				            		
 														@endforeach
@@ -709,15 +710,6 @@
 										<div class="btn-group col-sm-4">
 											<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 										</div>
-
-										<div class="btn-group col-sm-4" ></div>
-										
-										<div class="btn-group">
-											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-										</div>
-										<div class="btn-group">
-											<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
-										</div>
 								</div>
 								<br>
 								<div class="form-group required">
@@ -843,15 +835,6 @@
 										<div class="btn-group col-sm-4">
 											<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 										</div>
-
-										<div class="btn-group col-sm-4" ></div>
-										
-										<div class="btn-group">
-											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-										</div>
-										<div class="btn-group">
-											<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
-										</div>
 								</div>
 								<br>
 								<div class="form-group">
@@ -967,13 +950,6 @@
 										</div>
 
 										<div class="btn-group col-sm-4" ></div>
-										
-										<div class="btn-group">
-											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-										</div>
-										<div class="btn-group">
-											<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
-										</div>
 								</div>
 								<br>
 								<div class="form-group required">
@@ -1060,21 +1036,15 @@
 						<div role="tabpanel" class="tab-pane" id="seccion8">
 					@endif					
 							<form action="" class="form-horizontal form-border">
-								<br/><br/><br>
 								<div class="form-group required" >
-										<div class="btn-group col-sm-4" ></div>
-										<div class="btn-group col-sm-4"></div>
-										<div class="btn-group col-sm-4"></div>
-										<div class="btn-group col-sm-4" ></div>
-										<div class="btn-group col-sm-4"></div>
+									<br><br><br>
+									<p><b>INVITADOS</b></p>
+									<br>
 										
-										<div class="btn-group">
-											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-										</div>
-										<div class="btn-group">
-											<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
-										</div>
-								</div>								
+								</div>
+
+										
+							
 									<div class="table-responsive">
 										<div class="container">
 											<table class="table table-bordered table-hover text-center display" id="example">
@@ -1137,21 +1107,7 @@
 									</div>								
 								@endif
 								<br><br><br>									
-								<div class="form-group required" >
-										<div class="btn-group col-sm-4" ></div>
-										<div class="btn-group col-sm-4"></div>
-										<div class="btn-group col-sm-4"></div>
-										<div class="btn-group col-sm-4" ></div>
-										<div class="btn-group col-sm-4"></div>
-										
-										
-										<div class="btn-group">
-											<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
-										</div>
-										<div class="btn-group">
-											<a href="#" class="btn btn-info cont" disabled><span class="glyphicon glyphicon-chevron-right"></span></a>
-										</div>
-								</div>								
+								
 								<input type="hidden" name="_token" value="{{ csrf_token() }}">
 								<div class="form-group">
 									<div class="col-sm-6">
