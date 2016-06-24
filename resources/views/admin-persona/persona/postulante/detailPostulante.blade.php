@@ -274,6 +274,7 @@
 										<!--DATOS FAMILIARES-->
 						<div role="tabpanel" class="tab-pane" id="seccion3">
 							<form action="" class="form-horizontal form-border">
+								<br><br><br>
 								<div class="form-group required" >
 										<div class="btn-group col-sm-4" ></div>
 										<div class="btn-group col-sm-4"></div>
@@ -281,8 +282,7 @@
 										<div class="btn-group col-sm-4" ></div>
 										<div class="btn-group col-sm-4"></div>
 
-										<br><br><br>
-										<p><b>REGISTRO DE FAMILIARES</b></p>
+										<p align="center"><b>REGISTRO DE FAMILIARES</b></p>
 										<br>
 										<div class=""> 
 											@if ($errors->familia->any())
