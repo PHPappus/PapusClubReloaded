@@ -40,7 +40,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><a href="{!!URL::to('/inscripcion-actividad/inscripcion-actividades')!!}" title="Consultar Actividades" target="_self">Consultar</a></li>
-              <li><a href="{!!URL::to('/inscripcion-actividad/mis-inscripciones')!!}" title="Inscripciones de actividades realizadas" target="_self">Inscripciones</a></li>
+              <li><a href="{!!URL::to('/inscripcion-actividad/mis-inscripciones')!!}" title="Inscripciones de actividades realizadas" target="_self">Mis Inscripciones</a></li>
             </ul>
           </li>
         </ul>
@@ -52,21 +52,6 @@
             <ul class="dropdown-menu">
               <li><a href="{!!URL::to('/talleres/index')!!}" title="Consultar talleres" target="_self">Consultar</a></li>
                 <li><a href="{!!URL::to('/talleres/mis-inscripciones')!!}" title="Inscripciones de talleres realizados" target="_self">Mis Inscripciones</a></li>
-            </ul>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav">
-          <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
-          <li class="dropdown">
-            <a href="#" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" role="button" >
-              Ambientes <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-
-                <li><a href="{!!URL::to('/ambientes-s')!!}" title="consultar ambientes" target="_self">Consultar</a></li>
-                <li><a href="{!!URL::to('/reservar-ambiente/reservar-otros-ambientes')!!}" title="reserva de ambientes" target="_self">Reservar</a></li>
-                <li><a href="{!!URL::to('/anular-reserva-ambiente-s')!!}" title="anular ambientes" target="_self">Anular</a></li>
-                
             </ul>
           </li>
         </ul>
@@ -83,6 +68,18 @@
           </li>
         </ul>
         <ul class="nav navbar-nav">
+          <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
+          <li class="dropdown">
+            <a href="#" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" role="button" >
+              Reservas <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="{!!URL::to('reservar-ambiente/lista-reservas/')!!}" title="Reserva de ambientes" target="_self">Ambientes</a></li>
+            </ul>
+          </li>
+        </ul>
+        
+        <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg">Sorteos <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -93,22 +90,18 @@
         </ul>
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <li><a href="{!!URL::to('pagos/facturacion-socio/')!!}" class="dropdown-toggle btn-lg" title="Consultar Pagos" target="_self">Pagos</a></li>
+            <a href="#" class="dropdown-toggle btn-lg">Cuotas <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{!!URL::to('pagos/facturacion-socio/')!!}" title="Consultar pagos y cuotas pendientes" target="_self">Consultar</a></li>
+            </ul>
           </li>
         </ul>
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <li><a href="{!!URL::to('reservar-ambiente/lista-reservas/')!!}" class="dropdown-toggle btn-lg" title="Consultar Pagos" target="_self">Reservas</a></li>
-          </li>
-        </ul>
-
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" title="Realizar tramites" data-toggle="dropdown" role="button">
               Trámites<span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="{!!URL::to('/traspaso')!!}" title="solicitar traspasos" target="_self">Traspasos</a></li>
               <li><a href="{!!URL::to('/mis-multas')!!}" title="solicitar traspasos" target="_self">Mis Multas</a></li>
             </ul>
           </li>
@@ -116,10 +109,9 @@
 
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg">Sorteos <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle btn-lg">Servicios <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#" title="Consultar Sorteos" target="_self">Consultar</a></li>
-                <li><a href="#" title="Reservar y entrar a sorteo" target="_self">Reservar</a></li>
+              <li><a href="#" title="Consultar Servicios" target="_self">Consultar</a></li>
             </ul>
           </li>
         </ul>
