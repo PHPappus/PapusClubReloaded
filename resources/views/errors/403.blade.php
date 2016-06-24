@@ -41,4 +41,3 @@
 		</article> 
 	</main>
 </div> 
-
