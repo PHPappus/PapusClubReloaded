@@ -103,7 +103,7 @@
         </ul>
 
         <!-- Perfiles -->
-        <ul class="nav navbar-nav">
+        <!-- <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
               Perfiles <span class="caret"></span>
@@ -113,7 +113,7 @@
                 <li><a href="{!!URL::to('/multa/new')!!}" title="Registrar perfiles" target="_self">Registrar</a></li>
             </ul>
           </li>
-        </ul>
+        </ul> -->
 
         <!-- Productos -->
         <ul class="nav navbar-nav">
