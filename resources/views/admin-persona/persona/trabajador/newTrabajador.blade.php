@@ -55,7 +55,7 @@
 
 
 		<div class="container">
-			<form method="POST" action="/postulante/new/trabajador" class="form-horizontal form-border">
+			<form method="POST" action="/trabajador/new/trabajador" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<!-- VALIDACION CON FE INICIO -->
