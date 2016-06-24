@@ -436,6 +436,7 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::get('Socio/{id}/familiar/new','SocioAdminController@createFamiliar');
 	Route::post('Socio/{id}/familiar/save','SocioAdminController@storeFamiliar');
 	Route::get('Socio/{id}/{id_postulante}/familiar/delete','SocioAdminController@deleteFamiliar');
+	Route::get('Socio/familiar/{id}/{id_postulante}','SocioAdminController@detailFamiliar');
 
 
 
