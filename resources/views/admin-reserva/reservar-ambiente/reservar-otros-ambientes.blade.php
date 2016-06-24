@@ -159,7 +159,7 @@
 					
 				
 					<td>
-					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/new-reserva-otro-ambiente-adminR')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
+					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/searchSocio-otros-ambientes-adminR/')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
 
 
 			        </td>
@@ -168,17 +168,6 @@
 				</tbody>
 		</table>		
 	</div>
-
-	
-
-	
-	
-
-
-<!-- </div> -->
-
-
-
 
 <br/>
 <br/>
