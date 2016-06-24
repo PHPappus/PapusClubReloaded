@@ -66,6 +66,7 @@ return array(
     'CreateMaestroProveedorTable' => $baseDir . '/database/migrations/2016_05_06_042135_create_maestro_proveedor_table.php',
     'CreateMultaTable' => $baseDir . '/database/migrations/2016_05_24_220332_create_multa_table.php',
     'CreateMultaxpersonaTable' => $baseDir . '/database/migrations/2016_06_04_194018_create_multaxpersona_table.php',
+    'CreateObservacionTable' => $baseDir . '/database/migrations/2016_06_23_163452_create_observacion_table.php',
     'CreateObservacionesTable' => $baseDir . '/database/migrations/2016_06_14_092509_create_observaciones_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePerfilsTable' => $baseDir . '/database/migrations/2016_05_17_022327_create_perfils_table.php',

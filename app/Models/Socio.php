@@ -118,5 +118,9 @@ class Socio extends Model
         return $this->hasMany(Traspaso::class);
     }
 
+    public function observacion()
+    {
+        return $this->belongsToMany(Postulante::class,'observaciones','socio_id','postulante_id')->withPivot('observacion');
+    }
     
 }
