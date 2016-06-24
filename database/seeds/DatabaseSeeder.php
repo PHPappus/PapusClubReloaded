@@ -11,6 +11,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
     	Model::unguard();
+        $this->call(DepartamentoTableSeeder::class);
+        $this->call(ProvinciaTableSeeder::class);
+        $this->call(DistritoTableSeeder::class);
         $this->call(TestUserTableSeeder::class);
         $this->call(PerfilTableSeeder::class);
         $this->call(SedeTableSeeder::class);
@@ -33,9 +36,6 @@ class DatabaseSeeder extends Seeder
         $this->call(FacturacionTableSeeder::class);
         $this->call(ProductoxFacturacionTableSeeder::class);
         $this->call(TipoFamiliaTableSeeder::class);
-        $this->call(DepartamentoTableSeeder::class);
-        $this->call(ProvinciaTableSeeder::class);
-        $this->call(DistritoTableSeeder::class);
         $this->call(TarifaAmbientexTipoPersonaTableSeeder::class);
 	    $this->call(servicioSeeder::class);
         $this->call(TarifaFamiliarTableSeeder::class);

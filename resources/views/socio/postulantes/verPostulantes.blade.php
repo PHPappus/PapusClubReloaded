@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>POSTULANTE</title>
+	<title>POSTULANTES</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +15,7 @@
 
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin-persona')
+@extends('layouts.headerandfooter-al-socio')
 
 @section('content')
 	
@@ -49,11 +49,7 @@
 							<th><DIV ALIGN=center>APELLIDO PATERNO</th>
 							<th><DIV ALIGN=center>APELLIDO MATERNO</th>
 							<th><DIV ALIGN=center>NACIONALIDAD</th>
-							<th><DIV ALIGN=center>DETALLE</th>
-							<th><DIV ALIGN=center>EDITAR</th>
-							<th><DIV ALIGN=center>ELIMINAR</th>
-							<th><DIV ALIGN=center>ACEPTAR MIEMBRO</th>
-							
+							<th><DIV ALIGN=center>OBSERVACIÓN</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -70,18 +66,8 @@
 			 						<td>{{ $postulante->persona->ap_materno }}</td>
 			 						<td>{{ $postulante->persona->nacionalidad }}</td>
 									<td>
-							        <a class="btn btn-info" href="{{url('/postulante/'.$postulante->id_postulante.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+							        <a class="btn btn-info" href="{{url('/socio-postulante/'.$postulante->id_postulante.'/obs')}}"  title="Observación" ><i class="glyphicon glyphicon-list-alt"></i></a>
 							        </td>
-									<td>
-							        <a class="btn btn-info" href="{{url('/postulante/'.$postulante->id_postulante.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
-							        </td>
-							        <td>
-							        <a class="btn btn-info"  title="Eliminar" data-href="{{url('/postulante/'.$postulante->id_postulante.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a> 
-							        </td>
-							        <td>
-							        <a class="btn btn-info" href="{{url('/postulante/'.$postulante->id_postulante.'/newSocio')}}" title="Aceptar"><i class="glyphicon glyphicon-ok"></i></a> 
-							        </td>
-							            
 								</tr>
 							@endforeach
 					</tbody>					
@@ -93,18 +79,7 @@
 				</br>
 				</br>
 				
-				<div class="btn-inline">
-					<!-- <form method="POST" action="/sedes/new/sede" >
-					<input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
-
-					<div class="btn-group col-sm-10"></div>
-					
-					<div class="btn-group ">
-						<a href="{{url('/postulante/new')}}" class="btn btn-info" type="submit">Registrar Postulante</a>
-
-					</div>
-					
-				</div>
+				
 
 
 
