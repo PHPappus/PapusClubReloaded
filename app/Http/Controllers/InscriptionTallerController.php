@@ -207,7 +207,7 @@ class InscriptionTallerController extends Controller
         
 
    
-        if($input['sedeSelec']!=-1){ //No son todas las sedes
+        if(($input['sedeSelec']!=-1) && !empty($input['fecha_inicio'])){ //No son todas las sedes
             foreach ($talleres as $i => $taller) {             
                     if($taller->ambiente->sede->id!=$input['sedeSelec'])  unset($talleres[$i]);
             }
