@@ -26,7 +26,7 @@
 				<div class="col-sm-12 text-left">
 				<br>
 				<br>
-					<p class="lead"><strong>DETALLE CUENTA</strong></p>
+					<p class="lead"><strong>DETALLE TRABAJADOR</strong></p>
 			  	</div>
 				</div>
 			</div>	
@@ -124,7 +124,7 @@
 										</div>
 									</div>
 
-									@if($persona['nacionalidad']=="Peruano")
+									@if($persona['nacionalidad']=="peruano")
 									<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">

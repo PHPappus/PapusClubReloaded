@@ -430,12 +430,15 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::post('Socio/{id}/invitado/save','SocioAdminController@storeInvitado');
 	Route::get('Socio/{id}/invitado/delete','SocioAdminController@deleteInvitado');
 	Route::get('Socio/invitado/{id}/','SocioAdminController@detailInvitado');
+	Route::get('Socio/invitado/{id}/detalle','SocioAdminController@detailInvitadoDetalle');
 
 
 	/*Familiar*/
 	Route::get('Socio/{id}/familiar/new','SocioAdminController@createFamiliar');
 	Route::post('Socio/{id}/familiar/save','SocioAdminController@storeFamiliar');
 	Route::get('Socio/{id}/{id_postulante}/familiar/delete','SocioAdminController@deleteFamiliar');
+	Route::get('Socio/familiar/{id}/{id_postulante}','SocioAdminController@detailFamiliar');
+	Route::get('Socio/familiar/{id}/{id_postulante}/detalle','SocioAdminController@detailFamiliarDetalle');//hace referencia a la petaña detale del socio, no de editar
 
 
 

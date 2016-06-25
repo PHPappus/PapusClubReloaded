@@ -101,11 +101,11 @@
 										</div>
 										<div class="col-sm-6 text-left" >
 										@if(strcmp($postulante->persona->sexo,'masculino')==0)
-												<input type="radio" name="genero" value="Masculino" disabled checked> Masculino
-												<input type="radio" name="genero" value="Femenino" style="margin-left: 35px;" disabled> Femenino
+												<input type="radio" name="genero" value="masculino" disabled checked> Masculino
+												<input type="radio" name="genero" value="femenino" style="margin-left: 35px;" disabled> Femenino
 										@else
-												<input type="radio" name="genero" value="Masculino" disabled > Masculino
-												<input type="radio" name="genero" value="Femenino" style="margin-left: 35px;" disabled checked> Femenino
+												<input type="radio" name="genero" value="masculino" disabled > Masculino
+												<input type="radio" name="genero" value="femenino" style="margin-left: 35px;" disabled checked> Femenino
 										@endif										
 										</div>	
 									</div>
@@ -118,8 +118,8 @@
 											<label for="" class="control-label">Nacionalidad:</label>
 										</div>
 										<div class="col-sm-6 text-left" >
-												<input  type="radio" name="nacionalidad" value="Peruano"  @{{$nac=per}} checked disabled> Peruano  
-												<input  type="radio" name="nacionalidad" value="Extranjero" style="margin-left: 50px;"@{{$nac=otro}} disabled> Extranjero	
+												<input  type="radio" name="nacionalidad" value="peruano"  @{{$nac=per}} checked disabled> peruano  
+												<input  type="radio" name="nacionalidad" value="extranjero" style="margin-left: 50px;"@{{$nac=otro}} disabled> Extranjero	
 										</div>	
 									</div>
 								</div>
@@ -141,8 +141,8 @@
 											<label for="" class="control-label">Nacionalidad:</label>
 										</div>
 										<div class="col-sm-6 text-left" >
-												<input  type="radio" name="nacionalidad" value="Peruano"  @{{$nac=per}}  disabled> Peruano  
-												<input  type="radio" name="nacionalidad" value="Extranjero" style="margin-left: 50px;"@{{$nac=otro}} checked disabled> Extranjero	
+												<input  type="radio" name="nacionalidad" value="peruano"  @{{$nac=per}}  disabled> peruano  
+												<input  type="radio" name="nacionalidad" value="extranjero" style="margin-left: 50px;"@{{$nac=otro}} checked disabled> Extranjero	
 										</div>	
 									</div>
 								</div>

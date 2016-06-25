@@ -114,7 +114,7 @@
 											<label for="" class="control-label">Nacionalidad:</label>
 										</div>
 										<div class="col-sm-6 text-left" >
-												<input  type="radio" name="nacionalidad" value="Peruano"  @{{$nac=per}} checked disabled> Peruano  
+												<input  type="radio" name="nacionalidad" value="peruano"  @{{$nac=per}} checked disabled> peruano  
 												<input  type="radio" name="nacionalidad" value="Extranjero" style="margin-left: 50px;"@{{$nac=otro}} disabled> Extranjero	
 										</div>	
 									</div>
@@ -137,7 +137,7 @@
 											<label for="" class="control-label">Nacionalidad:</label>
 										</div>
 										<div class="col-sm-6 text-left" >
-												<input  type="radio" name="nacionalidad" value="Peruano"  @{{$nac=per}}  disabled> Peruano  
+												<input  type="radio" name="nacionalidad" value="peruano"  @{{$nac=per}}  disabled> peruano  
 												<input  type="radio" name="nacionalidad" value="Extranjero" style="margin-left: 50px;"@{{$nac=otro}} checked disabled> Extranjero	
 										</div>	
 									</div>
@@ -322,7 +322,7 @@
 																		<td>{{$familiar->ap_materno}}</td>
 																		<td>{{$familiar->correo}}</td>
 																		<td>
-														              		<a class="btn btn-info" href="{{url('/postulante/familiar/'.$familiar->id.'/'.$socio->postulante->persona->id.'/detail')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+														              		<a class="btn btn-info" href="{{url('/Socio/familiar/'.$familiar->id.'/'.$socio->postulante->id_postulante.'/detalle')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 														            	</td>	
 
 																</tr>
@@ -606,7 +606,7 @@
 																	<td>{{$invitado->ap_materno}}</td>
 																	<td>{{$invitado->correo}}</td>
 																	<td>
-													              	<a class="btn btn-info" href="{{url('/Socio/invitado/'.$invitado->pivot->id.'/')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+													              	<a class="btn btn-info" href="{{url('/Socio/invitado/'.$invitado->pivot->id.'/detalle')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 													            	</td>																	
 													            </tr>				            		
 														@endforeach

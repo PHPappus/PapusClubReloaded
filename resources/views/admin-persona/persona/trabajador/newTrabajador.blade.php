@@ -154,7 +154,7 @@
 												<label for="" class="control-label">Nacionalidad:</label>
 											</div>
 											<div class="col-sm-6 text-left" >
-													<input checked onchange="document.getElementById('doc_identidad').disabled = false; document.getElementById('carnet_extranjeria').disabled = true;" onclick=" document.getElementById('carnet_extranjeria').value = '';" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : '' }}/>Peruano&nbsp&nbsp&nbsp
+													<input checked onchange="document.getElementById('doc_identidad').disabled = false; document.getElementById('carnet_extranjeria').disabled = true;" onclick=" document.getElementById('carnet_extranjeria').value = '';" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : '' }}/>peruano&nbsp&nbsp&nbsp
 													<input onchange="document.getElementById('carnet_extranjeria').disabled = false; document.getElementById('doc_identidad').disabled = true;" onclick=" document.getElementById('doc_identidad').value = ''; " type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "extranjero") ? 'checked="true"' : '' }}/>Extranjero
 
 											</div>	

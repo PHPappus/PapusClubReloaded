@@ -141,7 +141,7 @@
 											<div class="col-sm-6 text-left" >
 													<div class="col-sm-6 text-left" >
 												
-														<input onchange="es_peruano()" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : ''}} {{($persona->nacionalidad == "peruano") ? 'checked="true"':''}}/>Peruano&nbsp&nbsp&nbsp
+														<input onchange="es_peruano()" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : ''}} {{($persona->nacionalidad == "peruano") ? 'checked="true"':''}}/>peruano&nbsp&nbsp&nbsp
 														
 														<input onchange="es_extranjero()" type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "extranjero") ? 'checked="true"' : ''  }} {{($persona->nacionalidad == "extranjero") ? 'checked="true"':''}}/>Extranjero
 
