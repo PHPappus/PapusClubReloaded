@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>REGISTRAR VENTA</title>
+	<title>REGISTRAR SOLICITUD</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,12 +27,12 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>REGISTRAR VENTA</strong>
+					<strong>REGISTRAR SOLICITUD</strong>
 			</div>		
 		</div>
 		<div class="container">
 			<!--@include('errors.503')-->		
-			<form method="POST" action="/venta-producto/new/venta-producto/{{ $factura->id }}" class="form-horizontal form-border">
+			<form method="POST" action="/ingreso-producto/new/ingreso-producto/{{ $ingresoproducto->id }}" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<!-- Mensajes de error de validación del Request -->
@@ -55,30 +55,23 @@
 
 				<!-- INICIO INCIIO -->				                       
 				<div class="form-group">
-		    		<label for="idInput" class="col-sm-4 control-label">N° de Factura</label>
+		    		<label for="idInput" class="col-sm-4 control-label">N° de Solicitud</label>
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="idInput" name="id" value="{{str_pad($factura->id, 10, "0", STR_PAD_LEFT)}}" readonly>
+		      			<input type="text" class="form-control" id="idInput" name="id" value="{{str_pad($ingresoproducto->id, 10, "0", STR_PAD_LEFT)}}" readonly>
 		    		</div>
 		  		</div>
 			  
 			  	<div class="form-group">
 			    	<label for="personaInput" class="col-sm-4 control-label">Persona</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="personaInput" name="persona" value="{{$factura->persona->nombre}} {{$factura->persona->ap_paterno}} {{$factura->persona->ap_materno}}" readonly>
+			      		<input type="text" class="form-control" id="personaInput" name="persona" value="{{$ingresoproducto->persona->nombre}} {{$ingresoproducto->persona->ap_paterno}} {{$ingresoproducto->persona->ap_materno}}" readonly>
 			    	</div>
-			  	</div>	  				  				 
-			  	
-			  	<div class="form-group">
-			    	<label for="tipoPagoInput" class="col-sm-4 control-label" >Tipo de Pago</label>
-			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="tipoPagoInput" name="tipoPago" value="{{$factura->tipo_pago}}" readonly>
-			    	</div>			      					      		
-			  	</div>	
+			  	</div>	  				  				 			  
 						
 			  	<div class="form-group">
 			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="estadoInput" name="estado" value="{{$factura->estado}}" readonly>
+			      		<input type="text" class="form-control" id="estadoInput" name="estado" value="{{$ingresoproducto->estado}}" readonly>
 			    	</div>
 			  	</div>		
 				<br/><br/>
@@ -87,32 +80,24 @@
 				<div class="table-responsive">				
 					<table class="table table-bordered table-hover text-center display" id="example">
 						<thead class="active" data-sortable="true">
-							<th><div align=center>PRODUCTO</div></th>
-							<th><div align=center>PRECIO</div></th>
+							<th><div align=center>PRODUCTO</div></th>							
+							<th><div align=center>DESCRIPCIÓN</div></th>
 							<th><div align=center>CANTIDAD</div></th>
-							<th><div align=center>SUBTOTAL</div></th>
 							<th><div align=center>EDITAR</div></th>
 							<th><div align=center>ELIMINAR</div></th>
 						</thead>											
 						<tbody>
-						@foreach($factura->productoxfacturacion as $producto)
+						@foreach($ingresoproducto->productoxingresoproducto as $producto)
 							<tr>
-								<td>{{ $producto->producto->nombre}}</td>
-								<td>{{ $producto->producto->precioproducto->first()['precio']}}</td>
-								<td>{{ $producto->cantidad}}</td>			
-								<td>{{ $producto->subtotal }}</td>
-								<td><a class="btn btn-info" href="{{url('/venta-producto/'.$producto->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a></td>
+								<td>{{ $producto->producto->nombre}}</td>	
+								<td>{{ $producto->producto->descripcion }}</td>							
+								<td>{{ $producto->cantidad}}</td>											
+								<td><a class="btn btn-info" href="{{url('/ingreso-producto/new/'.$producto->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a></td>
 								<td>
-					              <a class="btn btn-info"  title="Eliminar" data-href="{{url('/venta-producto/'.$producto->id.'/deleteProducto')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
+					              <a class="btn btn-info"  title="Eliminar" data-href="{{url('/ingreso-producto/'.$producto->id.'/deleteProducto')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
 					            </td>
 				            </tr>
-						@endforeach
-						<tr>
-								<td></td>
-								<td></td>
-								<td><b>TOTAL</b></td>
-								<td>{{ $factura->total}}</td>								
-				            </tr>
+						@endforeach						
 						</tbody>													
 					</table>						
 				</div>
@@ -120,7 +105,7 @@
 				<div class="container">
 					<div class="form-group">
 						<div class="col-sm-10 text-right">
-							<a class="btn btn-info" href="{{url('/venta-producto/new/venta-producto/'.$factura->id.'')}}" title="Agregar" >Agregar<i class="glyphicon" ></i> </a>	
+							<a class="btn btn-info" href="{{url('/ingreso-producto/new/ingreso-producto/'.$ingresoproducto->id.'')}}" title="Agregar" >Agregar<i class="glyphicon" ></i> </a>	
 						</div>
 					</div>
 					<br/>
@@ -131,9 +116,9 @@
 			  	</br>
 				<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
-					@if (count($factura->productoxfacturacion)>0)						
+					@if (count($ingresoproducto->productoxingresoproducto)>0)						
 						<div class="btn-group ">
-							<a class="btn btn-primary" href="/venta-producto/index">Confirmar</a>
+							<a class="btn btn-primary" href="/ingreso-producto/index">Confirmar</a>
 						</div>						
 					@else
 						<div class="btn-group ">
@@ -141,7 +126,7 @@
 						</div>
 					@endif
 					<div class="btn-group">
-						<a href="{{url('/venta-producto/'.$factura->id.'/cancel')}}" class="btn btn-info">Cancelar</a>
+						<a href="{{url('/ingreso-producto/'.$ingresoproducto->id.'/cancel')}}" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>

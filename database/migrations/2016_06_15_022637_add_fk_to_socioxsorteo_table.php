@@ -26,9 +26,9 @@ class AddFkToSocioxsorteoTable extends Migration
      */
     public function down()
     {
-        Schema::table('socioxsorteo', function (Blueprint $table) {
+        /*Schema::table('socioxsorteo', function (Blueprint $table) {
             $table->dropForeign('socioxsorteo_id_socio_foreign');
             $table->dropForeign('socioxsorteo_id_foreign');
-        });
+        });*/
     }
 }

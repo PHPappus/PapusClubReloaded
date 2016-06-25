@@ -27,9 +27,19 @@
 			</div>
 		<br/>
 	</div>
+	<form method="POST" action="/sorteo/inscripcion/store" class="form-horizontal form-border">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}">
+					@if ($errors->any())
+		  				<ul class="alert alert-danger fade in">
+		  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  					@foreach ($errors->all() as $error)
+		  						<li>{{$error}}</li>
+		  					@endforeach
+		  				</ul>
+		  			@endif
 	<div class="container">
 		<div class="col-sm-12 text-left lead">
-				<strong>SORTEOS ABIERTOS</strong>
+				<strong>SORTEOS DISPONIBLES</strong>
 		</div>		
 	</div>
 	<!-- Mensaje de éxito luego de registrar -->
@@ -41,32 +51,60 @@
 						<strong>¡Éxito!</strong> {{session('stored')}}
 				</div>
 	@endif
+	<br>
+		<div class="container">
+			<div class="form-group">
+				<div class="col-sm-1 text-right">
+					<a class="btn btn-info" href="{{url('/sorteo/inscripcion/mis_sorteos')}}" >	Mis Sorteos</a>	
+				</div>
+			</div>
+			<br/>
+		</div>
+	<br>
 	<div class="table-responsive">
 		<div class="container">
 			<table class="table table-bordered table-hover text-center display" id="example">
 				<thead class="active" data-sortable="true">
 					<th><div align=center>NOMBRE SORTEO</div> </th>
-					<th><div align=center>FECHA INICIO DE SORTEO</div></th>
-					<th><div align=center>FECHA FIN DE SORTEO</div></th>
+					<th><div align=center>FECHA CIERRE DE SORTEO</div> </th>
+					<th><div align=center>FECHA INICIO DE RESERVA</div></th>
+					<th><div align=center>FECHA FIN DE RESERVA</div></th>
 					<th><div align=center>DESCRIPCION</div></th>
+					<th><div align=center>DETALLE</div></th>
 					<th><div align=center>INSCRIPCION</div></th>
 				</thead>	
 				<tbody>													
 					@foreach($sorteos as $sorteo)	
 						<tr>									
 							<td>{{$sorteo->nombre_sorteo}}</td>
+							<td>{{$sorteo->fecha_fin_sorteo}}</td>
 							<td>{{$sorteo->fecha_abierto}}</td>
 							<td>{{$sorteo->fecha_cerrado}}</td>	
 							<td>{{$sorteo->descripcion}}</td>
-									
-							<td>{{ Form::checkbox('ch[]', $sorteo->id, false) }}</td>							            	
-						</tr>
-					</form>
+							<td>
+							        <a class="btn btn-info" href="{{url('/sorteo/'.$sorteo->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+							        </td>
+							<td>{{ Form::checkbox('ch[]', $sorteo->id, false) }}</td>
+						</tr>					
+						</form>
 					 @endforeach
 				</tbody>			
 			</table>						
+			<br><br>
+				
+				</div>
+				</div>
+				<div class="btn-inline">
+					<div class="btn-group col-sm-8"></div>
+					
+					<div class="btn-group ">
+						<input class="btn btn-info" type="submit" value="Inscribirse en Sorteos Seleccionados">
+					</div>
+				</div>
+				<br><br>
 		</div>	
-	</div>			
+	</div>	
+
 @stop
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	{!!Html::script('js/bootstrap.js')!!}

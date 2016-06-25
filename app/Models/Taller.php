@@ -31,4 +31,20 @@ class Taller extends Model
         return $this->belongsToMany(TipoPersona::class,'tarifataller','taller_id','tipo_persona_id')->withPivot('fecha_registro','precio','estado');
     }
 
+    public function sede(){
+        return $this->belongsTo(Sede::class, 'sede_id');
+    }
+
+    public function ambiente(){
+        return $this->belongsTo(Ambiente::class,'ambiente_id');
+    }
+
+    public function personas(){
+        return $this->belongsToMany(Persona::class,'personaxtaller','persona_id','taller_id')->withPivot('precio')->whereNull('personaxtaller.deleted_at')->withTimestamps();
+    }
+
+    public function reserva()
+    {
+        return $this->belongsTo(Reserva::class,'reserva_id');
+    }
 }

@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title> DETALLE/Editar</title>
+	<title> DETALLE RESERVA</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	{!!Html::style('../css/jquery.bxslider.css')!!}
-	{!!Html::style('../css/font-awesome.css')!!}
-	{!!Html::style('../css/bootstrap.css')!!}
-	{!!Html::style('../css/MisEstilos.css')!!}
+	{!!Html::style('css/font-awesome.css')!!}
+	{!!Html::style('css/bootstrap.css')!!}
+	{!!Html::style('css/MisEstilos.css')!!}
+	{!!Html::style('css/datepicker.css')!!}
+	{!!Html::style('css/bootstrap-datepicker3.css')!!}
 	
 </head>
 <body>
@@ -25,6 +26,8 @@
 					<strong>DETALLE DE LA RESERVA </strong>
 			</div>		
 		</div>
+		<input  type="hidden" type="text" id="fechaIni" name="fechaIni" value="{{ $fechaIni}}">
+	    <input type="hidden" type="text" id="fechaFin" name="fechaFin" value="{{ $fechaFin}}">
 		<div class="container">
 			<!--@include('errors.503')-->		
 			<form method="POST" action="/reservar-ambiente/{{ $ambiente->id }}/confirmacion-reserva-otro-ambiente" class="form-horizontal form-border"> <!-- DEBERIA EL ACTION DE REESRVAR =D -->
@@ -60,25 +63,20 @@
 		    	</div>
 		  	</div> -->
 		  	<div class="form-group ">
-		    	<label for="ubicacionInput" class="col-sm-4 control-label">Ubicación</label>
+		    	<label for="ubicacionInput" class="col-sm-4 control-label">Descripción</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->ubicacion}}" readonly>
+		      		<input type="text" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->descripcion}}" readonly>
 		    	</div>
 		  	</div>
-		  	<div class="form-group required">
-			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha (dd/mm/aaaa) </label>
+		  	<div class="form-group">
+			 	<label for="fechaInput" class="col-sm-4 control-label">FECHA (dd/mm/aaaa) </label>
 			    <div class="col-sm-5">
-				  	<!-- <div class="input-group">
-			   		<input name="fechaInicio" id="fechaInicio" type="text" required class="form-control">
-			       		<span class="input-group-addon">-</span>
-			       		<input name="fechaFin" id="fechaFin" type="text" required class="form-control">
-			   	 	</div>
- -->
-			   	 	<div class="input-group">
-			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio_reserva" placeholder="Fecha Inicio" style="max-width: 250px">
+				  	<div class="input-group">
+			   		<input class="datepicker form-control"  type="text"  id="fecha_inicio_reserva" name="fecha_inicio_reserva" placeholder="Fecha Inicio" value="{{old('fecha_inicio')}}" style="max-width: 250px" >
 			   		<span class="input-group-addon">-</span>
-			   		<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd2" name="fecha_fin_reserva" placeholder="Fecha Fin" style="max-width: 250px">
-					</div>			   		
+			   		<input class="datepicker form-control" type="text" id="fecha_fin_reserva" name="fecha_fin_reserva" placeholder="Fecha Fin" value="{{old('fecha_fin')}}" style="max-width: 250px">
+
+			   	 	</div>
 		    	</div>	
 			</div>
 			<div class="form-group required">
@@ -91,20 +89,26 @@
 			   	   	</div>
 		    	</div>	
 			</div>
-		  	<div class="form-group required">
-			   	<label for="contactoInput" class="col-sm-4 control-label">Socio</label>
-			  	<div class="col-sm-5">
-			   		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="contactoInput" name="nombre_contacto" placeholder="Socio" value="{{old('nombre_contacto')}}">
-			   	</div>
-			   	<a class="btn btn-info" name="buscarContacto" href="#"  title="Buscar" ><i name="buscarSocio" class="glyphicon glyphicon-search"></i></a>
-			    	<!-- deberia ir a una pantalla que liste todos los contactos posibles del Club  -->
-			</div>	
+		  	
 			<div class="form-group ">
 		    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="precioInput" onkeypress="return inputLimiter(event,'Numbers')" name="ubicacion" value="FALTA CALCULAR EL PRECIO" readonly>
+		      		<input type="text" class="form-control" id="precioInput" onkeypress="return inputLimiter(event,'Numbers')" name="ubicacion" value="{{$ambiente->precio($tipo_persona, $ambiente->tarifas)}}" readonly>
 		    	</div>
 		  	</div>  
+
+		  	<div class="form-group required">
+			   	<label for="tipoComprobanteInput" class="col-sm-4 control-label">Tipo de Comprobante</label>
+			   	<div class="col-sm-5">
+			    	<select class="form-control" id="tipo_comprobante" name="tipo_comprobante">
+						<option value="-1" selected >Seleccionar tipo...</option>
+						@foreach($tipo_comprobantes as $tipo_comprobante)
+						<option value="{{$tipo_comprobante->valor}}" >{{$tipo_comprobante->valor}}</option>
+						@endforeach						
+					</select>						
+			    </div>
+			</div>	
+
 		  	</br>
 		  	</br>
 		  	
@@ -128,14 +132,37 @@
 		</div>
 	</div>		
 @stop
-<!-- JQuery -->
-	<script src="../js/jquery-1.11.3.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+ <!-- JQuery -->
+	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	<!-- Bootstrap -->
-	<script type="text/javascript" src="../js/bootstrap.js"></script>
-	<!-- BXSlider -->
-	<script src="../js/jquery.bxslider.min.js"></script>
-	<!-- Mis Scripts -->
-	<script src="../js/MisScripts.js"></script>
+	{!!Html::script('js/bootstrap.js')!!}
+
+	{!!Html::script('js/bootstrap-datepicker.js')!!}
+	 <!-- Languaje -->
+    {!!Html::script('js/bootstrap-datepicker.es.min.js')!!}
+<script>
+		var nowDate = new Date();
+		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+		var js_var = "<?php echo $fechaIni; ?>";
+		var js_var2 = "<?php echo $fechaFin; ?>";
+        //alert(js_var);
+        var other=new Date(js_var);
+        var other2=new Date(js_var2);
+        //alert(other);
+	</script>
+	<script>
+		$(function(){
+			$('.datepicker').datepicker({
+				format: "dd/mm/yyyy",
+		        language: "es",
+		        autoclose: true,
+		        startDate: other,
+		        endDate: other2,
+			});
+		});
+	</script>
 
 
 </body>

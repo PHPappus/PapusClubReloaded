@@ -48,9 +48,12 @@
 					<div class="">
 				  		<font color="red"> 
 				  			(*) Dato Obligatorio
-				  		</font>		  			
+				  		</font>				
+					</div>
+					<div class="col-sm-4"></div>
+					<div>
+						El sorteo se ejecutará una semana antes del inicio de las reservas
 					</div>			
-				  	</br>
 				  	</br>
 					<div class="form-group required">
 						<label  class="control-label col-sm-5">NOMBRE DEL SORTEO:</label>
@@ -65,6 +68,13 @@
 							<input type="text" class="form-control" id="descripcion" name="descripcion" value="{{ old('descripcion') }}" required style="max-width: 250px" >
 						</div>
 					</div>
+
+					<!--<div class="form-group required">
+						<label  class="control-label col-sm-5">FECHA CIERRE SORTEO [dd/mm/aaaa]:</label>
+						<div class="col-sm-7">
+							<input class="datepicker" type="text" id="fecha_cierre_sorteo" readonly name="fecha_cierre_sorteo" value="{{ old('fecha_cierre_sorteo') }}"  >						
+						</div>					
+					</div>-->
 					
 					<div class="form-group required">
 						<label  class="control-label col-sm-5">FECHA INICIO RESERVA [dd/mm/aaaa]:</label>
@@ -83,9 +93,9 @@
 				    	<label  class="control-label col-sm-5">SEDE</label>	
 				    	<div class="col-sm-7">
 					    	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >					         
-								                 @foreach ($sedes as $sede)      
-								                	<option value="{{$sede->id}}">{{$sede->nombre}}</option>
-								                @endforeach
+				                @foreach ($sedes as $sede)      
+				                	<option value="{{$sede->id}}">{{$sede->nombre}}</option>
+				                @endforeach
 							</select>
 						</div>
 				  	</div>
@@ -110,7 +120,7 @@
 	{!!Html::script('js/jquery-1.12.4.min.js')!!}
 	{!!Html::script('js/bootstrap.js')!!}
 	{!!Html::script('js/bootstrap-datepicker-sirve.js')!!}
-
+	
 
 
 		
@@ -122,6 +132,7 @@
 			 
 					var checkin = $('#fecha_abierto').datepicker({
 			  			onRender: function(date) {
+
 			    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
 			  			}
 					}).on('changeDate', function(ev) {
@@ -141,12 +152,16 @@
 					}).on('changeDate', function(ev) {
 			  			checkout.hide();
 					}).data('datepicker');	
+					$(function(){
+
+					$('#fecha_abierto').datepicker('update', now);
+					});
 
 					$(function(){
 						$('.datepicker').datepicker({
 							format: 'dd/mm/yyyy',
-					        language: "es",
-					        autoclose: true
+					        autoclose: true,
+					        setDate: now
 						});
 					});
 			});

@@ -43,57 +43,69 @@
 		  			@endif
 			  		
 				</div>
-				<br/><br/>
 				<div class="col-sm-4"></div>
-				<div class="">
-			  		<font color="red"> 
-			  			(*) Dato Obligatorio
-			  		</font>		  			
+				<div class="">	  			
 				</div>			
 			  	</br>
 			  	</br>
 			  	@if(is_null(old('nombre_sorteo')))	
-					<div class="form-group required">
+					<div class="form-group">
 						<label for="" class="control-label col-sm-5">NOMBRE DEL SORTEO:</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control" id="nombre_sorteo" name="nombre_sorteo" required style="max-width: 250px" value="{{$sorteo->nombre_sorteo}}">
+							<input type="text" class="form-control" id="nombre_sorteo" name="nombre_sorteo"   style="max-width: 250px" value="{{$sorteo->nombre_sorteo}}">
 						</div>
 					</div>
 				@else
-					<div class="form-group required">
+					<div class="form-group">
 						<label for="" class="control-label col-sm-5">NOMBRE DEL SORTEO:</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control" id="nombre_sorteo" name="nombre_sorteo" required style="max-width: 250px" value="{{ old('nombre_sorteo') }}">
+							<input type="text" class="form-control" id="nombre_sorteo" name="nombre_sorteo"   style="max-width: 250px" value="{{ old('nombre_sorteo') }}">
 						</div>
 					</div>
 				@endif		
 
 				@if(is_null(old('descripcion')))
-					<div class="form-group required">
+					<div class="form-group">
 						<label for="" class="control-label col-sm-5">DESCRIPCION:</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control" id="descripcion" name="descripcion" required style="max-width: 250px" value="{{$sorteo->descripcion}}">
+							<input type="text" class="form-control" id="descripcion" name="descripcion"   style="max-width: 250px" value="{{$sorteo->descripcion}}">
 						</div>
 					</div>
 				@else
-					<div class="form-group required">
+					<div class="form-group">
 						<label for="" class="control-label col-sm-5">DESCRIPCION:</label>
 						<div class="col-sm-7">
-							<input type="text" class="form-control" id="descripcion" name="descripcion" required style="max-width: 250px" value="{{ old('descripcion') }}">
+							<input type="text" class="form-control" id="descripcion" name="descripcion"   style="max-width: 250px" value="{{ old('descripcion') }}">
 						</div>
 					</div>
-				@endif	
+				@endif
+
+				@if(is_null(old('fecha_abierto')))
+					<div class="form-group">
+						<label for="" class="control-label col-sm-5">FECHA CIERRE DE SORTEO [dd/mm/aaaa]:</label>
+						<div class="col-sm-7">
+							<input input class="datepicker" type="text" id="fecha_abierto" disabled  readonly name="fecha_abierto" value="{{$sorteo->fecha_fin_sorteo}}">					
+						</div>					
+					</div>
+				@else
+					<div class="form-group">
+						<label for="" class="control-label col-sm-5">FECHA CIERRE DE SORTEO [dd/mm/aaaa]:</label>
+						<div class="col-sm-7">
+							<input input class="datepicker" type="text" id="fecha_abierto" disabled  readonly name="fecha_abierto" value="{{ old('fecha_fin_sorteo') }}">					
+						</div>					
+					</div>
+				@endif
 				
 				@if(is_null(old('fecha_abierto')))
-					<div class="form-group required">
-						<label for="" class="control-label col-sm-5">FECHA INICIO RESERVA [dd/mm/aaaa]:</label>
+					<div class="form-group">
+						<label for="" class="control-label col-sm-5">FECHA INICIO DE RESERVA [dd/mm/aaaa]:</label>
 						<div class="col-sm-7">
 							<input input class="datepicker" type="text" id="fecha_abierto" disabled  readonly name="fecha_abierto" value="{{$sorteo->fecha_abierto}}">					
 						</div>					
 					</div>
 				@else
-					<div class="form-group required">
-						<label for="" class="control-label col-sm-5">FECHA INICIO RESERVA [dd/mm/aaaa]:</label>
+					<div class="form-group">
+						<label for="" class="control-label col-sm-5">FECHA INICIO DE RESERVA [dd/mm/aaaa]:</label>
 						<div class="col-sm-7">
 							<input input class="datepicker" type="text" id="fecha_abierto" disabled  readonly name="fecha_abierto" value="{{ old('fecha_abierto') }}">					
 						</div>					
@@ -101,15 +113,15 @@
 				@endif
 
 				@if(is_null(old('fecha_cerrado')))
-					<div class="form-group required">
-						<label for="" class="control-label col-sm-5">FECHA FIN RESERVA [dd/mm/aaaa]:</label>
+					<div class="form-group  ">
+						<label for="" class="control-label col-sm-5">FECHA FIN DE RESERVA [dd/mm/aaaa]:</label>
 						<div class="col-sm-7">
 							<input class="datepicker" type="text" id="fecha_cerrado" disabled  readonly name="fecha_cerrado" value="{{$sorteo->fecha_cerrado}}">						
 						</div>
 					</div>
 				@else
-					<div class="form-group required">
-						<label for="" class="control-label col-sm-5">FECHA FIN RESERVA [dd/mm/aaaa]:</label>
+					<div class="form-group  ">
+						<label for="" class="control-label col-sm-5">FECHA FIN DE RESERVA [dd/mm/aaaa]:</label>
 						<div class="col-sm-7">
 							<input class="datepicker" type="text" id="fecha_cerrado" disabled readonly name="fecha_cerrado" value="{{ old('fecha_cerrado') }}">						
 						</div>
@@ -121,17 +133,19 @@
 							<input type="text" id="sede" readonly disabled  name="sede" value="{{ $sede->nombre }}">						
 						</div>
 				</div>
-				<br/>
-				<br/>
-				<br/>
-				<div class="form-group">
-					<div class="col-sm-6 text-center">
-						<input class="btn btn-success"" type="submit" value="Continuar">	
+				<br><br>
+					<div class="btn-inline">
+						<div class="btn-group col-sm-7"></div>
+						
+						<div class="btn-group ">
+							<input class="btn btn-primary" type="submit" value="Continuar">
+						</div>
+						<div class="btn-group">
+							<a href="/sorteo/index" class="btn btn-info">Cancelar</a>
+						</div>
 					</div>
-					<div class="col-sm-6 text-center">
-						<a href="/sorteo/index" class="btn btn-danger">Cancelar</a>
-					</div>
-				</div>
+					<br><br>
+
 			</form>
 		</div>
 	</div>		

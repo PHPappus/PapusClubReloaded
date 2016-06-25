@@ -20,6 +20,10 @@ class Facturacion extends Model
         return $this->belongsTo('papusclub\Models\Persona');
     }
 
+    public function reserva(){
+        return $this->belongsTo('papusclub\Models\Reserva', 'reserva_id');
+    }
+
     public function productoxfacturacion(){
         return $this->hasMany('papusclub\Models\ProductoxFacturacion');
     }

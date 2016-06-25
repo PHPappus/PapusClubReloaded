@@ -23,11 +23,25 @@ class EditTallerRequest extends Request
      */
     public function rules()
     {
-        return [
+
+        $rules = [
+
             'nombre' => 'required|max:60|string',
-            'descripcion' =>'required|max:60|string',
+            'descripcion' =>'|max:200|string',
+            'profe' => 'required|max:60|string',
             'vacantes' =>'min:0',
+            'fecIniIns' => 'required',
+            'fecFinIns' => 'required',
+            'fecIni' => 'required',
+            'fecFin' => 'required',
             'cantidad_sesiones' => 'min:0',
         ];
+
+        foreach($this->get('tarifas') as $key =>$val)
+        {
+            $rules['tarifas.'.$key]='required|min:0|float';
+        }
+
+        return $rules;
     }
 }

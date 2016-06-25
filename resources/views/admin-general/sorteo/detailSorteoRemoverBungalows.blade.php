@@ -27,8 +27,8 @@
 					<strong>REMOVER BUNGALOWS</strong>
 			</div>		
 			<div></div>
-		</div>
-			<form method="POST" action="/sorteo/new/sorteo/bungalows/{{ $id }}/remove" class="form-horizontal form-border">
+		</div>		
+			<form id="myform" method="POST" action="/sorteo/new/sorteo/bungalows/{{ $id }}/remove" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 
@@ -41,6 +41,7 @@
 		  				</ul>
 		  			@endif
 		  		@if(!empty($ambientes))
+		  		<br><br><br>
 				<div class="table-responsive">
 					<div class="container">
 						<table class="table table-bordered table-hover text-center display" id="example">
@@ -71,7 +72,13 @@
 					</div>	
 				</div>
 				@else
-					<div>NO POSEE BUNGALOWS ASOCIADOS</div>
+				<div class="table-responsive">
+					<div class="container">
+					<br><br>
+					<div>ESTE SORTEO NO TIENE BUNGALOWS ASOCIADOS</div>
+					</div>
+					</div>
+
 					
 				@endif
 				<br><br>
@@ -79,13 +86,14 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-primary" type="submit" value="Continuar">
+						<!--<button id="continuar"> Continuar </button>-->
+						<input class="btn btn-primary" type="submit" value="Continuar" data-toggle="modal" data-target="#modalContinuar">
 					</div>
 					<div class="btn-group">
 						 <a class="btn btn-info"  title="Atras" href="{{url('/sorteo/'.$id)}}">Atras</a>   
 					</div>
 					<div class="btn-group">
-						 <a class="btn btn-info"  title="Cancelar" data-href="{{url('/sorteo/index')}}" data-toggle="modal" data-target="#modalEliminar">Cancelar</a>   
+						 <a class="btn btn-info"  title="Cancelar" data-href="{{url('/sorteo/index')}}" data-toggle="modal" data-target="#modalCancelar">Cancelar</a>   
 					</div>
 				</div>
 				<br><br>
@@ -94,11 +102,14 @@
 			</form>
 		</div>
 	</div>		
+	</main>
 @stop
-	{!!Html::script('js/jquery-1.11.3.min.js')!!}
+	{!!Html::script('js/jquery-1.12.4.min.js')!!}
 	{!!Html::script('js/bootstrap.js')!!}
-	{!!Html::script('js/jquery.bxslider.min.js')!!}
-	{!!Html::script('js/MisScripts.js')!!}
+	<!--<script src="dist/sweetalert.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">-->
+	
+	
 	
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
 	<script>
@@ -112,7 +123,7 @@
 	</script>
 </body>
 <!-- Modal -->
-	<div id="modalEliminar" class="modal fade" role="dialog">
+	<div id="modalCancelar" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
 
 	    <!-- Modal content-->
@@ -132,10 +143,54 @@
 
 	  </div>
 	</div>
+	<div id="modalContinuar" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Confirmar</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>¿Está seguro que desea eliminar los bungalows seleccionados?</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-danger btn-ok">Confirmar</a>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
 
 	<!-- Modal Event-->
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('button#continuar').on('click', function(){
+			  swal({   
+			    title: "Are you sure?",
+			    text: "You will not be able to recover this lorem ipsum!",         type: "warning",   
+			    showCancelButton: true,   
+			    confirmButtonColor: "#DD6B55",
+			    confirmButtonText: "Yes, delete it!", 
+			    closeOnConfirm: false 
+			  }, 
+			       function(){   
+			    $("#myform").submit();
+			  });
+			});
+		});
+
+		
+	</script>
 	<script>
-		$('#modalEliminar').on('show.bs.modal', function(e) {
+		$('#modalCancelar').on('show.bs.modal', function(e) {
+   			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+		});
+	</script>
+	<script>
+		$('#modalContinuar').on('show.bs.modal', function(e) {
    			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 		});
 	</script>

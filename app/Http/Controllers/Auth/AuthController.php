@@ -96,7 +96,7 @@ class AuthController extends Controller
             return '/admin-reserva';
             break;
             case '8':
-            return '/public';
+            return '/control-ingresos';
             break;
         }
     }

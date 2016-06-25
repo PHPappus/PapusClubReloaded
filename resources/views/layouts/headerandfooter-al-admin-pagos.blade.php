@@ -12,41 +12,45 @@
 				</div>
 			</nav>
 		</div>
-		<!--menu de opciones superior-->
-		<nav class="main-menu">
-			<div class="content-fluid" style="margin-left: 10%">
-				<div class="logo">
-					<div class="edit-logo">
-						<a href="{!!URL::to('/admin-general')!!}" title="Logo oficial de Papus Club">
-							<img src="{!!URL::to('/images/logo.png')!!}" alt="Logo Papus Club" href="/">
-						</a>
-					</div>
-				</div>
-				<!--Opciones de menu-->
-				
-				<nav class="menu" id="menu">
-					<ul>
-						<li><a href="#">{!!Auth::user()->name!!}  <span class="glyphicon glyphicon-user"></span></a>
-								<ul>
-									<li><a href="{!!URL::to('/cuenta')!!}" title="Ir a cuenta" target="_self">MI CUENTA</a></li>
-									<li><a href="{!!URL::to('/password/change')!!}" title="Cambiar contraseña" target="_self">CAMBIAR MI CONTRASEÑA</a></li>
-									<li><a href="{!!URL::to('/logout')!!}" title="LOGOUT" target="_self">LOGOUT</a></li>
-								</ul>
-						</li>
-						<!-- Opción Actividades -->
-						<li><a href="#">SOCIO</a></li>
-						<!-- Opción TRABAJADOR -->
-						<li><a href="#">TRABAJADOR</a></li>
-						<!-- Opción TRÄMITES -->
-						<li><a href="#">TRÁMITES</a></li>
-						<!-- Opción SEDE -->
-						<li><a href="#">VENTA</a></li>
-						<!-- MANTENIMIENTO DE PAGOS -->
-						<li><a href="{{url('/pagos/pago-seleccionar-socio')}}">PAGOS</a></li>
-					</ul>
-				</nav>
-			</div>
-    	</nav>
+		<nav class="navbar navbar-default">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar1" aria-expanded="false">
+          <span class="sr-only">Menu</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="{!!URL::to('/admin-pagos')!!}" class="navbar-brand"><img alt="Brand" class="img-responsive" src="{!!URL::to('/images/logo.png')!!}" ></a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbar1">
+        <!-- Pagos -->
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="{!!URL('/pagos/pago-seleccionar-socio/')!!}" class="dropdown-toggle btn-lg"  role="button">
+              Pagos
+            </a>
+          </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+            {!!Auth::user()->name!!} <span class="glyphicon glyphicon-user"><span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{!!URL::to('/cuenta')!!}" title="Ir a cuenta" target="_self">Mi Cuenta</a></li>
+              <li><a href="{!!URL::to('/password/change')!!}" title="Cambiar contraseña" target="_self">Cambiar mi contraseña</a></li>
+              <li><a href="{!!URL::to('/logout')!!}" title="LOGOUT" target="_self">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
 </header>
 <!---Cuerpo -->
 

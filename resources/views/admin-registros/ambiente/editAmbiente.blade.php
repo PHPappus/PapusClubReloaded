@@ -56,19 +56,7 @@
 		      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" value="{{$ambiente->nombre}}" >
 		    	</div>
 		  	</div>
-		  <!-- 	<div class="form-group ">
-		    	<label for="tipoAmbienteInput" class="col-sm-4 control-label">TIPO AMBIENTE</label>	
-		    	<div class="col-sm-5">
-			    	<select class="form-control" name="tipo_ambiente" style="max-width: 150px " readonly >
-						                <option value="-1" default>Seleccione</option>
-						                <option value="Bungalow">Bungalow</option>
-							            <option value="Canchas">Canchas</option>
-							            <option value="Piscina">Piscina</option>
-							            <option value="Comedor">Comedor</option>
-							            <option value="Salon">Salón</option>
-					</select>
-				</div>
-		  	</div> -->
+		  
 		  	<div class="form-group required ">
 		    	<label for="tipoAmbienteInput " class="col-sm-4 control-label">Tipo Ambiente</label>
 		    	<div class="col-sm-5">
@@ -85,9 +73,9 @@
 		  	</div>	  	
 		  	
 		  	<div class="form-group required ">
-		    	<label for="ubicacionInput" class="col-sm-4 control-label">Ubicación</label>
+		    	<label for="ubicacionInput" class="col-sm-4 control-label">Descripción</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->ubicacion}}"  >
+		      		<input type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" class="form-control" id="descripcionInput" name="descripcion" value="{{$ambiente->descripcion}}"  >
 		    	</div>
 		  	</div>
 
@@ -115,7 +103,7 @@
 									<td align="center">  S/.</td>
 									<td align="center"> 
 										<div align="center">
-								      		<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'DoubleFormat')"   class="form-control" id="{{$tarifa->tipo_persona->descripcion}}Input" name="{{$tarifa->tipo_persona->descripcion}}" value="{{$tarifa->precio}}" placeholder="Monto" >
+								      		<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'DoubleFormat')"   class="form-control" id="{{$tarifa->tipo_persona->descripcion}}Input" name="{{$tarifa->tipo_persona->descripcion}}" value="{{$tarifa->precio}}" placeholder="Monto" maxlength="6" >
 								    	</div>
 								</td>							        
 								</tr>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>MODIFICAR VENTA</title>
+	<title>MODIFICAR SOLICITUD</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,12 +27,12 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>EDITAR VENTA</strong>
+					<strong>EDITAR SOLICITUD</strong>
 			</div>		
 		</div>
 		<div class="container">
 			<!--@include('errors.503')-->		
-			<form method="POST" action="/venta-producto/new/{{ $producto->id }}/edit" class="form-horizontal form-border">
+			<form method="POST" action="/ingreso-producto/new/{{ $producto->id }}/editProducto" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<!-- Mensajes de error de validación del Request -->
@@ -72,9 +72,9 @@
 		  		</div>
 			  
 			  	<div class="form-group required">
-		    		<label for="facturacion_idInput" class="col-sm-4 control-label">N° de Factura</label>
+		    		<label for="ingresoproducto_idInput" class="col-sm-4 control-label">N° de Solicitud</label>
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="facturacion_idInput" name="facturacion_id" value="{{$producto->facturacion_id}}" readonly>
+		      			<input type="text" class="form-control" id="ingresoproducto_idInput" name="ingresoproducto_id" value="{{$producto->ingresoproducto_id}}" readonly>
 		    		</div>
 		  		</div>				  				 
 			  	
@@ -99,7 +99,7 @@
 						<input class="btn btn-primary" data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Aceptar">
 					</div>
 					<div class="btn-group">
-						<a href="{{url('/venta-producto/'.$producto->facturacion_id.'/back')}}" class="btn btn-info">Cancelar</a>
+						<a href="{{url('/ingreso-producto/'.$producto->ingresoproducto_id.'/back')}}" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>

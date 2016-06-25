@@ -11,10 +11,14 @@ use papusclub\Models\Configuracion;
 use papusclub\Models\ProductoxIngresoProducto;
 use papusclub\Models\IngresoProducto;
 use papusclub\Models\Persona;
-use papusclub\Http\Requests\StoreProductoRequest;
-use papusclub\Http\Requests\EditProductoRequest;
+use papusclub\Models\Proveedor;
+use papusclub\Http\Requests\StoreIngresoProductoRequest;
+use papusclub\Http\Requests\StoreProductoxIngresoProductoRequest;
+use papusclub\Http\Requests\EditIngresoProductoRequest;
 use papusclub\Http\Requests\StoreConfiguracionRequest;
-
+use papusclub\User;
+use Auth;
+use Session;
 
 class IngresoProductoController extends Controller
 {
@@ -29,179 +33,154 @@ class IngresoProductoController extends Controller
         $estados = Configuracion::where('grupo','=','7')->get();                                
         $tipo_pagos = Configuracion::where('grupo','=','8')->get();
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
-        $personas = Persona::all();
-        return view('admin-general.ingreso-producto.newIngresoProducto', compact('tipo_pagos','tipo_comprobantes','estados','personas'));
+        $proveedores = Proveedor::all();
+        return view('admin-general.ingreso-producto.newIngresoProducto', compact('tipo_pagos','tipo_comprobantes','estados','proveedores'));
     }
     
-    public function store(StoreFacturacionRequest $request)
+    public function store(StoreIngresoProductoRequest $request)
     {       
         $input = $request->all();
-      
-        $factura = new Facturacion();
-        $factura->persona_id = $input['persona_id'];
-        $factura->tipo_pago = $input['tipo_pago'];
-        $factura->tipo_comprobante = $input['tipo_comprobante'];
-        $factura->estado = $input['estado'];        
         
-        $factura->save();       
+        $user_id = Auth::user()->id;
+        $usuario = User::find($user_id);
+        $persona_id = $usuario->persona->id;
+
+        $ingresoproducto = new IngresoProducto();
+        $ingresoproducto->persona_id = $persona_id;
+        $ingresoproducto->proveedor_id = $input['proveedor_id'];
+        $ingresoproducto->descripcion = $input['descripcion'];
+        $ingresoproducto->estado = $input['estado'];        
         
-        return view('admin-general.ingreso-producto.addVentaProducto', compact('factura'));
+        $ingresoproducto->save();       
+
+        return view('admin-general.ingreso-producto.addIngresoProducto', compact('ingresoproducto'));
     }      
 
-    public function createVentaProducto($id)
+    public function createIngresoProducto($id)
     {       
-        $factura = Facturacion::find($id);
+        $ingresoproducto = IngresoProducto::find($id);
         $productos = Producto::all();
 
-        return view('admin-general.ingreso-producto.add', compact('factura','productos'));
+        return view('admin-general.ingreso-producto.add', compact('ingresoproducto','productos'));
     }      
 
-    public function storeVentaProducto(StoreProductoxFacturacionRequest $request)
+    public function storeIngresoProducto(StoreProductoxIngresoProductoRequest $request)
     {   $cantidad = 0;
-        $subtotal = 0;
-        $input = $request->all();        
-        $producto = Producto::find($input['producto_id']);
-        if ($input['cantidad'] > $producto->stock){
-            return redirect()->back()->withErrors('No hay stock suficiente');
-        }
-        else{
-            $producto->stock = $producto->stock - $input['cantidad'];
-            $producto->save();
-        }
-
-        $productoxfacturacion = new ProductoxFacturacion();
-        $productoxfacturacion = ProductoxFacturacion::where('facturacion_id','=',$input['facturacion_id'])
+        
+        $input = $request->all();                
+        
+        $productoxingresoproducto = ProductoxIngresoProducto::where('ingresoproducto_id','=',$input['ingresoproducto_id'])
                                                     ->where('producto_id','=',$input['producto_id'])
                                                     ->first();
-        if ($productoxfacturacion==null){
-            $productoxfacturacion = new ProductoxFacturacion();                
+        if ($productoxingresoproducto==null){
+            $productoxingresoproducto = new ProductoxIngresoProducto();                
         }        
         else{
-            $cantidad = $productoxfacturacion->cantidad;
-            $subtotal = $productoxfacturacion->subtotal;
+            $cantidad = $productoxingresoproducto->cantidad;
+            $subtotal = $productoxingresoproducto->subtotal;
         }
-        $productoxfacturacion->producto_id = $input['producto_id'];
-        $productoxfacturacion->facturacion_id = $input['facturacion_id'];
-        $productoxfacturacion->cantidad = $input['cantidad'] + $cantidad;  
-        $productoxfacturacion->subtotal = $productoxfacturacion->producto->precioproducto->first()['precio'] * $input['cantidad'] + $subtotal;
-        $productoxfacturacion->save();
+        
+        $productoxingresoproducto->producto_id = $input['producto_id'];
+        $productoxingresoproducto->cantidad = $input['cantidad'] + $cantidad;              
+        $productoxingresoproducto->ingresoproducto_id = $input['ingresoproducto_id'];
 
-        $productoxfacturacion->facturacion->total = $productoxfacturacion->facturacion->total + $productoxfacturacion->subtotal - $subtotal;
-        $productoxfacturacion->facturacion->save();
-        $factura = Facturacion::find($input['facturacion_id']);
+        $productoxingresoproducto->save(); 
+        $productoxingresoproducto->ingresoproducto->save();
 
-        return view('admin-general.ingreso-producto.addVentaProducto', compact('factura'));
+        $ingresoproducto = IngresoProducto::find($input['ingresoproducto_id']);
+
+        return view('admin-general.ingreso-producto.addIngresoProducto', compact('ingresoproducto'));
     }      
 
     //Muestra el formulario para poder modificar un producto
     public function edit($id)
     {
-        $factura = Facturacion::find($id);
+        $ingresoproducto = IngresoProducto::find($id);
         $estados = Configuracion::where('grupo','=','7')->get();
-        return view('admin-general.ingreso-producto.editVentaProducto', compact('factura','estados'));
+        return view('admin-general.ingreso-producto.editIngresoProducto', compact('ingresoproducto','estados'));
     }
 
      public function editProducto($id)
     {        
-        $producto = ProductoxFacturacion::find($id);
-        return view('admin-general.ingreso-producto.editVentaProductoDetail', compact('producto'));
+        $producto = ProductoxIngresoProducto::find($id);
+        return view('admin-general.ingreso-producto.editIngresoProductoDetail', compact('producto'));
     }
 
     //Se guarda la informacion modificada del producto en la BD
-    public function update(EditFacturacionRequest $request, $id)
+    public function update(EditIngresoProductoRequest $request, $id)
     {
         $input = $request->all();
-        $factura = Facturacion::find($id);
+        $ingresoproducto = IngresoProducto::find($id);
         
-        $factura->estado = $input['estado'];        
-        $factura->save();        
+        $ingresoproducto->estado = $input['estado'];        
+        $ingresoproducto->save();        
         
         return redirect('ingreso-producto/index')->with('stored', 'Se actualizó el producto correctamente.');
 
     }
 
-    public function updateProducto(StoreProductoxFacturacionRequest $request, $id)
+    public function updateProducto(StoreProductoxIngresoProductoRequest $request, $id)
     {
         $input = $request->all();            
 
-        $productoxfacturacion = ProductoxFacturacion::find($id);
+        $productoxingresoproducto = ProductoxIngresoProducto::find($id);                     
+        
+        $productoxingresoproducto->cantidad = $input['cantidad'];  
+        
+        $productoxingresoproducto->save();
+        
+        $productoxingresoproducto->ingresoproducto->save();
+        $ingresoproducto = IngresoProducto::find($input['ingresoproducto_id']);
 
-        $producto = Producto::find($input['producto_id']);
-        if (($input['cantidad']-$productoxfacturacion->cantidad) > $producto->stock){
-            return redirect()->back()->withErrors('No hay stock suficiente');
-        }
-        else{
-            $producto->stock = $producto->stock + $productoxfacturacion->cantidad;
-            $producto->stock = $producto->stock - $input['cantidad'];  
-            $producto->save();
-        }
-
-        $productoxfacturacion->facturacion->total = $productoxfacturacion->facturacion->total - $productoxfacturacion->subtotal;
-
-        $productoxfacturacion->producto_id = $input['producto_id'];
-        $productoxfacturacion->facturacion_id = $input['facturacion_id'];
-        $productoxfacturacion->cantidad = $input['cantidad'];  
-        $productoxfacturacion->subtotal = $productoxfacturacion->producto->precioproducto->first()['precio'] * $input['cantidad'];
-        $productoxfacturacion->save();
-
-        $productoxfacturacion->facturacion->total = $productoxfacturacion->facturacion->total + $productoxfacturacion->subtotal;
-        $productoxfacturacion->facturacion->save();
-        $factura = Facturacion::find($input['facturacion_id']);
-
-        return view('admin-general.ingreso-producto.addVentaProducto', compact('factura'));
+        return view('admin-general.ingreso-producto.addIngresoProducto', compact('ingresoproducto'));
 
     }
 
     //Se cambia el estado de un producto a inactiva
     public function destroy($id)    
     {
-        $factura = Facturacion::find($id);
+        $ingresoproducto = IngresoProducto::find($id);
         
-        foreach ($factura->productoxfacturacion as $productoxfacturacion) {
-            $productoxfacturacion->delete();
+        foreach ($ingresoproducto->productoxingresoproducto as $productoxingresoproducto) {
+            $productoxingresoproducto->delete();
         }       
-        $factura->delete();
+        $ingresoproducto->delete();
         return redirect('ingreso-producto/index');
     }
 
     public function destroyProducto($id)    
     {
-        $productoxfacturacion = ProductoxFacturacion::find($id);
+        $productoxingresoproducto = ProductoxIngresoProducto::find($id);
         
-        $producto = Producto::find($productoxfacturacion->producto_id);
-        $producto->stock = $producto->stock + $productoxfacturacion->cantidad;
-        $producto->save();
+        $ingresoproducto = IngresoProducto::find($productoxingresoproducto->ingresoproducto_id);        
+        $ingresoproducto->save();
+        $productoxingresoproducto->delete();
 
-        $factura = Facturacion::find($productoxfacturacion->facturacion_id);
-        $factura->total = $factura->total - $productoxfacturacion->subtotal;
-        $factura->save();
-        $productoxfacturacion->delete();
-
-        return view('admin-general.ingreso-producto.addVentaProducto', compact('factura'));
+        return view('admin-general.ingreso-producto.addIngresoProducto', compact('ingresoproducto'));
     }
 
      public function cancel($id)    
     {
-        $factura = Facturacion::find($id);
+        $ingresoproducto = IngresoProducto::find($id);
         
-        foreach ($factura->productoxfacturacion as $productoxfacturacion) {
-            VentaProductoController::destroyProducto($productoxfacturacion->id);
+        foreach ($ingresoproducto->productoxingresoproducto as $productoxingresoproducto) {
+            IngresoProductoController::destroyProducto($productoxingresoproducto->id);
         }       
-        $factura->delete();
+        $ingresoproducto->delete();
         return redirect('ingreso-producto/index');
     }
 
     //Se brinda informacion mas detallada del producto
     public function show($id)
     {
-        $factura = Facturacion::find($id);
-        return view('admin-general.ingreso-producto.detailVentaProducto', compact('factura'));
+        $ingresoproducto = IngresoProducto::find($id);
+        return view('admin-general.ingreso-producto.detailIngresoProducto', compact('ingresoproducto'));
     }
 
     public function back($id)
     {
-        $factura = Facturacion::find($id);
-        return view('admin-general.ingreso-producto.addVentaProducto', compact('factura'));
+        $ingresoproducto = IngresoProducto::find($id);
+        return view('admin-general.ingreso-producto.addIngresoProducto', compact('ingresoproducto'));
     }
 
 }

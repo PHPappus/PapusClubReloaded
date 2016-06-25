@@ -15,6 +15,7 @@ class CreateActividadesTable extends Migration
         Schema::create('actividad', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('ambiente_id')->unsigned()->nullable();
+            $table->integer('reserva_id')->unsigned()->nullable();
             $table->string('nombre');
             $table->string('tipo_actividad');
             $table->string('capacidad_maxima');

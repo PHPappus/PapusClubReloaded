@@ -17,6 +17,9 @@ class PostulanteTableSeeder extends Seeder
         	'direccion_nacimiento'=>'avenida prueba 123',
         	'pais_nacimiento'=>'Perú',
         	'lugar_nacimiento'=>'Lima',
+            'departamento'=>15,
+            'provincia'=>127,
+            'distrito'=>1263,
         	'colegio_primario'=>'maranguita',
         	'colegio_secundario'=>'piedras gordas',
         	'universidad'=>'Alcatraz',
@@ -36,6 +39,9 @@ class PostulanteTableSeeder extends Seeder
         	'direccion_nacimiento'=>'avenida prueba 123',
         	'pais_nacimiento'=>'Perú',
         	'lugar_nacimiento'=>'Lima',
+            'departamento'=>15,
+            'provincia'=>127,
+            'distrito'=>1263,
         	'colegio_primario'=>'maranguita',
         	'colegio_secundario'=>'piedras gordas',
         	'universidad'=>'Alcatraz',
@@ -50,6 +56,48 @@ class PostulanteTableSeeder extends Seeder
         	'telefono_celular'=>989456123
         ]);
 
+
+        Postulante::create([
+            'id_postulante'=>3,
+            'direccion_nacimiento'=>'Av Edgardo Rebagliati, Jesús María',
+            'pais_nacimiento'=>'Perú',
+            'lugar_nacimiento'=>'Lima',
+            'departamento'=>15,
+            'provincia'=>127,
+            'distrito'=>1263,
+            'colegio_primario'=>'CEP María de la Encarnación',
+            'colegio_secundario'=>'CES Nuestra señora de la Esperanza',
+            'universidad'=>'PUCP',
+            'profesion'=>'Informatico',
+            'centro_trabajo'=>'Pontificia Universidad Católica',
+            'cargo_trabajo'=>'Jefe de Practica',
+            'direccion_laboral'=>'Av. Universitaria 1801, San Miguel',
+            'estado_civil'=>'soltero',
+            'nro_hijos'=>1,
+            'domicilio'=>'Av. Las torres 515',
+            'telefono_domicilio'=>3265025,
+            'telefono_celular'=>992745845]);
+
+        Postulante::create([
+            'id_postulante'=>4,
+            'direccion_nacimiento'=>'Av Edgardo Rebagliati, Jesús María',
+            'pais_nacimiento'=>'Perú',
+            'lugar_nacimiento'=>'Lima',
+            'departamento'=>15,
+            'provincia'=>127,
+            'distrito'=>1263,
+            'colegio_primario'=>'CEP María de la Encarnación',
+            'colegio_secundario'=>'CES Nuestra señora de la Esperanza',
+            'universidad'=>'PUCP',
+            'profesion'=>'Informatico',
+            'centro_trabajo'=>'Pontificia Universidad Católica',
+            'cargo_trabajo'=>'Jefe de Practica',
+            'direccion_laboral'=>'Av. Universitaria 1801, San Miguel',
+            'estado_civil'=>'soltero',
+            'nro_hijos'=>1,
+            'domicilio'=>'Av. Las torres 515',
+            'telefono_domicilio'=>3265025,
+            'telefono_celular'=>992745845]);
 
         Postulante::create([
             'id_postulante'=>5,
@@ -70,8 +118,6 @@ class PostulanteTableSeeder extends Seeder
             'nro_hijos'=>1,
             'domicilio'=>'Av. Las torres 515',
             'telefono_domicilio'=>3265025,
-
-            'telefono_celular'=>9927458451
-            ]);
+            'telefono_celular'=>992745845]);
     }
 }

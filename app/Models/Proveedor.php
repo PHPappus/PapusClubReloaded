@@ -17,4 +17,9 @@ class Proveedor extends Model
      'nombre_responsable',
      'estado'];
      protected $dates = ['deleted_at'];
+
+
+    public function ingresoproducto(){
+        return $this->hasMany('papusclub\Models\IngresoProducto');
+    }
 }

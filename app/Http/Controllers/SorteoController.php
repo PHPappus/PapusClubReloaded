@@ -10,25 +10,159 @@ use papusclub\Models\Sorteo;
 use papusclub\Models\Ambiente;
 use papusclub\Models\Reserva;
 use papusclub\Models\Sede;
+use papusclub\Models\Sorteoxsocio;
+use Auth;
 use papusclub\Models\AmbientexSorteo;
 use papusclub\Http\Requests\EditSorteoRequest;
 use papusclub\Http\Requests\StoreSorteoRequest;
 use papusclub\Http\Requests\StoreAmbientexSorteoRequest;
+use papusclub\Http\Requests\StoreSocioxSorteoRequest;
+use papusclub\Http\Requests\DeleteSorteoSocioRequest;
 
 
 use Carbon\Carbon;
 
 class SorteoController extends Controller
 {
+
+    public function loscohibaspapa($id)
+    {
+        $sorteo=Sorteo::find($id);
+        $lista_socios=Sorteoxsocio::where('id','=',$id)->get();
+        $lista_bungalows=AmbientexSorteo::where('id','=',$id)->get();
+
+        $num_socios=$lista_socios->count();
+        $num_bungalows=$lista_bungalows->count();
+        
+        //dos casos: muchos bungalows y muchas o igual personas
+
+        /*if($num_socios<$num_bungalows)
+        {
+
+        }
+        else
+        {
+
+        }*/
+        /*
+        if($bungalows!=NULL)            
+            foreach ($ambienteXsorteo as $temp) {
+                foreach ($bungalows as $bungalow) {
+                    if($temp->id_ambiente==$bungalow)
+                    {
+                        $reservas=Reserva::where('fecha_fin_reserva','=',$sorteo->fecha_cerrado)->where('fecha_inicio_reserva','=',$sorteo->fecha_abierto)->where('ambiente_id','=',$bungalow)->get();
+                        foreach ($reservas as $reserva) {
+                            $reserva->delete();                            
+                        }
+                        $temp->delete();
+                        break;
+                    }
+            }
+        }
+        */
+        foreach($lista_bungalows as $bungalow)
+        {
+            //Posible error reservas y foreach
+            $reservas=Reserva::where('fecha_fin_reserva','=',$sorteo->fecha_cerrado)->where('fecha_inicio_reserva','=',$sorteo->fecha_abierto)->where('ambiente_id','=',$bungalow->id_ambiente)->get();
+            foreach ($reservas as $reserva) {
+                if(!$lista_socios->isEmpty())
+                {
+                    $temp_socio=$lista_socios->random();
+                    $reserva->id_persona=$temp_socio->id_socio;
+                    $lista_socios->pull($lista_socios->search($temp_socio));
+                }
+                else
+                {
+                    $reserva->delete();
+                }
+            }
+            
+        }
+
+        return redirect('sorteo/index')->with('stored','Se proceso el sorteo seleccionado');
+    }
+
+    public function inscripcionDelete(DeleteSorteoSocioRequest $request)
+    {
+        $bungalows = Input::get('ch');
+        $user = Auth::user();
+        
+        if($bungalows!=NULL)
+            foreach ($bungalows as $bungalow) {
+                $sorteoxsocio=Sorteoxsocio::where('id','=',$bungalow)->where('id_socio','=',$user->id);
+                $sorteoxsocio->forceDelete();
+            }
+        //return redirect()->action('SorteoController@indexInscripcion');
+        return redirect('sorteo/inscripcion/mis_sorteos')->with('stored', 'Se eliminaron los sorteos seleccionados.');
+    }
+
     public function indexInscripcion()
     {
         $sorteos=Sorteo::all();
         $carbon=new Carbon();
+        $user = Auth::user();
+
+        $sorteos_inscrito=Sorteoxsocio::where('id_socio','=',$user->id)->get();
+
         foreach ($sorteos as $sorteo) {
+            if(!$sorteos_inscrito->isEmpty()){
+                foreach ($sorteos_inscrito as $sorteo_inscrito) {
+                    if($sorteo->id==$sorteo_inscrito->id)
+                    {
+                        $sorteos->pull($sorteos->search($sorteo));
+                        break;
+                    }
+                }
+            }
+        }
+
+        foreach ($sorteos as $sorteo) { 
+            $sorteo->fecha_fin_sorteo=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_fin_sorteo)->format('d/m/Y');                   
             $sorteo->fecha_abierto=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_abierto)->format('d/m/Y');
-            $sorteo->fecha_cerrado=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_cerrado)->format('d/m/Y');
+            $sorteo->fecha_cerrado=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_cerrado)->format('d/m/Y');        
         }
         return view('admin-general.sorteo.inscribirseSorteo',['sorteos'=>$sorteos]);
+    }
+
+    public function inscripcionStore(StoreSocioxSorteoRequest $request)
+    {
+        $bungalows = Input::get('ch');
+        $user = Auth::user();
+        
+        if($bungalows!=NULL)
+            foreach ($bungalows as $bungalow) {
+                $sorteoxsocio=new Sorteoxsocio();
+                $sorteoxsocio->id=$bungalow;
+                $sorteoxsocio->id_socio=$user->id;
+                $sorteoxsocio->save();
+            }
+        //return redirect()->action('SorteoController@indexInscripcion');
+        return redirect('sorteo/inscripcion')->with('stored', 'Se realizó el registro de los sorteos seleccionados.');
+    }
+
+    public function indexMisInscripciones()
+    {
+        $carbon=new Carbon();
+        $user = Auth::user();
+
+        $sorteos_inscrito=Sorteoxsocio::where('id_socio','=',$user->id)->get();
+
+        $collection=collect([]);
+
+        if(!$sorteos_inscrito->isEmpty()){
+            foreach ($sorteos_inscrito as $sorteo_inscrito) {
+                $sorteo=Sorteo::where('id','=',$sorteo_inscrito->id)->get()->first();
+                $sorteo->fecha_abierto=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_abierto)->format('d/m/Y');
+                $sorteo->fecha_cerrado=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_cerrado)->format('d/m/Y');
+                $collection->push($sorteo);
+            }
+        }
+
+        $sorteos=$collection->all();
+
+        return view('admin-general.sorteo.indexMisSorteos',['sorteos'=>$sorteos]);
+
+        //return redirect()->action('SorteoController@bungalows',['id'=>$sorteo->id]);
     }
 
     public function index()
@@ -36,6 +170,7 @@ class SorteoController extends Controller
         $sorteos=Sorteo::all();
         $carbon=new Carbon();
         foreach ($sorteos as $sorteo) {
+            $sorteo->fecha_fin_sorteo=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_fin_sorteo)->format('d/m/Y');
             $sorteo->fecha_abierto=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_abierto)->format('d/m/Y');
             $sorteo->fecha_cerrado=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_cerrado)->format('d/m/Y');
         }
@@ -76,7 +211,7 @@ class SorteoController extends Controller
     public function removeCheckedBungalows(StoreAmbientexSorteoRequest $request, $id){
         $bungalows = Input::get('ch');
         $sorteo=Sorteo::find($id);        
-        $ambienteXsorteo = AmbientexSorteo::find($id);
+        $ambienteXsorteo = AmbientexSorteo::where('id','=',$id)->get();
         if($bungalows!=NULL)            
             foreach ($ambienteXsorteo as $temp) {
                 foreach ($bungalows as $bungalow) {
@@ -99,6 +234,7 @@ class SorteoController extends Controller
     {
         $sorteo=Sorteo::where('id',$id)->first();
         $carbon=new Carbon();
+        $sorteo->fecha_fin_sorteo=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_fin_sorteo)->format('d/m/Y');
         $sorteo->fecha_abierto=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_abierto)->format('d/m/Y');
         $sorteo->fecha_cerrado=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_cerrado)->format('d/m/Y');
 
@@ -138,7 +274,12 @@ class SorteoController extends Controller
         $sorteo->descripcion=$input['descripcion'];
         $sorteo->id_sede=$input['sedeSelec'];
 
-        $date = str_replace('/', '-', $input['fecha_abierto']);      
+        $date = str_replace('/', '-', $input['fecha_abierto']);
+        $temp = $carbon->createFromFormat('d-m-Y', $date)->toDateString();
+
+        $sorteo->fecha_fin_sorteo =$carbon::parse($temp)->addDays(-7);
+
+        //$date = str_replace('/', '-', $input['fecha_abierto']);      
         $sorteo->fecha_abierto=$carbon->createFromFormat('d-m-Y', $date)->toDateString();
 
         $date = str_replace('/', '-', $input['fecha_cerrado']);      
@@ -158,13 +299,6 @@ class SorteoController extends Controller
 
         $sorteo->nombre_sorteo = $input['nombre_sorteo'];
         $sorteo->descripcion = $input['descripcion'];        
-        
-        /*$date = str_replace('/', '-', $input['fecha_abierto']);      
-        $sorteo->fecha_abierto=$carbon->createFromFormat('d-m-Y', $date)->toDateString();
-
-        $date = str_replace('/', '-', $input['fecha_cerrado']);      
-        $sorteo->fecha_cerrado=$carbon->createFromFormat('d-m-Y', $date)->toDateString(); */      
-
         $sorteo->save();
         return redirect()->action('SorteoController@removebungalows',['id'=>$id]);//return redirect('sorteo/index')->with('stored', 'Se actualizó el producto correctamente.');
     }
@@ -225,6 +359,7 @@ class SorteoController extends Controller
     {
         $sorteo=Sorteo::where('id',$id)->first();
         $carbon=new Carbon();
+        $sorteo->fecha_fin_sorteo=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_fin_sorteo)->format('d/m/Y');
         $sorteo->fecha_abierto=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_abierto)->format('d/m/Y');
         $sorteo->fecha_cerrado=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_cerrado)->format('d/m/Y');
 

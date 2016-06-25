@@ -9,6 +9,8 @@
 	{!!Html::style('../css/font-awesome.css')!!}
 	{!!Html::style('../css/bootstrap.css')!!}
 	{!!Html::style('../css/MisEstilos.css')!!}
+	{!!Html::style('css/datepicker.css')!!}
+	{!!Html::style('css/bootstrap-datepicker3.css')!!}
 
 	
 </head>
@@ -30,7 +32,7 @@
 			<!--@include('errors.503')-->		
 			<form method="POST" action="/actividad/new/actividad" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
-				<input type="hidden" name="ambienteSelec" value="{{ $ambiente->id }}">
+				<input type="hidden" name="reservaSelec" value="{{ $reserva->id }}">
 
 				<!-- VALIDACION CON FE INICIO -->
 				<div class="col-sm-4"></div>
@@ -57,31 +59,31 @@
 			  	</div>
 				<br/>
 				
-
-			  	<div class="form-group required">
-			    	<label for="ambienteInput" class="col-sm-4 control-label">Ambiente</label>
-			    	<div class="col-sm-5">
-			    		<input type="text" class="form-control" id="ambienteInput" name="ambiente" value="{{$ambiente->nombre}}"   readonly>
-			      	</div>
-			      	<a class="btn btn-info" name="buscarAmbiente" href="{!!URL::to('/ambiente/search')!!}"  title="Buscar" ><i name="buscarAmbiente" class="glyphicon glyphicon-search"></i></a>
-			  	</div>
-			  	<div class="form-group required">
-			    	<label for="tipoambienteInput" class="col-sm-4 control-label">Tipo de Ambiente</label>
-			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="tipoambienteInput" name="tipoambiente" value="{{$ambiente->tipo_ambiente}}"   readonly>
-			    	</div>
-			  	</div>
-			  	<div class="form-group required">
+				<div class="form-group required">
 			    	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="sedeInput" name="sede" value="{{$ambiente->sede->nombre}}"   readonly>
+			      		<input type="text" class="form-control" id="sedeInput" name="sede" value="{{$reserva->ambiente->sede->nombre}}"   readonly>
 			    	</div>
 			  	</div>
+				<div class="form-group required">
+			    	<label for="reservaInput" class="col-sm-4 control-label">Id Reserva</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" class="form-control" id="reservaInput" name="reserva" value="{{$reserva->id}}"   readonly>
+			    	</div>
+			    	<a class="btn btn-info" name="buscarReserva" href="{!!URL::to('/actividad/new')!!}"  title="Buscar" ><i name="buscarReserva" class="glyphicon glyphicon-search"></i></a>
+			  	</div>
+			  	<div class="form-group required">
+			    	<label for="AmbienteInput" class="col-sm-4 control-label">Ambiente</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" class="form-control" id="ambienteInput" name="ambiente" value="{{$reserva->ambiente->nombre}}"   readonly>
+			    	</div>
+			  	</div>
+
 			  	<div class="form-group required">
 			    	<label for="tipoActividadInput" class="col-sm-4 control-label">Tipo de Actividad</label>	
 			    	<div class="col-sm-5">
 				    	<select class="form-control" id="tipoActividadInput" name="tipo_actividad" style="max-width: 150px "  >
-				    						<option value="-1" default>Seleccione</option>
+				    						<option value="" default>Seleccione</option>
 							               	@foreach ($values as $value)      
 							                	<option value="{{$value->id}}">{{$value->valor}}</option>
 							               	@endforeach
@@ -92,24 +94,32 @@
 			  	<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre de la actividad" value="{{old('nombre')}}" >
+			      		<input type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre de la actividad" value="{{old('nombre')}}" >
 			    	</div>
 			  	</div>
 
-			  	<div class="form-group required">
+<!-- 			  	<div class="form-group required">
 			    	<label for="fechaInicioInput" class="col-sm-4 control-label">Fecha Inicio(dd/mm/aaaa)</label>
 			    	<div class="col-sm-5">
-			      		<!-- <input type="date" class="form-control" id="fechaInicioInput" name="fecha"> -->
-			      		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="fechaInicioInput" name="a_realizarse_en" placeholder="Fecha Inicio" style="max-width: 250px">
+			      		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="fechaInicioInput" name="a_realizarse_en" placeholder="{{$reserva->fecha_inicio_reserva}}" style="max-width: 250px">
 			    	</div>
 			  	</div>
-			 
+ -->			 
+
+ 				<div class="form-group">
+			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha (dd/mm/aaaa) </label>
+			    <div class="col-sm-5">
+				  	<div class="input-group">
+			   		<input class="datepicker form-control"  type="text"  id="fecha_inicio" name="a_realizarse_en" placeholder="Fecha Inicio" value="{{old('fecha_inicio')}}" style="max-width: 250px" >
+			   		
+			   	 	</div>
+		    	</div>	
+				</div>
+
 			  	<div class="form-group required">
 			    	<label for="horaInicioInput" class="col-sm-4 control-label">Hora Inicio(HH:mm:ss)</label>
 			    	<div class="col-sm-5">
-			      		<input type="time" class="form-control" id="horaInicioInput" name="hora">
-			      		 	
-			  	
+			      		<input type="time" class="form-control" id="horaInicioInput" value="{{$reserva->hora_inicio_reserva}}" name="hora">
 			    	</div>
 			  	</div>
 
@@ -191,7 +201,12 @@
 	{!!Html::script('js/bootstrap.js')!!}
 	{!!Html::script('js/bootstrap-datepicker-sirve.js')!!}
 	{!!Html::script('locales/bootstrap-datepicker.es.min.js')!!}
+		{!!Html::script('js/bootstrap-datepicker.js')!!}
+	 <!-- Languaje -->
+    {!!Html::script('js/bootstrap-datepicker.es.min.js')!!}
 
+	<!-- Modal -->
+	<!--  -->
 	<!-- Modal -->
 	<div id="modalAgregar" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
@@ -203,7 +218,7 @@
 			<h4 class="modal-title">Confirmar</h4>
 		</div>
 		<div class="container">
-			<form method="POST" action="/actividad/new/{{ $ambiente->id }}/tipoactividad" class="form-horizontal form-border">
+			<form method="POST" action="/actividad/new/{{ $reserva->ambiente->id }}/tipoactividad" class="form-horizontal form-border">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<br>
 				<div class="form-group required">
@@ -234,46 +249,23 @@
 
 	  </div>
 	</div>
-	
+
+	<!-- Para Fechas INICIO -->
 	<script>
-		var nowTemp = new Date();
-		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
- 	
-		var checkin = $('#dpd1').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
-  			}
-		}).on('changeDate', function(ev) {
-  			if (ev.date.valueOf() > checkout.date.valueOf()) {
-    			var newDate = new Date(ev.date)
-    			newDate.setDate(newDate.getDate() + 1);
-    			checkout.setValue(newDate);
-  			}
- 			checkin.hide();
-  			$('#dpd2')[0].focus();
-		}).data('datepicker');
-		var checkout = $('#dpd2').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-  			}
-		}).on('changeDate', function(ev) {
-  			checkout.hide();
-		}).data('datepicker');		
-		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
-	
+		var nowDate = new Date();
+		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
 	</script>
 	<script>
 		$(function(){
 			$('.datepicker').datepicker({
-				format: 'dd/mm/yyyy', 
-				language: 'es'
-			});
-			$('.datepicker').on('changeDate', function(ev){
-			    $(this).datepicker('hide');
+				format: "dd/mm/yyyy",
+		        language: "es",
+		        autoclose: true,
+		        startDate: today,
 			});
 		});
 	</script>
-
+	<!-- Para Fecha FIN -->
 
 
 
@@ -285,5 +277,6 @@
 			document.getElementsByTagName('header')[0].style.zIndex = 3;
 		}
   	</script>
+  	{!!Html::script('js/MisScripts.js')!!}
 </body>
 </html>

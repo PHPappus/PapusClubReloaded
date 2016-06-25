@@ -13,7 +13,8 @@ class Carnet extends Model
     protected $dates = ['deleted_at'];
     protected $fillable = 
     ['nro_carnet', 
-    'fecha_emision',  
+    'fecha_emision',
+    'descripcion',  
     'estado', 
     'fecha_vencimiento' 
     ];    
@@ -22,5 +23,6 @@ class Carnet extends Model
     {
     	return $this->belongsTo(Socio::class,'socio_id');
     }
+           
 
 }

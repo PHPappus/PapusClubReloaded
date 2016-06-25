@@ -56,6 +56,6 @@ class Kernel extends HttpKernel
         'adminregistros' => \papusclub\Http\Middleware\AdminRegistros::class,
         'adminpersona' => \papusclub\Http\Middleware\AdminPersona::class,
         'adminreserva' => \papusclub\Http\Middleware\AdminReserva::class,
-        'publico' => \papusclub\Http\Middleware\Publico::class,
+        'controlingresos' => \papusclub\Http\Middleware\ControlIngresos::class,
     ];
 }

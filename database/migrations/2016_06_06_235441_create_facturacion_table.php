@@ -15,9 +15,12 @@ class CreateFacturacionTable extends Migration
         Schema::create('facturacion', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('persona_id')->unsigned()->index('facturacion_persona_id_foreign');
+            $table->integer('reserva_id')->unsigned()->nullable();
             $table->double('total'); 
             $table->string('tipo_pago');                     
-            $table->string('tipo_comprobante'); 
+            $table->string('tipo_comprobante');
+            $table->string('numero_pago');
+            $table->string('descripcion'); 
             $table->string('estado');
             $table->softDeletes();
             $table->timestamps();

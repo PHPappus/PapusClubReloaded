@@ -20,7 +20,7 @@ class TrabajadorController extends Controller
     public function index()
     {
         $personas=Persona::where('id_tipo_persona','=','1')->get();
-        return view('admin-general.persona.trabajador.index', compact('personas'));
+        return view('admin-persona.persona.trabajador.index', compact('personas'));
     }
 
     public function show($id)
@@ -47,13 +47,13 @@ class TrabajadorController extends Controller
         $puesto=Configuracion::find($trabajador->puesto);
 /*      $idpuesto=$trabajador->puesto;
         $puesto=Configuracion::find('2');*/
-        return view('admin-general.persona.trabajador.detailTrabajador',compact('persona', 'trabajador','puesto'));
+        return view('admin-persona.persona.trabajador.detailTrabajador',compact('persona', 'trabajador','puesto'));
     }
 
     public function registrar()
     {
         $puestos = Configuracion::where('grupo','=','1')->get();
-        return view('admin-general.persona.trabajador.newTrabajador',compact('puestos'));
+        return view('admin-persona.persona.trabajador.newTrabajador',compact('puestos'));
     }
 
     public function store(StoreTrabajadorRequest $request)
@@ -150,7 +150,7 @@ class TrabajadorController extends Controller
         $puesto=Configuracion::find($trabajador->puesto);
 
 
-        return view('admin-general.persona.trabajador.editTrabajador',compact('persona', 'trabajador','puesto','puestoslaborales'));
+        return view('admin-persona.persona.trabajador.editTrabajador',compact('persona', 'trabajador','puesto','puestoslaborales'));
     }
 
     public function update(StoreTrabajadorRequest $request,$id ){
