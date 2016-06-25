@@ -431,13 +431,17 @@ class ReservarAmbienteController extends Controller
         $sedes = Sede::all();
         //$ambientes = Ambiente::all();
         $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();  
-        return view('admin-reserva.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes'));
+        $fechaIniValue=(new Carbon('America/Lima'));  
+        $fechaFinValue=(new Carbon('America/Lima'))->addDays(30);
+        return view('admin-reserva.reservar-ambiente.reservar-bungalow')->with(compact('sedes','ambientes','fechaIniValue','fechaFinValue'));
     }
-    public function seleccionarSocioBungalowAdminR($id)
+    public function seleccionarSocioBungalowAdminR($id,$fechaIniValue,$fechaFinValue)
     {
         $ambiente = Ambiente::find($id);
         $socios = Socio::all();
-        return view('admin-reserva.reservar-ambiente.reservar-bungalow-seleccionarSocio', compact('ambiente','socios'));
+        $fechaIni=$fechaIniValue;
+        $fechaFin=$fechaFinValue;
+        return view('admin-reserva.reservar-ambiente.reservar-bungalow-seleccionarSocio', compact('ambiente','socios','fechaIni','fechaFin'));
     }
     public function seleccionarSocioOtrosAmbientesAdminR($id)
     {
@@ -451,15 +455,19 @@ class ReservarAmbienteController extends Controller
         $input = $request->all();
         $carbon=new Carbon();
         $fechaIni   = new Carbon('America/Lima');
-        $fechaFin   = new Carbon('America/Lima'); 
+        $fechaFin   = (new Carbon('America/Lima'))->addDays(25);
+        $fechaIniValue   = new Carbon('America/Lima');
+        $fechaFinValue   = (new Carbon('America/Lima'))->addDays(25);  
         $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();
         if(!empty($input['fecha_inicio'])){
             $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
+            $fechaIniValue=$carbon->createFromFormat('d-m-Y', $a_realizarse_en);
             $fechaIni=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
         }
         if(!empty($input['fecha_fin'])){
             $a_realizarse_en = str_replace('/', '-', $input['fecha_fin']);
-        $fechaFin=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+            $fechaFinValue=$carbon->createFromFormat('d-m-Y', $a_realizarse_en);
+            $fechaFin=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
         }
          if(!empty($input['capacidad_actual'])){
             $capacidad=$input['capacidad_actual'];
@@ -491,16 +499,7 @@ class ReservarAmbienteController extends Controller
                 
             }
         }
-        return view('admin-reserva.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes'));
-    }
-     //Muestra la pantalla para realizar la reserva de un ambiente que no sea bungalow
-    public function reservarOtrosAmbientesAdminR()
-    {
-
-        $sedes = Sede::all();
-        //$ambientes = Ambiente::all(); 
-        $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->get();
-        return view('admin-reserva.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes'));
+        return view('admin-reserva.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue'));
     }
 
     public function reservarOtrosAmbientesFiltradosAdminR(Request $request)
@@ -566,15 +565,16 @@ class ReservarAmbienteController extends Controller
         
     }
 
-    public function createBungalowAdminR($idambiente,$idsocio)
+    public function createBungalowAdminR($idambiente,$idsocio,$fechaIni,$fechaFin)
     {   
         $ambiente = Ambiente::find($idambiente);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
         $socio = Socio::find($idsocio);
         $persona = $socio->postulante->persona;  
         $tipo_persona = $persona->tipopersona->id;
-
-        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes','socio', 'tipo_persona'));
+        $fechaI=$fechaIni;
+        $fechaF=$fechaFin;
+        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes','socio', 'tipo_persona','fechaI','fechaF'));
     }
 
     //Se muestra el Bungalow a reservar y espera su confirmacion para la reserva
