@@ -355,7 +355,7 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::patch('postulante/{id}/editEstudio','PostulanteController@updateEstudio');
 	Route::patch('postulante/{id}/editTrabajo','PostulanteController@updateTrabajo');
 	Route::patch('postulante/{id}/editContacto','PostulanteController@updateContacto');
-	Route::get('postulante/{id}/newSocio','PostulanteController@registaSocio');
+
 
 	/*FAMILIAR*/
 	Route::get('postulante/{id}/familiar/new','PostulanteController@createFamiliar');
@@ -365,6 +365,10 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::get('postulante/familiar/{id}/{id_postulante}/detail','PostulanteController@detailFamiliarPostulante');
 
 
+	/*Aceptar postulación | rechazar postulacion*/
+	Route::get('postulante/{id}/newSocio','PostulanteController@registaSocio');
+	Route::get('postulante/{id}/aceptar','PostulanteController@aceptarPostulante');
+	Route::get('postulante/{id}/rechazar','PostulanteController@rechazarPostulante');	
 
 
 /*	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');*/

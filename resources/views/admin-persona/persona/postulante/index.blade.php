@@ -27,7 +27,8 @@
 				<div class="col-sm-12 text-left">
 					<p class="lead"><strong>POSTULANTE</strong></p>
 				</div>
-			</div>	
+			</div>
+			<h4>Para aceptar o rechazar alguna postulación seleccione la opción observaciones.</h4>	
 		</div>
 
 			<!-- Mensaje de éxito luego de registrar -->
@@ -40,6 +41,9 @@
 			</div>
 		@endif
 
+
+		</br>
+		</br>
 		<div class="container">
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active">
@@ -51,8 +55,7 @@
 							<th><DIV ALIGN=center>NACIONALIDAD</th>
 							<th><DIV ALIGN=center>DETALLE</th>
 							<th><DIV ALIGN=center>EDITAR</th>
-							<th><DIV ALIGN=center>ELIMINAR</th>
-							<th><DIV ALIGN=center>ACEPTAR MIEMBRO</th>
+							<th><DIV ALIGN=center>OBSERVACIONES</th>
 							
 						</tr>
 					</thead>
@@ -76,10 +79,7 @@
 							        <a class="btn btn-info" href="{{url('/postulante/'.$postulante->id_postulante.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 							        </td>
 							        <td>
-							        <a class="btn btn-info"  title="Eliminar" data-href="{{url('/postulante/'.$postulante->id_postulante.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a> 
-							        </td>
-							        <td>
-							        <a class="btn btn-info" href="{{url('/postulante/'.$postulante->id_postulante.'/newSocio')}}" title="Aceptar"><i class="glyphicon glyphicon-ok"></i></a> 
+							        <a class="btn btn-info" href="{{url('/postulante/'.$postulante->id_postulante.'/newSocio')}}" title="Aceptar"><i class="glyphicon glyphicon-eye-open"></i></a> 
 							        </td>
 							            
 								</tr>
