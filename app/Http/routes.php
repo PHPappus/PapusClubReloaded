@@ -126,8 +126,9 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 
 
 	//MANTENIMIENTO DE TALLERES
-	Route::get('taller/','TallerController@index');
+	Route::get('taller/index','TallerController@index');
 	Route::get('taller/new','TallerController@create');
+	Route::get('taller/{id}/select','TallerController@select');
 	Route::get('taller/{id}/editar','TallerController@edit');
 	Route::get('taller/{id}/','TallerController@show');
 	Route::post('taller/new/save','TallerController@store');
@@ -355,7 +356,7 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::patch('postulante/{id}/editEstudio','PostulanteController@updateEstudio');
 	Route::patch('postulante/{id}/editTrabajo','PostulanteController@updateTrabajo');
 	Route::patch('postulante/{id}/editContacto','PostulanteController@updateContacto');
-	Route::get('postulante/{id}/newSocio','PostulanteController@registaSocio');
+
 
 	/*FAMILIAR*/
 	Route::get('postulante/{id}/familiar/new','PostulanteController@createFamiliar');
@@ -365,6 +366,10 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::get('postulante/familiar/{id}/{id_postulante}/detail','PostulanteController@detailFamiliarPostulante');
 
 
+	/*Aceptar postulación | rechazar postulacion*/
+	Route::get('postulante/{id}/newSocio','PostulanteController@registaSocio');
+	Route::get('postulante/{id}/aceptar','PostulanteController@aceptarPostulante');
+	Route::get('postulante/{id}/rechazar','PostulanteController@rechazarPostulante');	
 
 
 /*	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');*/
@@ -430,12 +435,15 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::post('Socio/{id}/invitado/save','SocioAdminController@storeInvitado');
 	Route::get('Socio/{id}/invitado/delete','SocioAdminController@deleteInvitado');
 	Route::get('Socio/invitado/{id}/','SocioAdminController@detailInvitado');
+	Route::get('Socio/invitado/{id}/detalle','SocioAdminController@detailInvitadoDetalle');
 
 
 	/*Familiar*/
 	Route::get('Socio/{id}/familiar/new','SocioAdminController@createFamiliar');
 	Route::post('Socio/{id}/familiar/save','SocioAdminController@storeFamiliar');
 	Route::get('Socio/{id}/{id_postulante}/familiar/delete','SocioAdminController@deleteFamiliar');
+	Route::get('Socio/familiar/{id}/{id_postulante}','SocioAdminController@detailFamiliar');
+	Route::get('Socio/familiar/{id}/{id_postulante}/detalle','SocioAdminController@detailFamiliarDetalle');//hace referencia a la petaña detale del socio, no de editar
 
 
 
@@ -469,8 +477,14 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	});
 
 
-
-
+	/*ingreso-terceros*/
+	Route::get('tercero/index','TerceroController@index');//ya
+	Route::get('tercero/new','TerceroController@registrar');//ya
+	Route::post('tercero/new/tercero', 'TerceroController@store');//
+	Route::get('tercero/{id}','TerceroController@edit');//ya
+	Route::post('tercero/{id}/edit', 'TerceroController@update');
+	Route::get('tercero/{id}/delete', 'TerceroController@destroy');
+	Route::get('tercero/{id}/show', 'TerceroController@show');
 	
 
 

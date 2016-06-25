@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>POSTULANTE</title>
+	<title>TERCERO</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,7 +35,6 @@
 
 
 <!-- 	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
 </head>
 <body>
@@ -47,7 +46,7 @@
 				<div class="col-sm-12 text-left">
 				<br>
 				<br>
-					<p class="lead"><strong>REGISTRAR CUENTA</strong></p>
+					<p class="lead"><strong>REGISTRAR TERCERO</strong></p>
 			  	</div>
 				</div>
 			</div>	
@@ -55,7 +54,7 @@
 
 
 		<div class="container">
-			<form method="POST" action="/trabajador/new/trabajador" class="form-horizontal form-border">
+			<form method="POST" action="/tercero/new/tercero" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<!-- VALIDACION CON FE INICIO -->
@@ -77,7 +76,6 @@
 						<div role="tabpanel">
 							<ul class="nav nav-pills nav-tabs" role="tablist">
 								<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Paso 1: Datos Básicos</a></li>
-								<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Paso 2: Contrato</a></li>
 							</ul>
 						</div>
 
@@ -184,55 +182,6 @@
 										</div>
 									</div>
 
-							</div>
-
-							<div role="tabpanel" class="tab-pane" id="seccion2">
-									<br>
-									<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
-									<br>									
-									<div class="form-group required">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Puesto:</label>
-											</div>
-											<div class="col-sm-6">
-												<select class="form-control" id="puestoSelect" name="puestoSelect" style="width: 250px "   >
-													<option value="-1" default>Seleccione</option>
-														@foreach ($puestos as $puesto)      
-										                	<option value="{{$puesto->id}}" @if (old('puestoSelect') == $puesto->id) selected="selected" @endif >{{$puesto->valor}}</1option>
-										                @endforeach
-												</select>
-											</div>
-										</div>
-									</div>
-
-
-									<div class="form-group">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Fecha inicio de Contrato:</label>
-
-											</div>
-											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_ini_contrato" placeholder="Fecha de inicio" style="max-width: 250px" value="{{old('fecha_ini_contrato')}}">
-											</div>	
-										</div>
-									</div>
-
-
-									<div class="form-group">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Fecha fin de Contrato:</label>
-
-											</div>
-											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_fin_contrato" placeholder="Fecha de fin" style="width: 250px" value="{{old('fecha_fin_contrato')}}">
-											</div>
-										</div>
-									</div>
-								
-
 									<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
@@ -244,6 +193,7 @@
 											</div>
 										</div>
 									</div>
+									
 									<div class="form-group required" >
 										<div class="btn-group col-sm-5" ></div>
 										
@@ -251,10 +201,11 @@
 											<input class="btn btn-primary "  type="submit" value="Confirmar">
 										</div>
 										<div class="btn-group">
-											<a href="/trabajador/index" class="btn btn-info">Cancelar</a>
+											<a href="/tercero/index" class="btn btn-info">Cancelar</a>
 										</div>
 									</div>
 								<br>
+
 							</div>
 
 						</div>
@@ -333,90 +284,5 @@
 		});
 	</script>
 
-	
-	
-
-
-
-	
-
-	<!--<script>
-	    $(document).ready(function(){
-	        if($(#doc_identidad).attr("disabled")=="true"){
-	            $(#carnet_extranjeria).attr("disabled","false");
-	        }
-	        else{
-	            $(#carnet_extranjeria).attr("disabled","false");
-	        }
-	    });
-
-	</script>-->
-
 </body>
 </html>
-<!-- 	<script>
-		var nowTemp = new Date();
-		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
- 	
-		var checkin = $('#dpd1').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
-  			}
-		}).on('changeDate', function(ev) {
-  			if (ev.date.valueOf() > checkout.date.valueOf()) {
-    			var newDate = new Date(ev.date)
-    			newDate.setDate(newDate.getDate() + 1);
-    			checkout.setValue(newDate);
-  			}
- 			checkin.hide();
-  			$('#dpd2')[0].focus();
-		}).data('datepicker');
-		var checkout = $('#dpd2').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-  			}
-		}).on('changeDate', function(ev) {
-  			checkout.hide();
-		}).data('datepicker');		
-		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
-	
-	</script>
-	<script>
-		$(function(){
-			$('.datepicker').datepicker({
-				format: 'dd/mm/yyyy'
-			});
-		});
-	</script>
-
-	<script>
-		function ventana(){
-			document.getElementsByTagName('header')[0].style.zIndex = 1;
-		}
-		function cerrarventana(){
-			document.getElementsByTagName('header')[0].style.zIndex = 3;
-		}
-  	</script>
- -->
-  	<!--<script>
-		function inputLimiter(e,allow) {
-		    var AllowableCharacters = '';
-
-		    if (allow == 'Letters'){AllowableCharacters=' ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz';}
-		    if (allow == 'Numbers'){AllowableCharacters='1234567890';}
-		    if (allow == 'NameCharacters'){AllowableCharacters=' ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz-.\'_@';}
-		    if (allow == 'NameCharactersAndNumbers'){AllowableCharacters='1234567890 ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz-\'_@';}
-		    if (allow == 'Nulo'){AllowableCharacters='';} //sirve para colocarle a las fechas deben ser obligatoriamente ingresadas por el picker
-
-		    var k = document.all?parseInt(e.keyCode): parseInt(e.which);
-		    if (k!=13 && k!=8 && k!=0){
-		        if ((e.ctrlKey==false) && (e.altKey==false)) {
-		        return (AllowableCharacters.indexOf(String.fromCharCode(k))!=-1);
-		        } else {
-		        return true;
-		        }
-		    } else {
-		        return true;
-		    }
-		} 
-  	</script>-->

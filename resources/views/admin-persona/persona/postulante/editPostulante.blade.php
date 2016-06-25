@@ -210,7 +210,7 @@
 												</div>
 												<div class="col-sm-6 text-left" >
 													
-													<input onchange="es_peruano()" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : ''}} {{($postulante->persona->nacionalidad == "peruano") ? 'checked="true"':''}}/>Peruano&nbsp&nbsp&nbsp
+													<input onchange="es_peruano()" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : ''}} {{($postulante->persona->nacionalidad == "peruano") ? 'checked="true"':''}}/>peruano&nbsp&nbsp&nbsp
 													
 													<input onchange="es_extranjero()" type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "extranjero") ? 'checked="true"' : ''  }} {{($postulante->persona->nacionalidad == "extranjero") ? 'checked="true"':''}}/>Extranjero
 
@@ -321,7 +321,7 @@
 											<div class="col-sm-6">
 												<div class="col-sm-6 text-left" >
 														
-													<input type="radio" name="nacionalidad1" value="peruano" {{ (old('nacionalidad1') == "peruano") ? 'checked="true"' : ''}} {{($postulante->persona->nacionalidad == "peruano") ? 'checked="true"':''}}/>Peruano&nbsp&nbsp&nbsp
+													<input type="radio" name="nacionalidad1" value="peruano" {{ (old('nacionalidad1') == "peruano") ? 'checked="true"' : ''}} {{($postulante->persona->nacionalidad == "peruano") ? 'checked="true"':''}}/>peruano&nbsp&nbsp&nbsp
 														
 													<input type="radio" name="nacionalidad1" value="extranjero" {{ (old('nacionalidad1') == "extranjero") ? 'checked="true"' : ''  }} {{($postulante->persona->nacionalidad == "extranjero") ? 'checked="true"':''}}/>Extranjero
 												</div>	

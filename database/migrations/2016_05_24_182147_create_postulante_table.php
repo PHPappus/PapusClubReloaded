@@ -20,7 +20,7 @@ class CreatePostulanteTable extends Migration
 
             $table->bigInteger('ruc'); //en caso lo tenga, no es necesario si no tiene
             //en la vista se tiene un checkbox de nacionalidad
-            //1:Peruano   2:Extranjero
+            //1:peruano   2:Extranjero
             
             //DATOS DE NACIMIENTO
             //en caso sea peruano

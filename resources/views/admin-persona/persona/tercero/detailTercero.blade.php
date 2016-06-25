@@ -43,7 +43,6 @@
 						<div role="tabpanel">
 							<ul class="nav nav-pills nav-tabs" role="tablist">
 								<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Datos Básicos</a></li>
-								<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Contrato</a></li>
 							</ul>
 						</div>
 
@@ -148,59 +147,6 @@
 										</div>
 									</div>
 									@endif
-							</div>
-
-							<div role="tabpanel" class="tab-pane" id="seccion2">
-									<br>								
-									<div class="form-group required">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Puesto:</label>
-											</div>
-											<div class="col-sm-6">
-												<input type="text" class="form-control" id="puesto" name="puesto" value="{{$puesto->valor}}" readonly style="max-width: 250px">
-											</div>
-										</div>
-									</div>
-
-
-									<div class="form-group">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Fecha inicio de Contrato:</label>
-
-											</div>
-											<div class="col-sm-6">
-												<input type="text" class="form-control" id="fecha_ini_contrato" name="fecha_ini_contrato" 
-												  @if (!empty($trabajador->fecha_ini_contrato))
-														value="{{$trabajador->fecha_ini_contrato}}";
-												  @else
-												  		value="" 
-												  @endif 
-												  readonly style="max-width: 250px">
-											</div>	
-										</div>
-									</div>
-
-
-									<div class="form-group">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Fecha fin de Contrato:</label>
-
-											</div>
-											<div class="col-sm-6">
-												<input type="text" class="form-control" id="fecha_fin_contrato" name="fecha_fin_contrato"
-													@if (!empty($trabajador->fecha_fin_contrato))
-														value="{{$trabajador->fecha_fin_contrato}}";
-												  	@else
-												  		value="" 
-												  	@endif 
-												    readonly style="max-width: 250px">
-											</div>
-										</div>
-									</div>
-								
 
 									<div class="form-group required">
 										<div class="col-sm-6">
@@ -215,6 +161,8 @@
 									</div>
 							</div>
 
+						
+
 						</div>
 					</div>
 					
@@ -224,7 +172,7 @@
 					<div class="btn-group col-sm-5"></div>
 
 					<div class="btn-group">
-						<a href="/trabajador/index" class="btn btn-info">Regresar</a>
+						<a href="/tercero/index" class="btn btn-info">Regresar</a>
 					</div>
 				</div>
 				<br>

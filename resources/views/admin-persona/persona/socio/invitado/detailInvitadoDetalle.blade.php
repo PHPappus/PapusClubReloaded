@@ -184,7 +184,7 @@
 										<div class="btn-group col-sm-5" ></div>
 										
 										<div class="btn-group">
-											<a href="/Socio/{{$socio->id}}/editar" class="btn btn-info">Regresar</a>
+											<a href="/Socio/{{$socio->id}}/" class="btn btn-info">Regresar</a>
 										</div>
 								</div>																
 							</form>

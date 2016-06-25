@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>POSTULANTE</title>
+	<title>Tercero</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,24 +11,26 @@
 	{!!Html::style('css/MisEstilos.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
 	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
+	<!-- PARA DATA TABLE -->
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
-
+	
 </head>
 <body>
 @extends('layouts.headerandfooter-al-admin-persona')
 
 @section('content')
 	
+
+
 	<div class="content" style="max-width: 100%;">
 		<!-- Utilizando Bootstrap -->
 		<br/><br/>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-left">
-					<p class="lead"><strong>POSTULANTE</strong></p>
+					<p class="lead"><strong>TERCERO</strong></p>
 				</div>
-			</div>
-			<h4>Para aceptar o rechazar alguna postulación seleccione la opción observaciones.</h4>	
+			</div>	
 		</div>
 
 			<!-- Mensaje de éxito luego de registrar -->
@@ -41,10 +43,7 @@
 			</div>
 		@endif
 
-
-		</br>
-		</br>
-		<div class="container">
+			<div class="container">
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active">
 						<tr>
@@ -55,31 +54,31 @@
 							<th><DIV ALIGN=center>NACIONALIDAD</th>
 							<th><DIV ALIGN=center>DETALLE</th>
 							<th><DIV ALIGN=center>EDITAR</th>
-							<th><DIV ALIGN=center>OBSERVACIONES</th>
+							<th><DIV ALIGN=center>ELIMINAR</th>
 							
 						</tr>
 					</thead>
 					<tbody>
-							@foreach($postulantes as $postulante)						
+							@foreach($personas as $persona)						
 						    	<tr>
-						    		@if($postulante->persona->nacionalidad =="peruano")
-						    			<td>{{ $postulante->persona->doc_identidad }}</td>
+						    		@if($persona->nacionalidad =="peruano")
+						    			<td>{{ $persona->doc_identidad }}</td>
 						    		
 						    		@else
-						    			<td>{{ $postulante->persona->carnet_extranjeria }}</td>
+						    			<td>{{ $persona->carnet_extranjeria }}</td>
 						    		@endif
-									<td>{{ $postulante->persona->nombre }}</td>
-									<td>{{ $postulante->persona->ap_paterno }}</td>
-			 						<td>{{ $postulante->persona->ap_materno }}</td>
-			 						<td>{{ $postulante->persona->nacionalidad }}</td>
+									<td>{{ $persona->nombre }}</td>
+									<td>{{ $persona->ap_paterno }}</td>
+			 						<td>{{ $persona->ap_materno }}</td>
+			 						<td>{{ $persona->nacionalidad }}</td>
 									<td>
-							        <a class="btn btn-info" href="{{url('/postulante/'.$postulante->id_postulante.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+							        <a class="btn btn-info" href="{{url('/tercero/'.$persona->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 							        </td>
 									<td>
-							        <a class="btn btn-info" href="{{url('/postulante/'.$postulante->id_postulante.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+							        <a class="btn btn-info" href="{{url('/tercero/'.$persona->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 							        </td>
 							        <td>
-							        <a class="btn btn-info" href="{{url('/postulante/'.$postulante->id_postulante.'/newSocio')}}" title="Aceptar"><i class="glyphicon glyphicon-eye-open"></i></a> 
+							        <a class="btn btn-info"  title="Eliminar" data-href="{{url('/tercero/'.$persona->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a> 
 							        </td>
 							            
 								</tr>
@@ -100,7 +99,7 @@
 					<div class="btn-group col-sm-10"></div>
 					
 					<div class="btn-group ">
-						<a href="{{url('/postulante/new')}}" class="btn btn-info" type="submit">Registrar Postulante</a>
+						<a href="{{url('/tercero/new')}}" class="btn btn-info" type="submit">Registrar Tercero</a>
 
 					</div>
 					
@@ -110,11 +109,12 @@
 
 
 
-			<!-- <div><a class="btn btn-primary" href="{{url('/trabajador/search')}}">Consultar</a> <a class="btn btn-primary" href="{{url('/trabajador/new')}}">Registrar</a></div>
+			<!-- <div><a class="btn btn-primary" href="{{url('/tercero/search')}}">Consultar</a> <a class="btn btn-primary" href="{{url('/tercero/new')}}">Registrar</a></div>
 			@yield('content-opcion') -->
 		</div>
 	</div>
 
+	
 @stop
 <!-- JQuery -->
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}

@@ -39,7 +39,7 @@
 
 
 		<div class="container">
-			<form id="formEdit" method="POST" action="/trabajador/{{ $trabajador->id }}/edit" class="form-horizontal form-border">
+			<form id="formEdit" method="POST" action="/tercero/{{ $persona->id }}/edit" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<!-- VALIDACION CON FE INICIO -->
@@ -139,11 +139,11 @@
 												<label for="" class="control-label">Nacionalidad:</label>
 											</div>
 											<div class="col-sm-6 text-left" >
-													<div class="col-sm-6 text-left" >
+													<div class="col-sm-10 text-left" >
 												
 														<input onchange="es_peruano()" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : ''}} {{($persona->nacionalidad == "peruano") ? 'checked="true"':''}}/>peruano&nbsp&nbsp&nbsp
 														
-														<input onchange="es_extranjero()" type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "extranjero") ? 'checked="true"' : ''  }} {{($persona->nacionalidad == "extranjero") ? 'checked="true"':''}}/>Extranjero
+														<input onchange="es_extranjero()" type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "extranjero") ? 'checked="true"' : ''  }} {{($persona->nacionalidad == "extranjero") ? 'checked="true"':''}}/>extranjero
 
 													</div>	
 											</div>	
@@ -173,69 +173,6 @@
 										</div>
 									</div>
 
-							</div>
-
-							<div role="tabpanel" class="tab-pane" id="seccion2">
-									<br>
-									<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
-									<br>									
-									<div class="form-group required">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Puesto:</label>
-											</div>
-											<div class="col-sm-6">
-												<select class="form-control" id="puestoSelect" name="puestoSelect" style="max-width: 150px "   >
-													<option value="-1">Seleccione</option>
-														@foreach ($puestoslaborales as $variablePuesto)      
-
-										                	<option value="{{$variablePuesto->id}}" @if($puesto['id']==$variablePuesto->id) selected @endif >{{$variablePuesto->valor}}</option>
-
-										                @endforeach
-												</select>
-											</div>
-										</div>
-									</div>
-
-
-									<div class="form-group">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Fecha inicio de Contrato:</label>
-
-											</div>
-											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_ini_contrato" placeholder="Fecha de inicio" style="width: 250px" 
-													@if (!empty($trabajador->fecha_ini_contrato))
-														value="{{$trabajador->fecha_ini_contrato}}";
-													@else
-												  		value="" 
-													@endif
-												value="{{old('fecha_ini_contrato')}}">
-											</div>	
-										</div>
-									</div>
-
-
-									<div class="form-group">
-										<div class="col-sm-6">
-											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Fecha fin de Contrato:</label>
-
-											</div>
-											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_fin_contrato" placeholder="Fecha de fin" style="width: 250px"
-													@if (!empty($trabajador->fecha_fin_contrato))
-														value="{{$trabajador->fecha_fin_contrato}}";
-													@else
-												  		value="" 
-													@endif 
-												  value="{{old('fecha_fin_contrato')}}">
-											</div>
-										</div>
-									</div>
-								
-
 									<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
@@ -247,20 +184,21 @@
 											</div>
 										</div>
 									</div>
-								
-								<div class="btn-inline">
+
+									<div class="btn-inline">
 									<div class="btn-group col-sm-5"></div>
 
-									<div class="btn-group ">
-										<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" value="Aceptar" data-href="{{url('/trabajador/'.$trabajador->id.'/edit')}}">
+										<div class="btn-group ">
+											<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" value="Aceptar" data-href="{{url('/tercero/'.$persona->id.'/edit')}}">
+										</div>
+										<div class="btn-group">
+											<a href="/tercero/index" class="btn btn-info">Cancelar</a>
+										</div>
 									</div>
-									<div class="btn-group">
-										<a href="/trabajador/index" class="btn btn-info">Cancelar</a>
-									</div>
-								</div>
-								<br>
 
 							</div>
+
+							
 
 						</div>
 					</div>
