@@ -119,10 +119,15 @@
 						<!-- DEBERIA REGRESAR A LA LISTA DE LAS FACTURAS DEL SOCIO - FALTA LINQUEAR ESO -->
 					</div>
 				</div>
-			
+				<br/>
+				<br/>
+				<br/>
+						
 			</form>
+
 		</div>
 	</div>		
+
 @stop
 <!-- JQuery -->
 	{!!Html::script('js/jquery-1.12.4.min.js')!!}

@@ -26,6 +26,8 @@
 					<strong>DETALLE DE LA RESERVA </strong>
 			</div>		
 		</div>
+		<input  type="hidden" type="text" id="fechaIni" name="fechaIni" value="{{ $fechaIni}}">
+	    <input type="hidden" type="text" id="fechaFin" name="fechaFin" value="{{ $fechaFin}}">
 		<div class="container">
 			<!--@include('errors.503')-->		
 			<form method="POST" action="/reservar-ambiente/{{ $ambiente->id }}/confirmacion-reserva-bungalow" class="form-horizontal form-border"> 
@@ -133,6 +135,12 @@
 <script>
 		var nowDate = new Date();
 		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+		var js_var = "<?php echo $fechaIni; ?>";
+		var js_var2 = "<?php echo $fechaFin; ?>";
+        //alert(js_var);
+        var other=new Date(js_var);
+        var other2=new Date(js_var2);
+        //alert(other);
 	</script>
 	<script>
 		$(function(){
@@ -140,7 +148,8 @@
 				format: "dd/mm/yyyy",
 		        language: "es",
 		        autoclose: true,
-		        startDate: today,
+		        startDate: other,
+		        endDate: other2,
 			});
 		});
 	</script>

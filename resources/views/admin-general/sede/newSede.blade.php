@@ -68,7 +68,7 @@
 			  	<div class="form-group required">
 			    	<label for="telefonoInput" class="col-sm-4 control-label">Teléfono</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="telefonoInput" name="telefono" placeholder="Teléfono" value="{{old('telefono')}}">
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="telefonoInput" name="telefono" placeholder="Teléfono" value="{{old('telefono')}}" maxlength="12">
 			    	</div>
 
 			  	</div>
@@ -76,7 +76,7 @@
 			  	<div class="form-group required">
 			    	<label for="persona_id" class="col-sm-4 control-label">Contacto</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="persona_id" name="nombre_contacto" placeholder="ID de la Persona" value="{{old('persona_id')}}">
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="persona_id" name="nombre_contacto" placeholder="ID de la Persona" value="{{old('persona_id')}}" readonly>
 			    	</div>
 			    	<a class="btn btn-info" name="buscarPersona" href="#"  title="Buscar Persona" data-toggle="modal" data-target="#modalBuscar"><i name="buscarPersona" class="glyphicon glyphicon-search"></i></a>
 			  	</div>	 
@@ -84,14 +84,14 @@
 			  	<div class="form-group required">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad maxima</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="capacidad_maxima" name="capacidad_maxima" placeholder="Capacidad" value="{{old('capacidad_maxima')}}">
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="capacidad_maxima" name="capacidad_maxima" placeholder="Capacidad" value="{{old('capacidad_maxima')}}" maxlength="10">
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="capacidadSocioInput" class="col-sm-4 control-label">Capacidad por socio</label>
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="capacidadSocioInput" name="capacidad_socio" placeholder="Capacidad por Socio" value="{{old('capacidad_socio')}}">
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="capacidadSocioInput" name="capacidad_socio" placeholder="Capacidad por Socio" value="{{old('capacidad_socio')}}" maxlength="10">
 			    	</div>
 			  	</div>
 			  	
@@ -136,14 +136,14 @@
 			  	<div class="form-group required">
 			    	<label for="direccionInput" class="col-sm-4 control-label">Dirección</label>
 			    	<div class="col-sm-5">
-			      		<textarea   type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"  class="form-control" id="direccionInput" name="direccion" placeholder="Dirección" value="{{old('direccion')}}" style="resize: none"></textarea> 
+			      		<textarea   type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"  class="form-control" id="direccionInput" name="direccion" placeholder="Dirección" value="{{old('direccion')}}" maxlength="100" style="resize: none"></textarea> 
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group ">
 			    	<label for="referenciaInput" class="col-sm-4 control-label">Referencia </label>
 			    	<div class="col-sm-5">
-			      		<textarea  type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="referenciaInput" name="referencia" placeholder="Referencia" value="{{old('referencia')}}" style="resize: none"></textarea> 
+			      		<textarea  type="text"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="referenciaInput" name="referencia" placeholder="Referencia" value="{{old('referencia')}}" maxlength="100" style="resize: none"></textarea> 
 			    	</div>
 			  	</div>
 
