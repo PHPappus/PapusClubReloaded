@@ -377,7 +377,12 @@ class SocioAdminController extends Controller
                     {
                         $descripcion='El socio ha sido inhabilitado pero no se ha especificado el motivo.';
                     }
-                    $socio->carnet_actual()->descripcion=$descripcion;
+                    $carnet= $socio->carnet_actual();
+                    $carnet->estado=false;
+                    $carnet->descripcion=$descripcion;
+                    $carnet->save();
+                    $carnet->delete();
+
                     $socio->update(['estado'=>false]);
                     //$socio->delete();
                 }
@@ -391,10 +396,7 @@ class SocioAdminController extends Controller
                     {
                         $descripcion='El carnet ha sido inhabilitado pero no se ha especificado el motivo.';
                     }
-                    //var_dump($descripcion);
-                    //die();
                     $carnet = $socio->carnet_actual();
-                    //$carnet->update(['estado'=>false , 'descripcion'=>$descripcion]);
                     $carnet->estado=false;
                     $carnet->descripcion=$descripcion;
                     $carnet->save();
@@ -628,6 +630,20 @@ class SocioAdminController extends Controller
 
         Session::flash('update','familiar');    
         return back();
+    }
+
+    public function detailfamiliar($id,$id_postulante)
+    {
+        $familiar=Persona::find($id);
+        $postulante=Postulante::find($id_postulante);
+        $socio = $postulante->socio;
+
+        $relacion_id = $familiar->familiarxpostulante()->where('id_postulante','=',$id_postulante)->first()->pivot->tipo_familia_id;
+
+        //echo json_encode($relacion_id);
+        //die();
+        $relacion=TipoFamilia::find($relacion_id)->nombre;
+        return view('admin-persona.persona.socio.familiar.detailFamiliar',compact('familiar','socio','relacion'));        
     }
 
 
