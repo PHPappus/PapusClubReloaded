@@ -11,13 +11,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
     	Model::unguard();
+        $this->call(DepartamentoTableSeeder::class);
+        $this->call(ProvinciaTableSeeder::class);
+        $this->call(DistritoTableSeeder::class);
         $this->call(TestUserTableSeeder::class);
         $this->call(PerfilTableSeeder::class);
         $this->call(SedeTableSeeder::class);
-        $this->call(TarifarioTableSeeder::class);
-		$this->call(ProductoTableSeeder::class);
-		$this->call(ProveedorTableSeeder::class);
-		$this->call(SorteoTableSeeder::class);
+    	$this->call(ProductoTableSeeder::class);
+    	$this->call(ProveedorTableSeeder::class);
+    	$this->call(SorteoTableSeeder::class);
         $this->call(AmbienteTableSeeder::class);
         $this->call(ActividadTableSeeder::class);
         $this->call(TipoPersonaTableSeeder::class);
@@ -30,17 +32,18 @@ class DatabaseSeeder extends Seeder
         $this->call(CarnetTableSeeder::class);
         $this->call(ReservasTableSeeder::class);
         $this->call(TestTallerTableSeeder::class);
-		$this->call(PrecioProductoTableSeeder::class);
+	    $this->call(PrecioProductoTableSeeder::class);
         $this->call(FacturacionTableSeeder::class);
         $this->call(ProductoxFacturacionTableSeeder::class);
         $this->call(TipoFamiliaTableSeeder::class);
-        $this->call(DepartamentoTableSeeder::class);
-        $this->call(ProvinciaTableSeeder::class);
-        $this->call(DistritoTableSeeder::class);
         $this->call(TarifaAmbientexTipoPersonaTableSeeder::class);
 		$this->call(servicioSeeder::class);
         $this->call(TarifarioServiciosTableSeeder::class);
-        
+	    $this->call(servicioSeeder::class);
+        $this->call(TarifaFamiliarTableSeeder::class);
+        $this->call(TarifaActividadTableSeeder::class);
+		
+
         Model::reguard();
     }
 }

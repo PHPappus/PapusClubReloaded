@@ -15,19 +15,24 @@ use papusclub\Models\Multa;
 use papusclub\Models\Configuracion;
 use papusclub\Http\Requests\EditSocioBasicoRequest;
 use papusclub\Http\Requests\EditSocioEstudioRequest;
+use papusclub\Http\Requests\EditSocioViviendaRequest;
 use papusclub\Http\Requests\EditSocioTrabajoRequest;
 use papusclub\Http\Requests\EditSocioContactoRequest;
 use papusclub\Http\Requests\StoreMultaxPersonaRequest;
 use papusclub\Http\Requests\EditSocioNacimientoRequest;
 use papusclub\Http\Requests\StoreInvitadoRequest;
+use papusclub\Http\Requests\SaveSocioRequest;
+use papusclub\Http\Requests\StoreFamiliarSocioRequest;
 use papusclub\Models\Invitados;
 use papusclub\Models\TipoMembresia;
+use papusclub\Models\TipoFamilia;
 use Illuminate\Support\Facades\Redirect;
 use papusclub\Models\Departamento;
 use papusclub\Models\Provincia;
 use papusclub\Models\Distrito;
 use papusclub\Models\Traspaso;
 use Session;
+use DB; 
 
 class SocioAdminController extends Controller
 {
@@ -106,6 +111,7 @@ class SocioAdminController extends Controller
     {
         $socio = Socio::withTrashed()->find($id);
         $membresias = TipoMembresia::all();
+        $estadocivil= Configuracion::where('grupo','=','11')->get();
         $carbon=new Carbon();
         $socio->carnet_actual()->fecha_emision=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_emision)->format('d/m/Y');
         $socio->carnet_actual()->fecha_vencimiento=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_vencimiento)->format('d/m/Y');
@@ -113,7 +119,7 @@ class SocioAdminController extends Controller
 
         $departamentos=Departamento::select('id','nombre')->get();
 
-        return view('admin-persona.persona.socio.editSocio',compact('socio','membresias', 'departamentos'));        
+        return view('admin-persona.persona.socio.editSocio',compact('socio','membresias', 'departamentos','estadocivil'));        
     }
 
     public function updateBasico(EditSocioBasicoRequest $request,$id)
@@ -122,11 +128,11 @@ class SocioAdminController extends Controller
 
         $socio = Socio::withTrashed()->find($id);
         $input=$request->all();
-        $nombre = trim($input['nombre']);
+        $estado_civil = $input['estado_civil'];
         //$fecha_nac = str_replace('/', '-', $input['fecha_nacimiento']);
         //$socio->postulante->persona->fecha_nacimiento=$carbon->createFromFormat('d-m-Y', $fecha_nac)->toDateString();
-        $socio->postulante->persona->nombre=$nombre;
-        $socio->postulante->persona->save();
+        $socio->postulante->estado_civil=$estado_civil;
+        $socio->postulante->save();
 
         //$socio->postulante->persona->update(['nombre'=>$input['nombre'], 'fecha_nacimiento'=>$fecha_nac]);
         //return view('admin-general.persona.socio.editSocio',compact('socio'));
@@ -181,6 +187,29 @@ class SocioAdminController extends Controller
         //return view('admin-general.persona.socio.editSocio',compact('socio'));
         Session::flash('update','nacimiento');
         return Redirect::action('SocioAdminController@edit',$socio->id)->with('cambios-nac','Cambios realizados con éxito');
+    }
+
+    public function updateVivienda(EditSocioViviendaRequest $request, $id)
+    {
+        $socio=Socio::withTrashed()->find($id);
+        $input=$request->all();
+
+        $dep = $input['departamento_vivienda'];
+        $prov = $input['provincia_vivienda'];
+        $dist = $input['distrito_vivienda'];
+        $domicilio  =$input['domicilio'];
+        $referencia_vivienda =$input['referencia_vivienda'];
+
+        $socio->postulante->departamento_vivienda=$dep;
+        $socio->postulante->provincia_vivienda=$prov;
+        $socio->postulante->distrito_vivienda=$dist;
+
+        $socio->postulante->domicilio = $domicilio;
+        $socio->postulante->referencia_vivienda=$referencia_vivienda;
+
+        $socio->postulante->save();
+        Session::flash('update','vivienda');
+        return Redirect::action('SocioAdminController@edit',$socio->id)->with('cambios-viv','Cambios realizados con éxito');      
     }
 
     public function updateEstudio(EditSocioEstudioRequest $request, $id)
@@ -505,47 +534,150 @@ class SocioAdminController extends Controller
     {
         $invitado = Invitados::find($id);
         $invitado->delete();
-        //var_dump($invitado);
-        //die();
+
         Session::flash('update','invitado');    
         return back();
     }
+
+
+    /*FAMILIAR*/
+
+    public function createFamiliar($id)
+    {
+        $socio = Socio::withTrashed()->find($id);
+        $tipo_relacion= TipoFamilia::all();
+        return view('admin-persona.persona.socio.familiar.newFamiliar',compact('socio','tipo_relacion'));               
+    }
+
+    public function storeFamiliar(StoreFamiliarSocioRequest $request, $id)
+    {
+        $socio = Socio::withTrashed()->find($id);
+        $input =$request->all();
+
+        $nacionalidad=$input['nacionalidad'];
+
+
+        $persona = new Persona();
+        $relacion=$input['tipo_relacion'];
+        if($nacionalidad=='peruano')
+        {
+            $doc_identidad = $input['doc_identidad'];
+            $persona = Persona::where(['doc_identidad'=>$doc_identidad])->get()->first();
+        }
+        else
+        {
+            $carnet_extranjeria = $input['carnet_extranjeria'];
+            $persona=Persona::where(['carnet_extranjeria'=>$carnet_extranjeria])->get()->first();
+        }
+
+        if($persona==null)
+        {
+            $persona = new Persona();
+            $carbon = new Carbon();
+
+
+            $persona->nombre = trim($input['nombre']);
+            $persona->ap_paterno = trim($input['ap_paterno']);
+            $persona->ap_materno = trim($input['ap_materno']);            
+            $persona->sexo=$input['sexo']; 
+            $persona->nacionalidad = $input['nacionalidad'];                       
+            if (empty($input['carnet_extranjeria'])) {
+                $persona->carnet_extranjeria ="";
+            }
+            else
+                $persona->carnet_extranjeria = $input['carnet_extranjeria'];
+
+            
+            if (empty($input['doc_identidad'])) {
+                $persona->doc_identidad ="";
+            }
+            else
+            {
+                $persona->doc_identidad = $input['doc_identidad'];             
+            }
+            if(empty($input['correo']))
+            {
+                $persona->correo='No ha registrado Correo';
+            }
+            else
+            {
+                $persona->correo=$input['correo'];
+            }
+            if (empty($input['fecha_nacimiento'])) {
+                $persona->fecha_nacimiento ="";            
+            }else{
+                $fecha_nac = str_replace('/', '-', $input['fecha_nacimiento']);      
+                $persona->fecha_nacimiento=$carbon->createFromFormat('d-m-Y', $fecha_nac)->toDateString();
+            }
+            $persona->id_tipo_persona = 3;
+            $persona->correo=$input['correo'];
+            
+            $persona->save();    
+        }
+        $existerela = DB::table('familiarxpostulante')->where([['postulante_id','=',$socio->postulante->id_postulante],['persona_id','=',$persona->id]])->get();
+            if($existerela==null){
+                $socio->postulante->addFamiliar($persona,$relacion);
+            }
+        return Redirect::action('SocioAdminController@edit',$socio->postulante->persona->id)->with('storedFamiliar', 'Se registró el Familiar correctamente.');        
+    }
+
+    public function deleteFamiliar(Request $request, $id_fam, $id_post)
+    {
+        $match=['postulante_id'=>$id_post,'persona_id'=>$id_fam];
+        DB::table('familiarxpostulante')->where($match)->delete();
+
+        Session::flash('update','familiar');    
+        return back();
+    }
+
+
+
+
+
+
+
 
     /*TRASPASOS*/
 
     public function indexTraspasos()
     {
         $traspasos = Traspaso::all();
-
         return view('admin-persona.tramites.traspasos',compact('traspasos'));
     }
 
-    public function validarTraspaso(Traspaso $traspaso)
+    public function validarTraspaso(SaveSocioRequest $request)
     {
-
-        $postulante = 0;
-        var_dump($traspaso->nombre);
-        die();
-        $persona=Persona::where('doc_identidad','=',$traspaso->dni)->orwhere('carnet_extranjeria','=',$traspaso->dni)->first();
+        $input = $request->all();
+       // var_dump($input);
+       // die();
+        $persona=Persona::where('doc_identidad','=',$input['dniP'])->orwhere('carnet_extranjeria','=',$input['dniP'])->first();
      //   if ($postulante->dni == 0)
        //     return redirect('traspasos-p')->with('No se encontró al postulante');
-        $postulante = Postulante::where('id_postulante','=',$persona->id);
-        $traspaso->estado = FALSE;
+        $postulante = Postulante::where('id_postulante','=',$persona->id)->first();
+        $traspaso = Traspaso::where('dni','=',$input['dniP'])->first();
+        $traspaso->socio->update(['estado' => FALSE]);
+        $traspaso->update(['estado'=>FALSE]);
         $socio = new Socio();
         $socio->estado = TRUE;
-        $socio->fecha_ingreso = date('now');
-        $socio->postulante->save($postulante);
-        $socio->membresia()->save($traspaso->socio->carnet_actual);
-        $traspaso->socio->estado = FALSE;
-        $socio->save();
+        $fecha = Date('now');
+        $socio->fecha_ingreso=$fecha;
+        $socio->postulante_id = $postulante->id_postulante;
+        $socio->tipo_membresia_id = 1;
+        $membresia = TipoMembresia::find($socio->tipo_membresia_id);
+        $membresia->socio()->save($socio);
 
-        return redirect('admin-persona')->with('stored','Se aprobó el traspaso');
+        $socio->save();
+        $carnet = create_carnet($socio);
+
+        return redirect('traspasos-p')->with('stored','Se aprobó el traspaso');
+
     }
 
-    public function cancelarTraspaso(Traspaso $traspaso)
+    public function cancelarTraspaso($id)
     {
-        $traspaso->estado = FALSE;
-        return redirect('traspasos-p')->with('Se canceló el traspaso');
+        $traspaso = Traspaso::find($id);
+        $traspaso->update(['estado'=>FALSE]);
+        return back();
     }
 
     public function showTraspaso($id)

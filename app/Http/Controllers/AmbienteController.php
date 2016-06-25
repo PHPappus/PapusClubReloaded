@@ -48,7 +48,7 @@ class AmbienteController extends Controller
         $ambiente->capacidad_actual= $input['capacidad_actual'];
         $tipoAmbiente = Configuracion::find($input['tipo_ambiente']);
         $ambiente->tipo_ambiente= $tipoAmbiente->valor;
-        $ambiente->ubicacion= $input['ubicacion'];
+        $ambiente->descripcion= $input['descripcion'];
 
         $ambiente->save();
 
@@ -98,7 +98,7 @@ class AmbienteController extends Controller
         $ambiente->nombre= $input['nombre'];
         $ambiente->capacidad_actual= $input['capacidad_actual'];
         $ambiente->tipo_ambiente= $input['tipo_ambiente'];
-        $ambiente->ubicacion= $input['ubicacion'];
+        $ambiente->descripcion= $input['descripcion'];
         $ambiente->update();
 
         $tarifasAnt = TarifaAmbientexTipoPersona::where('ambiente_id', '=', $id)->get();
@@ -110,11 +110,11 @@ class AmbienteController extends Controller
 
         $tipoPersonas = TipoPersona::all();
         foreach ($tipoPersonas as $tipoPersona) {
-            $tarifa = new TarifaAmbientexTipoPersona();
-            $tarifa->ambiente_id = $id;
-            $tarifa->tipo_persona_id = $tipoPersona->id;
-            $tarifa->precio = $input[$tipoPersona->descripcion];
-            $tarifa->save();
+                $tarifa = new TarifaAmbientexTipoPersona();
+                $tarifa->ambiente_id = $id;
+                $tarifa->tipo_persona_id = $tipoPersona->id;
+                $tarifa->precio = $input[$tipoPersona->descripcion];
+                $tarifa->save();
         }
 
         return redirect('ambiente/index');

@@ -14,9 +14,12 @@ use papusclub\Http\Requests\EditSedeRequest;
 use Illuminate\Support\Facades\Input;
 use papusclub\Models\Provincia;
 use papusclub\Models\Distrito;
+use papusclub\Models\Persona;
+use papusclub\Models\Trabajador;
 use papusclub\Models\Configuracion;
 
 use papusclub\Http\Requests\StoreServicioxSedeRequest;
+
 class SedesController extends Controller
 {
     //Muestra la lista de sedes que se encuentran en BD, estas se pueden modificar, cambiar el estado, ver mas detalle o registrar una nueva sede
@@ -42,6 +45,7 @@ class SedesController extends Controller
         $sedes = Sede::all();
         return view('admin-general.sede.indexselecttoservicio', compact('sedes'));
     }
+
     //Muestra el formulario para poder registrar una nueva sede en BD
     public function create()
 
@@ -50,9 +54,18 @@ class SedesController extends Controller
         /*$departamentos=Departamento::lists('nombre','id');
         */
         $departamentos=Departamento::select('id','nombre')->get();
-        return view('admin-general.sede.newSede',compact('departamentos'));
+        $personas = Persona::where('id_tipo_persona','=',1)->get();
+        return view('admin-general.sede.newSede',compact('departamentos','personas'));
     }
-
+    public function contactosSede()
+    {
+        //$mensaje = null;
+        /*$departamentos=Departamento::lists('nombre','id');
+        */
+        $departamentos=Departamento::select('id','nombre')->get();
+        $personas=Persona::where('id_tipo_persona','=','1')->get();
+        return view('admin-general.sede.lista-de-contactos',compact('departamentos','personas'));
+    }
     //Se almacena la nueva sede que se ha registrado en la BD
     public function store(StoreSedeRequest $request)
     {
@@ -78,6 +91,7 @@ class SedesController extends Controller
         $sede->referencia = $input['referencia'];
         $sede->nombre_contacto = $input['nombre_contacto'];
         $sede->capacidad_maxima = $input['capacidad_maxima'];
+        $sede->maximo_actual=$input['capacidad_maxima'];
         $sede->capacidad_socio = $input['capacidad_socio'];
 
         $sede->save();
@@ -107,7 +121,16 @@ class SedesController extends Controller
         $sede->direccion = $input['direccion'];
         $sede->referencia = $input['referencia'];
         $sede->nombre_contacto = $input['nombre_contacto'];
-        $sede->capacidad_maxima = $input['capacidad_maxima'];
+
+
+
+        /*Modificando capacidad*/
+        $nueva_capacidad = $input['capacidad_maxima'];
+        $ingresantes = $sede->capacidad_maxima - $sede->maximo_actual; 
+        $sede->maximo_actual=$nueva_capacidad-$ingresantes;
+        $sede->capacidad_maxima=$nueva_capacidad;
+
+
         $sede->capacidad_socio = $input['capacidad_socio'];
         $sede->save();
         return redirect('sedes/index');
@@ -200,5 +223,4 @@ class SedesController extends Controller
             return Response::json($provincias);
         //}
     }
-
 }

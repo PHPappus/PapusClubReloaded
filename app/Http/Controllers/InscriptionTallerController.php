@@ -18,6 +18,8 @@ use papusclub\Models\Persona;
 use Auth;
 use Hash;
 use Carbon\Carbon;
+use Exception;
+use DB;
 
 class InscriptionTallerController extends Controller
 {
@@ -82,14 +84,32 @@ class InscriptionTallerController extends Controller
         		return Redirect('/talleres/mis-inscripciones');
         	}
         	else{
-                $taller->vacantes=$taller->vacantes-1;
-                $taller->save();
+                DB::beginTransaction();
+                try{
+                    if($taller->vacantes<=0){
+                        //throw new Exception("No hay vacantes disponibles");
+                        Session::flash('message-error','Lo sentimos, ya no hay vacantes disponibles');
+                        return Redirect("/talleres/".$id."/confirm");
+                    }
+                    else{
+                        $taller->vacantes=$taller->vacantes-1;
+                        $taller->save();
 
-                $persona=Persona::where('id_usuario','=',Auth::user()->id)->first();
-                $persona->talleres()->attach($id,['precio'=> 30]);
+                        $persona=Persona::where('id_usuario','=',Auth::user()->id)->first();
+                        $persona->talleres()->attach($id,['precio'=> 30]);
+
+                        Session::flash('message','La Inscripción fue realizada Correctamente');
+                    }        
+                }
+                catch(ValidationException $e){
+                    DB::rollback();
+                    var_dump($e->getErrors());
+                }
+                
+                DB::commit();
     	    	/*$usuario->talleres()->attach($id,['precio'=> $taller->precio_base]);*/
 
-    	    	Session::flash('message','La Inscripción fue realizada Correctamente');
+    	    	
     	    	return Redirect('/talleres/mis-inscripciones');
         	}
         }

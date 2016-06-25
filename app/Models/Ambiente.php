@@ -13,7 +13,7 @@ class Ambiente extends Model
     ['nombre', 
     'tipo_ambiente', 
     'capacidad_actual',     
-    'ubicacion'
+    'descripcion'
     ];
     protected $dates = ['deleted_at'];
     //funciones para las relaciones entre tablas
@@ -38,5 +38,14 @@ class Ambiente extends Model
     public function tarifas()
     {
         return $this->hasMany('papusclub\Models\TarifaAmbientexTipoPersona');
+    }
+
+    public function precio($tipo_persona, $tarifas)
+    {
+        foreach ($tarifas as $tarifa) {
+            if($tarifa->tipo_persona_id == $tipo_persona)
+                return $tarifa->precio;
+        }
+        return 0;
     }
 }

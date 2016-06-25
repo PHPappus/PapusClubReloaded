@@ -27,115 +27,33 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a href="{!!URL::to('/public')!!}" class="navbar-brand"><img alt="Brand" class="img-responsive" src="{!!URL::to('/images/logo.png')!!}" ></a>
+        <a href="{!!URL::to('/control-ingresos')!!}" class="navbar-brand"><img alt="Brand" class="img-responsive" src="{!!URL::to('/images/logo.png')!!}" ></a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="navbar1">
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Pappus Club <span class="caret"></span>
+            <a href="{!!URL::to('/ingreso-personal')!!}" class="dropdown-toggle btn-lg"  role="button">
+              Ingreso Personal
             </a>
-            <ul class="dropdown-menu">
-              <li><a href="historia-papusclub" title="A cerca del club" target="_self">Acerca del Club</a></li>
-                <li><a href="#" title="Mesa directiva" target="_self">Mesa Directiva</a></li>
-                <li><a href="#" title="Reglas del club" target="_self">Reglamento del Club</a></li>
-            </ul>
           </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="{!!URL::to('/ingreso-socio')!!}" class="dropdown-toggle btn-lg"  role="button">
+              Ingreso Socio
+            </a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="{!!URL::to('/ingreso-terceros')!!}" class="dropdown-toggle btn-lg"  role="button">
+              Ingreso Tercero
+            </a>
+          </li>
+        </ul>
 
-        </ul>
-        <ul class="nav navbar-nav">
-          <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
-          <li class="dropdown">
-            <a href="#" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" role="button" >
-              Sedes <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-                <li><a href="historia-sede-callao" title="Callao" target="_self">Callao <span class="caret"></a>
-                  <ul>
-                    <li><a href="#" title="Concesiones" target="_self">Concesiones</a></li>
-                    <li><a href="#" title="Servicios" target="_self">Servicios</a></li>
-                    <li><a href="reserva-bungalow" title="Bungalows" target="_self">Bungalows</a></li>
-                  </ul>
-                </li>
-                <li><a href="#" title="Surquillo" target="_self">Surquillo <span class="caret"></a>
-                  <ul>
-                    <li><a href="#" title="Concesiones" target="_self">Concesiones</a></li>
-                    <li><a href="#" title="Servicios" target="_self">Servicios</a></li>
-                    <li><a href="#" title="Bungalows" target="_self">Bungalows</a></li>
-                  </ul>           
-                </li>
-                <li><a href="#" title="Barranco" target="_self">Barranco <span class="caret"></a>
-                  <ul>
-                    <li><a href="#" title="Concesiones" target="_self">Concesiones</a></li>
-                    <li><a href="#" title="Servicios" target="_self">Servicios</a></li>
-                    <li><a href="#" title="Bungalows" target="_self">Bungalows</a></li>
-                  </ul>           
-                </li>
-            </ul>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Actividades <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#" title="Ir a talleres" target="_self">Talleres <span class="caret"></a>
-                  <ul>
-                    <li><a href="futbol" title="ir a futbol" target="_self">Futbol</a></li>
-                    <li><a href="#" title="Actividad 1.2" target="_self">Actividad 1.2</a></li>
-                    <li><a href="#" title="Actividad 1.3" target="_self">Actividad 1.3</a></li>
-                  </ul>
-                </li>
-                <li><a href="#" title="Actividad 2" target="_self">Actividad 2 <span class="caret"></a>
-                  <ul>
-                    <li><a href="#" title="Actividad 2.1" target="_self">Actividad 2.1</a></li>
-                    <li><a href="#" title="Actividad 2.2" target="_self">Actividad 2.2</a></li>
-                    <li><a href="#" title="Actividad 2.3" target="_self">Actividad 2.3</a></li>
-                  </ul>           
-                </li>
-                <li><a href="#" title="Actividad 3" target="_self">Actividad 3 <span class="caret"></a>
-                  <ul>
-                    <li><a href="#" title="Actividad 3.1" target="_self">Actividad 3.1</a></li>
-                    <li><a href="#" title="Actividad 3.2" target="_self">Actividad 3.2</a></li>
-                    <li><a href="#" title="Actividad 3.3" target="_self">Actividad 3.3</a></li>
-                  </ul>           
-                </li>
-            </ul>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Eventos <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="#" title="Evento 1" target="_self">Evento 1 <span class="caret"></a>
-                  <ul>
-                    <li><a href="#" title="Evento 1-1" target="_self">Evento 1.1</a></li>
-                    <li><a href="#" title="Evento 1-2" target="_self">Evento 1.2</a></li>
-                    <li><a href="#" title="Evento 1-3" target="_self">Evento 1.3</a></li>
-                  </ul>
-                </li>
-                <li><a href="#" title="Evento 2" target="_self">Evento 2 <span class="caret"></a>
-                  <ul>
-                    <li><a href="#" title="Evento 2-1" target="_self">Evento 2.1</a></li>
-                    <li><a href="#" title="Evento 2-2" target="_self">Evento 2.2</a></li>
-                    <li><a href="#" title="Evento 2-3" target="_self">Evento 2.3</a></li>
-                  </ul>           
-                </li>
-                <li><a href="#" title="Evento 3" target="_self">Evento 3 <span class="caret"></a>
-                  <ul>
-                    <li><a href="#" title="Evento 3-1" target="_self">Evento 3.1</a></li>
-                    <li><a href="#" title="Evento 3-2" target="_self">Evento 3.1</a></li>
-                    <li><a href="#" title="Evento 3-3" target="_self">Evento 3.1</a></li>
-                  </ul>           
-                </li>
-            </ul>
-          </li>
-        </ul>
 
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">

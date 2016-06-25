@@ -13,6 +13,7 @@ class CreateMultaxpersonaTable extends Migration
     public function up()
     {
         Schema::create('multaxpersona', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('multa_id')->unsigned()->index();
             $table->integer('socio_id')->unsigned()->index();
             $table->double('multa_modificada');
