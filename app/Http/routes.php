@@ -472,8 +472,14 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	});
 
 
-
-
+	/*ingreso-terceros*/
+	Route::get('tercero/index','TerceroController@index');//ya
+	Route::get('tercero/new','TerceroController@registrar');//ya
+	Route::post('tercero/new/trabajador', 'TerceroController@store');//ya
+	Route::get('tercero/{id}','TerceroController@edit');//ya
+	Route::post('tercero/{id}/edit', 'TerceroController@update');
+	Route::get('tercero/{id}/delete', 'TerceroController@destroy');
+	Route::get('tercero/{id}/show', 'TerceroController@show');//ya
 	
 
 
