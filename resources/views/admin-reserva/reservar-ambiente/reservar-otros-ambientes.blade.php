@@ -46,7 +46,8 @@
 		</div>		
 	</div>
 	<br/>
-
+	<input  type="hidden" type="text" id="fechaIni" name="fechaIni" value="{{ $fechaIniValue->toDateString()}}">
+	<input type="hidden" type="text" id="fechaFin" name="fechaFin" value="{{ $fechaFinValue->toDateString() }}">
 	<div class="container">
 		<form method="POST" class="form-horizontal form-border" action="/reservar-ambiente/reservar-otros-ambientes/search-adminR"> 
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -159,7 +160,7 @@
 					
 				
 					<td>
-					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/searchSocio-otros-ambientes-adminR/')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
+					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/'.$fechaIniValue.'/'.$fechaFinValue.'/searchSocio-otros-ambientes-adminR/')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
 
 
 			        </td>
@@ -201,6 +202,8 @@
 	<script>
 		var nowDate = new Date();
 		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+		var deadline=new Date(today);
+		deadline.setDate(deadline.getDate() + 25);
 	</script>
 	<script>
 		$(function(){
@@ -209,6 +212,7 @@
 		        language: "es",
 		        autoclose: true,
 		        startDate: today,
+		        endDate: deadline,
 			});
 		});
 	</script>
