@@ -16,8 +16,7 @@ class CreateProductoxingresoproductoTable extends Migration
             $table->increments('id')->unsigned();
             $table->integer('producto_id')->unsigned()->index('productoxingresoproducto_producto_id_foreign');
             $table->integer('ingresoproducto_id')->unsigned()->index('productoxingresoproducto_ingresoproducto_id_foreign');
-            $table->integer('cantidad');            
-            $table->double('subtotal');                        
+            $table->integer('cantidad');                                
             $table->softDeletes();
             $table->timestamps();
         });

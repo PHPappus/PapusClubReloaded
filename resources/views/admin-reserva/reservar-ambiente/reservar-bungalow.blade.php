@@ -44,7 +44,8 @@
 		</div>		
 	</div>
 	<br/>
-
+	<input  type="hidden" type="text" id="fechaIni" name="fechaIni" value="{{ $fechaIniValue->toDateString()}}">
+	<input type="hidden" type="text" id="fechaFin" name="fechaFin" value="{{ $fechaFinValue->toDateString() }}">
 	<div class="container">
 		<form method="POST" class="form-horizontal form-border" action="/reservar-ambiente/reservar-bungalow-adminR/search-adminR"> 
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -136,7 +137,7 @@
 					<td>{{ $ambiente->capacidad_actual }}</td>
 
 					<td>
-					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/searchSocio-bungalow-adminR/')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
+					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/'.$fechaIniValue.'/'.$fechaFinValue.'/searchSocio-bungalow-adminR/')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
 
 
 			        </td>
@@ -189,7 +190,17 @@
 	<script>
 		var nowDate = new Date();
 		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+		var deadline=new Date(today);
+		deadline.setDate(deadline.getDate() + 25);
+		//var js_var = "<?php echo $fechaIniValue; ?>";
+		//var js_var2 = "<?php echo $fechaFinValue; ?>";
+        //alert(js_var);
+        //var other=new Date(js_var);
+        //var other2=new Date(js_var2);
+        //alert(other);
 	</script>
+
+	<!-- Para Fechas INICIO -->
 	<script>
 		$(function(){
 			$('.datepicker').datepicker({
@@ -197,6 +208,7 @@
 		        language: "es",
 		        autoclose: true,
 		        startDate: today,
+		        endDate: deadline,
 			});
 		});
 	</script>

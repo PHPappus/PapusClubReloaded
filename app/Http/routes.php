@@ -160,6 +160,53 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::get('ambiente/{id}/select', 'AmbienteController@select');/*Para el seleccionar ambiente desde  Actividad*/
 	Route::post('ambiente/new/tipoambiente', 'AmbienteController@storeTipoAmbiente');
 
+	//MANTENIMIENTO DE PROVEEDORES
+	Route::get('proveedor/index/', 'ProveedorController@index');
+	Route::get('proveedor/new', 'ProveedorController@create');
+	Route::post('proveedor/new/proveedor', 'ProveedorController@store');
+	Route::get('proveedor/{id}', 'ProveedorController@edit');
+	Route::post('proveedor/{id}/edit', 'ProveedorController@update');
+	Route::get('proveedor/{id}/delete', 'ProveedorController@destroy');
+	Route::get('proveedor/{id}/show', 'ProveedorController@show');
+	//MANTENIMIENTO DE PRODUCTOS
+	Route::get('producto/index', 'ProductoController@index');
+	Route::get('producto/new', 'ProductoController@create');
+	Route::post('producto/new/producto', 'ProductoController@store');
+	Route::get('producto/{id}', 'ProductoController@edit');
+	Route::post('producto/{id}/edit', 'ProductoController@update');
+	Route::get('producto/{id}/delete', 'ProductoController@destroy');
+	Route::get('producto/{id}/show', 'ProductoController@show');
+	Route::post('producto/new/tipoproducto', 'ProductoController@storeTipoProducto');
+	//VENTA DE PRODUCTOS
+	Route::get('venta-producto/index', 'VentaProductoController@index');
+	Route::get('venta-producto/new', 'VentaProductoController@create');
+	Route::post('venta-producto/new/venta-producto', 'VentaProductoController@store');
+	Route::get('venta-producto/{id}', 'VentaProductoController@edit');
+	Route::post('venta-producto/{id}/edit', 'VentaProductoController@update');
+	Route::get('venta-producto/{id}/delete', 'VentaProductoController@destroy');
+	Route::get('venta-producto/{id}/show', 'VentaProductoController@show');
+	Route::get('venta-producto/new/venta-producto/{id}', 'VentaProductoController@createVentaProducto');
+	Route::post('venta-producto/new/venta-producto/add', 'VentaProductoController@storeVentaProducto');
+	Route::get('venta-producto/new/{id}', 'VentaProductoController@editProducto');
+	Route::post('venta-producto/new/{id}/editProducto', 'VentaProductoController@updateProducto');
+	Route::get('venta-producto/{id}/deleteProducto', 'VentaProductoController@destroyProducto');
+	Route::get('venta-producto/{id}/back', 'VentaProductoController@back');
+	Route::get('venta-producto/{id}/cancel', 'VentaProductoController@cancel');
+	//INGRESO DE PRODUCTOS
+	Route::get('ingreso-producto/index', 'IngresoProductoController@index');
+	Route::get('ingreso-producto/new', 'IngresoProductoController@create');
+	Route::post('ingreso-producto/new/ingreso-producto', 'IngresoProductoController@store');
+	Route::get('ingreso-producto/{id}', 'IngresoProductoController@edit');
+	Route::post('ingreso-producto/{id}/edit', 'IngresoProductoController@update');
+	Route::get('ingreso-producto/{id}/delete', 'IngresoProductoController@destroy');
+	Route::get('ingreso-producto/{id}/show', 'IngresoProductoController@show');
+	Route::get('ingreso-producto/new/ingreso-producto/{id}', 'IngresoProductoController@createIngresoProducto');
+	Route::post('ingreso-producto/new/ingreso-producto/add', 'IngresoProductoController@storeIngresoProducto');
+	Route::get('ingreso-producto/new/{id}', 'IngresoProductoController@editProducto');
+	Route::post('ingreso-producto/new/{id}/editProducto', 'IngresoProductoController@updateProducto');
+	Route::get('ingreso-producto/{id}/deleteProducto', 'IngresoProductoController@destroyProducto');
+	Route::get('ingreso-producto/{id}/back', 'IngresoProductoController@back');
+	Route::get('ingreso-producto/{id}/cancel', 'IngresoProductoController@cancel');
 });
 
 //Gerente
@@ -244,45 +291,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	  Route::get('sedes/{id}/agregarservicios', 'SedesController@agregarservicios');
 	  Route::post('sedes/{id}/agregarservicios/store','SedesController@storeservicios');
 	  Route::get('sedes/{id}/verservicios', 'SedesController@indexserviciosdesede');
-	
-	//MANTENIMIENTO DE PROVEEDORES
-	Route::get('proveedor/index/', 'ProveedorController@index');
-	Route::get('proveedor/new', 'ProveedorController@create');
-	Route::post('proveedor/new/proveedor', 'ProveedorController@store');
-	Route::get('proveedor/{id}', 'ProveedorController@edit');
-	Route::post('proveedor/{id}/edit', 'ProveedorController@update');
-	Route::get('proveedor/{id}/delete', 'ProveedorController@destroy');
-	Route::get('proveedor/{id}/show', 'ProveedorController@show');
-	//MANTENIMIENTO DE PRODUCTOS
-	Route::get('producto/index', 'ProductoController@index');
-	Route::get('producto/new', 'ProductoController@create');
-	Route::post('producto/new/producto', 'ProductoController@store');
-	Route::get('producto/{id}', 'ProductoController@edit');
-	Route::post('producto/{id}/edit', 'ProductoController@update');
-	Route::get('producto/{id}/delete', 'ProductoController@destroy');
-	Route::get('producto/{id}/show', 'ProductoController@show');
-	Route::post('producto/new/tipoproducto', 'ProductoController@storeTipoProducto');
-	//VENTA DE PRODUCTOS
-	Route::get('venta-producto/index', 'VentaProductoController@index');
-	Route::get('venta-producto/new', 'VentaProductoController@create');
-	Route::post('venta-producto/new/venta-producto', 'VentaProductoController@store');
-	Route::get('venta-producto/{id}', 'VentaProductoController@edit');
-	Route::post('venta-producto/{id}/edit', 'VentaProductoController@update');
-	Route::get('venta-producto/{id}/delete', 'VentaProductoController@destroy');
-	Route::get('venta-producto/{id}/show', 'VentaProductoController@show');
-	Route::get('venta-producto/new/venta-producto/{id}', 'VentaProductoController@createVentaProducto');
-	Route::post('venta-producto/new/venta-producto/add', 'VentaProductoController@storeVentaProducto');
-	Route::get('venta-producto/new/{id}', 'VentaProductoController@editProducto');
-	Route::post('venta-producto/new/{id}/editProducto', 'VentaProductoController@updateProducto');
-	Route::get('venta-producto/{id}/deleteProducto', 'VentaProductoController@destroyProducto');
-	Route::get('venta-producto/{id}/back', 'VentaProductoController@back');
-	Route::get('venta-producto/{id}/cancel', 'VentaProductoController@cancel');
-	//INGRESO DE PRODUCTOS
-	Route::get('ingreso-producto/index', 'IngresoProductoController@index');
-	Route::get('ingreso-producto/new', 'IngresoProductoController@create');
-	Route::post('ingreso-producto/new/ingreso-producto', 'IngresoProductoController@store');
-	
-
+		
 	//Inscribirse en Sorteo
 	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
 
@@ -515,15 +524,15 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::get('reservar-ambiente/reservar-otros-ambientes-adminR', 'ReservarAmbienteController@reservarOtrosAmbientesAdminR'); // REservar otros ambientes distinto de bungalows
 	Route::post('reservar-ambiente/reservar-otros-ambientes/search-adminR','ReservarAmbienteController@reservarOtrosAmbientesFiltradosAdminR');
 	
-	Route::get('reservar-ambiente/{idambiente}/{idsocio}/new-reserva-bungalow-adminR', 'ReservarAmbienteController@createBungalowAdminR');//
+	Route::get('reservar-ambiente/{idambiente}/{idsocio}/{fechaIni}/{fechaFin}/new-reserva-bungalow-adminR', 'ReservarAmbienteController@createBungalowAdminR');//
 	Route::post('reservar-ambiente/{idambiente}/{idsocio}/confirmacion-reserva-bungalow-adminR', 'ReservarAmbienteController@storeBungalowAdminR');//confirmacion para la reserva del bungalos
-	Route::get('reservar-ambiente/{idambiente}/{idsocio}/new-reserva-otro-ambiente-adminR', 'ReservarAmbienteController@createOtroTipoAmbienteAdminR');//
+	Route::get('reservar-ambiente/{idambiente}/{idsocio}/{fechaIni}/{fechaFin}/new-reserva-otro-ambiente-adminR', 'ReservarAmbienteController@createOtroTipoAmbienteAdminR');//
 	Route::post('reservar-ambiente/{idambiente}/{idsocio}/confirmacion-reserva-otro-ambiente-adminR', 'ReservarAmbienteController@storeOtroTipoAmbienteAdminR');//confirmacion para la reserva de otros ambientes distintos de bungalows
 	Route::get('reservar-ambiente/searchSocio-adminR', 'SocioController@searchSocioAdminR');
 
 	//seleccionar socioa antes de hacer la reserva
-	Route::get('reservar-ambiente/{id}/searchSocio-bungalow-adminR', 'ReservarAmbienteController@seleccionarSocioBungalowAdminR');
-	Route::get('reservar-ambiente/{id}/searchSocio-otros-ambientes-adminR', 'ReservarAmbienteController@seleccionarSocioOtrosAmbientesAdminR');
+	Route::get('reservar-ambiente/{id}/{fechaIniValue}/{fechaFinValue}/searchSocio-bungalow-adminR', 'ReservarAmbienteController@seleccionarSocioBungalowAdminR');
+	Route::get('reservar-ambiente/{id}/{fechaIniValue}/{fechaFinValue}/searchSocio-otros-ambientes-adminR', 'ReservarAmbienteController@seleccionarSocioOtrosAmbientesAdminR');
 
 
 	//para consultar las reservas y poder cancelarlas

@@ -4,7 +4,7 @@ namespace papusclub\Http\Requests;
 
 use papusclub\Http\Requests\Request;
 
-class StoreReservaOtroAmbienteAdminR extends Request
+class EditIngresoProductoRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class StoreReservaOtroAmbienteAdminR extends Request
     public function rules()
     {
         return [
-            'tipo_comprobante' => 'required',
-            'fecha_inicio_reserva'    =>  'required',
-            'hora_inicio_reserva'    =>  'required',
-            'hora_fin_reserva'    =>  'required',
+            'estado'        =>  'required|string'            
         ];
     }
 }

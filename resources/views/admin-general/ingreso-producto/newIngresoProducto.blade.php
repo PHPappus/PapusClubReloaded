@@ -12,7 +12,7 @@
 	{!!Html::style('/css/DataTable.css')!!}	
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-registros')
 @section('content')
 
 <!---Cuerpo -->
@@ -57,54 +57,39 @@
 			  	</br>								
 
 				<div class="form-group required">
-			    	<label for="persona_id" class="col-sm-4 control-label">ID Persona</label>
+			    	<label for="proveedor_id" class="col-sm-4 control-label">ID Proveedor</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="persona_id" name="persona_id" placeholder="ID de la Persona" value="{{old('persona_id')}}">
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="proveedor_id" name="proveedor_id" placeholder="ID del Proveedor" value="{{old('proveedor_id')}}">
 			    	</div>
-			    	<a class="btn btn-info" name="buscarPersona" href="#"  title="Buscar Persona" data-toggle="modal" data-target="#modalBuscar"><i name="buscarPersona" class="glyphicon glyphicon-search"></i></a>
-			  	</div>			  	
+			    	<a class="btn btn-info" name="buscarProveedor" href="#"  title="Buscar Proveedor" data-toggle="modal" data-target="#modalBuscar"><i name="buscarProveedor" class="glyphicon glyphicon-search"></i></a>
+			  	</div>			
 
 			  	<div class="form-group required">
-			    	<label for="tipoPagoInput" class="col-sm-4 control-label">Tipo de Pago</label>
+			    	<label for="tipoSolicitudInput" class="col-sm-4 control-label">Tipo de Solicitud</label>
 			    	<div class="col-sm-5">
 			    	
-			      		<select class="form-control" id="tipo_pago" name="tipo_pago" >
+			      		<select class="form-control" id="tipo_solicitud" name="tipo_solicitud">
+
 						<option value="" selected >Seleccionar tipo...</option>
-						@foreach($tipo_pagos as $tipo_pago)							
-							<option value="{{$tipo_pago->valor}}" >{{$tipo_pago->valor}}</option>
+						@foreach($tipo_solicitudes as $tipo_solicitud)
+							<option value="{{$tipo_solicitud->valor}}" >{{$tipo_solicitud->valor}}</option>
 						@endforeach						
 						</select>						
-						
-			    	</div>
-			  	</div>		
+
+			    	</div>			    	
+			  	</div>		  	
 
 			  	<div class="form-group required">
-			    	<label for="tipoComprobanteInput" class="col-sm-4 control-label">Tipo de Comprobante</label>
-			    	<div class="col-sm-5">
-			    	
-			      		<select class="form-control" id="tipo_comprobante" name="tipo_comprobante">
-						<option value="" selected >Seleccionar tipo...</option>
-						@foreach($tipo_comprobantes as $tipo_comprobante)
-							<option value="{{$tipo_comprobante->valor}}" >{{$tipo_comprobante->valor}}</option>
-						@endforeach						
-						</select>						
-						
-			    	</div>
-			  	</div>		
-						
+			    	<label for="descripcion" class="col-sm-4 control-label">Descripcion</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcon de solicitud" value="{{old('descripcion')}}">
+			    	</div>			    	
+			  	</div>			
+			  						
 			  	<div class="form-group required">
 			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
-			    	<div class="col-sm-5">			    	
-			      		<select class="form-control" id="estado" name="estado" >
-						<!-- Las opciones se deberían extraer de la tabla configuracion-->
-						<option value="" selected>Seleccionar tipo...</option>
-						@foreach($estados as $estado)
-							@if ($estado['valor'] != 'Anulado')
-								<option value="{{$estado->valor}}">{{$estado->valor}}</option>
-							@endif
-						@endforeach						
-						</select>													
-						
+			    	<div class="col-sm-5">			    				      	
+			      		<input type="text" class="form-control" id="estado" name="estado" placeholder="Estado de la solicitud" value="{{$estados->first()->valor}}" readonly>			    		
 			    	</div>
 			  	</div>		
 
@@ -117,7 +102,7 @@
 						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
-						<a href="/venta-producto/index" class="btn btn-info">Cancelar</a>
+						<a href="/ingreso-producto/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>
@@ -146,8 +131,8 @@
   		});		
   		
 		function getPersona(){								
-								document.getElementById('persona_id').value =  $('#example input:radio:checked').val();
-							}
+			document.getElementById('proveedor_id').value =  $('#example input:radio:checked').val();
+		}
 	</script>
 
 <!-- Modal -->
@@ -159,7 +144,7 @@
 			
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">BUSCAR PERSONA</h4>
+				<h4 class="modal-title">BUSCAR PROVEEDOR</h4>
 			</div>
 
 			<div class="modal-body">	      	  
@@ -170,33 +155,31 @@
 					  			<font color="black"> 
 					  				Ingresar alguno de los siguientes campos:
 					  				<ul>
-					  				<li>DNI</li>
-					  				<li>Apellido Paterno</li>
-					  				<li>Apellido Materno</li>
-					  				<li>Nombre</li>
+					  				<li>RUC</li>
+					  				<li>Nombre del Proveedor</li>					  				
 					  				</ul>
 					  			</font>					  			
 					  		</div>
 					  		<br>
 							<table class="table table-bordered table-hover text-center display" id="example" width="100%">
 								<thead class="active" data-sortable="true">									
-									<th><div align=center>DNI</div> </th>
-									<th><div align=center>NOMBRES</div></th>
-									<th><div align=center>APELLIDO PATERNO</div></th>
-									<th><div align=center>APELLIDO MATERNO</div></th>
+									<th><div align=center>RUC</div> </th>
+									<th><div align=center>NOMBRE</div></th>
+									<th><div align=center>TELÉFONO</div></th>
+									<th><div align=center>CORREO</div></th>
 									<th><div align=center>SELECCIONAR</div></th>
 								</thead>
 								<tbody>
 									
-									@foreach($personas as $persona)						
+									@foreach($proveedores as $proveedor)						
 										<tr>											
-											<td>{{$persona->doc_identidad}}</td>
-											<td>{{$persona->nombre}}</td>		
-											<td>{{$persona->ap_paterno}}</td>
-											<td>{{$persona->ap_materno}}</td>
+											<td>{{$proveedor->ruc}}</td>
+											<td>{{$proveedor->nombre_proveedor}}</td>		
+											<td>{{$proveedor->telefono}}</td>
+											<td>{{$proveedor->correo}}</td>
 											<td>
 												<div class="radio">
-  													<label><input type="radio" name="optradio" value="{{$persona->id}}"></label>
+  													<label><input type="radio" name="optradio" value="{{$proveedor->id}}"></label>
 												</div>
 											</td>
 							            </tr>				            		
@@ -234,12 +217,5 @@
     }
 	</style>
 </body>
-<!--
-	<a id="{{$persona->id}}" href="#" class="btn btn-default"><i class="glyphicon glyphicon-unchecked"></i></a>
-						<script>
-							$('#{{$persona->id}}').click(function(){
-							    $(this).find('i').toggleClass('glyphicon-unchecked').toggleClass('glyphicon-check');
-							});
-						</script>
--->
+
 </html>

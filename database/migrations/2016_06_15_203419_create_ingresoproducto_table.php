@@ -15,9 +15,9 @@ class CreateIngresoproductoTable extends Migration
         Schema::create('ingresoproducto', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('persona_id')->unsigned()->index('ingresoproducto_persona_id_foreign');
-            $table->double('total'); 
-            $table->string('tipo_pago');                     
-            $table->string('tipo_comprobante'); 
+            $table->integer('proveedor_id')->unsigned()->index('ingresoproducto_proveedor_id_foreign');            
+            $table->string('tipo_solicitud');
+            $table->string('descripcion');
             $table->string('estado');
             $table->softDeletes();
             $table->timestamps();
