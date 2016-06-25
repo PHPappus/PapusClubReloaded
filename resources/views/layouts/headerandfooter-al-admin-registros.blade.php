@@ -72,6 +72,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><a href="{!!URL::to('/ambiente/index')!!}" title="Consultar ambiente" target="_self">Consultar</a></li>
+              <li><a href="{!!URL::to('/ambiente/new')!!}" title="Consultar ambiente" target="_self">Registrar</a></li>
             </ul>
           </li>
         </ul>
@@ -84,6 +85,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li><a href="{!!URL::to('/actividad/index')!!}" title="Consultar actividades" target="_self">Consultar</a></li>
+                <li><a href="{!!URL::to('/actividad/new')!!}" title="Consultar ambiente" target="_self">Registrar</a></li>
             </ul>
           </li>
         </ul>
@@ -96,6 +98,7 @@
             </a>
             <ul class="dropdown-menu">    
                 <li><a href="{!!URL::to('/promociones/index')!!}" title="Consultar promociones" target="_self">Consultar</a></li>
+                <li><a href="{!!URL::to('/promociones/new')!!}" title="Consultar ambiente" target="_self">Registrar</a></li>
             </ul>
           </li>
         </ul>
