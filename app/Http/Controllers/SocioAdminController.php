@@ -666,16 +666,12 @@ class SocioAdminController extends Controller
 
         $relacion_id = $familiar->familiarxpostulante()->where('id_postulante','=',$id_postulante)->first()->pivot->tipo_familia_id;
 
+
         //echo json_encode($relacion_id);
         //die();
         $relacion=TipoFamilia::find($relacion_id)->nombre;
         return view('admin-persona.persona.socio.familiar.detailFamiliarDetalle',compact('familiar','socio','relacion'));        
     }
-
-
-
-
-
 
     /*TRASPASOS*/
 
@@ -690,11 +686,18 @@ class SocioAdminController extends Controller
         $input = $request->all();
        // var_dump($input);
        // die();
+        
         $persona=Persona::where('doc_identidad','=',$input['dniP'])->orwhere('carnet_extranjeria','=',$input['dniP'])->first();
+        $oldpersona = Persona::where('doc_identidad','=',$input['dni'])->orwhere('carnet_extranjeria','=',$input['dni'])->first();
+        $traspaso = Traspaso::where('dni','=',$input['dniP'])->first();
+        if ($persona == NULL){
+            $traspaso->update(['estado'=>FALSE]);
+            return redirect('traspasos-p')->with('failed','No se encontró al postulante');
+        }
      //   if ($postulante->dni == 0)
        //     return redirect('traspasos-p')->with('No se encontró al postulante');
         $postulante = Postulante::where('id_postulante','=',$persona->id)->first();
-        $traspaso = Traspaso::where('dni','=',$input['dniP'])->first();
+        $oldpostulante = Postulante::where('id_postulante','=',$oldpersona->id)->first();
         $traspaso->socio->update(['estado' => FALSE]);
         $traspaso->update(['estado'=>FALSE]);
         $socio = new Socio();
@@ -702,11 +705,12 @@ class SocioAdminController extends Controller
         $fecha = Date('now');
         $socio->fecha_ingreso=$fecha;
         $socio->postulante_id = $postulante->id_postulante;
-        $socio->tipo_membresia_id = 1;
+        $socio->tipo_membresia_id = $oldpostulante->socio->tipo_membresia_id;
         $membresia = TipoMembresia::find($socio->tipo_membresia_id);
         $membresia->socio()->save($socio);
 
         $socio->save();
+        $postulante->socio()->save($socio);
         $carnet = create_carnet($socio);
 
         return redirect('traspasos-p')->with('stored','Se aprobó el traspaso');
