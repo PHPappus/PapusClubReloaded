@@ -33,4 +33,5 @@ class TipoPersona extends Model
     {
         return $this->hasMany('papusclub\Models\TarifaActividad');
     }
+
 }

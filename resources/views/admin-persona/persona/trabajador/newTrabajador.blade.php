@@ -36,7 +36,6 @@
 
 <!-- 	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&libraries=places"></script>
 
 </head>
 <body>
@@ -56,7 +55,7 @@
 
 
 		<div class="container">
-			<form method="POST" action="/trabajador/new/trabajador" class="form-horizontal form-border">
+			<form method="POST" action="/postulante/new/trabajador" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<!-- VALIDACION CON FE INICIO -->

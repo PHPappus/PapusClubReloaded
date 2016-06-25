@@ -28,16 +28,15 @@ class EditSocioBasicoRequest extends Request
     public function rules()
     {
         return [
-            'nombre' =>'required|alpha_spaces|max:100',
+            'estado_civil' =>'required|not_in:-1',
         ];
     }
 
     public function messages()
     {
         return [
-            'nombre.required' => 'El campo nombre es obligatorio',
-            'nombre.alpha_spaces' => 'El campo nombre debe ser solo caracteres',
-            'nombre.max'=>'El campo nombre no puede superar la longitud de 100 caracteres',
+            'estado_civil.required' => 'El campo Estado civil es obligatorio.',
+            'estado_civil.not_in' => 'Debe seleccionar un estado civil válido en el rango.',
         ];
     }
 }

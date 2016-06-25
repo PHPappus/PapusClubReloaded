@@ -124,12 +124,28 @@ class InscriptionActividadController extends Controller
                 return view('socio.actividades.inscripciones',compact('sedes'),compact('actividades'));
             }
             else{
-                $persona=$usuario->persona;
-                $actividad->cupos_disponibles=$actividad->cupos_disponibles-1;
-                $actividad->save();
-                $persona->actividades()->attach($id,['precio'=> 11]);
+                DB::beginTransaction();
+                try{
+                    if($actividad->cupos_disponibles<=0){
+                    Session::flash('message-error','Lo sentimos, ya no hay cupos disponibles');
+                    return Redirect("/inscripcion-actividad/".$id."/confirmacion-inscripcion-actividades");
+                    }
+                    else{
+                        $persona=$usuario->persona;
+                        $actividad->cupos_disponibles=$actividad->cupos_disponibles-1;
+                        $actividad->save();
+                        $persona->actividades()->attach($id,['precio'=> 11]);
 
-                Session::flash('message','La Inscripción fue realizada Correctamente');
+                        Session::flash('message','La Inscripción fue realizada Correctamente');
+                        
+                    }
+                }
+                catch(ValidationException $e){
+                    DB::rollback();
+                    var_dump($e->getErrors());
+                }
+                DB::commit();
+                
                 return Redirect("/inscripcion-actividad/mis-inscripciones");
             }
         }
