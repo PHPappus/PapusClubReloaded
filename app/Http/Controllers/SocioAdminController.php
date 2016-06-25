@@ -631,12 +631,6 @@ class SocioAdminController extends Controller
     }
 
 
-
-
-
-
-
-
     /*TRASPASOS*/
 
     public function indexTraspasos()
@@ -650,13 +644,18 @@ class SocioAdminController extends Controller
         $input = $request->all();
        // var_dump($input);
        // die();
+        
         $persona=Persona::where('doc_identidad','=',$input['dniP'])->orwhere('carnet_extranjeria','=',$input['dniP'])->first();
         $oldpersona = Persona::where('doc_identidad','=',$input['dni'])->orwhere('carnet_extranjeria','=',$input['dni'])->first();
+        $traspaso = Traspaso::where('dni','=',$input['dniP'])->first();
+        if ($persona == NULL){
+            $traspaso->update(['estado'=>FALSE]);
+            return redirect('traspasos-p')->with('failed','No se encontró al postulante');
+        }
      //   if ($postulante->dni == 0)
        //     return redirect('traspasos-p')->with('No se encontró al postulante');
         $postulante = Postulante::where('id_postulante','=',$persona->id)->first();
         $oldpostulante = Postulante::where('id_postulante','=',$oldpersona->id)->first();
-        $traspaso = Traspaso::where('dni','=',$input['dniP'])->first();
         $traspaso->socio->update(['estado' => FALSE]);
         $traspaso->update(['estado'=>FALSE]);
         $socio = new Socio();
@@ -669,6 +668,7 @@ class SocioAdminController extends Controller
         $membresia->socio()->save($socio);
 
         $socio->save();
+        $postulante->socio()->save($socio);
         $carnet = create_carnet($socio);
 
         return redirect('traspasos-p')->with('stored','Se aprobó el traspaso');

@@ -65,9 +65,9 @@
 					<div class="btn-group ">
 						<input type="submit" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Confirmar">
 					</div>
-					<div class="col-sm-6"> </div>
+					<div class="col-sm-6"></div>
 						<a class="btn btn-info" href="/traspasos-p/" title="Editar" >Regresar <i class="glyphicon glyphicon-arrow-left"></i></a>			
-				</div>
+					
 				</br>
 				</br>
 
