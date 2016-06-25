@@ -1,10 +1,7 @@
-  <!doctype html> 
+<!doctype html> 
   <html class="no-js" lang="en-US"> 
   	<head> 
-  		
-
-
-		<title>Home Page</title>
+  		<title>Home Page</title>
 		<meta charset="UTF-8">
 
 		<meta name="viewport" content="width=device-width, initial-scale=1">

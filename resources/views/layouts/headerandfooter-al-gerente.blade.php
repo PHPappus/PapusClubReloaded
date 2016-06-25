@@ -33,10 +33,10 @@
               Reportes <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="#" title="Generar reporte de socios morosos" target="_self">Socios Morosos</a></li>
-                <li><a href="#" title="Generar reporte de uso de bungalows" target="_self">Bungalows</a></li>
-                <li><a href="#" title="Generar reporte de invitados del club" target="_self">Invitados</a></li>
-            </ul>
+				<li><a href="{!!URL::to('/reporte/invitado-por-sede')!!}" title="" target="_self">Invitados por Sede</a></li>
+				<li><a href="{!!URL::to('/reporte/morosos')!!}" title="" target="_self">Morosos</a></li>
+				<li><a href="{!!URL::to('/reporte/reserva-de-bungalow')!!}" title="" target="_self">Reserva de Bungalow</a></li>
+			</ul>
           </li>
         </ul>
 
