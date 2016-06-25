@@ -43,6 +43,8 @@ class ActividadController extends Controller
         //para agregar la actividades al ambiente
         if($request['reservaSelec'] != -1){
             $parent = Reserva::find($input['reservaSelec']);
+            $parent->estadoReserva = "Reservado";
+            $parent->update();
             $actividad->reserva_id=$parent->id;
             $actividad->ambiente_id = $parent->ambiente->id;
         }
