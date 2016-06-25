@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>AGREGAR SERVICIOS ADICIONALES </title>
+	<title>AGREGAR SERVICIOS </title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,12 +24,9 @@
 		
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>AGREGAR SERVICIOS ADICIONALES A LA SEDE
-					
-					<?php 
+					<strong>AGREGAR SERVICIOS A LA SEDE				<?php 
 					  echo strtoupper($sede->nombre)
 					 ?>
-					 
 					 </strong>
 			</div>		
 			<div></div>
@@ -65,7 +62,7 @@
 								
 								@foreach($servicios as $servicio)	
 										@if ($servicio->estado == 1)
-										<tr>																				
+										<tr>							
 											<td>{{$servicio->nombre}}</td>
 											<td>{{$servicio->descripcion}}</td>
 											<td>

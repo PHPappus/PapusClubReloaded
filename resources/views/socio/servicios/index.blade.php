@@ -1,21 +1,3 @@
-<!--p>
-	@foreach($servicios as $serv)
-		{{$serv->id}}
-		<p>==============</p>
-		{{$serv->nombre}}
-		<p>==============</p>
-		{{$serv->descripcion}}
-		<br/>		
-	@endforeach
-</p-->
-<!--?php 
-$msj = "baia";
-$arr = array(1,2,3,4,5,6,7,8,9); 
-foreach($arr as $a) 
-{ 
-echo $msj;
-} 
-?-->
 
 <!DOCTYPE html>
 <html>
@@ -55,7 +37,7 @@ echo $msj;
 		</div>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-				<strong>INSCRIPCIÓN EN SERVICIOS DISPONIBLES</strong>
+				<strong>SOLICITUD DE SERVICIOS </strong>
 			</div>		
 		</div>
 		<div class="container">
@@ -119,9 +101,9 @@ echo $msj;
 							<th><div align=center>PRECIO TRABAJADOR S/</div></th>
 							<th style="max-width:180px;"><div align=center>PRECIO INVITADOS/</div></th>							
 							<th><div align=center>SEDE</div></th>				
-							<th><div align=center>ESTADO INSCRIPCIÓN.</div></th>
 							
-							<th><div align=center>INSCRIBIRSE</div></th>
+							
+							<th><div align=center>SOLICITAR SERVCIO</div></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -168,17 +150,15 @@ echo $msj;
 
 
 
-						 <td>  @IF(count($sedexservicioxpersona->where('id_sede',$sxs->idsede)->where('id_servicio',$sxs->idservicio))>0) 						    INSCRITO
+						 <!--td>  @IF(count($sedexservicioxpersona->where('id_sede',$sxs->idsede)->where('id_servicio',$sxs->idservicio))>0) 			   SOLICITADO
 						 	@else
-						 		 NO INSCRITO
+						 		 NO SOLICITADO
 						 	@endif
-						</td>
+						</td-->
 									<td> 
-									@IF(count($sedexservicioxpersona->where('id_sede',$sxs->idsede)->where('id_servicio',$sxs->idservicio))>0)
-							        <a class="btn btn-info"  title="agregarservicio" disabled><i class="glyphicon glyphicon-pencil"></i> </a>
-							        @else
+									
 							        <a class="btn btn-info" href="{{url('/servicioalsocio/'.$sxs->id.'/confirm')}}" title="agregarservicio"><i class="glyphicon glyphicon-pencil"></i> </a>
-							        @endif
+							        
 								    </td> 
 						</tr>
 					@endforeach 
@@ -191,7 +171,7 @@ echo $msj;
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 text-right">					
-						<a href="{!!URL::to('/servicios/mis-inscripciones')!!}" title="Ver mis inscripciones" class="btn btn-lg btn-primary">Mis Inscripciones</a>		
+						<a href="{!!URL::to('/servicios/mis-inscripciones')!!}" title="Ver mis inscripciones" class="btn btn-lg btn-primary">Mis Solicitudes</a>		
 					</div>
 				<div class="col-sm-6 text-left">
 					

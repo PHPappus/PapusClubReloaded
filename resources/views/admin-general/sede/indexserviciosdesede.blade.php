@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>AGREGAR SERVICIOS ADICIONALES 
+	<title>SERVICIOS A LA SEDE 
 	 </title>	
 	<meta charset="UTF-8">
 
@@ -88,11 +88,7 @@
 				</div>
 				<br><br>
 				<div class="btn-inline">
-					<div class="btn-group col-sm-9"></div>
-					
-					<!--div class="btn-group ">
-						<input class="btn btn-primary" type="submit" value="Continuar">
-					</div-->
+					<div class="btn-group col-sm-9"></div>							
 					<div class="btn-group">
 						 <a class="btn btn-info"  href="{{url('/sedes/'.$sede->id.'/agregarservicios')}}" 
 						 title="Agregar Servicios" data-href="" data-toggle="" >Agregar Servicios</a>   

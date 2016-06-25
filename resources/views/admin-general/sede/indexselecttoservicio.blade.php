@@ -97,17 +97,6 @@
 				</br>
 				</br>
 				</br>
-				
-				<!--div class="btn-inline">
-					<!- <form method="POST" action="/sedes/new/sede" >
-					<input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
-
-					<!--div class="btn-group col-sm-10"></div-->
-					
-					<!--div class="btn-group ">
-						<a href="/sedes/new" class="btn btn-info" type="submit">Registrar Sede</a>
-					</div-->
-					
 				</div>
 
 			</div>		

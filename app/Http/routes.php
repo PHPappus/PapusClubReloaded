@@ -51,7 +51,9 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 
 	Route::post('servicioalsocio/{id}/confirm/save','ServicioalsocioController@confirmareleccionsave');
 	Route::get('servicios/mis-inscripciones','ServicioalsocioController@misinscripciones');
-	Route::post('servicios/mis-inscripciones','ServicioalsocioController@filtromisinscripciones');
+	Route::get('servicios/mis-inscripciones/{id}/delete','ServicioalsocioController@delete');
+
+	//Route::post('servicios/mis-inscripciones','ServicioalsocioController@filtromisinscripciones');
 
 
 	//Socio.talleres  : INSCRIPCION DE TALLERES
@@ -126,7 +128,7 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::get('promociones/{id}/delete', 'PromocionesController@destroy');
 	Route::get('promociones/{id}/show', 'PromocionesController@show');
 
-	// Mantenimiento de Servicios Lol by Brayan
+	// Mantenimiento de Servicios
 	Route::get('servicios/index', 'ServiciosController@index');	
 	Route::get('servicios/new', 'ServiciosController@create');
 	Route::post('servicios/new/servicio', 'ServiciosController@store');

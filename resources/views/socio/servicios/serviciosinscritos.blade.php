@@ -1,21 +1,3 @@
-<!--p>
-	@foreach($servicios as $serv)
-		{{$serv->id}}
-		<p>==============</p>
-		{{$serv->nombre}}
-		<p>==============</p>
-		{{$serv->descripcion}}
-		<br/>		
-	@endforeach
-</p-->
-<!--?php 
-$msj = "baia";
-$arr = array(1,2,3,4,5,6,7,8,9); 
-foreach($arr as $a) 
-{ 
-echo $msj;
-} 
-?-->
 
 <!DOCTYPE html>
 <html>
@@ -48,14 +30,14 @@ echo $msj;
 				<div class="col-sm-3">
 					<ol class="breadcrumb" style="background:none;">
 						<li><a href="/socio"><span class="glyphicon glyphicon-home"></span></a></li>
-						<li class="active">Consultar Servicios</li>
+						<li class="active">Solicitar Servicios</li>
 					</ol>
 				</div>				
 			</div>
 		</div>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-				<strong>MIS SERVICIOS INSCRITOS</strong>
+				<strong>MIS SERVICIOS SOLICITADOS</strong>
 			</div>		
 		</div>
 		<div class="container">
@@ -67,38 +49,13 @@ echo $msj;
 					<strong>¡Éxito!</strong> {{$mensaje}}
 				</div>
 			@endif
-			<form method="POST" action="/servicios/mis-inscripciones" class="form-horizontal form-border"> <!-- FALTA CAMBIAR LA ACTION =D -->
-				<input type="hidden" name="_token" value="{{ csrf_token() }}">
-				<br/><br/>
-				<div class="form-group ">
-				   	<label for="sedeInput" class="col-sm-4 control-label">SEDE</label>	
-					<div class="col-sm-5">
-					  	<select class="form-control" name="sedeSelec" style="max-width: 170px">
-					  		<option value="-1" default>Todas las sedes</option>
-					        @foreach ($sedes as $sede)      
-					      	<option value="{{$sede->id}}">{{$sede->nombre}}</option>
-					        @endforeach
-						</select>
-					</div>
-				</div>
-				
-				<!-- Boton Buscar INICIO -->
-				<div class="btn-inline">
-					<div class="btn-group col-sm-8"></div>
-					<div class="btn-group ">
-						<input class="btn btn-primary" type="submit" value="Filtrar">
-					</div>
-				</div>
-				<!-- Boton Buscar FIN -->
-				</br>
-				</br>
-			</form>
+	
 		</div>
 		<br/><br/>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-center">
-					<p class="lead"><strong>M I S &nbsp;&nbsp; S E R V I C I O S &nbsp;&nbsp; I N S C R I T O S  &nbsp;&nbsp;  </strong></p>
+					<p class="lead"><strong>M I S &nbsp;&nbsp; S E R V I C I O S &nbsp;&nbsp; S O L I C I T A D O S  &nbsp;&nbsp;  </strong></p>
 				</div>
 			</div>
 		</div>
@@ -118,51 +75,37 @@ echo $msj;
 							
 							
 							
-							<th><div align=center>SEDE</div></th>					
+							<th><div align=center>SEDE</div></th>			
+							<th><div align=center>DETALLE</div></th>					
+							<th><div align=center>ESTADO SOLICITUD</div></th>					
+							<th><div align=center>ELIMINAR SOLICITUD</div></th>					
 							
 						</tr>
 					</thead>
 					<tbody>
 				
-					@foreach($sedexservicio as $sxs)	
-									
+					<?php 
+					 for($i=0;$i<$expfila;$i++){
+					 	echo "<tr>";
+					 	for($j=0;$j<$expcolu-1;$j++){
+					 		echo "<td>" ; 
+					 		echo $tabla[$i][$j];
+					 		echo "</td>";
+					 	}
+					 	
+					 		$indice = $tabla[$i][7];
+					 	 ?>
+					 	 <td>
+					
 
-						@foreach($servicios as $servicio)
-							@if($sxs->idservicio == $servicio->id)
-							<tr>
-								<td>{{$servicio->nombre}}</td>
-								<td>{{$servicio->descripcion}}</td>
+					 		<a class="btn btn-info" data-href="{!!URL::to('/servicios/mis-inscripciones/'.$indice.'/delete')!!}" title="Anular Solicitud" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i>
+					 		</a>
+					 	</td>
+                        <?php 
+					 }
+					 ?>
+							
 								
-								<td>
-	 								@foreach($tiposServicio as $tserv)	
-	 									@if ($tserv->id == $servicio->tipo_servicio)
-	 										{{$tserv->valor	}}
-	 									@endif
-	 								@endforeach
-	 							</td>					
-
-							
-								@foreach($tarifarioservicios as $tser)
-								  @if( $tser->idservicio ==  $servicio->id)
-								      <td>{{$tser->precio}}</td>
-								  @endif
-								@endforeach 		
-								<!--p>{{url('/sedes/'.$sede->id.'/agregarservicios')}}</p-->
-								<td>
-									@foreach($sedes as $sede)	
-										@if($sede->id == $sxs->idsede)
-											{{$sede->nombre}}
-										@endif
-									@endforeach
-								</td>
-							@endif
-						@endforeach 
-
-							
-						
-		
-						</tr>
-					@endforeach 
 				
 					</tbody>
 				</table>
@@ -172,7 +115,7 @@ echo $msj;
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 text-right">					
-						<a href="{!!URL::to('/servicios/mis-inscripciones')!!}" title="Ver mis inscripciones" class="btn btn-lg btn-primary">Mis Inscripciones</a>		
+						<a href="{!!URL::to('/servicios/mis-inscripciones')!!}" title="Ver mis inscripciones" class="btn btn-lg btn-primary">Mis Solicitudes</a>		
 					</div>
 				<div class="col-sm-6 text-left">
 					
@@ -216,6 +159,30 @@ echo $msj;
 			});
 		});
 	</script>
+	<div id="modalEliminar" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
 
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Confirmar</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>¿Está seguro que desea eliminar el proveedor?</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-danger btn-ok">Confirmar</a>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+		<script>
+		$('#modalEliminar').on('show.bs.modal', function(e) {
+   			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+		});
+	</script>
 </body>
 </html>
