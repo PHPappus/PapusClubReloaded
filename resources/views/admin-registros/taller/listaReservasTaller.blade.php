@@ -54,8 +54,7 @@
 									<td>{{ $reserva->fecha_fin_reserva }}</td>
 			 						<td>{{ $reserva->hora_inicio_reserva }}</td>
 									<td><a class="btn btn-info" href="{{url('/taller/'.$reserva->id.'/select')}}" ><i class="glyphicon glyphicon-ok"></i></a>
-							        </td>
-							            
+							        </td> 
 								</tr>
 							@endforeach
 					</tbody>					

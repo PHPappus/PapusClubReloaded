@@ -126,8 +126,9 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 
 
 	//MANTENIMIENTO DE TALLERES
-	Route::get('taller/','TallerController@index');
+	Route::get('taller/index','TallerController@index');
 	Route::get('taller/new','TallerController@create');
+	Route::get('taller/{id}/select','TallerController@select');
 	Route::get('taller/{id}/editar','TallerController@edit');
 	Route::get('taller/{id}/','TallerController@show');
 	Route::post('taller/new/save','TallerController@store');
