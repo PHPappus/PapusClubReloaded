@@ -545,9 +545,13 @@ class ReservarAmbienteController extends Controller
 
         if(empty($input['horaInicio'])){
             $horaInicio="00:00";
+        }else{
+
         }
         if(empty($input['horaFin'])){
             $horaFin="23:59" ;
+        }else{
+            
         }
         /*Se terminó de preparar las horas*/
             
