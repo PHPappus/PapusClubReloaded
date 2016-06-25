@@ -9,6 +9,9 @@ use papusclub\Models\Provincia;
 use papusclub\Models\Distrito;
 use papusclub\Models\Postulante;
 use papusclub\Models\TipoFamilia;
+use papusclub\Models\Socio;
+use papusclub\Models\Carnet;
+use papusclub\Models\TipoMembresia;
 use papusclub\Models\FamiliarxPostulante;
 use papusclub\Http\Requests\StorePostulanteRequest;
 use papusclub\Http\Requests\EditPostulanteBasicoRequest;
@@ -25,6 +28,7 @@ use Illuminate\Support\Facades\Redirect;
 use Session;
 use DB;
 use Carbon\Carbon;
+use DateTime;
 
 class PostulanteController extends Controller
 {
@@ -32,16 +36,15 @@ class PostulanteController extends Controller
     {
         $personas=Postulante::all();
         $postulantes=array();
-        foreach ($personas as $per) {
-            if($per->socio==NULL)
-                array_push($postulantes,$per);
 
-            # code...
+        foreach ($personas as $per) {
+
+            if(is_null($per->socio))
+            {           
+                array_push($postulantes,$per);
+            }
         }
-/*        $personas=Persona::where([
-        ['id_tipo_persona','=','2'],
-        ['id_tipo_persona','<>','3'],
-        ])->get();*/
+
         return view('admin-persona.persona.postulante.index',compact('postulantes'));
     }
 
@@ -505,7 +508,7 @@ class PostulanteController extends Controller
         $familiar=Persona::find($id);
         $postulante=Persona::find($id_postulante);
         //$relacion=2;
-        $relacion_id=$familiar->familiarxpostulante->where('id_postulante',$postulante->id)->first()->pivot->tipo_familia_id;
+        $relacion_id=$familiar->familiarxpostulante()->where('id_postulante',$postulante->id)->first()->pivot->tipo_familia_id;
         $relacion=TipoFamilia::find($relacion_id)->nombre;
         //$invitado = Invitados::find($id);
         /*var_dump($relacion);
@@ -520,22 +523,21 @@ class PostulanteController extends Controller
     {   
         $familiar=Persona::find($id);
         $postulante=Persona::find($id_postulante);
-        //$relacion=2;
-        $relacion_id=$familiar->familiarxpostulante->where('id_postulante',$postulante->id)->first()->pivot->tipo_familia_id;
+
+        $relacion_id=$familiar->familiarxpostulante()->where('id_postulante',$postulante->id)->first()->pivot->tipo_familia_id;
         $relacion=TipoFamilia::find($relacion_id)->nombre;
-        //$invitado = Invitados::find($id);
-        /*var_dump($relacion);
-        die();*/
-        /*$socio = Socio::withTrashed()->find($invitado->persona_id);
-        $persona = Persona::find($invitado->invitado_id);*/
+
         return view('admin-persona.persona.postulante.familiar.detailFamiliarPostulante',compact('familiar','postulante','relacion'));
     }
 
     public function registaSocio($id){
         $postulante=Postulante::find($id);
         $estado_civil=Configuracion::find($postulante->estado_civil);
-/*        var_dump($estado_civil);
-        die();*/
+
+
+        /** Observaciones del postulante*/
+        $socios_observaciones = $postulante->observacion;
+
         $carbon=new Carbon();
         if((strtotime($postulante->persona->fecha_nacimiento) < 0))
             $postulante->persona->fecha_nacimiento=NULL;
@@ -543,8 +545,47 @@ class PostulanteController extends Controller
             $postulante->persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d', $postulante->persona->fecha_nacimiento)->format('d/m/Y');
 
 
-        return view('admin-persona.persona.postulante.aceptarSocio',compact('postulante','estado_civil'));
+        return view('admin-persona.persona.postulante.aceptarSocio',compact('postulante','estado_civil','socios_observaciones'));
 
+    }
+
+    public function aceptarPostulante($id)
+    {
+
+        /*Tipo de Membresía siempre iniciará como tipo regular el cual se encuentra registrado en la primera casilla de la tabla membresia*/
+        $tipoMembresia = TipoMembresia::first();
+
+        /*Información de Postulante*/
+        $postulante = Postulante::find($id);
+
+        /*Registrando Socio*/
+        $fecha_ingreso = new DateTime("now");
+        $fecha_ingreso=$fecha_ingreso->format('Y-m-d');
+
+        $socio = new Socio();
+        $socio->fecha_ingreso=$fecha_ingreso;
+
+        $socio->membresia()->associate($tipoMembresia);
+        $socio->postulante_id=$id;
+        $socio->save();
+
+
+        /*Asignar carnet*/
+        create_carnet($socio);
+
+        return redirect('Socio/')->with('stored', 'Se registró el Socio correctamente.');
+
+    }
+
+    public function rechazarPostulante($id)
+    {
+        $persona = Persona::find($id);
+        $postulante=Postulante::find($persona->id);
+
+
+        $postulante->forceDelete();
+        $persona ->forceDelete();
+        return redirect('postulante/index')->with('stored', 'El postulante ha sido rechazado');
     }
 }
     

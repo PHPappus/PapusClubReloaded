@@ -168,7 +168,7 @@
 									<td align="center">  S/.</td>
 									<td align="center"> 
 									<div align="center">
-							      		<input style="text-align:center;" type="text" onkeypress="return inputLimiter(event,'DoubleFormat')" min ="0" step="any" class="form-control" id="{{$persona->descripcion}}Input" name="{{$persona->descripcion}}" placeholder="" value="{{$persona->pivot->precio}}">
+							      		<input style="text-align:center;" type="text" onkeypress="return inputLimiter(event,'DoubleFormat')" min ="0" step="any" class="form-control" id="{{$persona->descripcion}}Input" name="tarifas[{{$persona->id}}]" placeholder="" value="{{$persona->pivot->precio}}">
 							    	</div>
 								</td>							        
 								</tr>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>REGISTRAR VENTA</title>
+	<title>REGISTRAR SOLICITUD</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,7 +28,7 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>REGISTRAR VENTA</strong>
+					<strong>REGISTRAR SOLICITUD</strong>
 			</div>		
 		</div>
 		<div class="container">
@@ -74,16 +74,16 @@
 		  		</div>			  	
 			  
 			  	<div class="form-group required">
-		    		<label for="facturacion_idInput" class="col-sm-4 control-label">N° de Factura</label>
+		    		<label for="ingresoproducto_idInput" class="col-sm-4 control-label">N° de Solicitud</label>
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="facturacion_idInput" name="facturacion_id" value="{{$factura->id}}" readonly>
+		      			<input type="text" class="form-control" id="ingresoproducto_idInput" name="ingresoproducto_id" value="{{$ingresoproducto->id}}" readonly>
 		    		</div>
 		  		</div>				  				 
 			  	
 			  	<div class="form-group required">
 			    	<label for="cantidadInput" class="col-sm-4 control-label" >Cantidad</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="cantidadInput" name="cantidad" placeholder="Cantidad del producto comprado" onkeypress="return inputLimiter(event,'Numbers')"  value="{{old('cantidad')}}" onkeypress="myFunction()">
+			      		<input type="text" class="form-control" id="cantidadInput" name="cantidad" placeholder="Cantidad del producto comprado" onkeypress="return inputLimiter(event,'Numbers')"  value="{{old('cantidad')}}">
 			    	</div>			      					      		
 			  	</div>				  								
 					<!-- FIN FIN FIN  -->				
@@ -97,7 +97,7 @@
 						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">						
-						<a href="{{url('/venta-producto/'.$factura->id.'/back')}}" class="btn btn-info">Cancelar</a>
+						<a href="{{url('/ingreso-producto/'.$ingresoproducto->id.'/back')}}" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>

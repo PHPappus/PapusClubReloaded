@@ -81,7 +81,7 @@
 
 
 						<!--DATOS DE FAMILIA-->
-						@if(session('storedInvitado') || Session::get('update')=='familiar')
+						@if(session('storedFamiliar') || Session::get('update')=='familiar')
 							<li role="presentation" class="active"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Familia</a></li>
 						@else
 							<li role="presentation"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Familia</a></li>
@@ -233,7 +233,7 @@
 											<label for="" class="control-label">Nacionalidad:</label>
 										</div>
 										<div class="col-sm-6 text-left" >
-												<input  type="radio" name="nacionalidad" value="Peruano"  @{{$nac=per}} checked disabled> Peruano  
+												<input  type="radio" name="nacionalidad" value="peruano"  @{{$nac=per}} checked disabled> peruano  
 												<input  type="radio" name="nacionalidad" value="Extranjero" style="margin-left: 50px;"@{{$nac=otro}} disabled> Extranjero	
 										</div>	
 									</div>
@@ -256,7 +256,7 @@
 											<label for="" class="control-label">Nacionalidad:</label>
 										</div>
 										<div class="col-sm-6 text-left" >
-												<input  type="radio" name="nacionalidad" value="Peruano"  @{{$nac=per}}  disabled> Peruano  
+												<input  type="radio" name="nacionalidad" value="peruano"  @{{$nac=per}}  disabled> peruano  
 												<input  type="radio" name="nacionalidad" value="Extranjero" style="margin-left: 50px;"@{{$nac=otro}} checked disabled> Extranjero	
 										</div>	
 									</div>
@@ -363,7 +363,7 @@
 											<label for="" class="control-label">Fecha de Nacimiento(dd/mm/aaaa):</label>
 										</div>
 										<div class="col-sm-6">
-											<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" value="{{$socio->postulante->persona->fecha_nacimiento}}"style="width: 250px"  disabled>
+											<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" value="{{$socio->postulante->persona->fecha_nacimiento}}" style="width: 250px"  disabled>
 
 										</div>	
 									</div>
@@ -502,7 +502,8 @@
 																	<td>{{$familiar->ap_materno}}</td>
 																	<td>{{$familiar->correo}}</td>
 																	<td>
-													              	<a class="btn btn-info" href="{{url('/Socio/familiar/'.$familiar->pivot->id.'/')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+
+													              	<a class="btn btn-info" href="{{url('/Socio/familiar/'.$familiar->id.'/'.$socio->postulante->id_postulante)}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 													            	</td>
 													            	<td>												           
 																		<a class="btn btn-info"  title="Eliminar" data-href="{{url('/Socio/'.$familiar->id.'/'.$socio->postulante->id_postulante.'/familiar/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
@@ -1070,7 +1071,7 @@
 																	<td>{{$invitado->ap_materno}}</td>
 																	<td>{{$invitado->correo}}</td>
 																	<td>
-													              	<a class="btn btn-info" href="{{url('/Socio/invitado/'.$invitado->pivot->id.'/')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+													              	<a class="btn btn-info" href="{{url('/Socio/invitado/'.$invitado->pivot->id.'/')}}"  title="Detalle"><i class="glyphicon glyphicon-list-alt"></i></a>
 													            	</td>
 													            	<td>												           
 																		<a class="btn btn-info"  title="Eliminar" data-href="{{url('/Socio/'.$invitado->pivot->id.'/invitado/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
