@@ -55,7 +55,7 @@
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre">
+			      		<input type="text" class="form-control" onkeypress="return inputLimiter(event,'Letters')" id="nombreInput" name="nombre" placeholder="Nombre">
 			    	</div>
 			  	</div>
 

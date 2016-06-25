@@ -91,12 +91,19 @@
 			    	<div class="col-sm-5">
 			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="dInput" name="nombre" placeholder="Nombre" value="{{old('nombre')}}">
 			    	</div>
-			  	</div> 
+			  	</div>
 
 			  	<div class="form-group ">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
 			    		<textarea class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" rows="3" cols="50" value="{{old('descripcion')}}"></textarea>
+			    	</div>
+			  	</div>
+
+			  	<div class="form-group">
+			    	<label for="profeInput" class="col-sm-4 control-label">Profesor</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="profeInput" name="profe" placeholder="Profesor" value="{{old('profe')}}">
 			    	</div>
 			  	</div>
 

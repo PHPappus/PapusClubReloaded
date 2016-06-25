@@ -1,3 +1,4 @@
+
 <header class="header">
 
   <div class="content clearfix">
@@ -32,10 +33,18 @@
       <div class="collapse navbar-collapse" id="navbar1">
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+            <a href="{!!URL::to('/Socio/')!!}" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
               Socio <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
+
+<!--Aqui es papu-->
+
+                <li><a href="#" class="dropdown-toggle btn-lg" title="consultar Bungalows" target="_self">Socio</a></li>
+
+
+
+                <li><a href="{!!URL::to('/multas-s')!!}" title="Asignar Multa" target="_self">Asignar Multa</a></li>
                 <li><a href="#" title="Consultar socio" target="_self">Consultar</a></li>
                 <li><a href="#" title="Registrar nuevo socio" target="_self">Registrar</a></li>
                 <li><a href="#" title="Anular socio" target="_self">Anular</a></li>
@@ -50,7 +59,7 @@
               Postulante <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="#" title="Consultar postulantes" target="_self">Consultar</a></li>
+                <li><a href="{!!URL::to('/postulante/index')!!}" title="Consultar postulantes" target="_self">Consultar</a></li>
                 <li><a href="#" title="Registrar nuevo postulante" target="_self">Registrar</a></li>
                 <li><a href="#" title="Aprobar/Desaprobar postulante" target="_self">Aprobar/Desaprobar</a></li>
             </ul>
@@ -70,7 +79,7 @@
         </ul>
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+            <a href="{!!URL::to('/trabajador/index')!!}" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
               Trabajador <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
@@ -100,12 +109,9 @@
             <a href="#" class="dropdown-toggle btn-lg" title="Realizar tramites" data-toggle="dropdown" role="button">
               Trámites</span>
             </a>
-            <!-- <ul class="dropdown-menu">
-              <li><a href="#">Item #1</a></li>
-              <li><a href="#">Item #2</a></li>
-              <li class="divider"></li>
-              <li><a href="#">Item #4</a></li>
-            </ul> -->
+            <ul class="dropdown-menu">
+                <li><a href="{!!URL::to('/traspasos-p')!!}" title="Consultar Proveedores" target="_self">Traspasos</a></li>
+            </ul>
           </li>
         </ul>
 

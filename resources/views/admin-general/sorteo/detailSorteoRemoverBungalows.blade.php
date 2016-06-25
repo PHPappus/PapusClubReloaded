@@ -27,7 +27,7 @@
 					<strong>REMOVER BUNGALOWS</strong>
 			</div>		
 			<div></div>
-		</div>
+		</div>		
 			<form id="myform" method="POST" action="/sorteo/new/sorteo/bungalows/{{ $id }}/remove" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
@@ -41,6 +41,7 @@
 		  				</ul>
 		  			@endif
 		  		@if(!empty($ambientes))
+		  		<br><br><br>
 				<div class="table-responsive">
 					<div class="container">
 						<table class="table table-bordered table-hover text-center display" id="example">

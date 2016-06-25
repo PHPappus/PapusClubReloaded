@@ -24,6 +24,7 @@ class CreateSedesTable extends Migration
             $table->string('nombre_contacto');
             $table->integer('capacidad_maxima');
             $table->integer('capacidad_socio');
+            $table->integer('maximo_actual'); //sorry grupo de victor si ven esto tomé posesión de sus tablas. [Necesito esto para controlar el aforo]
             $table->softDeletes();
             $table->timestamps();
         });

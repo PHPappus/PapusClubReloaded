@@ -31,6 +31,9 @@
 		</br>
 		</br>
 
+		@if (session('delete'))
+			<script>$("#modalError").modal("show");</script>						
+		@endif
 		
 		<div class="container">
 			<table class="table table-bordered table-hover text-center display" id="example">
@@ -47,19 +50,23 @@
 						</tr>
 					</thead>
 					<tbody>
-						
-							<td> FAlta </td>
-							<td> FAlta</td>
-							<td>FAlta</td>
-							<td> FAlta</td>
-							<td> FAlta </td>
-							<td>
-				              	<a class="btn btn-info" href="#"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-				            </td>							
-				            <td>
-				              	<a class="btn btn-info"  title="Eliminar" data-href="#" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>           
-				            </td>
-									
+						@foreach($reservas as $reserva)						
+						    	<tr>
+									<td>{{ $reserva->id }}</td>
+									<td>{{ $reserva->ambiente->tipo_ambiente }}</td>
+									<td>{{ $reserva->precio }}</td>
+			 						<td>{{ $reserva->estadoReserva }}</td>
+									<td>{{ $reserva->fecha_inicio_reserva }}</td>
+									<td>
+						              	<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$reserva->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+						            </td>							
+						            <td>
+						              	<a class="btn btn-info"  title="Eliminar" data-href="{{url('/reservar-ambiente/'.$reserva->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>           
+						            </td>
+							            
+								</tr>
+						@endforeach
+							
 					</tbody>					
 												
 					
@@ -136,6 +143,28 @@
 	      </div>
 	    </div>
 
+
 	  </div>
 	</div>
+
+	<div id="modalError" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">¡Error!</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>{{session('delete')}}</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>           
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
 </html>

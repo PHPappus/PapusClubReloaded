@@ -1,3 +1,4 @@
+
 <header class="header">
 
   <div class="content clearfix">
@@ -100,23 +101,42 @@
             <li><a href="{!!URL::to('reservar-ambiente/lista-reservas/')!!}" class="dropdown-toggle btn-lg" title="Consultar Pagos" target="_self">Reservas</a></li>
           </li>
         </ul>
+
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" title="Realizar tramites" data-toggle="dropdown" role="button">
               Trámites<span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
+              <li><a href="{!!URL::to('/traspaso')!!}" title="solicitar traspasos" target="_self">Traspasos</a></li>
+              <li><a href="{!!URL::to('/mis-multas')!!}" title="solicitar traspasos" target="_self">Mis Multas</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg">Sorteos <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#" title="Consultar Sorteos" target="_self">Consultar</a></li>
+                <li><a href="#" title="Reservar y entrar a sorteo" target="_self">Reservar</a></li>
+            </ul>
+          </li>
+        </ul>
+<!-- Comentado papu
               <li><a href="{!!URL::to('/observaciones-s')!!}" title="Observaciones sobre postulantes" target="_self">Observaciones</a></li>
             </ul>
-            <!-- <ul class="dropdown-menu">
+Esto era conentado papu inicio
+                 <ul class="dropdown-menu">
               <li><a href="#">Item #1</a></li>
               <li><a href="#">Item #2</a></li>
               <li class="divider"></li>
               <li><a href="#">Item #4</a></li>
-            </ul> -->
+            </ul>  
+Papu.. aca termino comentario
           </li>
         </ul>
-        
+        -->
 
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">

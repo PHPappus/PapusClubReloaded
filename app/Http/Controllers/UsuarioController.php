@@ -50,7 +50,7 @@ class UsuarioController extends Controller
                     $perfil='admin-reserva';
                     break;
                 case '8':
-                    $perfil='publico';
+                    $perfil='control-ingresos';
                     break;
         }
 
@@ -130,7 +130,7 @@ class UsuarioController extends Controller
                     $perfil='admin-reserva';
                     break;
                 case '8':
-                    $perfil='publico';
+                    $perfil='control-ingresos';
                     break;
         }
 
@@ -170,7 +170,7 @@ class UsuarioController extends Controller
                     $perfil='/admin-reserva';
                     break;
                 case '8':
-                    $perfil='/public';
+                    $perfil='/control-ingresos';
                     break;
             }
             Session::flash('message','Su contraseña ha sido cambiada con éxito');

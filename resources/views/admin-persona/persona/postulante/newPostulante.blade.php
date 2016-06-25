@@ -18,7 +18,10 @@
 		#dpd1{
 			width:300px;
 		}
-		#map { height: 20%; }
+		#map {
+			width: 600px;
+        	height: 450px;
+		}
 	</style>
 
 <!--Aqui viene la magia-->
@@ -34,7 +37,7 @@
 
 <!-- <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
 <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>  -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&libraries=places"></script> 
+<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&libraries=places"></script>  -->
 
 </head>
 <body>
@@ -77,9 +80,9 @@
 								<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Paso 2: Nacimiento</a></li>
 								<li role="presentation"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Paso 3: Educacion</a></li>
 								<li role="presentation"><a href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab">Paso 4: Empleo</a></li>
-								<!-- <li role="presentation"><a href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab">Paso 5: Familiares</a></li>
+								<li role="presentation"><a href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab">Paso 5: Contacto</a></li>
 								<li role="presentation"><a href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab">Paso 6: Vivienda</a></li>
-								<li role="presentation"><a href="#seccion6" aria-controls="seccion7" data-toggle="tab" role="tab">Paso 7: Contactos</a></li> -->
+								<!--<li role="presentation"><a href="#seccion6" aria-controls="seccion7" data-toggle="tab" role="tab">Paso 7: Contactos</a></li> -->
 							</ul>
 						</div>
 
@@ -145,8 +148,8 @@
 												<label for="" class="control-label">Nacionalidad:</label>
 											</div>
 											<div class="col-sm-6 text-left" >
-													<input checked onchange="document.getElementById('doc_identidad').disabled = false; document.getElementById('carnet_extranjeria').disabled = true;" onclick=" document.getElementById('carnet_extranjeria').value = '';" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : '' }}/>Peruano&nbsp&nbsp&nbsp
-													<input onchange="document.getElementById('carnet_extranjeria').disabled = false; document.getElementById('doc_identidad').disabled = true;" onclick=" document.getElementById('doc_identidad').value = ''; " type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "extranjero") ? 'checked="true"' : '' }}/>Extranjero
+													<input checked onchange="seleccionaPeruano()" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : '' }}/>Peruano&nbsp&nbsp&nbsp
+													<input onchange="seleccionaExtranjero()" type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "extranjero") ? 'checked="true"' : '' }}/>Extranjero
 
 											</div>
 										</div>
@@ -186,17 +189,20 @@
 								<br>
 
 
-
 								<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
-												<label for="" class="control-label">Fecha de Nacimiento</label>
+												<label for="" class="control-label">&nbspFecha de Nacimiento</label>
 											</div>
 											<div class="col-sm-6">
 												<input style="width: 250px" class="datepicker" type="text" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha Nacimiento" readonly="true" value="{{old('fecha_nacimiento')}}" >
 											</div>	
 										</div>
 								</div>
+
+									<div class="text-left" style="margin-left: 1cm; color:red">
+											<label for="" class="control-label">(*) Llenar los combos solo si es peruano</label>
+									</div><br>
 
 									<div class="form-group required">
 											<div class="col-sm-6">
@@ -207,7 +213,7 @@
 														<select class="form-control" id="departamento" name="departamento" style="max-width: 250px " data-link="{{ url('/provincias') }}">
 															<option value="-1" default>--Departamento--</option>
 																@foreach ($departamentos as $depa)      
-												                	<option value="{{$depa->id}}"  @if (old('departamento') == $depa->id) selected="selected" @endif  >{{$depa->nombre}}</option>
+												                	<option value="{{$depa->id}}"   >{{$depa->nombre}}</option>
 												                @endforeach
 														</select>
 														
@@ -220,9 +226,9 @@
 															<option  value="-1" default>--Distrito--</option>
 														</select>
 
-														<br><br>
+														
 
-														<!--<a href="#" id="try" data-link="{{ url('/test') }}">Try</a>-->>
+														<!--<a href="#" id="try" data-link="{{ url('/test') }}">Try</a>-->
 
 													</div>	
 											</div>
@@ -235,6 +241,31 @@
 											</div>
 											<div class="col-sm-6">
 												<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{old('direccion_nacimiento')}}">
+											</div>		
+										</div>
+									</div>
+
+									<div class="text-left" style="margin-left: 1cm; color:red">
+											<label for="" class="control-label">(*) Llenar los combos solo si es extranjero</label>
+									</div><br>
+
+									<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Pais de Nacimiento:</label>
+											</div>
+											<div class="col-sm-6">
+												<input  disabled="true" type="text" class="form-control" id="pais_nacimiento" name="pais_nacimiento" placeholder="Pais de Nacimiento" style="max-width: 250px" value="{{old('pais_nacimiento')}}">
+											</div>		
+										</div>
+									</div>
+									<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Ciudad de Nacimiento:</label>
+											</div>
+											<div class="col-sm-6">
+												<input disabled="true" type="text" class="form-control" id="lugar_nacimiento" name="lugar_nacimiento" placeholder="Ciudad de Nacimiento" style="max-width: 250px" value="{{old('lugar_nacimiento')}}">
 											</div>		
 										</div>
 									</div>
@@ -253,7 +284,7 @@
 												<label for="" class="control-label">Educacion Primaria:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="educacion_primaria" name="educacion_primaria" placeholder="Educacion Primaria" style="max-width: 250px" value="{{old('educacion_primaria')}}">
+												<input type="text" class="form-control" id="colegio_primario" name="colegio_primario" placeholder="Educacion Primaria" style="max-width: 250px" value="{{old('colegio_primario')}}">
 											</div>		
 										</div>
 								</div>
@@ -263,7 +294,7 @@
 												<label for="" class="control-label">Educacion secundaria:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="educacion_secundaria" name="educacion_secundaria" placeholder="Educacion Secundaria" style="max-width: 250px" value="{{old('educacion_secundaria')}}">
+												<input type="text" class="form-control" id="colegio_secundario" name="colegio_secundario" placeholder="Educacion Secundaria" style="max-width: 250px" value="{{old('colegio_secundario')}}">
 											</div>		
 										</div>
 								</div>
@@ -329,6 +360,48 @@
 										</div>
 								</div>
 								
+							
+							</div>
+
+							<div role="tabpanel" class="tab-pane" id="seccion5">
+								<br>
+										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+								<br>
+								
+
+								<div class="form-group ">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Telefono Fijo:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" onkeypress="return inputLimiter(event,'Numbers')" maxlength="7" id="telefono_domicilio" name="telefono_domicilio" placeholder="Telefono fijo" style="max-width: 250px" value="{{old('telefono_domicilio')}}">
+											</div>		
+										</div>
+								</div>
+
+								<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Telefono Celular:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" onkeypress="return inputLimiter(event,'Numbers')" maxlength="9" id="telefono_celular" name="telefono_celular" placeholder="Telefono celular" style="max-width: 250px" value="{{old('telefono_celular')}}">
+											</div>		
+										</div>
+								</div>
+
+								<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Correo:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" style="max-width: 250px" value="{{old('correo')}}">
+											</div>		
+										</div>
+								</div>
+								
 								<br><br>
 								<div class="form-group required" >
 										<div class="btn-group col-sm-5" ></div>
@@ -342,23 +415,62 @@
 								</div>
 							</div>
 
-<!-- 							<div role="tabpanel" class="tab-pane" id="seccion5">
-								section 5
-							</div> -->
+							<div role="tabpanel" class="tab-pane" id="seccion6">
+								<br>
+										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+								<br>
 
-							<!-- <div role="tabpanel" class="tab-pane" id="seccion6">
+								<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Lugar de vivienda</label>
+											</div>
+											<div class="col-sm-6">
+													<select class="form-control" id="departamento_vivienda" name="departamento_vivienda" style="max-width: 250px " data-link="{{ url('/provincias_vivienda') }}">
+														<option value="-1" default>--Departamento--</option>
+															@foreach ($departamentos as $depavivienda)      
+											                	<option value="{{$depavivienda->id}}"   >{{$depavivienda->nombre}}</option>
+											                @endforeach
+													</select>
+													
+													<br>
+													<select class="form-control" id="provincia_vivienda" name="provincia_vivienda" style="max-width: 250px " data-link="{{ url('/distritos_vivienda') }}" disabled="true">
+														<option  value="-1" default disab>--Provincia--</option>
+													</select>
+													<br>
+													<select class="form-control" id="distrito_vivienda" name="distrito_vivienda" style="max-width: 250px " disabled="true">
+														<option  value="-1" default>--Distrito--</option>
+													</select>
+											</div>
+
+										</div>
+								</div>
+
+								<div class="form-group required">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Direccion Laboral</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="searchmap" name="direccion_vivienda" placeholder="Direccion Laboral" style="max-width: 250px" value="{{old('direccion_laboral')}}">
+										</div>		
+									</div>
+								</div>
+
+								<div class="form-group required">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Mapa: </label>
+										</div>
+										<div class="col-sm-6">
+											<div id="map" width="600" height="450" frameborder="0" style="border:0"  allowfullscreen></div>
+<!-- 											<iframe width="600" height="450" frameborder="0" style="border:0"  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&q=Space+Needle,Seattle+WA" allowfullscreen></iframe> -->
+										</div>		
+									</div>
+								</div>								
+
 								<div class="container">
-									{
-										<div class="form-group">
-											<label for="">Title</label>
-											<input type="text" name="form-control input-sm" name="title">
-										</div>
-
-										<div class="form-group">
-											<label for="">Map</label>
-											<input type="text" id="searchmap">
-											<div id="map-canvas"></div>
-										</div>
+									
 
 										<div class="form-group">
 											<label for="">Lat</label>
@@ -373,7 +485,7 @@
 										<button class="btn btn-sm btn-danger">Save</button>
 
 								</div>      
-							</div> -->
+							</div> 
 
 
 						</div>
@@ -399,9 +511,35 @@
 <!-- 	<script type="text/javascript" src="../js/bootstrap-datepicker-sirve.js"></script> -->
 
 
-
+<!-- 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&signed_in=true&callback=initMap" async defer> </script>
+	 -->
+	 
+	<script>
+    var script = document.createElement('script');
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&signed_in=true&callback=initMap";
+    document.getElementsByTagName('head')[0].appendChild(script);
+	</script>
 
 	<script>
+
+			function initMap() {
+			  var mapDiv = document.getElementById("map");
+			  var map = new google.maps.Map(mapDiv, {
+			    zoom: 8,
+			    center: new google.maps.LatLng(-34.397, 150.644)
+			  });
+
+			  // We add a DOM event here to show an alert if the DIV containing the
+			  // map is clicked.
+			  google.maps.event.addDomListener(window, 'load', initMap);
+			  google.maps.event.addDomListener(mapDiv, 'click', function() {
+			    window.alert('Map was clicked!');
+			  });
+			}
+	</script>
+
+
+<!-- 	<script>
 
 	function initialize(){
 		
@@ -453,47 +591,8 @@
 
 	}
 	google.maps.event.addDomListener(window,"load",initialize);	
-	</script>
-
-
-
-
-<!-- 	<script>
-
-		var nowTemp = new Date();
-		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
- 	
-		var checkin = $('#dpd1').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
-  			}
-		}).on('changeDate', function(ev) {
-  			if (ev.date.valueOf() > checkout.date.valueOf()) {
-    			var newDate = new Date(ev.date)
-    			newDate.setDate(newDate.getDate() + 1);
-    			checkout.setValue(newDate);
-  			}
- 			checkin.hide();
-  			$('#dpd2')[0].focus();
-		}).data('datepicker');
-		var checkout = $('#dpd2').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-  			}
-		}).on('changeDate', function(ev) {
-  			checkout.hide();
-		}).data('datepicker');		
-		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
-
-	
-	</script>
-	<script>
-		$(function(){
-			$('.datepicker').datepicker({
-				format: 'dd/mm/yyyy'
-			});
-		});
 	</script> -->
+
 
 	<script>
 		$(document).ready(function(){
@@ -616,6 +715,115 @@
 		});
 
 
+	</script>
+
+	    <script type="text/javascript">
+
+	    /*listas para obtener la vivienda*/
+		$(document).ready(function(){
+
+			$("#departamento_vivienda").change(function(event){
+				document.getElementById("provincia_vivienda").disabled = false;
+				document.getElementById("distrito_vivienda").disabled = true;
+			    $("#distrito_vivienda").empty();
+			    $("#distrito_vivienda").append("<option  value='-1' default>--Distrito--</option>");
+				var url = $(this).attr("data-link");
+				$departamento_id=event.target.value;
+				//alert($departamento_id);
+				//alert(url);
+				$.ajax({
+			        url: "provincias_vivienda",
+			        type:"POST",
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { id: $departamento_id},
+			        success:function(data){
+			        	$("#provincia_vivienda").empty();
+			        	$("#provincia_vivienda").append("<option  value='-1' default>--Provincia--</option>");
+			        	$.each(data,function(index,elememt){
+			        		
+			        		$("#provincia_vivienda").append("<option value='"+elememt.id+"'>"+elememt.nombre+"</option>");
+			           		 console.log("mensaje que quieras");
+
+			        	});
+			        },error:function(){ 
+			            alert("error!!!!");
+			        }
+			    }); //end of ajax
+			});
+
+
+			$("#provincia_vivienda").change(function(event){
+				document.getElementById("distrito_vivienda").disabled = false;
+				var url = $(this).attr("data-link");
+				$provincia_id=event.target.value;
+				//alert($provincia_id);
+				//alert(url);
+				//alert($provincia_id);
+				$.ajax({
+			        url: "distritos_vivienda",//esta es la cadena que debe ir en el route /postulante/distritos_vivienda
+			        type:"POST",
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { id: $provincia_id},
+			        success:function(data){
+			        	$("#distrito_vivienda").empty();
+			        	$("#distrito_vivienda").append("<option  value='-1' default>--Distrito--</option>");
+			        	$.each(data,function(index,elememt){
+
+							//alert(elememt.id);
+			        		//alert(element.nombre);
+			        		$("#distrito_vivienda").append("<option value='"+elememt.id+"'>"+elememt.nombre+"</option>");
+			        	});
+			            //alert(data);
+			        },error:function(){ 
+			            alert("error!!!!");
+			        }
+			    }); //end of ajax
+			});
+
+		});
+
+
+	</script>
+
+	<script>
+		//Script en el caso en que se seleccione el combo peruano
+
+		function seleccionaPeruano() {
+	    	document.getElementById('departamento').disabled = false;
+	    	document.getElementById('doc_identidad').disabled = false;
+	    	document.getElementById('direccion_nacimiento').disabled = false;
+	    	document.getElementById('carnet_extranjeria').disabled = true;
+	    	document.getElementById('pais_nacimiento').disabled = true;
+	    	document.getElementById('lugar_nacimiento').disabled = true;
+	    	//antes onclick
+			document.getElementById('carnet_extranjeria').value = '';	
+			document.getElementById('pais_nacimiento').value = '';	
+			document.getElementById('lugar_nacimiento').value = '';	
+		}
+
+		function seleccionaExtranjero(){
+	    	document.getElementById('departamento').disabled = true;
+	    	document.getElementById('carnet_extranjeria').disabled = false;
+	    	document.getElementById('direccion_nacimiento').disabled = true;
+	    	document.getElementById('doc_identidad').disabled = true;
+	    	document.getElementById('pais_nacimiento').disabled = false;
+	    	document.getElementById('lugar_nacimiento').disabled = false;
+	    	//antes onclick
+	    	document.getElementById('doc_identidad').value = ''; 
+	    	document.getElementById('direccion_nacimiento').value = ''; 
+		}
 	</script>
 
 	</body>

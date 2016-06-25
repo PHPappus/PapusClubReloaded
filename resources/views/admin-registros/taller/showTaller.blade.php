@@ -76,6 +76,13 @@
 			    	</div>
 			  	</div>
 
+			  	<div class="form-group">
+			    	<label for="profeInput" class="col-sm-4 control-label">Profesor</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="profeInput" name="profe" placeholder="Profesor" value="{{$taller->profesor}}" readonly>
+			    	</div>
+			  	</div>
+
 			  	<div class="form-group required">
 			    	<label for="vacantesInput" class="col-sm-4 control-label">Vacantes</label>
 			    	<div class="col-sm-5">
