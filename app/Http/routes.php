@@ -281,7 +281,17 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('ingreso-producto/index', 'IngresoProductoController@index');
 	Route::get('ingreso-producto/new', 'IngresoProductoController@create');
 	Route::post('ingreso-producto/new/ingreso-producto', 'IngresoProductoController@store');
-	
+	Route::get('ingreso-producto/{id}', 'IngresoProductoController@edit');
+	Route::post('ingreso-producto/{id}/edit', 'IngresoProductoController@update');
+	Route::get('ingreso-producto/{id}/delete', 'IngresoProductoController@destroy');
+	Route::get('ingreso-producto/{id}/show', 'IngresoProductoController@show');
+	Route::get('ingreso-producto/new/ingreso-producto/{id}', 'IngresoProductoController@createIngresoProducto');
+	Route::post('ingreso-producto/new/ingreso-producto/add', 'IngresoProductoController@storeIngresoProducto');
+	Route::get('ingreso-producto/new/{id}', 'IngresoProductoController@editProducto');
+	Route::post('ingreso-producto/new/{id}/editProducto', 'IngresoProductoController@updateProducto');
+	Route::get('ingreso-producto/{id}/deleteProducto', 'IngresoProductoController@destroyProducto');
+	Route::get('ingreso-producto/{id}/back', 'IngresoProductoController@back');
+	Route::get('ingreso-producto/{id}/cancel', 'IngresoProductoController@cancel');
 
 	//Inscribirse en Sorteo
 	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
