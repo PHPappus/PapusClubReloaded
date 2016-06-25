@@ -5,11 +5,11 @@
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	{!!Html::style('css/jquery.bxslider.css')!!}
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
+	{!!Html::style('css/bootstrap-datepicker3.css')!!}
 	{!!Html::style('/css/DataTable.css')!!}	
 	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
 	<!-- PARA DATA TABLE -->
@@ -60,37 +60,26 @@
 			<div class="form-group required ">
 			   	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>	
 				<div class="col-sm-5">
-				  	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >
+				  	<select class="form-control" id="sedeSelec" name="sedeSelec" style="max-width: 150px "  >
+				  		<option value="-1">Todas las Sedes</option>
 				        @foreach ($sedes as $sede)      
 				      	<option value="{{$sede->id}}">{{$sede->nombre}}</option>
 				        @endforeach
 					</select>
 				</div>
 			</div>
-			<div class="form-group required">
-			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha (dd/mm/aaaa) </label>
+			<div class="form-group">
+			 	<label for="fechaInput" class="col-sm-4 control-label">FECHA (dd/mm/aaaa) </label>
 			    <div class="col-sm-5">
 				  	<div class="input-group">
-			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" style="max-width: 250px">
+			   		<input class="datepicker form-control"  type="text"  id="fecha_inicio" name="fecha_inicio" placeholder="Fecha Inicio" value="{{old('fecha_inicio')}}" style="max-width: 250px" >
 			   		<span class="input-group-addon">-</span>
-			   		<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_fin" placeholder="Fecha Fin" style="max-width: 250px">
-			   		
-			   		<!-- <input name="fechaInicio" id="fechaInicio" type="text" required class="form-control">
-			       		<span class="input-group-addon">-</span>
-			       	<input name="fechaFin" id="fechaFin" type="text" required class="form-control"> -->
+			   		<input class="datepicker form-control" type="text" id="fecha_fin" name="fecha_fin" placeholder="Fecha Fin" value="{{old('fecha_fin')}}" style="max-width: 250px">
+
 			   	 	</div>
 		    	</div>	
 			</div>
-			<!-- <div class="form-group required">
-			 	<label for="horaInput" class="col-sm-4 control-label">HORA </label>
-			    <div class="col-sm-5">
-				   	<div class="input-group">
-				   		<input name="horaInicio" id="horaInicio" type="text" required class="form-control">
-			       		<span class="input-group-addon">-</span>
-			       		<input name="horaFin" id="horaFin" type="text" required class="form-control">
-			   	   	</div>
-		    	</div>	
-			</div> -->
+			
 			<div class="form-group required">
 			   	<label for="numHabitacionInput" class="col-sm-4 control-label">Número de habitaciones</label>
 			   	<div class="col-sm-5">
@@ -116,15 +105,7 @@
 	<br/>
 	<br/>
 
-	<!-- <br/>
-	<div class="container form-group">
-		<div class="text-lleft ">
-			<font color="green"> 
-				Resultados:
-			</font>
-		</div>
-	</div>
-	<br/> -->
+
 
 	<br/>
 	<div class="container">
@@ -155,7 +136,7 @@
 					<td>{{ $ambiente->capacidad_actual }}</td>
 
 					<td>
-					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/new-reserva-bungalow-adminR')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
+					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/searchSocio-bungalow-adminR/')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
 
 
 			        </td>
@@ -178,19 +159,16 @@
 <br/>
 <br/>
  @stop
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<!-- JQuery -->
+ <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+ <!-- JQuery -->
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	<!-- Bootstrap -->
 	{!!Html::script('js/bootstrap.js')!!}
-	
-	<!-- BXSlider -->
-	{!!Html::script('js/jquery.bxslider.min.js')!!}
-	<!-- Mis Scripts -->
-	{!!Html::script('js/MisScripts.js')!!}
 
 	{!!Html::script('js/bootstrap-datepicker.js')!!}
+	 <!-- Languaje -->
+    {!!Html::script('js/bootstrap-datepicker.es.min.js')!!}
 
 
 	<!-- Para Data TAble INICIO -->
@@ -209,38 +187,16 @@
 
 	<!-- Para Fechas INICIO -->
 	<script>
-
-		var nowTemp = new Date();
-		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
- 	
-		var checkin = $('#dpd1').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
-  			}
-		}).on('changeDate', function(ev) {
-  			if (ev.date.valueOf() > checkout.date.valueOf()) {
-    			var newDate = new Date(ev.date)
-    			newDate.setDate(newDate.getDate() + 1);
-    			checkout.setValue(newDate);
-  			}
- 			checkin.hide();
-  			$('#dpd2')[0].focus();
-		}).data('datepicker');
-		var checkout = $('#dpd2').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-  			}
-		}).on('changeDate', function(ev) {
-  			checkout.hide();
-		}).data('datepicker');		
-		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
-
-	
+		var nowDate = new Date();
+		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
 	</script>
 	<script>
 		$(function(){
 			$('.datepicker').datepicker({
-				format: 'dd/mm/yyyy'
+				format: "dd/mm/yyyy",
+		        language: "es",
+		        autoclose: true,
+		        startDate: today,
 			});
 		});
 	</script>

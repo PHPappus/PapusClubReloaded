@@ -40,7 +40,7 @@
 			  	<div class="form-group">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" class="form-control" id="descripcionInput" name="descripcion" value="{{$facturacion->descripcion}}" readonly>
+			      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" value="{{$facturacion->descripcion}}" readonly>
 			    	</div>
 			  	</div>
 
@@ -54,7 +54,7 @@
 			  	<div class="form-group">
 			    	<label for="tipo_comprobanteInput" class="col-sm-4 control-label">Tipo de Comprobante</label>
 			    	<div class="col-sm-5">
-			      		<input type="number" class="form-control" id="tipo_comprobanteInput" name="tipo_comprobante" value="{{$facturacion->tipo_comprobante}}" readonly>
+			      		<input type="text" class="form-control" id="tipo_comprobanteInput" name="tipo_comprobante" value="{{$facturacion->tipo_comprobante}}" readonly>
 			    	</div>
 			  	</div>
 
