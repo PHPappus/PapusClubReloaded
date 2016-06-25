@@ -1,8 +1,13 @@
 <style>
         /*Reparando desajuste*/
-        @media (min-width: 1350px){
+        @media (min-width: 1405px){
             #navbar1 {
-                width: 1250px;
+                width: 1403px;
+            }
+        }
+        @media (min-width: 1350px){
+            .container {
+           
             }
         }
 </style>
@@ -70,8 +75,6 @@
               Bungalows <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="{!!URL::to('/bungalows-s')!!}" title="consultar Bungalows" target="_self">Consultar</a></li>
-                <!-- <li><a href="{!!URL::to('/reserva-bungalows-s')!!}" title="reserva de bungalows" target="_self">Reservar</a></li> -->
                 <li><a href="{!!URL::to('/reservar-ambiente/reservar-bungalow')!!}" title="reserva de bungalows" target="_self">Reservar</a></li>                
             </ul>
           </li>
@@ -80,10 +83,10 @@
           <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
           <li class="dropdown">
             <a href="#" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" role="button" >
-              Reservas <span class="caret"></span>
+              Ambientes <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="{!!URL::to('reservar-ambiente/lista-reservas/')!!}" title="Reserva de ambientes" target="_self">Ambientes</a></li>
+                <li><a href="{!!URL::to('/reservar-ambiente/reservar-bungalow')!!}" title="Reserva de ambientes" target="_self">Reservar</a></li>
             </ul>
           </li>
         </ul>
@@ -99,7 +102,14 @@
         </ul>
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg">Cuotas <span class="caret"></span></a>
+            <a href="{!!URL::to('reservar-ambiente/lista-reservas/')!!}" class="dropdown-toggle btn-lg"  role="button">
+              Mis Reservas
+            </a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg">Mis pagos <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="{!!URL::to('pagos/facturacion-socio/')!!}" title="Consultar pagos y cuotas pendientes" target="_self">Consultar</a></li>
             </ul>
