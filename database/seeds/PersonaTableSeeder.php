@@ -74,7 +74,7 @@ class PersonaTableSeeder extends Seeder
             'id_tipo_persona'=>2]);
 			
         Persona::create([
-            'nacionalidad'=>'Peruano',
+            'nacionalidad'=>'peruano',
             'doc_identidad'=>'65235376',
             'nombre'=>'Juan',
             'ap_paterno'=>'Ferraro',
@@ -86,7 +86,7 @@ class PersonaTableSeeder extends Seeder
             'id_usuario'=>3]);
 
         Persona::create([
-            'nacionalidad'=>'Peruano',
+            'nacionalidad'=>'peruano',
             'doc_identidad'=>'24625376',
             'nombre'=>'Juan',
             'ap_paterno'=>'Loayza',
@@ -98,7 +98,7 @@ class PersonaTableSeeder extends Seeder
             'id_usuario'=>3]);
 
         Persona::create([
-            'nacionalidad'=>'Peruano',
+            'nacionalidad'=>'peruano',
             'doc_identidad'=>'75235122',
             'nombre'=>'Francisco',
             'ap_paterno'=>'Beingolea',
@@ -110,7 +110,7 @@ class PersonaTableSeeder extends Seeder
             'id_usuario'=>3]);
 
         Persona::create([
-            'nacionalidad'=>'Peruano',
+            'nacionalidad'=>'peruano',
             'doc_identidad'=>'56234222',
             'nombre'=>'Brayan',
             'ap_paterno'=>'Rodriguez',
@@ -122,7 +122,7 @@ class PersonaTableSeeder extends Seeder
             'id_usuario'=>3]);
 
         Persona::create([
-            'nacionalidad'=>'Peruano',
+            'nacionalidad'=>'peruano',
             'doc_identidad'=>'12334222',
             'nombre'=>'Jhoseline',
             'ap_paterno'=>'Alva',

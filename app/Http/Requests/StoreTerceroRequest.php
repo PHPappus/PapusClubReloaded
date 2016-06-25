@@ -4,7 +4,7 @@ namespace papusclub\Http\Requests;
 
 use papusclub\Http\Requests\Request;
 
-class EditTrabajadorRequest extends Request
+class StoreTerceroRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class EditTrabajadorRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -27,11 +27,10 @@ class EditTrabajadorRequest extends Request
             'nombre' =>  'required|max:100|string',
             'ap_paterno' => 'required|max:100|string',
             'ap_materno' => 'required|max:100|string',
-            'fecha_nacimiento' => 'string',
-            'doc_identidad'=> 'required_if:nacionalidad,ṕeruano',
-            'carnet_extranjeria'=> 'required_if:nacionalidad,extranjero',
-            'correo'=>'required|string',
-            'puestoSelect' => 'required|exists:configuracion,id'
+            'fecha_nacimiento' => 'required | string',
+            'doc_identidad'=> 'required_if:nacionalidad,peruano', //| unique:persona,doc_identidad,NULL',
+            'carnet_extranjeria'=> 'required_if:nacionalidad,extranjero',//  | unique:persona,carnet_extranjeria,NULL',
+            'correo'=>'required|string'
         ];
     }
 }
