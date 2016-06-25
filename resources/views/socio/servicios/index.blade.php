@@ -120,6 +120,7 @@ echo $msj;
 							<th style="max-width:180px;"><div align=center>PRECIO INVITADOS/</div></th>							
 							<th><div align=center>SEDE</div></th>				
 							<th><div align=center>ESTADO INSCRIPCIÓN.</div></th>
+							
 							<th><div align=center>INSCRIBIRSE</div></th>
 						</tr>
 					</thead>
@@ -164,24 +165,20 @@ echo $msj;
 								</td>
 							@endif
 						@endforeach 
-						<?php 	
-							$encontrado = false ; 
-						
-            			foreach ($sedexservicioxpersona as $sxsxper){
-                    			if($sxs->idsede == $sxsxper->id_sede 
-                        			& $sxs->idservicio== $sxsxper->id_servicio){
-                        			$encontrado = true ; 
-                        	 		break;
-                    				}
-            			}
-    					
-    					if ($encontrado	)
-							echo "<td> INSCRITO </td>";	
-						else
-							echo "<td> NO INSCRITO </td>";
-						 ?>
+
+
+
+						 <td>  @IF(count($sedexservicioxpersona->where('id_sede',$sxs->idsede)->where('id_servicio',$sxs->idservicio))>0) 						    INSCRITO
+						 	@else
+						 		 NO INSCRITO
+						 	@endif
+						</td>
 									<td> 
-							        <a class="btn btn-info" href="{{url('/servicioalsocio/'.$sxs->id.'/confirm')}}" title="agregarservicio" ><i class="glyphicon glyphicon-ok"></i> {{$sxs->id}} </a>
+									@IF(count($sedexservicioxpersona->where('id_sede',$sxs->idsede)->where('id_servicio',$sxs->idservicio))>0)
+							        <a class="btn btn-info"  title="agregarservicio" disabled><i class="glyphicon glyphicon-pencil"></i> </a>
+							        @else
+							        <a class="btn btn-info" href="{{url('/servicioalsocio/'.$sxs->id.'/confirm')}}" title="agregarservicio"><i class="glyphicon glyphicon-pencil"></i> </a>
+							        @endif
 								    </td> 
 						</tr>
 					@endforeach 
