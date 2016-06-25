@@ -76,9 +76,9 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::post('reservar-ambiente/reservar-bungalow/search', 'ReservarAmbienteController@reservarBungalowFiltrados'); 
 	Route::get('reservar-ambiente/reservar-otros-ambientes', 'ReservarAmbienteController@reservarOtrosAmbientes'); // REservar otros ambientes distinto de bungalows
 	Route::post('reservar-ambiente/reservar-otros-ambientes/search','ReservarAmbienteController@reservarOtrosAmbientesFiltrados');
-	Route::get('reservar-ambiente/{id}/new-reserva-bungalow', 'ReservarAmbienteController@createBungalow');//
+	Route::get('reservar-ambiente/{id}/{fechaIniValue}/{fechaFinValue}/new-reserva-bungalow', 'ReservarAmbienteController@createBungalow');//
 	Route::post('reservar-ambiente/{id}/confirmacion-reserva-bungalow', 'ReservarAmbienteController@storeBungalow');//confirmacion para la reserva del bungalos
-	Route::get('reservar-ambiente/{id}/new-reserva-otro-ambiente', 'ReservarAmbienteController@createOtroTipoAmbiente');//
+	Route::get('reservar-ambiente/{id}/{fechaIniValue}/{fechaFinValue}/new-reserva-otro-ambiente', 'ReservarAmbienteController@createOtroTipoAmbiente');//
 	Route::post('reservar-ambiente/{id}/confirmacion-reserva-otro-ambiente', 'ReservarAmbienteController@storeOtroTipoAmbiente');//confirmacion para la reserva de otros ambientes distintos de bungalows
 	Route::get('reservar-ambiente/searchSocio', 'SocioController@searchSocio');
 	//Lista de Reservas Hechas

@@ -26,6 +26,8 @@
 					<strong>DETALLE DE LA RESERVA </strong>
 			</div>		
 		</div>
+		<input  type="hidden" type="text" id="fechaIni" name="fechaIni" value="{{ $fechaIni}}">
+	    <input type="hidden" type="text" id="fechaFin" name="fechaFin" value="{{ $fechaFin}}">
 		<div class="container">
 			<!--@include('errors.503')-->		
 			<form method="POST" action="/reservar-ambiente/{{ $ambiente->id }}/confirmacion-reserva-otro-ambiente" class="form-horizontal form-border"> <!-- DEBERIA EL ACTION DE REESRVAR =D -->
@@ -63,7 +65,7 @@
 		  	<div class="form-group ">
 		    	<label for="ubicacionInput" class="col-sm-4 control-label">Descripción</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" value="{{$ambiente->descripcion}}" readonly>
+		      		<input type="text" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->descripcion}}" readonly>
 		    	</div>
 		  	</div>
 		  	<div class="form-group">
@@ -91,7 +93,7 @@
 			<div class="form-group ">
 		    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="precioInput" onkeypress="return inputLimiter(event,'Numbers')" name="precio" value="{{$ambiente->precio($tipo_persona, $ambiente->tarifas)}}" readonly>
+		      		<input type="text" class="form-control" id="precioInput" onkeypress="return inputLimiter(event,'Numbers')" name="ubicacion" value="{{$ambiente->precio($tipo_persona, $ambiente->tarifas)}}" readonly>
 		    	</div>
 		  	</div>  
 
@@ -99,7 +101,7 @@
 			   	<label for="tipoComprobanteInput" class="col-sm-4 control-label">Tipo de Comprobante</label>
 			   	<div class="col-sm-5">
 			    	<select class="form-control" id="tipo_comprobante" name="tipo_comprobante">
-						<option value="" selected >Seleccionar tipo...</option>
+						<option value="-1" selected >Seleccionar tipo...</option>
 						@foreach($tipo_comprobantes as $tipo_comprobante)
 						<option value="{{$tipo_comprobante->valor}}" >{{$tipo_comprobante->valor}}</option>
 						@endforeach						
@@ -143,6 +145,12 @@
 <script>
 		var nowDate = new Date();
 		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+		var js_var = "<?php echo $fechaIni; ?>";
+		var js_var2 = "<?php echo $fechaFin; ?>";
+        //alert(js_var);
+        var other=new Date(js_var);
+        var other2=new Date(js_var2);
+        //alert(other);
 	</script>
 	<script>
 		$(function(){
@@ -150,7 +158,8 @@
 				format: "dd/mm/yyyy",
 		        language: "es",
 		        autoclose: true,
-		        startDate: today,
+		        startDate: other,
+		        endDate: other2,
 			});
 		});
 	</script>
