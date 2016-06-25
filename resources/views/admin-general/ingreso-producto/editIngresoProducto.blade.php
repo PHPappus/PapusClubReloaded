@@ -69,30 +69,47 @@
 			  	</div>	  				  				 
 			  	
 			  	<div class="form-group">
+			    	<label for="tipoSolicitudInput" class="col-sm-4 control-label">Tipo de Solicitud</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" class="form-control" id="tipo_solicitud" name="tipo_solicitud" value="{{$ingresoproducto->tipo_solicitud}}" readonly>
+			    	</div>
+			  	</div>						
+
+			  	<div class="form-group">
 			    	<label for="tipoPagoInput" class="col-sm-4 control-label" >Descripción</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" 
 			    		value="{{$ingresoproducto->descripcion}}">
 			    	</div>			      					      		
 			  	</div>	
-						
-			  	<div class="form-group">
-			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
-			    	<div class="col-sm-5">			    	
-			      		<select class="form-control" id="estado" name="estado" >
-						<!-- Las opciones se deberían extraer de la tabla configuracion-->
-						<option value="" >Seleccionar tipo...</option>
-						@foreach($estados as $estado)
-							<option value="{{$estado->valor}}" 
-							@if (strcmp($estado->valor, $ingresoproducto->estado)==0)		
-									selected
-							@endif
-							>{{$estado->valor}}</option>
-						@endforeach						
-						</select>													
-						
-			    	</div>
-			  	</div>		
+				
+				@if (strcmp($ingresoproducto->estado, 'Solicitud Pendiente')!=0)		
+					<div class="form-group">
+				    	<label for="estadoInput" class="col-sm-4 control-label" >Estado</label>
+				    	<div class="col-sm-5">
+				      		<input type="text" class="form-control" id="estado" name="estado" 
+				    		value="{{$ingresoproducto->estado}}" readonly>
+				    	</div>			      					      		
+			  		</div>			
+				@else
+				  	<div class="form-group">
+				    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
+				    	<div class="col-sm-5">			    	
+				      		<select class="form-control" id="estado" name="estado" >
+							<!-- Las opciones se deberían extraer de la tabla configuracion-->
+							<option value="" >Seleccionar tipo...</option>
+							@foreach($estados as $estado)
+								<option value="{{$estado->valor}}" 
+								@if (strcmp($estado->valor, $ingresoproducto->estado)==0)		
+										selected
+								@endif
+								>{{$estado->valor}}</option>
+							@endforeach						
+							</select>													
+							
+				    	</div>
+				  	</div>		
+			  	@endif
 				<br/><br/>
 				
 

@@ -23,7 +23,8 @@ class ProductoController extends Controller
 
 	public function create()
     {
-        $tipo_productos = Configuracion::where('grupo','=','6')->get();
+        $tipo_productos = Configuracion::where('grupo','=','6')
+                                        ->where('valor','<>','Servicio')->get();
     	return view('admin-general.producto.newProducto', compact('tipo_productos'));
     }
     
@@ -63,9 +64,10 @@ class ProductoController extends Controller
             $precio->save();
         }
 
-        $tipo_productos = Configuracion::where('grupo','=','6')->get();
+        $tipo_productos = Configuracion::where('grupo','=','6')
+                                        ->where('valor','<>','Servicio')->get();
 
-        return view('admin-general.producto.editProducto', compact('producto'), compact('tipo_productos'));
+        return view('admin-general.producto.editProducto', compact('producto','tipo_productos'));
     }
 
     //Se guarda la informacion modificada del producto en la BD
