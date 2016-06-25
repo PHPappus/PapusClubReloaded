@@ -30,11 +30,10 @@ class IngresoProductoController extends Controller
 
     public function create()
     {                    
-        $estados = Configuracion::where('grupo','=','7')->get();                                
-        $tipo_pagos = Configuracion::where('grupo','=','8')->get();
-        $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
+        $estados = Configuracion::where('grupo','=','13')
+                                    ->where('valor','=','Solicitud Pendiente')->get();                                        
         $proveedores = Proveedor::all();
-        return view('admin-general.ingreso-producto.newIngresoProducto', compact('tipo_pagos','tipo_comprobantes','estados','proveedores'));
+        return view('admin-general.ingreso-producto.newIngresoProducto', compact('estados','proveedores'));
     }
     
     public function store(StoreIngresoProductoRequest $request)

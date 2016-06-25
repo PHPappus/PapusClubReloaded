@@ -64,5 +64,8 @@ class ConfiguracionTableSeeder extends Seeder
 
         Configuracion::insert(['valor'=>'15.50','grupo'=>'12','descripcion'=>'Precio, en soles, de la entrada en las sedes']);
 
+        Configuracion::insert(['valor'=>'Solicitud Pendiente','grupo'=>'13','descripcion'=>'estado solicitud']);
+        Configuracion::insert(['valor'=>'Producto Recibido','grupo'=>'13','descripcion'=>'estado solicitud']);
+        Configuracion::insert(['valor'=>'Solicitud Anulada','grupo'=>'13','descripcion'=>'estado solicitud']);
     }
 }

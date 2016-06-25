@@ -87,7 +87,7 @@
 	<div class="container">
 		<div class="form-group">
 			<div class="col-sm-16 text-right">
-				<a class="btn btn-info" href="{{url('/ingreso-producto/new')}}" title="Registrar Ingreso" >Registrar Ingreso<i class="glyphicon" ></i> </a>	
+				<a class="btn btn-info" href="{{url('/ingreso-producto/new')}}" title="Registrar Solicitud" >Registrar Solicitud<i class="glyphicon" ></i> </a>	
 			</div>
 		</div>
 		<br/>

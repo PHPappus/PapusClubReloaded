@@ -74,17 +74,8 @@
 						
 			  	<div class="form-group required">
 			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
-			    	<div class="col-sm-5">			    	
-			      		<select class="form-control" id="estado" name="estado" >
-						<!-- Las opciones se deberían extraer de la tabla configuracion-->
-						<option value="" selected>Seleccionar tipo...</option>
-						@foreach($estados as $estado)
-							@if ($estado['valor'] != 'Anulado')
-								<option value="{{$estado->valor}}">{{$estado->valor}}</option>
-							@endif
-						@endforeach						
-						</select>													
-						
+			    	<div class="col-sm-5">			    				      	
+			      		<input type="text" class="form-control" id="estado" name="estado" placeholder="Estado de la solicitud" value="{{$estados->first()->valor}}" readonly>			    		
 			    	</div>
 			  	</div>		
 
