@@ -30,11 +30,14 @@ class IngresoProductoController extends Controller
 
     public function create()
     {                    
-        $estados = Configuracion::where('grupo','=','7')->get();                                
-        $tipo_pagos = Configuracion::where('grupo','=','8')->get();
-        $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
+        $estados = Configuracion::where('grupo','=','13')
+                                    ->where('valor','=','Solicitud Pendiente')->get();                                        
+        
+        $tipo_solicitudes = Configuracion::where('grupo','=','14')->get();
+        
         $proveedores = Proveedor::all();
-        return view('admin-general.ingreso-producto.newIngresoProducto', compact('tipo_pagos','tipo_comprobantes','estados','proveedores'));
+
+        return view('admin-general.ingreso-producto.newIngresoProducto', compact('estados','proveedores','tipo_solicitudes'));
     }
     
     public function store(StoreIngresoProductoRequest $request)
@@ -48,6 +51,7 @@ class IngresoProductoController extends Controller
         $ingresoproducto = new IngresoProducto();
         $ingresoproducto->persona_id = $persona_id;
         $ingresoproducto->proveedor_id = $input['proveedor_id'];
+        $ingresoproducto->tipo_solicitud = $input['tipo_solicitud'];
         $ingresoproducto->descripcion = $input['descripcion'];
         $ingresoproducto->estado = $input['estado'];        
         
@@ -59,9 +63,15 @@ class IngresoProductoController extends Controller
     public function createIngresoProducto($id)
     {       
         $ingresoproducto = IngresoProducto::find($id);
-        $productos = Producto::all();
 
-        return view('admin-general.ingreso-producto.add', compact('ingresoproducto','productos'));
+        if (strcmp($ingresoproducto->tipo_solicitud, 'Producto') == 0){
+            $productos = Producto::where('tipo_producto','<>','Servicio')->get();
+            return view('admin-general.ingreso-producto.add', compact('ingresoproducto','productos'));
+        }
+        else{
+            $productos = Producto::where('tipo_producto','=','Servicio')->get();
+            return view('admin-general.ingreso-producto.addServicio', compact('ingresoproducto','productos'));
+        }        
     }      
 
     public function storeIngresoProducto(StoreProductoxIngresoProductoRequest $request)
@@ -96,7 +106,7 @@ class IngresoProductoController extends Controller
     public function edit($id)
     {
         $ingresoproducto = IngresoProducto::find($id);
-        $estados = Configuracion::where('grupo','=','7')->get();
+        $estados = Configuracion::where('grupo','=','13')->get();
         return view('admin-general.ingreso-producto.editIngresoProducto', compact('ingresoproducto','estados'));
     }
 
@@ -112,6 +122,14 @@ class IngresoProductoController extends Controller
         $input = $request->all();
         $ingresoproducto = IngresoProducto::find($id);
         
+        if ((strcmp($input['estado'], 'Producto Recibido') == 0)  &&  (strcmp($ingresoproducto->estado, 'Solicitud Pendiente') == 0)){
+            foreach ($ingresoproducto->productoxingresoProducto as $producto) {
+                $producto->producto->stock = $producto->producto->stock + $producto->cantidad;
+                $producto->producto->save();
+            }
+            $producto->save();
+        }
+
         $ingresoproducto->estado = $input['estado'];        
         $ingresoproducto->save();        
         
