@@ -64,7 +64,6 @@
 			<thead class="active">
 				<tr>
 				<th><DIV ALIGN=center>ID BUNGALOW</th>
-				<th><DIV ALIGN=center>NOMBRE BUNGALOW</th>
 				<th><DIV ALIGN=center>N° DÍAS USADOS</th>
 				<th><DIV ALIGN=center>ID SOCIO</th>
 				<th><DIV ALIGN=center>MONTO (S/.)</th>
@@ -83,7 +82,7 @@
 						<td><b>TOTAL</b></td>
 						<td><b>{{$totalDias}}</b></td>
 						<td><b>TOTAL</b></td>
-						<td>{{$totalDeuda}}</td>								
+						<td><b>{{$totalDeuda}}</b></td>								
 				    </tr>
 				</tbody>
 		</table>		
