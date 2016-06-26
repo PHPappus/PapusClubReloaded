@@ -14,4 +14,11 @@ class HistoricoIngreso extends Model
     ['fecha'
     ];
     //
+    public function sede(){
+        return $this->belongsTo('papusclub\Models\Sede', 'sede_id');
+    }
+    public function persona(){
+        return $this->belongsTo('papusclub\Models\Persona', 'persona_id');
+        
+    }
 }

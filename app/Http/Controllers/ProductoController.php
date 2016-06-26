@@ -17,7 +17,7 @@ class ProductoController extends Controller
 {
     //Muestra la lista de productos que se encuentran en BD, estas se pueden modificar, cambiar el estado, ver mas detalle o registrar un nuevo producto
     public function index() {
-		$productos = Producto::all();        
+		$productos = Producto::where('tipo_producto','<>','Servicio')->get();
         return view('admin-general.producto.index', compact('productos'));
 	}	
 

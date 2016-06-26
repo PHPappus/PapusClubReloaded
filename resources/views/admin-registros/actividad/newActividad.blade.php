@@ -161,7 +161,11 @@
 					<tbody>
 							@foreach ($tipoPersonas as $tipoPersona)		
 						    	<tr>
-									<td align="center">{{$tipoPersona->descripcion}}</td>
+									@if($tipoPersona->descripcion == 'Postulante' || $tipoPersona->descripcion == 'postulante')
+										<td align="center">Socio</td>
+									@else
+										<td align="center">{{$tipoPersona->descripcion}}</td>
+									@endif
 									<td align="center">  S/.</td>
 									<td align="center"> 
 										<div align="center">
