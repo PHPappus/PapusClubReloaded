@@ -229,19 +229,21 @@ class ReservarAmbienteController extends Controller
             if($tarifa->tipo_persona == $tipo_persona)
                 $reserva->precio = $tarifa->precio;        
         }
+
+        $promos = Promocion::where('tipo','=','Bungalow')->where('estado','=',TRUE)->get();
+        if ($promos != NULL)
+        {
+            foreach ($promos as $promo) {
+                $reserva->precio = $reserva->precio - ($reserva->precio*$promo->porcentajeDescuento)/100;
+            }
+        }
+
         //$reserva->precio = 0;
         $reserva->estadoReserva = "En proceso";
         $reserva->actividad_id = null;
         
         $reserva->save();
 
-        $promos = Promocion::where('tipo','=','Ambiente')->where('estado','=',TRUE)->get();
-        if ($promos != NULL)
-        {
-            foreach ($promos as $promo) {
-                $precioTarifa = $precioTarifa - ($precioTarifa*$promo->porcentajeDescuento)/100;
-            }
-        }
 
         $facturacion = new Facturacion();
         $facturacion->persona_id = $persona_id;
@@ -323,6 +325,15 @@ class ReservarAmbienteController extends Controller
             if($tarifa->tipo_persona == $tipo_persona)
                 $reserva->precio = $tarifa->precio;        
         }
+
+        $promos = Promocion::where('tipo','=','Ambiente')->where('estado','=',TRUE)->get();
+        if ($promos != NULL)
+        {
+            foreach ($promos as $promo) {
+                $reserva->precio = $reserva->precio - ($reserva->precio*$promo->porcentajeDescuento)/100;
+            }
+        }
+
         //$reserva->precio = 0;
         $reserva->estadoReserva = "En proceso";
         $reserva->actividad_id = null;
