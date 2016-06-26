@@ -87,10 +87,10 @@
 				 						<td>{{ $reserva->fecha_fin_reserva }}</td>
 				 						<td>{{ $reserva->precio }}</td>
 				 						<td>{{ $reserva->estadoReserva }}</td>
-
-
+				 						
+							
 				 						<td>
-								        <a class="btn btn-info"  title="Ver Servicio" href="" data-toggle="" data-target=""><i class="glyphicon glyphicon-th"></i></a> 
+								        <a class="btn btn-info"  title="Ver Servicio" href="{{url('/reservar-ambiente/'.$reserva->id.'/verServicios')}}" data-toggle="" data-target=""><i class="glyphicon glyphicon-th"></i></a> 
 								        </td>
 
 				 						<td>

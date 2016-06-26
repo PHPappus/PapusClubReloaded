@@ -1,4 +1,4 @@
-<?php
+f<?php
 
 namespace papusclub\Http\Controllers;
 
@@ -69,6 +69,7 @@ class ServicioalsocioController extends Controller
             return view('socio.servicios.serviciosinscritos',compact('servicios','sedes','tarifarioservicios','tiposServicio','sedexservicio','mensaje'));    
 
     }*/
+   
    public function delete($id){
       $sxsxp = ServicioxSedexPersona::findOrFail($id);        
       if ($sxsxp){

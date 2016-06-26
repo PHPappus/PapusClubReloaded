@@ -597,6 +597,8 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 
 	Route::get('reservar-ambiente/{id}/agregarServicios','ReservarAmbienteController@agregarServices');
 	Route::post('reservar-ambiente/{id}/agregarServicios/store','ReservarAmbienteController@storeServices');
+	Route::get('reservar-ambiente/{id}/verServicios','ReservarAmbienteController@verServices');
+
 });
 //Control de ingresos
 	Route::group(['middleware' => ['auth', 'controlingresos']], function () {

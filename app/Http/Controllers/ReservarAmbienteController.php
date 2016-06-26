@@ -24,18 +24,146 @@ use Session;
 use Carbon\Carbon;
 use DB;
 use papusclub\Models\Sedexservicio;
-
+use papusclub\Models\ServicioxSedexPersona;
+use papusclub\Models\TarifarioServicio;
+use Illuminate\Support\Facades\Input;
 class ReservarAmbienteController extends Controller
 {   
-    public function  storeServices(StoreAgregarServiciosRequest $request, $id){
+    public function verServices($id){
+
+     
+     
+     
+     $reserva = Reserva::find($id);
+     $idsede = $reserva->ambiente->sede_id;
+     $personaid = $reserva->persona->id;
+     
+     $nombreBungalo = $reserva->ambiente->nombre;
+     $nsocio  = $reserva->persona->nombre . " " . $reserva->persona->ap_paterno;
+
+
+     $sedexservicioxpersona =  ServicioxSedexPersona::where('id_persona','=',$personaid)->where('codreserva', '>', 0)->get();
+
+        $expfila = count($sedexservicioxpersona);
+        $expcolu = 8 ; 
+        $tabla = null;
+        $fil=0;
+        $col=0;
+        /*for(; $fil<$expfila; $fil++) {
+            
+        }*/
+        foreach($sedexservicioxpersona as $sxsxp){
+            
+            $serv = Servicio::find($sxsxp->id_servicio);
+            $sede = Sede::find($sxsxp->id_sede);
+            $tipo=Configuracion::where('grupo','=','4')->where('id','=',$serv->tipo_servicio)->first();
+            $nro_detalle = $sxsxp->codreserva ; 
+
+            
+
+            if ($nro_detalle != -1){
+                $detalle = "Solicitud por Bungalow";
+            }else
+                $detalle = "Solicitud Generica";
+            $precio = $sxsxp->precio ; 
+            $estsolic = $sxsxp->estado;
+
+            $tabla[$fil][0]=$serv->nombre;
+            $tabla[$fil][1]=$serv->descripcion;
+
+            $tabla[$fil][2]=$tipo->valor;
+            $tabla[$fil][3]=$precio;
+            $tabla[$fil][4]=$sede->nombre;
+            $tabla[$fil][5]=$detalle;
+            $tabla[$fil][6]=$estsolic;
+            $tabla[$fil][7]= $sxsxp->id;
+
+
+            $fil++;          
+        }
+
+
         
-        return view('admin-reserva.reservar-ambiente.store-services');
+      $mensaje = null;
+
+        
+        return view('admin-reserva.reservar-ambiente.visualizar-services',compact('tabla','expfila','expcolu','serv_ids','mensaje','nombreBungalo','nsocio'));
+   }
+    public function  storeServices(StoreAgregarServiciosRequest $rquest, $id){
+     $serv_ids = Input::get('Seleccionar');
+     
+     
+     
+     $reserva = Reserva::find($id);
+     $idsede = $reserva->ambiente->sede_id;
+     $personaid = $reserva->persona->id;
+
+     foreach ($serv_ids as $s) {
+            $tarifario = TarifarioServicio::where('idservicio','=',$s)->where('idtipopersona','=',1)->first(); // Socio
+            $sxsxp = new ServicioxSedexPersona();
+            $sxsxp->id_servicio = (int)$s;
+            $sxsxp->id_sede = $idsede;
+            $sxsxp->id_persona = $personaid ;
+            $sxsxp->codreserva = $id ; 
+            $sxsxp->estado = "Atendido";
+            $sxsxp->precio = $tarifario->precio;
+            $sxsxp->calificacion = -1;   
+            $sxsxp->save();
+    }   
+
+     $sedexservicioxpersona =  ServicioxSedexPersona::where('id_persona','=',$personaid)->where('codreserva', '>', 0)->get();
+
+        $expfila = count($sedexservicioxpersona);
+        $expcolu = 8 ; 
+        $tabla = null;
+        $fil=0;
+        $col=0;
+        /*for(; $fil<$expfila; $fil++) {
+            
+        }*/
+        foreach($sedexservicioxpersona as $sxsxp){
+            
+            $serv = Servicio::find($sxsxp->id_servicio);
+            $sede = Sede::find($sxsxp->id_sede);
+            $tipo=Configuracion::where('grupo','=','4')->where('id','=',$serv->tipo_servicio)->first();
+            $nro_detalle = $sxsxp->codreserva ; 
+
+            if ($nro_detalle != -1){
+                $detalle = "Solicitud por Bungalow";
+            }else
+                $detalle = "Solicitud Generica";
+            $precio = $sxsxp->precio ; 
+            $estsolic = $sxsxp->estado;
+
+            $tabla[$fil][0]=$serv->nombre;
+            $tabla[$fil][1]=$serv->descripcion;
+
+            $tabla[$fil][2]=$tipo->valor;
+            $tabla[$fil][3]=$precio;
+            $tabla[$fil][4]=$sede->nombre;
+            $tabla[$fil][5]=$detalle;
+            $tabla[$fil][6]=$estsolic;
+            $tabla[$fil][7]= $sxsxp->id;
+
+
+            $fil++;          
+        }
+
+
+        //return view('socio.servicios.prueba2',compact('sedexservicioxpersona'));
+      $mensaje = "Se eliminó la solicitud !";
+
+
+    return view('admin-reserva.reservar-ambiente.store-services',compact('tabla','expfila','expcolu','serv_ids','mensaje'));
     }
     public function agregarServices($id){
         $reserva = Reserva::find($id);
         $iddesede = $reserva->ambiente->sede->id;
         $sede = Sede::find($iddesede);
-        
+        $tipBungalow=Configuracion::where('grupo','=','4')->where('valor','=','A Bungalow')->first();        
+        $nombreBungalo = $reserva->ambiente->nombre;
+        $nsocio  = $reserva->persona->nombre . " " . $reserva->persona->ap_paterno;
+
         $tiposServicio=Configuracion::where('grupo','=','4')->get();        
         $serviciosdesede = Sedexservicio::where('idsede','=',$sede->id)->get();
         $serviciostodos = Servicio::all();
@@ -45,7 +173,7 @@ class ReservarAmbienteController extends Controller
         foreach ($serviciostodos as $sv) {
             $foo = false;
             foreach ($serviciosdesede as $servdsede) {
-                    if ($sv->id == $servdsede->idservicio  ){
+                    if ($sv->id == $servdsede->idservicio &&  $sv->tipo_servicio == $tipBungalow->id){
                         $foo = True;
                         break;      
                     }
@@ -54,8 +182,10 @@ class ReservarAmbienteController extends Controller
                 array_push($servicios,$sv);
             }            
         }
+
+
         
-        return view('admin-reserva.reservar-ambiente.agregar-servicios',compact('id','iddesede','servicios','tiposServicio','serviciosdesede'));
+        return view('admin-reserva.reservar-ambiente.agregar-servicios',compact('tipBungalow','id','iddesede','servicios','tiposServicio','serviciosdesede','nombreBungalo','nsocio'));
     }
     //Muestra la pantalla para realizar la reserva de un bungalow
     public function reservarBungalow()

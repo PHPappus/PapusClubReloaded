@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +38,12 @@
 		</div>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-				<strong>SERVICIOS AGREGADOS AL BUGANLOW</strong>
+				<strong>SERVICIOS AGREGADOS AL 
+				<?php
+				  echo " ". strtoupper($nombreBungalo) . " DEL SOCIO " . strtoupper($nsocio) ; 
+				?>
+				</strong>
+
 			</div>		
 		</div>
 		<div class="container">
@@ -161,7 +167,7 @@
 	        <h4 class="modal-title">Confirmar</h4>
 	      </div>
 	      <div class="modal-body">
-	        <p>¿Está seguro que desea salir de la página?</p>
+	        <p>¿Está seguro que desea sáli de la página?</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
