@@ -99,6 +99,12 @@
 							</select>
 						</div>
 				  	</div>
+				  	<div class="form-group required">
+						<label  class="control-label col-sm-5">PRECIO:</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" id="precio" name="precio" value="{{ old('precio') }}" required style="max-width: 250px" >
+						</div>
+					</div>
 					<br><br>
 					<div class="btn-inline">
 						<div class="btn-group col-sm-7"></div>

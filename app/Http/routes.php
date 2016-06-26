@@ -275,6 +275,12 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('ingresoReserva/reserva','IngresoSocioController@reservaSocio');
 	Route::post('ingresoReserva/update','IngresoSocioController@cambiarEstado');
 
+	//DECLARAR EN MANTENIMIENTO BUNGALOWS
+		//PREVENTIVO
+		Route::get('mantBungalowPrev/index','MantenimientoController@indexPrev');
+		Route::post('mantBungalowPrev/busqueda','MantenimientoController@bungalowsDisponibles');
+		Route::get('mantBungalowCorre','MantenimientoController@indexCorre');
+
 	//MANTENIMIENTO DE MULTAS
 	Route::get('multa/','MultaController@index');
 	Route::get('multa/all','MultaController@indexAll');

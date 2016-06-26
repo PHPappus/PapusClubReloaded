@@ -31,46 +31,51 @@
 				<br/><br/>
 
 				<div class="form-group">
-		    		<label for="nombreInput" class="col-sm-4 control-label">NOMBRE</label>
+		    		<label for="nombreInput" class="col-sm-4 control-label">NOMBRE:</label>
 		    		<div class="col-sm-5">
 		      			<input type="text" class="form-control" id="nombreInput" name="nombre" value="{{$sorteo->nombre_sorteo}}" readonly>
 		    		</div>
 		  		</div>
 
 			  	<div class="form-group">
-			    	<label for="telefonoInput" class="col-sm-4 control-label">DESCRIPCIÓN</label>
+			    	<label for="telefonoInput" class="col-sm-4 control-label">DESCRIPCIÓN:</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="telefonoInput" name="telefono" value="{{$sorteo->descripcion}}" readonly>
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group">
-			    	<label for="contactoInput" class="col-sm-4 control-label">FECHA CIERRE DE SORTEO</label>
+			    	<label for="contactoInput" class="col-sm-4 control-label">FECHA CIERRE DE SORTEO:</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="contactoInput" name="nombre_contacto" value="{{$sorteo->fecha_fin_sorteo}}" readonly>
 			    	</div>
 			  	</div>	
 
 			  	<div class="form-group">
-			    	<label for="contactoInput" class="col-sm-4 control-label">FECHA INICIO DE RESERVA</label>
+			    	<label for="contactoInput" class="col-sm-4 control-label">FECHA INICIO DE RESERVA:</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="contactoInput" name="nombre_contacto" value="{{$sorteo->fecha_abierto}}" readonly>
 			    	</div>
 			  	</div>	  	
 
 			  	<div class="form-group">
-			    	<label for="capacidadInput" class="col-sm-4 control-label">FECHA FIN DE RESERVA</label>
+			    	<label for="capacidadInput" class="col-sm-4 control-label">FECHA FIN DE RESERVA:</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="capacidadInput" name="capacidad_maxima" value="{{$sorteo->fecha_cerrado}}" readonly>
 			    	</div>
 			  	</div>
 			  	<div class="form-group">
-			    	<label for="capacidadInput" class="col-sm-4 control-label">SEDE</label>
+			    	<label for="capacidadInput" class="col-sm-4 control-label">SEDE:</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="capacidadInput" name="capacidad_maxima" value="{{$sede->nombre}}" readonly>
 			    	</div>
 			  	</div>
-			  	
+			  	<div class="form-group">
+			    	<label for="capacidadInput" class="col-sm-4 control-label">COSTO DE INSCRIPCION:</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" class="form-control" id="costo_inscripcion" name="costo_inscripcion" value="{{$sorteo->costo_inscripcion}}" readonly>
+			    	</div>
+			  	</div>
 
 
 				<br/><br/>
