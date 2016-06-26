@@ -23,9 +23,7 @@ class EditPromocionRequest extends Request
     public function rules()
     {
         return [
-            'estado'                =>  'required|max:12|string',
             'descripcion'           =>  'required|max:100|string',
-            'montoDescuento'        =>  'double|min:0',
             'porcentajeDescuento'   =>  'double|min:0'
            
             

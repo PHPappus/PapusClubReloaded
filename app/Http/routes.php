@@ -260,7 +260,13 @@ Route::group(['middleware' => ['auth', 'adminpagos']], function () {
 	Route::get('pagos/registrar-pago/{id}', 'PagosController@registrarPago');
     Route::post('pagos/registrar-pago/update/{id}', 'PagosController@storePago');
     Route::get('pagos/{id}/show', 'PagosController@showSocio'); // Detalle del pago
-    /*Route::post('pagos/{id}/createPago', 'PagosController@createPago');*/
+
+    //PAGOS POR INGRESO AL CLUB
+    Route::get('ingreso/busqueda','PagosController@buscarpersona');
+    Route::get('/resultado-busqueda-persona','PagosController@resultadopersona');
+    //Route::get('/resultado-busqueda-persona/','PagosController@resultadomostrar');
+    Route::post('/registrar-pago-ingreso','PagosController@registrarPagoIngreso');
+
 });
 
 
@@ -274,6 +280,12 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::get('ingresoReserva/index','IngresoSocioController@index');
 	Route::post('ingresoReserva/reserva','IngresoSocioController@reservaSocio');
 	Route::post('ingresoReserva/update','IngresoSocioController@cambiarEstado');
+
+	//DECLARAR EN MANTENIMIENTO BUNGALOWS
+		//PREVENTIVO
+		Route::get('mantBungalowPrev/index','MantenimientoController@indexPrev');
+		Route::post('mantBungalowPrev/busqueda','MantenimientoController@bungalowsDisponibles');
+		Route::get('mantBungalowCorre','MantenimientoController@indexCorre');
 
 	//MANTENIMIENTO DE MULTAS
 	Route::get('multa/','MultaController@index');

@@ -18,6 +18,7 @@ use papusclub\Http\Requests\StoreSorteoRequest;
 use papusclub\Http\Requests\StoreAmbientexSorteoRequest;
 use papusclub\Http\Requests\StoreSocioxSorteoRequest;
 use papusclub\Http\Requests\DeleteSorteoSocioRequest;
+use papusclub\Models\Facturacion;
 
 
 use Carbon\Carbon;
@@ -91,6 +92,12 @@ class SorteoController extends Controller
             foreach ($bungalows as $bungalow) {
                 $sorteoxsocio=Sorteoxsocio::where('id','=',$bungalow)->where('id_socio','=',$user->id);
                 $sorteoxsocio->forceDelete();
+
+                $pagos=Facturacion::where('persona_id','=',$user->id)->where('sorteo_id','=',$bungalow)->get();
+                foreach($pagos as $pago){
+                    $pago->estado='Anulado';
+                    $pago->save();
+                }
             }
         //return redirect()->action('SorteoController@indexInscripcion');
         return redirect('sorteo/inscripcion/mis_sorteos')->with('stored', 'Se eliminaron los sorteos seleccionados.');
@@ -98,9 +105,11 @@ class SorteoController extends Controller
 
     public function indexInscripcion()
     {
-        $sorteos=Sorteo::all();
+        $sorteos=Sorteo::where('fecha_fin_sorteo','>=',new \DateTime('today'))->get();
         $carbon=new Carbon();
         $user = Auth::user();
+
+        $now = Carbon::now(-5);
 
         $sorteos_inscrito=Sorteoxsocio::where('id_socio','=',$user->id)->get();
 
@@ -112,6 +121,11 @@ class SorteoController extends Controller
                         $sorteos->pull($sorteos->search($sorteo));
                         break;
                     }
+                    /*if($sorteo->fecha_fin_sorteo < $now)
+                    {
+                        $sorteos->pull($sorteos->search($sorteo));
+                        break;
+                    }*/
                 }
             }
         }
@@ -131,10 +145,21 @@ class SorteoController extends Controller
         
         if($bungalows!=NULL)
             foreach ($bungalows as $bungalow) {
+                $sorteo=Sorteo::find($bungalow);
+
                 $sorteoxsocio=new Sorteoxsocio();
                 $sorteoxsocio->id=$bungalow;
                 $sorteoxsocio->id_socio=$user->id;
                 $sorteoxsocio->save();
+
+                $pago=new Facturacion();
+                $pago->persona_id=$user->id;
+                $pago->sorteo_id=$bungalow;
+                $pago->total=$sorteo->costo_inscripcion;
+                $pago->tipo_pago='Efectivo';
+                $pago->tipo_comprobante='Boleta';
+                $pago->estado='Pagado';
+                $pago->save();
             }
         //return redirect()->action('SorteoController@indexInscripcion');
         return redirect('sorteo/inscripcion')->with('stored', 'Se realizó el registro de los sorteos seleccionados.');
@@ -174,7 +199,7 @@ class SorteoController extends Controller
             $sorteo->fecha_abierto=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_abierto)->format('d/m/Y');
             $sorteo->fecha_cerrado=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_cerrado)->format('d/m/Y');
         }
-        return view('admin-general.sorteo.index',['sorteos'=>$sorteos]);        
+        return view('admin-general.sorteo.index',['sorteos'=>$sorteos]);
     }
 
     public function create()
@@ -273,6 +298,7 @@ class SorteoController extends Controller
         $sorteo->nombre_sorteo=$input['nombre_sorteo'];
         $sorteo->descripcion=$input['descripcion'];
         $sorteo->id_sede=$input['sedeSelec'];
+        $sorteo->costo_inscripcion=$input['precio'];
 
         $date = str_replace('/', '-', $input['fecha_abierto']);
         $temp = $carbon->createFromFormat('d-m-Y', $date)->toDateString();

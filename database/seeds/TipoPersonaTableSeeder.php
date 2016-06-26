@@ -15,5 +15,6 @@ class TipoPersonaTableSeeder extends Seeder
         TipoPersona::insert(['descripcion' => 'trabajador']);
         TipoPersona::insert(['descripcion' => 'postulante']);
         TipoPersona::insert(['descripcion' => 'tercero']);
+        TipoPersona::insert(['descripcion' => 'vip']);
     }
 }

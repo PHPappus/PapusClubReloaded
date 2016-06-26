@@ -13,6 +13,7 @@ use papusclub\Models\Reserva;
 use papusclub\Models\Servicio;
 use papusclub\Models\Configuracion;
 use papusclub\Models\Facturacion;
+use papusclub\Models\Promocion;
 use papusclub\Http\Requests\StoreReservaBungalowSocio;
 use papusclub\Http\Requests\StoreReservaBungalowAdminR;
 use papusclub\Http\Requests\StoreReservaOtroAmbienteSocio;
@@ -398,11 +399,21 @@ class ReservarAmbienteController extends Controller
             if($tarifa->tipo_persona == $tipo_persona)
                 $reserva->precio = $tarifa->precio*$diff;        
         }
+
+        $promos = Promocion::where('tipo','=','Bungalow')->where('estado','=',TRUE)->get();
+        if ($promos != NULL)
+        {
+            foreach ($promos as $promo) {
+                $reserva->precio = $reserva->precio - ($reserva->precio*$promo->porcentajeDescuento)/100;
+            }
+        }
+
         //$reserva->precio = 0;
         $reserva->estadoReserva = "En proceso";
         $reserva->actividad_id = null;
         
         $reserva->save();
+
 
         $facturacion = new Facturacion();
         $facturacion->persona_id = $persona_id;
@@ -485,6 +496,15 @@ class ReservarAmbienteController extends Controller
             if($tarifa->tipo_persona == $tipo_persona)
                 $reserva->precio = $tarifa->precio*$diff;        
         }
+
+        $promos = Promocion::where('tipo','=','Ambiente')->where('estado','=',TRUE)->get();
+        if ($promos != NULL)
+        {
+            foreach ($promos as $promo) {
+                $reserva->precio = $reserva->precio - ($reserva->precio*$promo->porcentajeDescuento)/100;
+            }
+        }
+
         //$reserva->precio = 0;
         $reserva->estadoReserva = "En proceso";
         $reserva->actividad_id = null;

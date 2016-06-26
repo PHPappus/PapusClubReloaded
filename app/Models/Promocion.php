@@ -11,7 +11,6 @@ class Promocion extends Model
     protected $fillable = 
     ['estado',
     'descripcion' ,
-    'montoDescuento' ,
     'porcentajeDescuento'
     //'fecha_registro'
     ];

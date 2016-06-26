@@ -33,8 +33,18 @@ class InscriptionActividadController extends Controller
         $usuario = Auth::user();
         $persona=$usuario->persona;
         $tipo_persona = $persona->tipopersona->id;
-                        
-        return view('socio.actividades.inscripcion', compact('sedes','actividades','actividades_persona','tipo_persona'));
+
+        /*Se le pasa los familiares que tiene la persona*/
+        $postulante=Postulante::find($persona->id); 
+        $familiares=$postulante->familiarxpostulante;   
+      
+        $fecha_inicio   = Carbon::now('America/Lima')->format('d-m-Y');   
+        $fecha_inicio=str_replace('-', '/', $fecha_inicio);
+ 
+        $fecha_fin = Carbon::now('America/Lima')->addMonths(1)->format('d-m-Y');
+        $fecha_fin=str_replace('-', '/', $fecha_fin);
+
+        return view('socio.actividades.inscripcion', compact('sedes','actividades','actividades_persona','tipo_persona','familiares','fecha_inicio','fecha_fin'));
     }
 
     //Se muestra la actividad a reservar y espera la confirmacion 
@@ -72,8 +82,8 @@ class InscriptionActividadController extends Controller
         $fecha_inicio   = new Carbon('America/Lima');
         $fecha_fin   = new Carbon('America/Lima'); 
         
-        $fecha_inicio=$fecha_inicio->toDateString();
-        $fecha_fin = Carbon::now('America/Lima')->addYears(1)->toDateString();
+        $fecha_inicio=Carbon::now('America/Lima')->addMonths(1)->toDateString();
+        $fecha_fin = Carbon::now('America/Lima')->addMonths(1)->toDateString();
 
         
         if(!empty($input['fecha_inicio'])){
@@ -118,7 +128,14 @@ class InscriptionActividadController extends Controller
         $usuario = Auth::user();
         $persona=$usuario->persona;
         $tipo_persona = $persona->tipopersona->id;
-        return view('socio.actividades.inscripcion', compact('sedes','actividades','actividades_persona','tipo_persona'));
+
+        /*Se le pasa los familiares que tiene la persona*/
+        $postulante=Postulante::find($persona->id); 
+        $familiares=$postulante->familiarxpostulante;        
+
+        $fecha_inicio=$input['fecha_inicio'];
+        $fecha_fin=$input['fecha_fin'];
+        return view('socio.actividades.inscripcion', compact('sedes','actividades','actividades_persona','tipo_persona','familiares','fecha_inicio','fecha_fin'));
 
     }
 
