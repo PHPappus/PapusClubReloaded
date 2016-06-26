@@ -195,7 +195,9 @@ class ReservarAmbienteController extends Controller
         $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('estado', '=', 'Activo')->get();  
         $fechaIniValue=(new Carbon('America/Lima'));  
         $fechaFinValue=(new Carbon('America/Lima'))->addDays(30);
-        return view('socio.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue'));
+
+        $bloqueado = true;
+        return view('socio.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue', 'bloqueado'));
     }
     public function reservarBungalowFiltrados(Request $request){
 
@@ -247,7 +249,8 @@ class ReservarAmbienteController extends Controller
                 
             }
         }
-        return view('socio.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue'));
+        $bloqueado = false;
+        return view('socio.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue', 'bloqueado'));
     }
     //Muestra la pantalla para realizar la reserva de un ambiente que no sea bungalow
     public function reservarOtrosAmbientes()
@@ -258,7 +261,8 @@ class ReservarAmbienteController extends Controller
         $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->where('estado', '=', 'Activo')->get();
         $fechaIniValue=(new Carbon('America/Lima'));  
         $fechaFinValue=(new Carbon('America/Lima'))->addDays(30);
-        return view('socio.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue'));
+        $bloqueado = true;
+        return view('socio.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue', 'bloqueado'));
     }
 
     public function reservarOtrosAmbientesFiltrados(Request $request)
@@ -323,7 +327,8 @@ class ReservarAmbienteController extends Controller
                 
             }
         }
-        return view('socio.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue'));
+        $bloqueado = false;
+        return view('socio.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue', 'bloqueado'));
         
     }
 

@@ -639,6 +639,7 @@ return array(
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'TestTallerTableSeeder' => $baseDir . '/database/seeds/TestTallerTableSeeder.php',
     'TestUserTableSeeder' => $baseDir . '/database/seeds/TestUserTableSeeder.php',
+    'Testfamiliarxpostulante' => $baseDir . '/database/seeds/Testfamiliarxpostulante.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
     'TipoFamiliaTableSeeder' => $baseDir . '/database/seeds/TipoFamiliaTableSeeder.php',
     'TipoMembresiaTableSeeder' => $baseDir . '/database/seeds/TipoMembresiaTableSeeder.php',
