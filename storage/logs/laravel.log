@@ -2974,3 +2974,6 @@ Stack trace:
 #72 C:\xampp\htdocs\PapusClubReloaded\public\index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #73 C:\xampp\htdocs\PapusClubReloaded\server.php(21): require_once('C:\\xampp\\htdocs...')
 #74 {main}  
+[2016-06-26 17:25:10] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Namespace declaration statement has to be the very first statement in the script' in C:\xampp\htdocs\PapusClubReloaded\app\Http\Controllers\ServicioalsocioController.php:3
+Stack trace:
+#0 {main}  
