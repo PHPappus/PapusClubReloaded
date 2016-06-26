@@ -183,7 +183,10 @@ class InscriptionTallerController extends Controller
             return view('socio.talleres.index',compact('sedes','talleres','talleresxpersona'));
         }
         else{
-            return view('socio.talleres.confirmacion-inscripcion', compact('taller', 'tipo_comprobantes'));
+            $usuario = Auth::user();
+            $persona=$usuario->persona;
+            $tipo_persona = $persona->tipopersona->id;
+            return view('socio.talleres.confirmacion-inscripcion', compact('taller', 'tipo_comprobantes','tipo_persona'));
         }
 
         

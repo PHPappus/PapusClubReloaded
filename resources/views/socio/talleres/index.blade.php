@@ -124,7 +124,7 @@
 						    		@elseif($taller->vacantes <= 0)
 						    			No hay vancantes
 						    		@else
-						    			Disponible
+						    			No inscrito
 						    		@endif
 						    	</td>
 								<td> 
