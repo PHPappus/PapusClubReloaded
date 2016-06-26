@@ -41,7 +41,7 @@
 	<br/>
 	<div class="container">
 		<div class="col-sm-12 text-left lead">
-			<strong>REPORTE: CANTIDAD DE VECES QUE SE RESERVA UN BUNGALOW POR MES</strong>
+			<strong>REPORTE: CANTIDAD DE RESERVAS MENSUALES POR BUNGALOW </strong>
 		</div>		
 	</div>
 	<br/>
@@ -64,48 +64,48 @@
 			      		<input type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" value="Poner el nombre del gerente que se a logueado" readonly>
 			    	</div>
 			</div> -->
-			<div class="form-group">
+			<div class="form-group required">
 			   	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>	
 				<div class="col-sm-5">
-				  	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >
+				  	<select class="form-control" id="sedeSelec" name="sedeSelec" style="max-width: 150px "  >
 				        @foreach ($sedes as $sede)      
 				      	<option value="{{$sede->id}}">{{$sede->nombre}}</option>
 				        @endforeach
 					</select>
 				</div>
 			</div>
-			<div class="form-group">
-			   	<label for="sedeInput" class="col-sm-4 control-label">Mes</label>	
+			<div class="form-group required">
+			   	<label for="mesSelec" class="col-sm-4 control-label">Mes</label>	
 				<div class="col-sm-5">
-				  	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >				            
-				      	<option value="1">Enero</option>
-				      	<option value="2">Febrero</option>
-				      	<option value="3">Marzo</option>
-				      	<option value="4">Abril</option>
-				      	<option value="5">Mayo</option>
-				      	<option value="6">Junio</option>
-				      	<option value="7">Julio</option>
-				      	<option value="8">Agosto</option>
-				      	<option value="9">Septiembre</option>
-				      	<option value="10">Octubre</option>
-				      	<option value="11">Noviembre</option>
-				      	<option value="12">Diciembre</option>				        
+				  	<select class="form-control" id="mesSelec" name="mesSelec" style="max-width: 150px "  >				            
+				      	<option value="Enero">Enero</option>
+				      	<option value="Febrero">Febrero</option>
+				      	<option value="Marzo">Marzo</option>
+				      	<option value="Abril">Abril</option>
+				      	<option value="Mayo">Mayo</option>
+				      	<option value="Junio">Junio</option>
+				      	<option value="Julio">Julio</option>
+				      	<option value="Agosto">Agosto</option>
+				      	<option value="Septiembre">Septiembre</option>
+				      	<option value="Octubre">Octubre</option>
+				      	<option value="Noviembre">Noviembre</option>
+				      	<option value="Diciembre">Diciembre</option>				        
 					</select>
 				</div>
 			</div>
-			<div class="form-group">
-			   	<label for="sedeInput" class="col-sm-4 control-label">Año</label>	
+			<div class="form-group required">
+			   	<label for="yearSelec" class="col-sm-4 control-label">Año</label>	
 				<div class="col-sm-5">
-				  	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >				            
-				      	<option value="1">2016</option>
-				      	<option value="2">2015</option>
-				      	<option value="3">2014</option>
-				      	<option value="4">2013</option>
-				      	<option value="5">2012</option>
-				      	<option value="6">2011</option>
-				      	<option value="7">2010</option>
-				      	<option value="8">2009</option>
-				      	<option value="9">2008</option>			        
+				  	<select class="form-control" id="yearSelec" name="yearSelec" style="max-width: 150px "  >				            
+				      	<option value="2016">2016</option>
+				      	<option value="2015">2015</option>
+				      	<option value="2014">2014</option>
+				      	<option value="2013">2013</option>
+				      	<option value="2012">2012</option>
+				      	<option value="2011">2011</option>
+				      	<option value="2010">2010</option>
+				      	<option value="2009">2009</option>
+				      	<option value="2008">2008</option>			        
 					</select>
 				</div>
 			</div>
@@ -151,20 +151,6 @@
 	{!!Html::script('js/MisScripts.js')!!}
 
 	{!!Html::script('js/bootstrap-datepicker.js')!!}
-
-
-	<!-- Para Data TAble INICIO -->
-	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
-	<script>
-		$(document).ready(function() {
-		   $('#example').DataTable( {
-		       "language": {
-		           "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-		       }
-		  	});
-  		});
-	</script>
-	<!-- Para Data TAble FIN -->
 	
 	<!-- Para MAndar Reporte a nueva ventana    INICIO -->
 	<script type="text/javascript">
@@ -174,45 +160,7 @@
 	</script>
 	<!-- Para MAndar Reporte a nueva ventana   FIN-->
 
-	<!-- Para Fechas INICIO -->
-	<script>
-
-		var nowTemp = new Date();
-		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
- 	
-		var checkin = $('#dpd1').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
-  			}
-		}).on('changeDate', function(ev) {
-  			if (ev.date.valueOf() > checkout.date.valueOf()) {
-    			var newDate = new Date(ev.date)
-    			newDate.setDate(newDate.getDate() + 1);
-    			checkout.setValue(newDate);
-  			}
- 			checkin.hide();
-  			$('#dpd2')[0].focus();
-		}).data('datepicker');
-		var checkout = $('#dpd2').datepicker({
-  			onRender: function(date) {
-    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-  			}
-		}).on('changeDate', function(ev) {
-  			checkout.hide();
-		}).data('datepicker');		
-		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
-
 	
-	</script>
-	<script>
-		$(function(){
-			$('.datepicker').datepicker({
-				format: 'dd/mm/yyyy'
-			});
-		});
-	</script>
-
-	<!-- Para Fecha FIN -->
 
 
 </body>
