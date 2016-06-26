@@ -13,6 +13,7 @@ class CreatePersonaxtallerTable extends Migration
     public function up()
     {
         Schema::create('personaxtaller', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('persona_id')->unsigned()->nullable();
             $table->integer('taller_id')->unsigned()->nullable();
             $table->double('precio');

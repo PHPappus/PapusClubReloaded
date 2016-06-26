@@ -62,7 +62,7 @@
 			    	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>	
 			    	<div class="col-sm-5">
 				    	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >
-							                <option value="-1" default>Seleccione</option>							         
+							                <option value="" default>Seleccione</option>							         
 							                 @foreach ($sedes as $sede)      
 							                	<option value="{{$sede->id}}">{{$sede->nombre}}</option>
 							                @endforeach
@@ -93,14 +93,14 @@
 			  	<div class="form-group required">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad Máxima</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="capacidadInput" name="capacidad_actual" placeholder="Capacidad Maxima" value="{{old('capacidad_actual')}}" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="capacidadInput" name="capacidad_actual" placeholder="Capacidad Máxima" value="{{old('capacidad_actual')}}" >
 			    	</div>
 			  	</div>	  	
 			  	
 			  	<div class="form-group required">
 			    	<label for="ubicacionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			      		<textarea type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="descripcionInput" name="descripcion" placeholder="descripcion" value="{{old('descripcion')}}" style="resize: none" maxlength="100"></textarea>
+			      		<textarea type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" value="{{old('descripcion')}}" style="resize: none" maxlength="100"></textarea>
 			    	</div>
 			  	</div>
 			  
@@ -124,7 +124,11 @@
 					<tbody>
 							@foreach ($tipoPersonas as $tipoPersona)		
 						    	<tr>
-									<td align="center">{{$tipoPersona->descripcion}}</td>
+						    		@if($tipoPersona->descripcion == 'Postulante' || $tipoPersona->descripcion == 'postulante')
+										<td align="center">Socio</td>
+									@else
+										<td align="center">{{$tipoPersona->descripcion}}</td>
+									@endif
 									<td align="center">  S/.</td>
 									<td align="center"> 
 										<div align="center">

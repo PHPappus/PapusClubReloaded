@@ -67,7 +67,7 @@
 			<div class="form-group">
 			   	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>	
 				<div class="col-sm-5">
-				  	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >
+				  	<select class="form-control" id="sedeSelec" name="sedeSelec" style="max-width: 150px "  >
 				        @foreach ($sedes as $sede)      
 				      	<option value="{{$sede->id}}">{{$sede->nombre}}</option>
 				        @endforeach
@@ -80,9 +80,9 @@
 			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha (dd/mm/aaaa) </label>
 			    <div class="col-sm-5">
 				  	<div class="input-group">
-			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" style="max-width: 250px">
+			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="fecha_inicio" name="fecha_inicio" placeholder="Fecha Inicio" style="max-width: 250px">
 			   		<span class="input-group-addon">-</span>
-			   		<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_fin" placeholder="Fecha Fin" style="max-width: 250px">
+			   		<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="fecha_fin" name="fecha_fin" placeholder="Fecha Fin" style="max-width: 250px">
 			   	 	</div>
 		    	</div>	
 			</div>
@@ -163,7 +163,7 @@
 		var nowTemp = new Date();
 		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
  	
-		var checkin = $('#dpd1').datepicker({
+		var checkin = $('#fecha_inicio').datepicker({
   			onRender: function(date) {
     			return date.valueOf() < now.valueOf() ? 'disabled' : '';
   			}
@@ -174,23 +174,25 @@
     			checkout.setValue(newDate);
   			}
  			checkin.hide();
-  			$('#dpd2')[0].focus();
+  			$('#fecha_fin')[0].focus();
 		}).data('datepicker');
-		var checkout = $('#dpd2').datepicker({
+		var checkout = $('#fecha_fin').datepicker({
   			onRender: function(date) {
     			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
   			}
 		}).on('changeDate', function(ev) {
   			checkout.hide();
 		}).data('datepicker');		
-		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
+		var date = $('#fecha_inicio').datepicker({ dateFormat: 'dd-mm-yy' }).val();
 
 	
 	</script>
 	<script>
 		$(function(){
 			$('.datepicker').datepicker({
-				format: 'dd/mm/yyyy'
+				format: 'dd/mm/yyyy',
+				language: "es",
+		        autoclose: true,
 			});
 		});
 	</script>
