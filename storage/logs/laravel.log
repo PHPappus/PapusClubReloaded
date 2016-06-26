@@ -1,0 +1,9 @@
+[2016-06-26 06:37:34] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Orangehill\Iseed\IseedServiceProvider' not found' in C:\xampp\htdocs\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Foundation\ProviderRepository.php:146
+Stack trace:
+#0 {main}  
+[2016-06-26 06:37:34] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Orangehill\Iseed\IseedServiceProvider' not found' in C:\xampp\htdocs\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Foundation\ProviderRepository.php:146
+Stack trace:
+#0 {main}  
+[2016-06-26 06:39:06] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Orangehill\Iseed\IseedServiceProvider' not found' in C:\xampp\htdocs\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Foundation\ProviderRepository.php:146
+Stack trace:
+#0 {main}  
