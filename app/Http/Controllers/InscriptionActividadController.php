@@ -16,6 +16,7 @@ use papusclub\Models\Sede;
 use papusclub\Models\Persona;
 use papusclub\Models\Configuracion;
 use papusclub\Models\Facturacion;
+use papusclub\Models\Postulante;
 use Carbon\Carbon;
 use DB;
 
@@ -51,8 +52,9 @@ class InscriptionActividadController extends Controller
 
         $usuario=Auth::user();
         $persona=$usuario->persona;
-        $postulante=Persona::find($persona->id);
+        $postulante=Postulante::find($persona->id); 
         $familiares=$postulante->familiarxpostulante;
+
         /*dd($persona->id);*/
        /* $personas = Persona::where('id_usuario','=',null)->where('id_tipo_persona','=',1)//Trabajador
                          ->orwhere('id_usuario','=',null)->where('id_tipo_persona','=',2)//Postulante
