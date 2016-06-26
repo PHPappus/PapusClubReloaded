@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>AGREGAR SERVICIOS ADICIONALES </title>
+	<title>AGREGAR SORTEO</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,61 +24,43 @@
 		
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>AGREGAR SERVICIOS ADICIONALES A LA SEDE
-					
-					<?php 
-					  echo strtoupper($sede->nombre)
-					 ?>
-					 
-					 </strong>
+					<strong>AGREGAR BUNGALOWS</strong>
 			</div>		
 			<div></div>
 		</div>
 		
-			<form method="POST" action="agregarservicios/store" class="form-horizontal form-border">
+			<form method="POST" action="/sorteo/new/sorteo/bungalows/{{ $sorteo->id }}/store" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
-							
+
+					@if ($errors->any())
+		  				<ul class="alert alert-danger fade in">
+		  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  					@foreach ($errors->all() as $error)
+		  						<li>{{$error}}</li>
+		  					@endforeach
+		  				</ul>
+		  			@endif
 				<div class="table-responsive">
 					<div class="container">
-						@if ($errors->any())
-			  				<ul class="alert alert-danger fade in">
-			  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-			  					@foreach ($errors->all() as $error)
-			  						<li>{{$error}}</li>
-			  					@endforeach
-			  				</ul>
-			  			@endif
-						@if($servicios)
-						<h4> <strong> SERVICIOS DISPONIBLES</strong></h4>		
-						@endif	
-						<table class="table table-bordered table-hover text-center display" id=	"example">
-
-
+						<table class="table table-bordered table-hover text-center display" id="example">
 							<thead class="active" data-sortable="true">								
 								<th><div align=center>NOMBRE</div></th>	
-								<th><div align=center>DESCRIPCIÓN</div></th>	
-								<th><div align=center>TIPO DE SERVICIO</div></th>	
+								<th><div align=center>CAPACIDAD</div></th>	
+								<th><div align=center>UBICACION</div></th>	
 								<th><div align=center>SELECCIONAR</div></th>
 							</thead>	
 							<tbody>													
-								
-								@foreach($servicios as $servicio)	
-										@if ($servicio->estado == 1)
+								@foreach($ambientes as $ambiente)	
+									@if($ambiente->nombre!='nada')
 										<tr>																				
-											<td>{{$servicio->nombre}}</td>
-											<td>{{$servicio->descripcion}}</td>
-											<td>
-	 											@foreach($tiposServicio as $tserv)	
-	 												@if ($tserv->id == $servicio->tipo_servicio)
-	 													{{$tserv->valor	}}
-	 												@endif
-	 											@endforeach
-	 										</td>	
-											<td>{{ Form::checkbox('Seleccionar[]', $servicio->id, false) }}</td>	
+											<td>{{$ambiente->nombre}}</td>
+											<td>{{$ambiente->capacidad_actual}}</td>
+											<td>{{$ambiente->ubicacion}}</td>
+											<td>{{ Form::checkbox('ch[]', $ambiente->id, false) }}</td>
 														
 										</tr>
-										@endif
+									@endif								
 								 @endforeach
 								
 							</tbody>			
@@ -93,7 +75,10 @@
 						<input class="btn btn-primary" type="submit" value="Continuar">
 					</div>
 					<div class="btn-group">
-						 <a  class="btn btn-info"  title="Cancelar" data-href="" data-toggle="modal" data-target="#modalEliminar">Cancelar</a>   
+						 <a class="btn btn-info"  title="Atras" href="{{url('/sorteo/'.$sorteo->id.'/atras')}}">Atras</a>   
+					</div>
+					<div class="btn-group">
+						 <a class="btn btn-info"  title="Cancelar" data-href="{{url('/sorteo/'.$sorteo->id.'/nuke')}}" data-toggle="modal" data-target="#modalEliminar">Cancelar</a>   
 					</div>
 				</div>
 				<br><br>
@@ -130,11 +115,11 @@
 	        <h4 class="modal-title">Confirmar</h4>
 	      </div>
 	      <div class="modal-body">
-	        <p>¿Está seguro que desea salir de la página?</p>
+	        <p>¿Está seguro que desea cancelar la creación del sorteo?</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-danger" href="{{url('/sedes/'.$sede->id.'/verservicios')}}" >Confirmar</a>
+            <a class="btn btn-danger btn-ok">Confirmar</a>
 	      </div>
 	    </div>
 

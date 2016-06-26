@@ -53,6 +53,15 @@
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active">
 						<tr>
+
+							
+							
+							
+							
+							
+							
+							
+
 							<th><DIV ALIGN=center>CARNET</th>
 							<th><DIV ALIGN=center>SOCIO</th>
 							<th><DIV ALIGN=center>AMBIENTE</th>
@@ -60,6 +69,9 @@
 							<th><DIV ALIGN=center>FECHA FIN</th>
 							<th><DIV ALIGN=center>PRECIO (S/.)</th>
 							<th><DIV ALIGN=center>ESTADO RESERVA</th>
+							<th><DIV ALIGN=center>VER SERVICIOS</th>
+							<th><DIV ALIGN=center>AGREGAR SERVICIOS</th>
+
 							<th><DIV ALIGN=center>CANCELAR</th>
 							
 						</tr>
@@ -75,6 +87,16 @@
 				 						<td>{{ $reserva->fecha_fin_reserva }}</td>
 				 						<td>{{ $reserva->precio }}</td>
 				 						<td>{{ $reserva->estadoReserva }}</td>
+				 						
+							
+				 						<td>
+								        <a class="btn btn-info"  title="Ver Servicio" href="{{url('/reservar-ambiente/'.$reserva->id.'/verServicios')}}" data-toggle="" data-target=""><i class="glyphicon glyphicon-th"></i></a> 
+								        </td>
+
+				 						<td>
+								        <a class="btn btn-info"  title="Agregar Servicio" href="{{url('/reservar-ambiente/'.$reserva->id.'/agregarServicios')}}" data-toggle="" data-target=""><i class="glyphicon glyphicon-plus"></i></a> 
+								        </td>
+
 								        <td>
 								        <a class="btn btn-info"  title="Cancelar" data-href="{{url('/reservar-ambiente/'.$reserva->id.'/deleteBungalowAdminR')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a> 
 								        </td>

@@ -59,6 +59,8 @@ class PagosController extends Controller
         $facturacion->tipo_pago = $input['tipo_pago'];
         $facturacion->estado = $estado_facturacion->valor;
         $facturacion->update();
+        $facturacion->reserva->estadoReserva = "Activo";
+        $facturacion->reserva->update();
 
         return redirect('pagos/pago-seleccionar-socio')->with('stored', 'Se registró la facturacion correctamente.');
     }
@@ -91,7 +93,17 @@ class PagosController extends Controller
         $usuario = User::findOrFail($user_id);
         $persona = $usuario->persona;  
         $facturaciones = $persona->facturacion;
+        foreach ($facturaciones as $facturacion) {
+            if($facturacion->total == 0) {
+                $facturacion->tipo_pago = "Gratuito";
+                $facturacion->tipo_comprobante = "Gratuito";
+                $facturacion->estado = "Pagado";
+                $facturacion->update();
+            }
+
+        }
         return view('socio.pagos.facturacion-socio',compact('facturaciones'));
+            
     }
      public function showAlSocio($id)
     {

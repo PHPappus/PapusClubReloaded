@@ -17,13 +17,13 @@ class PersonaTableSeeder extends Seeder
     {
         Persona::create([
         	'nacionalidad'=>'peruano',
-        	'doc_identidad'=>'48755415',
-        	'nombre'=>'Max',
-        	'ap_paterno'=>'Vilcapoma',
-        	'ap_materno'=>'Gonzales',
+        	'doc_identidad'=>'47803790',
+        	'nombre'=>'César',
+        	'ap_paterno'=>'Olivera',
+        	'ap_materno'=>'Cokan',
         	'sexo'=>'hombre',
-        	'correo'=>'mvilcapoma@gmail.com',
-        	'fecha_nacimiento'=>'1991-07-15',
+        	'correo'=>'cesar.olivera.cokan@gmail.com',
+        	'fecha_nacimiento'=>'1993-03-07',
         	'id_tipo_persona'=>1,
         	'id_usuario'=>1]);
 
@@ -132,6 +132,27 @@ class PersonaTableSeeder extends Seeder
             'fecha_nacimiento'=>'1993-03-23',
             'id_tipo_persona'=>3,
             'id_usuario'=>8]);
-    }
+
+        Persona::create([
+            'nacionalidad'=>'peruano',
+            'doc_identidad'=>'12345672',
+            'nombre'=>'Tian',
+            'ap_paterno'=>'Olivera',
+            'ap_materno'=>'Cokan',
+            'sexo'=>'Mujer',
+            'correo'=>'tian.olivera@gmail.com',
+            'fecha_nacimiento'=>'1994-07-24',
+            'id_tipo_persona'=>3]);
+        Persona::create([
+            'nacionalidad'=>'peruano',
+            'doc_identidad'=>'07755200',
+            'nombre'=>'César',
+            'ap_paterno'=>'Olivera',
+            'ap_materno'=>'Falconi',
+            'sexo'=>'Hombre',
+            'correo'=>'arqof@hotmail.com',
+            'fecha_nacimiento'=>'1965-09-11',
+            'id_tipo_persona'=>3]);
+        }
 
 }

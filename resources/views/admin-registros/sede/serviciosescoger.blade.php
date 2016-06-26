@@ -1,11 +1,8 @@
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title>AGREGAR SERVICIOS ADICIONALES 
-	 </title>	
+	<title>AGREGAR SERVICIOS </title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +14,7 @@
 	
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-registros')
 @section('content')
 <!---Cuerpo -->
 <main class="main">
@@ -27,12 +24,11 @@
 		
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>SERVICIOS ADICIONALES AGREGADOS A LA SEDE
+					<strong>AGREGAR SERVICIOS A LA SEDE	
 					<?php 
 					  echo strtoupper($sede->nombre)
 					 ?>
-					 
-					</strong>
+					 </strong>
 			</div>		
 			<div></div>
 		</div>
@@ -40,35 +36,48 @@
 			<form method="POST" action="agregarservicios/store" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
-					
+							
 				<div class="table-responsive">
+					@if ($errors->any())
+			  				<ul class="alert alert-danger fade in">
+			  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			  					@foreach ($errors->all() as $error)
+			  						<li>{{$error}}</li>
+			  					@endforeach
+			  				</ul>
+			  		@endif
 					<div class="container">
+						
+						@if($servicios)
+						<h4> <strong> SERVICIOS DISPONIBLES</strong></h4>		
+						@endif	
 						<table class="table table-bordered table-hover text-center display" id=	"example">
+
+
 							<thead class="active" data-sortable="true">								
 								<th><div align=center>NOMBRE</div></th>	
 								<th><div align=center>DESCRIPCIÓN</div></th>	
 								<th><div align=center>TIPO DE SERVICIO</div></th>	
-								
+								<th><div align=center>SELECCIONAR</div></th>
 							</thead>	
 							<tbody>													
 								
 								@foreach($servicios as $servicio)	
-									   @foreach ($servciosescogidos as $ser_id)		
-											@if($ser_id == $servicio->id)
-											<tr>									
-												<td>{{$servicio->nombre}}</td>
-												<td>{{$servicio->descripcion}}</td>
+										@if ($servicio->estado == 1)
+										<tr>							
+											<td>{{$servicio->nombre}}</td>
+											<td>{{$servicio->descripcion}}</td>
 											<td>
-	 											@foreach($tiposservicio as $tserv)	
+	 											@foreach($tiposServicio as $tserv)	
 	 												@if ($tserv->id == $servicio->tipo_servicio)
 	 													{{$tserv->valor	}}
 	 												@endif
 	 											@endforeach
-	 										</td>
-													
-											</tr>
-											@endif 
- 										@endforeach 									
+	 										</td>	
+											<td>{{ Form::checkbox('Seleccionar[]', $servicio->id, false) }}</td>	
+														
+										</tr>
+										@endif
 								 @endforeach
 								
 							</tbody>			
@@ -77,17 +86,14 @@
 				</div>
 				<br><br>
 				<div class="btn-inline">
-					<div class="btn-group col-sm-6"></div>
+					<div class="btn-group col-sm-7"></div>
 					
-					<!--div class="btn-group ">
-						<input class="btn btn-primary" type="submit" value="Continuar">
-					</div-->
-					
-					<div class="btn-group">
-						 <a class="btn btn-info"  href="{{url('/sedes/'.$sede->id.'/agregarservicios')}}"  title="Agregar Servicior" data-href="" data-toggle="" >Agregar Servicio</a> 
+					<div class="btn-group ">
+						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
-					<br/>
-					<br/>
+					<div class="btn-group">
+						 <a  class="btn btn-info"  title="Cancelar" data-href="" data-toggle="modal" data-target="#modalEliminar">Cancelar</a>   
+					</div>
 				</div>
 				<br><br>
 
@@ -123,11 +129,11 @@
 	        <h4 class="modal-title">Confirmar</h4>
 	      </div>
 	      <div class="modal-body">
-	        <p>¿Está seguro que desea cancelar la creación del sorteo?</p>
+	        <p>¿Está seguro que desea salir de la página?</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-danger btn-ok">Confirmar</a>
+            <a class="btn btn-danger" href="{{url('/sedes/'.$sede->id.'/verservicios')}}" >Confirmar</a>
 	      </div>
 	    </div>
 

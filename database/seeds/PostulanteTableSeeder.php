@@ -14,24 +14,24 @@ class PostulanteTableSeeder extends Seeder
         Postulante::create([
         	'id_postulante'=>1,
         	'ruc'=>78451296,
-        	'direccion_nacimiento'=>'avenida prueba 123',
+        	'direccion_nacimiento'=>'Jesus Maria - Hospital Rebagleati 123',
         	'pais_nacimiento'=>'Perú',
         	'lugar_nacimiento'=>'Lima',
             'departamento'=>15,
             'provincia'=>127,
             'distrito'=>1263,
-        	'colegio_primario'=>'maranguita',
-        	'colegio_secundario'=>'piedras gordas',
-        	'universidad'=>'Alcatraz',
-        	'profesion'=>'Burrier',
-        	'centro_trabajo'=>'La calle',
-        	'cargo_trabajo'=>'planificador',
-        	'direccion_laboral'=>'callao callao callao',
-        	'estado_civil'=>'viudo',
-        	'nro_hijos'=>20,
-        	'domicilio'=>'La perla',
-        	'telefono_domicilio'=>84516235,
-        	'telefono_celular'=>989456123
+        	'colegio_primario'=>'Liceo',
+        	'colegio_secundario'=>'Liceo',
+        	'universidad'=>'PUCP',
+        	'profesion'=>'Analista de sistemas',
+        	'centro_trabajo'=>'InfoPuc',
+        	'cargo_trabajo'=>'Desarrollador-Practicante',
+        	'direccion_laboral'=>'PUCP - Direccion de Informática',
+        	'estado_civil'=>'soltero',
+        	'nro_hijos'=>0,
+        	'domicilio'=>'Comas- El Pinar',
+        	'telefono_domicilio'=>55716125,
+        	'telefono_celular'=>961245613
         ]);
 
         Postulante::create([

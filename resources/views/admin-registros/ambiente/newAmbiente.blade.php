@@ -130,11 +130,20 @@
 										<td align="center">{{$tipoPersona->descripcion}}</td>
 									@endif
 									<td align="center">  S/.</td>
+									@if($tipoPersona->descripcion == 'Vip' || $tipoPersona->descripcion == 'vip')
 									<td align="center"> 
-										<div align="center">
-								      		<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'DoubleFormat')"   class="form-control" id="{{$tipoPersona->descripcion}}Input" name="{{$tipoPersona->descripcion}}" placeholder="Monto" maxlength="6" >
+										<div align="center">											
+								      			<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'DoubleFormat')"   class="form-control" id="{{$tipoPersona->descripcion}}Input" name="{{$tipoPersona->descripcion}}" placeholder="Monto" maxlength="6" value="0" readonly >								      		
 								    	</div>
-								</td>							        
+									</td>	
+									@else	
+									<td align="center"> 
+										<div align="center">											
+								      			<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'DoubleFormat')"   class="form-control" id="{{$tipoPersona->descripcion}}Input" name="{{$tipoPersona->descripcion}}" placeholder="Monto" maxlength="6" >									      	
+								    	</div>
+									</td>					        
+
+									@endif
 								</tr>
 							@endforeach
 					</tbody>													
@@ -162,7 +171,14 @@
 			  	</br>
 			</form>
 		</div>
-	</div>		
+	</div>	
+		</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>	
 @stop
 <!-- JQuery -->
 	<script src="../js/jquery-1.11.3.min.js"></script>
@@ -194,6 +210,8 @@
 			    	</div>					    	
 				</div>									 
 
+				</br>
+				</br>
 				<div class="btn-inline">
 					<div class="btn-group col-sm-4"></div>
 					
@@ -204,6 +222,8 @@
 						<a  data-dismiss="modal" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
+				</br>
+				</br>
 			</form>
 		</div>
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SERVICIO EXTRAS OFRECIDOS</title>
+	<title>SERVICIOS</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +19,7 @@
 		<div class="row">
 			<div class="col-sm-12 text-left">
 				<br/><br/>
-				<p class="lead"><strong>SERVICIOS ADICIONALES</strong></p>
+				<p class="lead"><strong>SERVICIOS</strong></p>
 				<br/>
 			</div>
 			
@@ -65,8 +65,9 @@
 	 								@endforeach
 	 							</td>					
 	 							<td>
-	 							<?php if ($servicio->estado == 1)  echo "ACTIVO";
-									  else echo "INACTIVO";	?>
+	 							<?php if ($servicio->estado == 1) echo "ACTIVO";
+									  else echo "INACTIVO";	
+								?>
 	 						    <!--{{$servicio->estado }}-->	 						
 	 						    </td>						
 								<td>
@@ -81,12 +82,11 @@
 					             <?php if ($servicio->estado == 1)  
 								         echo '<i  class="glyphicon  glyphicon-check"></i>';
 									else echo '<i  class="glyphicon  glyphicon-unchecked unchecked"></i>';	
-								 ?>
-										              
+								 ?>										              
 					              </a>
 					            </td>
 					    		</tr>
-					    		@endforeach        
+					    		@endforeach
 							</tbody>						
 								
 						

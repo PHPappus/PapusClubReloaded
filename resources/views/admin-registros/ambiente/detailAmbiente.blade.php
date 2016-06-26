@@ -108,14 +108,25 @@
 			  	<!-- FIN     PRECIO POR TIPO DE PERSONA -->
 		  	
 	  	<!-- FIN FIN FIN -->
+				</br>
+				</br>
 				
 			<div class="form-group">
 					<div class="col-sm-8"> </div>
 					<a href="/ambiente/index" class="btn btn-info">Regresar</a>				
 			</div>
+			</br>
+				</br>
 			</form>
 		</div>
 	</div>		
+		</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
 @stop
 <!-- JQuery -->
 	<script src="../js/jquery-1.11.3.min.js"></script>

@@ -1,9 +1,6 @@
-	<!--p>@foreach($serviciosdesede as $sdesede)
-		{{$sdesede->idsede}}
-		{{$sdesede->idservicio}}
-		<br/>
-	@endforeach
-	</p-->
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +17,7 @@
 	
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-registros')
 @section('content')
 <!---Cuerpo -->
 <main class="main">
@@ -28,19 +25,9 @@
 		<!-- Utilizando Bootstrap -->
 		<br/><br/>
 		
-		
-
 		<div class="container">
-			@if ($mensaje)
-					<script>$("#modalSuccess").modal("show");</script>
-			
-					<div class="alert alert-success fade in">
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-					<strong> {{$mensaje}} </strong> 
-					</div>
-			@endif
 			<div class="col-sm-12 text-left lead">
-					<strong>SERVICIOS ADICIONALES DE LA SEDE
+					<strong>SERVICIOS ADICIONALES AGREGADOS A LA SEDE
 					<?php 
 					  echo strtoupper($sede->nombre)
 					 ?>
@@ -63,39 +50,41 @@
 								<th><div align=center>TIPO DE SERVICIO</div></th>	
 								
 							</thead>	
-							<tbody>										@foreach($serviciosdesede as $sdesede)
-									@foreach($servicios as $serv)
-										@if($serv->id == $sdesede->idservicio)
-										<tr>
-
-											<td>{{$serv->nombre}}</td>
-											<td>{{$serv->descripcion}}</td>
+							<tbody>													
+								
+								@foreach($servicios as $servicio)	
+									   @foreach ($servciosescogidos as $ser_id)		
+											@if($ser_id == $servicio->id)
+											<tr>									
+												<td>{{$servicio->nombre}}</td>
+												<td>{{$servicio->descripcion}}</td>
 											<td>
-											@foreach($tiposservicio as $tserv)	
-	 												@if ($tserv->id == $serv->tipo_servicio)
+	 											@foreach($tiposservicio as $tserv)	
+	 												@if ($tserv->id == $servicio->tipo_servicio)
 	 													{{$tserv->valor	}}
 	 												@endif
 	 											@endforeach
-											</td>
-										</tr>
-											
-										@endif
-									@endforeach
-								@endforeach			
+	 										</td>
+													
+											</tr>
+											@endif 
+ 										@endforeach 									
+								 @endforeach
+								
 							</tbody>			
 						</table>						
 					</div>	
 				</div>
 				<br><br>
 				<div class="btn-inline">
-					<div class="btn-group col-sm-9"></div>
+					<div class="btn-group col-sm-6"></div>
 					
 					<!--div class="btn-group ">
 						<input class="btn btn-primary" type="submit" value="Continuar">
 					</div-->
+					
 					<div class="btn-group">
-						 <a class="btn btn-info"  href="{{url('/sedes/'.$sede->id.'/agregarservicios')}}" 
-						 title="Agregar Servicios" data-href="" data-toggle="" >Agregar Servicios</a>   
+						 <a class="btn btn-info"  href="{{url('/sedes/'.$sede->id.'/agregarservicios')}}"  title="Agregar Servicior" data-href="" data-toggle="" >Agregar Servicio</a> 
 					</div>
 					<br/>
 					<br/>
@@ -124,27 +113,6 @@
 	</script>
 </body>
 <!-- Modal -->
-   <div id="modalSuccess" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
-
-	    <!-- Modal content-->
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">¡Éxito!</h4>
-	      </div>
-	      <div class="modal-body">
-	        <p> {{$mensaje}} </p>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>           
-	      </div>
-	    </div>
-
-	  </div>
-	</div>
-
-
 	<div id="modalEliminar" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
 

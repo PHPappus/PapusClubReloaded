@@ -91,9 +91,9 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
     public static $prefixDirsPsr4 = array (
         'phpDocumentor\\Reflection\\' => 
         array (
-            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'papusclub\\' => 
         array (
@@ -382,6 +382,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'CreateReservasTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_02_014128_create_reservas_table.php',
         'CreateReservaxactividadTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_173600_create_reservaxactividad_table.php',
         'CreateSedesTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_06_144850_create_sedes_table.php',
+        'CreateServicioxSedexPersonaTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_21_012446_create_ServicioxSedexPersona_table.php',
         'CreateSocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_29_003232_create_socio_table.php',
         'CreateSocioxconcursoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_151157_create_socioxconcurso_table.php',
         'CreateSorteoTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_20_005933_create_sorteo_table.php',
@@ -3106,6 +3107,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'TarifaAmbientexTipoPersonaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifaAmbientexTipoPersonaTableSeeder.php',
         'TarifaFamiliarTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifaFamiliarTableSeeder.php',
         'TarifaMembresiaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifaMembresiaTableSeeder.php',
+        'TarifarioServiciosTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifarioServiciosTableSeeder.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'TestTallerTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TestTallerTableSeeder.php',
         'TestUserTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TestUserTableSeeder.php',
