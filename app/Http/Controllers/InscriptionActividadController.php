@@ -83,7 +83,7 @@ class InscriptionActividadController extends Controller
 
 
         $actividades=Actividad::where('estado','=',1)
-                               ->where('a_realizarse_en','>=',Carbon::now()->format('d-m-Y'))
+                               ->where('a_realizarse_en','>=',Carbon::now('America/Lima')->format('Y-m-d'))
                                ->where('a_realizarse_en','>=',$fecha_inicio)
                                ->where('a_realizarse_en','<=',$fecha_fin)
                                ->whereBetween('hora_inicio',[$horaInicio,$horaFin])
@@ -97,7 +97,10 @@ class InscriptionActividadController extends Controller
             }
         }        
 
-        return view('socio.actividades.inscripcion', compact('sedes','actividades','actividades_persona'));
+        $usuario = Auth::user();
+        $persona=$usuario->persona;
+        $tipo_persona = $persona->tipopersona->id;
+        return view('socio.actividades.inscripcion', compact('sedes','actividades','actividades_persona','tipo_persona'));
 
     }
 
