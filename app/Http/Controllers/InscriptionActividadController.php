@@ -26,7 +26,7 @@ class InscriptionActividadController extends Controller
     {
         $sedes = Sede::all();
         /*Filtrar las actividades que estan disponibles (>= que la fecha actual) y con estado 1 */
-        $actividades=Actividad::where('estado','=',1)->where('a_realizarse_en','>=',Carbon::now())->get();
+        $actividades=Actividad::where('estado','=',1)->where('a_realizarse_en','>=',Carbon::now('America/Lima')->format('Y-m-d'))->get();
         /*Se envia las actividades a las cuales se encuentra inscrita la persona*/
         $actividades_persona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->actividades;
         $usuario = Auth::user();
@@ -57,7 +57,7 @@ class InscriptionActividadController extends Controller
         $fecha_inicio=$fecha_inicio->toDateString();
         $fecha_fin = Carbon::now()->addYears(1)->toDateString();
 
-        
+        //dd(Carbon::now()->format('d-m-Y'));
         if(!empty($input['fecha_inicio'])){
             $date=str_replace('/', '-', $input['fecha_inicio']);
             $fecha_inicio=date("Y-m-d",strtotime($date));
@@ -83,7 +83,7 @@ class InscriptionActividadController extends Controller
 
 
         $actividades=Actividad::where('estado','=',1)
-                               ->where('a_realizarse_en','>=',Carbon::now()->format('d-m-Y'))
+                               ->where('a_realizarse_en','>=',Carbon::now('America/Lima')->format('Y-m-d'))
                                ->where('a_realizarse_en','>=',$fecha_inicio)
                                ->where('a_realizarse_en','<=',$fecha_fin)
                                ->whereBetween('hora_inicio',[$horaInicio,$horaFin])
@@ -93,11 +93,14 @@ class InscriptionActividadController extends Controller
    
         if($input['sedeSelec']!=-1){ //No son todas las sedes
             foreach ($actividades as $i => $actividad) {             
-                    if($actividad->ambiente->sede->id!=$input['sedeSelec'])  unset($actividades[$i]);
+                    if($actividad->ambiente->sede->id!=$input['sedeSelec']){unset($actividades[$i]);}  
             }
         }        
 
-        return view('socio.actividades.inscripcion', compact('sedes','actividades','actividades_persona'));
+        $usuario = Auth::user();
+        $persona=$usuario->persona;
+        $tipo_persona = $persona->tipopersona->id;
+        return view('socio.actividades.inscripcion', compact('sedes','actividades','actividades_persona','tipo_persona'));
 
     }
 
