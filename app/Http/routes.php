@@ -137,6 +137,12 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::get('servicios/{id}/delete', 'ServiciosController@destroy');
 	Route::get('servicios/{id}/show', 'ServiciosController@show');	
 
+	// Agregar Servicios a las sedes2
+	 Route::get('select/sede', 'SedesController@indexselecttoservicio');
+	 Route::get('sedes/{id}/agregarservicios', 'SedesController@agregarservicios');
+	 Route::post('sedes/{id}/agregarservicios/store','SedesController@storeservicios');
+	 Route::get('sedes/{id}/verservicios', 'SedesController@indexserviciosdesede');
+	
 
 	//MANTENIMIENTO DE TALLERES
 	Route::get('taller/','TallerController@index');
@@ -251,11 +257,6 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 
 	
 
-	// Agregar Servicios a las sedes2
-	 Route::get('select/sede', 'SedesController@indexselecttoservicio');
-	  Route::get('sedes/{id}/agregarservicios', 'SedesController@agregarservicios');
-	  Route::post('sedes/{id}/agregarservicios/store','SedesController@storeservicios');
-	  Route::get('sedes/{id}/verservicios', 'SedesController@indexserviciosdesede');
 	
 	//MANTENIMIENTO DE PROVEEDORES
 	Route::get('proveedor/index/', 'ProveedorController@index');
@@ -530,8 +531,9 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::get('reservar-ambiente/consultar-bungalow-adminR', 'ReservarAmbienteController@consultarReservaBungalowAdminR'); 
 	Route::get('reservar-ambiente/{id}/deleteBungalowAdminR','ReservarAmbienteController@eliminarReservaBungalowAdminR');
 	Route::get('reservar-ambiente/{id}/deleteOtrosAdminR','ReservarAmbienteController@eliminarReservaOtrosAdminR');
-	Route::get('reservar-ambiente/{id}/agregarServicios','ReservarAmbienteController@agregarServices');
 
+	Route::get('reservar-ambiente/{id}/agregarServicios','ReservarAmbienteController@agregarServices');
+	Route::post('reservar-ambiente/{id}/agregarServicios/store','ReservarAmbienteController@storeServices');
 });
 //Control de ingresos
 	Route::group(['middleware' => ['auth', 'controlingresos']], function () {

@@ -36,14 +36,14 @@ class SedesController extends Controller
         $servicios = Servicio::all();
         $tiposservicio=Configuracion::where('grupo','=','4')->get();   
         $mensaje = ""     ;
-        return view('admin-general.sede.indexserviciosdesede', compact('sede','serviciosdesede','servicios','tiposservicio','mensaje'));
+        return view('admin-registros.sede.indexserviciosdesede', compact('sede','serviciosdesede','servicios','tiposservicio','mensaje'));
     }
     
 
     public function indexselecttoservicio()
     {
         $sedes = Sede::all();
-        return view('admin-general.sede.indexselecttoservicio', compact('sedes'));
+        return view('admin-registros.sede.indexselecttoservicio', compact('sedes'));
     }
 
     //Muestra el formulario para poder registrar una nueva sede en BD
@@ -184,7 +184,7 @@ class SedesController extends Controller
                 array_push($servicios,$sv);
             }            
         }
-        return view('admin-general.sede.serviciosescoger', compact('sede', 'servicios','tiposServicio'));
+        return view('admin-registros.sede.serviciosescoger', compact('sede', 'servicios','tiposServicio'));
     }
 
 
@@ -210,7 +210,7 @@ class SedesController extends Controller
         // servicios        
         $mensaje = 'Se registró el servicio a la sede correctamente.';
         $serviciosdesede = Sedexservicio::where('idsede','=',$id)->get();
-        return view('admin-general.sede.indexserviciosdesede', compact('sede','serviciosdesede','servicios','tiposservicio','mensaje'));
+        return view('admin-registros.sede.indexserviciosdesede', compact('sede','serviciosdesede','servicios','tiposservicio','mensaje'));
         
      }
 

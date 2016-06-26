@@ -10,23 +10,52 @@ use papusclub\Models\Sede;
 use papusclub\Models\Persona;
 use papusclub\User;
 use papusclub\Models\Reserva;
+use papusclub\Models\Servicio;
 use papusclub\Models\Configuracion;
 use papusclub\Models\Facturacion;
 use papusclub\Http\Requests\StoreReservaBungalowSocio;
 use papusclub\Http\Requests\StoreReservaBungalowAdminR;
 use papusclub\Http\Requests\StoreReservaOtroAmbienteSocio;
 use papusclub\Http\Requests\StoreReservaOtroAmbienteAdminR;
+use papusclub\Http\Requests\StoreAgregarServiciosRequest;
 use papusclub\Models\Socio;
 use Auth;
 use Session;
 use Carbon\Carbon;
 use DB;
+use papusclub\Models\Sedexservicio;
 
 class ReservarAmbienteController extends Controller
 {   
+    public function  storeServices(StoreAgregarServiciosRequest $request, $id){
+        
+        return view('admin-reserva.reservar-ambiente.store-services');
+    }
     public function agregarServices($id){
+        $reserva = Reserva::find($id);
+        $iddesede = $reserva->ambiente->sede->id;
+        $sede = Sede::find($iddesede);
+        
+        $tiposServicio=Configuracion::where('grupo','=','4')->get();        
+        $serviciosdesede = Sedexservicio::where('idsede','=',$sede->id)->get();
+        $serviciostodos = Servicio::all();
 
-        return view('admin-reserva.reservar-ambiente.agregar-servicios',compact('id'));
+        $servicios=array();
+
+        foreach ($serviciostodos as $sv) {
+            $foo = false;
+            foreach ($serviciosdesede as $servdsede) {
+                    if ($sv->id == $servdsede->idservicio  ){
+                        $foo = True;
+                        break;      
+                    }
+            }            
+            if ($foo) {
+                array_push($servicios,$sv);
+            }            
+        }
+        
+        return view('admin-reserva.reservar-ambiente.agregar-servicios',compact('id','iddesede','servicios','tiposServicio','serviciosdesede'));
     }
     //Muestra la pantalla para realizar la reserva de un bungalow
     public function reservarBungalow()

@@ -1,5 +1,7 @@
-<p>Agregar Servicios</p>
-{{$id}}
+@foreach($servicios as $serv)
+{{$serv->id}}
+@endforeach
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +36,7 @@
 			<script>$("#modalSuccess").modal("show");</script>
 			
 			<div class="alert alert-success fade in">
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<a href="/#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 					<strong>¡Éxito!</strong> {{session('stored')}}
 			</div>
 		@endif
@@ -52,34 +54,68 @@
 					</font>
 				</div>
 		 	</div>
+	<form method="POST" action="/reservar-ambiente/7/agregarServicios/store" class="form-horizontal form-border">
+			@if ($errors->any())
+			  				<ul class="alert alert-danger fade in">
+			  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			  					@foreach ($errors->all() as $error)
+			  						<li>{{$error}}</li>
+			  					@endforeach
+			  				</ul>
+			  			@endif	
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				</br>	
+
+			<div class="table-responsive">
+			
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active">
 						<tr>
-							<th><DIV ALIGN=center>ID Socio</th>
-							<th><DIV ALIGN=center>Socio</th>
-							<th><DIV ALIGN=center>Ambiente</th>
-							<th><DIV ALIGN=center>Fecha Inicio</th>
-							<th><DIV ALIGN=center>HoraInicio</th>
-							<th><DIV ALIGN=center>Estado Reserva</th>
-							<th><DIV ALIGN=center>Ver Servicios</th>
-							<th><DIV ALIGN=center>Agregar Servicios</th>
-							<th><DIV ALIGN=center>CANCELAR</th>
+							<th><div align=center>NOMBRE</div></th>	
+							<th><div align=center>DESCRIPCIÓN</div></th>	
+							<th><div align=center>TIPO DE SERVICIO</div></th>	
+							<th><div align=center>SELECCIONAR</div></th>
 							
 						</tr>
 					</thead>
 					<tbody>
-						
+							@foreach($servicios as $servicio)	
+										@if ($servicio->estado == 1)
+										<tr>							
+											<td>{{$servicio->nombre}}</td>
+											<td>{{$servicio->descripcion}}</td>
+											<td>
+	 											@foreach($tiposServicio as $tserv)	
+	 												@if ($tserv->id == $servicio->tipo_servicio)
+	 													{{$tserv->valor	}}
+	 												@endif
+	 											@endforeach
+	 										</td>	
+											<td>{{ Form::checkbox('Seleccionar[]', $servicio->id, false) }}</td>	
+														
+										</tr>
+										@endif
+								 @endforeach
 					</tbody>					
 												
 					
-			</table>		
-			</br>
-				</br>
-				</br>
-				</br>
-				
-
+			</table>
 			
+			</div>
+			<div class="btn-inline">
+				<div class="btn-group col-sm-7"></div>
+			
+				<div class="btn-group ">
+	  					<input class="btn btn-primary" type="submit" value="Confirmar">
+				</div>
+				<div class="btn-group">
+						 <a  class="btn btn-info"  title="Cancelar" data-href="" data-toggle="modal" data-target="#modalEliminar">Cancelar</a>   
+				</div>
+				</div>
+				<br><br>										
+	</form>		
+			</br>
+			</br>			
 		</div>
 	</div>
 </br></br></br></br></br>
