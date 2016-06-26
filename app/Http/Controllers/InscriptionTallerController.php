@@ -239,12 +239,14 @@ class InscriptionTallerController extends Controller
    
         if($input['sedeSelec']!=-1){ //No son todas las sedes
             foreach ($talleres as $i => $taller) {             
-                    if($taller->ambiente->sede->id!=$input['sedeSelec'])  unset($talleres[$i]);
+                    if($taller->reserva->ambiente->sede->id!=$input['sedeSelec'])  unset($talleres[$i]);
             }
         }        
 
-        /*return view('socio.actividades.inscripcion', compact('sedes','actividades','actividades_persona'));*/
-        return view('socio.talleres.index',compact('sedes','talleres','talleresxpersona'));
+        $usuario = Auth::user();
+        $persona=$usuario->persona;
+        $tipo_persona = $persona->tipopersona->id;
+        return view('socio.talleres.index',compact('sedes','talleres','talleresxpersona','tipo_persona'));
     }
 
 
