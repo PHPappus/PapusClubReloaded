@@ -1,3 +1,28 @@
+<script>
+		function inputLimiter(e,allow) {
+		    var AllowableCharacters = '';
+
+		    if (allow == 'Letters'){AllowableCharacters=' ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz';}
+		    if (allow == 'Numbers'){AllowableCharacters='1234567890';}
+		    if (allow == 'NameCharacters'){AllowableCharacters=' ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz-.\'._@';}
+		    if (allow == 'NameCharactersAndNumbers'){AllowableCharacters='1234567890 ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz-\'_.@';}
+		    if (allow == 'DoubleFormat'){AllowableCharacters='1234567890,.';}
+		    if (allow == 'Nulo'){AllowableCharacters='';} //sirve para colocarle a las fechas deben ser obligatoriamente ingresadas por el picker
+
+		    var k = document.all?parseInt(e.keyCode): parseInt(e.which);
+		    if (k!=13 && k!=8 && k!=0){
+		        if ((e.ctrlKey==false) && (e.altKey==false)) {
+		        return (AllowableCharacters.indexOf(String.fromCharCode(k))!=-1);
+		        } else {
+		        return true;
+		        }
+		    } else {
+		        return true;
+		    }
+		}
+</script>
+
+
 <!--Cabecera- Se separará espacio para el input de busqueda antes de la cabecera de menu-->
 <header class="header">
 		<div class="content clearfix">
@@ -12,120 +37,128 @@
 			</div>
 		</nav>
 	</div>
-		<!--menu de opciones superior-->
-		<nav class="main-menu" style="height: 122px;">
-			<div class="content">
-				<div class="logo">
-					<div class="edit-logo">
-						<a href="{!!URL::to('/admin-registros')!!}" title="Logo oficial de Papus Club">
-							<img src="{!!URL::to('images/logo.png')!!}" alt="Logo Papus Club" href="/">
-						</a>
-					</div>
-				</div>
-				<!--Opciones de menu-->
-				<nav class="menu" id="menu">
-					<ul>
-						<li><a href="#">{!!Auth::user()->name!!}  <span class="glyphicon glyphicon-user"></span></a>
-									<ul>
-										<li><a href="{!!URL::to('/cuenta')!!}" title="Ir a cuenta" target="_self">MI CUENTA</a></li>
-										<li><a href="{!!URL::to('/password/change')!!}" title="Cambiar contraseña" target="_self">CAMBIAR MI CONTRASEÑA</a></li>
-										<li><a href="{!!URL::to('/logout')!!}" title="LOGOUT" target="_self">LOGOUT</a></li>
-									</ul>
-						</li>
-						<!-- Opción SOCIO -->
-						<li><a href="#">SOCIO</a></li>
-						<!-- Sedes -->
-						<li><a href="#">PAGO<!-- <span class="despliegue">▼</span> --></a>
-							<!-- <ul>
-								<li><a href="#" title="ir a curso 1" target="_self">CURSO 2<span class="despliegue">▼</span></a>
-									<ul>
-										<li><a href="#" title="ir a ver curso 1" target="_self">VER CURSO</a></li>
-										<li><a href="#" title="ir a inscribirse 1" target="_self">INSCRIBIRSE</a></li>
-									</ul>
-								</li>
-								<li><a href="#" title="ir a curso 2" target="_self">CURSO 1<span class="despliegue">▼</span></a>
-									<ul>
-										<li><a href="#" title="ir a ver curso 2" target="_self">VER CURSO</a></li>
-										<li><a href="#" title="ir a inscribirse 2" target="_self">INSCRIBIRSE</a></li>
-									</ul>						
-								</li>
-							</ul> -->
-						</li>
-						<li><a href="{!!URL::to('/promociones/index')!!}">PROMOCIONES</a>
-							<ul>
-								<!-- <li><a href="{!!URL::to('/sorteo/new')!!}" title="Mantenimiento Sorteo" target="_self">SORTEO</a></li> -->
-							</ul>
-						</li>
-						<!-- Opción Actividades -->
-						<li><a href="#">TALLER<span class="despliegue">▼</span></a>
-							<ul>
-								<li><a href="#" title="ir a ambientes" target="_self">AMBIENTES<span class="despliegue">▼</span></a>
-									<ul>
-										<li><a href="#" title="ir a ver curso" target="_self">VER</a></li>
-										<li><a href="#" title="ir a reservar ambiente" target="_self">RESERVAR</a></li>
-										<li><a href="anular-reserva-ambiente-al" title="ir a anular ambiente" target="_self">ANULAR</a></li>
-									</ul>						
-								</li>
-								<li><a href="#" title="ir a cursos" target="_self">CURSOS<span class="despliegue">▼</span></a>
-									<ul>
-										<li><a href="#" title="ir a ver curso" target="_self">VER</a></li>
-										<li><a href="#" title="ir a inscribirse en curso" target="_self">INSCRIBIRSE</a></li>
-									</ul>						
-								</li>
-								<li><a href="{!!URL::to('/taller/')!!}" title="ir a talleres" target="_self">TALLERES<span class="despliegue">▼</span></a>
-								</li>
-								<li><a href="#" title="ir a eventos" target="_self">EVENTOS<span class="despliegue">▼</span></a>
-									<ul>
-										<li><a href="#" title="ir a ver evento" target="_self">VER</a></li>
-										<li><a href="#" title="ir a inscribirse en evento" target="_self">INSCRIBIRSE</a></li>
-									</ul>						
-								</li>
-								<li><a href="#" title="ir a actividades" target="_self">ACTIVIDADES<span class="despliegue">▼</span></a>
-									<ul>
-										<li><a href="#" title="ir a ver actividad" target="_self">VER</a></li>
-										<li><a href="#" title="ir a inscribirse en actividad" target="_self">INSCRIBIRSE</a></li>
-									</ul>						
-								</li>
-							</ul>					
-						</li>
-						<!-- Opción TRAMITES -->
-						<li><a href="{!!URL::to('/ambiente/index')!!}">AMBIENTE<span class="despliegue"></span></a>
-							
-						</li>
+	<nav class="navbar navbar-default">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar1" aria-expanded="false">
+          <span class="sr-only">Menu</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="{!!URL::to('/admin-registros')!!}" class="navbar-brand"><img alt="Brand" class="img-responsive" src="{!!URL::to('/images/logo.png')!!}" ></a>
+      </div>
 
-						<!-- Opción MANTENIMIENTO -->
-						<li><a href="#">BUNGALOW<!-- <span class="despliegue">▼</span> --></a>
-							<ul>
-								
-								
-							</ul>
-						</li>
-												<!-- Opción Eventos -->
-						<li><a href="{!!URL::to('/actividad/index')!!}">ACTIVIDAD<span class="despliegue"></span></a>
-							
-						</li>
-					</ul>
-				</nav>
-				<nav class="menu" id="menu2">
-					<ul>
-						<li><a href="#">TRAMITES</a></li>
-						<li><a href="{!!URL::to('/usuario')!!}">Usuarios</a></li>
-						<li><a href="#">PRODUCTO</a></li>
+      <div class="collapse navbar-collapse" id="navbar1">
+        <!-- Servicios -->
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Servicios <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="{!!URL::to('/servicios/index')!!}" title="Consultar servicio" target="_self">Consultar</a></li>
+                <li><a href="{!!URL::to('/servicios/new')!!}" title="Registrar nuevo servicio" target="_self">Registrar</a></li>
+            </ul>
+          </li>
+        </ul>
+        
+        <!-- Ambientes -->
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Ambientes <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{!!URL::to('/ambiente/index')!!}" title="Consultar ambiente" target="_self">Consultar</a></li>
+              <li><a href="{!!URL::to('/ambiente/new')!!}" title="Consultar ambiente" target="_self">Registrar</a></li>
+            </ul>
+          </li>
+        </ul>
 
-						<li><a href="#" target="_self" >SERVICIOS<span class="despliegue">▼</span> </a>
+        <!-- Actividades -->
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" role="button" >
+              Actividades <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="{!!URL::to('/actividad/index')!!}" title="Consultar actividades" target="_self">Consultar</a></li>
+                <li><a href="{!!URL::to('/actividad/new')!!}" title="Consultar ambiente" target="_self">Registrar</a></li>
+            </ul>
+          </li>
+        </ul>
 
-				<ul><li><a href="{!!URL::to('/servicios/index')!!}" title="Listar Servicios" target="_self" >Listar Servicios</a></li>
-					<li><a href="{!!URL::to('/servicios/new')!!}" title="Registrar Servicios" target="_self">	Registrar Servicio</a></li>
-				</ul>
+        <!-- Talleres -->
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" role="button" >
+              Talleres <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="{!!URL::to('/taller/index')!!}" title="Consultar talleres" target="_self">Consultar</a></li>
+                <li><a href="{!!URL::to('/taller/new')!!}" title="Registrar talleres" target="_self">Registrar</a></li>
+            </ul>
+          </li>
+        </ul>
+        
+         <!-- Proveedores -->
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Proveedores <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">    
+                <li><a href="{!!URL::to('/proveedor/index')!!}">Consultar</a></li>
+                <li><a href="{!!URL::to('/proveedor/new')!!}">Registrar</a></li>                
+            </ul>
+          </li>
+        </ul>
 
-				
-				
-				
-						</li>
-					</ul>
-				</nav>
-			</div>
-    	</nav>
+        <!-- Productos -->
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Productos <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">    
+                <li><a href="{!!URL::to('/producto/index')!!}">Productos</a></li>
+        <li><a href="{!!URL::to('/ingreso-producto/index')!!}">Ingreso de productos</a></li>
+        <li><a href="{!!URL::to('/venta-producto/index')!!}">
+        Ventas de productos</a></li>
+            </ul>
+          </li>
+        </ul>
+        
+        <!-- Promociones -->
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Promociones <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">    
+                <li><a href="{!!URL::to('/promociones/index')!!}" title="Consultar promociones" target="_self">Consultar</a></li>
+                <li><a href="{!!URL::to('/promociones/new')!!}" title="Consultar ambiente" target="_self">Registrar</a></li>
+            </ul>
+          </li>
+        </ul>
+            
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+            {!!Auth::user()->name!!} <span class="glyphicon glyphicon-user"><span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{!!URL::to('/cuenta')!!}" title="Ir a cuenta" target="_self">Mi Cuenta</a></li>
+              <li><a href="{!!URL::to('/password/change')!!}" title="Cambiar contraseña" target="_self">Cambiar mi contraseña</a></li>
+              <li><a href="{!!URL::to('/logout')!!}" title="LOGOUT" target="_self">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
 </header>
 <!---Cuerpo -->
 

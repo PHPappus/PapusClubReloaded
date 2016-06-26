@@ -16,49 +16,49 @@ class AmbienteTableSeeder extends Seeder
             'nombre' => 'Cancha 10', 
             'tipo_ambiente' => 'Cancha', 
             'capacidad_actual' => '100', 
-            'ubicacion' => 'Sede Callao-cerca de la entrada', 
+            'descripcion' => 'Sede Callao-cerca de la entrada', 
             'sede_id' => 1 
             ]);
         Ambiente::insert([
             'nombre' => 'Cancha 09', 
             'tipo_ambiente' => 'Cancha', 
             'capacidad_actual' => '100', 
-            'ubicacion' => 'Sede Chosica-cerca de las piscinas', 
+            'descripcion' => 'Sede Chosica-cerca de las piscinas', 
             'sede_id' => 2 
             ]);
         Ambiente::insert([
             'nombre' => 'Cancha 08', 
             'tipo_ambiente' => 'Cancha', 
             'capacidad_actual' => '100', 
-            'ubicacion' => 'Sede Piura-cerca de la entrada', 
+            'descripcion' => 'Sede Piura-cerca de la entrada', 
             'sede_id' => 3 
             ]);
         Ambiente::insert([
             'nombre' => 'Bungalow Callao 10', 
             'tipo_ambiente' => 'Bungalow', 
             'capacidad_actual' => '4', 
-            'ubicacion' => 'Sede Callao-cerca de la entrada', 
+            'descripcion' => 'Sede Callao-cerca de la entrada', 
             'sede_id' => 1 
             ]);
         Ambiente::insert([
             'nombre' => 'Bungalow Callao 1', 
             'tipo_ambiente' => 'Bungalow', 
             'capacidad_actual' => '2', 
-            'ubicacion' => 'Sede Callao-cerca de la entrada', 
+            'descripcion' => 'Sede Callao-cerca de la entrada', 
             'sede_id' => 1
             ]);
         Ambiente::create([
             'nombre' => 'Bungalow Chosica 1', 
             'tipo_ambiente' => 'Bungalow', 
             'capacidad_actual' => '1', 
-            'ubicacion' => 'Sede Callao-cerca de la entrada', 
+            'descripcion' => 'Sede Callao-cerca de la entrada', 
             'sede_id' => 2
             ]);
         Ambiente::create([
             'nombre' => 'Bungalow Piura 1', 
             'tipo_ambiente' => 'Bungalow', 
             'capacidad_actual' => '2', 
-            'ubicacion' => 'Sede Callao-cerca de la entrada', 
+            'descripcion' => 'Sede Callao-cerca de la entrada', 
             'sede_id' => 3
             ]);
 

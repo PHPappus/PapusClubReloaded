@@ -11,6 +11,7 @@ use papusclub\Models\Configuracion;
 use papusclub\Models\TipoPersona;
 use papusclub\Models\TarifaActividad;
 use papusclub\Models\Reserva;
+use papusclub\Models\PersonaxActividad;
 use papusclub\Http\Requests\StoreActividadRequest;
 use papusclub\Http\Requests\StoreConfiguracionRequest;
 use papusclub\Http\Requests\EditActividadRequest;
@@ -43,6 +44,8 @@ class ActividadController extends Controller
         //para agregar la actividades al ambiente
         if($request['reservaSelec'] != -1){
             $parent = Reserva::find($input['reservaSelec']);
+            $parent->estadoReserva = "Reservado";
+            $parent->update();
             $actividad->reserva_id=$parent->id;
             $actividad->ambiente_id = $parent->ambiente->id;
         }
@@ -58,7 +61,7 @@ class ActividadController extends Controller
                 }else{
                     $a_realizarse_en = str_replace('/', '-', $input['a_realizarse_en']);      
                     $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
-                    $actividad->hora_inicio=$carbon->createFromFormat('H:i', $input['hora'])->toTimeString();
+                    $actividad->hora_inicio=$carbon->createFromFormat('H:i:s', $input['hora'])->toTimeString();
                 }
        
 
@@ -115,7 +118,7 @@ class ActividadController extends Controller
                 }else{
                     $a_realizarse_en = str_replace('/', '-', $input['a_realizarse_en']);      
                     $actividad->a_realizarse_en=$carbon->createFromFormat('Y-m-d', $a_realizarse_en)->toDateString();
-                    $actividad->hora_inicio=$carbon->createFromFormat('H:i', $input['hora'])->toTimeString();
+                    $actividad->hora_inicio=$carbon->createFromFormat('H:i:s', $input['hora'])->toTimeString();
         }
         
         $actividad->update();
@@ -148,13 +151,13 @@ class ActividadController extends Controller
     }
     public function destroy($id)
     {
-        $actividad=Actividad::find($id);
-        
-        if($actividad->reserva_id!=null){
-            return redirect('actividad/index')->with('delete', 'No se puede eliminar esta actividad, posee dependencias.');
+        $actividad = Actividad::find($id);
+        $inscripciones=PersonaxActividad::all();
+        foreach ($inscripciones as $inscripcion) {
+            if($inscripcion->actividad_id == $id)
+                return redirect('actividad/index')->with('delete', 'No se puede eliminar esta actividad, posee dependencias.');    
         }
-        else
-            $actividad->delete();
+        $actividad->delete();
         
         return back();
 

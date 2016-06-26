@@ -24,7 +24,7 @@ class PersonaTableSeeder extends Seeder
         	'sexo'=>'hombre',
         	'correo'=>'mvilcapoma@gmail.com',
         	'fecha_nacimiento'=>'1991-07-15',
-        	'id_tipo_persona'=>3,
+        	'id_tipo_persona'=>1,
         	'id_usuario'=>1]);
 
         Persona::create([
@@ -36,7 +36,7 @@ class PersonaTableSeeder extends Seeder
             'sexo'=>'hombre',
             'correo'=>'chebasgods@yahoo.com',
             'fecha_nacimiento'=>'1993-04-24',
-            'id_tipo_persona'=>2]);
+            'id_tipo_persona'=>1]);
 
         Persona::create([       
             'nacionalidad'=>'peruano',
@@ -74,7 +74,7 @@ class PersonaTableSeeder extends Seeder
             'id_tipo_persona'=>2]);
 			
         Persona::create([
-            'nacionalidad'=>'Peruano',
+            'nacionalidad'=>'peruano',
             'doc_identidad'=>'65235376',
             'nombre'=>'Juan',
             'ap_paterno'=>'Ferraro',
@@ -83,10 +83,10 @@ class PersonaTableSeeder extends Seeder
             'correo'=>'juanchichu@hotmail.com',
             'fecha_nacimiento'=>'1994-04-25',
             'id_tipo_persona'=>3,
-            'id_usuario'=>3]);
+            'id_usuario'=>4]);
 
         Persona::create([
-            'nacionalidad'=>'Peruano',
+            'nacionalidad'=>'peruano',
             'doc_identidad'=>'24625376',
             'nombre'=>'Juan',
             'ap_paterno'=>'Loayza',
@@ -94,11 +94,11 @@ class PersonaTableSeeder extends Seeder
             'sexo'=>'hombre',
             'correo'=>'j.loayza@hotmail.com',
             'fecha_nacimiento'=>'1993-11-01',
-            'id_tipo_persona'=>3,
-            'id_usuario'=>3]);
+            'id_tipo_persona'=>2,
+            'id_usuario'=>5]);
 
         Persona::create([
-            'nacionalidad'=>'Peruano',
+            'nacionalidad'=>'peruano',
             'doc_identidad'=>'75235122',
             'nombre'=>'Francisco',
             'ap_paterno'=>'Beingolea',
@@ -107,10 +107,10 @@ class PersonaTableSeeder extends Seeder
             'correo'=>'zikokun@yahoo.com',
             'fecha_nacimiento'=>'1991-12-28',
             'id_tipo_persona'=>3,
-            'id_usuario'=>3]);
+            'id_usuario'=>6]);
 
         Persona::create([
-            'nacionalidad'=>'Peruano',
+            'nacionalidad'=>'peruano',
             'doc_identidad'=>'56234222',
             'nombre'=>'Brayan',
             'ap_paterno'=>'Rodriguez',
@@ -119,10 +119,10 @@ class PersonaTableSeeder extends Seeder
             'correo'=>'brayan_master_v2.0@yahoo.com',
             'fecha_nacimiento'=>'1992-02-15',
             'id_tipo_persona'=>3,
-            'id_usuario'=>3]);
+            'id_usuario'=>7]);
 
         Persona::create([
-            'nacionalidad'=>'Peruano',
+            'nacionalidad'=>'peruano',
             'doc_identidad'=>'12334222',
             'nombre'=>'Jhoseline',
             'ap_paterno'=>'Alva',
@@ -131,7 +131,7 @@ class PersonaTableSeeder extends Seeder
             'correo'=>'alvazani0@gmail.com',
             'fecha_nacimiento'=>'1993-03-23',
             'id_tipo_persona'=>3,
-            'id_usuario'=>3]);
+            'id_usuario'=>8]);
     }
 
 }

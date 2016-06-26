@@ -16,7 +16,7 @@ class AdminReserva
     public function handle($request, Closure $next)
     {   
         if (\Auth::user()->perfil_id != '7') {
-            $request->session()->flash('message', 'Usted no esta autorizado!.');
+            $request->session()->flash('message-error', 'Usted no esta autorizado!.');
             $request->session()->flash('alert-class', 'alert-danger');
             switch (\Auth::user()->perfil_id) {
                 case '1':
@@ -41,7 +41,7 @@ class AdminReserva
                     return redirect('/admin-reserva');
                     break;*/
                 case '8':
-                    return redirect('/public');
+                    return redirect('/control-ingresos');
                     break;
                 default:
                     return redirect('/');

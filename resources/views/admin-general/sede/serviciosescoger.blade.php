@@ -38,10 +38,23 @@
 			<form method="POST" action="agregarservicios/store" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
-				
+							
 				<div class="table-responsive">
 					<div class="container">
+						@if ($errors->any())
+			  				<ul class="alert alert-danger fade in">
+			  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			  					@foreach ($errors->all() as $error)
+			  						<li>{{$error}}</li>
+			  					@endforeach
+			  				</ul>
+			  			@endif
+						@if($servicios)
+						<h4> <strong> SERVICIOS DISPONIBLES</strong></h4>		
+						@endif	
 						<table class="table table-bordered table-hover text-center display" id=	"example">
+
+
 							<thead class="active" data-sortable="true">								
 								<th><div align=center>NOMBRE</div></th>	
 								<th><div align=center>DESCRIPCIÓN</div></th>	
@@ -62,7 +75,7 @@
 	 												@endif
 	 											@endforeach
 	 										</td>	
-											<td>{{ Form::checkbox('ch[]', $servicio->id, false) }}</td>	
+											<td>{{ Form::checkbox('Seleccionar[]', $servicio->id, false) }}</td>	
 														
 										</tr>
 										@endif
@@ -80,7 +93,7 @@
 						<input class="btn btn-primary" type="submit" value="Continuar">
 					</div>
 					<div class="btn-group">
-						 <a class="btn btn-info"  title="Cancelar" data-href="" data-toggle="modal" data-target="#modalEliminar">Cancelar</a>   
+						 <a  class="btn btn-info"  title="Cancelar" data-href="" data-toggle="modal" data-target="#modalEliminar">Cancelar</a>   
 					</div>
 				</div>
 				<br><br>
@@ -117,11 +130,11 @@
 	        <h4 class="modal-title">Confirmar</h4>
 	      </div>
 	      <div class="modal-body">
-	        <p>¿Está seguro que desea cancelar la creación del sorteo?</p>
+	        <p>¿Está seguro que desea salir de la página?</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-danger btn-ok">Confirmar</a>
+            <a class="btn btn-danger" href="{{url('/sedes/'.$sede->id.'/verservicios')}}" >Confirmar</a>
 	      </div>
 	    </div>
 

@@ -50,7 +50,7 @@ class UsuarioController extends Controller
                     $perfil='admin-reserva';
                     break;
                 case '8':
-                    $perfil='publico';
+                    $perfil='control-ingresos';
                     break;
         }
 
@@ -93,7 +93,10 @@ class UsuarioController extends Controller
             $user->password = $input['password'];
             $user->perfil_id = $input['perfil_id'];
             $user->save();
-            
+            dd($input['persona_id']);
+            $persona=Persona::find($input['persona_id']);
+            $person->id_usuario=$user->id;
+            $person->save();
             Session::flash('message','Nuevo Usuario Asignado Correctamente');
             return Redirect::to('/usuario');
         }
@@ -130,7 +133,7 @@ class UsuarioController extends Controller
                     $perfil='admin-reserva';
                     break;
                 case '8':
-                    $perfil='publico';
+                    $perfil='control-ingresos';
                     break;
         }
 
@@ -170,7 +173,7 @@ class UsuarioController extends Controller
                     $perfil='/admin-reserva';
                     break;
                 case '8':
-                    $perfil='/public';
+                    $perfil='/control-ingresos';
                     break;
             }
             Session::flash('message','Su contraseña ha sido cambiada con éxito');

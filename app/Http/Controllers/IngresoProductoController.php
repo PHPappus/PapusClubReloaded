@@ -8,122 +8,197 @@ use papusclub\Http\Requests;
 use papusclub\Models\Producto;
 use papusclub\Models\PrecioProducto;
 use papusclub\Models\Configuracion;
-use papusclub\Http\Requests\StoreProductoRequest;
-use papusclub\Http\Requests\EditProductoRequest;
+use papusclub\Models\ProductoxIngresoProducto;
+use papusclub\Models\IngresoProducto;
+use papusclub\Models\Persona;
+use papusclub\Models\Proveedor;
+use papusclub\Http\Requests\StoreIngresoProductoRequest;
+use papusclub\Http\Requests\StoreProductoxIngresoProductoRequest;
+use papusclub\Http\Requests\EditIngresoProductoRequest;
 use papusclub\Http\Requests\StoreConfiguracionRequest;
-
+use papusclub\User;
+use Auth;
+use Session;
 
 class IngresoProductoController extends Controller
 {
     //Muestra la lista de productos que se encuentran en BD, estas se pueden modificar, cambiar el estado, ver mas detalle o registrar un nuevo producto
     public function index() {
-		$productos = Producto::all();        
-        return view('admin-general.ingreso-producto.index', compact('productos'));
-	}	
+        $ingresoproductos = IngresoProducto::all();        
+        return view('admin-general.ingreso-producto.index', compact('ingresoproductos'));
+    }   
 
-	public function create()
-    {
-        $tipo_productos = Configuracion::where('grupo','=','6')->get();
-    	return view('admin-general.producto.newProducto', compact('tipo_productos'));
+    public function create()
+    {                    
+        $estados = Configuracion::where('grupo','=','13')
+                                    ->where('valor','=','Solicitud Pendiente')->get();                                        
+        
+        $tipo_solicitudes = Configuracion::where('grupo','=','14')->get();
+        
+        $proveedores = Proveedor::all();
+
+        return view('admin-general.ingreso-producto.newIngresoProducto', compact('estados','proveedores','tipo_solicitudes'));
     }
     
-    public function store(StoreProductoRequest $request)
-    {    	
-    	$input = $request->all();
-        $producto = new Producto();
-    	$producto->nombre = $input['nombre'];
-		$producto->descripcion = $input['descripcion'];
-		$producto->estado = 1;
-		$producto->tipo_producto = $input['tipo_producto'];		
-    	
-        $producto->save();	    
+    public function store(StoreIngresoProductoRequest $request)
+    {       
+        $input = $request->all();
         
-        $precio = new PrecioProducto();
-        $precio->producto_id = $producto->id;
-        $precio->precio = $input['precio'];
-        $precio->estado = 1;
-        $precio->save();
-        return redirect('producto/index')->with('stored', 'Se registró el producto correctamente.');
-    }
-	
-	//Muestra el formulario para poder modificar un producto
+        $user_id = Auth::user()->id;
+        $usuario = User::find($user_id);
+        $persona_id = $usuario->persona->id;
+
+        $ingresoproducto = new IngresoProducto();
+        $ingresoproducto->persona_id = $persona_id;
+        $ingresoproducto->proveedor_id = $input['proveedor_id'];
+        $ingresoproducto->tipo_solicitud = $input['tipo_solicitud'];
+        $ingresoproducto->descripcion = $input['descripcion'];
+        $ingresoproducto->estado = $input['estado'];        
+        
+        $ingresoproducto->save();       
+
+        return view('admin-general.ingreso-producto.addIngresoProducto', compact('ingresoproducto'));
+    }      
+
+    public function createIngresoProducto($id)
+    {       
+        $ingresoproducto = IngresoProducto::find($id);
+
+        if (strcmp($ingresoproducto->tipo_solicitud, 'Producto') == 0){
+            $productos = Producto::where('tipo_producto','<>','Servicio')->get();
+            return view('admin-general.ingreso-producto.add', compact('ingresoproducto','productos'));
+        }
+        else{
+            $productos = Producto::where('tipo_producto','=','Servicio')->get();
+            return view('admin-general.ingreso-producto.addServicio', compact('ingresoproducto','productos'));
+        }        
+    }      
+
+    public function storeIngresoProducto(StoreProductoxIngresoProductoRequest $request)
+    {   $cantidad = 0;
+        
+        $input = $request->all();                
+        
+        $productoxingresoproducto = ProductoxIngresoProducto::where('ingresoproducto_id','=',$input['ingresoproducto_id'])
+                                                    ->where('producto_id','=',$input['producto_id'])
+                                                    ->first();
+        if ($productoxingresoproducto==null){
+            $productoxingresoproducto = new ProductoxIngresoProducto();                
+        }        
+        else{
+            $cantidad = $productoxingresoproducto->cantidad;
+            $subtotal = $productoxingresoproducto->subtotal;
+        }
+        
+        $productoxingresoproducto->producto_id = $input['producto_id'];
+        $productoxingresoproducto->cantidad = $input['cantidad'] + $cantidad;              
+        $productoxingresoproducto->ingresoproducto_id = $input['ingresoproducto_id'];
+
+        $productoxingresoproducto->save(); 
+        $productoxingresoproducto->ingresoproducto->save();
+
+        $ingresoproducto = IngresoProducto::find($input['ingresoproducto_id']);
+
+        return view('admin-general.ingreso-producto.addIngresoProducto', compact('ingresoproducto'));
+    }      
+
+    //Muestra el formulario para poder modificar un producto
     public function edit($id)
     {
-        $producto = Producto::find($id);
-        
-        $precio = PrecioProducto::where('producto_id', '=', $id)
-                                ->where('estado', '=', 1)->first();
+        $ingresoproducto = IngresoProducto::find($id);
+        $estados = Configuracion::where('grupo','=','13')->get();
+        return view('admin-general.ingreso-producto.editIngresoProducto', compact('ingresoproducto','estados'));
+    }
 
-        if ($precio==null){
-            $precio = new PrecioProducto();
-            $precio->producto_id = $producto->id;
-            $precio->precio = 0;
-            $precio->estado = 1;
-            $precio->save();
-        }
-
-        $tipo_productos = Configuracion::where('grupo','=','6')->get();
-
-        return view('admin-general.producto.editProducto', compact('producto'), compact('tipo_productos'));
+     public function editProducto($id)
+    {        
+        $producto = ProductoxIngresoProducto::find($id);
+        return view('admin-general.ingreso-producto.editIngresoProductoDetail', compact('producto'));
     }
 
     //Se guarda la informacion modificada del producto en la BD
-    public function update(StoreProductoRequest $request, $id)
+    public function update(EditIngresoProductoRequest $request, $id)
     {
         $input = $request->all();
-        $producto = Producto::find($id);
-
-        $producto->nombre = $input['nombre'];
-        $producto->descripcion = $input['descripcion'];
-        $producto->estado = $input['estado'];
-        $producto->tipo_producto = $input['tipo_producto'];           
-        $producto->save();
-
-        $precioAnt = PrecioProducto::where('producto_id', '=', $id)
-                                    ->where('estado', '=', 1)->first();
-        $precioAnt->estado = 0;
-        $precioAnt->save();
-        $precioAnt->delete();
-
-        $precioNuevo = new PrecioProducto();
-        $precioNuevo->producto_id = $producto->id;
-        $precioNuevo->precio = $input['precio'];
-        $precioNuevo->estado = 1;
-        $precioNuevo->save();
+        $ingresoproducto = IngresoProducto::find($id);
         
-        return redirect('producto/index')->with('stored', 'Se actualizó el producto correctamente.');
+        if ((strcmp($input['estado'], 'Producto Recibido') == 0)  &&  (strcmp($ingresoproducto->estado, 'Solicitud Pendiente') == 0)){
+            foreach ($ingresoproducto->productoxingresoProducto as $producto) {
+                $producto->producto->stock = $producto->producto->stock + $producto->cantidad;
+                $producto->producto->save();
+            }
+            $producto->save();
+        }
+
+        $ingresoproducto->estado = $input['estado'];        
+        $ingresoproducto->save();        
+        
+        return redirect('ingreso-producto/index')->with('stored', 'Se actualizó el producto correctamente.');
+
+    }
+
+    public function updateProducto(StoreProductoxIngresoProductoRequest $request, $id)
+    {
+        $input = $request->all();            
+
+        $productoxingresoproducto = ProductoxIngresoProducto::find($id);                     
+        
+        $productoxingresoproducto->cantidad = $input['cantidad'];  
+        
+        $productoxingresoproducto->save();
+        
+        $productoxingresoproducto->ingresoproducto->save();
+        $ingresoproducto = IngresoProducto::find($input['ingresoproducto_id']);
+
+        return view('admin-general.ingreso-producto.addIngresoProducto', compact('ingresoproducto'));
 
     }
 
     //Se cambia el estado de un producto a inactiva
     public function destroy($id)    
     {
-        $producto = Producto::find($id);
+        $ingresoproducto = IngresoProducto::find($id);
         
-        $producto->precioproducto->first()->estado = 0;
-        $producto->precioproducto->first()->delete();
-        $producto->delete();
-        return back();
+        foreach ($ingresoproducto->productoxingresoproducto as $productoxingresoproducto) {
+            $productoxingresoproducto->delete();
+        }       
+        $ingresoproducto->delete();
+        return redirect('ingreso-producto/index');
+    }
+
+    public function destroyProducto($id)    
+    {
+        $productoxingresoproducto = ProductoxIngresoProducto::find($id);
+        
+        $ingresoproducto = IngresoProducto::find($productoxingresoproducto->ingresoproducto_id);        
+        $ingresoproducto->save();
+        $productoxingresoproducto->delete();
+
+        return view('admin-general.ingreso-producto.addIngresoProducto', compact('ingresoproducto'));
+    }
+
+     public function cancel($id)    
+    {
+        $ingresoproducto = IngresoProducto::find($id);
+        
+        foreach ($ingresoproducto->productoxingresoproducto as $productoxingresoproducto) {
+            IngresoProductoController::destroyProducto($productoxingresoproducto->id);
+        }       
+        $ingresoproducto->delete();
+        return redirect('ingreso-producto/index');
     }
 
     //Se brinda informacion mas detallada del producto
     public function show($id)
     {
-        $producto = Producto::find($id);        
-        return view('admin-general.producto.detailProducto', compact('producto'));
+        $ingresoproducto = IngresoProducto::find($id);
+        return view('admin-general.ingreso-producto.detailIngresoProducto', compact('ingresoproducto'));
     }
 
-    public function storeTipoProducto(StoreConfiguracionRequest $request)
-    {       
-        $input = $request->all();
-        $configuracion = new Configuracion();
-        $configuracion->valor = $input['valor'];
-        $configuracion->grupo = 6;
-        $configuracion->descripcion = 'Tipo de Producto';
-               
-        $configuracion->save();      
-        
-        return redirect('producto/new');
+    public function back($id)
+    {
+        $ingresoproducto = IngresoProducto::find($id);
+        return view('admin-general.ingreso-producto.addIngresoProducto', compact('ingresoproducto'));
     }
 
 }

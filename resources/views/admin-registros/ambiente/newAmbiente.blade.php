@@ -62,7 +62,7 @@
 			    	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>	
 			    	<div class="col-sm-5">
 				    	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >
-							                <option value="-1" default>Seleccione</option>							         
+							                <option value="" default>Seleccione</option>							         
 							                 @foreach ($sedes as $sede)      
 							                	<option value="{{$sede->id}}">{{$sede->nombre}}</option>
 							                @endforeach
@@ -73,14 +73,14 @@
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" value="{{old('nombre')}}" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" value="{{old('nombre')}}" maxlength="30">
 			    	</div>
 			  	</div>
 			  	<div class="form-group required">
 			    	<label for="tipoAmbienteInput" class="col-sm-4 control-label">Tipo Ambiente</label>	
 			    	<div class="col-sm-5">
 				    	<select class="form-control" id="tipoAmbienteInput" name="tipo_ambiente" style="max-width: 150px "   >
-							                <option value="-1" default>Seleccione</option>
+							                <option value="" default>Seleccione</option>
 							                @foreach ($values as $value)      
 							                	<option value="{{$value->id}}">{{$value->valor}}</option>
 							                @endforeach
@@ -93,14 +93,14 @@
 			  	<div class="form-group required">
 			    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad Máxima</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="capacidadInput" name="capacidad_actual" placeholder="Capacidad Maxima" value="{{old('capacidad_actual')}}" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')"   class="form-control" id="capacidadInput" name="capacidad_actual" placeholder="Capacidad Máxima" value="{{old('capacidad_actual')}}" >
 			    	</div>
 			  	</div>	  	
 			  	
 			  	<div class="form-group required">
-			    	<label for="ubicacionInput" class="col-sm-4 control-label">Ubicación</label>
+			    	<label for="ubicacionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			      		<textarea type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="ubicacionInput" name="ubicacion" placeholder="Ubicacion" value="{{old('ubicacion')}}" style="resize: none"></textarea>
+			      		<textarea type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" value="{{old('descripcion')}}" style="resize: none" maxlength="100"></textarea>
 			    	</div>
 			  	</div>
 			  
@@ -124,11 +124,15 @@
 					<tbody>
 							@foreach ($tipoPersonas as $tipoPersona)		
 						    	<tr>
-									<td align="center">{{$tipoPersona->descripcion}}</td>
+						    		@if($tipoPersona->descripcion == 'Postulante' || $tipoPersona->descripcion == 'postulante')
+										<td align="center">Socio</td>
+									@else
+										<td align="center">{{$tipoPersona->descripcion}}</td>
+									@endif
 									<td align="center">  S/.</td>
 									<td align="center"> 
 										<div align="center">
-								      		<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'DoubleFormat')"   class="form-control" id="{{$tipoPersona->descripcion}}Input" name="{{$tipoPersona->descripcion}}" placeholder="Monto" >
+								      		<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'DoubleFormat')"   class="form-control" id="{{$tipoPersona->descripcion}}Input" name="{{$tipoPersona->descripcion}}" placeholder="Monto" maxlength="6" >
 								    	</div>
 								</td>							        
 								</tr>

@@ -5,11 +5,11 @@
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{!!Html::style('css/jquery.bxslider.css')!!}
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
-	
 	<style type="text/css" media="screen">
 		#dpd1{
 			width:456.6px;
@@ -38,6 +38,7 @@
 		<div class="container">
 			<form method="POST" action="/taller/new/save" class="form-horizontal form-border">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+			<input type="hidden" name="reserva" value="{{$reserva->id}}">
 			
 				<div class="col-sm-4"></div>
 				<div class=""> 
@@ -62,28 +63,19 @@
 			  	</br>
 			  	</br>
 				
+
 			  	<div class="form-group required">
 			    	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>	
 			    	<div class="col-sm-5">
-				    	<select class="form-control" id="sedeInput" name="sede" style="max-width: 150px "  >
-				    						<option value="-1" default>Seleccione</option>
-							               	@foreach ($sedes as $sede)      
-							                	<option value="{{$sede->id}}">{{$sede->nombre}}</option>
-							               	@endforeach
-						</select>
+				    	<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="sedeInput" name="sede" value="{{$reserva->ambiente->sede->nombre}}" readonly>
 					</div>
 			  	</div>
 
 			  	<div class="form-group required">
 			    	<label for="ambienteInput" class="col-sm-4 control-label">Tipo de Ambiente</label>	
 			    	<div class="col-sm-5">
-				    	<select class="form-control" id="ambienteInput" name="ambiente" style="max-width: 150px "  >
-				    						<option value="-1" default>Seleccione</option>
-							               	@foreach ($ambientes as $ambiente)      
-							                	<option value="{{$ambiente->id}}">{{$ambiente->nombre}}</option>
-							               	@endforeach
-						</select>
-					</div>
+				    	<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="ambienteInput" name="ambiente" value="{{$reserva->ambiente->tipo_ambiente}}" readonly>
+			  		</div>
 			  	</div>
 
 				<div class="form-group required">
@@ -91,12 +83,19 @@
 			    	<div class="col-sm-5">
 			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="dInput" name="nombre" placeholder="Nombre" value="{{old('nombre')}}">
 			    	</div>
-			  	</div> 
+			  	</div>
 
 			  	<div class="form-group ">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
 			    		<textarea class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" rows="3" cols="50" value="{{old('descripcion')}}"></textarea>
+			    	</div>
+			  	</div>
+
+			  	<div class="form-group">
+			    	<label for="profeInput" class="col-sm-4 control-label">Profesor</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="profeInput" name="profe" placeholder="Profesor" value="{{old('profe')}}">
 			    	</div>
 			  	</div>
 
@@ -124,14 +123,14 @@
 				<div class="form-group required">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Inicio de Taller</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIni" placeholder="Fecha Inicio Taller" value="{{old('fecIni')}}">
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIni" placeholder="Fecha Inicio Taller" value="{{$reserva->fecha_inicio_reserva}}" readonly>
 					</div>	
 				</div>
 
 			  	<div class="form-group required">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Fin de Taller</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFin" placeholder="Fecha Fin Taller"  value="{{old('fecFin')}}">
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFin" placeholder="Fecha Fin Taller"  value="{{$reserva->fecha_fin_reserva}}" readonly>
 					</div>	
 				</div>
 
@@ -173,8 +172,8 @@
 									@endif
 									<td align="center">  S/.</td>
 									<td align="center"> 
-									<div align="center">
-							      		<input style="text-align:center;" type="text" onkeypress="return inputLimiter(event,'DoubleFormat')" min ="0" step="any" class="form-control" id="{{$persona->descripcion}}Input" name="{{$persona->descripcion}}" placeholder="">
+									<div align="center">																																																		
+							      		<input style="text-align:center;" type="text" onkeypress="return inputLimiter(event,'DoubleFormat')" min ="0" step="any" class="form-control" id="{{$persona->descripcion}}Input" name="tarifas[{{$persona->id}}]" placeholder="">
 							    	</div>
 								</td>							        
 								</tr>
@@ -193,7 +192,7 @@
 						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
-						<a href="/taller/" class="btn btn-info">Cancelar</a>
+						<a href="/taller/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>
@@ -203,28 +202,23 @@
 		</div>
 	</div>		
 @stop
-<!-- JQuery -->
-	<script src="/js/jquery-1.11.3.min.js"></script>
-	<!-- Bootstrap -->
-	<script type="text/javascript" src="/js/bootstrap.js"></script>
-	<!-- BXSlider -->
-	<script src="/js/jquery.bxslider.min.js"></script>
-	<!-- Mis Scripts -->
-	<script src="/js/MisScripts.js"></script>
-
-	<script src="../js/jquery-1.12.4.min.js"></script>
-	<!-- Bootstrap -->
-	<script type="text/javascript" src="../js/bootstrap.js"></script>
-
-	<!-- BXSlider -->
-
-	<!-- Mis Scripts -->
-
-	<script type="text/javascript" src="../js/bootstrap-datepicker-sirve.js"></script>
+{!!Html::script('js/jquery-1.11.3.min.js')!!}
+	{!!Html::script('js/bootstrap.js')!!}
+	{!!Html::script('js/jquery.bxslider.min.js')!!}
+	{!!Html::script('js/bootstrap-datepicker.js')!!}
+	{!!Html::script('js/MisScripts.js')!!}
+	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
+	<script>
+		$(document).ready(function() {
+		   $('#example').DataTable( {
+		       "language": {
+		           "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+		       }
+		  	});
+  		});
+	</script>	
 
 
-	
-	
 	<script>
 		$(document).ready(function(){
 				var nowTemp = new Date();		
@@ -265,6 +259,16 @@
 			});
 		});
 	</script>
+
+	<script>
+		function ventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 1;
+		}
+		function cerrarventana(){
+			document.getElementsByTagName('header')[0].style.zIndex = 3;
+		}
+  	</script>
+	
 
 	
 	

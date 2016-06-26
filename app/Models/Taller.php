@@ -42,4 +42,9 @@ class Taller extends Model
     public function personas(){
         return $this->belongsToMany(Persona::class,'personaxtaller','persona_id','taller_id')->withPivot('precio')->whereNull('personaxtaller.deleted_at')->withTimestamps();
     }
+
+    public function reserva()
+    {
+        return $this->belongsTo(Reserva::class,'reserva_id');
+    }
 }

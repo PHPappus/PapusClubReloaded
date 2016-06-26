@@ -86,6 +86,13 @@
 			    	</div>
 			  	</div>
 
+			  	<div class="form-group">
+			    	<label for="profeInput" class="col-sm-4 control-label">Profesor</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="profeInput" name="profe" placeholder="Profesor" value="{{$taller->profesor}}">
+			    	</div>
+			  	</div>
+
 			  	<div class="form-group required">
 			    	<label for="vacantesInput" class="col-sm-4 control-label">Vacantes</label>
 			    	<div class="col-sm-5">
@@ -161,7 +168,7 @@
 									<td align="center">  S/.</td>
 									<td align="center"> 
 									<div align="center">
-							      		<input style="text-align:center;" type="text" onkeypress="return inputLimiter(event,'DoubleFormat')" min ="0" step="any" class="form-control" id="{{$persona->descripcion}}Input" name="{{$persona->descripcion}}" placeholder="" value="{{$persona->pivot->precio}}">
+							      		<input style="text-align:center;" type="text" onkeypress="return inputLimiter(event,'DoubleFormat')" min ="0" step="any" class="form-control" id="{{$persona->descripcion}}Input" name="tarifas[{{$persona->id}}]" placeholder="" value="{{$persona->pivot->precio}}">
 							    	</div>
 								</td>							        
 								</tr>

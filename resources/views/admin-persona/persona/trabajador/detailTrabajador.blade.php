@@ -14,28 +14,7 @@
 	<!-- PARA DATA TABLE -->
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
 	
-	<style type="text/css" media="screen">
-		#dpd1{
-			width:300px;
-		}
-		#map { height: 20%; }
-	</style>
 
-<!--Aqui viene la magia-->
-
-	<style>
-		#map-canvas{
-			height: 500px;
-			width: 500px;
-			margin: 0px;
-			padding: 0px;
-		}
-	</style>
-
-
-	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&libraries=places"></script>
 
 </head>
 <body>
@@ -47,7 +26,7 @@
 				<div class="col-sm-12 text-left">
 				<br>
 				<br>
-					<p class="lead"><strong>DETALLE CUENTA</strong></p>
+					<p class="lead"><strong>DETALLE TRABAJADOR</strong></p>
 			  	</div>
 				</div>
 			</div>	
@@ -145,7 +124,7 @@
 										</div>
 									</div>
 
-									@if($persona['nacionalidad']=="Peruano")
+									@if($persona['nacionalidad']=="peruano")
 									<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
@@ -266,9 +245,11 @@
 
 @stop
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
+	{!!Html::script('js/jquery-1.11.3.min.js')!!}
+	{!!Html::script('js/bootstrap.js')!!}
+	{!!Html::script('js/jquery.bxslider.min.js')!!}
+	{!!Html::script('js/bootstrap-datepicker.js')!!}
+	{!!Html::script('js/MisScripts.js')!!}
 
 
 

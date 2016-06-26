@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>DETALLE POSTULANTE</title>
+	<title>DETALLE SOCIO</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+	{!!Html::style('css/jquery.bxslider.css')!!}
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
-	{!!Html::style('css/jquery.bxslider.css')!!}
-	
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
 
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin-persona')
+@extends('layouts.headerandfooter-al-admin')
 @section('content')
 
 
@@ -103,11 +101,11 @@
 										</div>
 										<div class="col-sm-6 text-left" >
 										@if(strcmp($postulante->persona->sexo,'masculino')==0)
-												<input type="radio" name="genero" value="Masculino" disabled checked> Masculino
-												<input type="radio" name="genero" value="Femenino" style="margin-left: 35px;" disabled> Femenino
+												<input type="radio" name="genero" value="masculino" disabled checked> Masculino
+												<input type="radio" name="genero" value="femenino" style="margin-left: 35px;" disabled> Femenino
 										@else
-												<input type="radio" name="genero" value="Masculino" disabled > Masculino
-												<input type="radio" name="genero" value="Femenino" style="margin-left: 35px;" disabled checked> Femenino
+												<input type="radio" name="genero" value="masculino" disabled > Masculino
+												<input type="radio" name="genero" value="femenino" style="margin-left: 35px;" disabled checked> Femenino
 										@endif										
 										</div>	
 									</div>
@@ -120,8 +118,8 @@
 											<label for="" class="control-label">Nacionalidad:</label>
 										</div>
 										<div class="col-sm-6 text-left" >
-												<input  type="radio" name="nacionalidad" value="Peruano"  @{{$nac=per}} checked disabled> Peruano  
-												<input  type="radio" name="nacionalidad" value="Extranjero" style="margin-left: 50px;"@{{$nac=otro}} disabled> Extranjero	
+												<input  type="radio" name="nacionalidad" value="peruano"  @{{$nac=per}} checked disabled> peruano  
+												<input  type="radio" name="nacionalidad" value="extranjero" style="margin-left: 50px;"@{{$nac=otro}} disabled> Extranjero	
 										</div>	
 									</div>
 								</div>
@@ -143,8 +141,8 @@
 											<label for="" class="control-label">Nacionalidad:</label>
 										</div>
 										<div class="col-sm-6 text-left" >
-												<input  type="radio" name="nacionalidad" value="Peruano"  @{{$nac=per}}  disabled> Peruano  
-												<input  type="radio" name="nacionalidad" value="Extranjero" style="margin-left: 50px;"@{{$nac=otro}} checked disabled> Extranjero	
+												<input  type="radio" name="nacionalidad" value="peruano"  @{{$nac=per}}  disabled> peruano  
+												<input  type="radio" name="nacionalidad" value="extranjero" style="margin-left: 50px;"@{{$nac=otro}} checked disabled> Extranjero	
 										</div>	
 									</div>
 								</div>

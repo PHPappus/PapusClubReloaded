@@ -65,19 +65,29 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('inscripcion-actividad/{id}/delete', 'InscriptionActividadController@removeInscriptionToPersona');
 
 
+	//Trámites SocioF
+	Route::get('traspaso/','SocioController@traspmembresia');
+	Route::post('traspaso/nuevo','SocioController@storeTraspaso');
+	Route::get('mis-multas/','SocioController@misMultas');
+	Route::get('ver-postulantes/','SocioController@verPostulantes');
+	Route::get('socio-postulante/{id}/obs','SocioController@agregarObs');
+	Route::post('observacion/new/save','SocioController@storeObservacion');
+
+
 	//RESERVA DE AMBIENTES
 	Route::get('reservar-ambiente/reservar-bungalow', 'ReservarAmbienteController@reservarBungalow');
 	Route::post('reservar-ambiente/reservar-bungalow/search', 'ReservarAmbienteController@reservarBungalowFiltrados'); 
 	Route::get('reservar-ambiente/reservar-otros-ambientes', 'ReservarAmbienteController@reservarOtrosAmbientes'); // REservar otros ambientes distinto de bungalows
 	Route::post('reservar-ambiente/reservar-otros-ambientes/search','ReservarAmbienteController@reservarOtrosAmbientesFiltrados');
-	Route::get('reservar-ambiente/{id}/new-reserva-bungalow', 'ReservarAmbienteController@createBungalow');//
+	Route::get('reservar-ambiente/{id}/{fechaIniValue}/{fechaFinValue}/new-reserva-bungalow', 'ReservarAmbienteController@createBungalow');//
 	Route::post('reservar-ambiente/{id}/confirmacion-reserva-bungalow', 'ReservarAmbienteController@storeBungalow');//confirmacion para la reserva del bungalos
-	Route::get('reservar-ambiente/{id}/new-reserva-otro-ambiente', 'ReservarAmbienteController@createOtroTipoAmbiente');//
+	Route::get('reservar-ambiente/{id}/{fechaIniValue}/{fechaFinValue}/new-reserva-otro-ambiente', 'ReservarAmbienteController@createOtroTipoAmbiente');//
 	Route::post('reservar-ambiente/{id}/confirmacion-reserva-otro-ambiente', 'ReservarAmbienteController@storeOtroTipoAmbiente');//confirmacion para la reserva de otros ambientes distintos de bungalows
 	Route::get('reservar-ambiente/searchSocio', 'SocioController@searchSocio');
 	//Lista de Reservas Hechas
 	Route::get('reservar-ambiente/lista-reservas', 'ReservarAmbienteController@listaReservas');
-	
+	Route::get('reservar-ambiente/{id}/show', 'ReservarAmbienteController@showReserva'); // Detalle del la reserva hecha por el socio
+	Route::get('reservar-ambiente/{id}/delete','ReservarAmbienteController@eliminarReserva');
 	//PAGOS (deudas del socio)
 	Route::get('pagos/facturacion-socio/','PagosController@listarFacturacionSocio');//se lista a los socios
 	Route::get('pagos-del-socio/{id}/show', 'PagosController@showAlSocio'); // Detalle del pago
@@ -116,8 +126,9 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 
 
 	//MANTENIMIENTO DE TALLERES
-	Route::get('taller/','TallerController@index');
+	Route::get('taller/index','TallerController@index');
 	Route::get('taller/new','TallerController@create');
+	Route::get('taller/{id}/select','TallerController@select');
 	Route::get('taller/{id}/editar','TallerController@edit');
 	Route::get('taller/{id}/','TallerController@show');
 	Route::post('taller/new/save','TallerController@store');
@@ -149,11 +160,69 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::get('ambiente/{id}/select', 'AmbienteController@select');/*Para el seleccionar ambiente desde  Actividad*/
 	Route::post('ambiente/new/tipoambiente', 'AmbienteController@storeTipoAmbiente');
 
+	//MANTENIMIENTO DE PROVEEDORES
+	Route::get('proveedor/index/', 'ProveedorController@index');
+	Route::get('proveedor/new', 'ProveedorController@create');
+	Route::post('proveedor/new/proveedor', 'ProveedorController@store');
+	Route::get('proveedor/{id}', 'ProveedorController@edit');
+	Route::post('proveedor/{id}/edit', 'ProveedorController@update');
+	Route::get('proveedor/{id}/delete', 'ProveedorController@destroy');
+	Route::get('proveedor/{id}/show', 'ProveedorController@show');
+	//MANTENIMIENTO DE PRODUCTOS
+	Route::get('producto/index', 'ProductoController@index');
+	Route::get('producto/new', 'ProductoController@create');
+	Route::post('producto/new/producto', 'ProductoController@store');
+	Route::get('producto/{id}', 'ProductoController@edit');
+	Route::post('producto/{id}/edit', 'ProductoController@update');
+	Route::get('producto/{id}/delete', 'ProductoController@destroy');
+	Route::get('producto/{id}/show', 'ProductoController@show');
+	Route::post('producto/new/tipoproducto', 'ProductoController@storeTipoProducto');
+	//VENTA DE PRODUCTOS
+	Route::get('venta-producto/index', 'VentaProductoController@index');
+	Route::get('venta-producto/new', 'VentaProductoController@create');
+	Route::post('venta-producto/new/venta-producto', 'VentaProductoController@store');
+	Route::get('venta-producto/{id}', 'VentaProductoController@edit');
+	Route::post('venta-producto/{id}/edit', 'VentaProductoController@update');
+	Route::get('venta-producto/{id}/delete', 'VentaProductoController@destroy');
+	Route::get('venta-producto/{id}/show', 'VentaProductoController@show');
+	Route::get('venta-producto/new/venta-producto/{id}', 'VentaProductoController@createVentaProducto');
+	Route::post('venta-producto/new/venta-producto/add', 'VentaProductoController@storeVentaProducto');
+	Route::get('venta-producto/new/{id}', 'VentaProductoController@editProducto');
+	Route::post('venta-producto/new/{id}/editProducto', 'VentaProductoController@updateProducto');
+	Route::get('venta-producto/{id}/deleteProducto', 'VentaProductoController@destroyProducto');
+	Route::get('venta-producto/{id}/back', 'VentaProductoController@back');
+	Route::get('venta-producto/{id}/cancel', 'VentaProductoController@cancel');
+	//INGRESO DE PRODUCTOS
+	Route::get('ingreso-producto/index', 'IngresoProductoController@index');
+	Route::get('ingreso-producto/new', 'IngresoProductoController@create');
+	Route::post('ingreso-producto/new/ingreso-producto', 'IngresoProductoController@store');
+	Route::get('ingreso-producto/{id}', 'IngresoProductoController@edit');
+	Route::post('ingreso-producto/{id}/edit', 'IngresoProductoController@update');
+	Route::get('ingreso-producto/{id}/delete', 'IngresoProductoController@destroy');
+	Route::get('ingreso-producto/{id}/show', 'IngresoProductoController@show');
+	Route::get('ingreso-producto/new/ingreso-producto/{id}', 'IngresoProductoController@createIngresoProducto');
+	Route::post('ingreso-producto/new/ingreso-producto/add', 'IngresoProductoController@storeIngresoProducto');
+	Route::get('ingreso-producto/new/{id}', 'IngresoProductoController@editProducto');
+	Route::post('ingreso-producto/new/{id}/editProducto', 'IngresoProductoController@updateProducto');
+	Route::get('ingreso-producto/{id}/deleteProducto', 'IngresoProductoController@destroyProducto');
+	Route::get('ingreso-producto/{id}/back', 'IngresoProductoController@back');
+	Route::get('ingreso-producto/{id}/cancel', 'IngresoProductoController@cancel');
 });
 
 //Gerente
 Route::group(['middleware' => ['auth', 'gerente']], function () {
 	Route::resource('gerente','GerenteController');
+
+	//Reportes
+	//reporte 1
+	Route::get('reporte/invitado-por-sede', 'ReporteController@reporte1');
+	Route::post('reporte/invitado-por-sede/reporte', 'ReporteController@reporte1Final');//resultado del reporte
+	//reporte 2
+	Route::get('reporte/morosos', 'ReporteController@reporte2');
+	Route::post('reporte/morosos/reporte', 'ReporteController@reporte2Final');//resultado del reporte
+	//reporte 3
+	Route::get('reporte/reserva-de-bungalow', 'ReporteController@reporte3');
+	Route::post('reporte/reserva-de-bungalow/reporte', 'ReporteController@reporte3Final');//resultado del reporte
 });
 
 //Administrados de pagos
@@ -218,51 +287,22 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	
 
 	// Agregar Servicios a las sedes2
+	 Route::get('select/sede', 'SedesController@indexselecttoservicio');
 	  Route::get('sedes/{id}/agregarservicios', 'SedesController@agregarservicios');
 	  Route::post('sedes/{id}/agregarservicios/store','SedesController@storeservicios');
-	
-	
-	//MANTENIMIENTO DE PROVEEDORES
-	Route::get('proveedor/index/', 'ProveedorController@index');
-	Route::get('proveedor/new', 'ProveedorController@create');
-	Route::post('proveedor/new/proveedor', 'ProveedorController@store');
-	Route::get('proveedor/{id}', 'ProveedorController@edit');
-	Route::post('proveedor/{id}/edit', 'ProveedorController@update');
-	Route::get('proveedor/{id}/delete', 'ProveedorController@destroy');
-	Route::get('proveedor/{id}/show', 'ProveedorController@show');
-	//MANTENIMIENTO DE PRODUCTOS
-	Route::get('producto/index', 'ProductoController@index');
-	Route::get('producto/new', 'ProductoController@create');
-	Route::post('producto/new/producto', 'ProductoController@store');
-	Route::get('producto/{id}', 'ProductoController@edit');
-	Route::post('producto/{id}/edit', 'ProductoController@update');
-	Route::get('producto/{id}/delete', 'ProductoController@destroy');
-	Route::get('producto/{id}/show', 'ProductoController@show');
-	Route::post('producto/new/tipoproducto', 'ProductoController@storeTipoProducto');
-	//VENTA DE PRODUCTOS
-	Route::get('venta-producto/index', 'VentaProductoController@index');
-	Route::get('venta-producto/new', 'VentaProductoController@create');
-	Route::post('venta-producto/new/venta-producto', 'VentaProductoController@store');
-	Route::get('venta-producto/{id}', 'VentaProductoController@edit');
-	Route::post('venta-producto/{id}/edit', 'VentaProductoController@update');
-	Route::get('venta-producto/{id}/delete', 'VentaProductoController@destroy');
-	Route::get('venta-producto/{id}/show', 'VentaProductoController@show');
-	Route::get('venta-producto/new/venta-producto/{id}', 'VentaProductoController@createVentaProducto');
-	Route::post('venta-producto/new/venta-producto/add', 'VentaProductoController@storeVentaProducto');
-	Route::get('venta-producto/{id}', 'VentaProductoController@editProducto');
-	Route::post('venta-producto/{id}/edit', 'VentaProductoController@updateProducto');
-	Route::get('venta-producto/{id}/deleteProducto', 'VentaProductoController@destroyProducto');
-	Route::get('venta-producto/{id}/back', 'VentaProductoController@back');
-	Route::get('venta-producto/{id}/cancel', 'VentaProductoController@cancel');
-	//INGRESO DE PRODUCTOS
-	Route::get('ingreso-producto/index', 'IngresoProductoController@index');
+	  Route::get('sedes/{id}/verservicios', 'SedesController@indexserviciosdesede');
+		
+	//Inscribirse en Sorteo
+	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
 
 	//Inscribirse en Sorteo
 	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
 	Route::post('sorteo/inscripcion/store','SorteoController@inscripcionStore');
+	Route::post('sorteo/inscripcion/delete','SorteoController@inscripcionDelete');
 	Route::get('sorteo/inscripcion/mis_sorteos','SorteoController@indexMisInscripciones');
 
 	//MANTENIMIENTO DE SORTEO
+	Route::get('sorteo/index/{id}/ejecutar','SorteoController@loscohibaspapa');
 	Route::get('sorteo/index','SorteoController@index');
 	Route::get('sorteo/new','SorteoController@create');	
 	Route::post('sorteo/new/sorteo','SorteoController@store');
@@ -282,23 +322,35 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 		Route::get('sorteo/edit/remove/sorteo/bungalows/{id}','SorteoController@removebungalows');
 		Route::post('sorteo/new/sorteo/bungalows/{id}/remove','SorteoController@removeCheckedBungalows');
 		//Agregar Sorteo
-		
 
-	
-	
 
-	
-
+	//MANTENIMIENTO DE MEMBRESIA
+	Route::get('membresia/','MembresiaController@index');
+	Route::get('membresia/all','MembresiaController@indexAll');
+	Route::get('membresia/new','MembresiaController@create');
+	Route::get('membresia/{id}/','MembresiaController@show');
+	Route::post('membresia/new/save','MembresiaController@store');
+	Route::get('membresia/{id}/editar','MembresiaController@edit');
+	Route::get('membresia/{membresia}/delete', 'MembresiaController@destroy');
+	Route::get('membresia/{id}/activate','MembresiaController@activate');
+	Route::patch('membresia/{id}/edit','MembresiaController@update');
 });
 
 
 //Administrador de Persona
 Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::resource('admin-persona','AdminPersonaController');
+
+	//ASIGNAR MULTAS A SOCIOS
 	Route::resource('usuario','UsuarioController');
 	Route::get('multas-s/','SocioAdminController@indexRegMulta');
 	Route::post('multas-s/save','SocioAdminController@storeMulta');
 
+	//EVALUAR TRASPASO DE MEMBRESIA
+	Route::get('traspasos-p/','SocioAdminController@indexTraspasos');
+	Route::get('traspaso/{id}/ver','SocioAdminController@showTraspaso');
+	Route::post('traspaso/new/save','SocioAdminController@validarTraspaso');
+	Route::get('traspaso/{id}/rechazar', 'SocioAdminController@cancelarTraspaso');
 
 	//MANTENIMIENTO DE TRABAJADOR
 	Route::get('trabajador/index','TrabajadorController@index');//ya
@@ -319,9 +371,27 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 
 	/*editar*/
 	Route::patch('postulante/{id}/editBasico','PostulanteController@updateBasico');
+	Route::patch('postulante/{id}/editNacimiento','PostulanteController@updateNacimiento');
+	Route::patch('postulante/{id}/editVivienda','PostulanteController@updateVivienda');
 	Route::patch('postulante/{id}/editEstudio','PostulanteController@updateEstudio');
 	Route::patch('postulante/{id}/editTrabajo','PostulanteController@updateTrabajo');
 	Route::patch('postulante/{id}/editContacto','PostulanteController@updateContacto');
+
+
+	/*FAMILIAR*/
+	Route::get('postulante/{id}/familiar/new','PostulanteController@createFamiliar');
+	Route::post('postulante/{id}/familiar/save','PostulanteController@storeFamiliar');
+	Route::get('postulante/{id}/{id_postulante}/familiar/delete','PostulanteController@deleteFamiliar');
+	Route::get('postulante/familiar/{id}/{id_postulante}','PostulanteController@detailFamiliar');
+	Route::get('postulante/familiar/{id}/{id_postulante}/detail','PostulanteController@detailFamiliarPostulante');
+
+
+	/*Aceptar postulación | rechazar postulacion*/
+	Route::get('postulante/{id}/newSocio','PostulanteController@registaSocio');
+	Route::get('postulante/{id}/aceptar','PostulanteController@aceptarPostulante');
+	Route::get('postulante/{id}/rechazar','PostulanteController@rechazarPostulante');	
+
+
 /*	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');*/
 
 	//Route::get('/provincias','PostulanteController@getProvincias');
@@ -330,7 +400,7 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	{
 	    return 'Success! ajax in laravel 5';
 	});
-	//Route::get('/information/create/ajax-departamento','UbicacionController@getProvincias');
+	/*Ajax para el registro de nacimiento en registrar postulante*/
 	Route::post('postulante/provincias', function(){
 		$dep_id=Input::get('id');
     	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
@@ -339,8 +409,38 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 		$prov_id=Input::get('id');
     	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
 	});
-	//Route::get('api/repairdropdown', 'UbicacionController@dropdown');
 
+	/*Ajax para el registro de vivienda en registrar postulante*/
+	Route::post('postulante/provincias_vivienda', function(){
+		$dep_id=Input::get('id');
+    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
+	});
+	Route::post('postulante/distritos_vivienda', function(){
+		$prov_id=Input::get('id');
+    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
+	});
+
+	/*===============================================*/
+
+	/*Ajax para que funcion los list de departamento en el editar*/
+	Route::post('postulante/provinciasEdit', function(){
+		$dep_id=Input::get('id');
+    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
+	});
+	Route::post('postulante/distritosEdit', function(){
+		$prov_id=Input::get('id');
+    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
+	});
+
+	/*Ajax para el registro de vivienda en registrar postulante*/
+	Route::post('postulante/provincias_viviendaEdit', function(){
+		$dep_id=Input::get('id');
+    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
+	});
+	Route::post('postulante/distritos_viviendaEdit', function(){
+		$prov_id=Input::get('id');
+    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
+	});
 
 	//MANTENIMIENTO DE SOCIO
 	Route::get('Socio/','SocioAdminController@index');
@@ -355,21 +455,23 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::post('Socio/{id}/invitado/save','SocioAdminController@storeInvitado');
 	Route::get('Socio/{id}/invitado/delete','SocioAdminController@deleteInvitado');
 	Route::get('Socio/invitado/{id}/','SocioAdminController@detailInvitado');
-		/*Departamento, provincia, distrito*/
-		Route::post('Socio/{id}/invitado/provincias', function(){
-			$dep_id=Input::get('id');
-	    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
-		});
-		Route::post('Socio/{id}/invitado/distritos', function(){
-			$prov_id=Input::get('id');
-	    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
-		});
-	/**/
+	Route::get('Socio/invitado/{id}/detalle','SocioAdminController@detailInvitadoDetalle');
+
+
+	/*Familiar*/
+	Route::get('Socio/{id}/familiar/new','SocioAdminController@createFamiliar');
+	Route::post('Socio/{id}/familiar/save','SocioAdminController@storeFamiliar');
+	Route::get('Socio/{id}/{id_postulante}/familiar/delete','SocioAdminController@deleteFamiliar');
+	Route::get('Socio/familiar/{id}/{id_postulante}','SocioAdminController@detailFamiliar');
+	Route::get('Socio/familiar/{id}/{id_postulante}/detalle','SocioAdminController@detailFamiliarDetalle');//hace referencia a la petaña detale del socio, no de editar
+
+
 
 	/*editar*/
 	Route::patch('Socio/{id}/editBasico','SocioAdminController@updateBasico');
 	Route::patch('Socio/{id}/editNacimiento','SocioAdminController@updateNacimiento');
 	Route::patch('Socio/{id}/editEstudio','SocioAdminController@updateEstudio');
+	Route::patch('Socio/{id}/editVivienda','SocioAdminController@updateVivienda');	
 	Route::patch('Socio/{id}/editTrabajo','SocioAdminController@updateTrabajo');
 	Route::patch('Socio/{id}/editContacto','SocioAdminController@updateContacto');
 	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');
@@ -384,17 +486,27 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
     	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
 	});
 
+	/*Ajax para que funcionen los list de departamento en el editar*/
+	Route::post('Socio/{id}/provincias_viviendaEdit', function(){
+		$dep_id=Input::get('id');
+    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
+	});
+	Route::post('Socio/{id}/distritos_viviendaEdit', function(){
+		$prov_id=Input::get('id');
+    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
+	});
+
+
+	/*ingreso-terceros*/
+	Route::get('tercero/index','TerceroController@index');//ya
+	Route::get('tercero/new','TerceroController@registrar');//ya
+	Route::post('tercero/new/tercero', 'TerceroController@store');//
+	Route::get('tercero/{id}','TerceroController@edit');//ya
+	Route::post('tercero/{id}/edit', 'TerceroController@update');
+	Route::get('tercero/{id}/delete', 'TerceroController@destroy');
+	Route::get('tercero/{id}/show', 'TerceroController@show');
 	
-	//MANTENIMIENTO DE MEMBRESIA
-	Route::get('membresia/','MembresiaController@index');
-	Route::get('membresia/all','MembresiaController@indexAll');
-	Route::get('membresia/new','MembresiaController@create');
-	Route::get('membresia/{id}/','MembresiaController@show');
-	Route::post('membresia/new/save','MembresiaController@store');
-	Route::get('membresia/{id}/editar','MembresiaController@edit');
-	Route::get('membresia/{membresia}/delete', 'MembresiaController@destroy');
-	Route::get('membresia/{id}/activate','MembresiaController@activate');
-	Route::patch('membresia/{id}/edit','MembresiaController@update'); 
+
 
 
 	
@@ -408,20 +520,48 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	//RESERVA DE AMBIENTES
 	Route::get('reservar-ambiente/reservar-bungalow-adminR', 'ReservarAmbienteController@reservarBungalowAdminR'); // REservar Bungalows
 	Route::post('reservar-ambiente/reservar-bungalow-adminR/search-adminR', 'ReservarAmbienteController@reservarBungalowFiltradosAdminR');
-
+	
 	Route::get('reservar-ambiente/reservar-otros-ambientes-adminR', 'ReservarAmbienteController@reservarOtrosAmbientesAdminR'); // REservar otros ambientes distinto de bungalows
 	Route::post('reservar-ambiente/reservar-otros-ambientes/search-adminR','ReservarAmbienteController@reservarOtrosAmbientesFiltradosAdminR');
 	
-	Route::get('reservar-ambiente/{id}/new-reserva-bungalow-adminR', 'ReservarAmbienteController@createBungalowAdminR');//
-	Route::post('reservar-ambiente/{id}/confirmacion-reserva-bungalow-adminR', 'ReservarAmbienteController@storeBungalowAdminR');//confirmacion para la reserva del bungalos
-	Route::get('reservar-ambiente/{id}/new-reserva-otro-ambiente-adminR', 'ReservarAmbienteController@createOtroTipoAmbienteAdminR');//
-	Route::post('reservar-ambiente/{id}/confirmacion-reserva-otro-ambiente-adminR', 'ReservarAmbienteController@storeOtroTipoAmbienteAdminR');//confirmacion para la reserva de otros ambientes distintos de bungalows
+	Route::get('reservar-ambiente/{idambiente}/{idsocio}/{fechaIni}/{fechaFin}/new-reserva-bungalow-adminR', 'ReservarAmbienteController@createBungalowAdminR');//
+	Route::post('reservar-ambiente/{idambiente}/{idsocio}/confirmacion-reserva-bungalow-adminR', 'ReservarAmbienteController@storeBungalowAdminR');//confirmacion para la reserva del bungalos
+	Route::get('reservar-ambiente/{idambiente}/{idsocio}/{fechaIni}/{fechaFin}/new-reserva-otro-ambiente-adminR', 'ReservarAmbienteController@createOtroTipoAmbienteAdminR');//
+	Route::post('reservar-ambiente/{idambiente}/{idsocio}/confirmacion-reserva-otro-ambiente-adminR', 'ReservarAmbienteController@storeOtroTipoAmbienteAdminR');//confirmacion para la reserva de otros ambientes distintos de bungalows
 	Route::get('reservar-ambiente/searchSocio-adminR', 'SocioController@searchSocioAdminR');
+
+	//seleccionar socioa antes de hacer la reserva
+	Route::get('reservar-ambiente/{id}/{fechaIniValue}/{fechaFinValue}/searchSocio-bungalow-adminR', 'ReservarAmbienteController@seleccionarSocioBungalowAdminR');
+	Route::get('reservar-ambiente/{id}/{fechaIniValue}/{fechaFinValue}/searchSocio-otros-ambientes-adminR', 'ReservarAmbienteController@seleccionarSocioOtrosAmbientesAdminR');
+
+
+	//para consultar las reservas y poder cancelarlas
+	Route::get('reservar-ambiente/consultar-otros-ambientes-adminR', 'ReservarAmbienteController@consultarReservaOtroAmbienteAdminR'); 
+	Route::get('reservar-ambiente/consultar-bungalow-adminR', 'ReservarAmbienteController@consultarReservaBungalowAdminR'); 
+	Route::get('reservar-ambiente/{id}/deleteBungalowAdminR','ReservarAmbienteController@eliminarReservaBungalowAdminR');
+	Route::get('reservar-ambiente/{id}/deleteOtrosAdminR','ReservarAmbienteController@eliminarReservaOtrosAdminR');
+
+});
+//Control de ingresos
+	Route::group(['middleware' => ['auth', 'controlingresos']], function () {
+	Route::resource('control-ingresos','ControlIngresosController');
+	Route::get('ingreso-personal','ControlIngresosController@indexpersonal');
+	Route::post('/resultado-busqueda-personal','ControlIngresosController@buscarpersonal');
+	Route::post('/marcar-ingreso-personal','ControlIngresosController@ingresopersonal');
+
+	route::get('ingreso-terceros','ControlIngresosController@indextercero');
+	Route::post('/resultado-busqueda-tercero','ControlIngresosController@buscartercero');
+	Route::post('/marcar-ingreso-tercero','ControlIngresosController@ingresotercero');
+
+	route::get('ingreso-socio','ControlIngresosController@indexsocio');
+	Route::post('/resultado-busqueda-socio','ControlIngresosController@buscarsocio');
+	Route::post('/marcar-ingreso-socio','ControlIngresosController@ingresosocio');
+
 });
 
 
 //Publico
-Route::group(['middleware' => ['auth', 'publico']], function () {
+	Route::group(['middleware' => ['auth', 'publico']], function () {
 	Route::resource('public','PublicoController');
 });
 

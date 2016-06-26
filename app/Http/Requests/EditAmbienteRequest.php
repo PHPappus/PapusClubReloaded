@@ -25,9 +25,8 @@ class EditAmbienteRequest extends Request
     {
         return [
             'nombre'            =>  'required|max:100|string',
-            'tipo_ambiente'     =>  'required|max:100|string',
-            'capacidad_actual'  =>  'integer|min:1',
-            'ubicacion'         =>  'required|max:100|string',   
+            'capacidad_actual'  =>  'required|integer|min:1',
+            'descripcion'         =>  'required|max:100|string',   
         ];
     }
 }

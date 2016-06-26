@@ -115,5 +115,37 @@ class ProductoTableSeeder extends Seeder
            'tipo_producto' => 'Souvenirs',
             'stock' => '15'
             ]);
+
+        Producto::insert([            
+            'nombre' => 'Mantenimiento de piscina', 
+            'descripcion' => 'Mantenimiento de piscina',             
+            'estado' => '1', 
+           'tipo_producto' => 'Servicio',
+            'stock' => ''
+            ]);
+
+        Producto::insert([            
+            'nombre' => 'Limpieza de ambiente', 
+            'descripcion' => 'Limpieza de ambiente',             
+            'estado' => '1', 
+           'tipo_producto' => 'Servicio',
+            'stock' => ''
+            ]);
+
+        Producto::insert([            
+            'nombre' => 'Decoracion de ambiente', 
+            'descripcion' => 'Decoracion de ambiente para fiestas y eventos',             
+            'estado' => '1', 
+           'tipo_producto' => 'Servicio',
+            'stock' => ''
+            ]);
+
+        Producto::insert([            
+            'nombre' => 'Animación de eventos', 
+            'descripcion' => 'Animación de fiestas o eventos',             
+            'estado' => '1', 
+           'tipo_producto' => 'Servicio',
+            'stock' => ''
+            ]);
     }
 }

@@ -53,16 +53,11 @@
 		      		<input type="number" class="form-control" id="capacidadInput" name="capacidadMax" value="{{$ambiente->capacidad_actual}}" readonly>
 		    	</div>
 		  	</div>	  	
-		  	<!-- <div class="form-group ">
-		    	<label for="capacidadDisponibleInput" class="col-sm-4 control-label">CAPACIDAD DISPONIBLE</label>
-		    	<div class="col-sm-5">
-		      		<input type="number" class="form-control" id="capacidadDisponibleInput" name="capacidad_disponible" placeholder="Capacidad Disponible" readonly>
-		    	</div>
-		  	</div> -->
+		  	
 		  	<div class="form-group ">
-		    	<label for="ubicacionInput" class="col-sm-4 control-label">Ubicación</label>
+		    	<label for="ubicacionInput" class="col-sm-4 control-label">descripción</label>
 		    	<div class="col-sm-5">
-		      		<textarea type="text" class="form-control" id="ubicacionInput" name="ubicacion" style="resize: none" readonly>{{$ambiente->ubicacion}}</textarea>
+		      		<textarea type="text" class="form-control" id="ubicacionInput" name="ubicacion" style="resize: none" readonly>{{$ambiente->descripcion}}</textarea>
 		    	</div>
 		  	</div>
 		  	<!-- <div class="form-group">
@@ -93,7 +88,11 @@
 					<tbody>
 							@foreach ($tarifas as $tarifa)		
 						    	<tr>
-									<td align="center">{{$tarifa->tipo_persona->descripcion}}</td>
+									@if($tarifa->tipo_persona->descripcion == 'Postulante' || $tarifa->tipo_persona->descripcion == 'postulante')
+										<td align="center">Socio</td>
+									@else
+										<td align="center">{{$tarifa->tipo_persona->descripcion}}</td>
+									@endif			
 									<td align="center">  S/.</td>
 									<td align="center"> 
 										<div align="center">

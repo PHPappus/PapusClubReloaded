@@ -37,29 +37,29 @@
 		<div class="container">
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active">
+
 						<tr>
 							<th><DIV ALIGN=center>ID</th>
-							<th><DIV ALIGN=center>Tipo de Pago</th>
-							<th><DIV ALIGN=center>Monto</th>
-							<th><DIV ALIGN=center>Descripción</th>
-							<th><DIV ALIGN=center>estado</th>
+							<th><DIV ALIGN=center>Descripción</th>							
+							<th><DIV ALIGN=center>MONTO (S/.)</th>
+							<th><DIV ALIGN=center>Estado</th>
+							<th><DIV ALIGN=center>Tipo de Pago</th>							
 							<th><DIV ALIGN=center>Detalle</th>
 							
 						</tr>
 					</thead>
-					<tbody>
-						@foreach($facturaciones as $facturacion)
+					@foreach($facturaciones as $facturacion)
+					<tbody>						
 							<td> {{$facturacion->id}}</td>
-							<td> {{$facturacion->tipo_pago}}</td>
-							<td> {{$facturacion->total}}</td>
-							<td> {{$facturacion->descripcions}}</td>
+							<td> {{$facturacion->descripcion}}</td>							
+							<td> {{$facturacion->total}}</td>							
 							<td> {{$facturacion->estado}} </td>
+							<td> {{$facturacion->tipo_pago}}</td>
 							<td>
 							<a class="btn btn-info" href="{{url('/pagos-del-socio/'.$facturacion->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-							</td>
-						@endforeach						
+							</td>										
 					</tbody>					
-												
+					@endforeach									
 					
 			</table>		
 			

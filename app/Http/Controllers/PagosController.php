@@ -89,6 +89,6 @@ class PagosController extends Controller
      public function showAlSocio($id)
     {
         $facturacion = Facturacion::find($id);
-        return view('socio.pagos.detail-pago', compact('facturacion'));
+        return view('socio.pagos.detail-pago',compact('facturacion'));
     }
 }

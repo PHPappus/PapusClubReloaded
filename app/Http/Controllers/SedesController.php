@@ -18,16 +18,37 @@ use papusclub\Models\Persona;
 use papusclub\Models\Trabajador;
 use papusclub\Models\Configuracion;
 
+use papusclub\Http\Requests\StoreServicioxSedeRequest;
+
 class SedesController extends Controller
 {
     //Muestra la lista de sedes que se encuentran en BD, estas se pueden modificar, cambiar el estado, ver mas detalle o registrar una nueva sede
     public function index()
     {
-        $sedes = Sede::all();
+        $sedes = Sede::all();        
         return view('admin-general.sede.index', compact('sedes'));
     }
+
+    public function indexserviciosdesede($id)
+    {
+        $sede = Sede::find($id);
+        $serviciosdesede = Sedexservicio::where('idsede','=',$id)->get();
+        $servicios = Servicio::all();
+        $tiposservicio=Configuracion::where('grupo','=','4')->get();   
+        $mensaje = ""     ;
+        return view('admin-general.sede.indexserviciosdesede', compact('sede','serviciosdesede','servicios','tiposservicio','mensaje'));
+    }
+    
+
+    public function indexselecttoservicio()
+    {
+        $sedes = Sede::all();
+        return view('admin-general.sede.indexselecttoservicio', compact('sedes'));
+    }
+
     //Muestra el formulario para poder registrar una nueva sede en BD
     public function create()
+
     {
         //$mensaje = null;
         /*$departamentos=Departamento::lists('nombre','id');
@@ -70,6 +91,7 @@ class SedesController extends Controller
         $sede->referencia = $input['referencia'];
         $sede->nombre_contacto = $input['nombre_contacto'];
         $sede->capacidad_maxima = $input['capacidad_maxima'];
+        $sede->maximo_actual=$input['capacidad_maxima'];
         $sede->capacidad_socio = $input['capacidad_socio'];
 
         $sede->save();
@@ -99,7 +121,16 @@ class SedesController extends Controller
         $sede->direccion = $input['direccion'];
         $sede->referencia = $input['referencia'];
         $sede->nombre_contacto = $input['nombre_contacto'];
-        $sede->capacidad_maxima = $input['capacidad_maxima'];
+
+
+
+        /*Modificando capacidad*/
+        $nueva_capacidad = $input['capacidad_maxima'];
+        $ingresantes = $sede->capacidad_maxima - $sede->maximo_actual; 
+        $sede->maximo_actual=$nueva_capacidad-$ingresantes;
+        $sede->capacidad_maxima=$nueva_capacidad;
+
+
         $sede->capacidad_socio = $input['capacidad_socio'];
         $sede->save();
         return redirect('sedes/index');
@@ -109,10 +140,10 @@ class SedesController extends Controller
     //Se cambia el estado de una sede a inactiva
     public function destroy($id)    
     {
-        $sede = Sede::find($id);        
+        $sede = Sede::find($id);      
         $ambientes = $sede->ambientes;
         
-        if($sede->ambientes->count() || $sede->actividades->count()) {
+        if($sede->ambientes->count()) {
             return redirect('sedes/index')->with('delete', 'No se puede eliminar esta sede, posee dependencias.');
             
         }
@@ -133,31 +164,54 @@ class SedesController extends Controller
     {
         
         $sede = Sede::find($id);
-        $servicios = Servicio::all();
-        $tiposServicio=Configuracion::where('grupo','=','4')->get();
+        
+        $tiposServicio=Configuracion::where('grupo','=','4')->get();        
+        $serviciosdesede = Sedexservicio::where('idsede','=',$id)->get();
+        $serviciostodos = Servicio::all();
 
+
+
+        $servicios=array();
+        foreach ($serviciostodos as $sv) {
+            $foo = false;
+            foreach ($serviciosdesede as $servdsede) {
+                    if ($sv->id == $servdsede->idservicio  ){
+                        $foo = True;
+                        break;      
+                    }
+            }            
+            if ($foo==false) { // SI NO SE ENCONTRO SE METE EL SERVICIO lol
+                array_push($servicios,$sv);
+            }            
+        }
         return view('admin-general.sede.serviciosescoger', compact('sede', 'servicios','tiposServicio'));
     }
 
 
-     public function storeservicios($id){
-        $servciosEscogidos = Input::get('ch');
+     public function storeservicios(StoreServicioxSedeRequest $rquest,$id){
+        $servciosescogidos = Input::get('Seleccionar');
         $sede = Sede::find($id);
         $servicios = Servicio::all();  
-        $tiposServicio=Configuracion::where('grupo','=','4')->get();
+        $tiposservicio=Configuracion::where('grupo','=','4')->get();
 
-        foreach ($servciosEscogidos as $serID) {
+        foreach ($servciosescogidos as $serid) {
             foreach ($servicios as $servicio){
-                if ( $serID== $servicio->id){                    
+                if ( $serid== $servicio->id){                    
                         $s = new Sedexservicio();
                         $s->idsede =  (int) $id;
-                        $s->idservicio = (int)$serID;
+                        $s->idservicio = (int)$serid;
                         $s->save();
                 }   
             }
         }
 
-        return view('admin-general.sede.serviciosdesedeindex', compact('sede', 'servicios','servciosEscogidos','id','tiposServicio'));
+        // sede
+        // tiposervicio
+        // servicios        
+        $mensaje = 'Se registró el servicio a la sede correctamente.';
+        $serviciosdesede = Sedexservicio::where('idsede','=',$id)->get();
+        return view('admin-general.sede.indexserviciosdesede', compact('sede','serviciosdesede','servicios','tiposservicio','mensaje'));
+        
      }
 
 

@@ -27,9 +27,11 @@ class EditPostulanteEstudioRequest extends Request
      */
     public function rules()
     {
+/*        var_dump($this->all());
+        die();*/
         return [
-            'colegio_primaria'=>'required|alpha_spaces|max:100',
-            'colegio_secundaria'=>'required|alpha_spaces|max:100',
+            'colegio_primario'=>'required|alpha_spaces|max:100',
+            'colegio_secundario'=>'required|alpha_spaces|max:100',
             'universidad'=>'alpha_spaces|max:80',
             'carrera'=>'alpha_spaces|max:80'
         ];
@@ -38,13 +40,13 @@ class EditPostulanteEstudioRequest extends Request
     public function messages()
     {
         return [
-            'colegio_primaria.required' => 'El campo colegio primaria es obligatorio',
-            'colegio_primaria.alpha_spaces' => 'El campo colegio primaria debe ser solo caracteres',
-            'colegio_primaria.max'=>'El campo colegio primaria no puede superar la longitud de 100 caracteres',
+            'colegio_primario.required' => 'El campo colegio primaria es obligatorio',
+            'colegio_primario.alpha_spaces' => 'El campo colegio primaria debe ser solo caracteres',
+            'colegio_primario.max'=>'El campo colegio primaria no puede superar la longitud de 100 caracteres',
 
-            'colegio_secundaria.required' => 'El campo colegio secundaria es obligatorio',
-            'colegio_secundaria.alpha_spaces' => 'El campo colegio secundaria debe ser solo caracteres',
-            'colegio_secundaria.max'=>'El campo colegio secundaria no puede superar la longitud de 100 caracteres',
+            'colegio_secundario.required' => 'El campo colegio secundaria es obligatorio',
+            'colegio_secundario.alpha_spaces' => 'El campo colegio secundaria debe ser solo caracteres',
+            'colegio_secundario.max'=>'El campo colegio secundaria no puede superar la longitud de 100 caracteres',
 
             'universidad.alpha_spaces' => 'El campo universidad debe ser solo caracteres',
             'universidad.max'=>'El campo universidad no puede superar la longitud de 80 caracteres',
