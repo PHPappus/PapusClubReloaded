@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>REGISTRAR VENTA</title>
+	<title>REGISTRAR SOLICITUD</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,7 +28,7 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>REGISTRAR VENTA</strong>
+					<strong>REGISTRAR SOLICITUD</strong>
 			</div>		
 		</div>
 		<div class="container">
@@ -66,24 +66,24 @@
 
 				<!-- INICIO INCIIO -->				                       				
 				<div class="form-group required">
-		    		<label for="producto_idInput" class="col-sm-4 control-label">ID Producto</label>
+		    		<label for="producto_idInput" class="col-sm-4 control-label">ID Servicio</label>
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="producto_id" name="producto_id" placeholder="ID del producto" onkeypress="return inputLimiter(event,'Numbers')" value="{{old('producto_id')}}">
+		      			<input type="text" class="form-control" id="producto_id" name="producto_id" placeholder="ID del Servicio" onkeypress="return inputLimiter(event,'Numbers')" value="{{old('producto_id')}}">
 		    		</div>
 		    		<a class="btn btn-info" name="buscarProducto" href="#"  title="Buscar Producto" data-toggle="modal" data-target="#modalBuscar"><i name="buscarProducto" class="glyphicon glyphicon-search"></i></a>
 		  		</div>			  	
 			  
 			  	<div class="form-group required">
-		    		<label for="facturacion_idInput" class="col-sm-4 control-label">N° de Factura</label>
+		    		<label for="ingresoproducto_idInput" class="col-sm-4 control-label">N° de Solicitud</label>
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="facturacion_idInput" name="facturacion_id" value="{{$factura->id}}" readonly>
+		      			<input type="text" class="form-control" id="ingresoproducto_idInput" name="ingresoproducto_id" value="{{$ingresoproducto->id}}" readonly>
 		    		</div>
 		  		</div>				  				 
 			  	
-			  	<div class="form-group required">
+			  	<div class="form-group required" hidden>
 			    	<label for="cantidadInput" class="col-sm-4 control-label" >Cantidad</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="cantidadInput" name="cantidad" placeholder="Cantidad del producto comprado" onkeypress="return inputLimiter(event,'Numbers')"  value="{{old('cantidad')}}" onkeypress="myFunction()">
+			      		<input type="text" class="form-control" id="cantidadInput" name="cantidad" placeholder="Cantidad del producto comprado" onkeypress="return inputLimiter(event,'Numbers')"  value="1">
 			    	</div>			      					      		
 			  	</div>				  								
 					<!-- FIN FIN FIN  -->				
@@ -97,7 +97,7 @@
 						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">						
-						<a href="{{url('/venta-producto/'.$factura->id.'/back')}}" class="btn btn-info">Cancelar</a>
+						<a href="{{url('/ingreso-producto/'.$ingresoproducto->id.'/back')}}" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>
@@ -163,9 +163,7 @@
 								<thead class="active" data-sortable="true">									
 									<th><div align=center>NOMBRE</div> </th>
 									<th><div align=center>DESCRIPCION</div></th>
-									<th><div align=center>TIPO PRODUCTO</div></th>
-									<th><div align=center>PRECIO</div></th>
-									<th><div align=center>STOCK</div></th>
+									<th><div align=center>TIPO PRODUCTO</div></th>									
 									<th><div align=center>SELECCIONAR</div></th>
 								</thead>
 								<tbody>
@@ -174,9 +172,7 @@
 										<tr>											
 											<td>{{$producto->nombre}}</td>
 											<td>{{$producto->descripcion}}</td>		
-											<td>{{$producto->tipo_producto}}</td>
-											<td>{{$producto->precioproducto->first()['precio']}}</td>
-											<td>{{$producto->stock}}</td>
+											<td>{{$producto->tipo_producto}}</td>											
 											<td>
 												<div class="radio">
   													<label><input type="radio" name="optradio" value="{{$producto->id}}"></label>

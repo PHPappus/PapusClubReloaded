@@ -23,13 +23,10 @@ class Sede extends Model
     protected $dates = ['deleted_at'];
     
     function ambientes(){
-        return $this->hasMany('papusclub\Models\Ambiente', 'id');
+        return $this->hasMany('papusclub\Models\Ambiente');
     }
 
-    function actividades(){
-        return $this->hasMany('papusclub\Models\Actividad', 'id');
-    }
-
+    
     function invitaciones(){
         return $this->hasMany(HistoricoInvitacion::class);
     }

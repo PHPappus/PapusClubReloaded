@@ -25,6 +25,7 @@ class StoreIngresoProductoRequest extends Request
     {
         return [            
             'proveedor_id'   =>  'required|integer|exists:proveedor,id',
+            'tipo_solicitud'   =>  'required|string|max:255',
             'descripcion'   =>  'required|string|max:255',
             'estado'        =>  'required|string|max:255'            
         ];
