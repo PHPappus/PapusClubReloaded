@@ -144,7 +144,7 @@
 		 						<td>{{ $actividad->cupos_disponibles }}</td>
 		 						<td>{{ $actividad->a_realizarse_en}}</td>
 		 						<td>{{ $actividad->hora_inicio}}</td>		 						
-		 						<td>{{ $actividad->precio($tipo_persona, $actividad->tarifas) }}</td>		 						
+		 						<td>S/.{{ $actividad->precio($tipo_persona, $actividad->tarifas) }}</td>		 						
 		 						@if((count($actividades_persona->where('id',$actividad->id))!=0))
 		 						<td>Inscrito</td>
 								<td>

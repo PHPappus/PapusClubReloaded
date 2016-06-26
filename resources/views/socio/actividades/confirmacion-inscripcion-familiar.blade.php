@@ -32,8 +32,8 @@
 			</div>		
 		</div>
 		<div class="container">
-			<!--@include('errors.503')-->		
-			<form method="POST" action="#" class="form-horizontal form-border"><!-- accion que regresa a la incial de inscripciones -->
+			<!--@include('errors.503')-->	
+			<form method="POST" action="/inscripcion-actividad/{{ $actividad->id }}/confirmacion-inscripcion-actividades-to-familiar/confirm	" class="form-horizontal form-border"><!-- accion que regresa a la incial de inscripciones -->
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<br/><br/>
 
@@ -181,7 +181,7 @@
 			
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">BUSCAR PERSONA</h4>
+				<h4 class="modal-title">Seleccione a su familiar</h4>
 			</div>
 
 			<div class="modal-body">	      	  
@@ -207,7 +207,7 @@
 									<th><div align=center>NOMBRES</div></th>
 									<th><div align=center>APELLIDO PATERNO</div></th>
 									<th><div align=center>APELLIDO MATERNO</div></th>
-									<th><div align=center>TIPO DE PERSONA</div></th>
+									<th><div align=center>PARENTEZCO</div></th>
 									<th><div align=center>SELECCIONAR</div></th>
 								</thead>
 								<tbody>
@@ -218,7 +218,7 @@
 											<td>{{$persona->nombre}}</td>		
 											<td>{{$persona->ap_paterno}}</td>
 											<td>{{$persona->ap_materno}}</td>
-											<td>{{$persona->tipopersona->descripcion}}</td>
+											<td>Familiar</td>
 											<td>
 												<div class="radio">
   													<label><input type="radio" name="optradio" alt="{{$persona->nombre}} {{$persona->ap_paterno}}" value="{{$persona->id}}"></label>

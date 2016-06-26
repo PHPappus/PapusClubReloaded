@@ -16,6 +16,7 @@ use papusclub\Models\Sede;
 use papusclub\Models\Persona;
 use papusclub\Models\Configuracion;
 use papusclub\Models\Facturacion;
+use papusclub\Models\Postulante;
 use Carbon\Carbon;
 use DB;
 
@@ -51,8 +52,9 @@ class InscriptionActividadController extends Controller
 
         $usuario=Auth::user();
         $persona=$usuario->persona;
-        $postulante=Persona::find($persona->id);
+        $postulante=Postulante::find($persona->id); 
         $familiares=$postulante->familiarxpostulante;
+
         /*dd($persona->id);*/
        /* $personas = Persona::where('id_usuario','=',null)->where('id_tipo_persona','=',1)//Trabajador
                          ->orwhere('id_usuario','=',null)->where('id_tipo_persona','=',2)//Postulante
@@ -122,11 +124,99 @@ class InscriptionActividadController extends Controller
 
     public function misinscripciones()
     {
+        /* dd($actividades);*/
+        /*Datos de inscripciones del usuario Socio*/
         $usuario  = Auth::user();
         $actividades = $usuario->persona->actividades;
-       /* dd($actividades);*/
-        return view('socio.actividades.inscripciones', compact('actividades'));
+        /*Datos de inscripciones de los familiares del usuario Socio*/
+        $persona=$usuario->persona;
+        $postulante=Postulante::find($persona->id); 
+        $familiares=$postulante->familiarxpostulante;
+        $actividadesxfamiliar;
+        /*array_push(*/
+
+        return view('socio.actividades.inscripciones', compact('actividades','familiares'));
     }
+
+    public function makeInscriptionFamiliarToPersona(MakeInscriptionToPersonaRequest $request, $id)
+    {
+        $sedes = Sede::all();
+        if($request['tipo_comprobante']==-1){
+            Session::flash('message-error','Por favor, elija el tipo de comprobante');
+            return Redirect("/inscripcion-actividad/".$id."/confirmacion-inscripcion-actividades-to-familiar");
+        }
+        else{
+            if(Hash::check($request['password'],Auth::user()->password)){
+                $persona     = Persona::find($request['persona_id']);
+                $actividad   = Actividad::find($id);
+                $flag=true;
+
+                foreach ($persona->actividades as $actividad_persona) {
+                    if($actividad_persona->id==$id){
+                        $flag=false;
+                    }
+                }
+                
+                if(!$flag){
+                    $actividades=Actividad::all();
+                    Session::flash('message-error',"El familiar $persona->nombre ya se encuentra inscrito en esta actividad");
+                    return Redirect("/inscripcion-actividad/".$id."/confirmacion-inscripcion-actividades-to-familiar");
+                }
+                else{
+                    DB::beginTransaction();
+                    try{
+                        if($actividad->cupos_disponibles<=0){
+                        Session::flash('message-error','Lo sentimos, ya no hay cupos disponibles');
+                        return Redirect("/inscripcion-actividad/".$id."/confirmacion-inscripcion-actividades-to-familiar");
+                        }
+                        else{
+                            $actividad->cupos_disponibles=$actividad->cupos_disponibles-1;
+                            $actividad->save();
+                            
+
+                            $tipo_persona = $persona->tipopersona;
+                            $tarifas = $actividad->tarifas;
+                            $precioTarifa;
+                            foreach ($tarifas as $tarifa) {
+                                if($tarifa->tipo_persona == $tipo_persona){
+                                    $persona->actividades()->attach($id,['precio'=> $tarifa->precio]);
+                                    $precioTarifa = $tarifa->precio;
+                                    break;
+                                }
+                            }
+
+                            $facturacion = new Facturacion();
+                            $facturacion->persona_id = $persona->id;
+                            $facturacion->actividad_id = $actividad->id;
+                            $facturacion->tipo_comprobante = $request['tipo_comprobante'];
+                            $nombreActividad = $actividad->nombre;
+                            $facturacion->descripcion = "Inscripción de $nombreActividad";
+                            $facturacion->total = $precioTarifa;
+                            $facturacion->tipo_pago = "No se ha cancelado";
+                            $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
+                            $facturacion->estado = $estado->valor;
+
+                            $facturacion->save();
+
+                            Session::flash('message','La Inscripción fue realizada Correctamente');
+                            
+                        }
+                    }
+                    catch(ValidationException $e){
+                        DB::rollback();
+                        var_dump($e->getErrors());
+                    }
+                    DB::commit();
+                    
+                    return Redirect("/inscripcion-actividad/mis-inscripciones");
+                }
+            }
+            else{
+                Session::flash('message-error','Contraseña incorrecta');
+                return Redirect("/inscripcion-actividad/".$id."/confirmacion-inscripcion-actividades-to-familiar");
+            }
+        }
+    }   
 
 
     public function makeInscriptionToPersona(MakeInscriptionToPersonaRequest $request, $id)
@@ -208,7 +298,6 @@ class InscriptionActividadController extends Controller
                 return Redirect("/inscripcion-actividad/".$id."/confirmacion-inscripcion-actividades");
             }
         }
-
     }   
     public function removeInscriptionToPersona($id)
     {
