@@ -13,6 +13,7 @@ use papusclub\Models\Reserva;
 use papusclub\Models\Servicio;
 use papusclub\Models\Configuracion;
 use papusclub\Models\Facturacion;
+use papusclub\Models\Promocion;
 use papusclub\Http\Requests\StoreReservaBungalowSocio;
 use papusclub\Http\Requests\StoreReservaBungalowAdminR;
 use papusclub\Http\Requests\StoreReservaOtroAmbienteSocio;
@@ -195,7 +196,9 @@ class ReservarAmbienteController extends Controller
         $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('estado', '=', 'Activo')->get();  
         $fechaIniValue=(new Carbon('America/Lima'));  
         $fechaFinValue=(new Carbon('America/Lima'))->addDays(30);
-        return view('socio.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue'));
+
+        $bloqueado = true;
+        return view('socio.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue', 'bloqueado'));
     }
     public function reservarBungalowFiltrados(Request $request){
 
@@ -247,7 +250,8 @@ class ReservarAmbienteController extends Controller
                 
             }
         }
-        return view('socio.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue'));
+        $bloqueado = false;
+        return view('socio.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue', 'bloqueado'));
     }
     //Muestra la pantalla para realizar la reserva de un ambiente que no sea bungalow
     public function reservarOtrosAmbientes()
@@ -258,7 +262,8 @@ class ReservarAmbienteController extends Controller
         $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->where('estado', '=', 'Activo')->get();
         $fechaIniValue=(new Carbon('America/Lima'));  
         $fechaFinValue=(new Carbon('America/Lima'))->addDays(30);
-        return view('socio.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue'));
+        $bloqueado = true;
+        return view('socio.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue', 'bloqueado'));
     }
 
     public function reservarOtrosAmbientesFiltrados(Request $request)
@@ -323,7 +328,8 @@ class ReservarAmbienteController extends Controller
                 
             }
         }
-        return view('socio.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue'));
+        $bloqueado = false;
+        return view('socio.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue', 'bloqueado'));
         
     }
 
@@ -393,11 +399,21 @@ class ReservarAmbienteController extends Controller
             if($tarifa->tipo_persona == $tipo_persona)
                 $reserva->precio = $tarifa->precio*$diff;        
         }
+
+        $promos = Promocion::where('tipo','=','Bungalow')->where('estado','=',TRUE)->get();
+        if ($promos != NULL)
+        {
+            foreach ($promos as $promo) {
+                $reserva->precio = $reserva->precio - ($reserva->precio*$promo->porcentajeDescuento)/100;
+            }
+        }
+
         //$reserva->precio = 0;
         $reserva->estadoReserva = "En proceso";
         $reserva->actividad_id = null;
         
         $reserva->save();
+
 
         $facturacion = new Facturacion();
         $facturacion->persona_id = $persona_id;
@@ -480,6 +496,15 @@ class ReservarAmbienteController extends Controller
             if($tarifa->tipo_persona == $tipo_persona)
                 $reserva->precio = $tarifa->precio*$diff;        
         }
+
+        $promos = Promocion::where('tipo','=','Ambiente')->where('estado','=',TRUE)->get();
+        if ($promos != NULL)
+        {
+            foreach ($promos as $promo) {
+                $reserva->precio = $reserva->precio - ($reserva->precio*$promo->porcentajeDescuento)/100;
+            }
+        }
+
         //$reserva->precio = 0;
         $reserva->estadoReserva = "En proceso";
         $reserva->actividad_id = null;

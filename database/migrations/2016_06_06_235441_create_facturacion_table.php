@@ -18,6 +18,7 @@ class CreateFacturacionTable extends Migration
             $table->integer('reserva_id')->unsigned()->nullable();
             $table->integer('actividad_id')->unsigned()->nullable();
             $table->integer('taller_id')->unsigned()->nullable();
+            $table->integer('sorteo_id')->unsigned()->nullable();
             $table->double('total'); 
             $table->string('tipo_pago');                     
             $table->string('tipo_comprobante');

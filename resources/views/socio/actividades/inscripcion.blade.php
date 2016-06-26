@@ -74,9 +74,9 @@
 			 	<label for="fechaInput" class="col-sm-4 control-label">FECHA (dd/mm/aaaa) </label>
 			    <div class="col-sm-5">
 				  	<div class="input-group">
-			   		<input class="datepicker form-control"  type="text"  id="fecha_inicio" name="fecha_inicio" placeholder="Fecha Inicio" value="{{old('fecha_inicio')}}" style="max-width: 250px" >
+			   		<input class="datepicker form-control"  type="text"  id="fecha_inicio" name="fecha_inicio" placeholder="Fecha Inicio" value="{{$fecha_inicio}}" style="max-width: 250px" >
 			   		<span class="input-group-addon">-</span>
-			   		<input class="datepicker form-control" type="text" id="fecha_fin" name="fecha_fin" placeholder="Fecha Fin" value="{{old('fecha_fin')}}" style="max-width: 250px">
+			   		<input class="datepicker form-control" type="text" id="fecha_fin" name="fecha_fin" placeholder="Fecha Fin" value="{{$fecha_fin}}" style="max-width: 250px">
 
 			   	 	</div>
 		    	</div>	
