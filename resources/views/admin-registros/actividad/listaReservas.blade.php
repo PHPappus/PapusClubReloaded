@@ -46,7 +46,8 @@
 						</tr>
 					</thead>
 					<tbody>
-							@foreach($reservas as $reserva)						
+							@foreach($reservas as $reserva)
+								@if($reserva->estadoReserva != "Reservado")								
 						    	<tr>
 						    		<td>{{ $reserva->id }}</td>
 						    		<td>{{ $reserva->ambiente->nombre}}</td>
@@ -57,6 +58,7 @@
 							        </td>
 							            
 								</tr>
+								@endif
 							@endforeach
 					</tbody>					
 												
