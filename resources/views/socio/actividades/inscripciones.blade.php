@@ -43,45 +43,86 @@
 			</div>
 		</div>
 		<br/><br/>
-		
-			<div class="table-responsive">
-				<div class="container">
-					<table id="talleresTable" class="table table-bordered table-hover text-center display">
-						<thead class="active">
-							<tr class="active">
-								<th><DIV ALIGN=center>SEDE</th>
-								<th><DIV ALIGN=center>AMBIENTE</th>
-								<th><DIV ALIGN=center>NOMBRE</th>
-								<th><DIV ALIGN=center>CAPACIDAD</th>
-								<th><DIV ALIGN=center>FECHA Y HORA</th>
-								<th><DIV ALIGN=center>Anular</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach($actividades as $actividad)
-							<tr>
-								<td>{{ $actividad->ambiente->sede->nombre }}</td>
-					    		<td>{{ $actividad->ambiente->nombre }}</td>
-								<td>{{ $actividad->nombre }}</td>
-		 						<td>{{ $actividad->capacidad_maxima }}</td>
-		 						<td>{{ $actividad->a_realizarse_en}}</td>
-								<td>
-									<a class="btn btn-info" data-href="{{url('/inscripcion-actividad/'.$actividad->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
-								</td>
-							</tr>
-							@endforeach
-						</tbody>
-					</table>
-				</div>	
-			</div>
-
+		<div class="table-responsive">
 			<div class="container">
-				<div class="row">
-					<div class="col-sm-12 text-center">
-						<a href="{{url('/inscripcion-actividad/inscripcion-actividades')}}" class="btn btn-lg btn-primary" >Regresar</a>		
-					</div>
-				</div>
+				<table id="talleresTable" class="table table-bordered table-hover text-center display">
+					<thead class="active">
+						<tr class="active">
+							<th><DIV ALIGN=center>SEDE</th>
+							<th><DIV ALIGN=center>AMBIENTE</th>
+							<th><DIV ALIGN=center>NOMBRE</th>
+							<th><DIV ALIGN=center>CAPACIDAD</th>
+							<th><DIV ALIGN=center>FECHA Y HORA</th>
+							<th><DIV ALIGN=center>Anular</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($actividades as $actividad)
+						<tr>
+							<td>{{ $actividad->ambiente->sede->nombre }}</td>
+				    		<td>{{ $actividad->ambiente->nombre }}</td>
+							<td>{{ $actividad->nombre }}</td>
+	 						<td>{{ $actividad->capacidad_maxima }}</td>
+	 						<td>{{ $actividad->a_realizarse_en}}</td>
+							<td>
+								<a class="btn btn-info" data-href="{{url('/inscripcion-actividad/'.$actividad->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+							</td>
+						</tr>
+						@endforeach
+					</tbody>
+				</table>
 			</div>	
+		</div>
+		<br/><br/>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 text-center">
+					<p class="lead"><strong>I N S C R I P C I O N E S &nbsp;&nbsp; D E &nbsp;&nbsp; F A M I L I A R E S</strong></p>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<div class="table-responsive">
+			<div class="container">
+				<table id="talleresTable2" class="table table-bordered table-hover text-center display">
+					<thead class="active">
+						<tr class="active">
+							<th><DIV ALIGN=center>Nombre de familiar</th>
+							<th><DIV ALIGN=center>Sede</th>
+							<th><DIV ALIGN=center>Ambiente</th>
+							<th><DIV ALIGN=center>Nombre de actividad</th>
+							<th><DIV ALIGN=center>Capacidad</th>
+							<th><DIV ALIGN=center>Fecha y hora</th>
+							<th><DIV ALIGN=center>Anular</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($actividades as $actividad)
+						<tr>
+							<td>Pepito</td>
+							<td>{{ $actividad->ambiente->sede->nombre }}</td>
+				    		<td>{{ $actividad->ambiente->nombre }}</td>
+							<td>{{ $actividad->nombre }}</td>
+	 						<td>{{ $actividad->capacidad_maxima }}</td>
+	 						<td>{{ $actividad->a_realizarse_en}}</td>
+							<td>
+								<a class="btn btn-info" data-href="{{url('/inscripcion-actividad/'.$actividad->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+							</td>
+						</tr>
+						@endforeach
+					</tbody>
+				</table>
+			</div>	
+		</div>
+
+
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 text-center">
+					<a href="{{url('/inscripcion-actividad/inscripcion-actividades')}}" class="btn btn-lg btn-primary" >Regresar</a>		
+				</div>
+			</div>
+		</div>	
 	</div>
 @stop
 	<!-- JQuery -->
@@ -103,7 +144,13 @@
 		       }
 		  	});
   		});
-		
+  		$(document).ready(function() {
+		   $('#talleresTable2').DataTable( {
+		       "language": {
+		           "url": "{!!URL::to('/locales/Spanish.json')!!}"
+		       }
+		  	});
+  		});
 	</script>
 
 
