@@ -146,9 +146,11 @@ class InscriptionActividadController extends Controller
 
                         $tipo_persona = $persona->tipopersona;
                         $tarifas = $actividad->tarifas;
+                        $precioTarifa;
                         foreach ($tarifas as $tarifa) {
                             if($tarifa->tipo_persona == $tipo_persona){
                                 $persona->actividades()->attach($id,['precio'=> $tarifa->precio]);
+                                $precioTarifa = $tarifa->precio;
                                 break;
                             }
                         }
@@ -159,7 +161,7 @@ class InscriptionActividadController extends Controller
                         $facturacion->tipo_comprobante = $request['tipo_comprobante'];
                         $nombreActividad = $actividad->nombre;
                         $facturacion->descripcion = "Inscripción de $nombreActividad";
-                        $facturacion->total = $tarifa->precio;
+                        $facturacion->total = $precioTarifa;
                         $facturacion->tipo_pago = "No se ha cancelado";
                         $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
                         $facturacion->estado = $estado->valor;

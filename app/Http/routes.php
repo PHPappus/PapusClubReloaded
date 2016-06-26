@@ -618,3 +618,11 @@ Route::get('/home', 'HomeController@index');
 Route::get('/prueba', 'FrontController@prueba');
 
 
+
+/***Envio de correos*/
+Route::group(['middleware' => 'web'], function () {
+	Route::post('/send','EmailController@send');
+});
+
+
+
