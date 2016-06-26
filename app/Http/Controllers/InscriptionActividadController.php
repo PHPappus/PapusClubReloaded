@@ -192,19 +192,26 @@ class InscriptionActividadController extends Controller
     }   
     public function removeInscriptionToPersona($id)
     {
-        $usuario  = Auth::user();
-        $persona  = $usuario->persona;
-        $actividad   = Actividad::find($id);
+        DB::beginTransaction();
+        try{
+            $usuario  = Auth::user();
+            $persona  = $usuario->persona;
+            $actividad   = Actividad::find($id);
 
-        $facturacion = Facturacion::where('actividad_id', '=', $actividad->id)->where('persona_id', '=', $persona->id)->get()->first();
-        
-        if($facturacion)
-            $facturacion->delete();
+            $facturacion = Facturacion::where('actividad_id', '=', $actividad->id)->where('persona_id', '=', $persona->id)->get()->first();
+            
+            if($facturacion)
+                $facturacion->delete();
 
-        $actividad->cupos_disponibles=$actividad->cupos_disponibles+1;
-        $actividad->save();
-        $persona->actividades()->detach([$id]);
-
+            $actividad->cupos_disponibles=$actividad->cupos_disponibles+1;
+            $actividad->save();
+            $persona->actividades()->detach([$id]);
+        }
+        catch(ValidationException $e){
+            DB::rollback();
+            var_dump($e->getErrors());
+        }
+        DB::commit();
         return back();
     }
 }
