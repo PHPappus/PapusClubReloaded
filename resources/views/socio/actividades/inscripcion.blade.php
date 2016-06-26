@@ -162,7 +162,7 @@
 						        </td>
 						        @endif
 						        <td>
-						        	<a class="btn btn-info" href="#" title="Inscribir a un familiar" ><i class="glyphicon glyphicon-pencil"></i></a>
+						        	<a class="btn btn-info" href="{{url('/inscripcion-actividad/'.$actividad->id.'/confirmacion-inscripcion-actividades-to-familiar')}}" title="Inscribir a un familiar" ><i class="glyphicon glyphicon-pencil"></i></a>
 						        </td>	
 							</tr>
 						@endforeach

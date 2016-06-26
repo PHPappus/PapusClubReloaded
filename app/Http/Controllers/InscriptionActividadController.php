@@ -39,9 +39,25 @@ class InscriptionActividadController extends Controller
     //Se muestra la actividad a reservar y espera la confirmacion 
     public function storeInscriptionActividad($id)
     {
-        $actividad=Actividad::find($id);// de aqui sacare el id de la sede :S
+        $actividad=Actividad::find($id);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
+        
         return view('socio.actividades.confirmacion-inscripcion',compact('actividad', 'tipo_comprobantes'));
+    }
+    public function storeInscriptionActividadtoFamiliar($id)
+    {
+        $actividad=Actividad::find($id);
+        $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
+
+        $usuario=Auth::user();
+        $persona=$usuario->persona;
+        $postulante=Persona::find($persona->id);
+        $familiares=$postulante->familiarxpostulante;
+        /*dd($persona->id);*/
+       /* $personas = Persona::where('id_usuario','=',null)->where('id_tipo_persona','=',1)//Trabajador
+                         ->orwhere('id_usuario','=',null)->where('id_tipo_persona','=',2)//Postulante
+                        ->get();*/
+        return view('socio.actividades.confirmacion-inscripcion-familiar',compact('actividad', 'tipo_comprobantes','familiares'));
     }
 
     public function filterActividades(Request $request){
