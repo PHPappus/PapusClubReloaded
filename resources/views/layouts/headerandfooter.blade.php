@@ -27,33 +27,33 @@
 					<ul>
 						<li><a href="#">PAPUS CLUB<span class="despliegue">▼</span></a>
 							<ul>
-								<li><a href="historia-papusclub" title="A cerca del club" target="_self">Acerca del Club</a></li>
-								<li><a href="#" title="Mesa directiva" target="_self">Mesa Directiva</a></li>
-								<li><a href="#" title="Reglas del club" target="_self">Reglamento del Club</a></li>
+								<li><a href="historia-papusclub" title="A cerca del club" target="_self">ACERCA DEL CLUB</a></li>
+								<li><a href="mesa-directiva" title="Mesa directiva" target="_self">MESA DIRECTIVA</a></li>
+								<li><a href="reglamento-club" title="Reglas del club" target="_self">REGLAMENTO</a></li>
 							</ul>
 						</li>
 						<!-- Sedes -->
 						<li><a href="#">SEDES<span class="despliegue">▼</span></a>
 							<ul>
-								<li><a href="historia-sede-callao" title="Callao" target="_self">Callao<span class="despliegue">▼</span></a>
+								<li><a href="historia-sede-callao" title="Callao" target="_self">CALLAO<span class="despliegue">▼</span></a>
 									<ul>
-										<li><a href="#" title="Concesiones" target="_self">Concesiones</a></li>
-										<li><a href="#" title="Servicios" target="_self">Servicios</a></li>
-										<li><a href="reserva-bungalow" title="Bungalows" target="_self">Bungalows</a></li>
+										<li><a href="concesiones" title="Concesiones" target="_self">CONCESIONES</a></li>
+										<li><a href="servicios" title="Servicios" target="_self">SERVICIOS</a></li>
+										<li><a href="reserva-bungalow" title="Bungalows" target="_self">BUNGALOWS</a></li>
 									</ul>
 								</li>
-								<li><a href="#" title="Surquillo" target="_self">Surquillo<span class="despliegue">▼</span></a>
+								<li><a href="historia-sede-surquillo" title="Surquillo" target="_self">SURQUILLO<span class="despliegue">▼</span></a>
 									<ul>
-										<li><a href="#" title="Concesiones" target="_self">Concesiones</a></li>
-										<li><a href="#" title="Servicios" target="_self">Servicios</a></li>
-										<li><a href="#" title="Bungalows" target="_self">Bungalows</a></li>
+										<li><a href="concesiones" title="Concesiones" target="_self">CONCESIONES</a></li>
+										<li><a href="servicios" title="Servicios" target="_self">SERVICIOS</a></li>
+										<li><a href="reserva-bungalow" title="Bungalows" target="_self">BUNGALOWS</a></li>
 									</ul>						
 								</li>
-								<li><a href="#" title="Barranco" target="_self">Barranco<span class="despliegue">▼</span></a>
+								<li><a href="historia-sede-barranco" title="Barranco" target="_self">BARRANCO<span class="despliegue">▼</span></a>
 									<ul>
-										<li><a href="#" title="Concesiones" target="_self">Concesiones</a></li>
-										<li><a href="#" title="Servicios" target="_self">Servicios</a></li>
-										<li><a href="#" title="Bungalows" target="_self">Bungalows</a></li>
+										<li><a href="concesiones" title="Concesiones" target="_self">CONCESIONES</a></li>
+										<li><a href="servicios" title="Servicios" target="_self">SERVICIOS</a></li>
+										<li><a href="reserva-bungalow" title="Bungalows" target="_self">BUNGALOWS</a></li>
 									</ul>						
 								</li>
 							</ul>
@@ -64,48 +64,30 @@
 								<li><a href="#" title="ir a cursos" target="_self">TALLERES<span class="despliegue">▼</span></a>
 									<ul>
 										<li><a href="futbol" title="ir a futbol" target="_self">Futbol</a></li>
-										<li><a href="#" title="Actividad 1.2" target="_self">Actividad 1.2</a></li>
-										<li><a href="#" title="Actividad 1.3" target="_self">Actividad 1.3</a></li>
+										<li><a href="natacion" title="ir a natacion" target="_self">Natación</a></li>
+										<li><a href="karate" title="ir a karate" target="_self">Karate</a></li>
 									</ul>
 								</li>
-								<li><a href="#" title="Actividad 2" target="_self">Actividad 2<span class="despliegue">▼</span></a>
+								<li><a href="#" title="Actividad 2" target="_self">RELAJACION<span class="despliegue">▼</span></a>
 									<ul>
-										<li><a href="#" title="Actividad 2.1" target="_self">Actividad 2.1</a></li>
-										<li><a href="#" title="Actividad 2.2" target="_self">Actividad 2.2</a></li>
-										<li><a href="#" title="Actividad 2.3" target="_self">Actividad 2.3</a></li>
+										<li><a href="yoga" title="YOGA" target="_self">YOGA</a></li>
+										
 									</ul>						
 								</li>
-								<li><a href="#" title="Actividad 3" target="_self">Actividad 3<span class="despliegue">▼</span></a>
-									<ul>
-										<li><a href="#" title="Actividad 3.1" target="_self">Actividad 3.1</a></li>
-										<li><a href="#" title="Actividad 3.2" target="_self">Actividad 3.2</a></li>
-										<li><a href="#" title="Actividad 3.3" target="_self">Actividad 3.3</a></li>
-									</ul>						
-								</li>
+								
 							</ul>					
 						</li>
 						<!-- Opción Eventos -->
 						<li><a href="#">EVENTOS<span class="despliegue">▼</span></a>
 							<ul>
-								<li><a href="#" title="Evento 1" target="_self">Evento 1<span class="despliegue">▼</span></a>
+								<li><a href="#" title="Evento 2" target="_self">DIA DEL PADRE<span class="despliegue">▼</span></a>
 									<ul>
-										<li><a href="#" title="Evento 1-1" target="_self">Evento 1.1</a></li>
-										<li><a href="#" title="Evento 1-2" target="_self">Evento 1.2</a></li>
-										<li><a href="#" title="Evento 1-3" target="_self">Evento 1.3</a></li>
-									</ul>
-								</li>
-								<li><a href="#" title="Evento 2" target="_self">Evento 2<span class="despliegue">▼</span></a>
-									<ul>
-										<li><a href="#" title="Evento 2-1" target="_self">Evento 2.1</a></li>
-										<li><a href="#" title="Evento 2-2" target="_self">Evento 2.2</a></li>
-										<li><a href="#" title="Evento 2-3" target="_self">Evento 2.3</a></li>
+										<li><a href="padre" title="Evento 2-1" target="_self">VIERNES DE PADRES</a></li>
 									</ul>						
 								</li>
-								<li><a href="#" title="Evento 3" target="_self">Evento 3<span class="despliegue">▼</span></a>
+								<li><a href="#" title="Evento 3" target="_self">DIA DEL AMIGO<span class="despliegue">▼</span></a>
 									<ul>
-										<li><a href="#" title="Evento 3-1" target="_self">Evento 3.1</a></li>
-										<li><a href="#" title="Evento 3-2" target="_self">Evento 3.1</a></li>
-										<li><a href="#" title="Evento 3-3" target="_self">Evento 3.1</a></li>
+										<li><a href="amigos" title="Evento 3-1" target="_self">AMIGOS</a></li>
 									</ul>						
 								</li>
 							</ul>
