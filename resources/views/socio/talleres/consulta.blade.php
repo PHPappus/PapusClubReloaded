@@ -86,14 +86,16 @@
 			    		</div>		  				
 		 			</div>
 				</div>
-				<div class="form-group">
+				<!-- <div class="form-group">
 		 			<div class="col-sm-6">
 				    	<label for="precio" class="col-sm-5 control-label">Precio:</label>
 			    		<div class="col-sm-7 text-center">
 			    			<input type="text" class="form-control" id="precio" placeholder='{{$taller->precio_base}} Nuevos Soles' style="max-width: 220px" readonly="true">
 			    		</div>		  				
 		 			</div>
-				</div>
+				</div> -->
+				
+
 									
 				<br/><br/>
 				

@@ -15,6 +15,8 @@ use papusclub\Models\Taller;
 use papusclub\Models\Sede;
 use papusclub\User;
 use papusclub\Models\Persona;
+use papusclub\Models\Configuracion;
+use papusclub\Models\Facturacion;
 use Auth;
 use Hash;
 use Carbon\Carbon;
@@ -33,7 +35,10 @@ class InscriptionTallerController extends Controller
         $talleres=Taller::where('fecha_inicio_inscripciones','<=',Carbon::now('America/Lima')->format('Y-m-d'))->where('fecha_fin_inscripciones','>=',Carbon::now('America/Lima')->format('Y-m-d'))->get();
         $talleresxpersona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->talleres;
         $sedes          = Sede::all();
-        return view('socio.talleres.index',compact('sedes','talleres','talleresxpersona'));
+        $usuario = Auth::user();
+        $persona=$usuario->persona;
+        $tipo_persona = $persona->tipopersona->id;
+        return view('socio.talleres.index',compact('sedes','talleres','talleresxpersona', 'tipo_persona'));
     }
 
 
@@ -96,7 +101,31 @@ class InscriptionTallerController extends Controller
                         $taller->save();
 
                         $persona=Persona::where('id_usuario','=',Auth::user()->id)->first();
-                        $persona->talleres()->attach($id,['precio'=> 30]);
+                        
+                        $tipo_persona = $persona->tipopersona;
+                        $tarifas = $taller->tarifas;
+
+                        $precioTarifa;
+                        foreach ($tarifas as $tarifa) {
+                            if($tarifa->tipo_persona == $tipo_persona){
+                                $persona->talleres()->attach($id,['precio'=> $tarifa->precio]);
+                                $precioTarifa = $tarifa->precio;
+                                break;
+                            }
+                        }
+                        
+                        $facturacion = new Facturacion();
+                        $facturacion->persona_id = $persona->id;
+                        $facturacion->taller_id = $taller->id;
+                        $facturacion->tipo_comprobante = $request['tipo_comprobante'];
+                        $nombreTaller = $taller->nombre;
+                        $facturacion->descripcion = "Inscripción de $nombreTaller";
+                        $facturacion->total = $precioTarifa;
+                        $facturacion->tipo_pago = "No se ha cancelado";
+                        $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
+                        $facturacion->estado = $estado->valor;
+
+                        $facturacion->save();
 
                         Session::flash('message','La Inscripción fue realizada Correctamente');
                     }        
@@ -129,7 +158,7 @@ class InscriptionTallerController extends Controller
     public function show($id)
     {
         $taller = Taller::find($id);
-        $talleresxpersona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->talleres;
+        $talleresxpersona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->talleres;        
         return view('socio.talleres.consulta', compact('taller','talleresxpersona'));
     }
 
@@ -138,6 +167,7 @@ class InscriptionTallerController extends Controller
         $usuario  = Auth::user();
     	$taller   = Taller::find($id);
     	$flag=true;
+        $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
 
         $talleresxpersona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->talleres;
     	foreach ($talleresxpersona as $tallerxpersona) {
@@ -153,7 +183,7 @@ class InscriptionTallerController extends Controller
             return view('socio.talleres.index',compact('sedes','talleres','talleresxpersona'));
     	}
     	else{
-	    	return view('socio.talleres.confirmacion-inscripcion', compact('taller'));
+	    	return view('socio.talleres.confirmacion-inscripcion', compact('taller', 'tipo_comprobantes'));
     	}
 
         
@@ -241,7 +271,13 @@ class InscriptionTallerController extends Controller
     public function removeInscriptionToUser($id)
     {
     	$usuario  = Auth::user();
+        $persona  = $usuario->persona;
         $taller   = Taller::find($id);
+
+        $facturacion = Facturacion::where('taller_id', '=', $taller->id)->where('persona_id', '=', $persona->id)->get()->first();
+
+        if($facturacion)
+            $facturacion->delete();
 
         $taller->vacantes=$taller->vacantes+1;
         $taller->save();
