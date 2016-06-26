@@ -104,6 +104,7 @@
 							<th><div align=center>ESTADO</div></th>
 							<th><div align=center>DETALLE</div></th>
 							<th><div align=center>INSCRIBIRSE</div></th>
+							<th><div align=center>INSCRIBIR A UN FAMILIAR</div></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -115,7 +116,7 @@
 								<td>{{date("d-m-Y",strtotime($taller->fecha_fin))}}</td>
 								<td>{{$taller->vacantes}}</td>								
 								
-								<td>{{ $taller->precio($tipo_persona, $taller->tarifas) }}</td>
+								<td>S/.{{ $taller->precio($tipo_persona, $taller->tarifas) }}</td>
 								<td>{{date("d-m-Y",strtotime($taller->fecha_fin_inscripciones))}}
 								</td>
 								<td>
@@ -124,7 +125,7 @@
 						    		@elseif($taller->vacantes <= 0)
 						    			No hay vancantes
 						    		@else
-						    			Disponible
+						    			No inscrito
 						    		@endif
 						    	</td>
 								<td> 
@@ -137,6 +138,9 @@
 						    		@else
 						    			<a class="btn btn-info" title="Inscribirse" href="{{url('/talleres/'.$taller->id.'/confirm')}}"><i class="glyphicon glyphicon-pencil"></i></a>
 						    		@endif					
+								</td>
+								<td>
+									<a class="btn btn-info" title="Inscribir a un familiar" href="#"><i class="glyphicon glyphicon-pencil"></i></a>
 								</td>
 							</tr>
 						@endforeach

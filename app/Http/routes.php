@@ -265,7 +265,10 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::resource('admin-general','AdminGeneralController');
 /*	Route::get('postulante-al-admin','AdminGeneralController@postulante');*/
 
-
+	//INGRESO DE SOCIO A LA RESERVA
+	Route::get('ingresoReserva/index','IngresoSocioController@index');
+	Route::post('ingresoReserva/reserva','IngresoSocioController@reservaSocio');
+	Route::post('ingresoReserva/update','IngresoSocioController@cambiarEstado');
 
 	//MANTENIMIENTO DE MULTAS
 	Route::get('multa/','MultaController@index');
