@@ -58,8 +58,10 @@ class Taller extends Model
         return 0;
     }
 
+
     public function tarifas()
     {
         return $this->hasMany('papusclub\Models\TarifaTaller');
     }
+
 }

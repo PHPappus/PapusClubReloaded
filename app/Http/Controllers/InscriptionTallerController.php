@@ -75,20 +75,20 @@ class InscriptionTallerController extends Controller
     {
         /*if(Auth::attempt(['password'=>$request['password']])){*/
         if(Hash::check($request['password'],Auth::user()->password)){
-        	$taller   = Taller::find($id);
-        	$flag=true;
+            $taller   = Taller::find($id);
+            $flag=true;
 
-        	$talleresxpersona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->talleres;
+            $talleresxpersona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->talleres;
             foreach ($talleresxpersona as $tallerxpersona) {
                 if($tallerxpersona->id==$id){
                     $flag=false;
                 }
             }
-        	if(!$flag){
-        		Session::flash('message','Ya se encuentra inscrito en este taller');
-        		return Redirect('/talleres/mis-inscripciones');
-        	}
-        	else{
+            if(!$flag){
+                Session::flash('message','Ya se encuentra inscrito en este taller');
+                return Redirect('/talleres/mis-inscripciones');
+            }
+            else{
                 DB::beginTransaction();
                 try{
                     if($taller->vacantes<=0){
@@ -136,18 +136,18 @@ class InscriptionTallerController extends Controller
                 }
                 
                 DB::commit();
-    	    	/*$usuario->talleres()->attach($id,['precio'=> $taller->precio_base]);*/
+                /*$usuario->talleres()->attach($id,['precio'=> $taller->precio_base]);*/
 
-    	    	
-    	    	return Redirect('/talleres/mis-inscripciones');
-        	}
+                
+                return Redirect('/talleres/mis-inscripciones');
+            }
         }
         else{
             Session::flash('message-error','Contraseña incorrecta');
             return Redirect("/talleres/".$id."/confirm");
         }
 
-    }	
+    }   
 
     /**
      * Display the specified resource.
@@ -165,34 +165,34 @@ class InscriptionTallerController extends Controller
     public function confirmInscription($id)
     {  
         $usuario  = Auth::user();
-    	$taller   = Taller::find($id);
-    	$flag=true;
+        $taller   = Taller::find($id);
+        $flag=true;
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
 
         $talleresxpersona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->talleres;
-    	foreach ($talleresxpersona as $tallerxpersona) {
-    		if($tallerxpersona->id==$id){
-    			$flag=false;
-    		}
-    	}
-    	if(!$flag){
-    		Session::flash('message','Ya se encuentra inscrito en este taller');
+        foreach ($talleresxpersona as $tallerxpersona) {
+            if($tallerxpersona->id==$id){
+                $flag=false;
+            }
+        }
+        if(!$flag){
+            Session::flash('message','Ya se encuentra inscrito en este taller');
             $sedes  = Sede::all();
-    		$talleres=Taller::where('fecha_inicio_inscripciones','>=',Carbon::now())->get();
+            $talleres=Taller::where('fecha_inicio_inscripciones','>=',Carbon::now())->get();
             
             return view('socio.talleres.index',compact('sedes','talleres','talleresxpersona'));
-    	}
-    	else{
-	    	return view('socio.talleres.confirmacion-inscripcion', compact('taller', 'tipo_comprobantes'));
-    	}
+        }
+        else{
+            return view('socio.talleres.confirmacion-inscripcion', compact('taller', 'tipo_comprobantes'));
+        }
 
         
     }
 
     public function misinscripciones()
     {
-    	
-    	$talleresxpersona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->talleres;
+        
+        $talleresxpersona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->talleres;
         return view('socio.talleres.inscripciones', compact('talleresxpersona'));
     }
    
@@ -270,7 +270,7 @@ class InscriptionTallerController extends Controller
      */
     public function removeInscriptionToUser($id)
     {
-    	$usuario  = Auth::user();
+        $usuario  = Auth::user();
         $persona  = $usuario->persona;
         $taller   = Taller::find($id);
 
