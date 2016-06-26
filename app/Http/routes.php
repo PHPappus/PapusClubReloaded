@@ -44,7 +44,7 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('anular-reserva-ambiente-b-s','SocioController@anularReservaAmbienteB');
 	Route::get('pagos-s','SocioController@pagos');
 
-	// SOCIO INCRIPCION DE SERVICIOS LOL IF YOU READ THIS
+	// SOCIO INCRIPCION DE SERVICIOS LOLIFURTHIS
 	Route::get('servicioalsocio/index','ServicioalsocioController@index');
 	Route::post('servicioalsocio/index','ServicioalsocioController@filtroServicio');
 	Route::get('servicioalsocio/{id}/confirm','ServicioalsocioController@confirmareleccion');
@@ -530,6 +530,7 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::get('reservar-ambiente/consultar-bungalow-adminR', 'ReservarAmbienteController@consultarReservaBungalowAdminR'); 
 	Route::get('reservar-ambiente/{id}/deleteBungalowAdminR','ReservarAmbienteController@eliminarReservaBungalowAdminR');
 	Route::get('reservar-ambiente/{id}/deleteOtrosAdminR','ReservarAmbienteController@eliminarReservaOtrosAdminR');
+	Route::get('reservar-ambiente/{id}/agregarServicios','ReservarAmbienteController@agregarServices');
 
 });
 //Control de ingresos

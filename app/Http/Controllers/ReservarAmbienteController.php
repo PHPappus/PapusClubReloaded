@@ -23,7 +23,11 @@ use Carbon\Carbon;
 use DB;
 
 class ReservarAmbienteController extends Controller
-{
+{   
+    public function agregarServices($id){
+
+        return view('admin-reserva.reservar-ambiente.agregar-servicios',compact('id'));
+    }
     //Muestra la pantalla para realizar la reserva de un bungalow
     public function reservarBungalow()
     {

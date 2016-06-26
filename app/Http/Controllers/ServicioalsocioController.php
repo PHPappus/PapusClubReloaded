@@ -20,6 +20,7 @@ use papusclub\Models\Persona;
 use Auth;
 use Hash;
 use Carbon\Carbon;
+use papusclub\Models\Facturacion;
 
 
 class ServicioalsocioController extends Controller
@@ -71,7 +72,15 @@ class ServicioalsocioController extends Controller
    public function delete($id){
       $sxsxp = ServicioxSedexPersona::findOrFail($id);        
       if ($sxsxp){
-      $sxsxp->forceDelete();
+        // en caso se encuentre se debe eliminar el monto 
+        if ($sxsxp->codreserva!=-1 && $sxsxp->codreserva!=0){
+                $reservas = Reserva::find($sxsxp->codreserva);
+                $fact_id = $reservas->facturacion->id;
+                $fact = Facturacion::find($fact_id);
+                $fact->total = $fact->total - $sxsxp->precio;
+                $fact->save();
+        }
+        $sxsxp->forceDelete();
       
       // Identificacion persona_id 
         $user_id = Auth::user()->id;
@@ -87,7 +96,7 @@ class ServicioalsocioController extends Controller
         $mensaje = Null ; 
         
         // Pero solo se extrae la informacion concerniente  a la persona 
-        $sedexservicioxpersona = ServicioxSedexPersona::where('id_persona','=',$persona_id)->where('codreserva','<>',-1)->get();
+        $sedexservicioxpersona = ServicioxSedexPersona::where('id_persona','=',$persona_id)->get();
 
         // se busca las sedes por servicios de las solicitudes del socio
       
@@ -132,9 +141,8 @@ class ServicioalsocioController extends Controller
         //return view('socio.servicios.prueba2',compact('sedexservicioxpersona'));
       $mensaje = "Se eliminó la solicitud !";
       return view('socio.servicios.prueba2',compact('tabla','sedexservicioxpersona','expfila','expcolu','sedexservicio','mensaje','expfull','mensaje'));
-        }else 
-        
-        return back();
+      } else return back();
+        //return back();
      
    }
    public function misinscripciones(){
@@ -277,7 +285,22 @@ class ServicioalsocioController extends Controller
     $newsxsxp->id_persona = $persona_id;
     $newsxsxp->precio = $tarifserv->precio;
     $newsxsxp->save();
+
+    if ($codreservatosave!=-1 & $codreservatosave!=0){
+        $reservas = Reserva::find($codreservatosave);
+        $fact_id = $reservas->facturacion->id;
+        $fact = Facturacion::find($fact_id);
+        $fact->total = $fact->total + $tarifserv->precio;
+        $fact->save();
+    }
+
+    //$factura = new Facturacion();
+    //$factura->persona_id = $persona_id;
+    // $factura->tipo_pago = $input['tipo_pago'];
+    // $factura->tipo_comprobante = $input['tipo_comprobante'];
+    // $factura->estado = $input['estado'];        
         
+    //$factura->save();       
 
     /*return view('socio.servicios.prueba',compact('sedexservicio','tarifserv'));
     */

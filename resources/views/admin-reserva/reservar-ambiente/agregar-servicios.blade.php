@@ -1,7 +1,9 @@
+<p>Agregar Servicios</p>
+{{$id}}
 <!DOCTYPE html>
 <html>
 <head>
-	<title>AMBIENTE</title>
+	<title>Agegar Servicios</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,7 +22,7 @@
 		<div class="row">
 			<div class="col-sm-12 text-left">
 				<br/><br/>
-				<p class="lead"><strong>RESERVAS DE BUNGALOWS</strong></p>
+				<p class="lead"><strong>Servicios Disponibles para agregar </strong></p>
 				<br/>
 			</div>
 			
@@ -66,32 +68,7 @@
 						</tr>
 					</thead>
 					<tbody>
-							@foreach($reservas as $reserva)						
-						    	@if($reserva->ambiente->tipo_ambiente == 'Bungalow')						
-							    	<tr>
-							    		<td>{{ $reserva->persona->socio($socios)->id }}</td>
-										<td>{{ $reserva->persona->nombre . " " . $reserva->persona->ap_paterno . " " . $reserva->persona->ap_materno }}</td>
-										<td>{{ $reserva->ambiente->nombre }}</td>
-										<td>{{ $reserva->fecha_inicio_reserva }}</td>
-				 						<td>{{ $reserva->hora_inicio_reserva }}</td>
-				 						<td>{{ $reserva->estadoReserva }}</td>
-
-
-				 						<td>
-								        <a class="btn btn-info"  title="Ver Servicio" href="" data-toggle="" data-target=""><i class="glyphicon glyphicon-th"></i></a> 
-								        </td>
-
-				 						<td>
-								        <a class="btn btn-info"  title="Agregar Servicio" href="{{url('/reservar-ambiente/'.$reserva->id.'/agregarServicios')}}" data-toggle="" data-target=""><i class="glyphicon glyphicon-plus"></i></a> 
-								        </td>
-
-								        <td>
-								        <a class="btn btn-info"  title="Cancelar" data-href="{{url('/reservar-ambiente/'.$reserva->id.'/deleteBungalowAdminR')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a> 
-								        </td>
-								            
-									</tr>
-								@endif
-							@endforeach
+						
 					</tbody>					
 												
 					
