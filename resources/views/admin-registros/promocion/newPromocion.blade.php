@@ -65,17 +65,14 @@
 			  	</div>
 
 			  	<div class="form-group required">
-			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
+			    	<label for="tipoPromoInput" class="col-sm-4 control-label">Tipo Promoción</label>	
 			    	<div class="col-sm-5">
-			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="estadoInput" name="estado" placeholder="Estado" value="{{old('estado')}}"  maxlength="50" >
-			    	</div>
-			  	</div>
-
-			  	<div class="form-group required">
-			    	<label for="descuentoInput" class="col-sm-4 control-label">Monto Descuento</label>
-			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'DoubleFormat')" class="form-control" id="descuentoInput" name="montoDescuento" placeholder="Monto descuento" value="{{old('descuento')}}"  maxlength="5" >
-			    	</div>
+				    	<select class="form-control" id="tipoPromoSelect" name="tipoPromo" style="max-width: 150px " >
+							    @foreach ($tipos as $tipo)      
+							        <option value="{{$tipo->valor}}">{{$tipo->valor}}</option>
+							    @endforeach
+						</select>
+					</div>
 			  	</div>
 
 			  	<div class="form-group required">

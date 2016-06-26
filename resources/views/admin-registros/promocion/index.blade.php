@@ -50,8 +50,6 @@
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active" data-sortable="true">
 						<th><div align=center>PROMOCION</div> </th>
-						<th><div align=center>ESTADO</div></th>
-						<th><div align=center>MONTO (S/.)</div></th>
 						<th><div align=center>PORCENTAJE (%)</div></th>
 						<th><div align=center>DETALLE</div></th>
 						<th><div align=center>EDITAR</div></th>
@@ -63,8 +61,6 @@
 						@foreach($promociones as $promocion)			
 						<tr>
 							<td>{{ $promocion->descripcion }}</td>
-							<td>{{ $promocion->estado }}</td>
- 							<td>{{ $promocion->montoDescuento }}</td>
 							<td>{{ $promocion->porcentajeDescuento }}</td>
 							<td>
 				              	<a class="btn btn-info" href="{{url('/promociones/'.$promocion->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>

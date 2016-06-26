@@ -23,10 +23,9 @@ class StorePromocionRequest extends Request
     public function rules()
     {
         return [
-            'estado'                =>  'required|max:12|string',
             'descripcion'           =>  'required|max:100|string',
-             'montoDescuento'        =>  'float|min:0',
-             'porcentajeDescuento'   =>  'float|min:0'
+             'porcentajeDescuento'   =>  'float|min:0',
+             'tipoPromo'            =>   'required'
             // 'fecha_registro'        =>  'date'
             
             

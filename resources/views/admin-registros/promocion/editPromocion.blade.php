@@ -52,27 +52,31 @@
 		      			<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="descripcionInput" name="descripcion" value="{{$promocion->descripcion}}" >
 		    		</div>
 		  		</div>
-			  	<div class="form-group required">
-			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
+
+		  		<div class="form-group required">
+			    	<label for="tipoPromoInput" class="col-sm-4 control-label">Tipo Promoción</label>	
 			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="estadoInput" name="estado" value="{{$promocion->estado}}" >
-			    	</div>
+				    	<select class="form-control" id="tipoPromoSelect"name="tipoPromo" style="max-width: 150px " >
+							    @foreach ($tipos as $tipo)      
+							        <option value="{{$tipo->valor}}" @if ($tipo->valor == $promocion->tipo) selected @endif>{{$tipo->valor}}</option>
+							    @endforeach
+						</select>
+					</div>
 			  	</div>
   	
-			  	
-			  	<div class="form-group required">
-			    	<label for="descuentoInput" class="col-sm-4 control-label">Monto descuento (S/.)</label>
-			    	<div class="col-sm-5">
-			      		<input type="number" min ="0" step = "any" class="form-control" id="descuentoInput" name="montoDescuento" placeholder="Porcentaje descuento" value="{{$promocion->montoDescuento}}" required>
-			    	</div>
-			  	</div> 
-
 			  	<div class="form-group required">
 			    	<label for="porcentajeInput" class="col-sm-4 control-label"> Porcentaje descuento(%)</label>
 			    	<div class="col-sm-5">
 			      		<input type="number" min ="0" step = "any" class="form-control" id="porcentajeInput" name="porcentajeDescuento" placeholder="Porcentaje descuento" value="{{$promocion->porcentajeDescuento}}" required>
 			    	</div>
 			  	</div> 
+
+			  	<div class="form-group">
+			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
+			    	<div class="col-sm-3">
+			      		<input type="checkbox" class="checkbox" id="estadoInput" name="estado" @if(['estado'] == TRUE) checked @endif>
+			    	</div>
+			  	</div>
 				
 			
 				</br>
