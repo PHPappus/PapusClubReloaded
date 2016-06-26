@@ -140,10 +140,10 @@ class SedesController extends Controller
     //Se cambia el estado de una sede a inactiva
     public function destroy($id)    
     {
-        $sede = Sede::find($id);        
+        $sede = Sede::find($id);      
         $ambientes = $sede->ambientes;
         
-        if($sede->ambientes->count() || $sede->actividades->count()) {
+        if($sede->ambientes->count()) {
             return redirect('sedes/index')->with('delete', 'No se puede eliminar esta sede, posee dependencias.');
             
         }
