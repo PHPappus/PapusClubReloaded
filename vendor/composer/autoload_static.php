@@ -3277,7 +3277,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'phpDocumentor\\Reflection\\Types\\Static_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Static_.php',
         'phpDocumentor\\Reflection\\Types\\String_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/String_.php',
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
-        'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
+        'phpDocumentor\\Reflection\\Types\\Void' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void.php',
         'servicioSeeder' => __DIR__ . '/../..' . '/database/seeds/servicioSeeder.php',
     );
 
