@@ -88,8 +88,18 @@ class PostulanteController extends Controller
             $persona->ap_paterno = trim($input['ap_paterno']);
             $persona->ap_materno = trim($input['ap_materno']);
 
+            if($input['tipo_vip']=='esVip')
+            {
+                $id_tipo_persona=4;
+                $persona->id_tipo_persona = 4;
+            }
+            else
+            {
+                $id_tipo_persona=2;
+                $persona->id_tipo_persona = 2;                
+            }
             
-            $persona->id_tipo_persona = 2;
+
             $persona->sexo=$input['sexo'];
 
             $persona->nacionalidad = $input['nacionalidad'];
@@ -121,6 +131,7 @@ class PostulanteController extends Controller
 
 
             $persona->save();
+
             //$persona->correo=trim($input['correo']);
 
 
@@ -191,15 +202,51 @@ class PostulanteController extends Controller
             $postulante->telefono_celular=$input['telefono_celular'];
             $postulante->estado_civil=$input['estado_civil'];
 
-            
-
             $postulante->save();
 
 
+            $id = $idPersona;
+
+            if($id_tipo_persona==4)
+            {
+               $this->registrarsocioVip($id);
+            }
+            else
+            {
+                return redirect('postulante/index')->with('stored', 'Se registró el postulante correctamente.');
+            }
+
         }
         
-
         return redirect('postulante/index')->with('stored', 'Se registró el postulante correctamente.');
+    }
+
+    function registrarsocioVip($id)
+    {
+        /*Tipo de Membresía siempre iniciará como tipo regular el cual se encuentra registrado en la primera casilla de la tabla membresia*/
+        $tipoMembresia = TipoMembresia::first();
+
+
+        /*Registrando Socio*/
+        $fecha_ingreso = new DateTime("now");
+        $fecha_ingreso=$fecha_ingreso->format('Y-m-d');
+
+        $socio = new Socio();
+        $socio->fecha_ingreso=$fecha_ingreso;
+
+        $socio->membresia()->associate($tipoMembresia);
+        $socio->postulante_id=$id;
+        $socio->save();
+
+
+        /*Asignar carnet*/
+        create_carnet($socio);
+
+
+        $this->enviarUsuario($socio->postulante->persona->correo, $socio->postulante->persona->nombre, $socio->postulante->persona->ap_paterno, $socio->carnet_actual()->nro_carnet);
+
+
+        return redirect('Socio/')->with('stored', 'Se registró el Socio correctamente.');        
     }
 
     public function show($id){

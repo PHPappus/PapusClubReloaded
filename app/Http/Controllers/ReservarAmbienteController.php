@@ -13,6 +13,7 @@ use papusclub\Models\Reserva;
 use papusclub\Models\Servicio;
 use papusclub\Models\Configuracion;
 use papusclub\Models\Facturacion;
+use papusclub\Models\Promocion;
 use papusclub\Http\Requests\StoreReservaBungalowSocio;
 use papusclub\Http\Requests\StoreReservaBungalowAdminR;
 use papusclub\Http\Requests\StoreReservaOtroAmbienteSocio;
@@ -198,7 +199,7 @@ class ReservarAmbienteController extends Controller
     {
         $sedes = Sede::all();
         //$ambientes = Ambiente::all();
-        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();  
+        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('estado', '=', 'Activo')->get();  
         $fechaIniValue=(new Carbon('America/Lima'));  
         $fechaFinValue=(new Carbon('America/Lima'))->addDays(30);
         return view('socio.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue'));
@@ -212,7 +213,7 @@ class ReservarAmbienteController extends Controller
         $fechaFin   = (new Carbon('America/Lima'))->addDays(25);
         $fechaIniValue   = new Carbon('America/Lima');
         $fechaFinValue   = (new Carbon('America/Lima'))->addDays(25); 
-        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();
+        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('estado', '=', 'Activo')->get();
         if(!empty($input['fecha_inicio'])){
             $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
             $fechaIniValue=$carbon->createFromFormat('d-m-Y', $a_realizarse_en);
@@ -261,7 +262,7 @@ class ReservarAmbienteController extends Controller
 
         $sedes = Sede::all();
         //$ambientes = Ambiente::all(); 
-        $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->get();
+        $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->where('estado', '=', 'Activo')->get();
         $fechaIniValue=(new Carbon('America/Lima'));  
         $fechaFinValue=(new Carbon('America/Lima'))->addDays(30);
         return view('socio.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue'));
@@ -277,7 +278,7 @@ class ReservarAmbienteController extends Controller
         $fechaFinValue   = (new Carbon('America/Lima'))->addDays(25); 
         $sedes = Sede::all();
         
-        $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->get();
+        $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->where('estado', '=', 'Activo')->get();
         if(!empty($input['fecha_inicio'])){
             $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
             $fechaIniValue=$carbon->createFromFormat('d-m-Y', $a_realizarse_en);
@@ -388,20 +389,32 @@ class ReservarAmbienteController extends Controller
         }else{
             $reserva->hora_fin_reserva=Carbon::createFromTime(0, 0, 0);
         }
-
+        $fechaIniValue=$carbon->createFromFormat('d-m-Y', $fecha_inicio);
+        $fechaFinValue=$carbon->createFromFormat('d-m-Y', $fecha_fin);
+        $diff=$fechaFinValue->diffInDays($fechaIniValue);
         $ambiente = Ambiente::find($ambiente_id);
         $persona = Persona::find($persona_id);
         $tipo_persona = $persona->tipopersona;
         $tarifas = $ambiente->tarifas;
         foreach ($tarifas as $tarifa) {
             if($tarifa->tipo_persona == $tipo_persona)
-                $reserva->precio = $tarifa->precio;        
+                $reserva->precio = $tarifa->precio*$diff;        
         }
+
+        $promos = Promocion::where('tipo','=','Bungalow')->where('estado','=',TRUE)->get();
+        if ($promos != NULL)
+        {
+            foreach ($promos as $promo) {
+                $reserva->precio = $reserva->precio - ($reserva->precio*$promo->porcentajeDescuento)/100;
+            }
+        }
+
         //$reserva->precio = 0;
         $reserva->estadoReserva = "En proceso";
         $reserva->actividad_id = null;
         
         $reserva->save();
+
 
         $facturacion = new Facturacion();
         $facturacion->persona_id = $persona_id;
@@ -452,7 +465,6 @@ class ReservarAmbienteController extends Controller
         $reserva = new Reserva();
         $reserva->ambiente_id = $ambiente_id;
         $reserva->id_persona = $persona_id;
-        
 
         if (empty($input['fecha_inicio_reserva'])) {
             $reserva->fecha_inicio_reserva="";
@@ -474,15 +486,26 @@ class ReservarAmbienteController extends Controller
         }else{
             $reserva->hora_fin_reserva=$carbon->createFromFormat('H:i', $input['hora_fin_reserva'])->toTimeString();
         }
-
+        $horaIniValue=$carbon->createFromFormat('H:i', $input['hora_inicio_reserva']);
+        $horaFinValue=$carbon->createFromFormat('H:i', $input['hora_fin_reserva']);
+        $diff=$horaFinValue->diffInHours($horaIniValue);
         $ambiente = Ambiente::find($ambiente_id);
         $persona = Persona::find($persona_id);
         $tipo_persona = $persona->tipopersona;
         $tarifas = $ambiente->tarifas;
         foreach ($tarifas as $tarifa) {
             if($tarifa->tipo_persona == $tipo_persona)
-                $reserva->precio = $tarifa->precio;        
+                $reserva->precio = $tarifa->precio*$diff;        
         }
+
+        $promos = Promocion::where('tipo','=','Ambiente')->where('estado','=',TRUE)->get();
+        if ($promos != NULL)
+        {
+            foreach ($promos as $promo) {
+                $reserva->precio = $reserva->precio - ($reserva->precio*$promo->porcentajeDescuento)/100;
+            }
+        }
+
         //$reserva->precio = 0;
         $reserva->estadoReserva = "En proceso";
         $reserva->actividad_id = null;
@@ -599,7 +622,7 @@ class ReservarAmbienteController extends Controller
     {
         $sedes = Sede::all();
         //$ambientes = Ambiente::all();
-        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();  
+        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('estado', '=', 'Activo')->get();  
         $fechaIniValue=(new Carbon('America/Lima'));  
         $fechaFinValue=(new Carbon('America/Lima'))->addDays(30);
         return view('admin-reserva.reservar-ambiente.reservar-bungalow')->with(compact('sedes','ambientes','fechaIniValue','fechaFinValue'));
@@ -629,7 +652,7 @@ class ReservarAmbienteController extends Controller
         $fechaFin   = (new Carbon('America/Lima'))->addDays(25);
         $fechaIniValue   = new Carbon('America/Lima');
         $fechaFinValue   = (new Carbon('America/Lima'))->addDays(25);  
-        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();
+        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('estado', '=', 'Activo')->get();
         if(!empty($input['fecha_inicio'])){
             $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
             $fechaIniValue=$carbon->createFromFormat('d-m-Y', $a_realizarse_en);
@@ -677,7 +700,7 @@ class ReservarAmbienteController extends Controller
 
         $sedes = Sede::all();
         //$ambientes = Ambiente::all(); 
-        $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->get();
+        $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->where('estado', '=', 'Activo')->get();
         $fechaIniValue=(new Carbon('America/Lima'));  
         $fechaFinValue=(new Carbon('America/Lima'))->addDays(30);
         return view('admin-reserva.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue'));
@@ -693,7 +716,7 @@ class ReservarAmbienteController extends Controller
         $fechaFinValue   = (new Carbon('America/Lima'))->addDays(25); 
         $sedes = Sede::all();
         
-        $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->get();
+        $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->where('estado', '=', 'Activo')->get();
         if(!empty($input['fecha_inicio'])){
             $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
             $fechaIniValue=$carbon->createFromFormat('d-m-Y', $a_realizarse_en);
@@ -807,14 +830,16 @@ class ReservarAmbienteController extends Controller
         }else{
             $reserva->hora_fin_reserva=Carbon::createFromTime(0, 0, 0);
         }
-
+        $fechaIniValue=$carbon->createFromFormat('d-m-Y', $fecha_inicio);
+        $fechaFinValue=$carbon->createFromFormat('d-m-Y', $fecha_fin);
+        $diff=$fechaFinValue->diffInDays($fechaIniValue);
         $ambiente = Ambiente::find($ambiente_id);
         $persona = Persona::find($persona_id);
         $tipo_persona = $persona->tipopersona;
         $tarifas = $ambiente->tarifas;
         foreach ($tarifas as $tarifa) {
             if($tarifa->tipo_persona == $tipo_persona)
-                $reserva->precio = $tarifa->precio;        
+                $reserva->precio = $tarifa->precio*$diff;        
         }
         //$reserva->precio = 0;
 
@@ -889,14 +914,17 @@ class ReservarAmbienteController extends Controller
         }else{
             $reserva->hora_fin_reserva=$carbon->createFromFormat('H:i', $input['hora_fin_reserva'])->toTimeString();
         }
-
+        $horaIniValue=$carbon->createFromFormat('H:i', $input['hora_inicio_reserva']);
+        $horaFinValue=$carbon->createFromFormat('H:i', $input['hora_fin_reserva']);
+        $diff=$horaFinValue->diffInHours($horaIniValue);
+        
         $ambiente = Ambiente::find($ambiente_id);
         $persona = Persona::find($persona_id);
         $tipo_persona = $persona->tipopersona;
         $tarifas = $ambiente->tarifas;
         foreach ($tarifas as $tarifa) {
             if($tarifa->tipo_persona == $tipo_persona)
-                $reserva->precio = $tarifa->precio;        
+                $reserva->precio = $tarifa->precio*$diff;        
         }
         //$reserva->precio = 0;
         $reserva->estadoReserva = "En proceso";

@@ -19,6 +19,7 @@ class CreateSorteoTable extends Migration
             $table->string('descripcion');
             $table->integer('id_sede')->unsigned()->nullable();
             $table->integer('numero_bungalows');
+            $table->float('costo_inscripcion');
             $table->date('fecha_fin_sorteo');
             $table->date('fecha_abierto');
             $table->date('fecha_cerrado');            

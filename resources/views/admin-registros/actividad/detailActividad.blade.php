@@ -23,7 +23,7 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>ACTIVIDAD</strong>
+					<strong>DETALLE DE ACTIVIDAD</strong>
 			</div>		
 		</div>
 		<div class="container">
@@ -144,15 +144,25 @@
 			  	<!-- FIN     PRECIO POR TIPO DE PERSONA -->
 			</br></br>
 			  	<div class="btn-inline">
-					<div class="btn-group col-sm-7"></div>
+					<div class="btn-group col-sm-8"></div>
 					<div class="btn-group">
 						<a href="/actividad/index" class="btn btn-info">Regresar</a>
 					</div>
 				</div>
+				</br>
+				</br>
+	
 			
 			</form>
 		</div>
-	</div>		
+	</div>	
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>	
 @stop
 <!-- JQuery -->
 	<script src="../js/jquery-1.11.3.min.js"></script>

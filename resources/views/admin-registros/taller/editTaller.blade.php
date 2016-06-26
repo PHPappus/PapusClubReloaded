@@ -158,12 +158,10 @@
 
 							@foreach ($taller->tarifaTaller as $persona)		
 						    	<tr>
-						    		@if ($persona->descripcion == 'trabajador')
-										<td align="center">Trabajador</td>
-									@elseif ($persona->descripcion == 'postulante')
+						    		@if($persona->descripcion == 'Postulante' || $persona->descripcion == 'postulante')
 										<td align="center">Socio</td>
-									@elseif ($persona->descripcion == 'tercero')
-										<td align="center">Tercero</td>
+									@else
+										<td align="center">{{$persona->descripcion}}</td>
 									@endif
 									<td align="center">  S/.</td>
 									<td align="center"> 
@@ -187,7 +185,7 @@
 					</div>
 
 					<div class="btn-group">
-						<a href="/taller/" class="btn btn-info">Regresar</a>
+						<a href="/taller/index" class="btn btn-info">Regresar</a>
 					</div>
 				</div>
 				</br>

@@ -14,11 +14,11 @@ class CreatePromocionesTable extends Migration
     {
         Schema::create('promocion', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('estado');
+            $table->boolean('estado')->default(TRUE);
             $table->string('descripcion');
-            $table->float('montoDescuento');
+            $table->string('tipo');
             $table->float('porcentajeDescuento');
-            $table->softDeletes('fecha_registro');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

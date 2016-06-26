@@ -17,6 +17,7 @@ use papusclub\User;
 use papusclub\Models\Persona;
 use papusclub\Models\Configuracion;
 use papusclub\Models\Facturacion;
+use papusclub\Models\Promocion;
 use Auth;
 use Hash;
 use Carbon\Carbon;
@@ -117,6 +118,14 @@ class InscriptionTallerController extends Controller
                                     break;
                                 }
                             }
+
+                            $promos = Promocion::where('tipo','=','Taller')->where('estado','=',TRUE)->get();
+                            if ($promos != NULL){
+                                foreach ($promos as $promo) {
+                                    $precioTarifa = $precioTarifa - ($precioTarifa*$promo->porcentajeDescuento)/100;
+                                }
+                            }
+
                             
                             $facturacion = new Facturacion();
                             $facturacion->persona_id = $persona->id;

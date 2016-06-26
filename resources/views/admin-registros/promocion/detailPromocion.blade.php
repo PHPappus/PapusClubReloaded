@@ -38,23 +38,23 @@
 			  	</div>
 
 			  	<div class="form-group">
-			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
+			    	<label for="tipoPromoInput" class="col-sm-4 control-label">Tipo Promoción</label>	
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="estadoInput" name="estado" value="{{$promocion->estado}}" readonly >
-			    	</div>
+				    	<input type="text" min ="0" step = "any" class="form-control" id="tipoPromoInput" name="tipoPromo" placeholder="Porcentaje descuento" value="{{$promocion->tipo}}" readonly>
+					</div>
 			  	</div>
-
-			  	<div class="form-group">
-			    	<label for="descuentoInput" class="col-sm-4 control-label">Monto descuento(S/.)</label>
-			    	<div class="col-sm-5">
-			      		<input type="number" min ="0" step = "any" class="form-control" id="descuentoInput" name="descuento" placeholder="Monto descuento" value="{{$promocion->montoDescuento}}" readonly>
-			    	</div>
-			  	</div>  	
 
 			  	<div class="form-group">
 			    	<label for="porcentajeInput" class="col-sm-4 control-label">Porcentaje descuento (%)</label>
 			    	<div class="col-sm-5">
 			      		<input type="number" min ="0" step = "any" class="form-control" id="porcentajeInput" name="porcentaje" placeholder="Porcentaje descuento" value="{{$promocion->porcentajeDescuento}}" readonly>
+			    	</div>
+			  	</div>
+
+			  	<div class="form-group required">
+			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
+			    	<div class="col-sm-3">
+			      		<input type="checkbox" class="checkbox" id="estadoInput" name="estado" @if($promocion['estado'] == TRUE) checked @endif disabled>
 			    	</div>
 			  	</div>
 

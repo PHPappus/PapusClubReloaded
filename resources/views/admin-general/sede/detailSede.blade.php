@@ -107,10 +107,20 @@
 					<div class="col-sm-8"> </div>
 					<a href="/sedes/index" class="btn btn-info">Regresar</a>				
 				</div>
+				</br>
+				</br>
 
 			</form>
 		</div>
-	</div>		
+	</div>	
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+		
 @stop
 <!-- JQuery -->
 	{!!Html::script('/js/jquery-1.11.3.min.js')!!}

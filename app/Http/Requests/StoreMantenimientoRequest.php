@@ -3,7 +3,7 @@
 namespace papusclub\Http\Requests;
 use papusclub\Http\Requests\Request;
 
-class StorePromocionRequest extends Request
+class StoreMantenimientoRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,13 +23,9 @@ class StorePromocionRequest extends Request
     public function rules()
     {
         return [
-            'descripcion'           =>  'required|max:100|string',
-             'porcentajeDescuento'   =>  'float|min:0',
-             'tipoPromo'            =>   'required'
-            // 'fecha_registro'        =>  'date'
-            
-            
-            
+            'fecha_abierto'                =>  'required',
+            'fecha_cerrado'=>'required',
+            'sedeSelec'=>'required'
         ];
     }
 }

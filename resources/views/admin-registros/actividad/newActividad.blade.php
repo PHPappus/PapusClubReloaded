@@ -169,7 +169,7 @@
 									<td align="center">  S/.</td>
 									<td align="center"> 
 										<div align="center">
-								      		<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'DoubleFormat')"   class="form-control" id="{{$tipoPersona->descripcion}}Input" name="{{$tipoPersona->descripcion}}" placeholder="Monto" >
+												<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'DoubleFormat')"   class="form-control" id="{{$tipoPersona->descripcion}}Input" name="{{$tipoPersona->descripcion}}" placeholder="Monto" maxlength="6" >
 								    	</div>
 								</td>							        
 								</tr>
@@ -195,10 +195,20 @@
 						<a href="/actividad/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
+				</br>
+				</br>
+	
 			
 			</form>
 		</div>
-	</div>		
+	</div>
+		</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>		
 @stop
 <!-- JQuery -->
 	{!!Html::script('js/jquery-1.12.4.min.js')!!}
