@@ -24,7 +24,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 text-center">
-				<p class="lead"><strong>R E P O R T E : &nbsp;&nbsp; C A N T I D A D &nbsp;&nbsp; D E &nbsp;&nbsp; R E S E R V A S &nbsp;&nbsp; D E &nbsp;&nbsp;B U N G A L O W S </strong></p>
+				<p class="lead"><strong>R E P O R T E : &nbsp;&nbsp; NUMERO &nbsp;&nbsp; DE &nbsp;&nbsp; INVITADOS &nbsp;&nbsp; POR &nbsp;&nbsp; SEDE </strong></p>
 			</div>
 		</div>
 		<br/>
@@ -33,16 +33,18 @@
 			<div class="form-group">
 				 	<label for="" class="col-sm-3 control-label">Responsable</label>
 				    <div class="col-sm-5">
+				    @foreach($responsable as $resp)
 					   	<div class="input-group">
-					   		<label for="" class="col-sm-4 control-label">Marco Polo</label>			       		
+					   		<label for="" class="col-sm-4 control-label">{{$resp->name}}</label>			       		
 				   	   	</div>
+				   	@endforeach
 			    	</div>	
 			</div>
 			<div class="form-group">
 				 	<label for="" class="col-sm-3 control-label">Sede</label>
 				    <div class="col-sm-5">
 					   	<div class="input-group">
-					   		<label for="" class="col-sm-4 control-label">Sede</label>			       		
+					   		<label for="" class="col-sm-4 control-label">{{$sedes->nombre}}</label>			       		
 				   	   	</div>
 				       	
 			    	</div>	
@@ -51,9 +53,9 @@
 			 	<label for="" class="col-sm-3 control-label ">Fecha Consultada</label>
 			    <div class="col-sm-5">				  	
 			   	 	<div class="input-group">
-			   		<label for="fechaInput" class="col-sm-4 control-label"> dd/mm/aaaa </label>
+			   		<label for="fechaInput" class="col-sm-4 control-label"> {{ $fechaIni->toDateString() }}</label>
 			   		<label for="fechaInput" class="col-sm-4 control-label"> -  </label>
-			   		<label for="fechaInput" class="col-sm-4 control-label"> dd/mm/aaaa </label>
+			   		<label for="fechaInput" class="col-sm-4 control-label"> {{ $fechaFin->toDateString() }}</label>
 					</div>			   		
 		    	</div>	
 			</div>
@@ -61,7 +63,7 @@
 				 	<label for="" class="col-sm-3 control-label">Fecha actual</label>
 				    <div class="col-sm-5">
 					   	<div class="input-group">
-					   		<label for="" class="col-sm-4 control-label">dd/mm/aaaa</label>			       		
+					   		<label for="" class="col-sm-4 control-label">{{ $fechaAct->toDateString() }}</label>			       		
 				   	   	</div>
 				       	
 			    	</div>	
@@ -83,17 +85,23 @@
 				<th><DIV ALIGN=center>NOMBRE</th>
 				</tr>
 				</thead>
-				<tbody>
-					@foreach($sedes as $sede)						
-			    	<tr>
-		    		<td>{{ $sede->nombre }}</td>
-					<td>{{ $sede->nombre }}</td>
-					</tr>
+				<tbody>	
+				@if (count($ingresos)!=0)
+				    @foreach($ingresos as $ingreso)						
+				    	<tr>
+				    		<td>{{ $ingreso->persona->id }}</td>
+							<td>{{ $ingreso->persona->nombre }}</td>
+						</tr>
 					@endforeach
-					<tr>
+						<tr>
+				@else
+				    <tr>
+			    		<td>No se registraron ingresos de invitados </td>
 						
+					</tr>
+				@endif	
 						<td><b>TOTAL</b></td>
-						<td>{{ $sede->nombre}}</td>								
+						<td>{{count($ingresos)}}</td>								
 				    </tr>
 				</tbody>
 		</table>		

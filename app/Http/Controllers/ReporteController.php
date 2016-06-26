@@ -10,6 +10,7 @@ use papusclub\Models\Facturacion;
 use papusclub\Models\Configuracion;
 use papusclub\Models\Persona;
 use papusclub\Models\Sede;
+use papusclub\Models\HistoricoIngreso;
 use Auth;
 use Carbon\Carbon;
 use papusclub\User;
@@ -23,10 +24,37 @@ class ReporteController extends Controller
         $sedes = Sede::all();
         return view('gerente.reportes.reporte-invitados-por-sede',compact('sedes'));
     }
-     public function reporte1Final() 
+     public function reporte1Final(Request $request) 
     {
-        $sedes = Sede::all();
-        return view('gerente.reportes.reporte-invitados-por-sede-final',compact('sedes'));
+        $input = $request->all();
+
+        $sedes = Sede::find($input['sedeSelec']);
+
+        $carbon=new Carbon;
+        //obtener el responsable del reporte
+        $perfilResponsable=Perfil::where('description','=','CONTROL DE INGRESOS')->first();
+        $responsable=User::where('perfil_id','=',$perfilResponsable->id)->get();
+        //fin obtener el responsable del reporte
+        //obtener fechas
+        $fechaIni=new Carbon('America/Lima');
+        $fechaFin=new Carbon('America/Lima');
+        $fechaAct=new Carbon('America/Lima');
+        if(!empty($input['fecha_inicio'])){
+            $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
+            $fechaIni=$carbon->createFromFormat('d-m-Y', $a_realizarse_en);
+        }
+        if(!empty($input['fecha_fin'])){
+            $a_realizarse_en = str_replace('/', '-', $input['fecha_fin']);
+            $fechaFin=$carbon->createFromFormat('d-m-Y', $a_realizarse_en);
+        }
+        //fin obtener fechas
+        //obtener invitados que ingresan por socio
+            $ingresos=HistoricoIngreso::whereBetween('fecha',[$fechaIni,$fechaFin])->where('sede_id','=',$sedes->id)->get();
+            //echo $ingresos;
+            //return exit;
+            
+        //fin obtener invitados que ingresan por socio
+        return view('gerente.reportes.reporte-invitados-por-sede-final',compact('sedes','fechaIni','fechaFin','fechaAct','responsable','ingresos'));
     }
     //Reporte 2: cuantas personas deben dentro de un rango de fecha
     public function reporte2() 
