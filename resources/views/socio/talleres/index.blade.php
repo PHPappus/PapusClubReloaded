@@ -115,7 +115,7 @@
 								<td>{{date("d-m-Y",strtotime($taller->fecha_fin))}}</td>
 								<td>{{$taller->vacantes}}</td>								
 								
-								<td>{{$taller->precio_base}} Nuevos Soles</td>
+								<td>S/.{{ $taller->precio($tipo_persona, $taller->tarifaTaller) }}</td>
 								<td>{{date("d-m-Y",strtotime($taller->fecha_fin_inscripciones))}}
 								</td>
 								<td>
