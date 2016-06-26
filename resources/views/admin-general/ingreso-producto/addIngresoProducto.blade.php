@@ -18,7 +18,7 @@
 </head>
 
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-registros')
 @section('content')
 <!---Cuerpo -->
 <main class="main">
@@ -67,7 +67,14 @@
 			      		<input type="text" class="form-control" id="personaInput" name="persona" value="{{$ingresoproducto->persona->nombre}} {{$ingresoproducto->persona->ap_paterno}} {{$ingresoproducto->persona->ap_materno}}" readonly>
 			    	</div>
 			  	</div>	  				  				 			  
-						
+				
+				<div class="form-group">
+			    	<label for="tipoSolicitudInput" class="col-sm-4 control-label">Tipo de Solicitud</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" class="form-control" id="tipo_solicitud" name="tipo_solicitud" value="{{$ingresoproducto->tipo_solicitud}}" readonly>
+			    	</div>
+			  	</div>						
+
 			  	<div class="form-group">
 			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
 			    	<div class="col-sm-5">

@@ -12,6 +12,7 @@ class IngresoProducto extends Model
     protected $fillable = 
     ['persona_id',
      'proveedor_id',  
+     'tipo_solicitud',
      'descripcion',   
      'estado'];
      protected $dates = ['deleted_at'];

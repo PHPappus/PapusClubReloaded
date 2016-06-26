@@ -16,6 +16,7 @@ class CreateIngresoproductoTable extends Migration
             $table->increments('id')->unsigned();
             $table->integer('persona_id')->unsigned()->index('ingresoproducto_persona_id_foreign');
             $table->integer('proveedor_id')->unsigned()->index('ingresoproducto_proveedor_id_foreign');            
+            $table->string('tipo_solicitud');
             $table->string('descripcion');
             $table->string('estado');
             $table->softDeletes();

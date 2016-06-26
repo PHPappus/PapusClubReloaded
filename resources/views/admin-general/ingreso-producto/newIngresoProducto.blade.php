@@ -12,7 +12,7 @@
 	{!!Html::style('/css/DataTable.css')!!}	
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-registros')
 @section('content')
 
 <!---Cuerpo -->
@@ -62,7 +62,22 @@
 			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="proveedor_id" name="proveedor_id" placeholder="ID del Proveedor" value="{{old('proveedor_id')}}">
 			    	</div>
 			    	<a class="btn btn-info" name="buscarProveedor" href="#"  title="Buscar Proveedor" data-toggle="modal" data-target="#modalBuscar"><i name="buscarProveedor" class="glyphicon glyphicon-search"></i></a>
-			  	</div>			  	
+			  	</div>			
+
+			  	<div class="form-group required">
+			    	<label for="tipoSolicitudInput" class="col-sm-4 control-label">Tipo de Solicitud</label>
+			    	<div class="col-sm-5">
+			    	
+			      		<select class="form-control" id="tipo_solicitud" name="tipo_solicitud">
+
+						<option value="" selected >Seleccionar tipo...</option>
+						@foreach($tipo_solicitudes as $tipo_solicitud)
+							<option value="{{$tipo_solicitud->valor}}" >{{$tipo_solicitud->valor}}</option>
+						@endforeach						
+						</select>						
+
+			    	</div>			    	
+			  	</div>		  	
 
 			  	<div class="form-group required">
 			    	<label for="descripcion" class="col-sm-4 control-label">Descripcion</label>
@@ -70,21 +85,11 @@
 			      		<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcon de solicitud" value="{{old('descripcion')}}">
 			    	</div>			    	
 			  	</div>			
-			  
-						
+			  						
 			  	<div class="form-group required">
 			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
-			    	<div class="col-sm-5">			    	
-			      		<select class="form-control" id="estado" name="estado" >
-						<!-- Las opciones se deberían extraer de la tabla configuracion-->
-						<option value="" selected>Seleccionar tipo...</option>
-						@foreach($estados as $estado)
-							@if ($estado['valor'] != 'Anulado')
-								<option value="{{$estado->valor}}">{{$estado->valor}}</option>
-							@endif
-						@endforeach						
-						</select>													
-						
+			    	<div class="col-sm-5">			    				      	
+			      		<input type="text" class="form-control" id="estado" name="estado" placeholder="Estado de la solicitud" value="{{$estados->first()->valor}}" readonly>			    		
 			    	</div>
 			  	</div>		
 
