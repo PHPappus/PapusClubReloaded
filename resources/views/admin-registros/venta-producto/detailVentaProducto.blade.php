@@ -79,7 +79,7 @@
 						@foreach($factura->productoxfacturacion as $producto)
 							<tr>
 								<td>{{ $producto->producto->nombre}}</td>
-								<td>{{ $producto->producto->precioproducto->first()['precio']}}</td>
+								<td>{{ $producto->precio}}</td>
 								<td>{{ $producto->cantidad}}</td>			
 								<td>{{ $producto->subtotal }}</td>								
 				            </tr>
