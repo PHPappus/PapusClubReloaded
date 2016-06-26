@@ -26,8 +26,15 @@ class InscriptionActividadController extends Controller
     public function inscriptionActividad()
     {
         $sedes = Sede::all();
+
+        $fecha_inicio   = Carbon::now('America/Lima')->format('Y-m-d');   
+        $fecha_fin = Carbon::now('America/Lima')->addMonths(4)->format('Y-m-d');   
+
         /*Filtrar las actividades que estan disponibles (>= que la fecha actual) y con estado 1 */
-        $actividades=Actividad::where('estado','=',1)->where('a_realizarse_en','>=',Carbon::now('America/Lima')->format('Y-m-d'))->get();
+        $actividades=Actividad::where('estado','=',1)->where('a_realizarse_en','>=',Carbon::now('America/Lima')->format('Y-m-d'))
+                                ->where('a_realizarse_en','>=',$fecha_inicio)
+                               ->where('a_realizarse_en','<=',$fecha_fin)
+                               ->get();
         /*Se envia las actividades a las cuales se encuentra inscrita la persona*/
         $actividades_persona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->actividades;
         $usuario = Auth::user();
@@ -38,10 +45,9 @@ class InscriptionActividadController extends Controller
         $postulante=Postulante::find($persona->id); 
         $familiares=$postulante->familiarxpostulante;   
       
-        $fecha_inicio   = Carbon::now('America/Lima')->format('d-m-Y');   
+        $fecha_inicio   = Carbon::now('America/Lima')->format('d-m-Y');
         $fecha_inicio=str_replace('-', '/', $fecha_inicio);
- 
-        $fecha_fin = Carbon::now('America/Lima')->addMonths(1)->format('d-m-Y');
+        $fecha_fin = Carbon::now('America/Lima')->addMonths(4)->format('d-m-Y');
         $fecha_fin=str_replace('-', '/', $fecha_fin);
 
         return view('socio.actividades.inscripcion', compact('sedes','actividades','actividades_persona','tipo_persona','familiares','fecha_inicio','fecha_fin'));
@@ -82,8 +88,8 @@ class InscriptionActividadController extends Controller
         $fecha_inicio   = new Carbon('America/Lima');
         $fecha_fin   = new Carbon('America/Lima'); 
         
-        $fecha_inicio=Carbon::now('America/Lima')->addMonths(1)->toDateString();
-        $fecha_fin = Carbon::now('America/Lima')->addMonths(1)->toDateString();
+        $fecha_inicio=$fecha_inicio->toDateString();
+        $fecha_fin = Carbon::now('America/Lima')->addMonths(4)->toDateString();
 
         
         if(!empty($input['fecha_inicio'])){
@@ -151,8 +157,9 @@ class InscriptionActividadController extends Controller
         $familiares=$postulante->familiarxpostulante;
         $actividadesxfamiliar;
         /*array_push(*/
+        $fecha_hoy=Carbon::now('America/Lima')->format('Y-m-d');
 
-        return view('socio.actividades.inscripciones', compact('actividades','familiares'));
+        return view('socio.actividades.inscripciones', compact('actividades','familiares','fecha_hoy'));
     }
 
     public function makeInscriptionFamiliarToPersona(MakeInscriptionToPersonaRequest $request, $id)
@@ -196,7 +203,7 @@ class InscriptionActividadController extends Controller
                             $precioTarifa;
                             foreach ($tarifas as $tarifa) {
                                 if($tarifa->tipo_persona == $tipo_persona){
-                                    $persona->actividades()->attach($id,['precio'=> $tarifa->precio]);
+                                    $persona->actividades()->attach($id,['precio'=> $tarifa->precio,'created_at'=>Carbon::now('America/Lima')]);
                                     $precioTarifa = $tarifa->precio;
                                     break;
                                 }
@@ -258,7 +265,7 @@ class InscriptionActividadController extends Controller
                 if(!$flag){
                     $actividades=Actividad::all();
                     Session::flash('message-error','Ya se encuentra inscrito en esta actividad');
-                    return view('socio.actividades.inscripciones',compact('sedes'),compact('actividades'));
+                    return Redirect("/inscripcion-actividad/".$id."/confirmacion-inscripcion-actividades");
                 }
                 else{
                     DB::beginTransaction();
@@ -278,7 +285,7 @@ class InscriptionActividadController extends Controller
                             $precioTarifa;
                             foreach ($tarifas as $tarifa) {
                                 if($tarifa->tipo_persona == $tipo_persona){
-                                    $persona->actividades()->attach($id,['precio'=> $tarifa->precio]);
+                                    $persona->actividades()->attach($id,['precio'=> $tarifa->precio,'created_at'=>Carbon::now('America/Lima')]);
                                     $precioTarifa = $tarifa->precio;
                                     break;
                                 }
@@ -322,6 +329,29 @@ class InscriptionActividadController extends Controller
         try{
             $usuario  = Auth::user();
             $persona  = $usuario->persona;
+            $actividad   = Actividad::find($id);
+
+            $facturacion = Facturacion::where('actividad_id', '=', $actividad->id)->where('persona_id', '=', $persona->id)->get()->first();
+            
+            if($facturacion)
+                $facturacion->delete();
+
+            $actividad->cupos_disponibles=$actividad->cupos_disponibles+1;
+            $actividad->save();
+            $persona->actividades()->detach([$id]);
+        }
+        catch(ValidationException $e){
+            DB::rollback();
+            var_dump($e->getErrors());
+        }
+        DB::commit();
+        return back();
+    }
+    public function removeInscriptionToFamiliar($id,$idPersona)
+    {
+        DB::beginTransaction();
+        try{
+            $persona  = Persona::find($idPersona);
             $actividad   = Actividad::find($id);
 
             $facturacion = Facturacion::where('actividad_id', '=', $actividad->id)->where('persona_id', '=', $persona->id)->get()->first();

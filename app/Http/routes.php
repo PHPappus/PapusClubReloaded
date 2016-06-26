@@ -80,7 +80,9 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::post('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades-to-familiar/confirm','InscriptionActividadController@makeInscriptionFamiliarToPersona');
 
 	Route::get('inscripcion-actividad/mis-inscripciones','InscriptionActividadController@misinscripciones');
+	
 	Route::get('inscripcion-actividad/{id}/delete', 'InscriptionActividadController@removeInscriptionToPersona');
+	Route::get('inscripcion-actividad-familiar/{id}/{idPersona}/delete', 'InscriptionActividadController@removeInscriptionToFamiliar');
 
 
 	//Trámites SocioF

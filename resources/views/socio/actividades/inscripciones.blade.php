@@ -48,11 +48,12 @@
 				<table id="talleresTable" class="table table-bordered table-hover text-center display">
 					<thead class="active">
 						<tr class="active">
-							<th><DIV ALIGN=center>SEDE</th>
-							<th><DIV ALIGN=center>AMBIENTE</th>
-							<th><DIV ALIGN=center>NOMBRE</th>
-							<th><DIV ALIGN=center>CAPACIDAD</th>
-							<th><DIV ALIGN=center>FECHA Y HORA</th>
+							<th><DIV ALIGN=center>Sede</th>
+							<th><DIV ALIGN=center>Lugar</th>
+							<th><DIV ALIGN=center>Nombre</th>
+							<th><DIV ALIGN=center>Capacidad</th>
+							<th><DIV ALIGN=center>Fecha de inicio</th>
+							<th><DIV ALIGN=center>Fecha y hora de inscripción</th>
 							<th><DIV ALIGN=center>Anular</th>
 						</tr>
 					</thead>
@@ -64,6 +65,7 @@
 							<td>{{ $actividad->nombre }}</td>
 	 						<td>{{ $actividad->capacidad_maxima }}</td>
 	 						<td>{{ $actividad->a_realizarse_en}}</td>
+	 						<td>{{ $actividad->created_at}}</td>
 							<td>
 								<a class="btn btn-info" data-href="{{url('/inscripcion-actividad/'.$actividad->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
 							</td>
@@ -89,10 +91,11 @@
 						<tr class="active">
 							<th><DIV ALIGN=center>Nombre de familiar</th>
 							<th><DIV ALIGN=center>Sede</th>
-							<th><DIV ALIGN=center>Ambiente</th>
+							<th><DIV ALIGN=center>Lugar</th>
 							<th><DIV ALIGN=center>Nombre de actividad</th>
 							<th><DIV ALIGN=center>Capacidad</th>
-							<th><DIV ALIGN=center>Fecha y hora</th>
+							<th><DIV ALIGN=center>Fecha de inicio</th>
+							<th><DIV ALIGN=center>Fecha y hora de inscripción</th>
 							<th><DIV ALIGN=center>Anular</th>
 						</tr>
 					</thead>
@@ -106,8 +109,9 @@
 								<td>{{ $actividad_familiar->nombre }}</td>
 		 						<td>{{ $actividad_familiar->capacidad_maxima }}</td>
 		 						<td>{{ $actividad_familiar->a_realizarse_en}}</td>
+		 						<td>{{ $actividad_familiar->created_at}}</td>
 								<td>
-									<a class="btn btn-info" data-href="{{url('/inscripcion-actividad/'.$actividad_familiar->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+									<a class="btn btn-info" data-href="{{url('/inscripcion-actividad-familiar/'.$actividad_familiar->id.'/'.$familiar->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
 								</td>
 							</tr>
 							@endforeach
