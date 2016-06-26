@@ -86,18 +86,26 @@ class UsuarioController extends Controller
     {
         $input = $request->all();
         if($input['perfil_id']!=-1){
-            $user = new User();
-            $user->name = $input['name'];
-            $user->email = $input['email'];
-            /*$user->password = bcrypt($input['password']);*/
-            $user->password = $input['password'];
-            $user->perfil_id = $input['perfil_id'];
-            $user->save();
-            dd($input['persona_id']);
-            $persona=Persona::find($input['persona_id']);
-            $person->id_usuario=$user->id;
-            $person->save();
-            Session::flash('message','Nuevo Usuario Asignado Correctamente');
+            DB::beginTransaction();
+            try{
+                $user = new User();
+                $user->name = $input['name'];
+                $user->email = $input['email'];
+                /*$user->password = bcrypt($input['password']);*/
+                $user->password = $input['password'];
+                $user->perfil_id = $input['perfil_id'];
+                $user->save();
+                /*dd($input['persona_id']);*/
+                $persona=Persona::find($input['persona_id']);
+                $persona->id_usuario=$user->id;
+                $persona->save();
+                Session::flash('message','Nuevo Usuario Asignado Correctamente');
+            }
+            catch(ValidateException $e){
+                DB::rollback();
+                var_dump($e->getErrors());
+            }
+            DB::commit();
             return Redirect::to('/usuario');
         }
         else{
