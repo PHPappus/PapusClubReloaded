@@ -70,6 +70,20 @@ class Postulante extends Model
         return $this->hasOne(Socio::class,'id');
     }
 
+    public function es_socio()
+    {
+        $id_postulante = $this->id_postulante;
+        $socio = Socio::where('postulante_id','=',$id_postulante)->first();
+        if($socio)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public function Departamento()
     {
         return $this->belongsTo(Departamento::class,'departamento');
