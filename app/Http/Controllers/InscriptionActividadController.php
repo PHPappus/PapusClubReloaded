@@ -26,7 +26,7 @@ class InscriptionActividadController extends Controller
     {
         $sedes = Sede::all();
         /*Filtrar las actividades que estan disponibles (>= que la fecha actual) y con estado 1 */
-        $actividades=Actividad::where('estado','=',1)->where('a_realizarse_en','>=',Carbon::now())->get();
+        $actividades=Actividad::where('estado','=',1)->where('a_realizarse_en','>=',Carbon::now('America/Lima')->format('Y-m-d'))->get();
         /*Se envia las actividades a las cuales se encuentra inscrita la persona*/
         $actividades_persona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->actividades;
         $usuario = Auth::user();
@@ -55,7 +55,7 @@ class InscriptionActividadController extends Controller
         $fecha_fin   = new Carbon('America/Lima'); 
         
         $fecha_inicio=$fecha_inicio->toDateString();
-        $fecha_fin = Carbon::now()->addYears(1)->toDateString();
+        $fecha_fin = Carbon::now('America/Lima')->addYears(1)->toDateString();
 
         
         if(!empty($input['fecha_inicio'])){
