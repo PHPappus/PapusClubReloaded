@@ -1347,3 +1347,284 @@ Stack trace:
 #72 C:\wamp64\www\PapusClubReloaded\public\index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #73 C:\wamp64\www\PapusClubReloaded\server.php(21): require_once('C:\\wamp64\\www\\P...')
 #74 {main}  
+[2016-06-26 19:38:18] local.ERROR: Symfony\Component\Console\Exception\CommandNotFoundException: Command "make" is not defined.
+
+Did you mean one of these?
+    make:middleware
+    make:controller
+    make:migration
+    make:listener
+    make:provider
+    make:console
+    make:request
+    make:policy
+    make:seeder
+    make:event
+    make:model
+    make:auth
+    make:test
+    make:job in C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php:512
+Stack trace:
+#0 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(183): Symfony\Component\Console\Application->find('make')
+#1 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(117): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#2 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 C:\wamp64\www\PapusClubReloaded\artisan(29): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 {main}  
+[2016-06-26 19:39:12] local.ERROR: Symfony\Component\Console\Exception\CommandNotFoundException: Command "make:Request" is not defined.
+
+Did you mean one of these?
+    make:request
+    make:event
+    make:test
+    make:auth
+    make:console
+    make:controller
+    make:job
+    make:listener
+    make:middleware
+    make:model
+    make:policy
+    make:provider
+    make:seeder
+    make:migration in C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php:512
+Stack trace:
+#0 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(183): Symfony\Component\Console\Application->find('make:Request')
+#1 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(117): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#2 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 C:\wamp64\www\PapusClubReloaded\artisan(29): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 {main}  
+[2016-06-26 21:26:51] local.ERROR: Symfony\Component\Console\Exception\CommandNotFoundException: Command "make" is not defined.
+
+Did you mean one of these?
+    make:middleware
+    make:controller
+    make:migration
+    make:listener
+    make:provider
+    make:console
+    make:request
+    make:policy
+    make:seeder
+    make:event
+    make:model
+    make:auth
+    make:test
+    make:job in C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php:512
+Stack trace:
+#0 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(183): Symfony\Component\Console\Application->find('make')
+#1 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(117): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#2 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 C:\wamp64\www\PapusClubReloaded\artisan(29): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 {main}  
+[2016-06-26 21:27:01] local.ERROR: Symfony\Component\Console\Exception\CommandNotFoundException: Command "make:conroller" is not defined.
+
+Did you mean one of these?
+    make:console
+    make:controller
+    make:auth
+    make:event
+    make:job
+    make:listener
+    make:middleware
+    make:model
+    make:policy
+    make:provider
+    make:request
+    make:seeder
+    make:test
+    make:migration in C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php:512
+Stack trace:
+#0 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(183): Symfony\Component\Console\Application->find('make:conroller')
+#1 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(117): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#2 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 C:\wamp64\www\PapusClubReloaded\artisan(29): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 {main}  
+[2016-06-26 21:41:04] local.ERROR: PDOException: SQLSTATE[42S02]: Base table or view not found: 1051 Unknown table 'papusclub.proveedor' in C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php:441
+Stack trace:
+#0 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php(441): PDOStatement->execute(Array)
+#1 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php(706): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'drop table `pro...', Array)
+#2 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php(669): Illuminate\Database\Connection->runQueryCallback('drop table `pro...', Array, Object(Closure))
+#3 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php(442): Illuminate\Database\Connection->run('drop table `pro...', Array, Object(Closure))
+#4 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Schema\Blueprint.php(83): Illuminate\Database\Connection->statement('drop table `pro...')
+#5 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Schema\Builder.php(229): Illuminate\Database\Schema\Blueprint->build(Object(Illuminate\Database\MySqlConnection), Object(Illuminate\Database\Schema\Grammars\MySqlGrammar))
+#6 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Schema\Builder.php(163): Illuminate\Database\Schema\Builder->build(Object(Illuminate\Database\Schema\Blueprint))
+#7 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php(217): Illuminate\Database\Schema\Builder->drop('proveedor')
+#8 C:\wamp64\www\PapusClubReloaded\database\migrations\2016_05_06_042135_create_maestro_proveedor_table.php(40): Illuminate\Support\Facades\Facade::__callStatic('drop', Array)
+#9 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(233): CreateMaestroProveedorTable->down()
+#10 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(206): Illuminate\Database\Migrations\Migrator->runDown(Object(stdClass), false)
+#11 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\ResetCommand.php(69): Illuminate\Database\Migrations\Migrator->reset(false)
+#12 [internal function]: Illuminate\Database\Console\Migrations\ResetCommand->fire()
+#13 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Container\Container.php(507): call_user_func_array(Array, Array)
+#14 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(169): Illuminate\Container\Container->call(Array)
+#15 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Command\Command.php(256): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArrayInput), Object(Illuminate\Console\OutputStyle))
+#16 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArrayInput), Object(Illuminate\Console\OutputStyle))
+#17 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(185): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArrayInput), Object(Illuminate\Console\OutputStyle))
+#18 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\RefreshCommand.php(45): Illuminate\Console\Command->call('migrate:reset', Array)
+#19 [internal function]: Illuminate\Database\Console\Migrations\RefreshCommand->fire()
+#20 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Container\Container.php(507): call_user_func_array(Array, Array)
+#21 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(169): Illuminate\Container\Container->call(Array)
+#22 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Command\Command.php(256): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#23 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#24 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(791): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#25 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(186): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Database\Console\Migrations\RefreshCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#26 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(117): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#27 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#28 C:\wamp64\www\PapusClubReloaded\artisan(29): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#29 {main}
+
+Next Illuminate\Database\QueryException: SQLSTATE[42S02]: Base table or view not found: 1051 Unknown table 'papusclub.proveedor' (SQL: drop table `proveedor`) in C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php:713
+Stack trace:
+#0 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php(669): Illuminate\Database\Connection->runQueryCallback('drop table `pro...', Array, Object(Closure))
+#1 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php(442): Illuminate\Database\Connection->run('drop table `pro...', Array, Object(Closure))
+#2 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Schema\Blueprint.php(83): Illuminate\Database\Connection->statement('drop table `pro...')
+#3 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Schema\Builder.php(229): Illuminate\Database\Schema\Blueprint->build(Object(Illuminate\Database\MySqlConnection), Object(Illuminate\Database\Schema\Grammars\MySqlGrammar))
+#4 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Schema\Builder.php(163): Illuminate\Database\Schema\Builder->build(Object(Illuminate\Database\Schema\Blueprint))
+#5 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php(217): Illuminate\Database\Schema\Builder->drop('proveedor')
+#6 C:\wamp64\www\PapusClubReloaded\database\migrations\2016_05_06_042135_create_maestro_proveedor_table.php(40): Illuminate\Support\Facades\Facade::__callStatic('drop', Array)
+#7 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(233): CreateMaestroProveedorTable->down()
+#8 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(206): Illuminate\Database\Migrations\Migrator->runDown(Object(stdClass), false)
+#9 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\ResetCommand.php(69): Illuminate\Database\Migrations\Migrator->reset(false)
+#10 [internal function]: Illuminate\Database\Console\Migrations\ResetCommand->fire()
+#11 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Container\Container.php(507): call_user_func_array(Array, Array)
+#12 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(169): Illuminate\Container\Container->call(Array)
+#13 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Command\Command.php(256): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArrayInput), Object(Illuminate\Console\OutputStyle))
+#14 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArrayInput), Object(Illuminate\Console\OutputStyle))
+#15 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(185): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArrayInput), Object(Illuminate\Console\OutputStyle))
+#16 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\RefreshCommand.php(45): Illuminate\Console\Command->call('migrate:reset', Array)
+#17 [internal function]: Illuminate\Database\Console\Migrations\RefreshCommand->fire()
+#18 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Container\Container.php(507): call_user_func_array(Array, Array)
+#19 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(169): Illuminate\Container\Container->call(Array)
+#20 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Command\Command.php(256): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#21 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#22 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(791): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#23 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(186): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Database\Console\Migrations\RefreshCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#24 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(117): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#25 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#26 C:\wamp64\www\PapusClubReloaded\artisan(29): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#27 {main}  
+[2016-06-26 21:41:58] local.ERROR: PDOException: SQLSTATE[42S02]: Base table or view not found: 1051 Unknown table 'papusclub.proveedor' in C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php:441
+Stack trace:
+#0 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php(441): PDOStatement->execute(Array)
+#1 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php(706): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'drop table `pro...', Array)
+#2 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php(669): Illuminate\Database\Connection->runQueryCallback('drop table `pro...', Array, Object(Closure))
+#3 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php(442): Illuminate\Database\Connection->run('drop table `pro...', Array, Object(Closure))
+#4 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Schema\Blueprint.php(83): Illuminate\Database\Connection->statement('drop table `pro...')
+#5 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Schema\Builder.php(229): Illuminate\Database\Schema\Blueprint->build(Object(Illuminate\Database\MySqlConnection), Object(Illuminate\Database\Schema\Grammars\MySqlGrammar))
+#6 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Schema\Builder.php(163): Illuminate\Database\Schema\Builder->build(Object(Illuminate\Database\Schema\Blueprint))
+#7 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php(217): Illuminate\Database\Schema\Builder->drop('proveedor')
+#8 C:\wamp64\www\PapusClubReloaded\database\migrations\2016_05_06_042135_create_maestro_proveedor_table.php(40): Illuminate\Support\Facades\Facade::__callStatic('drop', Array)
+#9 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(233): CreateMaestroProveedorTable->down()
+#10 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(206): Illuminate\Database\Migrations\Migrator->runDown(Object(stdClass), false)
+#11 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\ResetCommand.php(69): Illuminate\Database\Migrations\Migrator->reset(false)
+#12 [internal function]: Illuminate\Database\Console\Migrations\ResetCommand->fire()
+#13 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Container\Container.php(507): call_user_func_array(Array, Array)
+#14 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(169): Illuminate\Container\Container->call(Array)
+#15 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Command\Command.php(256): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArrayInput), Object(Illuminate\Console\OutputStyle))
+#16 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArrayInput), Object(Illuminate\Console\OutputStyle))
+#17 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(185): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArrayInput), Object(Illuminate\Console\OutputStyle))
+#18 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\RefreshCommand.php(45): Illuminate\Console\Command->call('migrate:reset', Array)
+#19 [internal function]: Illuminate\Database\Console\Migrations\RefreshCommand->fire()
+#20 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Container\Container.php(507): call_user_func_array(Array, Array)
+#21 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(169): Illuminate\Container\Container->call(Array)
+#22 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Command\Command.php(256): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#23 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#24 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(791): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#25 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(186): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Database\Console\Migrations\RefreshCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#26 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(117): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#27 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#28 C:\wamp64\www\PapusClubReloaded\artisan(29): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#29 {main}
+
+Next Illuminate\Database\QueryException: SQLSTATE[42S02]: Base table or view not found: 1051 Unknown table 'papusclub.proveedor' (SQL: drop table `proveedor`) in C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php:713
+Stack trace:
+#0 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php(669): Illuminate\Database\Connection->runQueryCallback('drop table `pro...', Array, Object(Closure))
+#1 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php(442): Illuminate\Database\Connection->run('drop table `pro...', Array, Object(Closure))
+#2 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Schema\Blueprint.php(83): Illuminate\Database\Connection->statement('drop table `pro...')
+#3 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Schema\Builder.php(229): Illuminate\Database\Schema\Blueprint->build(Object(Illuminate\Database\MySqlConnection), Object(Illuminate\Database\Schema\Grammars\MySqlGrammar))
+#4 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Schema\Builder.php(163): Illuminate\Database\Schema\Builder->build(Object(Illuminate\Database\Schema\Blueprint))
+#5 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php(217): Illuminate\Database\Schema\Builder->drop('proveedor')
+#6 C:\wamp64\www\PapusClubReloaded\database\migrations\2016_05_06_042135_create_maestro_proveedor_table.php(40): Illuminate\Support\Facades\Facade::__callStatic('drop', Array)
+#7 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(233): CreateMaestroProveedorTable->down()
+#8 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(206): Illuminate\Database\Migrations\Migrator->runDown(Object(stdClass), false)
+#9 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\ResetCommand.php(69): Illuminate\Database\Migrations\Migrator->reset(false)
+#10 [internal function]: Illuminate\Database\Console\Migrations\ResetCommand->fire()
+#11 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Container\Container.php(507): call_user_func_array(Array, Array)
+#12 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(169): Illuminate\Container\Container->call(Array)
+#13 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Command\Command.php(256): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArrayInput), Object(Illuminate\Console\OutputStyle))
+#14 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArrayInput), Object(Illuminate\Console\OutputStyle))
+#15 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(185): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArrayInput), Object(Illuminate\Console\OutputStyle))
+#16 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\RefreshCommand.php(45): Illuminate\Console\Command->call('migrate:reset', Array)
+#17 [internal function]: Illuminate\Database\Console\Migrations\RefreshCommand->fire()
+#18 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Container\Container.php(507): call_user_func_array(Array, Array)
+#19 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(169): Illuminate\Container\Container->call(Array)
+#20 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Command\Command.php(256): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#21 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#22 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(791): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#23 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(186): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Database\Console\Migrations\RefreshCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#24 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(117): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#25 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#26 C:\wamp64\www\PapusClubReloaded\artisan(29): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#27 {main}  
+[2016-06-26 21:42:56] local.ERROR: PDOException: SQLSTATE[42S02]: Base table or view not found: 1051 Unknown table 'papusclub.proveedor' in C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php:441
+Stack trace:
+#0 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php(441): PDOStatement->execute(Array)
+#1 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php(706): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'drop table `pro...', Array)
+#2 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php(669): Illuminate\Database\Connection->runQueryCallback('drop table `pro...', Array, Object(Closure))
+#3 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php(442): Illuminate\Database\Connection->run('drop table `pro...', Array, Object(Closure))
+#4 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Schema\Blueprint.php(83): Illuminate\Database\Connection->statement('drop table `pro...')
+#5 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Schema\Builder.php(229): Illuminate\Database\Schema\Blueprint->build(Object(Illuminate\Database\MySqlConnection), Object(Illuminate\Database\Schema\Grammars\MySqlGrammar))
+#6 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Schema\Builder.php(163): Illuminate\Database\Schema\Builder->build(Object(Illuminate\Database\Schema\Blueprint))
+#7 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php(217): Illuminate\Database\Schema\Builder->drop('proveedor')
+#8 C:\wamp64\www\PapusClubReloaded\database\migrations\2016_05_06_042135_create_maestro_proveedor_table.php(40): Illuminate\Support\Facades\Facade::__callStatic('drop', Array)
+#9 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(233): CreateMaestroProveedorTable->down()
+#10 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(206): Illuminate\Database\Migrations\Migrator->runDown(Object(stdClass), false)
+#11 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\ResetCommand.php(69): Illuminate\Database\Migrations\Migrator->reset(false)
+#12 [internal function]: Illuminate\Database\Console\Migrations\ResetCommand->fire()
+#13 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Container\Container.php(507): call_user_func_array(Array, Array)
+#14 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(169): Illuminate\Container\Container->call(Array)
+#15 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Command\Command.php(256): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArrayInput), Object(Illuminate\Console\OutputStyle))
+#16 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArrayInput), Object(Illuminate\Console\OutputStyle))
+#17 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(185): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArrayInput), Object(Illuminate\Console\OutputStyle))
+#18 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\RefreshCommand.php(45): Illuminate\Console\Command->call('migrate:reset', Array)
+#19 [internal function]: Illuminate\Database\Console\Migrations\RefreshCommand->fire()
+#20 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Container\Container.php(507): call_user_func_array(Array, Array)
+#21 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(169): Illuminate\Container\Container->call(Array)
+#22 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Command\Command.php(256): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#23 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#24 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(791): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#25 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(186): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Database\Console\Migrations\RefreshCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#26 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(117): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#27 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#28 C:\wamp64\www\PapusClubReloaded\artisan(29): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#29 {main}
+
+Next Illuminate\Database\QueryException: SQLSTATE[42S02]: Base table or view not found: 1051 Unknown table 'papusclub.proveedor' (SQL: drop table `proveedor`) in C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php:713
+Stack trace:
+#0 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php(669): Illuminate\Database\Connection->runQueryCallback('drop table `pro...', Array, Object(Closure))
+#1 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php(442): Illuminate\Database\Connection->run('drop table `pro...', Array, Object(Closure))
+#2 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Schema\Blueprint.php(83): Illuminate\Database\Connection->statement('drop table `pro...')
+#3 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Schema\Builder.php(229): Illuminate\Database\Schema\Blueprint->build(Object(Illuminate\Database\MySqlConnection), Object(Illuminate\Database\Schema\Grammars\MySqlGrammar))
+#4 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Schema\Builder.php(163): Illuminate\Database\Schema\Builder->build(Object(Illuminate\Database\Schema\Blueprint))
+#5 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php(217): Illuminate\Database\Schema\Builder->drop('proveedor')
+#6 C:\wamp64\www\PapusClubReloaded\database\migrations\2016_05_06_042135_create_maestro_proveedor_table.php(40): Illuminate\Support\Facades\Facade::__callStatic('drop', Array)
+#7 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(233): CreateMaestroProveedorTable->down()
+#8 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Migrations\Migrator.php(206): Illuminate\Database\Migrations\Migrator->runDown(Object(stdClass), false)
+#9 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\ResetCommand.php(69): Illuminate\Database\Migrations\Migrator->reset(false)
+#10 [internal function]: Illuminate\Database\Console\Migrations\ResetCommand->fire()
+#11 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Container\Container.php(507): call_user_func_array(Array, Array)
+#12 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(169): Illuminate\Container\Container->call(Array)
+#13 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Command\Command.php(256): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArrayInput), Object(Illuminate\Console\OutputStyle))
+#14 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArrayInput), Object(Illuminate\Console\OutputStyle))
+#15 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(185): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArrayInput), Object(Illuminate\Console\OutputStyle))
+#16 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Console\Migrations\RefreshCommand.php(45): Illuminate\Console\Command->call('migrate:reset', Array)
+#17 [internal function]: Illuminate\Database\Console\Migrations\RefreshCommand->fire()
+#18 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Container\Container.php(507): call_user_func_array(Array, Array)
+#19 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(169): Illuminate\Container\Container->call(Array)
+#20 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Command\Command.php(256): Illuminate\Console\Command->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#21 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Console\Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#22 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(791): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#23 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(186): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Database\Console\Migrations\RefreshCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#24 C:\wamp64\www\PapusClubReloaded\vendor\symfony\console\Application.php(117): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#25 C:\wamp64\www\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#26 C:\wamp64\www\PapusClubReloaded\artisan(29): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#27 {main}  

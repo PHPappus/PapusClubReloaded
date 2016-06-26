@@ -207,6 +207,14 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::get('ingreso-producto/{id}/deleteProducto', 'IngresoProductoController@destroyProducto');
 	Route::get('ingreso-producto/{id}/back', 'IngresoProductoController@back');
 	Route::get('ingreso-producto/{id}/cancel', 'IngresoProductoController@cancel');
+	//CONCESIONARIAS
+	Route::get('concesionaria/index/', 'ConcesionariaController@index');
+	Route::get('concesionaria/new', 'ConcesionariaController@create');
+	Route::post('concesionaria/new/concesionaria', 'ConcesionariaController@store');
+	Route::get('concesionaria/{id}', 'ConcesionariaController@edit');
+	Route::post('concesionaria/{id}/edit', 'ConcesionariaController@update');
+	Route::get('concesionaria/{id}/delete', 'ConcesionariaController@destroy');
+	Route::get('concesionaria/{id}/show', 'ConcesionariaController@show');
 });
 
 //Gerente
