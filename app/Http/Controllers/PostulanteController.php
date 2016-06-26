@@ -19,7 +19,10 @@ use papusclub\User;
 use papusclub\Http\Requests\StorePostulanteRequest;
 use papusclub\Http\Requests\EditPostulanteBasicoRequest;
 use papusclub\Http\Requests\EditPostulanteNacimientoRequest;
+<<<<<<< HEAD
 use papusclub\Http\Requests\EditPostulanteViviendaRequest;
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 use papusclub\Http\Requests\EditPostulanteEstudioRequest;
 use papusclub\Http\Requests\EditPostulanteTrabajoRequest;
 use papusclub\Http\Requests\EditPostulanteContactoRequest;
@@ -63,6 +66,19 @@ class PostulanteController extends Controller
     public function store(StorePostulanteRequest $request){
         $carbon=new Carbon(); 
         $input = $request->all();
+<<<<<<< HEAD
+=======
+        $persona = new Persona();
+        
+        //DATOS BASICOS
+        $persona->nombre = trim($input['nombre']);
+        $persona->ap_paterno = trim($input['ap_paterno']);
+        $persona->ap_materno = trim($input['ap_materno']);
+
+        $persona->id_tipo_persona = 2;
+        $persona->sexo=$input['sexo'];
+
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 
         $nacionalidad=$input['nacionalidad'];
 
@@ -75,9 +91,21 @@ class PostulanteController extends Controller
             $personaBuscada = Persona::where(['doc_identidad'=>$doc_identidad])->get()->first();
         }
         else
+<<<<<<< HEAD
         {
             $carnet_extranjeria = $input['carnet_extranjeria'];
             $personaBuscada=Persona::where(['carnet_extranjeria'=>$carnet_extranjeria])->get()->first();
+=======
+            $persona->doc_identidad = $input['doc_identidad'];
+        
+        //NACIMIENTO
+
+        if (empty($input['fecha_nacimiento'])) {
+            $persona->fecha_nacimiento ="";            
+        }else{
+            $fecha_nac = str_replace('/', '-', $input['fecha_nacimiento']);      
+            $persona->fecha_nacimiento=$carbon->createFromFormat('d-m-Y', $fecha_nac)->toDateString();
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
         }
 
         if($personaBuscada==null)
@@ -195,9 +223,71 @@ class PostulanteController extends Controller
 
             $postulante->save();
 
+<<<<<<< HEAD
 
         }
         
+=======
+        $persona->save();
+        //$persona->correo=trim($input['correo']);
+
+
+        $idPersona = $persona->id; //obtiene el id de la persona ingresada
+        //Aqui hago el registro del trabajador una vez registraa la persona
+
+        $postulante = new Postulante();
+        //si es peruano 
+        $postulante->id_postulante=$idPersona;
+
+        if($persona->nacionalidad =="peruano"){
+            if(isset($input['departamento']))
+                $postulante->departamento=$input['departamento'];
+            if(isset($input['provincia']))
+                $postulante->provincia=$input['provincia'];
+            if(isset($input['distrito']))
+                $postulante->distrito=$input['distrito']; 
+            $postulante->direccion_nacimiento=$input['direccion_nacimiento'];
+        }
+
+        $postulante->colegio_primario=$input['colegio_primario'];
+        $postulante->colegio_secundario=$input['colegio_secundario'];
+        
+        if (empty($input['universidad'])) {
+            $postulante->universidad ="";            
+        }else{
+            $postulante->universidad=$input['universidad'];
+        }
+
+        if (empty($input['profesion'])) {
+            $postulante->profesion= "";            
+        }else{
+            $postulante->profesion=$input['profesion'];
+        }
+        
+        $postulante->centro_trabajo=$input['centro_trabajo'];
+        
+        if (empty($input['cargo_trabajo'])) {
+            $postulante->cargo_trabajo="";            
+        }else{
+            $postulante->cargo_trabajo=$input['cargo_trabajo'];
+        }
+
+        $postulante->direccion_laboral=$input['direccion_laboral'];
+        
+        if (empty($input['telefono_domicilio'])) {
+           $postulante->telefono_domicilio="";            
+        }else{
+           $postulante->telefono_domicilio=$input['telefono_domicilio'];
+        }
+        
+        $postulante->telefono_domicilio=$input['telefono_celular'];
+        $postulante->correo=$input['correo'];
+        //$postulante->estado_civil['estado_civil'];
+
+        
+
+        $postulante->save();
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 
         return redirect('postulante/index')->with('stored', 'Se registró el postulante correctamente.');
     }
@@ -357,6 +447,46 @@ class PostulanteController extends Controller
         $postulante->save();
         Session::flash('update','vivienda');
         return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('cambios-viv','Cambios realizados con éxito');
+    }
+
+    public function updateNacimiento(EditPostulanteNacimientoRequest $request, $id){
+        $carbon = new Carbon();
+
+        $postulante = Postulante::withTrashed()->find($id);
+        $input=$request->all();
+
+        if (empty($input['fecha_nacimiento'])) {
+            $postulante->persona->fecha_nacimiento ="";            
+        }else{
+            $fecha_nac = str_replace('/', '-', $input['fecha_nacimiento']);      
+            $postulante->persona->fecha_nacimiento=$carbon->createFromFormat('d-m-Y', $fecha_nac)->toDateString();
+        }
+
+        $postulante->persona->save();
+
+
+        /*Dirección de nacimiento*/
+        if($input['nacionalidad1']=='peruano')
+        {
+            if(isset($input['departamento']))
+                $postulante->departamento=$input['departamento'];
+            if(isset($input['provincia']))
+                $postulante->provincia=$input['provincia'];
+            if(isset($input['distrito']))
+                $postulante->distrito=$input['distrito'];
+
+            $postulante->   direccion_nacimiento = $input['direccion_nacimiento'];
+        }
+        else
+        {
+            $postulante->pais_nacimiento=$input['pais_nacimiento'];
+            $postulante->lugar_nacimiento=$input['lugar_nacimiento'];
+        }
+        $postulante->save();
+        //$socio->postulante->persona->update(['nombre'=>$input['nombre'], 'fecha_nacimiento'=>$fecha_nac]);
+        //return view('admin-general.persona.socio.editSocio',compact('socio'));
+        Session::flash('update','nacimiento');
+        return Redirect::action('PostulanteController@edit',$postulante->persona->id)->with('cambios-nac','Cambios realizados con éxito');
     }
 
     public function updateEstudio(EditPostulanteEstudioRequest $request, $id){

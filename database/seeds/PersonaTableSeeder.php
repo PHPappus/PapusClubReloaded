@@ -95,7 +95,11 @@ class PersonaTableSeeder extends Seeder
             'correo'=>'j.loayza@hotmail.com',
             'fecha_nacimiento'=>'1993-11-01',
             'id_tipo_persona'=>2,
+<<<<<<< HEAD
             'id_usuario'=>5]);
+=======
+            'id_usuario'=>3]);
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 
         Persona::create([
             'nacionalidad'=>'peruano',

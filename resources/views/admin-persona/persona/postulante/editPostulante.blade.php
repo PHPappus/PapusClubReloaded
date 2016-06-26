@@ -46,8 +46,12 @@
 				<div class="col-sm-12 text-left">
 					<br/><br/>
 					<p class="lead"><strong>EDITAR POSTULANTE</strong></p>
+<<<<<<< HEAD
 					<p style="color:red"><strong>Puuede guardar los cambios de cada una de las pestañas</strong></p>
 					<br>
+=======
+					<br/>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 				</div>
 			
 			</div>
@@ -60,7 +64,11 @@
 						<ul class="nav nav-pills nav-justified" id="pills-edit" role="tablist">
 	
 							<!--DATOS BASICOS-->
+<<<<<<< HEAD
 							@if(!Session::has('update') && !$errors->basico->any() && !$errors->nacimiento->any() && !$errors->vivienda->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any())									
+=======
+							@if(!Session::has('update') && !$errors->basico->any() && !$errors->nacimiento->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any())									
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 								<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Básico</a></li>
 							@elseif(Session::get('update')=='basico' || $errors->basico->any())
 								<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Básico</a></li>
@@ -74,6 +82,7 @@
 							@else
 								<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Nacimiento</a></li>
 							@endif
+<<<<<<< HEAD
 
 							<!--DATOS DE FAMILIA-->
 							@if(Session::get('update')=='familia' || $errors->familia->any())
@@ -88,6 +97,8 @@
 							@else
 								<li role="presentation"><a href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab">Vivienda</a></li>
 							@endif
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 							
 							<!--DATOS DE ESTUDIOS-->
 							@if(Session::get('update')=='estudio' || $errors->estudio->any())
@@ -113,7 +124,11 @@
 					</div>
 
 					<div class="tab-content">
+<<<<<<< HEAD
 						@if(!Session::has('update') && !$errors->basico->any() && !$errors->nacimiento->any() && !$errors->vivienda->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any())									
+=======
+						@if(!Session::has('update') && !$errors->basico->any() && !$errors->nacimiento->any() && !$errors->estudio->any() && !$errors->trabajo->any() && !$errors->contacto->any())									
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 							<div role="tabpanel" class="tab-pane active" id="seccion1">
 						@elseif(Session::get('update')=='basico' || $errors->basico->any())
 							<div role="tabpanel" class="tab-pane active" id="seccion1">
@@ -152,6 +167,17 @@
 												<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 											</div>
 
+<<<<<<< HEAD
+=======
+											<div class="btn-group col-sm-4" ></div>
+											
+											<div class="btn-group">
+												<a href="#"  class="btn btn-info back" disabled><span class="glyphicon glyphicon-chevron-left"></span></a>
+											</div>
+											<div class="btn-group">
+												<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
+											</div>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 									</div>										
 									<br>								
 									<div class="form-group required">
@@ -201,8 +227,156 @@
 											</div>	
 										</div>
 									</div>
+<<<<<<< HEAD
+=======
 
 
+									<div class="form-group">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Nacionalidad:</label>
+												</div>
+												<div class="col-sm-6 text-left" >
+													
+													<input onchange="es_peruano()" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : ''}} {{($postulante->persona->nacionalidad == "peruano") ? 'checked="true"':''}}/>Peruano&nbsp&nbsp&nbsp
+													
+													<input onchange="es_extranjero()" type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "extranjero") ? 'checked="true"' : ''  }} {{($postulante->persona->nacionalidad == "extranjero") ? 'checked="true"':''}}/>Extranjero
+
+												</div>	
+											</div>
+									</div>
+
+									<div class="form-group required">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">DNI:</label>
+												</div>
+												<div class="col-sm-6">
+												<!--Se hace validacion para que acepte solo numeros pero que sea un texto-->
+														<input  type="text" onkeypress="return inputLimiter(event,'Numbers')"  @if ($postulante->persona->nacionalidad!="peruano") disabled  @endif  class="form-control" id="doc_identidad" name="doc_identidad" placeholder="DNI" maxlength="8" style="max-width: 250px" value="{{$postulante->persona->doc_identidad}}" value="{{old('doc_identidad')}}"  >
+												</div>	
+											</div>
+									</div>
+
+									<div class="form-group required">
+											<div class="col-sm-6">	
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Carnet de extranjeria:</label>
+												</div>
+												<div class="col-sm-6">
+													<input type="text" onkeypress="return inputLimiter(event,'Numbers')" @if ($postulante->persona->nacionalidad!="extranjero") disabled  @endif class="form-control" id="carnet_extranjeria" name="carnet_extranjeria" placeholder="Carnet de Extranjeria" maxlength="12" style="max-width: 250px" value="{{$postulante->persona->carnet_extranjeria}}" value="{{old('carnet_extranjeria')}}" >
+												</div>	
+											</div>
+									</div>
+			
+									<!--MODAL CONFIRMACION-->
+									<!-- Modal -->
+									<div class = "modal fade" id = "confirmation" tabindex = "-1" role = "dialog" 
+									   aria-labelledby = "myModalLabel" aria-hidden = "true">
+									   
+									   <div class = "modal-dialog">
+									      <div class = "modal-content">
+									         
+									         <div class = "modal-header">
+									            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+													<span aria-hidden="true" onclick="cerrarventana()">&times;</span>
+									            </button>
+									            
+									            <h4 class = "modal-title" id = "myModalLabel">
+									               EDITAR POSTULANTE
+									            </h4>
+									         </div>
+									         
+									         <div class = "modal-body">
+									            <p>¿Desea guardar los cambios realizados?</p>
+									         </div>
+									         
+									         <div class = "modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cerrar</button>
+									            
+									            <button type = "submit" class = "btn btn-primary">
+									               Confirmar
+									            </button>
+									         </div>
+									         
+									      </div><!-- /.modal-content -->
+									   </div><!-- /.modal-dialog -->
+									  
+									</div><!-- /.modal -->							
+									<br><br>
+									<div class="form-group required" >
+											<div class="btn-group col-sm-5" ></div>
+											
+											<div class="btn-group">
+												<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Confirmar">
+											</div>
+											<div class="btn-group">
+												<a href="/postulante/index" class="btn btn-info">Retornar</a>
+											</div>
+									</div>																
+								</form>
+							</div>
+							<!--=============================================-->
+						
+						@if(Session::get('update')=='nacimiento' || $errors->nacimiento->any())
+							<div role="tabpanel" class="tab-pane active" id="seccion2">
+						@else
+							<div role="tabpanel" class="tab-pane" id="seccion2">
+						@endif
+
+								<form method="POST" action="/postulante/{{$postulante->persona->id}}/editNacimiento" class="form-horizontal form-border">
+									{{method_field('PATCH')}}
+									<input type="hidden" name="_token" value="{{ csrf_token() }}">
+								
+									<div class="form-group" style="display:none;">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left" >
+														
+													<input type="radio" name="nacionalidad1" value="peruano" {{ (old('nacionalidad1') == "peruano") ? 'checked="true"' : ''}} {{($postulante->persona->nacionalidad == "peruano") ? 'checked="true"':''}}/>Peruano&nbsp&nbsp&nbsp
+														
+													<input type="radio" name="nacionalidad1" value="extranjero" {{ (old('nacionalidad1') == "extranjero") ? 'checked="true"' : ''  }} {{($postulante->persona->nacionalidad == "extranjero") ? 'checked="true"':''}}/>Extranjero
+												</div>	
+											</div>
+									</div>
+
+									<div class="col-sm-4"></div>
+										<div class=""> 
+										@if ($errors->nacimiento->any())
+							  				<ul class="alert alert-danger fade in">
+							  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							  					@foreach ($errors->nacimiento->all() as $error)
+							  						<li>{{$error}}</li>
+							  					@endforeach
+							  				</ul>
+							  			@endif
+										</div>
+										@if(session('cambios-nac'))
+											<div class="alert alert-success fade in">
+													<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+													<strong>¡Éxito!</strong> {{session('cambios-nac')}}
+											</div>								
+										@endif
+									
+									<br><br><br>
+									<div class="form-group required" >
+											<div class="btn-group col-sm-4" ></div>
+											<div class="btn-group col-sm-4">
+												<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+											</div>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
+
+											<div class="btn-group col-sm-4" ></div>
+													
+											<div class="btn-group">
+												<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+											</div>
+											<div class="btn-group">
+												<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
+											</div>
+
+									</div>																				
+
+<<<<<<< HEAD
 									<div class="form-group">
 											<div class="col-sm-6">
 												<div class="col-sm-6 text-left">
@@ -414,6 +588,65 @@
 											                	<option value="{{$distrito->id}}"  @if($postulante->distrito==$distrito->id) selected @endif>{{$distrito->nombre}}</option>
 											                @endforeach													
 													</select>
+=======
+									<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Fecha de Nacimiento(dd/mm/aaaa):</label>
+											</div>
+											<div class="col-sm-6">
+												<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" name="fecha_nacimiento" placeholder="Fecha Nacimiento" value="{{$postulante->persona->fecha_nacimiento}}" style="width: 250px" readonly="true" >
+
+											</div>	
+										</div>
+									</div>
+
+									@if(strcmp($postulante->persona->nacionalidad,'peruano')==0)
+										<div class="form-group required">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Departamento:</label>
+												</div>
+												<div class="col-sm-6">
+													<select class="form-control" id="departamento" name="departamento" style="max-width: 250px" data-link="{{ url('/provinciasEdit') }}">
+														<option value="-1" default>--Departamento--</option>
+															@foreach ($departamentos as $depa)      
+											                	<option value="{{$depa->id}}"  @if($postulante->departamento==$depa->id) selected @endif>{{$depa->nombre}}</option>
+											                @endforeach
+													</select>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group required">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Provincia:</label>
+												</div>
+												<div class="col-sm-6">
+													<select class="form-control" id="provincia" name="provincia" style="max-width: 250px " data-link="{{ url('/distritosEdit') }}">
+														<option  value="-1" default disab>--Provincia--</option>
+															@foreach ($postulante->Departamento->provincias as $provincia)      
+											                	<option value="{{$provincia->id}}"  @if($postulante->provincia==$provincia->id) selected @endif>{{$provincia->nombre}}</option>
+											                @endforeach												
+													</select>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group required">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Distrito:</label>
+												</div>
+
+												<div class="col-sm-6">
+													<select class="form-control" id="distrito" name="distrito" style="max-width: 250px">
+														<option  value="-1" default>--Distrito--</option>
+															@foreach ($postulante->Provincia->distritos as $distrito)      
+											                	<option value="{{$distrito->id}}"  @if($postulante->distrito==$distrito->id) selected @endif>{{$distrito->nombre}}</option>
+											                @endforeach													
+													</select>
 												</div>
 											</div>
 										</div>
@@ -434,6 +667,253 @@
 												<div class="col-sm-6 text-left">
 													<label for="" class="control-label">País de Nacimiento:</label>
 												</div>
+												<div class="col-sm-6">
+													<input type="text" class="form-control" id="pais_nacimiento" name="pais_nacimiento" placeholder="Pais de  Nacimiento" style="max-width: 250px" value="{{$postulante->pais_nacimiento}}">
+												</div>		
+											</div>
+										</div>
+
+										<div class="form-group ">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Ciudad de Nacimiento:</label>
+												</div>
+												<div class="col-sm-6">
+													<input type="text" class="form-control" id="lugar_nacimiento" name="lugar_nacimiento" placeholder="Lugar de Nacimiento" style="max-width: 250px" value="{{$postulante->lugar_nacimiento}}">
+												</div>		
+											</div>
+										</div>		
+									@endif
+									<div class = "modal fade" id = "confirmationNacimiento" tabindex = "-1" role = "dialog" 
+									   aria-labelledby = "myModalLabel" aria-hidden = "true">
+									   
+									   <div class = "modal-dialog">
+									      <div class = "modal-content">
+									         
+									         <div class = "modal-header">
+									            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+													<span aria-hidden="true" onclick="cerrarventana()">&times;</span>
+									            </button>
+									            
+									            <h4 class = "modal-title" id = "myModalLabel">
+									               EDITAR SOCIO
+									            </h4>
+									         </div>
+									         
+									         <div class = "modal-body">
+									            <p>¿Desea guardar los cambios realizados?</p>
+									         </div>
+									         
+									         <div class = "modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cerrar</button>
+									            
+									            <button type = "submit" class = "btn btn-primary">
+									               Confirmar
+									            </button>
+									         </div>
+									         
+									      </div><!-- /.modal-content -->
+									   </div><!-- /.modal-dialog -->
+									  
+									</div><!-- /.modal -->							
+									<br><br>
+									<div class="form-group required" >
+											<div class="btn-group col-sm-5" ></div>
+											
+											<div class="btn-group">
+												<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationNacimiento" onclick="ventana()" value="Confirmar">
+											</div>
+											<div class="btn-group">
+												<a href="/postulante/index" class="btn btn-info">Retornar</a>
+											</div>
+									</div>	
+								</form>
+							</div>
+
+						@if(Session::get('update')=='estudio' || $errors->estudio->any())
+							<div role="tabpanel" class="tab-pane active" id="seccion5">
+						@else
+							<div role="tabpanel" class="tab-pane" id="seccion5">
+						@endif
+								<form method="POST" action="/postulante/{{$postulante->persona->id}}/editEstudio" class="form-horizontal form-border">
+									{{method_field('PATCH')}}
+									<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+									<div class="col-sm-4"></div>
+									<div class=""> 
+										@if ($errors->estudio->any())
+							  				<ul class="alert alert-danger fade in">
+							  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							  					@foreach ($errors->estudio->all() as $error)
+							  						<li>{{$error}}</li>
+							  					@endforeach
+							  				</ul>
+							  			@endif
+										@if(session('cambios-est'))
+											<div class="alert alert-success fade in">
+													<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+													<strong>¡Éxito!</strong> {{session('cambios-est')}}
+											</div>								
+										@endif						  			
+									</div>
+									<br><br/><br/>
+									<div class="form-group required" >
+											<div class="btn-group col-sm-4" ></div>
+											<div class="btn-group col-sm-4">
+												<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+											</div>
+
+											<div class="btn-group col-sm-4" ></div>
+											
+											<div class="btn-group">
+												<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+											</div>
+											<div class="btn-group">
+												<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
+											</div>
+									</div>
+									<br>
+									<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Colegio Primaria:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="colegio_primaria" name="colegio_primaria" placeholder="Colegio de Primaria" value="{{$postulante->colegio_primario}}" >
+											</div>	
+										</div>
+									</div>
+									<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Colegio Secundaria:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="colegio_secundaria" name="colegio_secundaria" placeholder="Colegio de Secundaria" value="{{$postulante->colegio_secundario}}" >
+											</div>	
+										</div>								
+									</div>
+									<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Universidad:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="universidad" name="universidad" placeholder="Universidad" value="{{$postulante->universidad}}" >
+											</div>	
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Carrera:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="carrera" name="carrera" placeholder="Carrera" value="{{$postulante->profesion}}" >
+											</div>	
+										</div>
+									</div>
+
+									<!--MODAL CONFIRMACION-->
+									<!-- Modal -->
+									<div class = "modal fade" id = "confirmationEstudio" tabindex = "-1" role = "dialog" 
+									   aria-labelledby = "myModalLabel" aria-hidden = "true">
+									   
+									   <div class = "modal-dialog">
+									      <div class = "modal-content">
+									         
+									         <div class = "modal-header">
+									            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+													<span aria-hidden="true" onclick="cerrarventana()">&times;</span>
+									            </button>
+									            
+									            <h4 class = "modal-title" id = "myModalLabel">
+									               EDITAR POSTULANTE
+									            </h4>
+									         </div>
+									         
+									         <div class = "modal-body">
+									            <p>¿Desea guardar los cambios realizados?</p>
+									         </div>
+									         
+									         <div class = "modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerrarventana()">Cerrar</button>
+									            
+									            <button type = "submit" class = "btn btn-primary">
+									               Confirmar
+									            </button>
+									         </div>
+									         
+									      </div><!-- /.modal-content -->
+									   </div><!-- /.modal-dialog -->
+									</div><!-- /.modal -->
+									<br><br>
+									<div class="form-group required" >
+											<div class="btn-group col-sm-5" ></div>
+											
+											<div class="btn-group">
+												<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationEstudio" onclick="ventana()" value="Confirmar">
+											</div>
+											<div class="btn-group">
+												<a href="/postulante/index" class="btn btn-info">Retornar</a>
+											</div>
+									</div>	
+								</form>
+							</div>
+
+						@if(Session::get('update')=='trabajo' || $errors->trabajo->any())
+							<div role="tabpanel" class="tab-pane active" id="seccion6">
+						@else
+							<div role="tabpanel" class="tab-pane" id="seccion6">
+						@endif
+								<form method="POST" action="/postulante/{{$postulante->persona->id}}/editTrabajo" class="form-horizontal form-border">
+										{{method_field('PATCH')}}
+										<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+										<div class="col-sm-4"></div>
+										<div class=""> 
+											@if ($errors->trabajo->any())
+								  				<ul class="alert alert-danger fade in">
+								  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+								  					@foreach ($errors->trabajo->all() as $error)
+								  						<li>{{$error}}</li>
+								  					@endforeach
+								  				</ul>
+								  			@endif
+											@if(session('cambios-trab'))
+												<div class="alert alert-success fade in">
+														<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+														<strong>¡Éxito!</strong> {{session('cambios-trab')}}
+												</div>								
+											@endif	
+										</div>
+										<br><br/><br/>
+										<div class="form-group required" >
+												<div class="btn-group col-sm-4" ></div>
+												<div class="btn-group col-sm-4">
+													<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group required">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Direccion de Nacimiento:</label>
+												</div>
+												<div class="col-sm-6">
+													<input type="text" class="form-control" id="direccion_nacimiento" name="direccion_nacimiento" placeholder="direccion Nacimiento" style="max-width: 250px" value="{{$postulante->direccion_nacimiento}}">
+												</div>		
+											</div>
+										</div>
+									@else
+										<div class="form-group required">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">País de Nacimiento:</label>
+												</div>
+<<<<<<< HEAD
 												<div class="col-sm-6">
 													<input type="text" class="form-control" id="pais_nacimiento" name="pais_nacimiento" placeholder="Pais de  Nacimiento" style="max-width: 250px" value="{{$postulante->pais_nacimiento}}">
 												</div>		
@@ -623,11 +1103,34 @@
 													</select>
 												</div>
 											</div>
+=======
 										</div>
-
+										<br>
 										<div class="form-group required">
 											<div class="col-sm-6">
 												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Centro de Trabajo:</label>
+												</div>
+												<div class="col-sm-6">
+													<input type="text" class="form-control" id="centrotrabajo" name="centrotrabajo" placeholder="Centro de Trabajo" value="{{$postulante->centro_trabajo}}" >
+												</div>	
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left">
+													<label for="" class="control-label">Cargo en Trabajo:</label>
+												</div>
+												<div class="col-sm-6">
+													<input type="text" class="form-control" id="cargocentrotrabajo" name="cargocentrotrabajo" placeholder="Cargo en Trabajo" value="{{$postulante->cargo_trabajo}}" >
+												</div>	
+											</div>									
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
+										</div>
+										<div class="form-group required">
+											<div class="col-sm-6">
+												<div class="col-sm-6 text-left">
+<<<<<<< HEAD
 													<label for="" class="control-label">Provincia:</label>
 												</div>
 												<div class="col-sm-6">
@@ -684,6 +1187,22 @@
 									   aria-labelledby = "myModalLabel" aria-hidden = "true">
 									   
 										   	<div class = "modal-dialog">
+=======
+													<label for="" class="control-label">Direccion Laboral:</label>
+												</div>
+												<div class="col-sm-6">	
+													<input type="text" class="form-control" id="direccionlaboral" name="direccionlaboral" placeholder="Direccion" value="{{$postulante->direccion_laboral}}" >
+												</div>	
+											</div>
+										</div>
+
+
+
+										<div class = "modal fade" id = "confirmationTrabajo" tabindex = "-1" role = "dialog" 
+									   aria-labelledby = "myModalLabel" aria-hidden = "true">
+									   
+										   <div class = "modal-dialog">
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 										      <div class = "modal-content">
 										         
 										         <div class = "modal-header">
@@ -708,16 +1227,26 @@
 										            </button>
 										         </div>
 										         
+<<<<<<< HEAD
 										     	</div><!-- /.modal-content -->
 									   		</div><!-- /.modal-dialog -->
 										</div><!-- /.modal -->
 
+=======
+										      </div><!-- /.modal-content -->
+										   </div><!-- /.modal-dialog -->								  
+										</div><!-- /.modal -->
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 										<br><br>
 										<div class="form-group required" >
 												<div class="btn-group col-sm-5" ></div>
 												
 												<div class="btn-group">
+<<<<<<< HEAD
 													<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationVivienda" onclick="ventana()" value="Confirmar">
+=======
+													<input type="button" class="btn btn-primary " data-toggle="modal" data-target="#confirmationTrabajo" onclick="ventana()" value="Confirmar">
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 												</div>
 												<div class="btn-group">
 													<a href="/postulante/index" class="btn btn-info">Retornar</a>
@@ -725,6 +1254,7 @@
 										</div>	
 								</form>
 							</div>
+<<<<<<< HEAD
 						<!--===================================-->
 						@if(Session::get('update')=='estudio' || $errors->estudio->any())
 							<div role="tabpanel" class="tab-pane active" id="seccion5">
@@ -741,16 +1271,45 @@
 							  				<ul class="alert alert-danger fade in">
 							  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 							  					@foreach ($errors->estudio->all() as $error)
+=======
+
+
+
+						@if(Session::get('update')=='contacto' || $errors->contacto->any())
+							<div role="tabpanel" class="tab-pane active" id="seccion7">
+						@else
+							<div role="tabpanel" class="tab-pane" id="seccion7">
+						@endif		
+
+								<form method="POST" action="/postulante/{{$postulante->persona->id}}/editContacto" class="form-horizontal form-border">
+									{{method_field('PATCH')}}
+									<input type="hidden" name="_token" value="{{ csrf_token() }}">
+									<div class="col-sm-4"></div>
+									<div class=""> 
+										@if ($errors->contacto->any())
+							  				<ul class="alert alert-danger fade in">
+							  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							  					@foreach ($errors->contacto->all() as $error)
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 							  						<li>{{$error}}</li>
 							  					@endforeach
 							  				</ul>
 							  			@endif
+<<<<<<< HEAD
 										@if(session('cambios-est'))
 											<div class="alert alert-success fade in">
 													<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 													<strong>¡Éxito!</strong> {{session('cambios-est')}}
 											</div>								
 										@endif						  			
+=======
+										@if(session('cambios-cont'))
+											<div class="alert alert-success fade in">
+													<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+													<strong>¡Éxito!</strong> {{session('cambios-cont')}}
+											</div>								
+										@endif							  			
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 									</div>
 									<br><br/><br/>
 									<div class="form-group required" >
@@ -759,6 +1318,7 @@
 												<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 											</div>
 
+<<<<<<< HEAD
 									</div>
 									<br>
 									<div class="form-group required">
@@ -1030,6 +1590,49 @@
 											</div>	
 										</div>
 									</div>
+=======
+											<div class="btn-group col-sm-4" ></div>
+											
+											<div class="btn-group">
+												<a href="#"  class="btn btn-info back" ><span class="glyphicon glyphicon-chevron-left"></span></a>
+											</div>
+											<div class="btn-group">
+												<a href="#" class="btn btn-info cont"><span class="glyphicon glyphicon-chevron-right"></span></a>
+											</div>
+									</div>
+
+									<br>
+									<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Telefono:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="telefono"  maxlength="7" name="telefono_domicilio" placeholder="Telefono de Contacto" value="{{$postulante->telefono_domicilio}}" >
+											</div>	
+										</div>
+									</div>
+									<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Telefono Celular:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" maxlength="9" id="celular" name="telefono_celular" placeholder="Celular" value="{{$postulante->telefono_celular}}" >
+											</div>	
+										</div>									
+									</div>
+									<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Correo:</label>
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" value="{{$postulante->persona->correo}}" >
+											</div>	
+										</div>
+									</div>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 
 
 									<!--MODAL CONFIRMACION-->
@@ -1094,6 +1697,7 @@
 	{!!Html::script('js/jquery.bxslider.min.js')!!}
 	{!!Html::script('js/bootstrap-datepicker.js')!!}
 	{!!Html::script('js/MisScripts.js')!!}
+<<<<<<< HEAD
 
 	<script>$.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')} })</script>
 	{!!Html::script('js/bootstrap-datepicker.js')!!}
@@ -1257,9 +1861,94 @@
 		});
 
 	</script>
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
+
+	<script>$.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')} })</script>
+	{!!Html::script('js/bootstrap-datepicker.js')!!}
+	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
 
 
+<<<<<<< HEAD
+=======
+	<script>
+		$(document).ready(function(){
+			$("#departamento").change(function(event){
+				document.getElementById("provincia").disabled = false;
+				document.getElementById("distrito").disabled = true;
+			    $("#distrito").empty();
+			    $("#distrito").append("<option  value='-1' default>--Distrito--</option>");
+				var url = $(this).attr("data-link");
+				$departamento_id=event.target.value;
+							//alert($departamento_id);
+				//alert(url);
+				$.ajax({
+			        url: "provinciasEdit",
+			        type:"POST",
+				    headers: {
+				        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				    },			        
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { id: $departamento_id},
+			        success:function(data){
+			        	$("#provincia").empty();
+			        	$("#provincia").append("<option  value='-1' default>--Provincia--</option>");
+			        	$.each(data,function(index,elememt){
+			        		
+			        		$("#provincia").append("<option value='"+elememt.id+"'>"+elememt.nombre+"</option>");
+			           		 console.log("mensaje que quieras");
+				       	});
+				       },error:function(){ 
+				           alert("error!!!!");
+				       }
+				   }); //end of ajax
+			});
 
+
+			$("#provincia").change(function(event){
+				document.getElementById("distrito").disabled = false;
+				var url = $(this).attr("data-link");
+				$provincia_id=event.target.value;
+							//alert($provincia_id);
+				//alert(url);
+				//alert($provincia_id);
+				
+				$.ajax({
+			        url: "distritosEdit",
+			        type:"POST",
+				    headers: {
+				        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				    },				        
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { id: $provincia_id},
+			        success:function(data){
+			        	$("#distrito").empty();
+			        	$("#distrito").append("<option  value='-1' default>--Distrito--</option>");
+			        	$.each(data,function(index,elememt){
+								//alert(elememt.id);
+				        		//alert(element.nombre);
+			        		$("#distrito").append("<option value='"+elememt.id+"'>"+elememt.nombre+"</option>");
+			        	});
+				            //alert(data);
+			        },error:function(){ 
+			            alert("error!!!!");
+			        }
+			    }); //end of ajax
+			});
+		});
+
+	</script>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 
 	<script>
 		function ventana(){
@@ -1301,6 +1990,7 @@
 				});
 
 			});
+<<<<<<< HEAD
 
 		});
 		$('.datepicker').on('changeDate', function(ev){
@@ -1340,6 +2030,14 @@
 	</script>
 
 
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 
+		});
+		$('.datepicker').on('changeDate', function(ev){
+			    $(this).datepicker('hide');
+		});
+			
+	</script>	
 </body>
 </html>

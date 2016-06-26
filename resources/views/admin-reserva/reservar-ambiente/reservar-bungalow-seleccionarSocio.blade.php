@@ -25,8 +25,12 @@
 			
 		</div>
 	</div>
+<<<<<<< HEAD
 	<input  type="hidden" type="text" id="fechaIni" name="fechaIni" value="{{ $fechaIni}}">
 	<input type="hidden" type="text" id="fechaFin" name="fechaFin" value="{{ $fechaFin }}">
+=======
+
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 	</br>
 	</br>
 		<div class="table-responsive">
@@ -58,7 +62,11 @@
 											<td>{{$socio->postulante->persona->ap_paterno}}</td>
 											<td>{{$socio->postulante->persona->ap_materno}}</td>
 											<td>
+<<<<<<< HEAD
 							        			<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/'.$socio->id.'/'.$fechaIni.'/'.$fechaFin.'/new-reserva-bungalow-adminR')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
+=======
+							        			<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/'.$socio->id.'/new-reserva-bungalow-adminR')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 							       			</td>
 							            </tr>				            		
 									@endforeach

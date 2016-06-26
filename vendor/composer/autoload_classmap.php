@@ -186,9 +186,12 @@ return array(
     'Hamcrest\\Xml\\HasXPath' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     'Orangehill\\Iseed\\TableNotFoundException' => $vendorDir . '/orangehill/iseed/src/Orangehill/Iseed/Exceptions.php',
 >>>>>>> JEFV
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
     'PHPUnit_Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
     'PHPUnit_Extensions_GroupTestSuite' => $vendorDir . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',
     'PHPUnit_Extensions_PhptTestCase' => $vendorDir . '/phpunit/phpunit/src/Extensions/PhptTestCase.php',
@@ -645,7 +648,11 @@ return array(
     'TipoMembresiaTableSeeder' => $baseDir . '/database/seeds/TipoMembresiaTableSeeder.php',
     'TipoPersonaTableSeeder' => $baseDir . '/database/seeds/TipoPersonaTableSeeder.php',
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     'servicioSeeder' => $baseDir . '/database/seeds/servicioSeeder.php',
 >>>>>>> JEFV
+=======
+    'servicioSeeder' => $baseDir . '/database/seeds/servicioSeeder.php',
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 );

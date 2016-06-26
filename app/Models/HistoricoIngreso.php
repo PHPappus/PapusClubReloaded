@@ -14,6 +14,7 @@ class HistoricoIngreso extends Model
     ['fecha'
     ];
     //
+<<<<<<< HEAD
     public function sede(){
         return $this->belongsTo('papusclub\Models\Sede', 'sede_id');
     }
@@ -21,4 +22,6 @@ class HistoricoIngreso extends Model
         return $this->belongsTo('papusclub\Models\Persona', 'persona_id');
         
     }
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 }

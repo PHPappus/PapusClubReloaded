@@ -40,6 +40,7 @@ class ReservarAmbienteController extends Controller
         $input = $request->all();
         $carbon=new Carbon();
         $fechaIni   = new Carbon('America/Lima');
+<<<<<<< HEAD
         $fechaFin   = (new Carbon('America/Lima'))->addDays(25);
         $fechaIniValue   = new Carbon('America/Lima');
         $fechaFinValue   = (new Carbon('America/Lima'))->addDays(25); 
@@ -47,12 +48,22 @@ class ReservarAmbienteController extends Controller
         if(!empty($input['fecha_inicio'])){
             $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
             $fechaIniValue=$carbon->createFromFormat('d-m-Y', $a_realizarse_en);
+=======
+        $fechaFin   = new Carbon('America/Lima'); 
+        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();
+        if(!empty($input['fecha_inicio'])){
+            $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
             $fechaIni=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
         }
         if(!empty($input['fecha_fin'])){
             $a_realizarse_en = str_replace('/', '-', $input['fecha_fin']);
+<<<<<<< HEAD
             $fechaFinValue=$carbon->createFromFormat('d-m-Y', $a_realizarse_en);
             $fechaFin=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+=======
+        $fechaFin=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
         }
          if(!empty($input['capacidad_actual'])){
             $capacidad=$input['capacidad_actual'];
@@ -103,21 +114,32 @@ class ReservarAmbienteController extends Controller
         $input = $request->all();
         $carbon=new Carbon();
         $fechaIni   = new Carbon('America/Lima');
+<<<<<<< HEAD
         $fechaFin   = (new Carbon('America/Lima'))->addDays(25);
         $fechaIniValue   = new Carbon('America/Lima');
         $fechaFinValue   = (new Carbon('America/Lima'))->addDays(25); 
+=======
+        $fechaFin   = new Carbon('America/Lima'); 
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
         $sedes = Sede::all();
         
         $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->get();
         if(!empty($input['fecha_inicio'])){
             $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
+<<<<<<< HEAD
             $fechaIniValue=$carbon->createFromFormat('d-m-Y', $a_realizarse_en);
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
             $fechaIni=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
         }
         if(!empty($input['fecha_fin'])){
             $a_realizarse_en = str_replace('/', '-', $input['fecha_fin']);
+<<<<<<< HEAD
             $fechaFinValue=$carbon->createFromFormat('d-m-Y', $a_realizarse_en);
             $fechaFin=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+=======
+        $fechaFin=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
         }
          if(!empty($input['capacidad_actual'])){
             $capacidad=$input['capacidad_actual'];
@@ -160,7 +182,11 @@ class ReservarAmbienteController extends Controller
                 
             }
         }
+<<<<<<< HEAD
         return view('socio.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue'));
+=======
+        return view('socio.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes'));
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
         
     }
 
@@ -173,9 +199,14 @@ class ReservarAmbienteController extends Controller
         $persona_id = $usuario->persona->id;  
         $persona = Persona::find($persona_id);
         $tipo_persona = $persona->tipopersona->id;
+<<<<<<< HEAD
         $fechaIni=$fechaIniValue;
         $fechaFin=$fechaFinValue;
         return view('socio.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes', 'tipo_persona','fechaIni','fechaFin'));
+=======
+      
+        return view('socio.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes', 'tipo_persona'));
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
     }
 
     //Se muestra el Bungalow a reservar y espera su confirmacion para la reserva
@@ -263,9 +294,13 @@ class ReservarAmbienteController extends Controller
         $persona_id = $usuario->persona->id;  
         $persona = Persona::find($persona_id);
         $tipo_persona = $persona->tipopersona->id;
+<<<<<<< HEAD
         $fechaIni=$fechaIniValue;
         $fechaFin=$fechaFinValue;
         return view('socio.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente','tipo_comprobantes', 'tipo_persona','fechaIni','fechaFin'));
+=======
+        return view('socio.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente','tipo_comprobantes', 'tipo_persona'));
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
     }
 
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
@@ -451,12 +486,25 @@ class ReservarAmbienteController extends Controller
         $fechaFin=$fechaFinValue;
         return view('admin-reserva.reservar-ambiente.reservar-otros-ambientes-seleccionarSocio', compact('ambiente','socios','fechaIni','fechaFin'));
     }
+    public function seleccionarSocioBungalowAdminR($id)
+    {
+        $ambiente = Ambiente::find($id);
+        $socios = Socio::all();
+        return view('admin-reserva.reservar-ambiente.reservar-bungalow-seleccionarSocio', compact('ambiente','socios'));
+    }
+    public function seleccionarSocioOtrosAmbientesAdminR($id)
+    {
+        $ambiente = Ambiente::find($id);
+        $socios = Socio::all();
+        return view('admin-reserva.reservar-ambiente.reservar-otros-ambientes-seleccionarSocio', compact('ambiente','socios'));
+    }
     public function reservarBungalowFiltradosAdminR(Request $request){
 
         $sedes = Sede::all();
         $input = $request->all();
         $carbon=new Carbon();
         $fechaIni   = new Carbon('America/Lima');
+<<<<<<< HEAD
         $fechaFin   = (new Carbon('America/Lima'))->addDays(25);
         $fechaIniValue   = new Carbon('America/Lima');
         $fechaFinValue   = (new Carbon('America/Lima'))->addDays(25);  
@@ -464,12 +512,22 @@ class ReservarAmbienteController extends Controller
         if(!empty($input['fecha_inicio'])){
             $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
             $fechaIniValue=$carbon->createFromFormat('d-m-Y', $a_realizarse_en);
+=======
+        $fechaFin   = new Carbon('America/Lima'); 
+        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();
+        if(!empty($input['fecha_inicio'])){
+            $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
             $fechaIni=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
         }
         if(!empty($input['fecha_fin'])){
             $a_realizarse_en = str_replace('/', '-', $input['fecha_fin']);
+<<<<<<< HEAD
             $fechaFinValue=$carbon->createFromFormat('d-m-Y', $a_realizarse_en);
             $fechaFin=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+=======
+        $fechaFin=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
         }
          if(!empty($input['capacidad_actual'])){
             $capacidad=$input['capacidad_actual'];
@@ -519,21 +577,32 @@ class ReservarAmbienteController extends Controller
         $input = $request->all();
         $carbon=new Carbon();
         $fechaIni   = new Carbon('America/Lima');
+<<<<<<< HEAD
         $fechaFin   = (new Carbon('America/Lima'))->addDays(25);
         $fechaIniValue   = new Carbon('America/Lima');
         $fechaFinValue   = (new Carbon('America/Lima'))->addDays(25); 
+=======
+        $fechaFin   = new Carbon('America/Lima'); 
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
         $sedes = Sede::all();
         
         $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->get();
         if(!empty($input['fecha_inicio'])){
             $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
+<<<<<<< HEAD
             $fechaIniValue=$carbon->createFromFormat('d-m-Y', $a_realizarse_en);
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
             $fechaIni=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
         }
         if(!empty($input['fecha_fin'])){
             $a_realizarse_en = str_replace('/', '-', $input['fecha_fin']);
+<<<<<<< HEAD
             $fechaFinValue=$carbon->createFromFormat('d-m-Y', $a_realizarse_en);
             $fechaFin=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+=======
+        $fechaFin=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
         }
          if(!empty($input['capacidad_actual'])){
             $capacidad=$input['capacidad_actual'];
@@ -545,6 +614,7 @@ class ReservarAmbienteController extends Controller
 
         if(empty($input['horaInicio'])){
             $horaInicio="00:00";
+<<<<<<< HEAD
         }else{
 
         }
@@ -557,6 +627,16 @@ class ReservarAmbienteController extends Controller
             
         $reservas_caso_1=Reserva::where('fecha_inicio_reserva','=',$fechaIni )->whereBetween('hora_inicio_reserva',[$horaInicio,$horaFin])->get();
 
+=======
+        }
+        if(empty($input['horaFin'])){
+            $horaFin="23:59" ;
+        }
+        /*Se terminó de preparar las horas*/
+            
+        $reservas_caso_1=Reserva::where('fecha_inicio_reserva','=',$fechaIni )->whereBetween('hora_inicio_reserva',[$horaInicio,$horaFin])->get();
+
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
         $reservas_caso_2=Reserva::where('fecha_inicio_reserva','=', $fechaFin)->whereBetween('hora_fin_reserva',[$horaInicio,$horaFin])->get();
         foreach ($ambientes as $i=> $ambiente) {
                 if($ambiente->capacidad_actual<$capacidad)  unset($ambientes[$i]);
@@ -580,20 +660,33 @@ class ReservarAmbienteController extends Controller
                 
             }
         }
+<<<<<<< HEAD
         return view('admin-reserva.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue'));
         
     }
 
     public function createBungalowAdminR($idambiente,$idsocio,$fechaIni,$fechaFin)
+=======
+        return view('admin-reserva.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes'));
+        
+    }
+
+    public function createBungalowAdminR($idambiente,$idsocio)
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
     {   
         $ambiente = Ambiente::find($idambiente);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
         $socio = Socio::find($idsocio);
         $persona = $socio->postulante->persona;  
         $tipo_persona = $persona->tipopersona->id;
+<<<<<<< HEAD
         $fechaI=$fechaIni;
         $fechaF=$fechaFin;
         return view('admin-reserva.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes','socio', 'tipo_persona','fechaI','fechaF'));
+=======
+
+        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-bungalow', compact('ambiente','tipo_comprobantes','socio', 'tipo_persona'));
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
     }
 
     //Se muestra el Bungalow a reservar y espera su confirmacion para la reserva
@@ -671,16 +764,25 @@ class ReservarAmbienteController extends Controller
     }
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
 
+<<<<<<< HEAD
     public function createOtroTipoAmbienteAdminR($idambiente, $idsocio,$fechaIni,$fechaFin)
+=======
+    public function createOtroTipoAmbienteAdminR($idambiente, $idsocio)
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
     {   
         $ambiente = Ambiente::find($idambiente);
         $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
         $socio = Socio::find($idsocio);
         $persona = $socio->postulante->persona;  
         $tipo_persona = $persona->tipopersona->id;
+<<<<<<< HEAD
         $fechaI=$fechaIni;
         $fechaF=$fechaFin;
         return view('admin-reserva.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente','tipo_comprobantes','socio', 'tipo_persona','fechaI','fechaF'));
+=======
+        
+        return view('admin-reserva.reservar-ambiente.confirmacion-reserva-otro-ambiente', compact('ambiente','tipo_comprobantes','socio', 'tipo_persona'));
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
     }
     
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva

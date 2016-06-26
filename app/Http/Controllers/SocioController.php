@@ -13,11 +13,17 @@ use Redirect;
 use papusclub\Http\Controllers\Controller;
 use papusclub\User;
 use papusclub\Models\Socio;
+<<<<<<< HEAD
 use papusclub\Models\Persona;
 use papusclub\Models\Traspaso;
 use papusclub\Models\Postulante;
 use papusclub\Http\Requests\StoreTraspasoRequest;
 use papusclub\Http\Requests\StoreObservacionRequest;
+=======
+use papusclub\Models\Traspaso;
+use papusclub\Models\Postulante;
+use papusclub\Http\Requests\StoreTraspasoRequest;
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 
 class SocioController extends Controller
 {
@@ -168,7 +174,11 @@ class SocioController extends Controller
 
         $persona_id = $usuario->persona->id;
 
+<<<<<<< HEAD
         $postulante = Postulante::find($persona_id);
+=======
+        $postulante = Postulante::find($persona_id)->first();
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
         $socio = $postulante->socio;
 
         $socio->traspaso()->save($traspaso);
@@ -185,13 +195,18 @@ class SocioController extends Controller
         $usuario = User::find($user_id);
         $persona_id = $usuario->persona->id;
 
+<<<<<<< HEAD
         $postulante = Postulante::find($persona_id);
+=======
+        $postulante = Postulante::find($persona_id)->first();
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
         $socio = $postulante->socio;
 
         $multas = $socio->multaxpersona;
 
         return view('socio.multas.mismultasindex',compact('multas'));
     }
+<<<<<<< HEAD
 
     public function verPostulantes()
     {
@@ -232,4 +247,6 @@ class SocioController extends Controller
 
         return redirect('ver-postulantes')->with('stored','Se registró la observación correctamene');
     }
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 }

@@ -33,6 +33,7 @@
         <!-- Tercero -->
         <ul class="nav navbar-nav">
           <li class="dropdown">
+<<<<<<< HEAD
             <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
               Tercero <span class="caret"></span>
             </a>
@@ -52,6 +53,23 @@
             <ul class="dropdown-menu">
               <li><a href="{!!URL::to('/trabajador/index')!!}" title="Consultar trabajador" target="_self">Consultar</a></li>
                 <li><a href="{!!URL::to('/trabajador/new')!!}" title="Registrar nuevo trabajador" target="_self">Registrar</a></li>
+=======
+            <a href="{!!URL::to('/Socio/')!!}" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Socio <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+
+<!--Aqui es papu-->
+
+                <li><a href="#" class="dropdown-toggle btn-lg" title="consultar Bungalows" target="_self">Socio</a></li>
+
+
+
+                <li><a href="{!!URL::to('/multas-s')!!}" title="Asignar Multa" target="_self">Asignar Multa</a></li>
+                <li><a href="#" title="Consultar socio" target="_self">Consultar</a></li>
+                <li><a href="#" title="Registrar nuevo socio" target="_self">Registrar</a></li>
+                <li><a href="#" title="Anular socio" target="_self">Anular</a></li>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
             </ul>
           </li>
         </ul>
@@ -64,7 +82,11 @@
             </a>
             <ul class="dropdown-menu">
                 <li><a href="{!!URL::to('/postulante/index')!!}" title="Consultar postulantes" target="_self">Consultar</a></li>
+<<<<<<< HEAD
                 <li><a href="{!!URL::to('/postulante/new')!!}" title="Registrar nuevo postulante" target="_self">Registrar</a></li>
+=======
+                <li><a href="#" title="Registrar nuevo postulante" target="_self">Registrar</a></li>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
                 <li><a href="#" title="Aprobar/Desaprobar postulante" target="_self">Aprobar/Desaprobar</a></li>
             </ul>
           </li>
@@ -87,8 +109,13 @@
         <!-- Proveedor -->
         <ul class="nav navbar-nav">
           <li class="dropdown">
+<<<<<<< HEAD
             <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
               Proveedor <span class="caret"></span>
+=======
+            <a href="{!!URL::to('/trabajador/index')!!}" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Trabajador <span class="caret"></span>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
             </a>
             <ul class="dropdown-menu">
                 <li><a href="#" title="Consultar Proveedores" target="_self">Consultar</a></li>
@@ -116,7 +143,11 @@
               Trámites</span>
             </a>
             <ul class="dropdown-menu">
+<<<<<<< HEAD
                 <li><a href="{!!URL::to('/traspasos-p')!!}" title="Traspasos" target="_self">Traspasos</a></li>
+=======
+                <li><a href="{!!URL::to('/traspasos-p')!!}" title="Consultar Proveedores" target="_self">Traspasos</a></li>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
             </ul>
           </li>
         </ul>

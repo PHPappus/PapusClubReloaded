@@ -100,7 +100,11 @@
 			  	<div class="form-group required">
 			    	<label for="ubicacionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
+<<<<<<< HEAD
 			      		<textarea type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" value="{{old('descripcion')}}" style="resize: none" maxlength="100"></textarea>
+=======
+			      		<textarea type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="descripcionInput" name="descripcion" placeholder="descripcion" value="{{old('descripcion')}}" style="resize: none" maxlength="100"></textarea>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 			    	</div>
 			  	</div>
 			  

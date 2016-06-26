@@ -25,6 +25,7 @@
 
 <header class="header">
 		<div class="content clearfix">
+<<<<<<< HEAD
 		<!--Input de buscador de la parte superior derecha-->
 		<nav class="search">
 			<div class="search_box">
@@ -33,6 +34,98 @@
                     <input type="text" placeholder="Ingresa tu búsqueda" id="inputbusqueda" name="conte">
                     <span class="glyphicon glyphicon-search" href="#"></span>
 				</form>
+=======
+			<!--Input de buscador de la parte superior derecha-->
+			<nav class="search">
+				<div class="search_box">
+					<form action="#" id="search-box" method="get">
+						<label class="hidden" for="inputbusqueda">Buscar</label>
+	                    <input type="text" placeholder="Ingresa tu búsqueda" id="inputbusqueda" name="conte">
+	                    <span class="glyphicon glyphicon-search" href="#"></span>
+					</form>
+				</div>
+			</nav>
+		</div>
+		<!--menu de opciones superior-->
+		<nav class="main-menu">
+			<div class="content-fluid" style="margin-left: 10%">
+				<div class="logo">
+					<div class="edit-logo">
+						<a href="{!!URL::to('/admin-general')!!}" title="Logo oficial de Papus Club">
+							<img src="{!!URL::to('/images/logo.png')!!}" alt="Logo Papus Club" href="/">
+						</a>
+					</div>
+				</div>
+				<!--Opciones de menu-->
+				<nav class="menu" id="menu">
+					<ul>
+						<li><a href="#">{!!Auth::user()->name!!}  <span class="glyphicon glyphicon-user"></span></a>
+								<ul>
+									<li><a href="{!!URL::to('/cuenta')!!}" title="Ir a cuenta" target="_self">MI CUENTA</a></li>
+									<li><a href="{!!URL::to('/password/change')!!}" title="Cambiar contraseña" target="_self">CAMBIAR MI CONTRASEÑA</a></li>
+									<li><a href="{!!URL::to('/logout')!!}" title="LOGOUT" target="_self">LOGOUT</a></li>
+								</ul>
+						</li>
+						<!-- Sedes -->
+						<li><a href="#">PERSONA<span class="despliegue">▼</span></a>
+							<ul>
+								<li><a href="{!!URL::to('/Socio')!!}" title="ir a socio" target="_self">SOCIO</a></li>
+								<li><a href="{!!URL::to('/trabajador/index')!!}" title="ir a trabajador" target="_self">TRABAJADOR</a></li>
+								<li><a href="{!!URL::to('/postulante/index')!!}" title="ir a postulante" target="_self">POSTULANTE</a></li>
+							</ul>
+						</li>
+
+						<li><a href="{!!URL::to('/multa')!!}">MULTA<span class="despliegue">▼</span></a>
+							<!-- <ul>
+								<li><a href="{!!URL::to('/sedes/new')!!}" title="ir a agregar sede" target="_self">AGREGAR</a></li>
+							</ul> -->
+						</li>
+
+						<li><a href="{!!URL::to('/sedes/index')!!}">SEDE<span class="despliegue">▼</span></a>
+							<ul>
+								<li><a href="{!!URL::to('/sorteo/index')!!}" title="Mantenimiento Sorteo" target="_self"> MANTENIMIENTO SORTEO</a></li>
+								<li><a href="{!!URL::to('/sorteo/inscripcion')!!}" title="Inscripcion Sorteo" target="_self">INSCRIPCION SORTEO</a></li>
+								<li><a href="{!!URL::to('/select/sede')!!}" title="Agregar Servicios" target="_self">AGREGAR SERVICIOS</a></li>
+							</ul>
+						</li>
+						<!-- <li><a href="{!!URL::to('/ambiente/index')!!}">AMBIENTE<span class="despliegue">▼</span></a>
+							
+						</li>
+
+						<li><a href="{!!URL::to('/actividad/index')!!}">ACTIVIDAD<span class="despliegue">▼</span></a>
+							<ul>
+								<li><a href="{!!URL::to('/inscripcion-actividad/inscripcion-actividades')!!}" title="ir a agregar sede" target="_self">INSCRIPCIÓN</a></li>
+							</ul>
+						</li> -->
+						<!-- Opción Actividades -->
+						<li><a href="{!!URL::to('/taller/')!!}">TALLER<span class="despliegue">▼</span></a>
+							<ul>
+							</ul>					
+						</li>
+						<!-- Opción Eventos -->
+						<li><a href="{!!URL::to('/servicios/index')!!}">SERVICIO</a></li>
+						<!-- Opción TRAMITES -->						
+						<li><a href="{!!URL::to('/producto/index')!!}">PRODUCTO<span class="despliegue">▼</span></a>
+							<ul>
+								<li><a href="{!!URL::to('/producto/index')!!}">PRODUCTOS</a></li>
+								<li><a href="{!!URL::to('/ingreso-producto/index')!!}">INGRESO DE PRODUCTOS</a></li>
+								<li><a href="{!!URL::to('/venta-producto/index')!!}">VENTAS DE PRODUCTOS</a></li>
+							</ul>
+						</li>
+						<!-- Opción MANTENIMIENTO -->
+						<li><a href="#">PERFIL</a></li>
+						<!-- Opción MANTENIMIENTO -->
+						<li><a href="{{url('/membresia')}}">MEMBRESIA</a></li>
+						<!-- Opción TRÁMITES -->
+						<li><a href="#">TRÁMITES</a></li>
+						<!-- Opción Eventos -->
+						<li><a href="{!!URL::to('/proveedor/index')!!}">PROVEEDOR</a></li>
+						<!-- MANTENIMIENTO DE PAGOS -->
+						<!-- <li><a href="{{url('/pagos/pago-seleccionar-socio')}}">PAGOS</a></li> -->
+
+					</ul>
+				</nav>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 			</div>
 		</nav>
 	</div>

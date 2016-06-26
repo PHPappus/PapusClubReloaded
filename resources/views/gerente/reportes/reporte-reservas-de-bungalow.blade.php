@@ -41,7 +41,11 @@
 	<br/>
 	<div class="container">
 		<div class="col-sm-12 text-left lead">
+<<<<<<< HEAD
 			<strong>REPORTE: CANTIDAD DE RESERVAS MENSUALES POR BUNGALOW </strong>
+=======
+			<strong>REPORTE: CANTIDAD DE VECES QUE SE RESERVA UN BUNGALOW POR MES</strong>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 		</div>		
 	</div>
 	<br/>
@@ -64,20 +68,34 @@
 			      		<input type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')"   class="form-control" id="nombreInput" name="nombre" placeholder="Nombre" value="Poner el nombre del gerente que se a logueado" readonly>
 			    	</div>
 			</div> -->
+<<<<<<< HEAD
 			<div class="form-group required">
 			   	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>	
 				<div class="col-sm-5">
 				  	<select class="form-control" id="sedeSelec" name="sedeSelec" style="max-width: 150px "  >
+=======
+			<div class="form-group">
+			   	<label for="sedeInput" class="col-sm-4 control-label">Sede</label>	
+				<div class="col-sm-5">
+				  	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 				        @foreach ($sedes as $sede)      
 				      	<option value="{{$sede->id}}">{{$sede->nombre}}</option>
 				        @endforeach
 					</select>
 				</div>
 			</div>
+<<<<<<< HEAD
 			<div class="form-group required">
 			   	<label for="mesSelec" class="col-sm-4 control-label">Mes</label>	
 				<div class="col-sm-5">
 				  	<select class="form-control" id="mesSelec" name="mesSelec" style="max-width: 150px "  >				            
+=======
+			<div class="form-group">
+			   	<label for="sedeInput" class="col-sm-4 control-label">Mes</label>	
+				<div class="col-sm-5">
+				  	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >				            
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 				      	<option value="1">Enero</option>
 				      	<option value="2">Febrero</option>
 				      	<option value="3">Marzo</option>
@@ -93,6 +111,7 @@
 					</select>
 				</div>
 			</div>
+<<<<<<< HEAD
 			<div class="form-group required">
 			   	<label for="yearSelec" class="col-sm-4 control-label">Año</label>	
 				<div class="col-sm-5">
@@ -106,6 +125,21 @@
 				      	<option value="2010">2010</option>
 				      	<option value="2009">2009</option>
 				      	<option value="2008">2008</option>			        
+=======
+			<div class="form-group">
+			   	<label for="sedeInput" class="col-sm-4 control-label">Año</label>	
+				<div class="col-sm-5">
+				  	<select class="form-control" name="sedeSelec" style="max-width: 150px "  >				            
+				      	<option value="1">2016</option>
+				      	<option value="2">2015</option>
+				      	<option value="3">2014</option>
+				      	<option value="4">2013</option>
+				      	<option value="5">2012</option>
+				      	<option value="6">2011</option>
+				      	<option value="7">2010</option>
+				      	<option value="8">2009</option>
+				      	<option value="9">2008</option>			        
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 					</select>
 				</div>
 			</div>
@@ -151,6 +185,23 @@
 	{!!Html::script('js/MisScripts.js')!!}
 
 	{!!Html::script('js/bootstrap-datepicker.js')!!}
+<<<<<<< HEAD
+=======
+
+
+	<!-- Para Data TAble INICIO -->
+	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
+	<script>
+		$(document).ready(function() {
+		   $('#example').DataTable( {
+		       "language": {
+		           "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+		       }
+		  	});
+  		});
+	</script>
+	<!-- Para Data TAble FIN -->
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 	
 	<!-- Para MAndar Reporte a nueva ventana    INICIO -->
 	<script type="text/javascript">
@@ -160,7 +211,49 @@
 	</script>
 	<!-- Para MAndar Reporte a nueva ventana   FIN-->
 
+<<<<<<< HEAD
 	
+=======
+	<!-- Para Fechas INICIO -->
+	<script>
+
+		var nowTemp = new Date();
+		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+ 	
+		var checkin = $('#dpd1').datepicker({
+  			onRender: function(date) {
+    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
+  			}
+		}).on('changeDate', function(ev) {
+  			if (ev.date.valueOf() > checkout.date.valueOf()) {
+    			var newDate = new Date(ev.date)
+    			newDate.setDate(newDate.getDate() + 1);
+    			checkout.setValue(newDate);
+  			}
+ 			checkin.hide();
+  			$('#dpd2')[0].focus();
+		}).data('datepicker');
+		var checkout = $('#dpd2').datepicker({
+  			onRender: function(date) {
+    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+  			}
+		}).on('changeDate', function(ev) {
+  			checkout.hide();
+		}).data('datepicker');		
+		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
+
+	
+	</script>
+	<script>
+		$(function(){
+			$('.datepicker').datepicker({
+				format: 'dd/mm/yyyy'
+			});
+		});
+	</script>
+
+	<!-- Para Fecha FIN -->
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 
 
 </body>

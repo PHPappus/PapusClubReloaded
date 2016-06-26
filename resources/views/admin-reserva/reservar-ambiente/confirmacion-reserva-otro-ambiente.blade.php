@@ -73,6 +73,12 @@
 			    <div class="col-sm-5">
 				  	<div class="input-group">
 			   		<input class="datepicker form-control"  type="text"  id="fecha_inicio_reserva" name="fecha_inicio_reserva" placeholder="Fecha Inicio" value="{{old('fecha_inicio')}}" style="max-width: 250px" >
+<<<<<<< HEAD
+=======
+			   		<span class="input-group-addon">-</span>
+			   		<input class="datepicker form-control" type="text" id="fecha_fin_reserva" name="fecha_fin_reserva" placeholder="Fecha Fin" value="{{old('fecha_fin')}}" style="max-width: 250px">
+
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 			   	 	</div>
 		    	</div>	
 			</div>
@@ -150,12 +156,15 @@
 <script>
 		var nowDate = new Date();
 		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+<<<<<<< HEAD
 		var js_var = "<?php echo $fechaI; ?>";
 		var js_var2 = "<?php echo $fechaF; ?>";
         //alert(js_var);
         var other=new Date(js_var);
         var other2=new Date(js_var2);
         //alert(other);
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 	</script>
 	<script>
 		$(function(){
@@ -163,8 +172,12 @@
 				format: "dd/mm/yyyy",
 		        language: "es",
 		        autoclose: true,
+<<<<<<< HEAD
 		        startDate: other,
 		        endDate: other2,
+=======
+		        startDate: today,
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 			});
 		});
 	</script>

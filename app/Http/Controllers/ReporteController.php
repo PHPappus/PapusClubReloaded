@@ -10,6 +10,7 @@ use papusclub\Models\Facturacion;
 use papusclub\Models\Configuracion;
 use papusclub\Models\Persona;
 use papusclub\Models\Sede;
+<<<<<<< HEAD
 use papusclub\Models\Reserva;
 use papusclub\Models\Ambiente;
 use papusclub\Models\HistoricoIngreso;
@@ -17,6 +18,10 @@ use Auth;
 use Carbon\Carbon;
 use papusclub\User;
 use papusclub\Perfil;
+=======
+use Auth;
+use papusclub\User;
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 
 class ReporteController extends Controller
 {
@@ -26,6 +31,7 @@ class ReporteController extends Controller
         $sedes = Sede::all();
         return view('gerente.reportes.reporte-invitados-por-sede',compact('sedes'));
     }
+<<<<<<< HEAD
      public function reporte1Final(Request $request) 
     {
         $input = $request->all();
@@ -57,6 +63,12 @@ class ReporteController extends Controller
 
         //fin obtener invitados que ingresan por socio
         return view('gerente.reportes.reporte-invitados-por-sede-final',compact('sedes','fechaIni','fechaFin','fechaAct','responsable','ingresos'));
+=======
+     public function reporte1Final() 
+    {
+        $sedes = Sede::all();
+        return view('gerente.reportes.reporte-invitados-por-sede-final',compact('sedes'));
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
     }
     //Reporte 2: cuantas personas deben dentro de un rango de fecha
     public function reporte2() 
@@ -64,6 +76,7 @@ class ReporteController extends Controller
         $sedes = Sede::all();   
         return view('gerente.reportes.reporte-morosos',compact('sedes'));
     }
+<<<<<<< HEAD
      public function reporte2Final(Request $request) 
     {
         $sedes = Sede::all();
@@ -117,6 +130,12 @@ class ReporteController extends Controller
         $valores=array_reverse($subtotales);
         //fin obtener socios morosos
         return view('gerente.reportes.reporte-morosos-final',compact('sedes','responsable','fechaIni','fechaFin','fechaAct','socios','totalDeuda','valores'));
+=======
+     public function reporte2Final() 
+    {
+        $sedes = Sede::all();
+        return view('gerente.reportes.reporte-morosos-final',compact('sedes'));
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
     }
     //Reporte 3:cuantas veces se reserva un bunalow en un rango de fecha 
     public function reporte3() 
@@ -124,6 +143,7 @@ class ReporteController extends Controller
         $sedes = Sede::all();
         return view('gerente.reportes.reporte-reservas-de-bungalow',compact('sedes'));
     }
+<<<<<<< HEAD
      public function reporte3Final(Request $request) 
     {
         $input = $request->all();
@@ -224,5 +244,11 @@ class ReporteController extends Controller
 
         
         return view('gerente.reportes.reporte-reservas-de-bungalow-final',compact('sedes','responsable','year','mes','reservas','valoresP','totalDeuda','valoresD','totalDias','valoresS'));
+=======
+     public function reporte3Final() 
+    {
+        $sedes = Sede::all();
+        return view('gerente.reportes.reporte-reservas-de-bungalow-final',compact('sedes'));
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
     }
 }

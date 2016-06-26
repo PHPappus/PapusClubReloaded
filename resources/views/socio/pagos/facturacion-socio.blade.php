@@ -41,7 +41,11 @@
 						<tr>
 							<th><DIV ALIGN=center>ID</th>
 							<th><DIV ALIGN=center>Descripción</th>							
+<<<<<<< HEAD
 							<th><DIV ALIGN=center>MONTO (S/.)</th>
+=======
+							<th><DIV ALIGN=center>Monto</th>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 							<th><DIV ALIGN=center>Estado</th>
 							<th><DIV ALIGN=center>Tipo de Pago</th>							
 							<th><DIV ALIGN=center>Detalle</th>

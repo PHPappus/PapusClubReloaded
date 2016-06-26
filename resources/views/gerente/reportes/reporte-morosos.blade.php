@@ -41,7 +41,11 @@
 	<br/>
 	<div class="container">
 		<div class="col-sm-12 text-left lead">
+<<<<<<< HEAD
 			<strong>REPORTE: NÚMERO DE SOCIOS MOROSOS EN UN RANGO DE FECHAS</strong>
+=======
+			<strong>REPORTE: NÚMERO SE MOROSOS EN UN RANGO DE FECHAS</strong>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 		</div>		
 	</div>
 	<br/>
@@ -57,9 +61,15 @@
 			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha (dd/mm/aaaa) </label>
 			    <div class="col-sm-5">
 				  	<div class="input-group">
+<<<<<<< HEAD
 			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="fecha_inicio" name="fecha_inicio" placeholder="Fecha Inicio" style="max-width: 250px">
 			   		<span class="input-group-addon">-</span>
 			   		<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="fecha_fin" name="fecha_fin" placeholder="Fecha Fin" style="max-width: 250px">
+=======
+			   		<input class="datepicker"  type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" style="max-width: 250px">
+			   		<span class="input-group-addon">-</span>
+			   		<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_fin" placeholder="Fecha Fin" style="max-width: 250px">
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 			   	 	</div>
 		    	</div>	
 			</div>
@@ -126,7 +136,11 @@
 		var nowTemp = new Date();
 		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
  	
+<<<<<<< HEAD
 		var checkin = $('#fecha_inicio').datepicker({
+=======
+		var checkin = $('#dpd1').datepicker({
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
   			onRender: function(date) {
     			return date.valueOf() < now.valueOf() ? 'disabled' : '';
   			}
@@ -137,16 +151,26 @@
     			checkout.setValue(newDate);
   			}
  			checkin.hide();
+<<<<<<< HEAD
   			$('#fecha_fin')[0].focus();
 		}).data('datepicker');
 		var checkout = $('#fecha_fin').datepicker({
+=======
+  			$('#dpd2')[0].focus();
+		}).data('datepicker');
+		var checkout = $('#dpd2').datepicker({
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
   			onRender: function(date) {
     			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
   			}
 		}).on('changeDate', function(ev) {
   			checkout.hide();
 		}).data('datepicker');		
+<<<<<<< HEAD
 		var date = $('#fecha_inicio').datepicker({ dateFormat: 'dd-mm-yy' }).val();
+=======
+		var date = $('#dp1').datepicker({ dateFormat: 'dd-mm-yy' }).val();
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 
 	
 	</script>

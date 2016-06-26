@@ -31,7 +31,11 @@ class StoreTallerRequest extends Request
 
             'nombre' => 'required|max:60|string',
             'descripcion' =>'|max:200|string',
+<<<<<<< HEAD
             'profe' => 'required|max:60|string',
+=======
+            'profesor' => 'required|max:60|string',
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
             'vacantes' =>'min:0',
             'fecIniIns' => 'required',
             'fecFinIns' => 'required',

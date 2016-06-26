@@ -39,8 +39,11 @@ class Reserva extends Model
     {
         return $this->hasOne('papusclub\Models\Facturacion');
     }
+<<<<<<< HEAD
 
     public function taller(){
         return $this->hasOne(Taller::class);
     }
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 }

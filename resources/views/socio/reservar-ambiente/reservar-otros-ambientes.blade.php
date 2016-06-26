@@ -211,11 +211,43 @@
 	
 
 	<!-- Para Fechas INICIO -->
+<<<<<<< HEAD
 	<script>
 		var nowDate = new Date();
 		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
 		var deadline=new Date(today);
 		deadline.setDate(deadline.getDate() + 25);
+=======
+	<!-- <script>
+		var nowTemp = new Date();
+		var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+	 
+		var checkin = $('#dpd1').datepicker({
+	  			onRender: function(date) {
+	    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
+	  			}
+		}).on('changeDate', function(ev) {
+	  			if (ev.date.valueOf() > checkout.date.valueOf()) {
+	    			var newDate = new Date(ev.date);
+	    			newDate.setDate(newDate.getDate() + 1);
+	    			checkout.setValue(newDate);
+	  			}
+	 			checkin.hide();
+	  			$('#dpd2')[0].focus();
+		}).data('datepicker');
+	
+		var checkout = $('#dpd2').datepicker({
+	  			onRender: function(date) {
+	    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+	  			}
+		}).on('changeDate', function(ev) {
+	  			checkout.hide();
+		}).data('datepicker');		
+	</script> -->
+	<script>
+		var nowDate = new Date();
+		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 	</script>
 	<script>
 		$(function(){
@@ -224,7 +256,10 @@
 		        language: "es",
 		        autoclose: true,
 		        startDate: today,
+<<<<<<< HEAD
 		        endDate: deadline,
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 			});
 		});
 	</script>

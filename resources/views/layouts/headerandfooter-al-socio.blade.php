@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <style>
         /*Reparando desajuste*/
         @media (min-width: 1405px){
@@ -12,6 +13,8 @@
         }
 </style>
 
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 
 <header class="header">
 
@@ -115,6 +118,7 @@
             </ul>
           </li>
         </ul>
+
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" title="Realizar tramites" data-toggle="dropdown" role="button">
@@ -122,17 +126,28 @@
             </a>
             <ul class="dropdown-menu">
               <li><a href="{!!URL::to('/traspaso')!!}" title="solicitar traspasos" target="_self">Traspasos</a></li>
+<<<<<<< HEAD
               <li><a href="{!!URL::to('/mis-multas')!!}" title="ver multas" target="_self">Mis Multas</a></li>
               <li><a href="{!!URL::to('/ver-postulantes')!!}" title="calificar postulantes" target="_self">Obs. Postulantes</a></li>
+=======
+              <li><a href="{!!URL::to('/mis-multas')!!}" title="solicitar traspasos" target="_self">Mis Multas</a></li>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
             </ul>
           </li>
         </ul>
 
         <ul class="nav navbar-nav">
           <li class="dropdown">
+<<<<<<< HEAD
             <a href="#" class="dropdown-toggle btn-lg">Servicios <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="#" title="Consultar Servicios" target="_self">Consultar</a></li>
+=======
+            <a href="#" class="dropdown-toggle btn-lg">Sorteos <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#" title="Consultar Sorteos" target="_self">Consultar</a></li>
+                <li><a href="#" title="Reservar y entrar a sorteo" target="_self">Reservar</a></li>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
             </ul>
           </li>
         </ul>

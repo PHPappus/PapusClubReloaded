@@ -73,7 +73,11 @@
 						@endif
 
 						<!--DATOS DE NACIMIENTO-->
+<<<<<<< HEAD
 						@if(Session::get('update')=='estudio' || $errors->nacimiento->any())
+=======
+							@if(Session::get('update')=='estudio' || $errors->nacimiento->any())
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 							<li role="presentation" class="active"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Nacimiento</a></li>
 						@else
 							<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Nacimiento</a></li>

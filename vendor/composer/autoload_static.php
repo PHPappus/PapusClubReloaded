@@ -455,9 +455,12 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
         'IlluminateQueueClosure' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         'Orangehill\\Iseed\\TableNotFoundException' => __DIR__ . '/..' . '/orangehill/iseed/src/Orangehill/Iseed/Exceptions.php',
 >>>>>>> JEFV
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
         'PHPUnit_Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit_Extensions_GroupTestSuite' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',
         'PHPUnit_Extensions_PhptTestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/PhptTestCase.php',
@@ -914,9 +917,13 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'TipoMembresiaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TipoMembresiaTableSeeder.php',
         'TipoPersonaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TipoPersonaTableSeeder.php',
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         'servicioSeeder' => __DIR__ . '/../..' . '/database/seeds/servicioSeeder.php',
 >>>>>>> JEFV
+=======
+        'servicioSeeder' => __DIR__ . '/../..' . '/database/seeds/servicioSeeder.php',
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
     );
 
     public static function getInitializer(ClassLoader $loader)

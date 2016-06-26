@@ -32,7 +32,11 @@ class StorePostulanteRequest extends Request
             'ap_materno' => 'required|max:100|string',
             'doc_identidad'=> 'required_if:nacionalidad,peruano', //| unique:persona,doc_identidad,NULL',
             'carnet_extranjeria'=> 'required_if:nacionalidad,extranjero',//  | unique:persona,carnet_extranjeria,NULL',
+<<<<<<< HEAD
             'estado_civil'=>'required|exists:configuracion,id',
+=======
+
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
             //'correo'=>'required|string',
             //'puestoSelect' => 'required|exists:configuracion,id'
 
@@ -46,6 +50,7 @@ class StorePostulanteRequest extends Request
             'pais_nacimiento'=>'required_if:nacionalidad,extranjero',
             'lugar_nacimiento'=>'required_if:nacionalidad,extranjero',
 
+<<<<<<< HEAD
             //Vivienda            'puestoSelect' => 'required|exists:configuracion,id'
             'departamento_vivienda' => 'required|exists:departamento,id',
             'provincia_vivienda' => 'required|exists:provincia,id',
@@ -53,6 +58,8 @@ class StorePostulanteRequest extends Request
             'domicilio'=>'required',
             'referencia_vivienda'=>'required',
 
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
             //educacion
             'colegio_primario'=>'required|max:100|string',
             'colegio_secundario'=>'required|max:100|string',
@@ -64,11 +71,15 @@ class StorePostulanteRequest extends Request
             //Contacto
             'telefono_celular'=>'required|string|max:12',
             'correo'=>'required|email'
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
             
             //'distrito' => 'required | exists:distrito,id',
             //solo pedira que se ingrese si es peruano ya en el store se registrara si el ingresado existe
 
+<<<<<<< HEAD
         ];
     }
 
@@ -91,4 +102,28 @@ class StorePostulanteRequest extends Request
         ];
     }
 
+=======
+        ];
+    }
+
+
+    public function messages()
+    {
+        return [
+            'centro_trabajo.alpha_spaces' => 'El campo centro de trabajo  debe ser solo caracteres',
+            'centro_trabajo.max'=>'El campo centro de trabajo  no puede superar la longitud de 100 caracteres',
+
+            'direccion_laboral.string' => 'El campo direccion laboral debe ser solo caracteres',
+            'direccion_laboral.max'=>'El campo direccion laboral no puede superar la longitud de 80 caracteres',
+            
+            'telefono_celular.required' => 'El campo teléfono celular es obligatorio ',
+            'telefono_celular.string'=>'El campo teléfono celular debe tener formato válido',
+            'telefono_celular.max'=>'El campo teléfono celular no puede ser mayor a 12 dígitos',
+
+            'correo.required' => 'El campo correo es obligatorio',
+            'correo.email'=>'El campo correo debe tener formato válido',
+        ];
+    }
+
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 }

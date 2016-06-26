@@ -79,10 +79,18 @@
 							<ul class="nav nav-pills nav-tabs" role="tablist">
 								<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Paso 1: Datos Básicos</a></li>
 								<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Paso 2: Nacimiento</a></li>
+<<<<<<< HEAD
 								<li role="presentation"><a href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab">Paso 3: Vivienda</a></li>
 								<li role="presentation"><a href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab">Paso 4: Estudio</a></li>
 								<li role="presentation"><a href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab">Paso 5: Trabajo</a></li>
 								<li role="presentation"><a href="#seccion7" aria-controls="seccion7" data-toggle="tab" role="tab">Paso 6: Contactos</a></li> 
+=======
+								<li role="presentation"><a href="#seccion3" aria-controls="seccion3" data-toggle="tab" role="tab">Paso 3: Educacion</a></li>
+								<li role="presentation"><a href="#seccion4" aria-controls="seccion4" data-toggle="tab" role="tab">Paso 4: Empleo</a></li>
+								<li role="presentation"><a href="#seccion5" aria-controls="seccion5" data-toggle="tab" role="tab">Paso 5: Contacto</a></li>
+								<li role="presentation"><a href="#seccion6" aria-controls="seccion6" data-toggle="tab" role="tab">Paso 6: Vivienda</a></li>
+								<!--<li role="presentation"><a href="#seccion6" aria-controls="seccion7" data-toggle="tab" role="tab">Paso 7: Contactos</a></li> -->
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 							</ul>
 						</div>
 
@@ -148,7 +156,11 @@
 												<label for="" class="control-label">Nacionalidad:</label>
 											</div>
 											<div class="col-sm-6 text-left" >
+<<<<<<< HEAD
 													<input checked onchange="seleccionaperuano()" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : '' }}/>peruano&nbsp&nbsp&nbsp
+=======
+													<input checked onchange="seleccionaPeruano()" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : '' }}/>Peruano&nbsp&nbsp&nbsp
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 													<input onchange="seleccionaExtranjero()" type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "extranjero") ? 'checked="true"' : '' }}/>Extranjero
 
 											</div>
@@ -404,7 +416,11 @@
 												<label for="" class="control-label">Educacion Primaria:</label>
 											</div>
 											<div class="col-sm-6">
+<<<<<<< HEAD
 												<input type="text" class="form-control" id="colegio_primario" name="colegio_primario" placeholder="Educacion Primario" style="max-width: 250px" value="{{old('colegio_primario')}}">
+=======
+												<input type="text" class="form-control" id="colegio_primario" name="colegio_primario" placeholder="Educacion Primaria" style="max-width: 250px" value="{{old('colegio_primario')}}">
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 											</div>		
 										</div>
 								</div>
@@ -414,7 +430,11 @@
 												<label for="" class="control-label">Educacion secundaria:</label>
 											</div>
 											<div class="col-sm-6">
+<<<<<<< HEAD
 												<input type="text" class="form-control" id="colegio_secundario" name="colegio_secundario" placeholder="Educacion Secundario" style="max-width: 250px" value="{{old('colegio_secundario')}}">
+=======
+												<input type="text" class="form-control" id="colegio_secundario" name="colegio_secundario" placeholder="Educacion Secundaria" style="max-width: 250px" value="{{old('colegio_secundario')}}">
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 											</div>		
 										</div>
 								</div>
@@ -483,7 +503,11 @@
 							
 							</div>
 
+<<<<<<< HEAD
 							<div role="tabpanel" class="tab-pane" id="seccion7">
+=======
+							<div role="tabpanel" class="tab-pane" id="seccion5">
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 								<br>
 										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
 								<br>
@@ -522,8 +546,11 @@
 										</div>
 								</div>
 								
+<<<<<<< HEAD
 								<hr  width="70%" size="5" noshade>
 								<p style="color:red"><b>El registro de familiares se realizara luego de registrar al postulante. En la vista de edicion</b></p>
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 								<br><br>
 								<div class="form-group required" >
 										<div class="btn-group col-sm-5" ></div>
@@ -537,7 +564,81 @@
 								</div>
 							</div>
 
+<<<<<<< HEAD
 							
+=======
+							<div role="tabpanel" class="tab-pane" id="seccion6">
+								<br>
+										<p align="center"><font color="red">(*) Dato Obligatorio</font> </p>
+								<br>
+
+								<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Lugar de vivienda</label>
+											</div>
+											<div class="col-sm-6">
+													<select class="form-control" id="departamento_vivienda" name="departamento_vivienda" style="max-width: 250px " data-link="{{ url('/provincias_vivienda') }}">
+														<option value="-1" default>--Departamento--</option>
+															@foreach ($departamentos as $depavivienda)      
+											                	<option value="{{$depavivienda->id}}"   >{{$depavivienda->nombre}}</option>
+											                @endforeach
+													</select>
+													
+													<br>
+													<select class="form-control" id="provincia_vivienda" name="provincia_vivienda" style="max-width: 250px " data-link="{{ url('/distritos_vivienda') }}" disabled="true">
+														<option  value="-1" default disab>--Provincia--</option>
+													</select>
+													<br>
+													<select class="form-control" id="distrito_vivienda" name="distrito_vivienda" style="max-width: 250px " disabled="true">
+														<option  value="-1" default>--Distrito--</option>
+													</select>
+											</div>
+
+										</div>
+								</div>
+
+								<div class="form-group required">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Direccion Laboral</label>
+										</div>
+										<div class="col-sm-6">
+											<input type="text" class="form-control" id="searchmap" name="direccion_vivienda" placeholder="Direccion Laboral" style="max-width: 250px" value="{{old('direccion_laboral')}}">
+										</div>		
+									</div>
+								</div>
+
+								<div class="form-group required">
+									<div class="col-sm-6">
+										<div class="col-sm-6 text-left">
+											<label for="" class="control-label">Mapa: </label>
+										</div>
+										<div class="col-sm-6">
+											<div id="map" width="600" height="450" frameborder="0" style="border:0"  allowfullscreen></div>
+<!-- 											<iframe width="600" height="450" frameborder="0" style="border:0"  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&q=Space+Needle,Seattle+WA" allowfullscreen></iframe> -->
+										</div>		
+									</div>
+								</div>								
+
+								<div class="container">
+									
+
+										<div class="form-group">
+											<label for="">Lat</label>
+											<input type="text" class="form-control input-sm" name="lat" id="lat">
+										</div>
+
+										<div class="form-group">
+											<label for="">Lng</label>
+											<input type="text" class="form-control input-sm" name="lng" id="lng">
+										</div>
+
+										<button class="btn btn-sm btn-danger">Save</button>
+
+								</div>      
+							</div> 
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 
 
 						</div>
@@ -567,15 +668,22 @@
 	 -->
 	 
 	<script>
+<<<<<<< HEAD
 	    var script = document.createElement('script');
 	    script.src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&signed_in=true&libraries=places&callback=initMap";
 /*	    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&signed_in=true&callback=initMap";*/
 	    document.getElementsByTagName('head')[0].appendChild(script);
+=======
+    var script = document.createElement('script');
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&signed_in=true&callback=initMap";
+    document.getElementsByTagName('head')[0].appendChild(script);
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 	</script>
 
 	<script>
 
 			function initMap() {
+<<<<<<< HEAD
 				var myLatlng = {lat: -12.089279446409028, lng: -77.02249328165635};
 			 	var mapDiv = document.getElementById("map");
 			 	var map = new google.maps.Map(mapDiv, {
@@ -698,6 +806,20 @@
 				  });
 				}
 
+=======
+			  var mapDiv = document.getElementById("map");
+			  var map = new google.maps.Map(mapDiv, {
+			    zoom: 8,
+			    center: new google.maps.LatLng(-34.397, 150.644)
+			  });
+
+			  // We add a DOM event here to show an alert if the DIV containing the
+			  // map is clicked.
+			  google.maps.event.addDomListener(window, 'load', initMap);
+			  google.maps.event.addDomListener(mapDiv, 'click', function() {
+			    window.alert('Map was clicked!');
+			  });
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 			}
 	</script>
 
@@ -965,7 +1087,11 @@
 	<script>
 		//Script en el caso en que se seleccione el combo peruano
 
+<<<<<<< HEAD
 		function seleccionaperuano() {
+=======
+		function seleccionaPeruano() {
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 	    	document.getElementById('departamento').disabled = false;
 	    	document.getElementById('doc_identidad').disabled = false;
 	    	document.getElementById('direccion_nacimiento').disabled = false;

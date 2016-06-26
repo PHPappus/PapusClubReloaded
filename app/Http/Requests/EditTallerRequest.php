@@ -27,8 +27,13 @@ class EditTallerRequest extends Request
         $rules = [
 
             'nombre' => 'required|max:60|string',
+<<<<<<< HEAD
             'descripcion' =>'|max:200|string',
             'profe' => 'required|max:60|string',
+=======
+            'descripcion' =>'required|max:200|string',
+            'profesor' => 'required|max:60|string',
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
             'vacantes' =>'min:0',
             'fecIniIns' => 'required',
             'fecFinIns' => 'required',

@@ -22,7 +22,10 @@ use papusclub\Http\Requests\StoreMultaxPersonaRequest;
 use papusclub\Http\Requests\EditSocioNacimientoRequest;
 use papusclub\Http\Requests\StoreInvitadoRequest;
 use papusclub\Http\Requests\SaveSocioRequest;
+<<<<<<< HEAD
 use papusclub\Http\Requests\StoreFamiliarSocioRequest;
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 use papusclub\Models\Invitados;
 use papusclub\Models\TipoMembresia;
 use papusclub\Models\TipoFamilia;
@@ -553,6 +556,7 @@ class SocioAdminController extends Controller
         return back();
     }
 
+<<<<<<< HEAD
 
     /*FAMILIAR*/
 
@@ -673,6 +677,8 @@ class SocioAdminController extends Controller
         return view('admin-persona.persona.socio.familiar.detailFamiliarDetalle',compact('familiar','socio','relacion'));        
     }
 
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
     /*TRASPASOS*/
 
     public function indexTraspasos()
@@ -686,6 +692,7 @@ class SocioAdminController extends Controller
         $input = $request->all();
        // var_dump($input);
        // die();
+<<<<<<< HEAD
         
         $persona=Persona::where('doc_identidad','=',$input['dniP'])->orwhere('carnet_extranjeria','=',$input['dniP'])->first();
         $oldpersona = Persona::where('doc_identidad','=',$input['dni'])->orwhere('carnet_extranjeria','=',$input['dni'])->first();
@@ -698,6 +705,13 @@ class SocioAdminController extends Controller
        //     return redirect('traspasos-p')->with('No se encontró al postulante');
         $postulante = Postulante::where('id_postulante','=',$persona->id)->first();
         $oldpostulante = Postulante::where('id_postulante','=',$oldpersona->id)->first();
+=======
+        $persona=Persona::where('doc_identidad','=',$input['dniP'])->orwhere('carnet_extranjeria','=',$input['dniP'])->first();
+     //   if ($postulante->dni == 0)
+       //     return redirect('traspasos-p')->with('No se encontró al postulante');
+        $postulante = Postulante::where('id_postulante','=',$persona->id)->first();
+        $traspaso = Traspaso::where('dni','=',$input['dniP'])->first();
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
         $traspaso->socio->update(['estado' => FALSE]);
         $traspaso->update(['estado'=>FALSE]);
         $socio = new Socio();
@@ -705,12 +719,19 @@ class SocioAdminController extends Controller
         $fecha = Date('now');
         $socio->fecha_ingreso=$fecha;
         $socio->postulante_id = $postulante->id_postulante;
+<<<<<<< HEAD
         $socio->tipo_membresia_id = $oldpostulante->socio->tipo_membresia_id;
+=======
+        $socio->tipo_membresia_id = 1;
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
         $membresia = TipoMembresia::find($socio->tipo_membresia_id);
         $membresia->socio()->save($socio);
 
         $socio->save();
+<<<<<<< HEAD
         $postulante->socio()->save($socio);
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
         $carnet = create_carnet($socio);
 
         return redirect('traspasos-p')->with('stored','Se aprobó el traspaso');

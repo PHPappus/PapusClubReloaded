@@ -51,7 +51,11 @@ class ConfiguracionTableSeeder extends Seeder
 
         Configuracion::insert([ 'valor' => 'Deportivo' , 'grupo' => '4', 'descripcion'=>'tipo de servicio']);
         Configuracion::insert([ 'valor' => 'Ocio' , 'grupo' => '4', 'descripcion'=>'tipo de servicio']);
+<<<<<<< HEAD
         Configuracion::insert([ 'valor' => 'Recreacional' , 'grupo' => '4', 'descripcion'=>'tipo de servicio']);
+=======
+        Configuracion::insert(['valor' => 'Recreacional' , 'grupo' => '4', 'descripcion'=>'tipo de servicio']);
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
         Configuracion::insert([ 'valor' => 'A Bungalow' , 'grupo' => '4', 'descripcion'=>'tipo de servicio']);
 
 
@@ -65,11 +69,14 @@ class ConfiguracionTableSeeder extends Seeder
 
         Configuracion::insert(['valor'=>'15.50','grupo'=>'12','descripcion'=>'Precio, en soles, de la entrada en las sedes']);
 
+<<<<<<< HEAD
         Configuracion::insert(['valor'=>'Solicitud Pendiente','grupo'=>'13','descripcion'=>'estado solicitud']);
         Configuracion::insert(['valor'=>'Producto Recibido','grupo'=>'13','descripcion'=>'estado solicitud']);
         Configuracion::insert(['valor'=>'Solicitud Anulada','grupo'=>'13','descripcion'=>'estado solicitud']);        
         Configuracion::insert(['valor'=>'Servicio Realizado','grupo'=>'13','descripcion'=>'estado solicitud']);
         Configuracion::insert(['valor'=>'Producto','grupo'=>'14','descripcion'=>'tipo solicitud']);
         Configuracion::insert(['valor'=>'Servicio','grupo'=>'14','descripcion'=>'tipo solicitud']);
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
     }
 }

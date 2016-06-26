@@ -236,6 +236,7 @@
 	<script>
 		var nowDate = new Date();
 		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+<<<<<<< HEAD
 		var deadline=new Date(today);
 		deadline.setDate(deadline.getDate() + 25);
 		//var js_var = "<?php echo $fechaIniValue; ?>";
@@ -244,6 +245,8 @@
         //var other=new Date(js_var);
         //var other2=new Date(js_var2);
         //alert(other);
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 	</script>
 
 	<!-- Para Fechas INICIO -->
@@ -254,7 +257,10 @@
 		        language: "es",
 		        autoclose: true,
 		        startDate: today,
+<<<<<<< HEAD
 		        endDate: deadline,
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 			});
 		});
 	</script>

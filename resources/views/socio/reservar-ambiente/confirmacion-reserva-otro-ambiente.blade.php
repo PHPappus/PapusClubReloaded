@@ -65,7 +65,11 @@
 		  	<div class="form-group ">
 		    	<label for="ubicacionInput" class="col-sm-4 control-label">Descripción</label>
 		    	<div class="col-sm-5">
+<<<<<<< HEAD
 		      		<input type="text" class="form-control" id="ubicacionInput" name="ubicacion" value="{{$ambiente->descripcion}}" readonly>
+=======
+		      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" value="{{$ambiente->descripcion}}" readonly>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 		    	</div>
 		  	</div>
 		  	<div class="form-group">
@@ -73,6 +77,12 @@
 			    <div class="col-sm-5">
 				  	<div class="input-group">
 			   		<input class="datepicker form-control"  type="text"  id="fecha_inicio_reserva" name="fecha_inicio_reserva" placeholder="Fecha Inicio" value="{{old('fecha_inicio')}}" style="max-width: 250px" >
+<<<<<<< HEAD
+=======
+			   		<span class="input-group-addon">-</span>
+			   		<input class="datepicker form-control" type="text" id="fecha_fin_reserva" name="fecha_fin_reserva" placeholder="Fecha Fin" value="{{old('fecha_fin')}}" style="max-width: 250px">
+
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 			   	 	</div>
 		    	</div>	
 			</div>
@@ -90,7 +100,11 @@
 			<div class="form-group ">
 		    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
 		    	<div class="col-sm-5">
+<<<<<<< HEAD
 		      		<input type="text" class="form-control" id="precioInput" onkeypress="return inputLimiter(event,'Numbers')" name="ubicacion" value="{{$ambiente->precio($tipo_persona, $ambiente->tarifas)}}" readonly>
+=======
+		      		<input type="text" class="form-control" id="precioInput" onkeypress="return inputLimiter(event,'Numbers')" name="precio" value="{{$ambiente->precio($tipo_persona, $ambiente->tarifas)}}" readonly>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 		    	</div>
 		  	</div>  
 
@@ -98,7 +112,7 @@
 			   	<label for="tipoComprobanteInput" class="col-sm-4 control-label">Tipo de Comprobante</label>
 			   	<div class="col-sm-5">
 			    	<select class="form-control" id="tipo_comprobante" name="tipo_comprobante">
-						<option value="-1" selected >Seleccionar tipo...</option>
+						<option value="" selected >Seleccionar tipo...</option>
 						@foreach($tipo_comprobantes as $tipo_comprobante)
 						<option value="{{$tipo_comprobante->valor}}" >{{$tipo_comprobante->valor}}</option>
 						@endforeach						
@@ -142,12 +156,15 @@
 <script>
 		var nowDate = new Date();
 		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+<<<<<<< HEAD
 		var js_var = "<?php echo $fechaIni; ?>";
 		var js_var2 = "<?php echo $fechaFin; ?>";
         //alert(js_var);
         var other=new Date(js_var);
         var other2=new Date(js_var2);
         //alert(other);
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 	</script>
 	<script>
 		$(function(){
@@ -155,8 +172,12 @@
 				format: "dd/mm/yyyy",
 		        language: "es",
 		        autoclose: true,
+<<<<<<< HEAD
 		        startDate: other,
 		        endDate: other2,
+=======
+		        startDate: today,
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 			});
 		});
 	</script>

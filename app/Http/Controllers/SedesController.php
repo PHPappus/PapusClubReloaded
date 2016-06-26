@@ -121,16 +121,22 @@ class SedesController extends Controller
         $sede->direccion = $input['direccion'];
         $sede->referencia = $input['referencia'];
         $sede->nombre_contacto = $input['nombre_contacto'];
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
         /*Modificando capacidad*/
         $nueva_capacidad = $input['capacidad_maxima'];
         $ingresantes = $sede->capacidad_maxima - $sede->maximo_actual; 
         $sede->maximo_actual=$nueva_capacidad-$ingresantes;
         $sede->capacidad_maxima=$nueva_capacidad;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
         $sede->capacidad_socio = $input['capacidad_socio'];
         $sede->save();
         return redirect('sedes/index');

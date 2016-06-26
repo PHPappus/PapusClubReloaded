@@ -20,9 +20,13 @@
 		        return true;
 		    }
 		}
+<<<<<<< HEAD
 </script>
 
 
+=======
+  	</script>
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 <!--Cabecera- Se separará espacio para el input de busqueda antes de la cabecera de menu-->
 <header class="header">
 		<div class="content clearfix">

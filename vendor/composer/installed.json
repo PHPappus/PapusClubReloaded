@@ -2810,7 +2810,10 @@
     },
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
         "name": "sebastian/exporter",
         "version": "1.2.2",
         "version_normalized": "1.2.2.0",
