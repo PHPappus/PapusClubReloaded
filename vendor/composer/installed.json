@@ -3196,6 +3196,57 @@
         "homepage": "https://symfony.com"
     },
     {
+        "name": "orangehill/iseed",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/orangehill/iseed.git",
+            "reference": "0747fde83c8b957cbf2ada05d5673f1054e166fa"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/orangehill/iseed/zipball/0747fde83c8b957cbf2ada05d5673f1054e166fa",
+            "reference": "0747fde83c8b957cbf2ada05d5673f1054e166fa",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "illuminate/filesystem": "5.x",
+            "mockery/mockery": "dev-master"
+        },
+        "time": "2016-06-06 14:31:49",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Orangehill\\Iseed": "src/"
+            },
+            "classmap": [
+                "src/Orangehill/Iseed/Exceptions.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-2-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Tihomir Opacic",
+                "email": "tihomir.opacic@orangehilldev.com"
+            }
+        ],
+        "description": "Generate a new Laravel database seed file based on data from the existing database table.",
+        "keywords": [
+            "artisan",
+            "generators",
+            "laravel",
+            "seed"
+        ]
+    },
+    {
         "name": "guzzlehttp/streams",
         "version": "2.1.0",
         "version_normalized": "2.1.0.0",
@@ -3315,57 +3366,6 @@
             "http client",
             "rest",
             "web service"
-        ]
-    },
-    {
-        "name": "orangehill/iseed",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/orangehill/iseed.git",
-            "reference": "0747fde83c8b957cbf2ada05d5673f1054e166fa"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/orangehill/iseed/zipball/0747fde83c8b957cbf2ada05d5673f1054e166fa",
-            "reference": "0747fde83c8b957cbf2ada05d5673f1054e166fa",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.4.0"
-        },
-        "require-dev": {
-            "illuminate/filesystem": "5.x",
-            "mockery/mockery": "dev-master"
-        },
-        "time": "2016-06-06 14:31:49",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Orangehill\\Iseed": "src/"
-            },
-            "classmap": [
-                "src/Orangehill/Iseed/Exceptions.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-2-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Tihomir Opacic",
-                "email": "tihomir.opacic@orangehilldev.com"
-            }
-        ],
-        "description": "Generate a new Laravel database seed file based on data from the existing database table.",
-        "keywords": [
-            "artisan",
-            "generators",
-            "laravel",
-            "seed"
         ]
     },
     {

@@ -81,5 +81,12 @@ class ProductoxFacturacionTableSeeder extends Seeder
             'cantidad' => '1', 
             'subtotal' => '4.50'
             ]);
+
+        ProductoxFacturacion::insert([            
+            'producto_id' => '3', 
+            'facturacion_id' => '4',
+            'cantidad' => '2', 
+            'subtotal' => '50'
+            ]);
     }
 }
