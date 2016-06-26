@@ -30,44 +30,27 @@
 		<br/>
 		<br/>
 		<form class="form-horizontal" id="formulario">
-			<div class="form-group">
-				 	<label for="" class="col-sm-3 control-label">Responsable</label>
-				    <div class="col-sm-5">
-				    @foreach($responsable as $resp)
-					   	<div class="input-group">
-					   		<label for="" class="col-sm-4 control-label">{{$resp->name}}</label>			       		
-				   	   	</div>
-				   	@endforeach
-			    	</div>	
-			</div>
-			<div class="form-group">
-				 	<label for="" class="col-sm-3 control-label">Sede</label>
-				    <div class="col-sm-5">
-					   	<div class="input-group">
-					   		<label for="" class="col-sm-4 control-label">{{$sedes->nombre}}</label>			       		
-				   	   	</div>
-				       	
-			    	</div>	
-			</div>
-			<div class="form-group">
-				 	<label for="" class="col-sm-3 control-label">Mes</label>
-				    <div class="col-sm-5">
-					   	<div class="input-group">
-					   		<label for="" class="col-sm-4 control-label">{{$mes}}</label>			       		
-				   	   	</div>
-				       	
-			    	</div>	
-			</div>
-			<div class="form-group">
-				 	<label for="" class="col-sm-3 control-label">Año</label>
-				    <div class="col-sm-5">
-					   	<div class="input-group">
-					   		<label for="" class="col-sm-4 control-label">{{$year}}</label>			       		
-				   	   	</div>
-				       	
-			    	</div>	
-			</div>
-			
+			<p> <b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Responsable &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        
+			@foreach($responsable as $resp)
+				{{$resp->name}}	   					       		
+			@endforeach
+			</b> </p>	
+			<br/>
+
+			<p> <b>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sede &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        
+			{{$sedes->nombre}}
+			</b> </p>
+			<br/>
+
+			<p> <b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      
+			{{$mes}}
+			</b> </p>
+
+			<br/>
+			<p> <b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Año &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       
+			{{$year}}
+			</b> </p>
+
 			
 		</form>
 		
@@ -81,6 +64,7 @@
 			<thead class="active">
 				<tr>
 				<th><DIV ALIGN=center>ID BUNGALOW</th>
+				<th><DIV ALIGN=center>NOMBRE BUNGALOW</th>
 				<th><DIV ALIGN=center>N° DÍAS USADOS</th>
 				<th><DIV ALIGN=center>ID SOCIO</th>
 				<th><DIV ALIGN=center>MONTO (S/.)</th>
