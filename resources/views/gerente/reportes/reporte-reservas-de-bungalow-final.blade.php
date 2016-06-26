@@ -24,7 +24,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 text-center">
-				<p class="lead"><strong>R E P O R T E : &nbsp;&nbsp; I N V I T A D O S &nbsp;&nbsp; P O R &nbsp;&nbsp; S E D E</strong></p>
+				<p class="lead"><strong>R E P O R T E : CANTIDAD &nbsp;&nbsp; DE &nbsp;&nbsp; RESERVAS &nbsp;&nbsp; MENSUALES &nbsp;&nbsp; POR &nbsp;&nbsp; BUNGALOW </strong></p>
 			</div>
 		</div>
 		<br/>
@@ -33,16 +33,18 @@
 			<div class="form-group">
 				 	<label for="" class="col-sm-3 control-label">Responsable</label>
 				    <div class="col-sm-5">
+				    @foreach($responsable as $resp)
 					   	<div class="input-group">
-					   		<label for="" class="col-sm-4 control-label">Marco Polo</label>			       		
+					   		<label for="" class="col-sm-4 control-label">{{$resp->name}}</label>			       		
 				   	   	</div>
+				   	@endforeach
 			    	</div>	
 			</div>
 			<div class="form-group">
 				 	<label for="" class="col-sm-3 control-label">Sede</label>
 				    <div class="col-sm-5">
 					   	<div class="input-group">
-					   		<label for="" class="col-sm-4 control-label">Callao</label>			       		
+					   		<label for="" class="col-sm-4 control-label">{{$sedes->nombre}}</label>			       		
 				   	   	</div>
 				       	
 			    	</div>	
@@ -51,7 +53,7 @@
 				 	<label for="" class="col-sm-3 control-label">Mes</label>
 				    <div class="col-sm-5">
 					   	<div class="input-group">
-					   		<label for="" class="col-sm-4 control-label">Junio</label>			       		
+					   		<label for="" class="col-sm-4 control-label">{{$mes}}</label>			       		
 				   	   	</div>
 				       	
 			    	</div>	
@@ -60,7 +62,7 @@
 				 	<label for="" class="col-sm-3 control-label">Año</label>
 				    <div class="col-sm-5">
 					   	<div class="input-group">
-					   		<label for="" class="col-sm-4 control-label">2015</label>			       		
+					   		<label for="" class="col-sm-4 control-label">{{$year}}</label>			       		
 				   	   	</div>
 				       	
 			    	</div>	
@@ -85,19 +87,19 @@
 				</tr>
 				</thead>
 				<tbody>
-					@foreach($sedes as $sede)						
+					@foreach($reservas as $reserva)						
 			    	<tr>
-		    		<td>00001</td>
-					<td>5</td>
-					<td>002</td>
-					<td>5000</td>
+		    		<td>{{$reserva->ambiente->id}}</td>
+					<td>{{array_pop($valoresD)}}</td>
+					<td>{{array_pop($valoresS)}}</td>
+					<td>{{array_pop($valoresP)}}</td>
 					</tr>
 					@endforeach
 					<tr>
 						<td><b>TOTAL</b></td>
-						<td><b>15</b></td>
+						<td><b>{{$totalDias}}</b></td>
 						<td><b>TOTAL</b></td>
-						<td>500</td>								
+						<td>{{$totalDeuda}}</td>								
 				    </tr>
 				</tbody>
 		</table>		
