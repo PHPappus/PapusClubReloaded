@@ -126,5 +126,8 @@ class Persona extends Model
      public function ingresoproducto(){
         return $this->hasMany('papusclub\Models\IngresoProducto');
     }
+    public function ingresos(){
+        return $this->hasMany('papusclub\Models\HistoricoIngreso','id');
+    }
     
 }

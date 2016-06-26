@@ -34,4 +34,7 @@ class Sede extends Model
     public function talleres(){
         return $this->hasMany(Taller::class);
     }
+    public function ingresos(){
+        return $this->hasMany('papusclub\Models\HistoricoIngreso','id');
+    }
 }
