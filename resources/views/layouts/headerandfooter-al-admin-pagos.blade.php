@@ -32,8 +32,16 @@
             <a href="{!!URL('/pagos/pago-seleccionar-socio/')!!}" class="dropdown-toggle btn-lg"  role="button">
               Pagos
             </a>
-          </li>
+          </li>         
         </ul>
+        <!--Ingresos al club-->
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="{!!URL('/ingreso/busqueda')!!}" class="dropdown-toggle btn-lg"  role="button">
+              Ingresos al Club
+            </a>
+          </li>          
+        </ul>        
 
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">

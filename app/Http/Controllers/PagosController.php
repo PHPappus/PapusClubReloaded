@@ -9,8 +9,15 @@ use papusclub\Models\Socio;
 use papusclub\Models\Facturacion;
 use papusclub\Models\Configuracion;
 use papusclub\Models\Persona;
+use papusclub\Models\Sede;
 use Auth;
 use papusclub\User;
+use Session;
+use Redirect;
+use View;
+
+use papusclub\Http\Requests\BuscarPersonaRequest;
+use papusclub\Http\Requests\RegistrarPagoIngresoRequest;
 
 class PagosController extends Controller
 {
@@ -90,5 +97,110 @@ class PagosController extends Controller
     {
         $facturacion = Facturacion::find($id);
         return view('socio.pagos.detail-pago',compact('facturacion'));
+    }
+
+    public function buscarpersona()
+    {
+        $sedes = Sede::all();
+        return view('admin-pagos.ingreso.busqueda',compact('sedes'));
+    }
+
+    public function resultadopersona(BuscarPersonaRequest $request)
+    {
+        $input = $request->all();
+
+        $documento = $input['documento'];
+        $numerodoc=$input['numerodoc'];
+
+        $persona=null;
+        if($documento == 'DNI')
+        {
+            $match = ['doc_identidad'=>$numerodoc];
+            $persona = Persona::where($match)->first();
+        }
+        else
+        {
+            $match = ['carnet_extranjeria'=>$numerodoc];
+            $persona = Persona::where($match)->first();
+        }
+
+        if($persona==null)
+        {
+            Session::flash('resultado','noencontrado');
+        }
+        else
+        {
+            Session::flash('resultado','encontrado');
+        }
+
+        $tipopagos = Configuracion::where('grupo','=','8')->get();
+        $comprobantes = Configuracion::where('grupo','=','10')->get();
+
+        //return Redirect::action('PagosController@resultadoPago', array('persona' => $persona,'tipopagos'=>$tipopagos,'comprobantes'=>$comprobantes));
+        return view('admin-pagos.ingreso.registrarPago',compact('persona','tipopagos','comprobantes'));
+        //return Redirect::to('resultado-busqueda-persona')->with('persona',$persona)->with('tipopagos',$tipopagos)->with('comprobantes',$comprobantes);       
+    }
+
+    /*public function resultadomostrar()
+    {
+        $persona = Session::get('persona');
+        $tipopagos = Session::get('tipopagos');
+        $comprobantes = Session::get('comprobantes');
+
+        return view('admin-pagos.ingreso.registrarPago',compact('persona','tipopagos','comprobantes'));
+    }*/
+
+    public function registrarPagoIngreso(RegistrarPagoIngresoRequest $request)
+    {
+        $input = $request->all();
+
+        $persona = null;
+        if(isset($input['dni']))
+        {
+            $numerodoc=$input['dni'];
+            $match = ['doc_identidad'=>$numerodoc];
+            $persona = Persona::where($match)->first();
+        }
+        else
+        {
+            $numerodoc=$input['carnet'];
+            $match = ['carnet_extranjeria'=>$numerodoc];
+            $persona = Persona::where($match)->first();
+        }
+
+        if($persona!=null)
+        {
+            $monto = $input['monto'];
+            $tipo_pago_id = $input['tipo_pago_id'];
+            $comprobante=$input['comprobante'];
+            $numero = $input['numero'];
+            $descripcion = $input['descripcion'];
+
+            /*Buscando en la tabla configuraciones*/
+            $tipopago = Configuracion::find($tipo_pago_id);
+            $tipo=$tipopago->valor;
+
+            $comprobanteObject = Configuracion::find($comprobante);
+            $comprobante=$comprobanteObject->valor;
+
+            $estado = 'Pagado';
+
+            /*Registrando la factura*/
+            $facturacion = new Facturacion();
+            $facturacion->persona_id=$persona->id;
+            $facturacion->total=$monto;
+            $facturacion->tipo_pago=$tipo;
+            $facturacion->tipo_comprobante=$comprobante;
+            $facturacion->numero_pago=$numero;
+            $facturacion->descripcion=$descripcion;
+            $facturacion->estado=$estado;
+            $facturacion->save();
+
+            return redirect('/ingreso/busqueda')->with('stored', 'Se registró el pago de manera exitosa.');
+        }
+        else
+        {
+            return redirect('/ingreso/busqueda')->with('stored', 'No se pudo registrar el pago debido a un error inesperado, vuelva a intentar nuevamente.');
+        }
     }
 }
