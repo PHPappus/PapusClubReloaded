@@ -193,6 +193,19 @@
 											</div>
 										</div>
 									</div>
+									<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">tipo VIP:</label>
+											</div>
+											<div class="col-sm-6">
+												<select class="form-control" id="tipo_vip" name="tipo_vip" style="width: 250px " >
+														<option value="noVip"  @if (old('tipo_vip') == "noVip") selected="selected" @endif default>NORMAL</1option>
+														<option value="esVip" @if (old('tipo_vip') == "esVip") selected="selected" @endif >VIP</1option>
+												</select>
+											</div>
+										</div>
+									</div>
 
 								</form>
 
