@@ -143,6 +143,7 @@ class PersonaTableSeeder extends Seeder
             'correo'=>'tian.olivera@gmail.com',
             'fecha_nacimiento'=>'1994-07-24',
             'id_tipo_persona'=>3]);
+        
         Persona::create([
             'nacionalidad'=>'peruano',
             'doc_identidad'=>'07755200',
