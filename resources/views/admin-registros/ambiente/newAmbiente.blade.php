@@ -130,11 +130,20 @@
 										<td align="center">{{$tipoPersona->descripcion}}</td>
 									@endif
 									<td align="center">  S/.</td>
+									@if($tipoPersona->descripcion == 'Vip' || $tipoPersona->descripcion == 'vip')
 									<td align="center"> 
-										<div align="center">
-								      		<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'DoubleFormat')"   class="form-control" id="{{$tipoPersona->descripcion}}Input" name="{{$tipoPersona->descripcion}}" placeholder="Monto" maxlength="6" >
+										<div align="center">											
+								      			<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'DoubleFormat')"   class="form-control" id="{{$tipoPersona->descripcion}}Input" name="{{$tipoPersona->descripcion}}" placeholder="Monto" maxlength="6" value="0" readonly >								      		
 								    	</div>
-								</td>							        
+									</td>	
+									@else	
+									<td align="center"> 
+										<div align="center">											
+								      			<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'DoubleFormat')"   class="form-control" id="{{$tipoPersona->descripcion}}Input" name="{{$tipoPersona->descripcion}}" placeholder="Monto" maxlength="6" >									      	
+								    	</div>
+									</td>					        
+
+									@endif
 								</tr>
 							@endforeach
 					</tbody>													

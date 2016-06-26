@@ -105,11 +105,20 @@
 										<td align="center">{{$tarifa->tipo_persona->descripcion}}</td>
 									@endif									
 									<td align="center">  S/.</td>
+									@if($tarifa->tipo_persona->descripcion == 'Vip' || $tarifa->tipo_persona->descripcion == 'vip')
+									<td align="center"> 
+										<div align="center">
+								      		<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'DoubleFormat')"   class="form-control" id="{{$tarifa->tipo_persona->descripcion}}Input" name="{{$tarifa->tipo_persona->descripcion}}" value="{{$tarifa->precio}}" placeholder="Monto" maxlength="6" readonly>
+								    	</div>
+									</td>	
+									@else
 									<td align="center"> 
 										<div align="center">
 								      		<input type="text" style="text-align:center;" onkeypress="return inputLimiter(event,'DoubleFormat')"   class="form-control" id="{{$tarifa->tipo_persona->descripcion}}Input" name="{{$tarifa->tipo_persona->descripcion}}" value="{{$tarifa->precio}}" placeholder="Monto" maxlength="6" >
 								    	</div>
-								</td>							        
+									</td>	
+
+									@endif						        
 								</tr>
 							@endforeach
 					</tbody>													

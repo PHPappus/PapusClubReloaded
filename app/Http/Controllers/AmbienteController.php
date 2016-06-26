@@ -59,7 +59,10 @@ class AmbienteController extends Controller
             $tarifa = new TarifaAmbientexTipoPersona();
             $tarifa->ambiente_id = $ambiente_id;
             $tarifa->tipo_persona_id = $tipoPersona->id;
-            $tarifa->precio = $input[$tipoPersona->descripcion];
+            if($tipoPersona->descripcion == "vip" || $tipoPersona->descripcion == "Vip")
+                $tarifa->precio = 0;
+            else    
+                $tarifa->precio = $input[$tipoPersona->descripcion];
             $tarifa->save();
         }
 
@@ -109,7 +112,7 @@ class AmbienteController extends Controller
 
 
         $tipoPersonas = TipoPersona::all();
-        foreach ($tipoPersonas as $tipoPersona) {
+        foreach ($tipoPersonas as $tipoPersona) {                
                 $tarifa = new TarifaAmbientexTipoPersona();
                 $tarifa->ambiente_id = $id;
                 $tarifa->tipo_persona_id = $tipoPersona->id;
