@@ -21,7 +21,8 @@ class Taller extends Model
      'fecha_fin',
      'cantidad_sesiones'
     ];
-
+    protected $dates = ['deleted_at'];
+    
     public function users(){
         return $this->belongsToMany('App\User')->withPivot('precio');
     }
@@ -47,4 +48,20 @@ class Taller extends Model
     {
         return $this->belongsTo(Reserva::class,'reserva_id');
     }
+
+    public function precio($tipo_persona, $tarifas)
+    {
+        foreach ($tarifas as $tarifa) {
+            if($tarifa->tipo_persona_id == $tipo_persona)
+                return $tarifa->precio;
+        }
+        return 0;
+    }
+
+
+    public function tarifas()
+    {
+        return $this->hasMany('papusclub\Models\TarifaTaller');
+    }
+
 }
