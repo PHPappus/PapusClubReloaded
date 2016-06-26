@@ -124,10 +124,18 @@ class InscriptionActividadController extends Controller
 
     public function misinscripciones()
     {
+        /* dd($actividades);*/
+        /*Datos de inscripciones del usuario Socio*/
         $usuario  = Auth::user();
         $actividades = $usuario->persona->actividades;
-       /* dd($actividades);*/
-        return view('socio.actividades.inscripciones', compact('actividades'));
+        /*Datos de inscripciones de los familiares del usuario Socio*/
+        $persona=$usuario->persona;
+        $postulante=Postulante::find($persona->id); 
+        $familiares=$postulante->familiarxpostulante;
+        $actividadesxfamiliar;
+        /*array_push(*/
+
+        return view('socio.actividades.inscripciones', compact('actividades','familiares'));
     }
 
     public function makeInscriptionFamiliarToPersona(MakeInscriptionToPersonaRequest $request, $id)
@@ -151,8 +159,8 @@ class InscriptionActividadController extends Controller
                 
                 if(!$flag){
                     $actividades=Actividad::all();
-                    Session::flash('message-error','Ya se encuentra inscrito en esta actividad');
-                    return view('socio.actividades.inscripciones',compact('sedes'),compact('actividades'));
+                    Session::flash('message-error',"El familiar $persona->nombre ya se encuentra inscrito en esta actividad");
+                    return Redirect("/inscripcion-actividad/".$id."/confirmacion-inscripcion-actividades-to-familiar");
                 }
                 else{
                     DB::beginTransaction();
@@ -205,7 +213,7 @@ class InscriptionActividadController extends Controller
             }
             else{
                 Session::flash('message-error','Contraseña incorrecta');
-                return Redirect("/inscripcion-actividad/".$id."/confirmacion-inscripcion-actividades");
+                return Redirect("/inscripcion-actividad/".$id."/confirmacion-inscripcion-actividades-to-familiar");
             }
         }
     }   

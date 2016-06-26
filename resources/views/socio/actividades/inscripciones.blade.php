@@ -97,18 +97,20 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($actividades as $actividad)
-						<tr>
-							<td>Pepito</td>
-							<td>{{ $actividad->ambiente->sede->nombre }}</td>
-				    		<td>{{ $actividad->ambiente->nombre }}</td>
-							<td>{{ $actividad->nombre }}</td>
-	 						<td>{{ $actividad->capacidad_maxima }}</td>
-	 						<td>{{ $actividad->a_realizarse_en}}</td>
-							<td>
-								<a class="btn btn-info" data-href="{{url('/inscripcion-actividad/'.$actividad->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
-							</td>
-						</tr>
+						@foreach($familiares as $familiar)
+							@foreach($familiar->actividades as $actividad_familiar)
+							<tr>
+								<td>{{ $familiar->nombre }}</td>
+								<td>{{ $actividad_familiar->ambiente->sede->nombre }}</td>
+					    		<td>{{ $actividad_familiar->ambiente->nombre }}</td>
+								<td>{{ $actividad_familiar->nombre }}</td>
+		 						<td>{{ $actividad_familiar->capacidad_maxima }}</td>
+		 						<td>{{ $actividad_familiar->a_realizarse_en}}</td>
+								<td>
+									<a class="btn btn-info" data-href="{{url('/inscripcion-actividad/'.$actividad_familiar->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+								</td>
+							</tr>
+							@endforeach
 						@endforeach
 					</tbody>
 				</table>
