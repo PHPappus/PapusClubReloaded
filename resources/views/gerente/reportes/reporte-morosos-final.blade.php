@@ -17,24 +17,19 @@
 
 </head>
 <body>
-<<<<<<< HEAD
-=======
 
->>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 	<br/>
 	<br/>
 	<br/>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 text-center">
-<<<<<<< HEAD
 				<p class="lead"><strong>R E P O R T E : &nbsp;&nbsp; NÚMERO  &nbsp;&nbsp; DE &nbsp;&nbsp; SOCIOS &nbsp;&nbsp; MOROSOS</strong></p>
 			</div>
 
-=======
+
 				<p class="lead"><strong>R E P O R T E : &nbsp;&nbsp; I N V I T A D O S &nbsp;&nbsp; P O R &nbsp;&nbsp; S E D E</strong></p>
 			</div>
->>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 		</div>
 		<br/>
 		<br/>
@@ -42,17 +37,14 @@
 			<div class="form-group">
 				 	<label for="" class="col-sm-3 control-label">Responsable</label>
 				    <div class="col-sm-5">
-<<<<<<< HEAD
 				    @foreach($responsable as $resp)
 					   	<div class="input-group">
 					   		<label for="" class="col-sm-4 control-label">{{$resp->name}}</label>			       		
 				   	   	</div>
 				   	@endforeach
-=======
 					   	<div class="input-group">
 					   		<label for="" class="col-sm-4 control-label">Marco Polo</label>			       		
 				   	   	</div>
->>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 			    	</div>	
 			</div>
 
@@ -60,15 +52,13 @@
 			 	<label for="" class="col-sm-3 control-label ">Fecha Consultada</label>
 			    <div class="col-sm-5">				  	
 			   	 	<div class="input-group">
-<<<<<<< HEAD
 			   		<label for="fechaInput" class="col-sm-4 control-label"> {{ $fechaIni->toDateString() }}</label>
 			   		<label for="fechaInput" class="col-sm-4 control-label"> -  </label>
 			   		<label for="fechaInput" class="col-sm-4 control-label"> {{ $fechaFin->toDateString() }}</label>
-=======
+
 			   		<label for="fechaInput" class="col-sm-4 control-label"> dd/mm/aaaa </label>
 			   		<label for="fechaInput" class="col-sm-4 control-label"> -  </label>
 			   		<label for="fechaInput" class="col-sm-4 control-label"> dd/mm/aaaa </label>
->>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 					</div>			   		
 		    	</div>	
 			</div>
@@ -76,16 +66,29 @@
 				 	<label for="" class="col-sm-3 control-label">Fecha actual</label>
 				    <div class="col-sm-5">
 					   	<div class="input-group">
-<<<<<<< HEAD
 					   		<label for="" class="col-sm-4 control-label">{{ $fechaAct->toDateString() }}</label>			       		
-=======
+
 					   		<label for="" class="col-sm-4 control-label">dd/mm/aaaa</label>			       		
->>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 				   	   	</div>
 				       	
 			    	</div>	
 			</div>
 			
+
+
+			<p> <b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Responsable &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        
+			@foreach($responsable as $resp)
+				{{$resp->name}}	   					       		
+			@endforeach
+			</b> </p>	
+			<br/>
+
+			<p> <b>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fecha Consultada &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $fechaIni->toDateString() }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $fechaFin->toDateString() }}
+			</b> </p>
+			<br/>
+
+			<p> <b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fecha Actual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $fechaAct->toDateString() }}
+			</b> </p>
 			
 		</form>
 		
@@ -104,30 +107,26 @@
 				</tr>
 				</thead>
 				<tbody>
-<<<<<<< HEAD
 					@foreach($socios as $socio)						
 			    	<tr>
 		    		<td>{{ $socio->postulante->persona->id }}</td>
 					<td>{{ $socio->postulante->persona->nombre }}</td>
 				    <td>{{array_pop($valores)}}</td>
 				
-=======
 					@foreach($sedes as $sede)						
 			    	<tr>
 		    		<td>{{ $sede->nombre }}</td>
 					<td>{{ $sede->nombre }}</td>
 					<td> 500 </td>
->>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 					</tr>
 					@endforeach
 					<tr>
 						<td><b></b></td>
 						<td><b>TOTAL</b></td>
-<<<<<<< HEAD
+
 						<td> {{$totalDeuda}}</td>								
-=======
+
 						<td> 5000</td>								
->>>>>>> 6142a4c7147fe19efa4cd28a24db990e10bd63ee
 				    </tr>
 				</tbody>
 		</table>		
