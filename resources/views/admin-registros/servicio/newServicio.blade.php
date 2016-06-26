@@ -22,7 +22,7 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>REGISTRAR SERVICIO ADICIONAL</strong>
+					<strong>REGISTRAR SERVICIO</strong>
 			</div>		
 		</div>
 		<div class="container">
@@ -71,48 +71,12 @@
 			      			 <option  value=""  disabled selected hidden >Elige una opción</option>
 			      					@foreach($values as $value)
 				 					<option value="{{$value->id}}"> {{$value->valor}} </option>  
-									@endforeach							
-    						
+									@endforeach							    						
     						</select>					
 			    	</div>			  
 			  	</div>	  
-
-				<!--div class="form-group required">
-			    	<label for="nombreInput" class="col-sm-4 control-label">Postulante</label>
-			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="nombreInput" name="postulante" placeholder="postulante" >
-			    	</div>
-			  	</div-->
-
-	
-			  	<!--div class="form-group required">
-			  	<?php 
-					//echo Form::select('id', $sedes_nombres);
-					//echo Form::select('nombre', $sedes_ids,null, //['class' => 'form-control']);
-				 ?>
-				 </div-->	  
-
-
-				 <!--div class="form-group required">
-			    	<label for="tipo_servicioInput" class="col-sm-4 control-label">Sede</label>
-			    	<div class="col-sm-5">
-			      			<select class="form-control" name="id_sede" 
-			      			placeholder="Elija Tipo Servicio" > 
-			      			 <option value="" disabled selected hidden>Elige una opción</option>
-	      						@foreach($sedes_todas as $sedeXD)
-				 				<option value="{{$sedeXD->id}}"> {{$sedeXD->nombre}} </option>  
-				 				 @endforeach							
-    						</select>					
-			    	</div>			  
-			  	</div-->	  
-
-
-			  	
-
-
-				 
-		 	
 	  	    </br>
+
 			<style>  				
   				#myTable {
     					    margin: 0 auto;  				
@@ -142,35 +106,6 @@
 			</table>
 			</div>
 			
-
-				<!--p>	Este es eñ cpdgop que casi funca xdddddddddddddd </p-->
-				<!--div class="form-group required" align="right">
-						<div class="col-sm-4" align="center">
-						<table class="table table-bordered table-hover text-center display" id="example">
-									<thead class="active">
-										<tr>
-											<th><DIV ALIGN=center>SEDE</th>
-											<th><DIV ALIGN=center>NOMBRE</th>
-										</tr>
-									</thead>
-									<tbody>
-											@foreach($tiposPersonas as $tipoPersona)			
-								    			<tr>
-								    				<td></td>
-													<td></td>									    
-												</tr>
-											@endforeach
-									</tbody>					
-														
-							
-						</table>		
-						</div>
-				</div-->
-			
-
-
-
-
 			  	</br>
 			  	</br>
 				<div class="btn-inline">

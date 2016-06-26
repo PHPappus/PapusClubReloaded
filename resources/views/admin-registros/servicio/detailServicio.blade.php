@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>DETALLE DE SERVICIO EXTRA</title>
+	<title>DETALLE DE SERVICIO</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +22,7 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>DETALLE DE SERVICIO EXTRA</strong>
+					<strong>DETALLE DE SERVICIO</strong>
 			</div>		
 		</div>
 

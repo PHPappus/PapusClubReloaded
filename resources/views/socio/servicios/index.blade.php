@@ -1,7 +1,8 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Talleres Papus Club</title>
+	<title>Servicios Papus Club Baia Baia</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,18 +30,26 @@
 				<div class="col-sm-3">
 					<ol class="breadcrumb" style="background:none;">
 						<li><a href="/socio"><span class="glyphicon glyphicon-home"></span></a></li>
-						<li class="active">Consultar Talleres</li>
+						<li class="active">Consultar Servicios</li>
 					</ol>
 				</div>				
 			</div>
 		</div>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-				<strong>INSCRIPCIÓN DE TALLERES</strong>
+				<strong>SOLICITUD DE SERVICIOS </strong>
 			</div>		
 		</div>
 		<div class="container">
-			<form method="POST" action="/talleres/index" class="form-horizontal form-border"> <!-- FALTA CAMBIAR LA ACTION =D -->
+			@if ($mensaje)
+				<script>$("#modalSuccess").modal("show");</script>
+		
+				<div class="alert alert-success fade in">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>¡Éxito!</strong> {{$mensaje}}
+				</div>
+			@endif
+			<form method="POST" action="/servicioalsocio/index" class="form-horizontal form-border"> <!-- FALTA CAMBIAR LA ACTION =D -->
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<br/><br/>
 				<div class="form-group ">
@@ -54,17 +63,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group">
-				 	<label for="fechaInput" class="col-sm-4 control-label">FECHA (dd/mm/aaaa) </label>
-				    <div class="col-sm-5">
-					  	<div class="input-group">
-				   		<input class="datepicker form-control"  type="text"  id="fecha_inicio" name="fecha_inicio" placeholder="Fecha de Inicio" value="{{old('fecha_inicio')}}" style="max-width: 250px" >
-				   		<!-- <span class="input-group-addon">-</span>
-				   		<input class="datepicker form-control" type="text" id="fecha_fin" name="fecha_fin" placeholder="Fecha Fin" value="{{old('fecha_fin')}}" style="max-width: 250px"> -->
-
-				   	 	</div>
-			    	</div>	
-				</div>
+				
 				<!-- Boton Buscar INICIO -->
 				<div class="btn-inline">
 					<div class="btn-group col-sm-8"></div>
@@ -81,7 +80,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-center">
-					<p class="lead"><strong>T A L L E R E S &nbsp;&nbsp; D I S P O N I B L E S</strong></p>
+					<p class="lead"><strong>S E R V I C I O S &nbsp;&nbsp; D I S P O N I B L E S</strong></p>
 				</div>
 			</div>
 		</div>
@@ -94,56 +93,76 @@
 					<thead class="active">
 						<tr class="active">
 							<th><div align=center>NOMBRE</div></th>	
-							<th><div align=center>PROFESOR</div></th>				
-							<th style="max-width:100px;"><div align=center>EMPIEZA</div></th>
-							<th style="max-width:100px;"><div align=center>TERMINA</div></th>
-							<th style="max-width:100px;"><div align=center>VACANTES DISPONIBLES</div></th>
+							<th><div align=center>DESCRIPCIÓN</div></th>				
+							<th style="max-width:100px;"><div align=center>TIPO DE SERVICIO</div></th>
+							<th style="max-width:100px;"><div align=center>ESTADO SERVICIO</div></th>
+							<th style="max-width:100px;"><div align=center>PRECIO SOCIO S/</div></th>
 							
-							<th><div align=center>PRECIO</div></th>
-							<th style="max-width:180px;"><div align=center>FIN DE LA INSCRIPCIÓN</div></th>
-							<th><div align=center>ESTADO</div></th>
-							<th><div align=center>DETALLE</div></th>
-							<th><div align=center>INSCRIBIRSE</div></th>
-							<th><div align=center>INSCRIBIR A UN FAMILIAR</div></th>
+							<th><div align=center>PRECIO TRABAJADOR S/</div></th>
+							<th style="max-width:180px;"><div align=center>PRECIO INVITADOS/</div></th>							
+							<th><div align=center>SEDE</div></th>				
+							
+							
+							<th><div align=center>SOLICITAR SERVCIO</div></th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($talleres as $taller)
-							<tr>
-								<td>{{$taller->nombre}}</td>
-								<td>{{$taller->profesor}}</td>
-								<td>{{date("d-m-Y",strtotime($taller->fecha_inicio))}}</td>
-								<td>{{date("d-m-Y",strtotime($taller->fecha_fin))}}</td>
-								<td>{{$taller->vacantes}}</td>								
-								
-								<td>S/.{{ $taller->precio($tipo_persona, $taller->tarifas) }}</td>
-								<td>{{date("d-m-Y",strtotime($taller->fecha_fin_inscripciones))}}
-								</td>
-								<td>
-						    		@if(count($talleresxpersona->where('id',$taller->id))!=0)
-						    			Inscrito
-						    		@elseif($taller->vacantes <= 0)
-						    			No hay vancantes
-						    		@else
-						    			No inscrito
-						    		@endif
-						    	</td>
-								<td> 
-									<a class="btn btn-info" href="{{url('/talleres/'.$taller->id.'/show')}}"  title="Detalle"><i class="glyphicon glyphicon-list-alt"></i></a>
+				
+					@foreach($sedexservicio as $sxs)	
+									
 
-								</td>
+						@foreach($servicios as $servicio)
+							@if($sxs->idservicio == $servicio->id)
+							<tr>
+								<td>{{$servicio->nombre}}</td>
+								<td>{{$servicio->descripcion}}</td>
+								
 								<td>
-									@if((count($talleresxpersona->where('id',$taller->id))!=0)||($taller->vacantes<=0))
-						    			<a class="btn btn-info" title="Inscribirse" disabled><i class="glyphicon glyphicon-pencil"></i></a>
-						    		@else
-						    			<a class="btn btn-info" title="Inscribirse" href="{{url('/talleres/'.$taller->id.'/confirm')}}"><i class="glyphicon glyphicon-pencil"></i></a>
-						    		@endif					
-								</td>
+	 								@foreach($tiposServicio as $tserv)	
+	 									@if ($tserv->id == $servicio->tipo_servicio)
+	 										{{$tserv->valor	}}
+	 									@endif
+	 								@endforeach
+	 							</td>					
+
 								<td>
-									<a class="btn btn-info" title="Inscribir a un familiar" href="#"><i class="glyphicon glyphicon-pencil"></i></a>
+								@if($servicio->estado == 1)
+									ACTIVO 
+								@else 
+									INACTIVO
+								@endif
 								</td>
-							</tr>
-						@endforeach
+								@foreach($tarifarioservicios as $tser)
+								  @if( $tser->idservicio ==  $servicio->id)
+								      <td>{{$tser->precio}}</td>
+								  @endif
+								@endforeach 		
+								<!--p>{{url('/sedes/'.$sede->id.'/agregarservicios')}}</p-->
+								<td>
+									@foreach($sedes as $sede)	
+										@if($sede->id == $sxs->idsede)
+											{{$sede->nombre}}
+										@endif
+									@endforeach
+								</td>
+							@endif
+						@endforeach 
+
+
+
+						 <!--td>  @IF(count($sedexservicioxpersona->where('id_sede',$sxs->idsede)->where('id_servicio',$sxs->idservicio))>0) 			   SOLICITADO
+						 	@else
+						 		 NO SOLICITADO
+						 	@endif
+						</td-->
+									<td> 
+									
+							        <a class="btn btn-info" href="{{url('/servicioalsocio/'.$sxs->id.'/confirm')}}" title="agregarservicio"><i class="glyphicon glyphicon-pencil"></i> </a>
+							        
+								    </td> 
+						</tr>
+					@endforeach 
+				
 					</tbody>
 				</table>
 			</div>	
@@ -151,10 +170,11 @@
 		<br/>
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6 text-right">
-						<a href="{!!URL::to('/talleres/mis-inscripciones')!!}" title="Ver mis inscripciones" class="btn btn-lg btn-primary" >Mis Inscripciones</a>		
+				<div class="col-sm-6 text-right">					
+						<a href="{!!URL::to('/servicios/mis-inscripciones')!!}" title="Ver mis inscripciones" class="btn btn-lg btn-primary">Mis Solicitudes</a>		
 					</div>
 				<div class="col-sm-6 text-left">
+					
 					<a href="{{url('/socio')}}" class="btn btn-lg btn-primary" title="Regresar a página de inicio">Regresar</a>			
 				</div>
 			</div>

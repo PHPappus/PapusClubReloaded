@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>AGREGAR SERVICIOS ADICIONALES </title>
+	<title>AGREGAR SERVICIOS </title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +14,7 @@
 	
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-registros')
 @section('content')
 <!---Cuerpo -->
 <main class="main">
@@ -24,12 +24,10 @@
 		
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>AGREGAR SERVICIOS ADICIONALES A LA SEDE
-					
+					<strong>AGREGAR SERVICIOS A LA SEDE	
 					<?php 
 					  echo strtoupper($sede->nombre)
 					 ?>
-					 
 					 </strong>
 			</div>		
 			<div></div>
@@ -40,15 +38,16 @@
 				
 							
 				<div class="table-responsive">
-					<div class="container">
-						@if ($errors->any())
+					@if ($errors->any())
 			  				<ul class="alert alert-danger fade in">
 			  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 			  					@foreach ($errors->all() as $error)
 			  						<li>{{$error}}</li>
 			  					@endforeach
 			  				</ul>
-			  			@endif
+			  		@endif
+					<div class="container">
+						
 						@if($servicios)
 						<h4> <strong> SERVICIOS DISPONIBLES</strong></h4>		
 						@endif	
@@ -65,7 +64,7 @@
 								
 								@foreach($servicios as $servicio)	
 										@if ($servicio->estado == 1)
-										<tr>																				
+										<tr>							
 											<td>{{$servicio->nombre}}</td>
 											<td>{{$servicio->descripcion}}</td>
 											<td>
@@ -90,7 +89,7 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-primary" type="submit" value="Continuar">
+						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
 						 <a  class="btn btn-info"  title="Cancelar" data-href="" data-toggle="modal" data-target="#modalEliminar">Cancelar</a>   

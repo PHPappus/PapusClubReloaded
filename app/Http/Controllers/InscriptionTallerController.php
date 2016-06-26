@@ -73,78 +73,83 @@ class InscriptionTallerController extends Controller
 
     public function makeInscriptionToUser(MakeInscriptionToUserRequest $request, $id)
     {
-        /*if(Auth::attempt(['password'=>$request['password']])){*/
-        if(Hash::check($request['password'],Auth::user()->password)){
-            $taller   = Taller::find($id);
-            $flag=true;
-
-            $talleresxpersona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->talleres;
-            foreach ($talleresxpersona as $tallerxpersona) {
-                if($tallerxpersona->id==$id){
-                    $flag=false;
-                }
-            }
-            if(!$flag){
-                Session::flash('message','Ya se encuentra inscrito en este taller');
-                return Redirect('/talleres/mis-inscripciones');
-            }
-            else{
-                DB::beginTransaction();
-                try{
-                    if($taller->vacantes<=0){
-                        //throw new Exception("No hay vacantes disponibles");
-                        Session::flash('message-error','Lo sentimos, ya no hay vacantes disponibles');
-                        return Redirect("/talleres/".$id."/confirm");
-                    }
-                    else{
-                        $taller->vacantes=$taller->vacantes-1;
-                        $taller->save();
-
-                        $persona=Persona::where('id_usuario','=',Auth::user()->id)->first();
-                        
-                        $tipo_persona = $persona->tipopersona;
-                        $tarifas = $taller->tarifas;
-
-                        $precioTarifa;
-                        foreach ($tarifas as $tarifa) {
-                            if($tarifa->tipo_persona == $tipo_persona){
-                                $persona->talleres()->attach($id,['precio'=> $tarifa->precio]);
-                                $precioTarifa = $tarifa->precio;
-                                break;
-                            }
-                        }
-                        
-                        $facturacion = new Facturacion();
-                        $facturacion->persona_id = $persona->id;
-                        $facturacion->taller_id = $taller->id;
-                        $facturacion->tipo_comprobante = $request['tipo_comprobante'];
-                        $nombreTaller = $taller->nombre;
-                        $facturacion->descripcion = "Inscripción de $nombreTaller";
-                        $facturacion->total = $precioTarifa;
-                        $facturacion->tipo_pago = "No se ha cancelado";
-                        $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
-                        $facturacion->estado = $estado->valor;
-
-                        $facturacion->save();
-
-                        Session::flash('message','La Inscripción fue realizada Correctamente');
-                    }        
-                }
-                catch(ValidationException $e){
-                    DB::rollback();
-                    var_dump($e->getErrors());
-                }
-                
-                DB::commit();
-                /*$usuario->talleres()->attach($id,['precio'=> $taller->precio_base]);*/
-
-                
-                return Redirect('/talleres/mis-inscripciones');
-            }
+        if($request['tipo_comprobante']==-1){
+            Session::flash('message-error','Por favor, elija el tipo de comprobante');
+            return Redirect("/talleres/".$id."/confirm");
         }
         else{
-            Session::flash('message-error','Contraseña incorrecta');
-            return Redirect("/talleres/".$id."/confirm");
+            if(Hash::check($request['password'],Auth::user()->password)){
+                $taller   = Taller::find($id);
+                $flag=true;
+
+                $talleresxpersona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->talleres;
+                foreach ($talleresxpersona as $tallerxpersona) {
+                    if($tallerxpersona->id==$id){
+                        $flag=false;
+                    }
+                }
+                if(!$flag){
+                    Session::flash('message','Ya se encuentra inscrito en este taller');
+                    return Redirect('/talleres/mis-inscripciones');
+                }
+                else{
+                    DB::beginTransaction();
+                    try{
+                        if($taller->vacantes<=0){
+                            //throw new Exception("No hay vacantes disponibles");
+                            Session::flash('message-error','Lo sentimos, ya no hay vacantes disponibles');
+                            return Redirect("/talleres/".$id."/confirm");
+                        }
+                        else{
+                            $taller->vacantes=$taller->vacantes-1;
+                            $taller->save();
+
+                            $persona=Persona::where('id_usuario','=',Auth::user()->id)->first();
+                            
+                            $tipo_persona = $persona->tipopersona;
+                            $tarifas = $taller->tarifas;
+
+                            $precioTarifa;
+                            foreach ($tarifas as $tarifa) {
+                                if($tarifa->tipo_persona == $tipo_persona){
+                                    $persona->talleres()->attach($id,['precio'=> $tarifa->precio]);
+                                    $precioTarifa = $tarifa->precio;
+                                    break;
+                                }
+                            }
+                            
+                            $facturacion = new Facturacion();
+                            $facturacion->persona_id = $persona->id;
+                            $facturacion->taller_id = $taller->id;
+                            $facturacion->tipo_comprobante = $request['tipo_comprobante'];
+                            $nombreTaller = $taller->nombre;
+                            $facturacion->descripcion = "Inscripción de $nombreTaller";
+                            $facturacion->total = $precioTarifa;
+                            $facturacion->tipo_pago = "No se ha cancelado";
+                            $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
+                            $facturacion->estado = $estado->valor;
+
+                            $facturacion->save();
+
+                            Session::flash('message','La Inscripción fue realizada Correctamente');
+                        }        
+                    }
+                    catch(ValidationException $e){
+                        DB::rollback();
+                        var_dump($e->getErrors());
+                    }
+                    
+                    DB::commit();
+                    /*$usuario->talleres()->attach($id,['precio'=> $taller->precio_base]);*/
+
+                    
+                    return Redirect('/talleres/mis-inscripciones');
+                }
+            }
+            else{
+                Session::flash('message-error','Contraseña incorrecta');
+                return Redirect("/talleres/".$id."/confirm");
+            }        
         }
 
     }   
@@ -183,7 +188,10 @@ class InscriptionTallerController extends Controller
             return view('socio.talleres.index',compact('sedes','talleres','talleresxpersona'));
         }
         else{
-            return view('socio.talleres.confirmacion-inscripcion', compact('taller', 'tipo_comprobantes'));
+            $usuario = Auth::user();
+            $persona=$usuario->persona;
+            $tipo_persona = $persona->tipopersona->id;
+            return view('socio.talleres.confirmacion-inscripcion', compact('taller', 'tipo_comprobantes','tipo_persona'));
         }
 
         
@@ -239,12 +247,14 @@ class InscriptionTallerController extends Controller
    
         if($input['sedeSelec']!=-1){ //No son todas las sedes
             foreach ($talleres as $i => $taller) {             
-                    if($taller->ambiente->sede->id!=$input['sedeSelec'])  unset($talleres[$i]);
+                    if($taller->reserva->ambiente->sede->id!=$input['sedeSelec'])  unset($talleres[$i]);
             }
         }        
 
-        /*return view('socio.actividades.inscripcion', compact('sedes','actividades','actividades_persona'));*/
-        return view('socio.talleres.index',compact('sedes','talleres','talleresxpersona'));
+        $usuario = Auth::user();
+        $persona=$usuario->persona;
+        $tipo_persona = $persona->tipopersona->id;
+        return view('socio.talleres.index',compact('sedes','talleres','talleresxpersona','tipo_persona'));
     }
 
 

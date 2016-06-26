@@ -70,77 +70,70 @@
 				</div>
 			</div>	
 		</div>
+		
 		<div class="container">
 			<form method="POST" action="/talleres/{{ $taller->id }}/confirm/save" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<br/><br/>
 				<div class="form-group">
-					<div class="col-sm-6 text-left">
-							<label for="description" class="col-sm-5 control-label text-left">Descripción:</label>
-							<div class="col-sm-7">
-								<textarea class="form-control" name="descripcion" id="descriptionInput" rows="3" readonly="true">{{$taller->descripcion}}</textarea>
-								<!-- <input type="text" class="form-control" id="fecha_inicio" placeholder="{{$taller->fecha_inicio}}" style="max-width: 250px" readonly="true"> -->
-							</div>				
+			    	<label for="ambienteInput" class="col-sm-4 control-label">AMBIENTE:</label>
+			    	<div class="col-sm-5">
+			    		<input type="text" class="form-control" id="ambienteInput" name="ambiente" value="{{$taller->reserva->ambiente->nombre}}"  required readonly>
+			      	</div>		      	
+			  	</div>
+				<div class="form-group">
+					<label for="description" class="col-sm-4 control-label">Descripción:</label>
+					<div class="col-sm-5">
+						<textarea class="form-control" name="descripcion" id="descriptionInput" rows="3" readonly="true">{{$taller->descripcion}}</textarea>
+						<!-- <input type="text" class="form-control" id="fecha_inicio" placeholder="{{$taller->fecha_inicio}}" style="max-width: 250px" readonly="true"> -->
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="col-sm-6">
-				    	<label for="profesorInput" class="col-sm-5 control-label">Profesor:</label>
-			    		<div class="col-sm-7 text-center">
-			    			<input type="text" class="form-control" id="profesor" placeholder="{{$taller->profesor}}" style="max-width: 220px" readonly="true">
-			    		</div>		  				
-		 			</div>
+			    	<label for="profesorInput" class="col-sm-4 control-label">Profesor:</label>
+		    		<div class="col-sm-5">
+		    			<input type="text" class="form-control" id="profesor" placeholder="{{$taller->profesor}}" required readonly>
+		    		</div>		  				
 				</div>
 		  		<div class="form-group">
-		  			<div class="col-sm-6">
-				    	<label for="nombreInput" class="col-sm-5 control-label">Fecha de inicio:</label>
-			    		<div class="col-sm-7">
-			      			<input type="text" class="form-control" id="fecha_inicio" placeholder='{{date("d-m-Y",strtotime($taller->fecha_inicio))}}' style="max-width: 220px" readonly="true">
-			    		</div>			
-		  			</div>
+			    	<label for="nombreInput" class="col-sm-4 control-label">Fecha de inicio:</label>
+		    		<div class="col-sm-5">
+		      			<input type="text" class="form-control" id="fecha_inicio" placeholder='{{date("d-m-Y",strtotime($taller->fecha_inicio))}}' readonly="true">
+		    		</div>			
 		  		</div>
 				<div class="form-group">
-		 			<div class="col-sm-6">
-				    	<label for="nombreInput" class="col-sm-5 control-label">Fecha de fin:</label>
-			    		<div class="col-sm-7 text-center">
-			    			<input type="text" class="form-control" id="fecha_fin" placeholder='{{date("d-m-Y",strtotime($taller->fecha_fin))}}' style="max-width: 220px" readonly="true">
-			    		</div>		  				
-		 			</div>
+			    	<label for="nombreInput" class="col-sm-4 control-label">Fecha de fin:</label>
+		    		<div class="col-sm-5">
+		    			<input type="text" class="form-control" id="fecha_fin" placeholder='{{date("d-m-Y",strtotime($taller->fecha_fin))}}' readonly="true">
+		    		</div>
 				</div>
 				<div class="form-group">
-		 			<div class="col-sm-6">
-				    	<label for="sesiones" class="col-sm-5 control-label">Cantidad de sesiones:</label>
-			    		<div class="col-sm-7 text-center">
-			    			<input type="text" class="form-control" id="sesiones" placeholder='{{$taller->cantidad_sesiones}}' style="max-width: 220px" readonly="true">
-			    		</div>		  				
-		 			</div>
+			    	<label for="sesiones" class="col-sm-4 control-label">Cantidad de sesiones:</label>
+		    		<div class="col-sm-5">
+		    			<input type="text" class="form-control" id="sesiones" placeholder='{{$taller->cantidad_sesiones}}' style="max-width: 120px" readonly="true">
+		    		</div>
 				</div>
 				<div class="form-group">
-		 			<div class="col-sm-6">
-				    	<label for="vacantes" class="col-sm-5 control-label">Vacantes Disponibles:</label>
-			    		<div class="col-sm-7 text-center">
-			    			<input type="text" class="form-control" id="vacantes" placeholder='{{$taller->vacantes}}' style="max-width: 220px" readonly="true">
-			    		</div>		  				
-		 			</div>
+			    	<label for="vacantes" class="col-sm-4 control-label">Vacantes Disponibles:</label>
+		    		<div class="col-sm-5">
+		    			<input type="text" class="form-control" id="vacantes" placeholder='{{$taller->vacantes}}' style="max-width: 120px" readonly="true">
+		    		</div>
 				</div>
-				<!-- <div class="form-group">
-		 			<div class="col-sm-6">
-				    	<label for="precio" class="col-sm-5 control-label">Precio:</label>
-			    		<div class="col-sm-7 text-center">
-			    			<input type="text" class="form-control" name="precio" id="precio" placeholder='{{$taller->precio_base}} Nuevos Soles' style="max-width: 220px" readonly="true">
-			    		</div>		  				
-		 			</div>
-				</div> -->
+				<div class="form-group">
+			    	<label for="precio" class="col-sm-4 control-label">Precio:</label>
+		    		<div class="col-sm-5">
+		    			<input type="text" class="form-control" name="precio" id="precio" placeholder='S/.{{ $taller->precio($tipo_persona, $taller->tarifas) }}' style="max-width: 120px" readonly="true">
+		    		</div>
+				</div>
 				<div class="form-group required">
-			   	<label for="tipoComprobanteInput" class="col-sm-4 control-label">TIPO DE COMPROBANTE</label>
-			   	<div class="col-sm-5">
-			    	<select class="form-control" id="tipo_comprobante" name="tipo_comprobante">
-						<option value="-1" selected >Seleccionar tipo...</option>
-						@foreach($tipo_comprobantes as $tipo_comprobante)
-						<option value="{{$tipo_comprobante->valor}}" >{{$tipo_comprobante->valor}}</option>
-						@endforeach						
-					</select>						
-			    </div>
+				   	<label for="tipoComprobanteInput" class="col-sm-4 control-label">TIPO DE COMPROBANTE</label>
+				   	<div class="col-sm-5">
+				    	<select class="form-control" id="tipo_comprobante" name="tipo_comprobante">
+							<option value="-1" selected >Seleccionar tipo...</option>
+							@foreach($tipo_comprobantes as $tipo_comprobante)
+							<option value="{{$tipo_comprobante->valor}}" >{{$tipo_comprobante->valor}}</option>
+							@endforeach						
+						</select>						
+				    </div>
 				</div>	
 				<br/><br/>
 				<div class="form-group">

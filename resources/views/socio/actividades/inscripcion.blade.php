@@ -132,6 +132,7 @@
 								<th><DIV ALIGN=center>PRECIO</th>
 								<th><DIV ALIGN=center>ESTADO</th>
 								<th><DIV ALIGN=center>INSCRIBIRSE</th>
+								<th><DIV ALIGN=center>INSCRIBIR A UN FAMILIAR</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -147,19 +148,22 @@
 		 						@if((count($actividades_persona->where('id',$actividad->id))!=0))
 		 						<td>Inscrito</td>
 								<td>
-						        	<a class="btn btn-info" title="Inscripcion" disabled><i class="glyphicon glyphicon-ok"></i></a>
+						        	<a class="btn btn-info" title="Inscripcion" disabled><i class="glyphicon glyphicon-pencil"></i></a>
 						        </td>	
 						        @elseif($actividad->cupos_disponibles<=0)
 						        <td>No hay cupos disponibles</td>	
 						        <td>
-						        	<a class="btn btn-info" title="Inscripcion" disabled><i class="glyphicon glyphicon-ok"></i></a>
+						        	<a class="btn btn-info" title="Inscripcion" disabled><i class="glyphicon glyphicon-pencil"></i></a>
 						        </td>
 						        @else
 						        <td>No Inscrito</td>
 						        <td>
-						        	<a class="btn btn-info" href="{{url('/inscripcion-actividad/'.$actividad->id.'/confirmacion-inscripcion-actividades')}}" title="Inscripcion" ><i class="glyphicon glyphicon-ok"></i></a>
+						        	<a class="btn btn-info" href="{{url('/inscripcion-actividad/'.$actividad->id.'/confirmacion-inscripcion-actividades')}}" title="Inscripcion" ><i class="glyphicon glyphicon-pencil"></i></a>
 						        </td>
-						        @endif	
+						        @endif
+						        <td>
+						        	<a class="btn btn-info" href="{{url('/inscripcion-actividad/'.$actividad->id.'/confirmacion-inscripcion-actividades-to-familiar')}}" title="Inscribir a un familiar" ><i class="glyphicon glyphicon-pencil"></i></a>
+						        </td>	
 							</tr>
 						@endforeach
 					</tbody>									
