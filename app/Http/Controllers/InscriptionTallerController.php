@@ -209,7 +209,7 @@ class InscriptionTallerController extends Controller
    
         if(($input['sedeSelec']!=-1)){ //No son todas las sedes
             foreach ($talleres as $i => $taller) {             
-                    if($taller->ambiente->sede->id!=$input['sedeSelec'])  unset($talleres[$i]);
+                    if($taller->reserva->ambiente->sede->id!=$input['sedeSelec'])  unset($talleres[$i]);
             }
         }        
 
