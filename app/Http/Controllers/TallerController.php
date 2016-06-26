@@ -11,6 +11,7 @@ use papusclub\Models\Taller;
 use papusclub\Models\TarifaTaller;
 use papusclub\Models\Ambiente;
 use papusclub\Models\Sede;
+use papusclub\Models\Reserva;
 use papusclub\Models\TipoPersona;
 use papusclub\Http\Requests\StoreTallerRequest;
 use papusclub\Http\Requests\EditTallerRequest;
@@ -34,13 +35,34 @@ class TallerController extends Controller
     }
 
     public function create()
-    {
+    {/*
         $sedes = Sede::all();
         $ambientes = Ambiente::all();
         $personas = TipoPersona::all();
 
        // return view('admin-general.ambiente.searchAmbiente', compact('ambientes'),compact('values'),compact('tipoPersonas'));
-    	return view('admin-registros.taller.newTaller', compact('sedes','ambientes','personas'));
+    	return view('admin-registros.taller.newTaller', compact('sedes','ambientes','personas'));*/
+
+        /*PAra crear el taller , primero se debe buscar el Ambiente*/
+        $reservas = Reserva::where('actividad_id','=',null)->get(); 
+        //$tipoPersonas = TipoPersona::all();
+        //$values=Configuracion::where('grupo','=','3')->get();
+
+        //debe mostrar todas las reservas realizadas
+        return view('admin-registros.taller.listaReservasTaller', compact('reservas'));
+    }
+
+    public function select($id)
+    {
+        $reserva = Reserva::find($id);
+        $fecha1 = $reserva->fecha_inicio_reserva;
+        $fecha2 = $reserva->fecha_fin_reserva;
+        $carbon=new Carbon();
+        $reserva->fecha_inicio_reserva = $carbon->createFromFormat('Y-m-d', $fecha1)->format('d/m/Y');
+        $reserva->fecha_fin_reserva = $carbon->createFromFormat('Y-m-d', $fecha2)->format('d/m/Y');
+        $personas = TipoPersona::all();
+        
+        return view('admin-registros.taller.newTaller', compact('reserva','personas'));
     }
 
     public function show($id)
@@ -118,17 +140,29 @@ class TallerController extends Controller
         else
             $taller->cantidad_sesiones = $input['cantSes'];
 
+        $reserva = Reserva::find($input['reserva']);
+        //$reserva->actividad_id = 0;
+        //reserva->save();
+        $taller->reserva_id = $reserva->id;
         $taller->save();
 
-        $personas = TipoPersona::all();    
+        //$personas = TipoPersona::all();
+        $tarifas = $input['tarifas'];
 
+        foreach($tarifas as $key => $val)
+        {
+            $fecha = new DateTime("now");
+            $fecha=$fecha->format('Y-m-d');
+            $tipo_persona = TipoPersona::find($key);
+            $taller->tarifaTaller()->save($tipo_persona,['fecha_registro'=>$fecha,'precio'=>$val,'estado'=>TRUE]);
+        }
+        /*
         foreach ($personas as $persona) {
             $fecha = new DateTime("now");
             $fecha=$fecha->format('Y-m-d');
-            $taller->tarifaTaller()->save($persona,['fecha_registro'=>$fecha,'precio'=>$input[$persona->descripcion],'estado'=>TRUE]);
-        }
-
-        return redirect('taller')->with('stored', 'Se registró el taller correctamente.');
+            $taller->tarifaTaller()->save($persona,['fecha_registro'=>$fecha,'precio'=>$input[],'estado'=>TRUE]);
+        } */
+        return redirect('taller/index')->with('stored', 'Se registró el taller correctamente.');
         //return back();
     }
 
@@ -176,11 +210,13 @@ class TallerController extends Controller
         }
 
         $taller->save();
+        
+        $tarifas = $input['tarifas'];
 
-        $personas = TipoPersona::all(); 
-
-        foreach ($personas as $persona) {
-            $taller->tarifaTaller()->sync([$persona->id=>['precio'=>$input[$persona->descripcion]]],FALSE);
+        foreach($tarifas as $key => $val)
+        {
+            $tipo_persona = TipoPersona::find($key);
+            $taller->tarifaTaller()->sync([$tipo_persona->id=>['precio'=>$val]],FALSE);
         }
 
         return Redirect::action('TallerController@index');

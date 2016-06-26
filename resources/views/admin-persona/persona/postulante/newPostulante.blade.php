@@ -148,7 +148,7 @@
 												<label for="" class="control-label">Nacionalidad:</label>
 											</div>
 											<div class="col-sm-6 text-left" >
-													<input checked onchange="seleccionaPeruano()" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : '' }}/>Peruano&nbsp&nbsp&nbsp
+													<input checked onchange="seleccionaperuano()" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : '' }}/>peruano&nbsp&nbsp&nbsp
 													<input onchange="seleccionaExtranjero()" type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "extranjero") ? 'checked="true"' : '' }}/>Extranjero
 
 											</div>
@@ -965,7 +965,7 @@
 	<script>
 		//Script en el caso en que se seleccione el combo peruano
 
-		function seleccionaPeruano() {
+		function seleccionaperuano() {
 	    	document.getElementById('departamento').disabled = false;
 	    	document.getElementById('doc_identidad').disabled = false;
 	    	document.getElementById('direccion_nacimiento').disabled = false;

@@ -89,6 +89,47 @@
             </ul>
           </li>
         </ul>
+
+        <!-- Talleres -->
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" role="button" >
+              Talleres <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="{!!URL::to('/taller/index')!!}" title="Consultar talleres" target="_self">Consultar</a></li>
+                <li><a href="{!!URL::to('/taller/new')!!}" title="Registrar talleres" target="_self">Registrar</a></li>
+            </ul>
+          </li>
+        </ul>
+        
+         <!-- Proveedores -->
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Proveedores <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">    
+                <li><a href="{!!URL::to('/proveedor/index')!!}">Consultar</a></li>
+                <li><a href="{!!URL::to('/proveedor/new')!!}">Registrar</a></li>                
+            </ul>
+          </li>
+        </ul>
+
+        <!-- Productos -->
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Productos <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">    
+                <li><a href="{!!URL::to('/producto/index')!!}">Productos</a></li>
+        <li><a href="{!!URL::to('/ingreso-producto/index')!!}">Ingreso de productos</a></li>
+        <li><a href="{!!URL::to('/venta-producto/index')!!}">
+        Ventas de productos</a></li>
+            </ul>
+          </li>
+        </ul>
         
         <!-- Promociones -->
         <ul class="nav navbar-nav">

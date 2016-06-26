@@ -9,7 +9,13 @@ use papusclub\Models\Provincia;
 use papusclub\Models\Distrito;
 use papusclub\Models\Postulante;
 use papusclub\Models\TipoFamilia;
+use papusclub\Models\Socio;
+use papusclub\Models\Carnet;
+use papusclub\Models\TipoMembresia;
 use papusclub\Models\FamiliarxPostulante;
+use papusclub\Perfil;
+use papusclub\User;
+
 use papusclub\Http\Requests\StorePostulanteRequest;
 use papusclub\Http\Requests\EditPostulanteBasicoRequest;
 use papusclub\Http\Requests\EditPostulanteNacimientoRequest;
@@ -22,26 +28,28 @@ use papusclub\Http\Controllers\Controller;
 use papusclub\Http\Requests;
 use papusclub\Models\Configuracion;
 use Illuminate\Support\Facades\Redirect;
+
 use Session;
 use DB;
 use Carbon\Carbon;
+use DateTime;
+use Mail;
 
 class PostulanteController extends Controller
 {
     public function index()
     {
         $personas=Postulante::all();
+
         $postulantes=array();
         foreach ($personas as $per) {
-            if($per->socio==NULL)
-                array_push($postulantes,$per);
 
-            # code...
+            if(!$per->es_socio())
+            {           
+                array_push($postulantes,$per);
+            }
         }
-/*        $personas=Persona::where([
-        ['id_tipo_persona','=','2'],
-        ['id_tipo_persona','<>','3'],
-        ])->get();*/
+
         return view('admin-persona.persona.postulante.index',compact('postulantes'));
     }
 
@@ -505,7 +513,7 @@ class PostulanteController extends Controller
         $familiar=Persona::find($id);
         $postulante=Persona::find($id_postulante);
         //$relacion=2;
-        $relacion_id=$familiar->familiarxpostulante->where('id_postulante',$postulante->id)->first()->pivot->tipo_familia_id;
+        $relacion_id=$familiar->familiarxpostulante()->where('id_postulante',$postulante->id)->first()->pivot->tipo_familia_id;
         $relacion=TipoFamilia::find($relacion_id)->nombre;
         //$invitado = Invitados::find($id);
         /*var_dump($relacion);
@@ -520,22 +528,21 @@ class PostulanteController extends Controller
     {   
         $familiar=Persona::find($id);
         $postulante=Persona::find($id_postulante);
-        //$relacion=2;
-        $relacion_id=$familiar->familiarxpostulante->where('id_postulante',$postulante->id)->first()->pivot->tipo_familia_id;
+
+        $relacion_id=$familiar->familiarxpostulante()->where('id_postulante',$postulante->id)->first()->pivot->tipo_familia_id;
         $relacion=TipoFamilia::find($relacion_id)->nombre;
-        //$invitado = Invitados::find($id);
-        /*var_dump($relacion);
-        die();*/
-        /*$socio = Socio::withTrashed()->find($invitado->persona_id);
-        $persona = Persona::find($invitado->invitado_id);*/
+
         return view('admin-persona.persona.postulante.familiar.detailFamiliarPostulante',compact('familiar','postulante','relacion'));
     }
 
     public function registaSocio($id){
         $postulante=Postulante::find($id);
         $estado_civil=Configuracion::find($postulante->estado_civil);
-/*        var_dump($estado_civil);
-        die();*/
+
+
+        /** Observaciones del postulante*/
+        $socios_observaciones = $postulante->observacion;
+
         $carbon=new Carbon();
         if((strtotime($postulante->persona->fecha_nacimiento) < 0))
             $postulante->persona->fecha_nacimiento=NULL;
@@ -543,7 +550,104 @@ class PostulanteController extends Controller
             $postulante->persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d', $postulante->persona->fecha_nacimiento)->format('d/m/Y');
 
 
-        return view('admin-persona.persona.postulante.aceptarSocio',compact('postulante','estado_civil'));
+        return view('admin-persona.persona.postulante.aceptarSocio',compact('postulante','estado_civil','socios_observaciones'));
+
+    }
+
+    public function aceptarPostulante($id)
+    {
+
+        /*Tipo de Membresía siempre iniciará como tipo regular el cual se encuentra registrado en la primera casilla de la tabla membresia*/
+        $tipoMembresia = TipoMembresia::first();
+
+        /*Información de Postulante*/
+        $postulante = Postulante::find($id);
+
+        /*Registrando Socio*/
+        $fecha_ingreso = new DateTime("now");
+        $fecha_ingreso=$fecha_ingreso->format('Y-m-d');
+
+        $socio = new Socio();
+        $socio->fecha_ingreso=$fecha_ingreso;
+
+        $socio->membresia()->associate($tipoMembresia);
+        $socio->postulante_id=$id;
+        $socio->save();
+
+
+        /*Asignar carnet*/
+        create_carnet($socio);
+
+
+
+
+        $this->enviarUsuario($socio->postulante->persona->correo, $socio->postulante->persona->nombre, $socio->postulante->persona->ap_paterno, $socio->carnet_actual()->nro_carnet);
+
+
+        return redirect('Socio/')->with('stored', 'Se registró el Socio correctamente.');
+    }
+
+    public function rechazarPostulante($id)
+    {
+        $persona = Persona::find($id);
+        $postulante=Postulante::find($persona->id);
+
+
+        $postulante->forceDelete();
+        $persona ->forceDelete();
+        return redirect('postulante/index')->with('stored', 'El postulante ha sido rechazado');
+    }
+
+    function enviarUsuario($correo,$nombre,$apellido,$carnet)
+    {
+        //pbtener perfil socio
+        $perfil_socio = Perfil::first();
+
+        //creando usuario
+        $user = new User();
+        $user->name = $nombre;
+        $user->email=$correo;
+        $password= "papusclub";
+        $user->password = $password;
+        $user->perfil_id =$perfil_socio->id;
+        $user->save();
+
+
+        $title = '¡Bienvenido a PapusClub!';
+        $content = 'Señor(a): '.$nombre.' '.$apellido.' Su solicitud como postulante acaba de ser aceptada.';
+        $nro_carnet = 'Acerquese a recoger su carnet con número: '.$carnet;
+        $usuario ='Desde este momento ya puede acceder a nuestra página autentificandose con su correo: '.$correo;
+        $password ='Y utilizando la contraseña momentánea: <papuscub> la cual sugerimos cambiar lo antes posible';
+
+        $subject ='Registro de usuario';
+        $to =$correo;
+
+
+        /*Este try catch lo uso por si alguien hace pruebas con correos que no estén registrados en mailgun y por tanto hace que mailgun inautorice el envío del correo cayendose entonces el programa*/
+        try{
+            Mail::send('emails.send', ['title' => $title, 'content' => $content, 'nro_carnet'=>$nro_carnet, 'usuario'=>$usuario,'password'=>$password], function ($message) use($subject,$to)
+            {
+
+                $message->from('registros@papusclub.com', 'Juan Ignacio Ferraro');
+                $message->to($to);
+                $message->subject($subject);
+
+                //$message->sender($address, $name = null);
+                //$message->to($address, $name = null);
+                //$message->cc($address, $name = null);
+                //$message->bcc($address, $name = null);
+                //$message->replyTo($address, $name = null);
+
+                //$message->priority($level);
+                //$message->attach($pathToFile, array $options = []);            
+
+            });
+        }
+        /*Nótese el \ es propio del laravel*/
+        catch(\Exception $ex)
+        {
+
+        }
 
     }
 }

@@ -53,14 +53,25 @@
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active">
 						<tr>
-							<th><DIV ALIGN=center>ID Socio</th>
-							<th><DIV ALIGN=center>Socio</th>
-							<th><DIV ALIGN=center>Ambiente</th>
-							<th><DIV ALIGN=center>Fecha Inicio</th>
-							<th><DIV ALIGN=center>HoraInicio</th>
-							<th><DIV ALIGN=center>Estado Reserva</th>
-							<th><DIV ALIGN=center>Ver Servicios</th>
-							<th><DIV ALIGN=center>Agregar Servicios</th>
+
+							
+							
+							
+							
+							
+							
+							
+
+							<th><DIV ALIGN=center>CARNET</th>
+							<th><DIV ALIGN=center>SOCIO</th>
+							<th><DIV ALIGN=center>AMBIENTE</th>
+							<th><DIV ALIGN=center>FECHA INICIO</th>
+							<th><DIV ALIGN=center>FECHA FIN</th>
+							<th><DIV ALIGN=center>PRECIO (S/.)</th>
+							<th><DIV ALIGN=center>ESTADO RESERVA</th>
+							<th><DIV ALIGN=center>VER SERVICIOS</th>
+							<th><DIV ALIGN=center>AGREGAR SERVICIOS</th>
+
 							<th><DIV ALIGN=center>CANCELAR</th>
 							
 						</tr>
@@ -69,11 +80,12 @@
 							@foreach($reservas as $reserva)						
 						    	@if($reserva->ambiente->tipo_ambiente == 'Bungalow')						
 							    	<tr>
-							    		<td>{{ $reserva->persona->socio($socios)->id }}</td>
+							    		<td>{{ $reserva->persona->socio($socios)->carnet_actual()->nro_carnet }}</td>
 										<td>{{ $reserva->persona->nombre . " " . $reserva->persona->ap_paterno . " " . $reserva->persona->ap_materno }}</td>
 										<td>{{ $reserva->ambiente->nombre }}</td>
 										<td>{{ $reserva->fecha_inicio_reserva }}</td>
-				 						<td>{{ $reserva->hora_inicio_reserva }}</td>
+				 						<td>{{ $reserva->fecha_fin_reserva }}</td>
+				 						<td>{{ $reserva->precio }}</td>
 				 						<td>{{ $reserva->estadoReserva }}</td>
 
 

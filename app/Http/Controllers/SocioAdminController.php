@@ -50,13 +50,16 @@ class SocioAdminController extends Controller
     }
 
     public function show($id)
-    {
+    {   
         $socio = Socio::withTrashed()->find($id);
+/*        var_dump($id);
+        die();*/
+        $estado_civil=Configuracion::find($socio->postulante->estado_civil);
         $carbon=new Carbon();
         $socio->carnet_actual()->fecha_emision=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_emision)->format('d/m/Y');
         $socio->carnet_actual()->fecha_vencimiento=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_vencimiento)->format('d/m/Y');
         $socio->postulante->persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d',$socio->postulante->persona->fecha_nacimiento)->format('d/m/Y');
-        return view('admin-persona.persona.socio.showSocio',compact('socio'));
+        return view('admin-persona.persona.socio.showSocio',compact('socio','estado_civil'));
     }
 
     public function destroy(Socio $socio)
@@ -377,7 +380,12 @@ class SocioAdminController extends Controller
                     {
                         $descripcion='El socio ha sido inhabilitado pero no se ha especificado el motivo.';
                     }
-                    $socio->carnet_actual()->descripcion=$descripcion;
+                    $carnet= $socio->carnet_actual();
+                    $carnet->estado=false;
+                    $carnet->descripcion=$descripcion;
+                    $carnet->save();
+                    $carnet->delete();
+
                     $socio->update(['estado'=>false]);
                     //$socio->delete();
                 }
@@ -391,10 +399,7 @@ class SocioAdminController extends Controller
                     {
                         $descripcion='El carnet ha sido inhabilitado pero no se ha especificado el motivo.';
                     }
-                    //var_dump($descripcion);
-                    //die();
                     $carnet = $socio->carnet_actual();
-                    //$carnet->update(['estado'=>false , 'descripcion'=>$descripcion]);
                     $carnet->estado=false;
                     $carnet->descripcion=$descripcion;
                     $carnet->save();
@@ -453,6 +458,15 @@ class SocioAdminController extends Controller
         $persona = Persona::find($invitado->invitado_id);
         return view('admin-persona.persona.socio.invitado.detailInvitado',compact('persona','socio'));
     }
+
+    public function detailInvitadoDetalle($id)
+    {   
+        $invitado = Invitados::find($id);
+        $socio = Socio::withTrashed()->find($invitado->persona_id);
+        $persona = Persona::find($invitado->invitado_id);
+        return view('admin-persona.persona.socio.invitado.detailInvitadoDetalle',compact('persona','socio'));
+    }
+
 
     public function storeInvitado(StoreInvitadoRequest $request, $id)
     {
@@ -630,12 +644,34 @@ class SocioAdminController extends Controller
         return back();
     }
 
+    public function detailfamiliar($id,$id_postulante)
+    {
+        $familiar=Persona::find($id);
+        $postulante=Postulante::find($id_postulante);
+        $socio = $postulante->socio;
+
+        $relacion_id = $familiar->familiarxpostulante()->where('id_postulante','=',$id_postulante)->first()->pivot->tipo_familia_id;
+
+        //echo json_encode($relacion_id);
+        //die();
+        $relacion=TipoFamilia::find($relacion_id)->nombre;
+        return view('admin-persona.persona.socio.familiar.detailFamiliar',compact('familiar','socio','relacion'));        
+    }
+
+    public function detailfamiliarDetalle($id,$id_postulante)
+    {
+        $familiar=Persona::find($id);
+        $postulante=Postulante::find($id_postulante);
+        $socio = $postulante->socio;
+
+        $relacion_id = $familiar->familiarxpostulante()->where('id_postulante','=',$id_postulante)->first()->pivot->tipo_familia_id;
 
 
-
-
-
-
+        //echo json_encode($relacion_id);
+        //die();
+        $relacion=TipoFamilia::find($relacion_id)->nombre;
+        return view('admin-persona.persona.socio.familiar.detailFamiliarDetalle',compact('familiar','socio','relacion'));        
+    }
 
     /*TRASPASOS*/
 
@@ -650,11 +686,18 @@ class SocioAdminController extends Controller
         $input = $request->all();
        // var_dump($input);
        // die();
+        
         $persona=Persona::where('doc_identidad','=',$input['dniP'])->orwhere('carnet_extranjeria','=',$input['dniP'])->first();
+        $oldpersona = Persona::where('doc_identidad','=',$input['dni'])->orwhere('carnet_extranjeria','=',$input['dni'])->first();
+        $traspaso = Traspaso::where('dni','=',$input['dniP'])->first();
+        if ($persona == NULL){
+            $traspaso->update(['estado'=>FALSE]);
+            return redirect('traspasos-p')->with('failed','No se encontró al postulante');
+        }
      //   if ($postulante->dni == 0)
        //     return redirect('traspasos-p')->with('No se encontró al postulante');
         $postulante = Postulante::where('id_postulante','=',$persona->id)->first();
-        $traspaso = Traspaso::where('dni','=',$input['dniP'])->first();
+        $oldpostulante = Postulante::where('id_postulante','=',$oldpersona->id)->first();
         $traspaso->socio->update(['estado' => FALSE]);
         $traspaso->update(['estado'=>FALSE]);
         $socio = new Socio();
@@ -662,11 +705,12 @@ class SocioAdminController extends Controller
         $fecha = Date('now');
         $socio->fecha_ingreso=$fecha;
         $socio->postulante_id = $postulante->id_postulante;
-        $socio->tipo_membresia_id = 1;
+        $socio->tipo_membresia_id = $oldpostulante->socio->tipo_membresia_id;
         $membresia = TipoMembresia::find($socio->tipo_membresia_id);
         $membresia->socio()->save($socio);
 
         $socio->save();
+        $postulante->socio()->save($socio);
         $carnet = create_carnet($socio);
 
         return redirect('traspasos-p')->with('stored','Se aprobó el traspaso');

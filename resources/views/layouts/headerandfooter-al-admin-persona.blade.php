@@ -37,8 +37,8 @@
               Tercero <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="#" title="Consultar tercero" target="_self">Consultar</a></li>
-                <li><a href="#" title="Registrar nuevo tercero" target="_self">Registrar</a></li>
+                <li><a href="{!!URL::to('/tercero/index')!!}" title="Consultar tercero" target="_self">Consultar</a></li>
+                <li><a href="{!!URL::to('/tercero/new')!!}" title="Registrar nuevo tercero" target="_self">Registrar</a></li>
             </ul>
           </li>
         </ul>

@@ -114,21 +114,7 @@
             </ul>
           </li>
         </ul> -->
-
-        <!-- Productos -->
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Productos <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">    
-                <li><a href="{!!URL::to('/producto/index')!!}">Productos</a></li>
-				<li><a href="{!!URL::to('/ingreso-producto/index')!!}">Ingreso de productos</a></li>
-				<li><a href="{!!URL::to('/venta-producto/index')!!}">
-				Ventas de productos</a></li>
-            </ul>
-          </li>
-        </ul>
+       
 
         <!-- Productos -->
         <ul class="nav navbar-nav">

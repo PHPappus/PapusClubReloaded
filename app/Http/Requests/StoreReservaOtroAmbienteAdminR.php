@@ -25,8 +25,7 @@ class StoreReservaOtroAmbienteAdminR extends Request
     {
         return [
             'tipo_comprobante' => 'required',
-            'fecha_inicio_reserva'            =>  'required',
-            'fecha_fin_reserva'     =>  'required',
+            'fecha_inicio_reserva'    =>  'required',
             'hora_inicio_reserva'    =>  'required',
             'hora_fin_reserva'    =>  'required',
         ];

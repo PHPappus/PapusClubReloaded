@@ -14,7 +14,10 @@ use papusclub\Models\Ambiente;
 use papusclub\Models\Actividad;
 use papusclub\Models\Sede;
 use papusclub\Models\Persona;
+use papusclub\Models\Configuracion;
+use papusclub\Models\Facturacion;
 use Carbon\Carbon;
+use DB;
 
 class InscriptionActividadController extends Controller
 {
@@ -26,14 +29,19 @@ class InscriptionActividadController extends Controller
         $actividades=Actividad::where('estado','=',1)->where('a_realizarse_en','>=',Carbon::now())->get();
         /*Se envia las actividades a las cuales se encuentra inscrita la persona*/
         $actividades_persona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->actividades;
-        return view('socio.actividades.inscripcion', compact('sedes','actividades','actividades_persona'));
+        $usuario = Auth::user();
+        $persona=$usuario->persona;
+        $tipo_persona = $persona->tipopersona->id;
+                        
+        return view('socio.actividades.inscripcion', compact('sedes','actividades','actividades_persona','tipo_persona'));
     }
 
     //Se muestra la actividad a reservar y espera la confirmacion 
     public function storeInscriptionActividad($id)
     {
         $actividad=Actividad::find($id);// de aqui sacare el id de la sede :S
-        return view('socio.actividades.confirmacion-inscripcion',compact('actividad'));
+        $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
+        return view('socio.actividades.confirmacion-inscripcion',compact('actividad', 'tipo_comprobantes'));
     }
 
     public function filterActividades(Request $request){
@@ -134,7 +142,31 @@ class InscriptionActividadController extends Controller
                         $persona=$usuario->persona;
                         $actividad->cupos_disponibles=$actividad->cupos_disponibles-1;
                         $actividad->save();
-                        $persona->actividades()->attach($id,['precio'=> 11]);
+                        
+
+                        $tipo_persona = $persona->tipopersona;
+                        $tarifas = $actividad->tarifas;
+                        $precioTarifa;
+                        foreach ($tarifas as $tarifa) {
+                            if($tarifa->tipo_persona == $tipo_persona){
+                                $persona->actividades()->attach($id,['precio'=> $tarifa->precio]);
+                                $precioTarifa = $tarifa->precio;
+                                break;
+                            }
+                        }
+
+                        $facturacion = new Facturacion();
+                        $facturacion->persona_id = $persona->id;
+                        $facturacion->actividad_id = $actividad->id;
+                        $facturacion->tipo_comprobante = $request['tipo_comprobante'];
+                        $nombreActividad = $actividad->nombre;
+                        $facturacion->descripcion = "Inscripción de $nombreActividad";
+                        $facturacion->total = $precioTarifa;
+                        $facturacion->tipo_pago = "No se ha cancelado";
+                        $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
+                        $facturacion->estado = $estado->valor;
+
+                        $facturacion->save();
 
                         Session::flash('message','La Inscripción fue realizada Correctamente');
                         
@@ -161,6 +193,10 @@ class InscriptionActividadController extends Controller
         $persona  = $usuario->persona;
         $actividad   = Actividad::find($id);
 
+        $facturacion = Facturacion::where('actividad_id', '=', $actividad->id)->where('persona_id', '=', $persona->id)->get()->first();
+        
+        if($facturacion)
+            $facturacion->delete();
 
         $actividad->cupos_disponibles=$actividad->cupos_disponibles+1;
         $actividad->save();

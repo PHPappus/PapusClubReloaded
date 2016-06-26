@@ -86,7 +86,7 @@
               Ambientes <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li><a href="{!!URL::to('/reservar-ambiente/reservar-bungalow')!!}" title="Reserva de ambientes" target="_self">Reservar</a></li>
+                <li><a href="{!!URL::to('/reservar-ambiente/reservar-otros-ambientes')!!}" title="Reserva de ambientes" target="_self">Reservar</a></li>
             </ul>
           </li>
         </ul>

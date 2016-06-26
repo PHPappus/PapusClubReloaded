@@ -5,37 +5,21 @@
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	{!!Html::style('css/jquery.bxslider.css')!!}
 	{!!Html::style('css/font-awesome.css')!!}
 	{!!Html::style('css/bootstrap.css')!!}
-	{!!Html::style('css/MisEstilos.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
+	{!!Html::style('css/MisEstilos.css')!!}
+	{!!Html::style('css/jquery.bxslider.css')!!}
 	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
 	<!-- PARA DATA TABLE -->
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
 	
-	<style type="text/css" media="screen">
-		#dpd1{
-			width:300px;
-		}
-		#map { height: 20%; }
-	</style>
 
 <!--Aqui viene la magia-->
 
-	<style>
-		#map-canvas{
-			height: 500px;
-			width: 500px;
-			margin: 0px;
-			padding: 0px;
-		}
-	</style>
 
 
-	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuOs_TsnqNatCMf__4y1fSoQi0-L-soHM&libraries=places"></script>
+
 
 </head>
 <body>
@@ -143,7 +127,7 @@
 												<label for="" class="control-label">Fecha de Nacimiento:</label>
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" style="max-width: 250px" value="{{$persona->fecha_nacimiento}}" value="{{old('fecha_nacimiento')}}">
+												<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" style="width: 250px" value="{{$persona->fecha_nacimiento}}" value="{{old('fecha_nacimiento')}}">
 
 											</div>	
 										</div>
@@ -157,7 +141,7 @@
 											<div class="col-sm-6 text-left" >
 													<div class="col-sm-6 text-left" >
 												
-														<input onchange="es_peruano()" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : ''}} {{($persona->nacionalidad == "peruano") ? 'checked="true"':''}}/>Peruano&nbsp&nbsp&nbsp
+														<input onchange="es_peruano()" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : ''}} {{($persona->nacionalidad == "peruano") ? 'checked="true"':''}}/>peruano&nbsp&nbsp&nbsp
 														
 														<input onchange="es_extranjero()" type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "extranjero") ? 'checked="true"' : ''  }} {{($persona->nacionalidad == "extranjero") ? 'checked="true"':''}}/>Extranjero
 
@@ -173,7 +157,7 @@
 											</div>
 											<div class="col-sm-6">
 											<!--Se hace validacion para que acepte solo numeros pero que sea un texto-->
-												<input  type="text" onkeypress="return inputLimiter(event,'Numbers')"  @if ($persona->nacionalidad!="peruano") disabled  @endif  class="form-control" id="doc_identidad" name="doc_identidad" placeholder="DNI" maxlength="8" style="max-width: 250px" value="{{$persona->doc_identidad}}" value="{{old('doc_identidad')}}"  >
+												<input  type="text" onkeypress="return inputLimiter(event,'Numbers')"  @if ($persona->nacionalidad!="peruano") disabled  @endif  class="form-control" id="doc_identidad" name="doc_identidad" placeholder="DNI" maxlength="8" style="width: 250px" value="{{$persona->doc_identidad}}" value="{{old('doc_identidad')}}"  >
 											</div>	
 										</div>
 									</div>
@@ -184,7 +168,7 @@
 												<label for="" class="control-label">Carnet de extranjeria:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" onkeypress="return inputLimiter(event,'Numbers')" @if ($persona->nacionalidad!="extranjero") disabled  @endif class="form-control" id="carnet_extranjeria" name="carnet_extranjeria" placeholder="Carnet de Extranjeria" maxlength="12" style="max-width: 250px" value="{{$persona->carnet_extranjeria}}" value="{{old('carnet_extranjeria')}}" >
+												<input type="text" onkeypress="return inputLimiter(event,'Numbers')" @if ($persona->nacionalidad!="extranjero") disabled  @endif class="form-control" id="carnet_extranjeria" name="carnet_extranjeria" placeholder="Carnet de Extranjeria" maxlength="12" style="width: 250px" value="{{$persona->carnet_extranjeria}}" value="{{old('carnet_extranjeria')}}" >
 											</div>	
 										</div>
 									</div>
@@ -221,7 +205,7 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_ini_contrato" placeholder="Fecha de inicio" style="max-width: 250px" 
+												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_ini_contrato" placeholder="Fecha de inicio" style="width: 250px" 
 													@if (!empty($trabajador->fecha_ini_contrato))
 														value="{{$trabajador->fecha_ini_contrato}}";
 													@else
@@ -240,7 +224,7 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_fin_contrato" placeholder="Fecha de fin" style="max-width: 250px"
+												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_fin_contrato" placeholder="Fecha de fin" style="width: 250px"
 													@if (!empty($trabajador->fecha_fin_contrato))
 														value="{{$trabajador->fecha_fin_contrato}}";
 													@else
@@ -307,27 +291,26 @@
 
 @stop
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	{!!Html::script('js/jquery-1.11.3.min.js')!!}
+	{!!Html::script('js/bootstrap.js')!!}
+	{!!Html::script('js/jquery.bxslider.min.js')!!}
+	{!!Html::script('js/bootstrap-datepicker.js')!!}
+	{!!Html::script('js/MisScripts.js')!!}
 
+	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
 
-	<script type="text/javascript" src="../js/bootstrap-datepicker.js"></script>
-
-
-	<script type="text/javascript">
-		//var disabled_dates = ["23.03.2016","21.03.2016"];
+	<script>
 		$(function(){
-			$('.datepicker').datepicker({				
-				autoclose: true,
-				format: 'dd/mm/yyyy',
-				autoclose: true,
-				//startDate: '-3d',
-/*				beforeShowDay:function($date){
-					return false;
-				}*/
+			$('.datepicker').datepicker({
+				format: "dd/mm/yyyy",
+		        language: 'es',
+		        autoclose: true
+		        //beforeShowDay:function (date){return false}
+			});
+			$('.datepicker').on('changeDate', function(ev){
+			    $(this).datepicker('hide');
 			});
 		});
-		
 	</script>
 
 

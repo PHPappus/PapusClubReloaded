@@ -156,7 +156,7 @@ return [
         papusclub\Providers\EventServiceProvider::class,
         papusclub\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-
+        Orangehill\Iseed\IseedServiceProvider::class,
     ],
 
     /*

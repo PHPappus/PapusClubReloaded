@@ -23,12 +23,12 @@ class Ambiente extends Model
     }
     
     public function actividades(){
-        return $this->hasMany('papusclub\Models\Actividad', 'id');
+        return $this->hasMany('papusclub\Models\Actividad');
     }
 
     public function reservas()
     {
-        return $this->hasMany('papusclub\Models\Reserva', 'id');
+        return $this->hasMany('papusclub\Models\Reserva');
     }
     
     public function talleres(){

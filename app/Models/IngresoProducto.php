@@ -11,9 +11,9 @@ class IngresoProducto extends Model
     protected $table = 'ingresoproducto';
     protected $fillable = 
     ['persona_id',
-     'total',
-     'tipo_pago',
-     'tipo_comprobante',
+     'proveedor_id',  
+     'tipo_solicitud',
+     'descripcion',   
      'estado'];
      protected $dates = ['deleted_at'];
 
@@ -21,7 +21,11 @@ class IngresoProducto extends Model
         return $this->belongsTo('papusclub\Models\Persona');
     }
 
+    public function proveedor(){
+        return $this->belongsTo('papusclub\Models\Proveedor');
+    }
+
     public function productoxingresoproducto(){
-        return $this->hasMany('papusclub\Models\ProductoxIngresoProducto');
+        return $this->hasMany('papusclub\Models\ProductoxIngresoProducto', 'ingresoproducto_id');
     }
 }
