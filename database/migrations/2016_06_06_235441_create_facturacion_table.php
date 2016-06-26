@@ -16,6 +16,7 @@ class CreateFacturacionTable extends Migration
             $table->increments('id')->unsigned();
             $table->integer('persona_id')->unsigned()->index('facturacion_persona_id_foreign');
             $table->integer('reserva_id')->unsigned()->nullable();
+            $table->integer('actividad_id')->unsigned()->nullable();
             $table->double('total'); 
             $table->string('tipo_pago');                     
             $table->string('tipo_comprobante');
