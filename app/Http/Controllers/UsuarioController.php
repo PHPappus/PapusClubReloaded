@@ -72,7 +72,9 @@ class UsuarioController extends Controller
     public function create()
     {   
         $perfiles=Perfil::all();
-        $personas = Persona::where('id_tipo_persona','=',2)->get();
+        $personas = Persona::where('id_usuario','=',null)->where('id_tipo_persona','=',1)//Trabajador
+                         ->orwhere('id_usuario','=',null)->where('id_tipo_persona','=',2)//Postulante
+                        ->get();
         return view('usuario.create',compact('perfiles','personas'));
     }
 
