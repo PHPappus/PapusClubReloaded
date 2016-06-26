@@ -16,6 +16,7 @@ use papusclub\Models\Sede;
 use papusclub\Models\Persona;
 use papusclub\Models\Configuracion;
 use papusclub\Models\Facturacion;
+use papusclub\Models\Promocion;
 use Carbon\Carbon;
 use DB;
 
@@ -158,6 +159,13 @@ class InscriptionActividadController extends Controller
                                     $persona->actividades()->attach($id,['precio'=> $tarifa->precio]);
                                     $precioTarifa = $tarifa->precio;
                                     break;
+                                }
+                            }
+                            
+                            $promos = Promocion::where('tipo','=','Actividad')->where('estado','=',TRUE)->get();
+                            if ($promos != NULL){
+                                foreach ($promos as $promo) {
+                                    $precioTarifa = $precioTarifa - ($precioTarifa*$promo->porcentajeDescuento)/100;
                                 }
                             }
 

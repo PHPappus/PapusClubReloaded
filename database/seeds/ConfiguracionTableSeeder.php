@@ -75,5 +75,6 @@ class ConfiguracionTableSeeder extends Seeder
         Configuracion::insert(['valor'=>'Bungalow','grupo'=>'15','descripcion'=>'tipo promocion']);
         Configuracion::insert(['valor'=>'Actividad','grupo'=>'15','descripcion'=>'tipo promocion']);
         Configuracion::insert(['valor'=>'Taller','grupo'=>'15','descripcion'=>'tipo promocion']);
+        Configuracion::insert(['valor'=>'Ambiente','grupo'=>'15','descripcion'=>'tipo promocion']);
     }
 }

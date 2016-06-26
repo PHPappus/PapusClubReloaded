@@ -12,6 +12,7 @@ use papusclub\User;
 use papusclub\Models\Reserva;
 use papusclub\Models\Configuracion;
 use papusclub\Models\Facturacion;
+use papusclub\Models\Promocion;
 use papusclub\Http\Requests\StoreReservaBungalowSocio;
 use papusclub\Http\Requests\StoreReservaBungalowAdminR;
 use papusclub\Http\Requests\StoreReservaOtroAmbienteSocio;
@@ -233,6 +234,14 @@ class ReservarAmbienteController extends Controller
         $reserva->actividad_id = null;
         
         $reserva->save();
+
+        $promos = Promocion::where('tipo','=','Ambiente')->where('estado','=',TRUE)->get();
+        if ($promos != NULL)
+        {
+            foreach ($promos as $promo) {
+                $precioTarifa = $precioTarifa - ($precioTarifa*$promo->porcentajeDescuento)/100;
+            }
+        }
 
         $facturacion = new Facturacion();
         $facturacion->persona_id = $persona_id;
