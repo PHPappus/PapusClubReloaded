@@ -219,14 +219,16 @@ class ReservarAmbienteController extends Controller
         }else{
             $reserva->hora_fin_reserva=Carbon::createFromTime(0, 0, 0);
         }
-
+        $fechaIniValue=$carbon->createFromFormat('d-m-Y', $fecha_inicio);
+        $fechaFinValue=$carbon->createFromFormat('d-m-Y', $fecha_fin);
+        $diff=$fechaFinValue->diffInDays($fechaIniValue);
         $ambiente = Ambiente::find($ambiente_id);
         $persona = Persona::find($persona_id);
         $tipo_persona = $persona->tipopersona;
         $tarifas = $ambiente->tarifas;
         foreach ($tarifas as $tarifa) {
             if($tarifa->tipo_persona == $tipo_persona)
-                $reserva->precio = $tarifa->precio;        
+                $reserva->precio = $tarifa->precio*$diff;        
         }
         //$reserva->precio = 0;
         $reserva->estadoReserva = "En proceso";
@@ -283,7 +285,6 @@ class ReservarAmbienteController extends Controller
         $reserva = new Reserva();
         $reserva->ambiente_id = $ambiente_id;
         $reserva->id_persona = $persona_id;
-        
 
         if (empty($input['fecha_inicio_reserva'])) {
             $reserva->fecha_inicio_reserva="";
@@ -305,14 +306,16 @@ class ReservarAmbienteController extends Controller
         }else{
             $reserva->hora_fin_reserva=$carbon->createFromFormat('H:i', $input['hora_fin_reserva'])->toTimeString();
         }
-
+        $horaIniValue=$carbon->createFromFormat('H:i', $input['hora_inicio_reserva']);
+        $horaFinValue=$carbon->createFromFormat('H:i', $input['hora_fin_reserva']);
+        $diff=$horaFinValue->diffInHours($horaIniValue);
         $ambiente = Ambiente::find($ambiente_id);
         $persona = Persona::find($persona_id);
         $tipo_persona = $persona->tipopersona;
         $tarifas = $ambiente->tarifas;
         foreach ($tarifas as $tarifa) {
             if($tarifa->tipo_persona == $tipo_persona)
-                $reserva->precio = $tarifa->precio;        
+                $reserva->precio = $tarifa->precio*$diff;        
         }
         //$reserva->precio = 0;
         $reserva->estadoReserva = "En proceso";
@@ -638,14 +641,16 @@ class ReservarAmbienteController extends Controller
         }else{
             $reserva->hora_fin_reserva=Carbon::createFromTime(0, 0, 0);
         }
-
+        $fechaIniValue=$carbon->createFromFormat('d-m-Y', $fecha_inicio);
+        $fechaFinValue=$carbon->createFromFormat('d-m-Y', $fecha_fin);
+        $diff=$fechaFinValue->diffInDays($fechaIniValue);
         $ambiente = Ambiente::find($ambiente_id);
         $persona = Persona::find($persona_id);
         $tipo_persona = $persona->tipopersona;
         $tarifas = $ambiente->tarifas;
         foreach ($tarifas as $tarifa) {
             if($tarifa->tipo_persona == $tipo_persona)
-                $reserva->precio = $tarifa->precio;        
+                $reserva->precio = $tarifa->precio*$diff;        
         }
         //$reserva->precio = 0;
 
@@ -720,14 +725,17 @@ class ReservarAmbienteController extends Controller
         }else{
             $reserva->hora_fin_reserva=$carbon->createFromFormat('H:i', $input['hora_fin_reserva'])->toTimeString();
         }
-
+        $horaIniValue=$carbon->createFromFormat('H:i', $input['hora_inicio_reserva']);
+        $horaFinValue=$carbon->createFromFormat('H:i', $input['hora_fin_reserva']);
+        $diff=$horaFinValue->diffInHours($horaIniValue);
+        
         $ambiente = Ambiente::find($ambiente_id);
         $persona = Persona::find($persona_id);
         $tipo_persona = $persona->tipopersona;
         $tarifas = $ambiente->tarifas;
         foreach ($tarifas as $tarifa) {
             if($tarifa->tipo_persona == $tipo_persona)
-                $reserva->precio = $tarifa->precio;        
+                $reserva->precio = $tarifa->precio*$diff;        
         }
         //$reserva->precio = 0;
         $reserva->estadoReserva = "En proceso";
