@@ -195,10 +195,20 @@
 						<a href="/actividad/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
+				</br>
+				</br>
+	
 			
 			</form>
 		</div>
-	</div>		
+	</div>
+		</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>		
 @stop
 <!-- JQuery -->
 	{!!Html::script('js/jquery-1.12.4.min.js')!!}

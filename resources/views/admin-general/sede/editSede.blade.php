@@ -163,6 +163,14 @@
 			</form>
 		</div>
 	</div>		
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	
 @stop
 <!-- JQuery -->
 	{!!Html::script('../js/jquery-1.11.3.min.js')!!}
