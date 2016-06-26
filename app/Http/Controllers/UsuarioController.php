@@ -72,7 +72,9 @@ class UsuarioController extends Controller
     public function create()
     {   
         $perfiles=Perfil::all();
-        $personas = Persona::where('id_tipo_persona','=',2)->get();
+        $personas = Persona::where('id_usuario','=',null)->where('id_tipo_persona','=',1)//Trabajador
+                         ->orwhere('id_usuario','=',null)->where('id_tipo_persona','=',2)//Postulante
+                        ->get();
         return view('usuario.create',compact('perfiles','personas'));
     }
 
@@ -110,7 +112,9 @@ class UsuarioController extends Controller
         }
         else{
             $perfiles=Perfil::all();
-            $personas = Persona::where('id_tipo_persona','=',2)->get();
+            $personas = Persona::where('id_usuario','=',null)->where('id_tipo_persona','=',1)//Trabajador
+                             ->orwhere('id_usuario','=',null)->where('id_tipo_persona','=',2)//Postulante
+                             ->get();
             Session::flash('message-error','Seleccione un perfil para el usuario');
             return view('usuario.create',compact('perfiles','personas'));
         }
