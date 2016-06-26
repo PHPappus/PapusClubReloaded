@@ -12,16 +12,19 @@
 	
 </head>
 
-<body>
 @extends('layouts.headerandfooter')
 @section('content')
+
+<!---Cuerpo -->
+
+<main class="main">
 	<div class="content" style="max-width: 100%;">
 	<div class="container" id="ruta-navegacion">
 		<br/>
 		<div class="row">
 			<a class="btn btn-link text-left withoutpadding" href="/">INICIO <span class="glyphicon glyphicon-chevron-right"></span></a>
 			<button class="btn btn-link text-left withoutpadding" href="#">ACTIVIDADES <span class="glyphicon glyphicon-chevron-right"></span></button>
-			<button class="btn btn-link text-left withoutpadding" href="#">TALLERES<span class="glyphicon glyphicon-chevron-right"></span></button>
+			<button class="btn btn-link text-left withoutpadding" href="#">CURSOS<span class="glyphicon glyphicon-chevron-right"></span></button>
 			<label class="text-left withoutpadding">FUTBOL</button></label>
 		</div>
 		<br/>
@@ -31,10 +34,8 @@
 		<div class="row">
   			<div class="col-sm-12 withoutpadding">
   			<!-- bxslider es un plugin que permite crear sucesión de imagenes -->
-                <ul class="bxslider">
-                	<li><img class="slider img-responsive" src="images/canchafutbol3.jpg" /></li>
                     <li><img class="slider img-responsive" src="images/canchafutbol1.jpg" /></li>  
-                </ul>  						
+               						
   			</div>
   			
 		</div>
@@ -108,7 +109,12 @@
 		</div>
 			
 	</div>
+</main>
+
+<!--Pie de págna-->
+
 @stop
+
 <!-- JQuery -->
 	<script src="js/jquery-1.11.3.min.js"></script>
 	<!-- Bootstrap -->

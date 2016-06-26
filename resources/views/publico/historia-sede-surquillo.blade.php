@@ -55,11 +55,8 @@
 				<p>
 					<br/>
 					En sus orígenes, el distrito estuvo ocupado por haciendas vitivinícolas, pasando por la zona el ahora enterrado andarríos de "Surquillo", del cual proviene su nombre.
-
 En Surquillo existen pequeñas ruinas preincaicas y la trinchera de defensa peruana denominada "Reducto Nº 5" de la Guerra del Pacífico, que fue defendida por el coronel Narciso de la Colina.
-
 Antes de 1950 Surquillo pertenecía al Distrito de Miraflores del cual se separaría por ser un distrito muy grande para ocuparse de las necesidades de su población cada vez más creciente. Pero luego en 1983, Surquillo perdió más de la mitad de su territorio, cuando el distrito de San Borja fue creado en la parte norte del mismo debido a las mismas razones.
-
 A fines del siglo XX en Surquillo aconteció un hecho histórico: El sábado 12 de septiembre de 1992 Abimael Guzmán, terrorista cabecilla de Sendero Luminoso, fue capturado en la urbanización La Calera de la Merced.
 				</p>
 			</div>

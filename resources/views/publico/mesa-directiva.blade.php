@@ -14,9 +14,9 @@
 
 <body>
 <!--Cabecera- Se separará espacio para el input de busqueda antes de la cabecera de menu-->
+
 @extends('layouts.headerandfooter')
 @section('content')
-
 <!---Cuerpo -->
 
 <main class="main">
@@ -25,8 +25,8 @@
 		<br/>
 		<div class="row">
 			<a class="btn btn-link text-left withoutpadding" href="/">INICIO <span class="glyphicon glyphicon-chevron-right"></span></a>
-			<button class="btn btn-link text-left withoutpadding" href="#">PAPUS CLUB <span class="glyphicon glyphicon-chevron-right"></span></button>
-			<label class="text-left withoutpadding">GALERIA </button></label>
+			<button class="btn btn-link text-left withoutpadding" href="/">PAPUS CLUB <span class="glyphicon glyphicon-chevron-right"></span></button>
+			<label class="text-left withoutpadding">MESA DIRECTIVA </button></label>
 
 		</div>
 		<br/>
@@ -36,15 +36,8 @@
   			<div class="col-sm-12 withoutpadding">
   			<!-- bxslider es un plugin que permite crear sucesión de imagenes -->
                 <ul class="bxslider">
-                	<li><img class="slider img-responsive" src="images/historico.jpg" /></li>
-                    <!-- <li><img class="slider img-responsive" width="2000" height="400" src="images/natacion.jpg" /></li>   -->
-                    <!-- <li><img class="slider img-responsive" width="800" height="100" src="images/karate.jpg" /></li>   -->
-                    <!-- <li><img class="slider img-responsive" src="images/convenios.jpg" /></li>   -->
-                    <li><img class="slider img-responsive" src="images/bungalow1.jpg" /></li>  
-                    <li><img class="slider img-responsive" src="images/bungalow2.jpg" /></li> 
-                    <li><img class="slider img-responsive" src="images/bungalow3.jpg" /></li>  
-                    <!-- <li><img class="slider img-responsive" src="images/contradanza.jpg" /></li>   -->
-                    <!-- <li><img class="slider img-responsive" src="images/tennis.jpg" /></li>   -->
+                	<li><img class="slider img-responsive " alt="Chania" src="images/phpseniors.jpg" width="2000" height="400" /></li>
+                    <li><img class="slider img-responsive center-block" alt="Chania" src="images/grupo.jpg" /></li>  
                 </ul>  						
   			</div>
   			
@@ -53,26 +46,20 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 text-center">
-				<p class="lead"><strong>GALERIA DEL CLUB</strong></p>
+				<p class="lead"><strong>MESA DIRECTIVA</strong></p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-12 text-left">
-				<strong>GALERIA DEL CLUB PAPUS</strong>
+				<strong>MIEMBROS</strong>
 				<p>
 					<br/>
-					Podra apreciar las multiples disciplinas  y áreas con el cual, nuestro club PAPUS brinda al público en general.
+					A lo largo de sus años de existencia desde su fundación el 6 de abril de 2016, el Club de PAPUSCLUB "Lima" ha sido presidido por ilustres alumnos que de manera sabia han llevado las riendas de nuestra prestigioso sistema a un sitial de reconocimiento a nivel casi-casi-estatal. ¡Gracias señores miembros!
+					Sebastian, Cesar, Juan (Oso), Victor, Brayan, Jhoseline, Joe, Francisco, Marcelo, Christian, Juani y Edgar . :')
 					 
 				</p>
 			</div>
 		</div>
-	</div>
-	<div class="container">
-			<div class="row">
-				
-			</div>
-			<br/>
-			<br/>
 	</div>
 	</div>
 </main>

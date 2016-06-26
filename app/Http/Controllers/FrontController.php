@@ -12,19 +12,16 @@ class FrontController extends Controller
 		return view('inicio');
 	}
     public function futbol() {
-    	return view('futbol');
+    	return view('publico.futbol');
     }
     public function historia_papusclub() {
-    	return view('historia-papusclub');
+    	return view('publico.historia-papusclub');
     }
     public function historia_papusclub_ver_mas(){
-    	return view('historia-papusclub-ver-mas');
+    	return view('publico.historia-papusclub-ver-mas');
     }
     public function historia_sede_callao() {
-    	return view('historia-sede-callao');
-    }
-    public function historia_sede_callao_ver_mas() {
-    	return view('historia-sede-callao-ver-mas');
+    	return view('publico.historia-sede-callao');
     }
     public function reserva_bungalow(){
     	return view('reserva-bungalow');
@@ -50,29 +47,49 @@ class FrontController extends Controller
     public function registrar_precio_especial_membresia_1_al(){
         return view('registrar-precio-especial-membresia-1-al');
     }
-    public function prueba(){
-        return view('prueba');
-    }
      public function mesa_directiva(){
-        return view('mesa-directiva');
+        return view('publico.mesa-directiva');
     }
      public function reglamento_club(){
-        return view('reglamento-club');
+        return view('publico.reglamento-club');
     }
     public function historia_sede_surquillo() {
-        return view('historia-sede-surquillo');
+        return view('publico.historia-sede-surquillo');
     }
     public function historia_sede_barranco() {
-        return view('historia-sede-barranco');
+        return view('publico.historia-sede-barranco');
     }
     public function natacion() {
-        return view('natacion');
+        return view('publico.natacion');
     }
     public function karate() {
-        return view('karate');
+        return view('publico.karate');
     }
     public function convenios() {
         return view('publico.convenios');
     }
-    
+    public function concesiones() {
+        return view('publico.concesiones');
+    }
+    public function galeria() {
+        return view('publico.galeria');
+    }
+    public function informes() {
+        return view('publico.informes');
+    }
+    public function calendario() {
+        return view('publico.calendario');
+    }
+    public function servicios() {
+        return view('publico.servicios');
+    }
+    public function yoga() {
+        return view('publico.yoga');
+    }
+    public function padre() {
+        return view('publico.padre');
+    }
+    public function amigos() {
+        return view('publico.amigos');
+    }
 }

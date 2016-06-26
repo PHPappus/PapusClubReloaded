@@ -435,7 +435,6 @@ Route::get('futbol', 'FrontController@futbol');
 Route::get('historia-papusclub', 'FrontController@historia_papusclub');
 Route::get('historia-papusclub-ver-mas', 'FrontController@historia_papusclub_ver_mas');
 Route::get('historia-sede-callao', 'FrontController@historia_sede_callao');
-Route::get('historia-sede-callao-ver-mas', 'FrontController@historia_sede_callao_ver_mas');
 Route::get('reserva-bungalow', 'FrontController@reserva_bungalow');
 Route::get('reserva-bungalow-busqueda', 'FrontController@reserva_bungalow_busqueda');
 Route::get('registrar-concesionaria-al','FrontController@registrar_concesionaria_al');
@@ -450,8 +449,15 @@ Route::get('historia-sede-surquillo', 'FrontController@historia_sede_surquillo')
 Route::get('historia-sede-barranco', 'FrontController@historia_sede_barranco');
 Route::get('natacion', 'FrontController@natacion');
 Route::get('karate', 'FrontController@karate');
-Route::get('publico/convenios', 'FrontController@convenios');
-
+Route::get('convenios', 'FrontController@convenios');
+Route::get('concesiones', 'FrontController@concesiones');
+Route::get('galeria', 'FrontController@galeria');
+Route::get('informes', 'FrontController@informes');
+Route::get('calendario', 'FrontController@calendario');
+Route::get('servicios', 'FrontController@servicios');
+Route::get('yoga', 'FrontController@yoga');
+Route::get('padre', 'FrontController@padre');
+Route::get('amigos', 'FrontController@amigos');
 
 Route::get('token',function(){
     return csrf_token();
