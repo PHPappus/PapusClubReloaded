@@ -171,7 +171,14 @@
 			  	</br>
 			</form>
 		</div>
-	</div>		
+	</div>	
+		</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>	
 @stop
 <!-- JQuery -->
 	<script src="../js/jquery-1.11.3.min.js"></script>
@@ -203,6 +210,8 @@
 			    	</div>					    	
 				</div>									 
 
+				</br>
+				</br>
 				<div class="btn-inline">
 					<div class="btn-group col-sm-4"></div>
 					
@@ -213,6 +222,8 @@
 						<a  data-dismiss="modal" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
+				</br>
+				</br>
 			</form>
 		</div>
 

@@ -20,15 +20,14 @@
 @section('content')
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-12 text-center">
+			<div class="col-sm-12 text-left">
 				<br/><br/>
-				<p class="lead"><strong>Seleccionar Socio</strong></p>
+				<p class="lead"><strong>SELECCIONE AL SOCIO</strong></p>
 				<br/>
 			</div>
 			
 		</div>
-		<h4>1. Selecciones el socio.</h4>
-
+	</div>
 		</br>
 		</br>
 
@@ -65,11 +64,10 @@
 							@endforeach
 						</tbody>
 				</table>
-				</br></br></br>
-										
+				</br></br></br>										
 			</div>		
-	</div>
-</br></br></br></br></br>
+		</div>
+</br></br></br></br>
 		
 
 

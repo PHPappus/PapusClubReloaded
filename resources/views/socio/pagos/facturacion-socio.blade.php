@@ -20,15 +20,14 @@
 @section('content')
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-12 text-center">
+			<div class="col-sm-12 text-left">
 				<br/><br/>
-				<p class="lead"><strong>Pagos</strong></p>
+				<p class="lead"><strong>PAGOS</strong></p>
 				<br/>
 			</div>
 			
 		</div>
-		<h4>1. Lista de deudas del socio.</h4>
-
+	</div>
 
 		</br>
 		</br>
@@ -64,8 +63,8 @@
 			</table>		
 			
 		</div>
-	</div>
-</br></br></br></br></br>
+	
+</br></br></br></br>
 		
 
 
