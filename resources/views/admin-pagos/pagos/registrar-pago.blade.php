@@ -78,9 +78,16 @@
 
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">N° Pago</label>
-			    	<div class="col-sm-5">
-			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="numero_pago" name="numero_pago"  placeholder="Código del pago realizado" @if ($facturacion->numero_pago) value = "{{$facturacion->numero_pago}}" @endif >
-			    	</div>
+			    	@if ($facturacion->numero_pago) 
+				    	<div class="col-sm-5">
+				      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="numero_pago" name="numero_pago"  placeholder="Código del pago realizado" value = "{{$facturacion->numero_pago}}" readonly >
+				    	</div>
+			    	@else
+			    		<div class="col-sm-5">
+				      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="numero_pago" name="numero_pago"  placeholder="Código del pago realizado" >
+				    	</div>
+				    @endif
+
 			  	</div>
 
 			  	<div class="form-group required">
@@ -110,9 +117,15 @@
 			  	<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
 					
-					<div class="btn-group ">
-						<input class="btn btn-primary" type="submit" value="Confirmar">
-					</div>
+					@if ($facturacion->numero_pago) 
+						<div class="btn-group ">
+							<input class="btn btn-primary" type="submit" value="Confirmar" disabled>
+						</div>
+					@else
+						<div class="btn-group ">
+							<input class="btn btn-primary" type="submit" value="Confirmar">
+						</div>
+					@endif
 					<div class="btn-group">
 						<!-- <a href="/pagos/pago-seleccionar-socio" class="btn btn-info">Cancelar</a> -->
 						<a href="{{url('/pagos/'.$facturacion->persona_id.'/selectSocio')}}/" class="btn btn-info">Cancelar</a>
