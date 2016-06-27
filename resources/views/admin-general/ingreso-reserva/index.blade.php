@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>REGISTRAR VENTA</title>
+	<title>REGISTRAR INGRESO</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +12,7 @@
 	{!!Html::style('/css/DataTable.css')!!}	
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin-registros')
+@extends('layouts.headerandfooter-al-admin-reserva')
 @section('content')
 
 <!---Cuerpo -->
@@ -22,7 +22,7 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>REGISTRAR VENTA</strong>
+					<strong>REGISTRAR INGRESO</strong>
 			</div>		
 		</div>
 		<div class="container">
@@ -45,18 +45,11 @@
 
 				<br/>
 				<br/>
-				<div class="form-group">
-			  		<div class="text-center">
-			  			<font color="red"> 
-			  				(*) Dato Obligatorio
-			  			</font>
-			  			
-			  		</div>
-			  	</div>
+
 			  	</br>
 			  	</br>								
 
-				<div class="form-group required">
+				<div class="form-group">
 			    	<label for="persona_id" class="col-sm-4 control-label">ID Persona</label>
 			    	<div class="col-sm-5">			      		
 			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="persona_id" readonly name="persona_id" placeholder="ID de la Persona" value="{{old('persona_id')}}">
@@ -72,10 +65,7 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-primary" type="submit" value="Confirmar">
-					</div>
-					<div class="btn-group">
-						<a href="/venta-producto/index" class="btn btn-info">Cancelar</a>
+						<input class="btn btn-primary" type="submit" value="Buscar">
 					</div>
 				</div>
 				</br>
