@@ -86,6 +86,7 @@
             <ul class="dropdown-menu">
                 <li><a href="{!!URL::to('/actividad/index')!!}" title="Consultar actividades" target="_self">Consultar</a></li>
                 <li><a href="{!!URL::to('/actividad/new')!!}" title="Consultar ambiente" target="_self">Registrar</a></li>
+                <li><a href="{!!URL::to('/actividad/newEvento')!!}" title="Consultar ambiente" target="_self">Registrar Evento</a></li>
             </ul>
           </li>
         </ul>
