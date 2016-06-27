@@ -143,8 +143,8 @@ class InscriptionActividadAdminReservaController extends Controller
 
         
         /*Datos de inscripciones de los familiares del usuario Socio*/
-        $actividades=DB::table('actividad')
-                    ->whereIn('id', $id_actividades)->get();
+
+        $actividades=Actividad::wherein('id',$id_actividades)->get();    
         $fecha_validable=Carbon::now('America/Lima')->addDays(2)->format('Y-m-d');
 
         return view('admin-reserva.actividades.inscripciones', compact('actividades','fecha_validable'));
