@@ -72,7 +72,7 @@
 		</div>
 		
 		<div class="container">
-			<form method="POST" action="/talleres/{{ $taller->id }}/confirm/save" class="form-horizontal form-border">
+			<form method="POST" action="/taller-admin-reserva/{{ $taller->id }}/confirmacion/confirm" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<br/><br/>
 				<div class="form-group">
