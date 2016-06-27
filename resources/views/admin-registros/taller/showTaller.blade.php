@@ -36,9 +36,6 @@
 			</div>		
 		</div>
 		<div class="container">
-			<form method="POST" action="/taller/new/save" class="form-horizontal form-border">
-			<input type="hidden" name="_token" value="{{ csrf_token() }}">
-			
 				<div class="col-sm-4"></div>
 				<div class=""> 
 					@if ($errors->any())
@@ -171,7 +168,7 @@
 					<div class="btn-group col-sm-7"></div>
 				
 					<div class="btn-group">
-						<a href="/taller/" class="btn btn-info">Regresar</a>
+						<a href="/taller/index" class="btn btn-info">Regresar</a>
 					</div>
 				</div>
 				</br>
