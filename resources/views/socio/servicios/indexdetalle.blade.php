@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Inscripción en Taller</title>
+	<title>Solicitud en Servicio</title>
 	<meta charset="UTF-8">
 
 	{!!Html::style('css/jquery.bxslider.css')!!}
@@ -91,7 +91,7 @@
 				    	<label for="profesorInput" class="col-sm-5 control-label">Tipo Servicio</label>
 			    		<div class="col-sm-7 text-center">
 
-			    			<input type="text" class="form-control" id="profesor" placeholder="{{$tip_s}}" 
+			    			<input type="text" class="form-control" id="tipo_servicio" value="{{$tip_s}}" 
 							style="max-width: 220px" readonly="true"> 			
 			    		</div>		  				
 		 			</div>
@@ -100,7 +100,7 @@
 		  			<div class="col-sm-6">
 				    	<label for="nombreInput" class="col-sm-5 control-label">Estado</label>
 			    		<div class="col-sm-7">
-			      			<input type="text" class="form-control" id="fecha_inicio" placeholder='ACTIVO' style="max-width: 220px" readonly="true">
+			      			<input type="text" class="form-control" id="estadoservicio" value='ACTIVO' style="max-width: 220px" readonly="true">
 
 			    		</div>			
 		  			</div>
@@ -112,12 +112,56 @@
 				    	<label for="precio" class="col-sm-5 control-label">Precio:</label>
 			    		<div class="col-sm-7 text-center">
 			    			<input type="text" class="form-control" name="precio" id="precio" 
-							  placeholder="{{$precio}}"
+							  value="{{$precio}}"
 			    			 style="max-width: 220px" readonly="true">
 			    		</div>		  				
 		 			</div>
 				</div>
+
+				<div class="form-group required">
+			    	
+			    	<div class="col-sm-6">
+			    		<label for="tipoPagoInput" class="col-sm-5 control-label">Tipo de Pago</label>
+			    		<div class="col-sm-7 text-center">
+			      		<select style="max-width: 220px" class="form-control" id="tipo_pago" name="tipo_pago" >
+						<option value="" selected >Seleccionar tipo...</option>
+						@foreach($tipo_pagos as $tipo_pago)							
+							<option value="{{$tipo_pago->valor}}" >{{$tipo_pago->valor}}</option>
+						@endforeach						
+						</select>						
+						</div>		  				
+			    	</div>
+			  	</div>		
+
+			  	<div class="form-group required">
+			    	
+			    	<div class="col-sm-6">
+			    	<label for="tipoComprobanteInput" class="col-sm-5 control-label">Tipo de Comprobante</label>
+			    		<div class="col-sm-7 text-center">
+			      		<select style="max-width: 220px" class="form-control" id="tipo_comprobante" name="tipo_comprobante">
+						<option value="" selected >Seleccionar tipo...</option>
+						@foreach($tipo_comprobantes as $tipo_comprobante)
+							<option value="{{$tipo_comprobante->valor}}" >{{$tipo_comprobante->valor}}</option>
+						@endforeach						
+						</select>						
+						</div>	
+			    	</div>
+			  	</div>		
+						
+			  	<div class="form-group required">
+			    	
+			    	<div class="col-sm-6">			    	
+			    	<label for="estadoInput" class="col-sm-5 control-label">Estado Factura</label>
+			    		<div class="col-sm-7 text-center">			      		
+						<input type="text" class="form-control" name="estadofactura" id="estadofactura" 
+							  value="Emitido"
+			    			 style="max-width: 220px" readonly="true">							
+						</div>
+			    	</div>
+			  	
 				<br/><br/>
+				<br/><br/>
+
 				<div class="form-group">
 		 			<div class="col-sm-12">
 				    	<label for="password" class="col-sm-5 control-label">Ingrese su contraseña:</label>

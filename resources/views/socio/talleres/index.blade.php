@@ -114,27 +114,29 @@
 								<td>{{$taller->profesor}}</td>
 								<td>{{date("d-m-Y",strtotime($taller->fecha_inicio))}}</td>
 								<td>{{date("d-m-Y",strtotime($taller->fecha_fin))}}</td>
-								<td>{{$taller->vacantes}}</td>								
+								<td>
+									@if($taller->vacantes <= 0)
+										No hay vacantes
+									@else
+										{{$taller->vacantes}}
+									@endif
+								</td>								
 								
 								<td>S/.{{ $taller->precio($tipo_persona, $taller->tarifas) }}</td>
 								<td>{{date("d-m-Y",strtotime($taller->fecha_fin_inscripciones))}}
 								</td>
-								<td>
 						    		@if(count($talleresxpersona->where('id',$taller->id))!=0)
-						    			Inscrito
-						    		@elseif($taller->vacantes <= 0)
-						    			No hay vancantes
+						    			<td style="background:#bcd8bc;">Inscrito</td>
 						    		@else
-						    			No inscrito
+						    			<td style="background:#e2bfbf;">No inscrito</td>
 						    		@endif
-						    	</td>
 								<td> 
 									<a class="btn btn-info" href="{{url('/talleres/'.$taller->id.'/show')}}"  title="Detalle"><i class="glyphicon glyphicon-list-alt"></i></a>
 
 								</td>
 								<td>
 									@if((count($talleresxpersona->where('id',$taller->id))!=0)||($taller->vacantes<=0))
-						    			<a class="btn btn-info" title="Inscribirse" disabled><i class="glyphicon glyphicon-pencil"></i></a>
+						    			<a class="btn btn-info"  title="Ya se encuentra inscrito" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
 						    		@else
 						    			<a class="btn btn-info" title="Inscribirse" href="{{url('/talleres/'.$taller->id.'/confirm')}}"><i class="glyphicon glyphicon-pencil"></i></a>
 						    		@endif					

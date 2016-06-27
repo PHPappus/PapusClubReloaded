@@ -147,7 +147,6 @@ class InscriptionActividadController extends Controller
         $fecha_inicio=$input['fecha_inicio'];
         $fecha_fin=$input['fecha_fin'];
         return view('socio.actividades.inscripcion', compact('sedes','actividades','actividades_persona','tipo_persona','familiares','fecha_inicio','fecha_fin'));
-
     }
 
     public function misinscripciones()

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Talleres Papus Club</title>
+	<title>Actividades Papus Club</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,7 +71,7 @@
 								@if($actividad->a_realizarse_en >= $fecha_validable)
 								     <a class="btn btn-danger" data-href="{{url('/inscripcion-actividad/'.$actividad->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
 								@else
-									 <a class="btn btn-info"  title="El periodo de anulación ya ha caducado" disable><i class="glyphicon glyphicon-ban-circle"></i></a>
+									 <a class="btn btn-info"  title="El periodo de anulación ya ha caducado" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
 								@endif
 							</td>
 							

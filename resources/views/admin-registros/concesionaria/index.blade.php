@@ -27,12 +27,12 @@
 	</div>	
 
 	<!-- Mensaje de éxito luego de registrar -->
-	@if (session('stored'))
+	@if (isset($stored))
 		<script>$("#modalSuccess").modal("show");</script>
 		
 		<div class="alert alert-success fade in">
 				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				<strong>¡Éxito!</strong> {{session('stored')}}
+				<strong>¡Éxito!</strong> {{$stored}}
 		</div>
 	@endif
 
@@ -63,7 +63,7 @@
 						@foreach($concesionarias as $concesionaria)			
 						<tr>
 							<td>{{ $concesionaria->nombre }}</td>
-							<td>{{ $concesionaria->sede->first()['nombre'] }}</td> 							
+							<td>{{ $concesionaria->sede->nombre }}</td> 							
 							<td>{{ date("d-m-Y",strtotime($concesionaria->fecha_inicio_concesion)) }}</td>
 							<td>{{ date("d-m-Y",strtotime($concesionaria->fecha_fin_concesion)) }}</td>
 							<td>

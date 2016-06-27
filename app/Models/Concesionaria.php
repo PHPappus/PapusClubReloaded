@@ -12,7 +12,7 @@ class Concesionaria extends Model
     ['sede_id',
      'nombre',
      'ruc',
-     'direccion',
+     'descripcion',
      'telefono', 
      'correo',
      'nombre_responsable',

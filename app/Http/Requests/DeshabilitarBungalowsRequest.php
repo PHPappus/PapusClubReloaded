@@ -4,7 +4,7 @@ namespace papusclub\Http\Requests;
 
 use papusclub\Http\Requests\Request;
 
-class StoreServicioRequest extends Request
+class DeshabilitarBungalowsRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,12 +23,8 @@ class StoreServicioRequest extends Request
      */
     public function rules()
     {
-         
-
         return [
-            'nombre'       =>  'required|max:100|string',
-            'descripcion'  =>  'string|max:400|string',
-            'tipo_servicio'=>  'required|max:50|integer',         
+            'ch'=>'required'
         ];
     }
 }

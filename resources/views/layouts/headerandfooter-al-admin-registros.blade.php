@@ -1,3 +1,11 @@
+<style>
+  @media (min-width: 1405px){
+            #navbar1 {
+                width: 1403px;
+            }
+        }
+</style>
+
 <script>
 		function inputLimiter(e,allow) {
 		    var AllowableCharacters = '';
@@ -21,6 +29,7 @@
 		    }
 		}
 </script>
+
 
 
 <!--Cabecera- Se separará espacio para el input de busqueda antes de la cabecera de menu-->
@@ -60,6 +69,7 @@
             <ul class="dropdown-menu">
                 <li><a href="{!!URL::to('/servicios/index')!!}" title="Consultar servicio" target="_self">Consultar</a></li>
                 <li><a href="{!!URL::to('/servicios/new')!!}" title="Registrar nuevo servicio" target="_self">Registrar</a></li>
+                <li><a href="{!!URL::to('/select/sede')!!}" title="Agregar Servicio a Sede" target="_self">Agregar Servicios a Sede</a></li>
             </ul>
           </li>
         </ul>
