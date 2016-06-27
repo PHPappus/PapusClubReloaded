@@ -113,10 +113,10 @@
 									<td>{{($taller_familiar->vacantes == 0) ? 'No hay vacantes': 'Disponible'}}</td>
 									
 									<td>
-										<a class="btn btn-info" href="{{url('/talleres/'.$taller_familiar->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+										<a class="btn btn-info" href="{{url('/talleres-familiar/'.$taller->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 									</td>
 									<td>
-										<a class="btn btn-info" data-href="{{url('/talleres/'.$taller_familiar->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+										<a class="btn btn-info" data-href="{{url('/talleres-familiar/'.$taller_familiar->id.'/'.$familiar->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
 									</td>
 								</tr>
 							@endforeach
