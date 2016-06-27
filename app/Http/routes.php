@@ -634,6 +634,8 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::get('actividad-admin-reserva/inscripciones','InscriptionActividadAdminReservaController@inscripciones');
 
 	Route::get('actividad-admin-reserva/inscripcion/{id}/{idPersona}/delete', 'InscriptionActividadAdminReservaController@removeInscriptionToPersona');
+	//Inscripción de socios a TAlleres en el club
+	Route::get('taller-admin-reserva/index', 'InscriptionTallerAdminReservaController@index');
 
 
 
