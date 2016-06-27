@@ -108,9 +108,17 @@ class MembresiaController extends Controller
         }
         else
         {
-            $tarifa = $membresia->tarifa;
-            $membresia->forceDelete();
-            $tarifa->forceDelete();
+            try
+            {
+                $tarifa = $membresia->tarifa;
+                $membresia->forceDelete();
+                $tarifa->forceDelete();                
+            }
+            catch(/Exception $e)
+            {
+                /*Si alguien elimina al mismo tiempo que yo, entra al catch.*/
+            }
+
 
             return back();
         }
