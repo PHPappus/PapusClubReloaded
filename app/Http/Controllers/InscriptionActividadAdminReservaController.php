@@ -141,12 +141,36 @@ class InscriptionActividadAdminReservaController extends Controller
     {
         $id_actividades = DB::table('actividad_persona')->lists('actividad_id');
 
-        
+        $id_personas = DB::table('actividad_persona')->lists('persona_id');
         /*Datos de inscripciones de los familiares del usuario Socio*/
-        $actividades=DB::table('actividad')
-                    ->whereIn('id', $id_actividades)->get();
+        $personas=Persona::wherein('id',$id_personas)->get();
+        $actividades=Actividad::wherein('id',$id_actividades)->get();    
         $fecha_validable=Carbon::now('America/Lima')->addDays(2)->format('Y-m-d');
 
-        return view('admin-reserva.actividades.inscripciones', compact('actividades','fecha_validable'));
+        return view('admin-reserva.actividades.inscripciones', compact('actividades','personas','fecha_validable'));
+    }
+
+    public function removeInscriptionToPersona($id,$idPersona)
+    {
+        DB::beginTransaction();
+        try{
+            $persona  = Persona::find($idPersona);
+            $actividad   = Actividad::find($id);
+
+            $facturacion = Facturacion::where('actividad_id', '=', $actividad->id)->where('persona_id', '=', $persona->id)->get()->first();
+            
+            if($facturacion)
+                $facturacion->delete();
+
+            $actividad->cupos_disponibles=$actividad->cupos_disponibles+1;
+            $actividad->save();
+            $persona->actividades()->detach([$id]);
+        }
+        catch(ValidationException $e){
+            DB::rollback();
+            var_dump($e->getErrors());
+        }
+        DB::commit();
+        return back();
     }
 }
