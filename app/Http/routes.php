@@ -44,7 +44,22 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('anular-reserva-ambiente-b-s','SocioController@anularReservaAmbienteB');
 	Route::get('pagos-s','SocioController@pagos');
 
-Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
+
+	// SOCIO INCRIPCION DE SERVICIOS LOLIFURTHIS
+	Route::get('servicioalsocio/index','ServicioalsocioController@index');
+	Route::post('servicioalsocio/index','ServicioalsocioController@filtroServicio');
+	Route::get('servicioalsocio/{id}/confirm','ServicioalsocioController@confirmareleccion');
+
+	Route::post('servicioalsocio/{id}/confirm/save','ServicioalsocioController@confirmareleccionsave');
+	Route::get('servicios/mis-inscripciones','ServicioalsocioController@misinscripciones');
+	Route::get('servicios/mis-inscripciones/{id}/calificar','ServicioalsocioController@calificar');
+	Route::post('calificar/store','ServicioalsocioController@storeCalificacion');
+	Route::get('servicios/mis-inscripciones/{id}/delete','ServicioalsocioController@delete');
+
+	//Route::post('servicios/mis-inscripciones','ServicioalsocioController@filtromisinscripciones');
+
+	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
+
 
 	//Inscribirse en Sorteo
 	Route::get('sorteo/inscripcion/socio','SorteoController@indexInscripcion');
