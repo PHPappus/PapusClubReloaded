@@ -106,6 +106,7 @@ class AmbienteController extends Controller
         $ambiente->update();
 
         $tarifasAnt = TarifaAmbientexTipoPersona::where('ambiente_id', '=', $id)->get();
+        $cantTarifasAnt = $tarifasAnt->count();
 
         foreach ($tarifasAnt as $tarifaAnt) {
             $tarifaAnt->delete();
@@ -114,10 +115,12 @@ class AmbienteController extends Controller
 
         $tipoPersonas = TipoPersona::all();
         foreach ($tipoPersonas as $tipoPersona) {                
-                $tarifa = new TarifaAmbientexTipoPersona();
+                $tarifa = new TarifaAmbientexTipoPersona();                
                 $tarifa->ambiente_id = $id;
                 $tarifa->tipo_persona_id = $tipoPersona->id;
-                $tarifa->precio = $input[$tipoPersona->descripcion];
+                if($cantTarifasAnt)
+                    $tarifa->precio = $input[$tipoPersona->descripcion];
+                $cantTarifasAnt--;
                 $tarifa->save();
         }
 
