@@ -157,11 +157,11 @@ class InscriptionActividadController extends Controller
         $familiares=$postulante->familiarxpostulante;
         $actividadesxfamiliar;
         /*array_push(*/
-        $fecha_hoy=Carbon::now('America/Lima')->format('Y-m-d');
+        $fecha_validable=Carbon::now('America/Lima')->addDays(2)->format('Y-m-d');
 
         $tipo_persona = $persona->tipopersona->id;
 
-        return view('socio.actividades.inscripciones', compact('actividades','familiares','fecha_hoy','tipo_persona'));
+        return view('socio.actividades.inscripciones', compact('actividades','familiares','fecha_validable','tipo_persona'));
     }
 
     public function makeInscriptionFamiliarToPersona(MakeInscriptionToPersonaRequest $request, $id)

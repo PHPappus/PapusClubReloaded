@@ -66,9 +66,15 @@
 	 						<td>S/.{{ $actividad->precio($tipo_persona, $actividad->tarifas) }}</td>
 	 						<td>{{ $actividad->a_realizarse_en}}</td>
 	 						<!-- <td>{{ $actividad->created_at}}</td> -->
+	 						
 							<td>
-								<a class="btn btn-info" data-href="{{url('/inscripcion-actividad/'.$actividad->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+								@if($actividad->a_realizarse_en >= $fecha_validable)
+								     <a class="btn btn-danger" data-href="{{url('/inscripcion-actividad/'.$actividad->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+								@else
+									 <a class="btn btn-info"  title="El periodo de anulación ya ha caducado" disable><i class="glyphicon glyphicon-ban-circle"></i></a>
+								@endif
 							</td>
+							
 						</tr>
 						@endforeach
 					</tbody>
@@ -111,7 +117,7 @@
 		 						<td>{{ $actividad_familiar->a_realizarse_en}}</td>
 		 						<!-- <td>{{ $actividad_familiar->created_at}}</td> -->
 								<td>
-									<a class="btn btn-info" data-href="{{url('/inscripcion-actividad-familiar/'.$actividad_familiar->id.'/'.$familiar->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+									<a class="btn btn-danger" data-href="{{url('/inscripcion-actividad-familiar/'.$actividad_familiar->id.'/'.$familiar->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
 								</td>
 							</tr>
 							@endforeach
