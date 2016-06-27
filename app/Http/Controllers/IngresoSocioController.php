@@ -12,6 +12,8 @@ use papusclub\Models\Reserva;
 use papusclub\Http\Requests\ShowReservaSocio;
 use papusclub\Http\Requests\EditEstadoReservaRequest;
 
+use Carbon\Carbon;
+
 class ingresoSocioController extends Controller
 {
 	public function index()
@@ -34,7 +36,8 @@ class ingresoSocioController extends Controller
     public function reservaSocio(ShowReservaSocio $request)
     {
     	$input = $request->all();
-    	$reservas=Reserva::where('id_persona','=',$input['persona_id'])->where('estadoReserva','!=','Ejecutado')->get();
+        $mytime = Carbon::now();
+    	$reservas=Reserva::where('fecha_inicio_reserva','<=',$mytime)->where('fecha_fin_reserva','>=',$mytime)->where('id_persona','=',$input['persona_id'])->where('estadoReserva','!=','Ejecutado')->get();
     	return view('admin-general.ingreso-reserva.reservaSocio',['reservas'=>$reservas]);
     }
 

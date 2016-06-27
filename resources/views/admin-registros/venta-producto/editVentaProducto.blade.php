@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>MODIFICAR PROVEEDOR</title>
+	<title>MODIFICAR VENTA</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,14 +27,14 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>EDITAR PROVEEDOR</strong>
+					<strong>EDITAR VENTA</strong>
 			</div>		
 		</div>
 		<div class="container">
 			<!--@include('errors.503')-->		
-			<form method="POST" action="/proveedor/{{ $proveedor->id }}/edit" class="form-horizontal form-border">
+			<form method="POST" action="/venta-producto/{{ $factura->id }}/edit" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
-					
+				
 				<!-- Mensajes de error de validación del Request -->
 				<div class="col-sm-4"></div>
 				<div class="">
@@ -50,62 +50,93 @@
 			  		
 				</div>
 
-				<br/><br/>
+				<br/>
+			  	</br>
 
 				<!-- INICIO INCIIO -->				                       
 				<div class="form-group">
-		    		<label for="nombre_proveedorInput" class="col-sm-4 control-label">Nombre</label>
+		    		<label for="idInput" class="col-sm-4 control-label">N° de Factura</label>
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="nombre_proveedorInput" name="nombre_proveedor" value="{{$proveedor->nombre_proveedor}}" >
+		      			<input type="text" class="form-control" id="idInput" name="id" value="{{str_pad($factura->id, 10, "0", STR_PAD_LEFT)}}" readonly>
 		    		</div>
 		  		</div>
+			  
 			  	<div class="form-group">
-			    	<label for="rucInput" class="col-sm-4 control-label">RUC</label>
+			    	<label for="personaInput" class="col-sm-4 control-label">Persona</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="rucInput" name="ruc" value="{{$proveedor->ruc}}" readonly>
+			      		<input type="text" class="form-control" id="personaInput" name="persona" value="{{$factura->persona->nombre}} {{$factura->persona->ap_paterno}} {{$factura->persona->ap_materno}}" readonly>
 			    	</div>
-			  	</div>
-
-			  	<div class="form-group">
-			    	<label for="direccionInput" class="col-sm-4 control-label">Dirección</label>
-			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="direccionInput" name="direccion" value="{{$proveedor->direccion}}">
-			    	</div>
-			  	</div>	  	
-			  	<div class="form-group">
-			    	<label for="telefonoInput" class="col-sm-4 control-label">Teléfono</label>
-			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="telefonoInput" name="telefono" value="{{$proveedor->telefono}}" >
-			    	</div>
-			  	</div>
-			  	<div class="form-group">
-			    	<label for="correoInput" class="col-sm-4 control-label">Correo</label>
-			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="correoInput" name="correo" value="{{$proveedor->correo}}">
-			    	</div>
-			  	</div>
+			  	</div>	  				  				 
 			  	
 			  	<div class="form-group">
-			    	<label for="nombre_responsableInput" class="col-sm-4 control-label">Nombre del Responsable</label>
+			    	<label for="tipoPagoInput" class="col-sm-4 control-label" >Tipo de Pago</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="nombre_responsableInput" name="nombre_responsable" value="{{$proveedor->nombre_responsable}}" >
-			    	</div>
-			  	</div>			  
+			      		<input type="text" class="form-control" id="tipoPagoInput" name="tipoPago" 
+			    		value="{{$factura->tipo_pago}}"
+			      		readonly>
+			    	</div>			      					      		
+			  	</div>	
+						
+				@if (strcmp($factura->estado, 'Anulado')==0)		
+					<div class="form-group">
+				    	<label for="estadoInput" class="col-sm-4 control-label" >Estado</label>
+				    	<div class="col-sm-5">
+				      		<input type="text" class="form-control" id="estado" name="estado" 
+				    		value="{{$factura->estado}}" readonly>
+				    	</div>			      					      		
+			  		</div>			
+				@else
 			  	<div class="form-group">
-			    	<label for="estadoInput" class="col-sm-4 control-label ">Estado</label>
-			    	<div class="col-sm-3">			      					      	
-			      		
+			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
+			    	<div class="col-sm-5">			    	
 			      		<select class="form-control" id="estado" name="estado" >
 						<!-- Las opciones se deberían extraer de la tabla configuracion-->
-						<option value="1" @if($proveedor['estado'] == true) selected @endif >Activo</option>
-						<option value="0" @if($proveedor['estado'] == false) selected @endif>Inactivo</option>				
+						<option value="" >Seleccionar tipo...</option>
+						@foreach($estados as $estado)
+							<option value="{{$estado->valor}}" 
+							@if (strcmp($estado->valor, $factura->estado)==0)		
+									selected
+							@endif
+							>{{$estado->valor}}</option>
+						@endforeach						
+						</select>													
 						
-						</select>							
-			    	</div>	    	
-			  	</div>
-			  	
-					<!-- FIN FIN FIN  -->
+			    	</div>
+			  	</div>		
+			  	@endif
+
+				<br/><br/>
 				
+
+				<div class="table-responsive">				
+					<table class="table table-bordered table-hover text-center display" id="example">
+						<thead class="active" data-sortable="true">
+							<th><div align=center>PRODUCTO</div></th>
+							<th><div align=center>PRECIO</div></th>
+							<th><div align=center>CANTIDAD</div></th>
+							<th><div align=center>SUBTOTAL</div></th>							
+						</thead>
+
+												
+						<tbody>
+						@foreach($factura->productoxfacturacion as $producto)
+							<tr>
+								<td>{{ $producto->producto->nombre}}</td>
+								<td>{{ $producto->precio}}</td>
+								<td>{{ $producto->cantidad}}</td>			
+								<td>{{ $producto->subtotal }}</td>								
+				            </tr>
+						@endforeach
+						<tr>
+								<td></td>
+								<td></td>
+								<td><b>TOTAL</b></td>
+								<td>{{ $factura->total}}</td>								
+				            </tr>
+						</tbody>													
+					</table>						
+				</div>
+					<!-- FIN FIN FIN  -->				
 			
 				</br>
 			  	</br>
@@ -116,7 +147,7 @@
 						<input class="btn btn-primary" data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Aceptar">
 					</div>
 					<div class="btn-group">
-						<a href="/proveedor/index" class="btn btn-info">Cancelar</a>
+						<a href="/venta-producto/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>
@@ -142,7 +173,7 @@
 						</div>
 					</div>
 				</div>
-
+				
 			</form>
 		</div>
 	</div>		

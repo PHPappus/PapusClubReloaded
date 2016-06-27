@@ -44,6 +44,7 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('anular-reserva-ambiente-b-s','SocioController@anularReservaAmbienteB');
 	Route::get('pagos-s','SocioController@pagos');
 
+
 	// SOCIO INCRIPCION DE SERVICIOS LOLIFURTHIS
 	Route::get('servicioalsocio/index','ServicioalsocioController@index');
 	Route::post('servicioalsocio/index','ServicioalsocioController@filtroServicio');
@@ -57,25 +58,45 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	//Route::post('servicios/mis-inscripciones','ServicioalsocioController@filtromisinscripciones');
 
 
+	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
+
+
+	//Inscribirse en Sorteo
+	Route::get('sorteo/inscripcion/socio','SorteoController@indexInscripcion');
+	Route::post('sorteo/inscripcion/store','SorteoController@inscripcionStore');
+	Route::post('sorteo/inscripcion/delete','SorteoController@inscripcionDelete');
+	Route::get('sorteo/inscripcion/mis_sorteos','SorteoController@indexMisInscripciones');
+	
 	//Socio.talleres  : INSCRIPCION DE TALLERES
 	Route::get('talleres/index','InscriptionTallerController@index');
 	Route::post('talleres/index','InscriptionTallerController@filterTalleres');
 	Route::get('talleres/{id}/show','InscriptionTallerController@show');
+
+	//Pide confirmación de password
 	Route::get('talleres/{id}/confirm','InscriptionTallerController@confirmInscription');
+	Route::get('talleres-familiar/{id}/confirm','InscriptionTallerController@confirmInscriptionFamiliar');
+
 	Route::post('talleres/{id}/confirm/save','InscriptionTallerController@makeInscriptionToUser');
+	Route::post('talleres-familiar/{id}/confirm/save','InscriptionTallerController@makeInscriptionFamiliarToUser');
+
 	Route::get('talleres/{id}/delete', 'InscriptionTallerController@removeInscriptionToUser');
+	Route::get('talleres-familiar/{id}/{idPersona}/delete', 'InscriptionTallerController@removeInscriptionToFamiliar');
+	
+
 	Route::get('talleres/mis-inscripciones','InscriptionTallerController@misinscripciones');
 		//Socio.bungalows
 	Route::get('bungalows-s','SocioController@bungalow');
 	Route::get('reserva-bungalows-s','SocioController@bungalowReserva');
 	Route::get('reserva-bungalows-b-s','SocioController@bungalowReservaB');
-	//Socio.atividades : INSCRIPCION DE ACTIVIDADES
-	Route::get('inscripcion-actividad/inscripcion-actividades', 'InscriptionActividadController@inscriptionActividad'); 
 
+	//Socio.atividades : INSCRIPCION DE ACTIVIDADES
+	Route::get('inscripcion-actividad/inscripcion-actividades', 'InscriptionActividadController@inscriptionActividad'); // REservar
+	
 	Route::get('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades', 'InscriptionActividadController@storeInscriptionActividad');
 	Route::get('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades-to-familiar', 'InscriptionActividadController@storeInscriptionActividadtoFamiliar');
-	
-	Route::post('inscripcion-actividad/inscripcion-actividades','InscriptionActividadController@filterActividades');
+
+	Route::post('inscripcion-actividad/inscripcion-actividades','
+		InscriptionActividadController@filterActividades');
 
 	Route::post('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades/confirm','InscriptionActividadController@makeInscriptionToPersona');
 	Route::post('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades-to-familiar/confirm','InscriptionActividadController@makeInscriptionFamiliarToPersona');
@@ -130,13 +151,14 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	//MANTENIMIENTO DE PROMOCIONES
 	Route::get('promociones/index', 'PromocionesController@index');
 	Route::get('promociones/new', 'PromocionesController@create');
+
 	Route::post('promociones/new/promocion', 'PromocionesController@store');
 	Route::get('promociones/{id}', 'PromocionesController@edit');
 	Route::post('promociones/{id}/edit', 'PromocionesController@update');
 	Route::get('promociones/{id}/delete', 'PromocionesController@destroy');
 	Route::get('promociones/{id}/show', 'PromocionesController@show');
 
-	// Mantenimiento de Servicios
+	// Mantenimiento de Servicios Lol by Brayan
 	Route::get('servicios/index', 'ServiciosController@index');	
 	Route::get('servicios/new', 'ServiciosController@create');
 	Route::post('servicios/new/servicio', 'ServiciosController@store');
@@ -145,12 +167,6 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::get('servicios/{id}/delete', 'ServiciosController@destroy');
 	Route::get('servicios/{id}/show', 'ServiciosController@show');	
 
-	// Agregar Servicios a las sedes2
-	 Route::get('select/sede', 'SedesController@indexselecttoservicio');
-	 Route::get('sedes/{id}/agregarservicios', 'SedesController@agregarservicios');
-	 Route::post('sedes/{id}/agregarservicios/store','SedesController@storeservicios');
-	 Route::get('sedes/{id}/verservicios', 'SedesController@indexserviciosdesede');
-	
 
 	//MANTENIMIENTO DE TALLERES
 	Route::get('taller/index','TallerController@index');
@@ -163,10 +179,12 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::get('taller/{taller}/delete', 'TallerController@destroy');
 
 
-	///MANTENIMIENTO DE ACTIVIDADES
+	///MANTENIMIENTO DE ACTIVIDADES Y EVENTOS
 	Route::get('actividad/index', 'ActividadController@index');
 	Route::get('actividad/new', 'ActividadController@create');
+	Route::get('actividad/newEvento', 'ActividadController@createEvento');
 	Route::post('actividad/new/actividad', 'ActividadController@store');
+	Route::post('actividad/new/evento', 'ActividadController@storeEvento');
 	Route::get('actividad/{id}', 'ActividadController@edit');
 	Route::post('actividad/{id}/edit', 'ActividadController@update');
 	Route::get('actividad/{id}/delete', 'ActividadController@destroy');
@@ -174,7 +192,7 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::post('actividad/new/{id}/tipoactividad', 'ActividadController@storeTipoActividad');
 	Route::get('actividad/searchReservas', 'ActividadController@searchReservas');/*lista todas las reservas*/	
 	Route::get('actividad/{id}/select', 'ActividadController@select');/*lleva a la pantalla principal de registrar*/
-
+	Route::get('actividad/{id}/selectSede', 'ActividadController@selectSede');/*lleva a la pantalla principal de registrar Evento*/
 	//MANTENIMIENTO DE AMBIENTES
 	Route::get('ambiente/index', 'AmbienteController@index');
 	Route::get('ambiente/search', 'AmbienteController@search');/*PAra buscar el ambiente y seleccionarlo para ACtividad*/	
@@ -234,6 +252,16 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::get('ingreso-producto/{id}/deleteProducto', 'IngresoProductoController@destroyProducto');
 	Route::get('ingreso-producto/{id}/back', 'IngresoProductoController@back');
 	Route::get('ingreso-producto/{id}/cancel', 'IngresoProductoController@cancel');
+
+	//MANTENIMIENTO DE CONCESIONARIAS
+	Route::get('concesionaria/index/', 'ConcesionariaController@index');
+	Route::get('concesionaria/new', 'ConcesionariaController@create');
+	Route::post('concesionaria/new/concesionaria', 'ConcesionariaController@store');
+	Route::get('concesionaria/{id}', 'ConcesionariaController@edit');
+	Route::post('concesionaria/{id}/edit', 'ConcesionariaController@update');
+	Route::get('concesionaria/{id}/delete', 'ConcesionariaController@destroy');
+	Route::get('concesionaria/{id}/show', 'ConcesionariaController@show');
+	Route::post('concesionaria/new/tipoconcesionaria', 'ConcesionariaController@storeTipoConcesionaria');
 });
 
 //Gerente
@@ -263,13 +291,14 @@ Route::group(['middleware' => ['auth', 'adminpagos']], function () {
 	Route::get('pagos/registrar-pago/{id}', 'PagosController@registrarPago');
     Route::post('pagos/registrar-pago/update/{id}', 'PagosController@storePago');
     Route::get('pagos/{id}/show', 'PagosController@showSocio'); // Detalle del pago
+    /*Route::post('pagos/{id}/createPago', 'PagosController@createPago');*/
 
     //PAGOS POR INGRESO AL CLUB
     Route::get('ingreso/busqueda','PagosController@buscarpersona');
     Route::get('/resultado-busqueda-persona','PagosController@resultadopersona');
     //Route::get('/resultado-busqueda-persona/','PagosController@resultadomostrar');
     Route::post('/registrar-pago-ingreso','PagosController@registrarPagoIngreso');
-
+   
 });
 
 
@@ -328,55 +357,20 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 
 	
 
-
-	
-	//MANTENIMIENTO DE PROVEEDORES
-	Route::get('proveedor/index/', 'ProveedorController@index');
-	Route::get('proveedor/new', 'ProveedorController@create');
-	Route::post('proveedor/new/proveedor', 'ProveedorController@store');
-	Route::get('proveedor/{id}', 'ProveedorController@edit');
-	Route::post('proveedor/{id}/edit', 'ProveedorController@update');
-	Route::get('proveedor/{id}/delete', 'ProveedorController@destroy');
-	Route::get('proveedor/{id}/show', 'ProveedorController@show');
-	//MANTENIMIENTO DE PRODUCTOS
-	Route::get('producto/index', 'ProductoController@index');
-	Route::get('producto/new', 'ProductoController@create');
-	Route::post('producto/new/producto', 'ProductoController@store');
-	Route::get('producto/{id}', 'ProductoController@edit');
-	Route::post('producto/{id}/edit', 'ProductoController@update');
-	Route::get('producto/{id}/delete', 'ProductoController@destroy');
-	Route::get('producto/{id}/show', 'ProductoController@show');
-	Route::post('producto/new/tipoproducto', 'ProductoController@storeTipoProducto');
-	//VENTA DE PRODUCTOS
-	Route::get('venta-producto/index', 'VentaProductoController@index');
-	Route::get('venta-producto/new', 'VentaProductoController@create');
-	Route::post('venta-producto/new/venta-producto', 'VentaProductoController@store');
-	Route::get('venta-producto/{id}', 'VentaProductoController@edit');
-	Route::post('venta-producto/{id}/edit', 'VentaProductoController@update');
-	Route::get('venta-producto/{id}/delete', 'VentaProductoController@destroy');
-	Route::get('venta-producto/{id}/show', 'VentaProductoController@show');
-	Route::get('venta-producto/new/venta-producto/{id}', 'VentaProductoController@createVentaProducto');
-	Route::post('venta-producto/new/venta-producto/add', 'VentaProductoController@storeVentaProducto');
-	Route::get('venta-producto/new/{id}', 'VentaProductoController@editProducto');
-	Route::post('venta-producto/new/{id}/editProducto', 'VentaProductoController@updateProducto');
-	Route::get('venta-producto/{id}/deleteProducto', 'VentaProductoController@destroyProducto');
-	Route::get('venta-producto/{id}/back', 'VentaProductoController@back');
-	Route::get('venta-producto/{id}/cancel', 'VentaProductoController@cancel');
-	//INGRESO DE PRODUCTOS
-	Route::get('ingreso-producto/index', 'IngresoProductoController@index');
-	Route::get('ingreso-producto/new', 'IngresoProductoController@create');
-	Route::post('ingreso-producto/new/ingreso-producto', 'IngresoProductoController@store');
-	
-
-
-	//Inscribirse en Sorteo
+	// Agregar Servicios a las sedes2
+	 Route::get('select/sede', 'SedesController@indexselecttoservicio');
+	  Route::get('sedes/{id}/agregarservicios', 'SedesController@agregarservicios');
+	  Route::post('sedes/{id}/agregarservicios/store','SedesController@storeservicios');
+	  Route::get('sedes/{id}/verservicios', 'SedesController@indexserviciosdesede');
+		
+	/*//Inscribirse en Sorteo
 	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
 
 	//Inscribirse en Sorteo
 	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
 	Route::post('sorteo/inscripcion/store','SorteoController@inscripcionStore');
 	Route::post('sorteo/inscripcion/delete','SorteoController@inscripcionDelete');
-	Route::get('sorteo/inscripcion/mis_sorteos','SorteoController@indexMisInscripciones');
+	Route::get('sorteo/inscripcion/mis_sorteos','SorteoController@indexMisInscripciones');*/
 
 	//MANTENIMIENTO DE SORTEO
 	Route::get('sorteo/index/{id}/ejecutar','SorteoController@loscohibaspapa');
@@ -618,10 +612,6 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::get('reservar-ambiente/{id}/deleteBungalowAdminR','ReservarAmbienteController@eliminarReservaBungalowAdminR');
 	Route::get('reservar-ambiente/{id}/deleteOtrosAdminR','ReservarAmbienteController@eliminarReservaOtrosAdminR');
 
-	Route::get('reservar-ambiente/{id}/agregarServicios','ReservarAmbienteController@agregarServices');
-	Route::post('reservar-ambiente/{id}/agregarServicios/store','ReservarAmbienteController@storeServices');
-	Route::get('reservar-ambiente/{id}/verServicios','ReservarAmbienteController@verServices');
-
 });
 //Control de ingresos
 	Route::group(['middleware' => ['auth', 'controlingresos']], function () {
@@ -651,12 +641,10 @@ Route::get('newsede-a','SedesController@create');
 Route::get('editsede-a','SedesController@edit');
 */
 
-
 Route::get('futbol', 'FrontController@futbol');
 Route::get('historia-papusclub', 'FrontController@historia_papusclub');
 Route::get('historia-papusclub-ver-mas', 'FrontController@historia_papusclub_ver_mas');
 Route::get('historia-sede-callao', 'FrontController@historia_sede_callao');
-Route::get('historia-sede-callao-ver-mas', 'FrontController@historia_sede_callao_ver_mas');
 Route::get('reserva-bungalow', 'FrontController@reserva_bungalow');
 Route::get('reserva-bungalow-busqueda', 'FrontController@reserva_bungalow_busqueda');
 Route::get('registrar-concesionaria-al','FrontController@registrar_concesionaria_al');
@@ -665,8 +653,21 @@ Route::get('registrar-nuevo-producto-al','FrontController@registrar_nuevo_produc
 Route::get('registrar-precio-especial-membresia-al','FrontController@registrar_precio_especial_membresia_al');
 Route::get('registrar-precio-pref-bungalows-1-al','FrontController@registrar_precio_pref_bungalows_1_al');
 Route::get('registrar-precio-especial-membresia-1-al','FrontController@registrar_precio_especial_membresia_1_al');
-
-
+Route::get('mesa-directiva', 'FrontController@mesa_directiva');
+Route::get('reglamento-club', 'FrontController@reglamento_club');
+Route::get('historia-sede-surquillo', 'FrontController@historia_sede_surquillo');
+Route::get('historia-sede-barranco', 'FrontController@historia_sede_barranco');
+Route::get('natacion', 'FrontController@natacion');
+Route::get('karate', 'FrontController@karate');
+Route::get('convenios', 'FrontController@convenios');
+Route::get('concesiones', 'FrontController@concesiones');
+Route::get('galeria', 'FrontController@galeria');
+Route::get('informes', 'FrontController@informes');
+Route::get('calendario', 'FrontController@calendario');
+Route::get('servicios', 'FrontController@servicios');
+Route::get('yoga', 'FrontController@yoga');
+Route::get('padre', 'FrontController@padre');
+Route::get('amigos', 'FrontController@amigos');
 
 
 

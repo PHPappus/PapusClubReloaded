@@ -20,6 +20,7 @@ class CreateTarifaTallerTable extends Migration
             $table->double('precio');
             $table->boolean('estado')->default(TRUE);
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 

@@ -61,7 +61,7 @@
 							<tr class="active">
 								<th><div align=center>SEDE</div> </th>
 								<th><div align=center>DEPARTAMENTO</div></th>
-								<th><div align=center>DIRECCION</div></th>
+								<th><div align=center>DIRECCIÓN</div></th>
 								<th><div align=center>CAPACIDAD</div></th>
 								<th><div align=center>DETALLE</div></th>
 								<th><div align=center>EDITAR</div></th>

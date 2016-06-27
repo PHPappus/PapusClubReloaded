@@ -153,11 +153,15 @@
 					<td>{{ $ambiente->tipo_ambiente }}</td>
 					<td>{{ $ambiente->capacidad_actual }}</td>
 
-					<td>
-					<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/'.$fechaIniValue.'/'.$fechaFinValue.'/new-reserva-bungalow')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
-
-
-			        </td>
+					@if($bloqueado)
+						<td>
+						<a class="btn btn-info disabled" href="{{url('/reservar-ambiente/'.$ambiente->id.'/'.$fechaIniValue.'/'.$fechaFinValue.'/new-reserva-bungalow')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok" ></i></a>
+				        </td>
+				    @else
+				    	<td>
+						<a class="btn btn-info" href="{{url('/reservar-ambiente/'.$ambiente->id.'/'.$fechaIniValue.'/'.$fechaFinValue.'/new-reserva-bungalow')}}"  title="Detalle" ><i class="glyphicon glyphicon-ok"></i></a>
+				        </td>
+				    @endif
 					</tr>
 					@endforeach
 				</tbody>

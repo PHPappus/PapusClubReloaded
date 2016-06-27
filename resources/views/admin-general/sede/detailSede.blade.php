@@ -52,7 +52,7 @@
 			  	</div>	  	
 
 			  	<div class="form-group">
-			    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad maxima</label>
+			    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad Máxima</label>
 			    	<div class="col-sm-5">
 			      		<input type="number" class="form-control" id="capacidadInput" name="capacidad_maxima" value="{{$sede->capacidad_maxima}}" readonly>
 			    	</div>

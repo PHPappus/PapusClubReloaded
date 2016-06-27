@@ -25,7 +25,7 @@ class IngresoProductoController extends Controller
     //Muestra la lista de productos que se encuentran en BD, estas se pueden modificar, cambiar el estado, ver mas detalle o registrar un nuevo producto
     public function index() {
         $ingresoproductos = IngresoProducto::all();        
-        return view('admin-general.ingreso-producto.index', compact('ingresoproductos'));
+        return view('admin-registros.ingreso-producto.index', compact('ingresoproductos'));
     }   
 
     public function create()
@@ -37,7 +37,7 @@ class IngresoProductoController extends Controller
         
         $proveedores = Proveedor::all();
 
-        return view('admin-general.ingreso-producto.newIngresoProducto', compact('estados','proveedores','tipo_solicitudes'));
+        return view('admin-registros.ingreso-producto.newIngresoProducto', compact('estados','proveedores','tipo_solicitudes'));
     }
     
     public function store(StoreIngresoProductoRequest $request)
@@ -57,7 +57,7 @@ class IngresoProductoController extends Controller
         
         $ingresoproducto->save();       
 
-        return view('admin-general.ingreso-producto.addIngresoProducto', compact('ingresoproducto'));
+        return view('admin-registros.ingreso-producto.addIngresoProducto', compact('ingresoproducto'));
     }      
 
     public function createIngresoProducto($id)
@@ -66,11 +66,11 @@ class IngresoProductoController extends Controller
 
         if (strcmp($ingresoproducto->tipo_solicitud, 'Producto') == 0){
             $productos = Producto::where('tipo_producto','<>','Servicio')->get();
-            return view('admin-general.ingreso-producto.add', compact('ingresoproducto','productos'));
+            return view('admin-registros.ingreso-producto.add', compact('ingresoproducto','productos'));
         }
         else{
             $productos = Producto::where('tipo_producto','=','Servicio')->get();
-            return view('admin-general.ingreso-producto.addServicio', compact('ingresoproducto','productos'));
+            return view('admin-registros.ingreso-producto.addServicio', compact('ingresoproducto','productos'));
         }        
     }      
 
@@ -99,7 +99,7 @@ class IngresoProductoController extends Controller
 
         $ingresoproducto = IngresoProducto::find($input['ingresoproducto_id']);
 
-        return view('admin-general.ingreso-producto.addIngresoProducto', compact('ingresoproducto'));
+        return view('admin-registros.ingreso-producto.addIngresoProducto', compact('ingresoproducto'));
     }      
 
     //Muestra el formulario para poder modificar un producto
@@ -107,13 +107,13 @@ class IngresoProductoController extends Controller
     {
         $ingresoproducto = IngresoProducto::find($id);
         $estados = Configuracion::where('grupo','=','13')->get();
-        return view('admin-general.ingreso-producto.editIngresoProducto', compact('ingresoproducto','estados'));
+        return view('admin-registros.ingreso-producto.editIngresoProducto', compact('ingresoproducto','estados'));
     }
 
      public function editProducto($id)
     {        
         $producto = ProductoxIngresoProducto::find($id);
-        return view('admin-general.ingreso-producto.editIngresoProductoDetail', compact('producto'));
+        return view('admin-registros.ingreso-producto.editIngresoProductoDetail', compact('producto'));
     }
 
     //Se guarda la informacion modificada del producto en la BD
@@ -150,7 +150,7 @@ class IngresoProductoController extends Controller
         $productoxingresoproducto->ingresoproducto->save();
         $ingresoproducto = IngresoProducto::find($input['ingresoproducto_id']);
 
-        return view('admin-general.ingreso-producto.addIngresoProducto', compact('ingresoproducto'));
+        return view('admin-registros.ingreso-producto.addIngresoProducto', compact('ingresoproducto'));
 
     }
 
@@ -174,7 +174,7 @@ class IngresoProductoController extends Controller
         $ingresoproducto->save();
         $productoxingresoproducto->delete();
 
-        return view('admin-general.ingreso-producto.addIngresoProducto', compact('ingresoproducto'));
+        return view('admin-registros.ingreso-producto.addIngresoProducto', compact('ingresoproducto'));
     }
 
      public function cancel($id)    
@@ -192,13 +192,13 @@ class IngresoProductoController extends Controller
     public function show($id)
     {
         $ingresoproducto = IngresoProducto::find($id);
-        return view('admin-general.ingreso-producto.detailIngresoProducto', compact('ingresoproducto'));
+        return view('admin-registros.ingreso-producto.detailIngresoProducto', compact('ingresoproducto'));
     }
 
     public function back($id)
     {
         $ingresoproducto = IngresoProducto::find($id);
-        return view('admin-general.ingreso-producto.addIngresoProducto', compact('ingresoproducto'));
+        return view('admin-registros.ingreso-producto.addIngresoProducto', compact('ingresoproducto'));
     }
 
 }
