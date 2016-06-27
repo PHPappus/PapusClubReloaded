@@ -142,7 +142,7 @@
 								<td>{{ $actividad->nombre }}</td>
 								
 		 						
-		 						<td>{{ $actividad->a_realizarse_en}}</td>
+		 						<td>{{ date("d-m-Y",strtotime($actividad->a_realizarse_en))}}</td>
 		 						<td>{{ $actividad->hora_inicio}}</td>		 						
 		 		
 		 						@if($actividad->cupos_disponibles<=0)

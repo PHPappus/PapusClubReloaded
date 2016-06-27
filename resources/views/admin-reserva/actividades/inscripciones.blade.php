@@ -66,7 +66,7 @@
 							<td>{{ $actividad->ambiente->sede->nombre }}</td>
 				    		<td>{{ $actividad->ambiente->nombre }}</td>
 							<td>{{ $actividad->nombre }}</td>
-	 						<td>{{ $actividad->a_realizarse_en}}</td>
+	 						<td>{{ date("d-m-Y",strtotime($actividad->a_realizarse_en))}}</td>
 	 						
 							<td>
 								@if($actividad->a_realizarse_en >= $fecha_validable)
