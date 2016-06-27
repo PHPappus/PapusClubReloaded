@@ -26,7 +26,7 @@
 			</div>		
 		</div>
 		<div class="container">
-			<form method="POST" action="calificar/store" class="form-horizontal form-border">
+			<form method="POST" action="/calificar/store" class="form-horizontal form-border">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			
 				<div class="col-sm-4"></div>
