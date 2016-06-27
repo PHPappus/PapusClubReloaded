@@ -585,6 +585,9 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::get('actividad-admin-reserva/inscripcion', 'InscriptionActividadAdminReservaController@inscriptionActividadAdminReserva');
 	Route::post('actividad-admin-reserva/inscripcion','InscriptionActividadAdminReservaController@filterActividades');
 
+	Route::get('actividad-admin-reserva/inscripcion/{id}/confirmacion', 'InscriptionActividadAdminReservaController@storeInscriptionActividadAdminReserva');
+
+
 		//INGRESO DE SOCIO A LA RESERVA
 	Route::get('ingresoReserva/index','IngresoSocioController@index');
 	Route::post('ingresoReserva/reserva','IngresoSocioController@reservaSocio');
