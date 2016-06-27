@@ -16,6 +16,7 @@ class CreateProductoxfacturacionTable extends Migration
             $table->increments('id')->unsigned();
             $table->integer('producto_id')->unsigned()->index('productoxfacturacion_producto_id_foreign');
             $table->integer('facturacion_id')->unsigned()->index('productoxfacturacion_facturacion_id_foreign');
+            $table->double('precio');
             $table->integer('cantidad');            
             $table->double('subtotal');                        
             $table->softDeletes();
