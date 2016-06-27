@@ -70,7 +70,9 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	//Socio.talleres  : INSCRIPCION DE TALLERES
 	Route::get('talleres/index','InscriptionTallerController@index');
 	Route::post('talleres/index','InscriptionTallerController@filterTalleres');
+
 	Route::get('talleres/{id}/show','InscriptionTallerController@show');
+	Route::get('talleres-familiar/{id}/show','InscriptionTallerController@showFamiliar');
 
 	//Pide confirmación de password
 	Route::get('talleres/{id}/confirm','InscriptionTallerController@confirmInscription');
