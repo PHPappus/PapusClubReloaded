@@ -263,6 +263,21 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::get('ingreso-producto/{id}/deleteProducto', 'IngresoProductoController@destroyProducto');
 	Route::get('ingreso-producto/{id}/back', 'IngresoProductoController@back');
 	Route::get('ingreso-producto/{id}/cancel', 'IngresoProductoController@cancel');
+	//INGRESO DE SERVICIOS
+	Route::get('ingreso-servicio/index', 'IngresoServicioController@index');
+	Route::get('ingreso-servicio/new', 'IngresoServicioController@create');
+	Route::post('ingreso-servicio/new/ingreso-servicio', 'IngresoServicioController@store');
+	Route::get('ingreso-servicio/{id}', 'IngresoServicioController@edit');
+	Route::post('ingreso-servicio/{id}/edit', 'IngresoServicioController@update');
+	Route::get('ingreso-servicio/{id}/delete', 'IngresoServicioController@destroy');
+	Route::get('ingreso-servicio/{id}/show', 'IngresoServicioController@show');
+	Route::get('ingreso-servicio/new/ingreso-servicio/{id}', 'IngresoServicioController@createIngresoServicio');
+	Route::post('ingreso-servicio/new/ingreso-servicio/add', 'IngresoServicioController@storeIngresoServicio');
+	Route::get('ingreso-servicio/new/{id}', 'IngresoServicioController@editServicio');
+	Route::post('ingreso-servicio/new/{id}/editServicio', 'IngresoServicioController@updateServicio');
+	Route::get('ingreso-servicio/{id}/deleteServicio', 'IngresoServicioController@destroyServicio');
+	Route::get('ingreso-servicio/{id}/back', 'IngresoServicioController@back');
+	Route::get('ingreso-servicio/{id}/cancel', 'IngresoServicioController@cancel');
 
 	//MANTENIMIENTO DE CONCESIONARIAS
 	Route::get('concesionaria/index/', 'ConcesionariaController@index');
