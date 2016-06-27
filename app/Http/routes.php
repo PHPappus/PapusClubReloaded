@@ -247,6 +247,15 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::get('producto/{id}/delete', 'ProductoController@destroy');
 	Route::get('producto/{id}/show', 'ProductoController@show');
 	Route::post('producto/new/tipoproducto', 'ProductoController@storeTipoProducto');
+	//MANTENIMIENTO DE SERVICIOS DE PROVEEDORES
+	Route::get('servicioProveedor/index', 'ServicioProveedorController@index');
+	Route::get('servicioProveedor/new', 'ServicioProveedorController@create');
+	Route::post('servicioProveedor/new/servicioProveedor', 'ServicioProveedorController@store');
+	Route::get('servicioProveedor/{id}', 'ServicioProveedorController@edit');
+	Route::post('servicioProveedor/{id}/edit', 'ServicioProveedorController@update');
+	Route::get('servicioProveedor/{id}/delete', 'ServicioProveedorController@destroy');
+	Route::get('servicioProveedor/{id}/show', 'ServicioProveedorController@show');
+	
 	//VENTA DE PRODUCTOS
 	Route::get('venta-producto/index', 'VentaProductoController@index');
 	Route::get('venta-producto/new', 'VentaProductoController@create');
