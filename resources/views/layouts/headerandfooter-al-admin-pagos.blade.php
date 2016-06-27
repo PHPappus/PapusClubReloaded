@@ -41,7 +41,15 @@
               Ingresos al Club
             </a>
           </li>          
-        </ul>        
+        </ul>
+        <!--Deuda Membresía-->
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="{!!URL('/membresia/deudas')!!}" class="dropdown-toggle btn-lg"  role="button">
+              Pagos de Membresía
+            </a>
+          </li>          
+        </ul>                 
 
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
