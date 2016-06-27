@@ -51,7 +51,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><a href="{!!URL::to('/taller-admin-reserva/index')!!}" title="Inscribir Socio" target="_self">Inscribir Socio</a></li>
-              <li><a href="{!!URL::to('#')!!}" title="Inscribir Socio" target="_self">Inscripciones</a></li>
+              <li><a href="{!!URL::to('/taller-admin-reserva/inscripciones')!!}" title="Inscribir Socio" target="_self">Inscripciones</a></li>
             </ul>
           </li>
         </ul>

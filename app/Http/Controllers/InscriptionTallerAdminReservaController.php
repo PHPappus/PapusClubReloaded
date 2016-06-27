@@ -71,7 +71,7 @@ class InscriptionTallerAdminReservaController extends Controller
                 }
                 if(!$flag){
                     Session::flash('message-error',"El familiar $persona->nombre ya se encuentra inscrito en este taller");
-                    return Redirect('/talleres/mis-inscripciones');
+                    return Redirect("/taller-admin-reserva/inscripcion/".$id."/confirmacion");
                 }
                 else{
                     DB::beginTransaction();
@@ -79,7 +79,7 @@ class InscriptionTallerAdminReservaController extends Controller
                         if($taller->vacantes<=0){
                             //throw new Exception("No hay vacantes disponibles");
                             Session::flash('message-error','Lo sentimos, ya no hay vacantes disponibles');
-                            return Redirect("/talleres-familiar/".$id."/confirm");
+                            return Redirect("/taller-admin-reserva/inscripcion/".$id."/confirmacion");
                         }
                         else{
                             $taller->vacantes=$taller->vacantes-1;
@@ -130,7 +130,7 @@ class InscriptionTallerAdminReservaController extends Controller
                     /*$usuario->talleres()->attach($id,['precio'=> $taller->precio_base]);*/
 
                     
-                    return Redirect('/talleres/mis-inscripciones');
+                    return Redirect('/taller-admin-reserva/inscripciones');
                 }
             }
             else{
@@ -138,5 +138,17 @@ class InscriptionTallerAdminReservaController extends Controller
                 return Redirect("/talleres-familiar/".$id."/confirm");
             }        
         }
+    }
+    public function inscripciones()
+    {
+        $id_talleres = DB::table('personaxtaller')->lists('taller_id');
+
+        $id_personas = DB::table('personaxtaller')->lists('persona_id');
+        /*Datos de inscripciones de los familiares del usuario Socio*/
+        $personas=Persona::wherein('id',$id_personas)->get();
+        $talleres=Taller::wherein('id',$id_talleres)->get();    
+        $fecha_validable=Carbon::now('America/Lima')->addDays(2)->format('Y-m-d');
+
+        return view('admin-reserva.actividades.inscripciones', compact('talleres','personas','fecha_validable'));
     }
 }
