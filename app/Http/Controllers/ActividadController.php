@@ -194,6 +194,7 @@ class ActividadController extends Controller
         $actividad->update();
 
         $tarifasAnt = TarifaActividad::where('actividad_id', '=', $id)->get();
+        $cantTarifasAnt = $tarifasAnt->count();
 
         foreach ($tarifasAnt as $tarifaAnt) {
             $tarifaAnt->delete();
@@ -205,7 +206,9 @@ class ActividadController extends Controller
             $tarifa = new TarifaActividad();
             $tarifa->actividad_id = $id;
             $tarifa->tipo_persona_id = $tipoPersona->id;
-            $tarifa->precio = $input[$tipoPersona->descripcion];
+            if($cantTarifasAnt)
+                $tarifa->precio = $input[$tipoPersona->descripcion];
+            $cantTarifasAnt--;
             $tarifa->save();
         }
 

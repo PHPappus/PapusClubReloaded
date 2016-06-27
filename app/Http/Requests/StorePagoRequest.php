@@ -4,7 +4,7 @@ namespace papusclub\Http\Requests;
 
 use papusclub\Http\Requests\Request;
 
-class StoreMultaRequest extends Request
+class StorePagoRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class StoreMultaRequest extends Request
     public function rules()
     {
         return [
-            'nombre' => 'required|max:30|string',
-            'descripcion' =>'max:80|string',
-            'montoPenalidad' =>'min:0',
+            'tipo_pago' => 'required',
+            'numero_pago' => 'required',
         ];
     }
 }
