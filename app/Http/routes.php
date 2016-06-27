@@ -275,6 +275,9 @@ Route::group(['middleware' => ['auth', 'adminpagos']], function () {
 Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::resource('admin-general','AdminGeneralController');
 /*	Route::get('postulante-al-admin','AdminGeneralController@postulante');*/
+	
+	//CONFIGURACION
+	Route::get('configuracion/index','ConfiguracionController@index');
 
 	//INGRESO DE SOCIO A LA RESERVA
 	Route::get('ingresoReserva/index','IngresoSocioController@index');
