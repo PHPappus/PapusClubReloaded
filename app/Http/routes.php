@@ -61,7 +61,7 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('servicios/mis-inscripciones/{id}/delete','ServicioalsocioController@delete');
 
 	//Route::post('servicios/mis-inscripciones','ServicioalsocioController@filtromisinscripciones');
-	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
+	Route::get('sorteo/inscripcion/socio','SorteoController@indexInscripcion');
 
 
 	//Inscribirse en Sorteo
