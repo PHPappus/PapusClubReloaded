@@ -146,7 +146,12 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 
 //Administrados de registros
 Route::group(['middleware' => ['auth', 'adminregistros']], function () {
-	
+		// Agregar Servicios a las sedes2
+	 Route::get('select/sede', 'SedesController@indexselecttoservicio');
+	  Route::get('sedes/{id}/agregarservicios', 'SedesController@agregarservicios');
+	  Route::post('sedes/{id}/agregarservicios/store','SedesController@storeservicios');
+	  Route::get('sedes/{id}/verservicios', 'SedesController@indexserviciosdesede');
+
 	Route::resource('admin-registros','AdminRegistrosController');
 	Route::get('ambientes-ar','AdminRegistrosController@ambientes');
 	Route::get('registrar-ambiente','AdminRegistrosController@registrar');
@@ -353,11 +358,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 
 	
 
-	// Agregar Servicios a las sedes2
-	 Route::get('select/sede', 'SedesController@indexselecttoservicio');
-	  Route::get('sedes/{id}/agregarservicios', 'SedesController@agregarservicios');
-	  Route::post('sedes/{id}/agregarservicios/store','SedesController@storeservicios');
-	  Route::get('sedes/{id}/verservicios', 'SedesController@indexserviciosdesede');
+
 		
 	/*//Inscribirse en Sorteo
 	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
@@ -621,6 +622,15 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::get('reservar-ambiente/consultar-bungalow-adminR', 'ReservarAmbienteController@consultarReservaBungalowAdminR'); 
 	Route::get('reservar-ambiente/{id}/deleteBungalowAdminR','ReservarAmbienteController@eliminarReservaBungalowAdminR');
 	Route::get('reservar-ambiente/{id}/deleteOtrosAdminR','ReservarAmbienteController@eliminarReservaOtrosAdminR');
+	Route::get('reservar-ambiente/{id}/verServicios','ReservarAmbienteController@verServices');
+	Route::get('reservar-ambiente/{id}/agregarServicios','ReservarAmbienteController@agregarServices');
+
+	Route::post('reservar-ambiente/{id}/agregarServicios/store','ReservarAmbienteController@storeServices');
+
+
+
+	
+	
 
 });
 //Control de ingresos
