@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use papusclub\Http\Requests;
 use papusclub\Http\Controllers\Controller;
+use papusclub\Http\Requests\MakeInscriptionToPersonaRequest;
 
 use Auth;
 use Session;
@@ -43,7 +44,10 @@ class InscriptionActividadAdminReservaController extends Controller
 
         return view('admin-reserva.actividades.inscripcion', compact('sedes','actividades','fecha_inicio','fecha_fin'));
     }
+    public function filterActividadesAdminReserva()
+    {
 
+    }
     public function storeInscriptionActividadAdminReserva($id)
     {
         $actividad=Actividad::find($id);
@@ -52,5 +56,97 @@ class InscriptionActividadAdminReservaController extends Controller
                              ->get();
 
         return view('admin-reserva.actividades.confirmacion-inscripcion',compact('actividad', 'tipo_comprobantes','personas'));
+    }
+
+    public function makeInscriptionToPersona(MakeInscriptionToPersonaRequest $request, $id)
+    {
+        $sedes = Sede::all();
+        if($request['tipo_comprobante']==-1){
+            Session::flash('message-error','Por favor, elija el tipo de comprobante');
+            return Redirect("/actividad-admin-reserva/inscripcion/".$id."/confirmacion");
+        }
+        else{
+            if(Hash::check($request['password'],Auth::user()->password)){
+                $persona     = Persona::find($request['persona_id']);
+                $actividad   = Actividad::find($id);
+                $flag=true;
+
+                foreach ($persona->actividades as $actividad_persona) {
+                    if($actividad_persona->id==$id){
+                        $flag=false;
+                    }
+                }
+                
+                if(!$flag){
+                    $actividades=Actividad::all();
+                    Session::flash('message-error',"El socio $persona->nombre ya se encuentra inscrito en esta actividad");
+                    return Redirect("/actividad-admin-reserva/inscripcion/".$id."/confirmacion");
+                }
+                else{
+                    DB::beginTransaction();
+                    try{
+                        if($actividad->cupos_disponibles<=0){
+                            Session::flash('message-error','Lo sentimos, ya no hay cupos disponibles');
+                            return Redirect("/actividad-admin-reserva/inscripcion/".$id."/confirmacion");
+                        }
+                        else{
+                            $actividad->cupos_disponibles=$actividad->cupos_disponibles-1;
+                            $actividad->save();
+                            
+
+                            $tipo_persona = $persona->tipopersona;
+                            $tarifas = $actividad->tarifas;
+                            $precioTarifa;
+                            foreach ($tarifas as $tarifa) {
+                                if($tarifa->tipo_persona == $tipo_persona){
+                                    $persona->actividades()->attach($id,['precio'=> $tarifa->precio,'created_at'=>Carbon::now('America/Lima')]);
+                                    $precioTarifa = $tarifa->precio;
+                                    break;
+                                }
+                            }
+
+                            $facturacion = new Facturacion();
+                            $facturacion->persona_id = $persona->id;
+                            $facturacion->actividad_id = $actividad->id;
+                            $facturacion->tipo_comprobante = $request['tipo_comprobante'];
+                            $nombreActividad = $actividad->nombre;
+                            $facturacion->descripcion = "Inscripción de $nombreActividad";
+                            $facturacion->total = $precioTarifa;
+                            $facturacion->tipo_pago = "No se ha cancelado";
+                            $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
+                            $facturacion->estado = $estado->valor;
+
+                            $facturacion->save();
+
+                            Session::flash('message','La Inscripción fue realizada Correctamente');
+                            
+                        }
+                    }
+                    catch(ValidationException $e){
+                        DB::rollback();
+                        var_dump($e->getErrors());
+                    }
+                    DB::commit();
+                    
+                    return Redirect("/actividad-admin-reserva/inscripciones");
+                }
+            }
+            else{
+                Session::flash('message-error','Contraseña incorrecta');
+                return Redirect("/actividad-admin-reserva/inscripcion/".$id."/confirmacion");
+            }
+        }
+    } 
+    public function inscripciones()
+    {
+        $id_actividades = DB::table('actividad_persona')->lists('actividad_id');
+
+        
+        /*Datos de inscripciones de los familiares del usuario Socio*/
+        $actividades=DB::table('actividad')
+                    ->whereIn('id', $id_actividades)->get();
+        $fecha_validable=Carbon::now('America/Lima')->addDays(2)->format('Y-m-d');
+
+        return view('admin-reserva.actividades.inscripciones', compact('actividades','fecha_validable'));
     }
 }

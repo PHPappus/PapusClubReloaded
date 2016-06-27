@@ -98,8 +98,7 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades', 'InscriptionActividadController@storeInscriptionActividad');
 	Route::get('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades-to-familiar', 'InscriptionActividadController@storeInscriptionActividadtoFamiliar');
 
-	Route::post('inscripcion-actividad/inscripcion-actividades','
-		InscriptionActividadController@filterActividades');
+	Route::post('inscripcion-actividad/inscripcion-actividades','InscriptionActividadController@filterActividades');
 
 	Route::post('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades/confirm','InscriptionActividadController@makeInscriptionToPersona');
 	Route::post('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades-to-familiar/confirm','InscriptionActividadController@makeInscriptionFamiliarToPersona');
@@ -586,10 +585,14 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 
 	//Inscripción de socios a Actividades en el club
 	Route::get('actividad-admin-reserva/inscripcion', 'InscriptionActividadAdminReservaController@inscriptionActividadAdminReserva');
-	Route::post('actividad-admin-reserva/inscripcion','InscriptionActividadAdminReservaController@filterActividades');
+	Route::post('actividad-admin-reserva/inscripcion','InscriptionActividadAdminReservaController@filterActividadesAdminReserva');
 
 	Route::get('actividad-admin-reserva/inscripcion/{id}/confirmacion', 'InscriptionActividadAdminReservaController@storeInscriptionActividadAdminReserva');
 
+	Route::post('actividad-admin-reserva/inscripcion/{id}/confirmacion/confirm','InscriptionActividadAdminReservaController@makeInscriptionToPersona');
+
+	Route::get('actividad-admin-reserva/inscripciones','InscriptionActividadAdminReservaController@inscripciones');
+	
 
 		//INGRESO DE SOCIO A LA RESERVA
 	Route::get('ingresoReserva/index','IngresoSocioController@index');
