@@ -168,6 +168,7 @@ class InscriptionTallerController extends Controller
         }
         else{
             if(Hash::check($request['password'],Auth::user()->password)){
+                $usuario     = Auth::user();
                 $taller   = Taller::find($id);
                 $flag=true;
 
@@ -190,15 +191,14 @@ class InscriptionTallerController extends Controller
                             return Redirect("/talleres/".$id."/confirm");
                         }
                         else{
+                            $persona=$usuario->persona;
                             $taller->vacantes=$taller->vacantes-1;
-                            $taller->save();
-
-                            $persona=Persona::where('id_usuario','=',Auth::user()->id)->first();
+                            $taller->save();          
                             
                             $tipo_persona = $persona->tipopersona;
                             $tarifas = $taller->tarifas;
 
-                            $precioTarifa;
+                            $precioTarifa=0;
                             foreach ($tarifas as $tarifa) {
                                 if($tarifa->tipo_persona == $tipo_persona){
                                     $persona->talleres()->attach($id,['precio'=> $tarifa->precio]);
