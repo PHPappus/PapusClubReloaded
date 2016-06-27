@@ -337,45 +337,6 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 
 
 	
-	//MANTENIMIENTO DE PROVEEDORES
-	Route::get('proveedor/index/', 'ProveedorController@index');
-	Route::get('proveedor/new', 'ProveedorController@create');
-	Route::post('proveedor/new/proveedor', 'ProveedorController@store');
-	Route::get('proveedor/{id}', 'ProveedorController@edit');
-	Route::post('proveedor/{id}/edit', 'ProveedorController@update');
-	Route::get('proveedor/{id}/delete', 'ProveedorController@destroy');
-	Route::get('proveedor/{id}/show', 'ProveedorController@show');
-	//MANTENIMIENTO DE PRODUCTOS
-	Route::get('producto/index', 'ProductoController@index');
-	Route::get('producto/new', 'ProductoController@create');
-	Route::post('producto/new/producto', 'ProductoController@store');
-	Route::get('producto/{id}', 'ProductoController@edit');
-	Route::post('producto/{id}/edit', 'ProductoController@update');
-	Route::get('producto/{id}/delete', 'ProductoController@destroy');
-	Route::get('producto/{id}/show', 'ProductoController@show');
-	Route::post('producto/new/tipoproducto', 'ProductoController@storeTipoProducto');
-	//VENTA DE PRODUCTOS
-	Route::get('venta-producto/index', 'VentaProductoController@index');
-	Route::get('venta-producto/new', 'VentaProductoController@create');
-	Route::post('venta-producto/new/venta-producto', 'VentaProductoController@store');
-	Route::get('venta-producto/{id}', 'VentaProductoController@edit');
-	Route::post('venta-producto/{id}/edit', 'VentaProductoController@update');
-	Route::get('venta-producto/{id}/delete', 'VentaProductoController@destroy');
-	Route::get('venta-producto/{id}/show', 'VentaProductoController@show');
-	Route::get('venta-producto/new/venta-producto/{id}', 'VentaProductoController@createVentaProducto');
-	Route::post('venta-producto/new/venta-producto/add', 'VentaProductoController@storeVentaProducto');
-	Route::get('venta-producto/new/{id}', 'VentaProductoController@editProducto');
-	Route::post('venta-producto/new/{id}/editProducto', 'VentaProductoController@updateProducto');
-	Route::get('venta-producto/{id}/deleteProducto', 'VentaProductoController@destroyProducto');
-	Route::get('venta-producto/{id}/back', 'VentaProductoController@back');
-	Route::get('venta-producto/{id}/cancel', 'VentaProductoController@cancel');
-	//INGRESO DE PRODUCTOS
-	Route::get('ingreso-producto/index', 'IngresoProductoController@index');
-	Route::get('ingreso-producto/new', 'IngresoProductoController@create');
-	Route::post('ingreso-producto/new/ingreso-producto', 'IngresoProductoController@store');
-	
-
-
 	//Inscribirse en Sorteo
 	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
 
