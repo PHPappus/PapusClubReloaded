@@ -56,7 +56,11 @@ Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
 	Route::get('talleres/index','InscriptionTallerController@index');
 	Route::post('talleres/index','InscriptionTallerController@filterTalleres');
 	Route::get('talleres/{id}/show','InscriptionTallerController@show');
+
+	//Pide confirmación de password
 	Route::get('talleres/{id}/confirm','InscriptionTallerController@confirmInscription');
+	Route::get('talleres-familiar/{id}/confirm','InscriptionTallerController@confirmInscriptionFamiliar');
+
 	Route::post('talleres/{id}/confirm/save','InscriptionTallerController@makeInscriptionToUser');
 	Route::get('talleres/{id}/delete', 'InscriptionTallerController@removeInscriptionToUser');
 	Route::get('talleres/mis-inscripciones','InscriptionTallerController@misinscripciones');
@@ -64,6 +68,7 @@ Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
 	Route::get('bungalows-s','SocioController@bungalow');
 	Route::get('reserva-bungalows-s','SocioController@bungalowReserva');
 	Route::get('reserva-bungalows-b-s','SocioController@bungalowReservaB');
+
 	//Socio.atividades : INSCRIPCION DE ACTIVIDADES
 	Route::get('inscripcion-actividad/inscripcion-actividades', 'InscriptionActividadController@inscriptionActividad'); // REservar
 	Route::get('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades', 'InscriptionActividadController@storeInscriptionActividad');

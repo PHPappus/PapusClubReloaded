@@ -18,6 +18,7 @@ use papusclub\Models\Persona;
 use papusclub\Models\Configuracion;
 use papusclub\Models\Facturacion;
 use papusclub\Models\Promocion;
+use papusclub\Models\Postulante;
 use Auth;
 use Hash;
 use Carbon\Carbon;
@@ -160,7 +161,6 @@ class InscriptionTallerController extends Controller
                 return Redirect("/talleres/".$id."/confirm");
             }        
         }
-
     }   
 
     /**
@@ -176,6 +176,22 @@ class InscriptionTallerController extends Controller
         return view('socio.talleres.consulta', compact('taller','talleresxpersona'));
     }
 
+    public function confirmInscriptionFamiliar($id)
+    {
+        $usuario = Auth::user();
+        $persona=$usuario->persona;
+
+        $taller   = Taller::find($id);
+        $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
+
+        $postulante=Postulante::find($persona->id); 
+        $familiares=$postulante->familiarxpostulante;
+
+        $tipo_persona = $persona->tipopersona->id;
+
+        return view('socio.talleres.confirmacion-inscripcion-familiar', compact('taller', 'tipo_comprobantes','tipo_persona','familiares'));
+
+    }
     public function confirmInscription($id)
     {  
         $usuario  = Auth::user();
@@ -201,9 +217,7 @@ class InscriptionTallerController extends Controller
             $persona=$usuario->persona;
             $tipo_persona = $persona->tipopersona->id;
             return view('socio.talleres.confirmacion-inscripcion', compact('taller', 'tipo_comprobantes','tipo_persona'));
-        }
-
-        
+        }   
     }
 
     public function misinscripciones()
@@ -234,7 +248,7 @@ class InscriptionTallerController extends Controller
             $fecha_inicio=date("Y-m-d",strtotime($date));
             $talleres=Taller::where('fecha_inicio_inscripciones','<=',Carbon::now('America/Lima')->format('Y-m-d')) 
                             ->where('fecha_fin_inscripciones','>=',Carbon::now('America/Lima')->format('Y-m-d'))
-                            ->where('fecha_inicio','<=',$fecha_inicio)
+                            ->where('fecha_inicio','>=',$fecha_inicio)
                             ->where('fecha_fin','>=',$fecha_inicio)->get();
                                /*->where('fecha_fin_inscripciones','>=',$fecha_fin)
                                ->orwhere('fecha_fin_inscripciones','<',$fecha_fin)*/
@@ -264,21 +278,6 @@ class InscriptionTallerController extends Controller
         $persona=$usuario->persona;
         $tipo_persona = $persona->tipopersona->id;
         return view('socio.talleres.index',compact('sedes','talleres','talleresxpersona','tipo_persona'));
-    }
-
-
-
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
