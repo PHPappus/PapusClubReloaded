@@ -24,6 +24,7 @@
 				<div class="col-sm-4">
 					<ol class="breadcrumb" style="background:none">
 						<li><a href="/socio"><span class="glyphicon glyphicon-home"></span></a></li>
+						<li><a href="/inscripcion-actividad/inscripcion-actividades">Consultar Actividades</a></li>
 						<li class="active">Confirmación de inscripción</li>
 					</ol>
 				</div>				
