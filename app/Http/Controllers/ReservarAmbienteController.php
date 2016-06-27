@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use papusclub\Http\Requests;
 use papusclub\Models\Ambiente;
+use papusclub\Models\Actividad;
+use papusclub\Models\TarifaActividad;
 use papusclub\Models\Sede;
 use papusclub\Models\Persona;
 use papusclub\User;
@@ -395,9 +397,45 @@ class ReservarAmbienteController extends Controller
         $persona = Persona::find($persona_id);
         $tipo_persona = $persona->tipopersona;
         $tarifas = $ambiente->tarifas;
-        foreach ($tarifas as $tarifa) {
-            if($tarifa->tipo_persona == $tipo_persona)
-                $reserva->precio = $tarifa->precio*$diff;        
+        //si hay un evento decide usar la tarifa especiales del evento,caso contrario usa la tarifa normal del ambiente
+        $eventos=Actividad::where('tipo_actividad','=','Evento')->where('a_realizarse_en','=',$fechaIniValue->toDateString())->get();
+
+        if ($eventos != NULL)//no hay ningun evento en esta fecha
+        {
+            foreach ($eventos as $i=> $evento) {
+                    if($evento->ambiente->sede->id!=$ambiente->sede->id)  unset($eventos[$i]);
+            }
+            
+            if (count($eventos)!=0)//hay eventos para esta fechan ,pero no en esta sede
+            {
+                    
+                    $eventoUnico=$eventos->first();
+                    $descuentos=TarifaActividad::where('actividad_id','=',$eventoUnico->id)->get();
+                    
+                    if($descuentos!=NULL){
+                        $valor=0;
+                        foreach ($descuentos as $i=> $descuento) {
+                          if($descuento->tipo_persona->id==$persona->tipopersona->id)  $valor=$descuento->precio;
+                        }
+                        $reserva->precio = $valor*$diff;
+                    }else{ 
+                        foreach ($tarifas as $tarifa) {
+                            if($tarifa->tipo_persona == $tipo_persona)
+                                $reserva->precio = $tarifa->precio*$diff;        
+                        }
+                    }
+            }else{
+                foreach ($tarifas as $tarifa) {
+                    if($tarifa->tipo_persona == $tipo_persona)
+                        $reserva->precio = $tarifa->precio*$diff;        
+                }
+            }
+
+        }else{
+                foreach ($tarifas as $tarifa) {
+                    if($tarifa->tipo_persona == $tipo_persona)
+                        $reserva->precio = $tarifa->precio*$diff;        
+                }
         }
 
         $promos = Promocion::where('tipo','=','Bungalow')->where('estado','=',TRUE)->get();
@@ -407,7 +445,6 @@ class ReservarAmbienteController extends Controller
                 $reserva->precio = $reserva->precio - ($reserva->precio*$promo->porcentajeDescuento)/100;
             }
         }
-
         //$reserva->precio = 0;
         $reserva->estadoReserva = "En proceso";
         $reserva->actividad_id = null;
@@ -840,10 +877,47 @@ class ReservarAmbienteController extends Controller
         $persona = Persona::find($persona_id);
         $tipo_persona = $persona->tipopersona;
         $tarifas = $ambiente->tarifas;
-        foreach ($tarifas as $tarifa) {
-            if($tarifa->tipo_persona == $tipo_persona)
-                $reserva->precio = $tarifa->precio*$diff;        
+        //si hay un evento decide usar la tarifa especiales del evento,caso contrario usa la tarifa normal del ambiente
+        $eventos=Actividad::where('tipo_actividad','=','Evento')->where('a_realizarse_en','=',$fechaIniValue->toDateString())->get();
+
+        if ($eventos != NULL)//no hay ningun evento en esta fecha
+        {
+            foreach ($eventos as $i=> $evento) {
+                    if($evento->ambiente->sede->id!=$ambiente->sede->id)  unset($eventos[$i]);
+            }
+            
+            if (count($eventos)!=0)//hay eventos para esta fechan ,pero no en esta sede
+            {
+                    
+                    $eventoUnico=$eventos->first();
+                    $descuentos=TarifaActividad::where('actividad_id','=',$eventoUnico->id)->get();
+                    
+                    if($descuentos!=NULL){
+                        $valor=0;
+                        foreach ($descuentos as $i=> $descuento) {
+                          if($descuento->tipo_persona->id==$persona->tipopersona->id)  $valor=$descuento->precio;
+                        }
+                        $reserva->precio = $valor*$diff;
+                    }else{ 
+                        foreach ($tarifas as $tarifa) {
+                            if($tarifa->tipo_persona == $tipo_persona)
+                                $reserva->precio = $tarifa->precio*$diff;        
+                        }
+                    }
+            }else{
+                foreach ($tarifas as $tarifa) {
+                    if($tarifa->tipo_persona == $tipo_persona)
+                        $reserva->precio = $tarifa->precio*$diff;        
+                }
+            }
+
+        }else{
+                foreach ($tarifas as $tarifa) {
+                    if($tarifa->tipo_persona == $tipo_persona)
+                        $reserva->precio = $tarifa->precio*$diff;        
+                }
         }
+
         //$reserva->precio = 0;
 
         $reserva->estadoReserva = "En proceso";
