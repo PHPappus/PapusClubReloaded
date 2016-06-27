@@ -14,9 +14,11 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
+        'fad373d645dd668e85d44ccf3c38fbd6' => __DIR__ . '/..' . '/guzzlehttp/streams/src/functions.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        '154e0d165f5fe76e8e9695179d0a7345' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions.php',
         'e617b14322a074392076a2f38eaf6115' => __DIR__ . '/../..' . '/app/Helper.php',
     );
 
@@ -48,9 +50,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
             'Symfony\\Component\\HttpFoundation\\' => 33,
             'Symfony\\Component\\Finder\\' => 25,
             'Symfony\\Component\\EventDispatcher\\' => 34,
-            'Symfony\\Component\\DomCrawler\\' => 29,
             'Symfony\\Component\\Debug\\' => 24,
-            'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
             'SuperClosure\\' => 13,
         ),
@@ -70,6 +70,11 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'I' => 
         array (
             'Illuminate\\' => 11,
+        ),
+        'G' => 
+        array (
+            'GuzzleHttp\\Stream\\' => 18,
+            'GuzzleHttp\\' => 11,
         ),
         'F' => 
         array (
@@ -155,17 +160,9 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
         ),
-        'Symfony\\Component\\DomCrawler\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/dom-crawler',
-        ),
         'Symfony\\Component\\Debug\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/debug',
-        ),
-        'Symfony\\Component\\CssSelector\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/css-selector',
         ),
         'Symfony\\Component\\Console\\' => 
         array (
@@ -194,6 +191,14 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'Illuminate\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
+        ),
+        'GuzzleHttp\\Stream\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/streams/src',
+        ),
+        'GuzzleHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
         'Faker\\' => 
         array (
@@ -360,6 +365,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'CreateReservasTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_02_014128_create_reservas_table.php',
         'CreateReservaxactividadTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_173600_create_reservaxactividad_table.php',
         'CreateSedesTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_06_144850_create_sedes_table.php',
+        'CreateServicioxSedexPersonaTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_21_012446_create_ServicioxSedexPersona_table.php',
         'CreateSocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_29_003232_create_socio_table.php',
         'CreateSocioxconcursoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_151157_create_socioxconcurso_table.php',
         'CreateSorteoTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_20_005933_create_sorteo_table.php',
@@ -384,6 +390,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'DepartamentoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/DepartamentoTableSeeder.php',
         'DistritoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/DistritoTableSeeder.php',
         'FacturacionTableSeeder' => __DIR__ . '/../..' . '/database/seeds/FacturacionTableSeeder.php',
+        'FamiliarxPostulanteTableSeeder' => __DIR__ . '/../..' . '/database/seeds/FamiliarxPostulanteTableSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
@@ -905,6 +912,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'TarifaAmbientexTipoPersonaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifaAmbientexTipoPersonaTableSeeder.php',
         'TarifaFamiliarTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifaFamiliarTableSeeder.php',
         'TarifaMembresiaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifaMembresiaTableSeeder.php',
+        'TarifarioServiciosTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifarioServiciosTableSeeder.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'TestTallerTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TestTallerTableSeeder.php',
         'TestUserTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TestUserTableSeeder.php',
