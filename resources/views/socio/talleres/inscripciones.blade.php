@@ -136,7 +136,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-center">
-					<a href="{{url('/talleres/index')}}" class="btn btn-lg btn-primary">Regresar</a>		
+					<a href="{{url('/talleres/index')}}" class="btn btn-md btn-primary">Regresar</a>		
 				</div>
 			</div>
 		</div>	

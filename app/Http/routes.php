@@ -675,7 +675,7 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::get('actividad-admin-reserva/inscripcion/{id}/{idPersona}/delete', 'InscriptionActividadAdminReservaController@removeInscriptionToPersona');
 	//Inscripción de socios a Talleres en el club
 	Route::get('taller-admin-reserva/index', 'InscriptionTallerAdminReservaController@index');
-	Route::post('taller-admin-reserva/index','InscriptionTallerAdminReservaController@filterActividadesAdminReserva');
+	Route::post('taller-admin-reserva/index','InscriptionTallerAdminReservaController@filterTalleresAdminReserva');
 
 	Route::get('taller-admin-reserva/inscripcion/{id}/confirmacion', 'InscriptionTallerAdminReservaController@confirmInscription');
 	Route::post('taller-admin-reserva/inscripcion/{id}/confirmacion/confirm','InscriptionTallerAdminReservaController@makeInscriptionToPersona');
