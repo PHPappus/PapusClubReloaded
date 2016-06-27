@@ -11,7 +11,7 @@
             }
         }
 </style>
-
+<link href='https://fonts.googleapis.com/css?family=Lato:700' rel='stylesheet' type='text/css'>
 
 <header class="header">
 

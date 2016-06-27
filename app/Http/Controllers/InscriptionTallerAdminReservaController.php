@@ -50,7 +50,55 @@ class InscriptionTallerAdminReservaController extends Controller
         return view('admin-reserva.talleres.confirmacion-inscripcion', compact('taller', 'tipo_comprobantes','personas'));
 
     }
+    public function filterTalleresAdminReserva(Request $request)
+    {
+        $input= $request->all();
+        $sedes= Sede::all();     
 
+
+        $fecha_inicio   = new Carbon('America/Lima');
+        /*$fecha_fin   = new Carbon('America/Lima'); */
+        
+        $fecha_inicio=$fecha_inicio->toDateString();
+        /*$fecha_fin = Carbon::now('America/Lima')->addYears(1)->toDateString();*/
+        
+        $talleres=array();
+        
+        if(!empty($input['fecha_inicio'])){
+            $date=str_replace('/', '-', $input['fecha_inicio']);
+            $fecha_inicio=date("Y-m-d",strtotime($date));
+            $talleres=Taller::where('fecha_inicio_inscripciones','<=',Carbon::now('America/Lima')->format('Y-m-d')) 
+                            ->where('fecha_fin_inscripciones','>=',Carbon::now('America/Lima')->format('Y-m-d'))
+                            ->where('fecha_inicio','>=',$fecha_inicio)
+                            ->where('fecha_fin','>=',$fecha_inicio)->get();
+                               /*->where('fecha_fin_inscripciones','>=',$fecha_fin)
+                               ->orwhere('fecha_fin_inscripciones','<',$fecha_fin)*/
+                               /*->whereBetween('fecha_inicio_inscripciones',[$fecha_inicio,$fecha_fin])*/
+                               /*->get();*/
+        }
+        else{
+            $talleres=Taller::where('fecha_inicio_inscripciones','<=',Carbon::now('America/Lima')->format('Y-m-d')) ->where('fecha_fin_inscripciones','>=',Carbon::now('America/Lima')->format('Y-m-d'))->get();
+        }
+        /*if(!empty($input['fecha_fin'])){
+            $date=str_replace('/', '-', $input['fecha_fin']);
+            $fecha_fin=date("Y-m-d",strtotime($date));
+        }*/
+        /*Se terminó de preparar las fechas*/
+       /* dd($fecha_fin);*/
+
+        
+
+   
+        if($input['sedeSelec']!=-1){ //No son todas las sedes
+            foreach ($talleres as $i => $taller) {             
+                    if($taller->reserva->ambiente->sede->id!=$input['sedeSelec'])  unset($talleres[$i]);
+            }
+        }        
+        $personas = Persona::where('id_usuario','!=',null)->where('id_tipo_persona','=',2)//Socios
+                             ->get();
+        $fecha_inicio=$input['fecha_inicio'];
+        return view('admin-reserva.talleres.index',compact('sedes','talleres','fecha_inicio'));
+    }
     public function makeInscriptionToPersona(MakeInscriptionToUserRequest $request, $id)
     {
         if($request['tipo_comprobante']==-1){
