@@ -73,14 +73,14 @@
 		    		<a class="btn btn-info" name="buscarProducto" href="#"  title="Buscar Producto" data-toggle="modal" data-target="#modalBuscar"><i name="buscarProducto" class="glyphicon glyphicon-search"></i></a>
 		  		</div>			  	
 
-		  		<div class="form-group required">
+		  		<div class="form-group">
 		    		<label for="nombreProducto" class="col-sm-4 control-label">Nombre del Producto</label>
 		    		<div class="col-sm-5">
 		      			<input type="text" class="form-control" id="nombreProducto" name="nombreProducto" placeholder="Nombre del producto" value="{{old('nombreProducto')}}" readonly>
 		    		</div>
 		  		</div>			  	
 			  
-			  	<div class="form-group required">
+			  	<div class="form-group required" hidden>
 		    		<label for="ingresoproducto_idInput" class="col-sm-4 control-label">N° de Solicitud</label>
 		    		<div class="col-sm-5">
 		      			<input type="text" class="form-control" id="ingresoproducto_idInput" name="ingresoproducto_id" value="{{$ingresoproducto->id}}" readonly>
@@ -138,7 +138,7 @@
 			$productoAux = $('#example input:radio:checked').val();
 			$productoVal = $productoAux.split("|");										
 			document.getElementById('producto_id').value =  $productoVal[0];
-			document.getElementById('nombreProducto').value =  $productoVal[0];
+			document.getElementById('nombreProducto').value =  $productoVal[1];
 		}
 	</script>
 

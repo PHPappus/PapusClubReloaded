@@ -32,7 +32,7 @@
 		</div>
 		<div class="container">
 			<!--@include('errors.503')-->		
-			<form method="POST" action="/ingreso-producto/new/{{ $producto->id }}/editProducto" class="form-horizontal form-border">
+			<form method="POST" action="/ingreso-servicio/new/{{ $producto->id }}/editProducto" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<!-- Mensajes de error de validación del Request -->
@@ -67,14 +67,7 @@
 				<div class="form-group required">
 		    		<label for="producto_idInput" class="col-sm-4 control-label">ID Producto</label>
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="producto_idInput" name="producto_id" placeholder="ID del producto" value="{{$producto->producto_id}}" readonly>
-		    		</div>
-		  		</div>
-
-		  		<div class="form-group">
-		    		<label for="nombreProductoInput" class="col-sm-4 control-label">Nombre del Producto</label>
-		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="nombreProducto" name="nombreProducto" placeholder="Nombre del producto"  value="{{$producto->producto->nombre}}" readonly>
+		      			<input type="text" class="form-control" id="producto_idInput" name="producto_id" placeholder="ID del producto" onkeypress="return inputLimiter(event,'Numbers')" value="{{$producto->producto_id}}" readonly>
 		    		</div>
 		  		</div>
 			  
@@ -106,7 +99,7 @@
 						<input class="btn btn-primary" data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Aceptar">
 					</div>
 					<div class="btn-group">
-						<a href="{{url('/ingreso-producto/'.$producto->ingresoproducto_id.'/back')}}" class="btn btn-info">Cancelar</a>
+						<a href="{{url('/ingreso-servicio/'.$producto->ingresoproducto_id.'/back')}}" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>

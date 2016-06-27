@@ -122,6 +122,8 @@
             <ul class="dropdown-menu">    
                 <li><a href="{!!URL::to('/proveedor/index')!!}">Consultar</a></li>
                 <li><a href="{!!URL::to('/proveedor/new')!!}">Registrar</a></li>                
+                <li><a href="{!!URL::to('/ingreso-producto/index')!!}">Solicitud de Productos</a></li>
+                <li><a href="{!!URL::to('/ingreso-servicio/index')!!}">Solicitud de Servicios</a></li>
             </ul>
           </li>
         </ul>
@@ -147,9 +149,8 @@
             </a>
             <ul class="dropdown-menu">    
                 <li><a href="{!!URL::to('/producto/index')!!}">Productos</a></li>
-        <li><a href="{!!URL::to('/ingreso-producto/index')!!}">Ingreso de productos</a></li>
-        <li><a href="{!!URL::to('/venta-producto/index')!!}">
-        Ventas de productos</a></li>
+                <li><a href="{!!URL::to('/producto/new')!!}">Registrar</a></li>
+                <li><a href="{!!URL::to('/venta-producto/index')!!}">Venta de productos</a></li>
             </ul>
           </li>
         </ul>

@@ -32,7 +32,7 @@
 		</div>
 		<div class="container">
 			<!--@include('errors.503')-->		
-			<form method="POST" action="/ingreso-producto/new/{{ $producto->id }}/editProducto" class="form-horizontal form-border">
+			<form method="POST" action="/ingreso-servicio/{{ $ingresoproducto->id }}/edit" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<!-- Mensajes de error de validación del Request -->
@@ -51,50 +51,88 @@
 				</div>
 
 				<br/>
-				<br/>
-				<div class="form-group">
-			  		<div class="text-center">
-			  			<font color="red"> 
-			  				(*) Dato Obligatorio
-			  			</font>
-			  			
-			  		</div>
-			  	</div>
 			  	</br>
-			  	</br>	
 
 				<!-- INICIO INCIIO -->				                       
-				<div class="form-group required">
-		    		<label for="producto_idInput" class="col-sm-4 control-label">ID Producto</label>
+				<div class="form-group">
+		    		<label for="idInput" class="col-sm-4 control-label">N° de Solicitud</label>
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="producto_idInput" name="producto_id" placeholder="ID del producto" value="{{$producto->producto_id}}" readonly>
-		    		</div>
-		  		</div>
-
-		  		<div class="form-group">
-		    		<label for="nombreProductoInput" class="col-sm-4 control-label">Nombre del Producto</label>
-		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="nombreProducto" name="nombreProducto" placeholder="Nombre del producto"  value="{{$producto->producto->nombre}}" readonly>
+		      			<input type="text" class="form-control" id="idInput" name="id" value="{{str_pad($ingresoproducto->id, 10, "0", STR_PAD_LEFT)}}" readonly>
 		    		</div>
 		  		</div>
 			  
-			  	<div class="form-group required">
-		    		<label for="ingresoproducto_idInput" class="col-sm-4 control-label">N° de Solicitud</label>
-		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="ingresoproducto_idInput" name="ingresoproducto_id" value="{{$producto->ingresoproducto_id}}" readonly>
-		    		</div>
-		  		</div>				  				 
-			  	
-			  	<div class="form-group required">
-			    	<label for="cantidadInput" class="col-sm-4 control-label" >Cantidad</label>
+			  	<div class="form-group">
+			    	<label for="personaInput" class="col-sm-4 control-label">Persona</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="cantidadInput" name="cantidad" placeholder="Cantidad del producto comprado" onkeypress="return inputLimiter(event,'Numbers')"  value="{{$producto->cantidad}}" onkeypress="myFunction()">
+			      		<input type="text" class="form-control" id="personaInput" name="persona" value="{{$ingresoproducto->persona->nombre}} {{$ingresoproducto->persona->ap_paterno}} {{$ingresoproducto->persona->ap_materno}}" readonly>
+			    	</div>
+			  	</div>	  				  				 
+			  	
+			  	<div class="form-group">
+			    	<label for="tipoSolicitudInput" class="col-sm-4 control-label">Tipo de Solicitud</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" class="form-control" id="tipo_solicitud" name="tipo_solicitud" value="{{$ingresoproducto->tipo_solicitud}}" readonly>
+			    	</div>
+			  	</div>						
+
+			  	<div class="form-group">
+			    	<label for="tipoPagoInput" class="col-sm-4 control-label" >Descripción</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" 
+			    		value="{{$ingresoproducto->descripcion}}">
 			    	</div>			      					      		
 			  	</div>	
-
-			  	
+				
+				@if (strcmp($ingresoproducto->estado, 'Solicitud Pendiente')!=0)		
+					<div class="form-group">
+				    	<label for="estadoInput" class="col-sm-4 control-label" >Estado</label>
+				    	<div class="col-sm-5">
+				      		<input type="text" class="form-control" id="estado" name="estado" 
+				    		value="{{$ingresoproducto->estado}}" readonly>
+				    	</div>			      					      		
+			  		</div>			
+				@else
+				  	<div class="form-group">
+				    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
+				    	<div class="col-sm-5">			    	
+				      		<select class="form-control" id="estado" name="estado" >
+							<!-- Las opciones se deberían extraer de la tabla configuracion-->
+							<option value="" >Seleccionar tipo...</option>
+							@foreach($estados as $estado)
+								<option value="{{$estado->valor}}" 
+								@if (strcmp($estado->valor, $ingresoproducto->estado)==0)		
+										selected
+								@endif
+								>{{$estado->valor}}</option>
+							@endforeach						
+							</select>													
+							
+				    	</div>
+				  	</div>		
+			  	@endif
 				<br/><br/>
 				
+
+				<div class="table-responsive">				
+					<table class="table table-bordered table-hover text-center display" id="example">
+						<thead class="active" data-sortable="true">
+							<th><div align=center>PRODUCTO</div></th>
+							<th><div align=center>DESCRIPCIÓN</div></th>
+							<th><div align=center>CANTIDAD</div></th>											
+						</thead>
+
+												
+						<tbody>
+						@foreach($ingresoproducto->productoxingresoproducto as $producto)
+							<tr>
+								<td>{{ $producto->producto->nombre}}</td>
+								<td>{{ $producto->producto->descripcion}}</td>
+								<td>{{ $producto->cantidad}}</td>									
+				            </tr>
+						@endforeach
+						</tbody>													
+					</table>						
+				</div>
 					<!-- FIN FIN FIN  -->				
 			
 				</br>
@@ -106,7 +144,7 @@
 						<input class="btn btn-primary" data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Aceptar">
 					</div>
 					<div class="btn-group">
-						<a href="{{url('/ingreso-producto/'.$producto->ingresoproducto_id.'/back')}}" class="btn btn-info">Cancelar</a>
+						<a href="/ingreso-servicio/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>

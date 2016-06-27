@@ -26,7 +26,7 @@
 			</div>		
 		</div>
 		<div class="container">
-			<form method="POST" action="/ingreso-producto/new/ingreso-producto" class="form-horizontal form-border">
+			<form method="POST" action="/ingreso-servicio/new/ingreso-servicio" class="form-horizontal form-border">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<div class="col-sm-4"></div>
@@ -74,14 +74,14 @@
 			  	<div class="form-group required">			    	
 			    	<label for="tipo_solicitud" class="col-sm-4 control-label">Tipo de Solicitud</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="tipo_solicitud" name="tipo_solicitud" value="Productos" readonly>
+			      		<input type="text" class="form-control" id="tipo_solicitud" name="tipo_solicitud" value="Servicios" readonly>
 			    	</div>
 			  	</div>		  	
 
 			  	<div class="form-group required">
-			    	<label for="descripcion" class="col-sm-4 control-label">Descripción</label>
+			    	<label for="descripcion" class="col-sm-4 control-label">Descripcion</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción de solicitud" value="{{old('descripcion')}}">
+			      		<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcon de solicitud" value="{{old('descripcion')}}">
 			    	</div>			    	
 			  	</div>			
 			  						
@@ -101,7 +101,7 @@
 						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
-						<a href="/ingreso-producto/index" class="btn btn-info">Cancelar</a>
+						<a href="/ingreso-servicio/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>
