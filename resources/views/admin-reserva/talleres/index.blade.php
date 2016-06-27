@@ -131,7 +131,7 @@
 									@if($taller->vacantes<=0)
 						    			<a class="btn btn-info"  title="Ya no hay vacantes disponibles" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
 						    		@else
-						    			<a class="btn btn-info" title="Inscribirse" href="{{url('/talleres/'.$taller->id.'/confirm')}}"><i class="glyphicon glyphicon-pencil"></i></a>
+						    			<a class="btn btn-info" title="Inscribirse" href="{{url('/taller-admin-reserva/inscripcion/'.$taller->id.'/confirmacion')}}"><i class="glyphicon glyphicon-pencil"></i></a>
 						    		@endif					
 								</td>
 							</tr>
