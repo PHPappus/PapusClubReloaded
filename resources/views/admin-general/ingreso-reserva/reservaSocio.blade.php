@@ -79,11 +79,18 @@
 			<div class="btn-inline">
 
 					<div class="btn-group col-sm-10"></div>
-					
-					<div class="btn-group ">
+					 @if($reservas->isEmpty())
+					 					<div class="btn-group ">
+						<input class="btn btn-primary" type="submit" disabled value="Efectuar Reservas">	
+
+					</div>
+					 @else
+					 						<div class="btn-group ">
 						<input class="btn btn-primary" type="submit" value="Efectuar Reservas">	
 
 					</div>
+					 		@endif
+
 					
 			</div>						
 			</div>

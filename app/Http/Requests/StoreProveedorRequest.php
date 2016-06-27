@@ -31,7 +31,6 @@ class StoreProveedorRequest extends Request
             'correo'            =>  'required|email|max:255',            
             'nombre_responsable' =>  array('required','Regex:/[A-Za-z .-]/'),
             'estado'            =>  'required|integer',
-            'proveedor'            =>  'required|string|max:255'
         ];
     }
 }
