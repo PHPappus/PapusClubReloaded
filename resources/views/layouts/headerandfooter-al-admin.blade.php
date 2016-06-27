@@ -1,3 +1,4 @@
+<link href='https://fonts.googleapis.com/css?family=Lato:700' rel='stylesheet' type='text/css'>
  <!--Cabecera- Se separará espacio para el input de busqueda antes de la cabecera de menu-->
   	<script>
 		function inputLimiter(e,allow) {

@@ -1,3 +1,4 @@
+<link href='https://fonts.googleapis.com/css?family=Lato:700' rel='stylesheet' type='text/css'>
 <style>
   @media (min-width: 1405px){
             #navbar1 {
@@ -122,7 +123,8 @@
             </a>
             <ul class="dropdown-menu">    
                 <li><a href="{!!URL::to('/proveedor/index')!!}">Consultar</a></li>
-                <li><a href="{!!URL::to('/proveedor/new')!!}">Registrar</a></li>                
+                <li><a href="{!!URL::to('/proveedor/new')!!}">Registrar</a></li>  
+                <li><a href="{!!URL::to('/servicioProveedor/index')!!}">Servicios de proveedores</a></li>              
                 <li><a href="{!!URL::to('/ingreso-producto/index')!!}">Solicitud de Productos</a></li>
                 <li><a href="{!!URL::to('/ingreso-servicio/index')!!}">Solicitud de Servicios</a></li>
             </ul>

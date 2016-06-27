@@ -49,7 +49,7 @@
 	<br/>
 
 	<div class="container">
-		<form method="POST" action="actividad-admin-reserva/inscripcion" class="form-horizontal form-border"> 
+		<form method="POST" action="/actividad-admin-reserva/inscripcion" class="form-horizontal form-border"> 
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 			<br/>
@@ -142,7 +142,7 @@
 								<td>{{ $actividad->nombre }}</td>
 								
 		 						
-		 						<td>{{ $actividad->a_realizarse_en}}</td>
+		 						<td>{{ date("d-m-Y",strtotime($actividad->a_realizarse_en))}}</td>
 		 						<td>{{ $actividad->hora_inicio}}</td>		 						
 		 		
 		 						@if($actividad->cupos_disponibles<=0)

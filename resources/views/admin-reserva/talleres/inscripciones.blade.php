@@ -12,137 +12,94 @@
 	
 	<!-- DataTable -->
 	{!!Html::style('css/jquery.dataTables.css')!!}
+	
 </head>
 
 <body>
-@extends('layouts.headerandfooter-al-socio')
+@extends('layouts.headerandfooter-al-admin-reserva')
 @section('content')
-
+	
 	<div class="content" style="max-width: 100%;">
 		<div class="container">
-			<div class="row" style="max-width: 920px;">
+			@include('alerts.errors')
+			@include('alerts.success')
+		</div>
+		<div class="container">
+			<div class="row" style="max-width: 920px">
 				<div class="col-sm-3">
-					<ol class="breadcrumb" style="background:none;">
-						<li><a href="/socio"><span class="glyphicon glyphicon-home"></span></a></li>
+					<ol class="breadcrumb" style="background:none">
+						<li><a href="/admin-reserva"><span class="glyphicon glyphicon-home"></span></a></li>
 						<li class="active">Mis inscripciones</li>
 					</ol>
 				</div>				
 			</div>
 		</div>
 		
-		
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-center">
-					<p class="lead"><strong>M I S &nbsp;&nbsp; I N S C R I P C I O N E S</strong></p>
-				</div>
-			</div>
-		</div>
-		<br/><br/>
-		<div class="container">
-			@include('alerts.success')
-		</div>
-		<div class="table-responsive">
-			<div class="container">
-				<table id="talleresTable" class="table table-bordered table-hover text-center display">
-					<thead class="active">
-						<tr class="active">
-							<th><div align=center>Nombre</div></th>	
-							<th><div align=center>Profesor</div></th>				
-							<th><div align=center>Fecha de inicio</div></th>
-							<th><div align=center>Fecha de fin</div></th>
-							<th><div align=center>Precio</div></th>
-							<th><div align=center>Detalle</div></th>
-							<th><div align=center>Anular</div></th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach($talleresxpersona as $taller)
-						<tr>
-							<td>{{$taller->nombre}}</td>
-							<td>{{$taller->profesor}}</td>
-							<td>{{date("d-m-Y",strtotime($taller->fecha_inicio))}}</td>
-							<td>{{date("d-m-Y",strtotime($taller->fecha_fin))}}</td>
-							<td>S/.{{ $taller->precio($tipo_persona, $taller->tarifas) }}</td>
-							
-							<td>
-								<a class="btn btn-info" href="{{url('/talleres/'.$taller->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-							</td>
-							<td>
-								@if($taller->fecha_inicio >= $fecha_validable)
-								   <a class="btn btn-danger" data-href="{{url('/talleres/'.$taller->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
-								@else
-									<a class="btn btn-info"  title="El periodo de anulación ya ha caducado" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
-								@endif
-							</td>
-						</tr>
-						@endforeach
-					</tbody>
-				</table>
-			</div>	
-		</div>
-		<br/><br/><br/>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 text-center">
-					<p class="lead"><strong>I N S C R I P C I O N E S &nbsp;&nbsp; D E &nbsp;&nbsp; M I S &nbsp;&nbsp; F A M I L I A R E S</strong></p>
+					<p class="lead"><strong>I N S C R I P C I O N E S</strong></p>
 				</div>
 			</div>
 		</div>
 		<br/>
 		<div class="table-responsive">
 			<div class="container">
-				<table id="talleresTable2" class="table table-bordered table-hover text-center display">
+				<table id="talleresTable" class="table table-bordered table-hover text-center display">
 					<thead class="active">
 						<tr class="active">
-							<th><div align=center>Nombre del Familiar</div></th>
+							<th><div align=center>Nombre del Socio</div></th>
 							<th><div align=center>Nombre del taller/curso</div></th>	
 							<th><div align=center>Profesor</div></th>				
 							<th><div align=center>Fecha de inicio</div></th>
 							<th><div align=center>Fecha de fin</div></th>
-							<th><div align=center>Precio</div></th>
+							<!-- <th><div align=center>Precio</div></th> -->
 							<th><div align=center>Detalle</div></th>
 							<th><div align=center>Anular</div></th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($familiares as $familiar)
-							@foreach($familiar->talleres as $taller_familiar)
-								<tr>
-									<td>{{$familiar->nombre}}</td>
-									<td>{{$taller_familiar->nombre}}</td>
-									<td>{{$taller_familiar->profesor}}</td>
-									<td>{{date("d-m-Y",strtotime($taller_familiar->fecha_inicio))}}</td>
-									<td>{{date("d-m-Y",strtotime($taller_familiar->fecha_fin))}}</td>
-									<td>S/.{{ $taller_familiar->precio($tipo_persona, $taller_familiar->tarifas) }}</td>
-									
-									<td>
-										<a class="btn btn-info" href="{{url('/talleres-familiar/'.$taller_familiar->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-									</td>
-									<td>
-										@if($taller_familiar->fecha_inicio >= $fecha_validable)
-										    <a class="btn btn-danger" data-href="{{url('/talleres-familiar/'.$taller_familiar->id.'/'.$familiar->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
-										@else
-											<a class="btn btn-info"  title="El periodo de anulación ya ha caducado" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
-										@endif
-									</td>
-								</tr>
-							@endforeach
+
+					@foreach ($personas as $persona)
+						@foreach ($persona->talleres as $taller)
+						<tr>
+							<td>{{ $persona->nombre }}</td>
+							<td>{{ $taller->nombre }}</td>
+				    		<td>{{ $taller->profesor }}</td>
+
+	 						<td>{{ date("d-m-Y",strtotime($taller->fecha_inicio)) }}</td>
+	 						<td>{{ date("d-m-Y",strtotime($taller->fecha_fin))}}</td>
+							<td>
+								     <a class="btn btn-info" href="{{url('/taller-admin-reserva/'.$taller->id.'/show')}}"  title="Detalle"><i class="glyphicon glyphicon-list-alt"></i></a>
+							</td>
+							<td>
+								@if($taller->fecha_inicio >= $fecha_validable)
+								     <a class="btn btn-danger" data-href="{{url('/taller-admin-reserva/inscripcion/'.$taller->id.'/'.$persona->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+								@else
+									 <a class="btn btn-info"  title="El periodo de anulación ya ha caducado" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
+								@endif
+							</td>
+							
+						</tr>
 						@endforeach
+					@endforeach
 					</tbody>
 				</table>
 			</div>	
 		</div>
+		
+
+
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-center">
-					<a href="{{url('/talleres/index')}}" class="btn btn-lg btn-primary">Regresar</a>		
+					<a href="{{url('/inscripcion-actividad/inscripcion-actividades')}}" class="btn btn-lg btn-primary" >Regresar</a>		
 				</div>
 			</div>
 		</div>	
 	</div>
 @stop
-<!-- JQuery -->
+	<!-- JQuery -->
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	<!-- Bootstrap -->
 	{!!Html::script('js/bootstrap.js')!!}
@@ -161,17 +118,6 @@
 		       }
 		  	});
   		});
-		
-	</script>
-	<script>
-		$(document).ready(function() {
-		   $('#talleresTable2').DataTable( {
-		       "language": {
-		           "url": "{!!URL::to('/locales/Spanish.json')!!}"
-		       }
-		  	});
-  		});
-		
 	</script>
 
 
@@ -189,8 +135,8 @@
 	        <p>¿Está seguro que desea anular la inscripción?</p>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-            <a class="btn btn-danger btn-ok">Sí</a>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-danger btn-ok">Confirmar</a>
 	      </div>
 	    </div>
 

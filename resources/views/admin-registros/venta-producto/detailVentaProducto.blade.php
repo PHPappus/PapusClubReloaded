@@ -33,7 +33,7 @@
 				<div class="form-group">
 		    		<label for="idInput" class="col-sm-4 control-label">N° de Factura</label>
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="idInput" name="id" value="{{str_pad($factura->id, 10, "0", STR_PAD_LEFT)}}" readonly>
+		      			<input type="text" class="form-control" id="idInput" name="id" value="{{$factura->id}}" readonly>
 		    		</div>
 		  		</div>
 			  
@@ -61,6 +61,13 @@
 			      		readonly>
 			    	</div>			      					      		
 			  	</div>				  
+
+			  	<div class="form-group required">
+					<label  class="control-label col-sm-4">Fecha [aaaa/mm/dd hh:mm:ss]:</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="fecha_inicio_concesion" readonly name="fecha_inicio_concesion" value="{{ $factura->created_at }}"  >						
+					</div>					
+				</div>				
 
 				<br/><br/>
 				

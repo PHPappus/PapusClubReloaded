@@ -65,7 +65,7 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 
 
 	//Inscribirse en Sorteo
-	Route::get('sorteo/inscripcion/socio','SorteoController@indexInscripcion');
+	//Route::get('sorteo/inscripcion/socio','SorteoController@indexInscripcion');
 	Route::post('sorteo/inscripcion/store','SorteoController@inscripcionStore');
 	Route::post('sorteo/inscripcion/delete','SorteoController@inscripcionDelete');
 	Route::get('sorteo/inscripcion/mis_sorteos','SorteoController@indexMisInscripciones');
@@ -247,6 +247,15 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::get('producto/{id}/delete', 'ProductoController@destroy');
 	Route::get('producto/{id}/show', 'ProductoController@show');
 	Route::post('producto/new/tipoproducto', 'ProductoController@storeTipoProducto');
+	//MANTENIMIENTO DE SERVICIOS DE PROVEEDORES
+	Route::get('servicioProveedor/index', 'ServicioProveedorController@index');
+	Route::get('servicioProveedor/new', 'ServicioProveedorController@create');
+	Route::post('servicioProveedor/new/servicioProveedor', 'ServicioProveedorController@store');
+	Route::get('servicioProveedor/{id}', 'ServicioProveedorController@edit');
+	Route::post('servicioProveedor/{id}/edit', 'ServicioProveedorController@update');
+	Route::get('servicioProveedor/{id}/delete', 'ServicioProveedorController@destroy');
+	Route::get('servicioProveedor/{id}/show', 'ServicioProveedorController@show');
+	
 	//VENTA DE PRODUCTOS
 	Route::get('venta-producto/index', 'VentaProductoController@index');
 	Route::get('venta-producto/new', 'VentaProductoController@create');
@@ -350,7 +359,37 @@ Route::group(['middleware' => ['auth', 'adminpagos']], function () {
 Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::resource('admin-general','AdminGeneralController');
 /*	Route::get('postulante-al-admin','AdminGeneralController@postulante');*/
-	
+	Route::post('configuracion/test', function()
+	{
+		$valor=Input::get('valor');
+		papusclub\Models\Configuracion::insert([ 'valor' => $valor , 'grupo' => '1', 'descripcion'=>'tipos de puestos']);
+	});
+	Route::post('configuracion/test2', function()
+	{
+		$valor=Input::get('valor');
+		papusclub\Models\Configuracion::insert([ 'valor' => $valor , 'grupo' => '2', 'descripcion'=>'Tipos de Ambientes']);
+	});
+	Route::post('configuracion/test3', function()
+	{
+		$valor=Input::get('valor');
+		papusclub\Models\Configuracion::insert([ 'valor' => $valor , 'grupo' => '3', 'descripcion'=>'Tipos de Actividades']);
+	});
+	Route::post('configuracion/test4', function()
+	{
+		$valor=Input::get('valor');
+		papusclub\Models\Configuracion::insert([ 'valor' => $valor , 'grupo' => '4', 'descripcion'=>'tipo de servicio']);
+	});
+	Route::post('configuracion/test5', function()
+	{
+		$valor=Input::get('valor');
+		papusclub\Models\Configuracion::where('grupo', '=', 5)->update(array('valor' => $valor));
+	});
+	Route::post('configuracion/test6', function()
+	{
+		$valor=Input::get('valor');
+		papusclub\Models\Configuracion::where('grupo', '=', 12)->update(array('valor' => $valor));
+	});
+
 	//CONFIGURACION
 	Route::get('configuracion/index','ConfiguracionController@index');
 
@@ -632,12 +671,26 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::post('actividad-admin-reserva/inscripcion/{id}/confirmacion/confirm','InscriptionActividadAdminReservaController@makeInscriptionToPersona');
 
 	Route::get('actividad-admin-reserva/inscripciones','InscriptionActividadAdminReservaController@inscripciones');
-	
+
+	Route::get('actividad-admin-reserva/inscripcion/{id}/{idPersona}/delete', 'InscriptionActividadAdminReservaController@removeInscriptionToPersona');
+	//Inscripción de socios a Talleres en el club
+	Route::get('taller-admin-reserva/index', 'InscriptionTallerAdminReservaController@index');
+	Route::post('taller-admin-reserva/index','InscriptionTallerAdminReservaController@filterTalleresAdminReserva');
+
+	Route::get('taller-admin-reserva/inscripcion/{id}/confirmacion', 'InscriptionTallerAdminReservaController@confirmInscription');
+	Route::post('taller-admin-reserva/inscripcion/{id}/confirmacion/confirm','InscriptionTallerAdminReservaController@makeInscriptionToPersona');
+
+	Route::get('taller-admin-reserva/{id}/show','InscriptionTallerAdminReservaController@show');
+
+	Route::get('taller-admin-reserva/inscripciones','InscriptionTallerAdminReservaController@inscripciones');
+	Route::get('taller-admin-reserva/inscripcion/{id}/{idPersona}/delete', 'InscriptionTallerAdminReservaController@removeInscriptionToPersona');
+
 
 		//INGRESO DE SOCIO A LA RESERVA
 	Route::get('ingresoReserva/index','IngresoSocioController@index');
 	Route::post('ingresoReserva/reserva','IngresoSocioController@reservaSocio');
 	Route::post('ingresoReserva/update','IngresoSocioController@cambiarEstado');
+
 
 		//DECLARAR EN MANTENIMIENTO BUNGALOWS
 		//PREVENTIVO

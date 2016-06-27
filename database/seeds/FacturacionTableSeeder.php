@@ -12,56 +12,60 @@ class FacturacionTableSeeder extends Seeder
      */
     public function run()
     {
-        Facturacion::insert([            
+        Facturacion::create([            
         	'persona_id' => '2', 
+            'numero_comprobante' => '1',
         	'total' => '70.5',         	
         	'tipo_pago' => 'Efectivo', 
             'tipo_comprobante' => 'Boleta',
         	'estado' => 'Pagado',
-            'reserva_id'=>1
+            'descripcion' => 'Venta de Productos'               
         	]);
 
-        Facturacion::insert([            
+        Facturacion::create([            
         	'persona_id' => '2', 
+            'numero_comprobante' => '1',
         	'total' => '300',         	
         	'tipo_pago' => 'Efectivo', 
             'tipo_comprobante' => 'Factura',
         	'estado' => 'Pagado',
-            'reserva_id'=>2
+            'descripcion' => 'Venta de Productos'   
         	]);
 
-        Facturacion::insert([            
+        Facturacion::create([            
         	'persona_id' => '3', 
+            'numero_comprobante' => '2',
         	'total' => '85',         	
         	'tipo_pago' => 'Credito', 
             'tipo_comprobante' => 'Boleta',
         	'estado' => 'Emitido',
-            'reserva_id'=>3
+            'descripcion' => 'Venta de Productos'   
         	]);
 
-        Facturacion::insert([            
+        Facturacion::create([            
             'persona_id' => '3', 
-            'total' => '20',
+            'numero_comprobante' => '3',
+            'total' => '50',
             'tipo_pago' => 'Credito', 
             'tipo_comprobante' => 'Boleta',
             'estado' => 'Emitido',
-            'reserva_id'=>4
+            'descripcion' => 'Venta de Productos'   
             ]);
-        Facturacion::insert([            
+        Facturacion::create([            
             'persona_id' => '4', 
             'total' => '30',
             'tipo_pago' => 'Credito', 
             'tipo_comprobante' => 'Boleta',
             'estado' => 'Emitido',
-            'reserva_id'=>5
+            'reserva_id'=>1
             ]);
-        Facturacion::insert([            
+        Facturacion::create([            
             'persona_id' => '5', 
             'total' => '40',
             'tipo_pago' => 'Credito', 
             'tipo_comprobante' => 'Boleta',
             'estado' => 'Emitido',
-            'reserva_id'=>6
+            'reserva_id'=>2
             ]);
     }
 }

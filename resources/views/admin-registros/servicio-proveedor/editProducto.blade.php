@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>MODIFICAR VENTA</title>
+	<title>MODIFICAR PRODUCTO</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,12 +27,12 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>EDITAR VENTA</strong>
+					<strong>EDITAR PRODUCTO</strong>
 			</div>		
 		</div>
 		<div class="container">
 			<!--@include('errors.503')-->		
-			<form method="POST" action="/venta-producto/{{ $factura->id }}/edit" class="form-horizontal form-border">
+			<form method="POST" action="/servicioProveedor/{{ $producto->id }}/edit" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<!-- Mensajes de error de validación del Request -->
@@ -51,92 +51,63 @@
 				</div>
 
 				<br/>
+				<br/>
+				<div class="form-group">
+			  		<div class="text-center">
+			  			<font color="red"> 
+			  				(*) Dato Obligatorio
+			  			</font>
+			  			
+			  		</div>
+			  	</div>
+			  	</br>
 			  	</br>
 
 				<!-- INICIO INCIIO -->				                       
-				<div class="form-group">
-		    		<label for="idInput" class="col-sm-4 control-label">N° de Factura</label>
+				<div class="form-group required">
+		    		<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="idInput" name="id" value="{{$factura->id}}" readonly>
+		      			<input type="text" class="form-control" id="nombre" name="nombre" value="{{$producto->nombre}}" >
 		    		</div>
 		  		</div>
 			  
-			  	<div class="form-group">
-			    	<label for="personaInput" class="col-sm-4 control-label">Persona</label>
+			  	<div class="form-group required">
+			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="personaInput" name="persona" value="{{$factura->persona->nombre}} {{$factura->persona->ap_paterno}} {{$factura->persona->ap_materno}}" readonly>
+			      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" value="{{$producto->descripcion}}">
 			    	</div>
-			  	</div>	  				  				 
+			  	</div>	  	
 			  	
-			  	<div class="form-group">
-			    	<label for="tipoPagoInput" class="col-sm-4 control-label" >Tipo de Pago</label>
-			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="tipoPagoInput" name="tipoPago" 
-			    		value="{{$factura->tipo_pago}}"
-			      		readonly>
-			    	</div>			      					      		
-			  	</div>	
-						
-				@if (strcmp($factura->estado, 'Anulado')==0)		
-					<div class="form-group">
-				    	<label for="estadoInput" class="col-sm-4 control-label" >Estado</label>
-				    	<div class="col-sm-5">
-				      		<input type="text" class="form-control" id="estado" name="estado" 
-				    		value="{{$factura->estado}}" readonly>
-				    	</div>			      					      		
-			  		</div>			
-				@else
-			  	<div class="form-group">
-			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
-			    	<div class="col-sm-5">			    	
+			  	<div class="form-group required">
+			    	<label for="estadoInput" class="col-sm-4 control-label ">Estado</label>
+			    	<div class="col-sm-3">			      					      	
+			      		
 			      		<select class="form-control" id="estado" name="estado" >
 						<!-- Las opciones se deberían extraer de la tabla configuracion-->
-						<option value="" >Seleccionar tipo...</option>
-						@foreach($estados as $estado)							
-							<option value="{{$estado->valor}}" 
-							@if (strcmp($estado->valor, $factura->estado)==0)		
-									selected
-							@endif
-							>{{$estado->valor}}</option>						
-						@endforeach						
-						</select>													
+						<option value="1" @if($producto['estado'] == true) selected @endif >Activo</option>
+						<option value="0" @if($producto['estado'] == false) selected @endif>Inactivo</option>	
 						
-			    	</div>
+						</select>							
+			    	</div>	    	
+			  	</div>
+			  	
+			  	<div class="form-group required" hidden>
+			    	<label for="tipoProductoInput" class="col-sm-4 control-label">Tipo de Producto</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" class="form-control" id="tipo_producto" name="tipo_producto" 
+			    		value="{{$producto->tipo_producto}}"
+			      		readonly>
+			    	</div>			      					      		
 			  	</div>		
-			  	@endif
 
-				<br/><br/>
+			  	<div class="form-group required" hidden>
+			    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" class="form-control" onkeypress="return inputLimiter(event,'DoubleFormat')" id="precio" name="precio" placeholder="Precio"  value="{{$producto->precioproducto->first()['precio']}}">
+			    	</div>
+			  	</div>	  
+					<!-- FIN FIN FIN  -->
 				
-
-				<div class="table-responsive">				
-					<table class="table table-bordered table-hover text-center display" id="example">
-						<thead class="active" data-sortable="true">
-							<th><div align=center>PRODUCTO</div></th>
-							<th><div align=center>PRECIO</div></th>
-							<th><div align=center>CANTIDAD</div></th>
-							<th><div align=center>SUBTOTAL</div></th>							
-						</thead>
-
-												
-						<tbody>
-						@foreach($factura->productoxfacturacion as $producto)
-							<tr>
-								<td>{{ $producto->producto->nombre}}</td>
-								<td>{{ $producto->precio}}</td>
-								<td>{{ $producto->cantidad}}</td>			
-								<td>{{ $producto->subtotal }}</td>								
-				            </tr>
-						@endforeach
-						<tr>
-								<td></td>
-								<td></td>
-								<td><b>TOTAL</b></td>
-								<td>{{ $factura->total}}</td>								
-				            </tr>
-						</tbody>													
-					</table>						
-				</div>
-					<!-- FIN FIN FIN  -->				
 			
 				</br>
 			  	</br>
@@ -147,7 +118,7 @@
 						<input class="btn btn-primary" data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Aceptar">
 					</div>
 					<div class="btn-group">
-						<a href="/venta-producto/index" class="btn btn-info">Cancelar</a>
+						<a href="/servicioProveedor/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>

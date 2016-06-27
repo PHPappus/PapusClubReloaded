@@ -32,7 +32,7 @@ class StoreConcesionariaRequest extends Request
             'correo'            =>  'required|email|max:255',            
             'nombre_responsable' =>  array('required','Regex:/[A-Za-z .-]/'),            
             'tipo_concesionaria' => 'required|string|max:255',
-            'fecha_inicio_concesion' => 'required|date_format:d/m/Y|after:today',
+            'fecha_inicio_concesion' => 'required|date_format:d/m/Y',
             'fecha_fin_concesion' => 'required|date_format:d/m/Y|after:fecha_inicio_concesion'
         ];
     }

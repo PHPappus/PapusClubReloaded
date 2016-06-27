@@ -20,7 +20,7 @@
 </head>
 
 <body>
-@extends('layouts.headerandfooter-al-socio')
+@extends('layouts.headerandfooter-al-admin-reserva')
 @section('content')
 
 	<div class="content" style="max-width: 100%;">
@@ -40,7 +40,7 @@
 			</div>		
 		</div>
 		<div class="container">
-			<form method="POST" action="/talleres/index" class="form-horizontal form-border"> <!-- FALTA CAMBIAR LA ACTION =D -->
+			<form method="POST" action="/taller-admin-reserva/index" class="form-horizontal form-border"> <!-- FALTA CAMBIAR LA ACTION =D -->
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<br/><br/>
 				<div class="form-group ">
@@ -58,7 +58,7 @@
 				 	<label for="fechaInput" class="col-sm-4 control-label">FECHA (dd/mm/aaaa) </label>
 				    <div class="col-sm-5">
 					  	<div class="input-group">
-				   		<input class="datepicker form-control"  type="text"  id="fecha_inicio" name="fecha_inicio" placeholder="Fecha de Inicio" value="{{old('fecha_inicio')}}" style="max-width: 250px" >
+				   		<input class="datepicker form-control"  type="text"  id="fecha_inicio" name="fecha_inicio" placeholder="Fecha de Inicio" value="{{$fecha_inicio}}" style="max-width: 250px" >
 				   		<!-- <span class="input-group-addon">-</span>
 				   		<input class="datepicker form-control" type="text" id="fecha_fin" name="fecha_fin" placeholder="Fecha Fin" value="{{old('fecha_fin')}}" style="max-width: 250px"> -->
 
@@ -98,13 +98,10 @@
 							<th style="max-width:100px;"><div align=center>EMPIEZA</div></th>
 							<th style="max-width:100px;"><div align=center>TERMINA</div></th>
 							<th style="max-width:100px;"><div align=center>VACANTES DISPONIBLES</div></th>
-							
-							<th><div align=center>PRECIO</div></th>
 							<th style="max-width:180px;"><div align=center>FIN DE LA INSCRIPCIÓN</div></th>
-							<th><div align=center>ESTADO</div></th>
+							
 							<th><div align=center>DETALLE</div></th>
-							<th><div align=center>INSCRIBIRSE</div></th>
-							<th><div align=center>INSCRIBIR A UN FAMILIAR</div></th>
+							<th><div align=center>Inscribir a un Socio</div></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -122,27 +119,20 @@
 									@endif
 								</td>								
 								
-								<td>S/.{{ $taller->precio($tipo_persona, $taller->tarifas) }}</td>
+								
 								<td>{{date("d-m-Y",strtotime($taller->fecha_fin_inscripciones))}}
 								</td>
-						    		@if(count($talleresxpersona->where('id',$taller->id))!=0)
-						    			<td style="background:#bcd8bc;">Inscrito</td>
-						    		@else
-						    			<td style="background:#e2bfbf;">No inscrito</td>
-						    		@endif
+
 								<td> 
-									<a class="btn btn-info" href="{{url('/talleres/'.$taller->id.'/show')}}"  title="Detalle"><i class="glyphicon glyphicon-list-alt"></i></a>
+									<a class="btn btn-info" href="{{url('/taller-admin-reserva/'.$taller->id.'/show')}}"  title="Detalle"><i class="glyphicon glyphicon-list-alt"></i></a>
 
 								</td>
 								<td>
-									@if((count($talleresxpersona->where('id',$taller->id))!=0)||($taller->vacantes<=0))
-						    			<a class="btn btn-info"  title="Ya se encuentra inscrito" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
+									@if($taller->vacantes<=0)
+						    			<a class="btn btn-info"  title="Ya no hay vacantes disponibles" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
 						    		@else
-						    			<a class="btn btn-info" title="Inscribirse" href="{{url('/talleres/'.$taller->id.'/confirm')}}"><i class="glyphicon glyphicon-pencil"></i></a>
+						    			<a class="btn btn-info" title="Inscribirse" href="{{url('/taller-admin-reserva/inscripcion/'.$taller->id.'/confirmacion')}}"><i class="glyphicon glyphicon-pencil"></i></a>
 						    		@endif					
-								</td>
-								<td>
-									<a class="btn btn-info" title="Inscribir a un familiar" href="{{url('/talleres-familiar/'.$taller->id.'/confirm')}}"><i class="glyphicon glyphicon-pencil"></i></a>
 								</td>
 							</tr>
 						@endforeach

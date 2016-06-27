@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SOLICITUD DE SERVICIOS</title>
+	<title>SERVICIOS DE PROVEEDORES</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +18,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 text-left">
-				<p class="lead"><strong>SOLICITUD DE SERVICIOS</strong></p>
+				<p class="lead"><strong>SERVICIOS DE PROVEEDORES</strong></p>
 				<br/>
 			</div>
 			
@@ -49,10 +49,8 @@
 			</div>
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active" data-sortable="true">
-						<th><div align=center>N° DE SOLICITUD</div></th>
-						<th><div align=center>PROVEEDOR</div></th>
-						<th><div align=center>DESCRIPCION</div></th>
-						<th><div align=center>ESTADO</div></th>							
+						<th><div align=center>SERVICIO</div></th>
+						<th><div align=center>DESCRIPCIÓN</div></th>						
 						<th><div align=center>DETALLE</div></th>
 						<th><div align=center>EDITAR</div></th>
 						<th><div align=center>ELIMINAR</div></th>
@@ -60,20 +58,18 @@
 
 											
 					<tbody>
-					@foreach($ingresoproductos as $ingresoproducto)
+					@foreach($productos as $producto)
 						<tr>
-							<td>{{ $ingresoproducto->id }}</td>
-							<td>{{ $ingresoproducto->proveedor->nombre_proveedor}}</td>
-							<td>{{ $ingresoproducto->descripcion }}</td>			
-							<td>{{ $ingresoproducto->estado }}</td>
+							<td>{{ $producto->nombre }}</td>
+							<td>{{ $producto->descripcion }}</td>										
 							<td>
-				              <a class="btn btn-info" href="{{url('/ingreso-servicio/'.$ingresoproducto->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+				              <a class="btn btn-info" href="{{url('/servicioProveedor/'.$producto->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 				            </td>
 							<td>
-				              <a class="btn btn-info" href="{{url('/ingreso-servicio/'.$ingresoproducto->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+				              <a class="btn btn-info" href="{{url('/servicioProveedor/'.$producto->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 				            </td>
 				            <td>
-				              <a class="btn btn-info"  title="Eliminar" data-href="{{url('/ingreso-servicio/'.$ingresoproducto->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
+				              <a class="btn btn-info"  title="Eliminar" data-href="{{url('/servicioProveedor/'.$producto->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
 				            </td>
 			            </tr>
 					@endforeach
@@ -87,7 +83,7 @@
 	<div class="container">
 		<div class="form-group">
 			<div class="col-sm-16 text-right">
-				<a class="btn btn-info" href="{{url('/ingreso-servicio/new')}}" title="Registrar Solicitud" >Registrar Solicitud<i class="glyphicon" ></i> </a>	
+				<a class="btn btn-info" href="{{url('/servicioProveedor/new')}}" title="Registrar Producto" >Registrar Servicio<i class="glyphicon" ></i> </a>	
 			</div>
 		</div>
 		<br/>
@@ -102,7 +98,7 @@
 	{!!Html::script('js/jquery.bxslider.min.js')!!}
 	{!!Html::script('js/MisScripts.js')!!}
 	{!!Html::script('js/jquery.dataTables.js')!!}
-	<!-- {!!Html::script('js/jquery.dataTables.min.js')!!} -->	
+	
 	<script>
 		$(document).ready(function() {
 		   $('#example').DataTable( {

@@ -36,72 +36,72 @@
 			<form method="POST" action="/actividad-admin-reserva/inscripcion/{{ $actividad->id }}/confirmacion/confirm" class="form-horizontal form-border"><!-- accion que regresa a la incial de inscripciones -->
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<br/><br/>
-
-		  	<div class="form-group">
-		    	<label for="ambienteInput" class="col-sm-4 control-label">AMBIENTE:</label>
+			<div class="form-group">
+		    	<label for="sedeInput" class="col-sm-4 control-label">SEDE:</label>
 		    	<div class="col-sm-5">
-		    		<input type="text" class="form-control" id="ambienteInput" name="ambiente" value="{{$actividad->ambiente->nombre}}"  required readonly>
+		      		<input type="text" class="form-control text-center" id="sedeInput" name="sede" value="{{$actividad->ambiente->sede->nombre}}"  required readonly>
+		    	</div>
+		  	</div>
+		  	<div class="form-group">
+		    	<label for="ambienteInput" class="col-sm-4 control-label">LUGAR:</label>
+		    	<div class="col-sm-5">
+		    		<input type="text" class="form-control text-center" id="ambienteInput" name="ambiente" value="{{$actividad->ambiente->nombre}}"  required readonly>
 		      	</div>		      	
 		  	</div>
 
 		  	<div class="form-group">
-		    	<label for="tipoambienteInput" class="col-sm-4 control-label">TIPO DE AMBIENTE:</label>
+		    	<label for="tipoambienteInput" class="col-sm-4 control-label">TIPO DE LUGAR:</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="tipoambienteInput" name="tipoambiente" value="{{$actividad->ambiente->tipo_ambiente}}"  required readonly>
+		      		<input type="text" class="form-control text-center" id="tipoambienteInput" name="tipoambiente" value="{{$actividad->ambiente->tipo_ambiente}}"  required readonly>
 		    	</div>
 		  	</div>
-		  	<div class="form-group">
-		    	<label for="sedeInput" class="col-sm-4 control-label">SEDE:</label>
-		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="sedeInput" name="sede" value="{{$actividad->ambiente->sede->nombre}}"  required readonly>
-		    	</div>
-		  	</div>
+		  	
 			<div class="form-group">
 		    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE DE LA ACTIVIDAD:</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="nombreInput" name="nombre" value="{{$actividad->nombre}}" readonly>
+		      		<input type="text" class="form-control text-center" id="nombreInput" name="nombre" value="{{$actividad->nombre}}" readonly>
 		    	</div>
 		  	</div>
 		  	<div class="form-group">
 		    	<label for="descripcionInput" class="col-sm-4 control-label">DESCRIPCIÓN:</label>
 		    	<div class="col-sm-5">
-		      		<textarea type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder ="{{$actividad->descripcion}}" readonly style="max-width:456px;"></textarea>
+		      		<textarea type="text" class="form-control text-center" id="descripcionInput" name="descripcion" placeholder ="{{$actividad->descripcion}}" readonly style="max-width:456px;"></textarea>
 		    	</div> 
 		  	</div>
 		  	<div class="form-group">
 		    	<label for="tipoActividadInput" class="col-sm-4 control-label">TIPO DE ACTIVIDAD:</label>	
 		    	<div class="col-sm-5">
-			    	<input type="text" class="form-control" id="tipoActividadInput" name="tipo_actividad" value="{{$actividad->tipo_actividad}}" readonly >
+			    	<input type="text" class="form-control text-center" id="tipoActividadInput" name="tipo_actividad" value="{{$actividad->tipo_actividad}}" readonly >
 				</div>
 		  	</div>
 		  	<div class="form-group">
 		    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA:</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="capacidadInput" name="capacidad_maxima" value="{{$actividad->capacidad_maxima}}" readonly>
+		      		<input type="text" class="form-control text-center" id="capacidadInput" name="capacidad_maxima" value="{{$actividad->capacidad_maxima}}" readonly>
 		    	</div>
 		  	</div>	
 		  	<div class="form-group">
 		    	<label for="vacantesInput" class="col-sm-4 control-label">VACANTES DISPONIBLES:</label>
 		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="vacantesInput" name="vacantes" value="{{$actividad->cupos_disponibles}}" readonly>
+		      		<input type="text" class="form-control text-center" id="vacantesInput" name="vacantes" value="{{$actividad->cupos_disponibles}}" readonly>
 		      		<!-- <label for="vacantesInput" class=" control-label">{{$actividad->cupos_disponibles}}</label> -->
 		    	</div>
 		  	</div>
 		  	<div class="form-group">
-			 	<label for="fechaInput" class="col-sm-4 control-label">FECHA (dd/mm/aaaa): </label>
+			 	<label for="fechaInput" class="col-sm-4 control-label">EMPIEZA: (dd/mm/aaaa): </label>
 			    <div class="col-sm-5">
-				  	<div class="input-group">
-			   		<input type="text" class="form-control" id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" value="{{$actividad->a_realizarse_en}}" style="max-width: 180px" readonly>
-			   	 	</div>
+				  	
+			   		<input type="text" class="form-control text-center" id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" value="{{date('d-m-Y',strtotime($actividad->a_realizarse_en))}}" readonly>
+			 
 		    	</div>	
 			</div> 
 			<div class="form-group required">
 				<label for="persona_id" class="control-label col-sm-4"><strong>SOCIO:</strong></label>
 				<div class="col-sm-5">	
-						<input type="text" id="name" name="name" class="form-control" placeholder="Nombre del familiar" readonly="true" value="{{old('name')}}">
+						<input type="text" id="name" name="name" class="form-control text-center" placeholder="Nombre del familiar" readonly="true" value="{{old('name')}}">
 				</div>
 				<a class="btn btn-info" name="buscarPersona" href="#"  title="Buscar Persona" data-toggle="modal" data-target="#modalBuscar"><i name="buscarPersona" class="glyphicon glyphicon-search"></i></a>
-				<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="persona_id" name="persona_id" placeholder="ID de la Persona" value="{{old('persona_id')}}" style="display:none">
+				<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control text-center" id="persona_id" name="persona_id" placeholder="ID de la Persona" value="{{old('persona_id')}}" style="display:none">
 			</div>
 			<div class="form-group required">
 			   	<label for="tipoComprobanteInput" class="col-sm-4 control-label">TIPO DE COMPROBANTE</label>
