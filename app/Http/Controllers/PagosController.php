@@ -60,8 +60,12 @@ class PagosController extends Controller
         $facturacion->tipo_pago = $input['tipo_pago'];
         $facturacion->estado = $estado_facturacion->valor;
         $facturacion->update();
-        $facturacion->reserva->estadoReserva = "Activo";
-        $facturacion->reserva->update();
+        if ($facturacion->reserva_id) 
+        {
+            $facturacion->reserva->estadoReserva = "Activo";
+            $facturacion->reserva->update();         
+        }        
+
 
         return redirect('pagos/pago-seleccionar-socio')->with('stored', 'Se registró la facturacion correctamente.');
     }
