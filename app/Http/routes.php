@@ -292,9 +292,14 @@ Route::group(['middleware' => ['auth', 'adminpagos']], function () {
     //PAGOS POR INGRESO AL CLUB
     Route::get('ingreso/busqueda','PagosController@buscarpersona');
     Route::get('/resultado-busqueda-persona','PagosController@resultadopersona');
-    //Route::get('/resultado-busqueda-persona/','PagosController@resultadomostrar');
     Route::post('/registrar-pago-ingreso','PagosController@registrarPagoIngreso');
-   
+
+    //PAGOS POR MEMBRESÍA
+    route::get('membresia/deudas','PagosController@deudasMembresia');
+    Route::get('membresia/{id}/deuda','PagosController@deudaMembresiaSocio');
+    Route::post('/registrar-pago-membresia','PagosController@registrarPagoMembresia');   
+
+
 });
 
 
