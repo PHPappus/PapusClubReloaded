@@ -51,7 +51,7 @@ class InscriptionTallerAdminReservaController extends Controller
 
     }
 
-    public function makeInscriptionFamiliarToUser(MakeInscriptionToUserRequest $request, $id)
+    public function makeInscriptionToPersona(MakeInscriptionToUserRequest $request, $id)
     {
         if($request['tipo_comprobante']==-1){
             Session::flash('message-error','Por favor, elija el tipo de comprobante');
