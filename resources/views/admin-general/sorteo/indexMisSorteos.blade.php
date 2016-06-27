@@ -83,7 +83,7 @@
 							<td>{{$sorteo->fecha_cerrado}}</td>	
 							<td>{{$sorteo->descripcion}}</td>
 							<td>
-							        <a class="btn btn-info" href="{{url('/sorteo/'.$sorteo->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+							        <a class="btn btn-info" href="{{url('/sorteo/'.$sorteo->id.'/mostrar')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 							        </td>
 							<td>{{ Form::checkbox('ch[]', $sorteo->id, false) }}</td>
 						</tr>
