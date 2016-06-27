@@ -62,6 +62,8 @@ Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
 	Route::get('talleres-familiar/{id}/confirm','InscriptionTallerController@confirmInscriptionFamiliar');
 
 	Route::post('talleres/{id}/confirm/save','InscriptionTallerController@makeInscriptionToUser');
+	Route::post('talleres-familiar/{id}/confirm/save','InscriptionTallerController@makeInscriptionFamiliarToUser');
+
 	Route::get('talleres/{id}/delete', 'InscriptionTallerController@removeInscriptionToUser');
 	Route::get('talleres/mis-inscripciones','InscriptionTallerController@misinscripciones');
 		//Socio.bungalows
@@ -71,9 +73,15 @@ Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
 
 	//Socio.atividades : INSCRIPCION DE ACTIVIDADES
 	Route::get('inscripcion-actividad/inscripcion-actividades', 'InscriptionActividadController@inscriptionActividad'); // REservar
+	
 	Route::get('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades', 'InscriptionActividadController@storeInscriptionActividad');
-	Route::post('inscripcion-actividad/inscripcion-actividades','InscriptionActividadController@filterActividades');
+	Route::get('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades-to-familiar', 'InscriptionActividadController@storeInscriptionActividadtoFamiliar');
+
+	Route::post('inscripcion-actividad/inscripcion-actividades','
+		InscriptionActividadController@filterActividades');
+
 	Route::post('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades/confirm','InscriptionActividadController@makeInscriptionToPersona');
+	Route::post('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades-to-familiar/confirm','InscriptionActividadController@makeInscriptionFamiliarToPersona');
 
 	Route::get('inscripcion-actividad/mis-inscripciones','InscriptionActividadController@misinscripciones');
 	
