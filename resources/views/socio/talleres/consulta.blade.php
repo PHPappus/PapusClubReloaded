@@ -106,11 +106,11 @@
 							<a href="{{url('/talleres/'.$taller->id.'/confirm')}}" class="btn btn-primary" >Inscribirse</a>		
 						</div>		
 						<div class="col-sm-6 text-left">
-							<a href="{{url('/talleres/index')}}" class="btn btn-primary" >Regresar</a>		
+							<a href="{{URL::previous()}}" class="btn btn-primary" >Regresar</a>		
 						</div>
 						@else
 							<div class="col-sm-12 text-center">
-							<a href="{{url('/talleres/index')}}" class="btn btn-primary" >Regresar</a>		
+							<a href="{{URL::previous()}}" class="btn btn-primary" >Regresar</a>		
 						</div>
 						@endif
 					</div>			
