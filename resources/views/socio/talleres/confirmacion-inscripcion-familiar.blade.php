@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>ACTIVIDAD</title>
+	<title>Taller</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +10,6 @@
 	{!!Html::style('../css/bootstrap.css')!!}
 	{!!Html::style('../css/MisEstilos.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
-	
 	
 </head>
 <body>
@@ -21,11 +20,11 @@
 <main class="main">
 	<div class="content" style="max-width: 100%;">
 		<div class="container">
-			<div class="row" style="max-width: 920px">
-				<div class="col-sm-4">
+			<div class="row" style="max-width: 1020px">
+				<div class="col-sm-5">
 					<ol class="breadcrumb" style="background:none">
 						<li><a href="/socio"><span class="glyphicon glyphicon-home"></span></a></li>
-						<li><a href="/inscripcion-actividad/inscripcion-actividades">Consultar Actividades</a></li>
+						<li><a href="/talleres/index">Consultar Talleres</a></li>
 						<li class="active">Confirmación de inscripción</li>
 					</ol>
 				</div>				
@@ -44,69 +43,59 @@
 			</div>		
 		</div>
 		<div class="container">
-			<!--@include('errors.503')-->	
-			<form method="POST" action="/inscripcion-actividad/{{ $actividad->id }}/confirmacion-inscripcion-actividades-to-familiar/confirm" class="form-horizontal form-border"><!-- accion que regresa a la incial de inscripciones -->
+			<!--@include('errors.503')-->
+		<form method="POST" action="/talleres-familiar/{{ $taller->id }}/confirm/save" class="form-horizontal form-border">    <!-- accion que regresa a la incial de inscripciones -->
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
-				<br/><br/>
-
-		  	<div class="form-group">
+			<br/><br/>
+			<div class="form-group">
 		    	<label for="ambienteInput" class="col-sm-4 control-label">AMBIENTE:</label>
 		    	<div class="col-sm-5">
-		    		<input type="text" class="form-control" id="ambienteInput" name="ambiente" value="{{$actividad->ambiente->nombre}}"  required readonly>
+		    		<input type="text" class="form-control" id="ambienteInput" name="ambiente" value="{{$taller->reserva->ambiente->nombre}}"  required readonly>
 		      	</div>		      	
 		  	</div>
-
-		  	<div class="form-group">
-		    	<label for="tipoambienteInput" class="col-sm-4 control-label">TIPO DE AMBIENTE:</label>
-		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="tipoambienteInput" name="tipoambiente" value="{{$actividad->ambiente->tipo_ambiente}}"  required readonly>
-		    	</div>
-		  	</div>
-		  	<div class="form-group">
-		    	<label for="sedeInput" class="col-sm-4 control-label">SEDE:</label>
-		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="sedeInput" name="sede" value="{{$actividad->ambiente->sede->nombre}}"  required readonly>
-		    	</div>
-		  	</div>
 			<div class="form-group">
-		    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE DE LA ACTIVIDAD:</label>
-		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="nombreInput" name="nombre" value="{{$actividad->nombre}}" readonly>
-		    	</div>
-		  	</div>
-		  	<div class="form-group">
-		    	<label for="descripcionInput" class="col-sm-4 control-label">DESCRIPCIÓN:</label>
-		    	<div class="col-sm-5">
-		      		<textarea type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder ="{{$actividad->descripcion}}" readonly style="max-width:456px"></textarea>
-		    	</div> 
-		  	</div>
-		  	<div class="form-group">
-		    	<label for="tipoActividadInput" class="col-sm-4 control-label">TIPO DE ACTIVIDAD:</label>	
-		    	<div class="col-sm-5">
-			    	<input type="text" class="form-control" id="tipoActividadInput" name="tipo_actividad" value="{{$actividad->tipo_actividad}}" readonly >
+				<label for="description" class="col-sm-4 control-label">Descripción:</label>
+				<div class="col-sm-5">
+					<textarea class="form-control" name="descripcion" id="descriptionInput" rows="3" readonly="true" style="max-width:456px">{{$taller->descripcion}}</textarea>
+					<!-- <input type="text" class="form-control" id="fecha_inicio" placeholder="{{$taller->fecha_inicio}}" style="max-width: 250px" readonly="true"> -->
 				</div>
-		  	</div>
-		  	<div class="form-group">
-		    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA:</label>
-		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="capacidadInput" name="capacidad_maxima" value="{{$actividad->capacidad_maxima}}" readonly>
-		    	</div>
-		  	</div>	
-		  	<div class="form-group">
-		    	<label for="vacantesInput" class="col-sm-4 control-label">VACANTES DISPONIBLES:</label>
-		    	<div class="col-sm-5">
-		      		<input type="text" class="form-control" id="vacantesInput" name="vacantes" value="{{$actividad->cupos_disponibles}}" readonly>
-		      		<!-- <label for="vacantesInput" class=" control-label">{{$actividad->cupos_disponibles}}</label> -->
-		    	</div>
-		  	</div>
-		  	<div class="form-group">
-			 	<label for="fechaInput" class="col-sm-4 control-label">FECHA (dd/mm/aaaa): </label>
-			    <div class="col-sm-5">
-				  	<div class="input-group">
-			   		<input type="text" class="form-control" id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" value="{{$actividad->a_realizarse_en}}" style="max-width: 180px" readonly>
-			   	 	</div>
-		    	</div>	
-			</div> 
+			</div>
+			<div class="form-group">
+		    	<label for="profesorInput" class="col-sm-4 control-label">Profesor:</label>
+	    		<div class="col-sm-5">
+	    			<input type="text" class="form-control" id="profesor" placeholder="{{$taller->profesor}}" required readonly>
+	    		</div>		  				
+			</div>
+	  		<div class="form-group">
+		    	<label for="nombreInput" class="col-sm-4 control-label">Fecha de inicio:</label>
+	    		<div class="col-sm-5">
+	      			<input type="text" class="form-control" id="fecha_inicio" placeholder='{{date("d-m-Y",strtotime($taller->fecha_inicio))}}' readonly="true">
+	    		</div>			
+	  		</div>
+			<div class="form-group">
+		    	<label for="nombreInput" class="col-sm-4 control-label">Fecha de fin:</label>
+	    		<div class="col-sm-5">
+	    			<input type="text" class="form-control" id="fecha_fin" placeholder='{{date("d-m-Y",strtotime($taller->fecha_fin))}}' readonly="true">
+	    		</div>
+			</div>
+			<div class="form-group">
+		    	<label for="sesiones" class="col-sm-4 control-label">Cantidad de sesiones:</label>
+	    		<div class="col-sm-5">
+	    			<input type="text" class="form-control" id="sesiones" placeholder='{{$taller->cantidad_sesiones}}' style="max-width: 120px" readonly="true">
+	    		</div>
+			</div>
+			<div class="form-group">
+		    	<label for="vacantes" class="col-sm-4 control-label">Vacantes Disponibles:</label>
+	    		<div class="col-sm-5">
+	    			<input type="text" class="form-control" id="vacantes" placeholder='{{$taller->vacantes}}' style="max-width: 120px" readonly="true">
+	    		</div>
+			</div>
+			<div class="form-group">
+		    	<label for="precio" class="col-sm-4 control-label">Precio:</label>
+	    		<div class="col-sm-5">
+	    			<input type="text" class="form-control" name="precio" id="precio" placeholder='S/.{{ $taller->precio($tipo_persona, $taller->tarifas) }}' style="max-width: 120px" readonly="true">
+	    		</div>
+			</div>
 			<div class="form-group required">
 				<label for="persona_id" class="control-label col-sm-4"><strong>FAMILIAR:</strong></label>
 				<div class="col-sm-5">	
@@ -147,14 +136,14 @@
 						<button type="submit" class="btn btn-primary">Confirmar</button>
 					</div>
 					<div class="col-sm-6 text-left">
-						<a href="/inscripcion-actividad/inscripcion-actividades" class="btn btn-info">Cancelar</a> <!-- Regresa a la pantalla de consulta de actividades -->
+						<a href="/taller/index" class="btn btn-info">Cancelar</a> <!-- Regresa a la pantalla de consulta de actividades -->
 					</div>			
 				</div>
 			</div>
 			
 			<br><br>
 			
-			</form>
+		</form>
 		</div>
 	</div>		
 @stop

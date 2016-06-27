@@ -12,6 +12,7 @@ use papusclub\Models\Reserva;
 use papusclub\Models\Sede;
 use papusclub\Models\Sorteoxsocio;
 use Auth;
+use papusclub\User;
 use papusclub\Models\AmbientexSorteo;
 use papusclub\Http\Requests\EditSorteoRequest;
 use papusclub\Http\Requests\StoreSorteoRequest;
@@ -37,39 +38,16 @@ class SorteoController extends Controller
         
         //dos casos: muchos bungalows y muchas o igual personas
 
-        /*if($num_socios<$num_bungalows)
-        {
-
-        }
-        else
-        {
-
-        }*/
-        /*
-        if($bungalows!=NULL)            
-            foreach ($ambienteXsorteo as $temp) {
-                foreach ($bungalows as $bungalow) {
-                    if($temp->id_ambiente==$bungalow)
-                    {
-                        $reservas=Reserva::where('fecha_fin_reserva','=',$sorteo->fecha_cerrado)->where('fecha_inicio_reserva','=',$sorteo->fecha_abierto)->where('ambiente_id','=',$bungalow)->get();
-                        foreach ($reservas as $reserva) {
-                            $reserva->delete();                            
-                        }
-                        $temp->delete();
-                        break;
-                    }
-            }
-        }
-        */
         foreach($lista_bungalows as $bungalow)
         {
             //Posible error reservas y foreach
             $reservas=Reserva::where('fecha_fin_reserva','=',$sorteo->fecha_cerrado)->where('fecha_inicio_reserva','=',$sorteo->fecha_abierto)->where('ambiente_id','=',$bungalow->id_ambiente)->get();
             foreach ($reservas as $reserva) {
                 if(!$lista_socios->isEmpty())
-                {
+                {                    
                     $temp_socio=$lista_socios->random();
                     $reserva->id_persona=$temp_socio->id_socio;
+                    $reserva->save();
                     $lista_socios->pull($lista_socios->search($temp_socio));
                 }
                 else
@@ -79,21 +57,24 @@ class SorteoController extends Controller
             }
             
         }
-
+        $sorteo->estado='Ejecutado';
+        $sorteo->save();
         return redirect('sorteo/index')->with('stored','Se proceso el sorteo seleccionado');
     }
 
     public function inscripcionDelete(DeleteSorteoSocioRequest $request)
     {
         $bungalows = Input::get('ch');
-        $user = Auth::user();
+        $user_id = Auth::user()->id;
+        $usuario = User::find($user_id);
+        $persona_id = $usuario->persona->id;//CAMBIO
         
         if($bungalows!=NULL)
             foreach ($bungalows as $bungalow) {
-                $sorteoxsocio=Sorteoxsocio::where('id','=',$bungalow)->where('id_socio','=',$user->id);
+                $sorteoxsocio=Sorteoxsocio::where('id','=',$bungalow)->where('id_socio','=',$persona_id);
                 $sorteoxsocio->forceDelete();
 
-                $pagos=Facturacion::where('persona_id','=',$user->id)->where('sorteo_id','=',$bungalow)->get();
+                $pagos=Facturacion::where('persona_id','=',$persona_id)->where('sorteo_id','=',$bungalow)->get();
                 foreach($pagos as $pago){
                     $pago->estado='Anulado';
                     $pago->save();
@@ -141,7 +122,9 @@ class SorteoController extends Controller
     public function inscripcionStore(StoreSocioxSorteoRequest $request)
     {
         $bungalows = Input::get('ch');
-        $user = Auth::user();
+        $user_id = Auth::user()->id;
+        $usuario = User::find($user_id);
+        $persona_id = $usuario->persona->id;//CAMBIO
         
         if($bungalows!=NULL)
             foreach ($bungalows as $bungalow) {
@@ -149,11 +132,11 @@ class SorteoController extends Controller
 
                 $sorteoxsocio=new Sorteoxsocio();
                 $sorteoxsocio->id=$bungalow;
-                $sorteoxsocio->id_socio=$user->id;
+                $sorteoxsocio->id_socio=$persona_id;
                 $sorteoxsocio->save();
 
                 $pago=new Facturacion();
-                $pago->persona_id=$user->id;
+                $pago->persona_id=$persona_id;
                 $pago->sorteo_id=$bungalow;
                 $pago->total=$sorteo->costo_inscripcion;
                 $pago->tipo_pago='Efectivo';
@@ -213,6 +196,11 @@ class SorteoController extends Controller
     public function storeBungalows(StoreAmbientexSorteoRequest $request, $id){
         $bungalows = Input::get('ch');
         $sorteo=Sorteo::where('id',$id)->first();
+
+        $user_id = Auth::user()->id;
+        $usuario = User::find($user_id);
+        $persona_id = $usuario->persona->id;//CAMBIO
+
         if($bungalows!=NULL)
             foreach ($bungalows as $bungalow) {
                 $ambienteXsorteo=new AmbientexSorteo();
@@ -224,8 +212,8 @@ class SorteoController extends Controller
                 $reserva->fecha_inicio_reserva=$sorteo->fecha_abierto;
                 $reserva->fecha_fin_reserva=$sorteo->fecha_cerrado;
                 $reserva->ambiente_id=$bungalow;
-                $reserva->id_persona=1;
-                $reserva->precio=70.8;
+                $reserva->id_persona=$persona_id;
+                $reserva->precio=$sorteo->costo_inscripcion;
                 $reserva->estadoReserva='Activo';
                 $reserva->save();
             }

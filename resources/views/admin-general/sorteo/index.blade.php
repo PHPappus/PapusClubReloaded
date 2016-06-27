@@ -49,7 +49,6 @@
 			  			<font color="black"> 
 			  				Filtra por todos los campos
 			  			</font>
-			  			
 			  		</div>
 			</div>
 			<table class="table table-bordered table-hover text-center display" id="example">
@@ -60,6 +59,7 @@
 					<th><div align=center>FECHA FIN DE RESERVA</div></th>
 					<th><div align=center>DESCRIPCION</div></th>
 					<th><div align=center>COSTO DE INSCRIPCION</div></th>
+					<th><div align=center>ESTADO</div></th>
 					<th><div align=center>EJECUTAR</div></th>
 					<th><div align=center>DETALLE</div></th>
 					<th><div align=center>MODIFICAR</div></th>
@@ -75,17 +75,35 @@
 							<td>{{$sorteo->fecha_cerrado}}</td>	
 							<td>{{$sorteo->descripcion}}</td>
 							<td>{{$sorteo->costo_inscripcion}}</td>
-							<td><a class="btn btn-info" href="{{url('/sorteo/index/'.$sorteo->id.'/ejecutar')}}"  ><i class="glyphicon glyphicon-flash"></i></a>
-							        </td></td>
-							<td>
+							<td>{{$sorteo->estado}}</td>
+							@if($sorteo->estado == 'Ejecutado'){
+								<td><a class="btn btn-info" disabled  ><i class="glyphicon glyphicon-flash"></i></a>
+							        </td>
+							        <td>
 							        <a class="btn btn-info" href="{{url('/sorteo/'.$sorteo->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 							        </td>
-							<td>
-			              		<a class="btn btn-info" href="{{url('/sorteo/'.$sorteo->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+							    <td>
+			              		<a class="btn btn-info" disabled title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 			              	</td>
 			              	<td>
-					            <a class="btn btn-info"  title="Eliminar" data-href="{{url('/sorteo/'.$sorteo->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
+					            <a class="btn btn-info"  title="Eliminar" disabled ><i class="glyphicon glyphicon-remove"></i></a>    
 					        </td>
+							}
+							@else{
+								<td><a class="btn btn-info" href="{{url('/sorteo/index/'.$sorteo->id.'/ejecutar')}}"  ><i class="glyphicon glyphicon-flash"></i></a>
+							        </td>
+							        <td>
+							        <a class="btn btn-info" href="{{url('/sorteo/'.$sorteo->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+							        </td>
+							    <td>
+			              		<a class="btn btn-info" href="{{url('/sorteo/'.$sorteo->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+				              	</td>
+				              	<td>
+						            <a class="btn btn-info"  title="Eliminar" data-href="{{url('/sorteo/'.$sorteo->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
+						        </td>
+							}
+							@endif							
+							
 						</tr>
 					</form>
 					 @endforeach
