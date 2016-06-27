@@ -359,7 +359,37 @@ Route::group(['middleware' => ['auth', 'adminpagos']], function () {
 Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::resource('admin-general','AdminGeneralController');
 /*	Route::get('postulante-al-admin','AdminGeneralController@postulante');*/
-	
+	Route::post('configuracion/test', function()
+	{
+		$valor=Input::get('valor');
+		papusclub\Models\Configuracion::insert([ 'valor' => $valor , 'grupo' => '1', 'descripcion'=>'tipos de puestos']);
+	});
+	Route::post('configuracion/test2', function()
+	{
+		$valor=Input::get('valor');
+		papusclub\Models\Configuracion::insert([ 'valor' => $valor , 'grupo' => '2', 'descripcion'=>'Tipos de Ambientes']);
+	});
+	Route::post('configuracion/test3', function()
+	{
+		$valor=Input::get('valor');
+		papusclub\Models\Configuracion::insert([ 'valor' => $valor , 'grupo' => '3', 'descripcion'=>'Tipos de Actividades']);
+	});
+	Route::post('configuracion/test4', function()
+	{
+		$valor=Input::get('valor');
+		papusclub\Models\Configuracion::insert([ 'valor' => $valor , 'grupo' => '4', 'descripcion'=>'tipo de servicio']);
+	});
+	Route::post('configuracion/test5', function()
+	{
+		$valor=Input::get('valor');
+		papusclub\Models\Configuracion::where('grupo', '=', 5)->update(array('valor' => $valor));
+	});
+	Route::post('configuracion/test6', function()
+	{
+		$valor=Input::get('valor');
+		papusclub\Models\Configuracion::where('grupo', '=', 12)->update(array('valor' => $valor));
+	});
+
 	//CONFIGURACION
 	Route::get('configuracion/index','ConfiguracionController@index');
 
@@ -643,6 +673,8 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::get('actividad-admin-reserva/inscripciones','InscriptionActividadAdminReservaController@inscripciones');
 
 	Route::get('actividad-admin-reserva/inscripcion/{id}/{idPersona}/delete', 'InscriptionActividadAdminReservaController@removeInscriptionToPersona');
+	//Inscripción de socios a TAlleres en el club
+	Route::get('taller-admin-reserva/index', 'InscriptionTallerAdminReservaController@index');
 
 
 

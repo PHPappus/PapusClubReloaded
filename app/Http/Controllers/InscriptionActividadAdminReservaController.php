@@ -44,9 +44,68 @@ class InscriptionActividadAdminReservaController extends Controller
 
         return view('admin-reserva.actividades.inscripcion', compact('sedes','actividades','fecha_inicio','fecha_fin'));
     }
-    public function filterActividadesAdminReserva()
+    public function filterActividadesAdminReserva(Request $request)
     {
+        $input= $request->all();
+        $sedes= Sede::all();     
+        /*Se envia las actividades a las cuales se encuentra inscrita la persona*/
+        
 
+
+        $fecha_inicio   = new Carbon('America/Lima');
+        $fecha_fin   = new Carbon('America/Lima'); 
+        
+        $fecha_inicio=$fecha_inicio->toDateString();
+        $fecha_fin = Carbon::now('America/Lima')->addMonths(4)->toDateString();
+
+        
+        if(!empty($input['fecha_inicio'])){
+            $date=str_replace('/', '-', $input['fecha_inicio']);
+            $fecha_inicio=date("Y-m-d",strtotime($date));
+        }
+        
+        if(!empty($input['fecha_fin'])){
+            $date=str_replace('/', '-', $input['fecha_fin']);
+            $fecha_fin=date("Y-m-d",strtotime($date));
+        }
+        /*Se terminó de preparar las fechas*/
+
+        /*Se prepara las horas para ser comparadas*/
+        $horaInicio=$input['horaInicio'];
+        $horaFin=$input['horaFin'];
+
+        if(empty($input['horaInicio'])){
+            $horaInicio="00:00";
+        }
+        if(empty($input['horaFin'])){
+            $horaFin="23:59" ;
+        }
+        /*Se terminó de preparar las horas*/
+
+        if($fecha_fin<$fecha_inicio){
+            Session::flash('message-error','Usted ha ingresado un rango invalido de fechas, por favor ingrese uno valido (fecha de inicio debe ser menor a la fecha fin)');
+            return Redirect("/actividad-admin-reserva/inscripcion");
+        }
+        else{
+            $actividades=Actividad::where('estado','=',1)
+                                   ->where('a_realizarse_en','>=',Carbon::now('America/Lima')->format('Y-m-d'))
+                                   ->where('a_realizarse_en','>=',$fecha_inicio)
+                                   ->where('a_realizarse_en','<=',$fecha_fin)
+                                   ->whereBetween('hora_inicio',[$horaInicio,$horaFin])
+                                   ->get();
+        }
+
+        /*$actividadesxsede=Actividad::all();*/
+   
+        if($input['sedeSelec']!=-1){ //No son todas las sedes
+            foreach ($actividades as $i => $actividad) {             
+                    if($actividad->ambiente->sede->id!=$input['sedeSelec'])  unset($actividades[$i]);
+            }
+        }               
+
+        $fecha_inicio=$input['fecha_inicio'];
+        $fecha_fin=$input['fecha_fin'];
+        return view('admin-reserva.actividades.inscripcion', compact('sedes','actividades','fecha_inicio','fecha_fin'));
     }
     public function storeInscriptionActividadAdminReserva($id)
     {

@@ -50,7 +50,7 @@
               Talleres <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="{!!URL::to('/talleres/inscripcion')!!}" title="Inscribir Socio" target="_self">Inscribir Socio</a></li>
+              <li><a href="{!!URL::to('/taller-admin-reserva/index')!!}" title="Inscribir Socio" target="_self">Inscribir Socio</a></li>
             </ul>
           </li>
         </ul>
