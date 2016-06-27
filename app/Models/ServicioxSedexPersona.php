@@ -17,7 +17,8 @@ class ServicioxSedexPersona extends Model
     'fecha_registro',
     'codreserva',
     'estado',       
-    'calificacion'
+    'calificacion',
+    'descripcion'
     ];    
     protected $dates = ['deleted_at'];
 }

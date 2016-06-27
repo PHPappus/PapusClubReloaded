@@ -29,7 +29,7 @@
 			<div></div>
 		</div>
 		
-			<form method="POST" action="/mantBungalowPrev/deshabilitar" class="form-horizontal form-border">
+			<form method="POST" action="/mantBungalowPrev/habilitar" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 
@@ -81,7 +81,7 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-primary" type="submit" value="Deshabilitar">
+						<input class="btn btn-primary" type="submit" value="Habilitar">
 					</div>
 				</div>
 				<br><br>

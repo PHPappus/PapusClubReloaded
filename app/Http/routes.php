@@ -44,7 +44,22 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('anular-reserva-ambiente-b-s','SocioController@anularReservaAmbienteB');
 	Route::get('pagos-s','SocioController@pagos');
 
-Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
+
+	// SOCIO INCRIPCION DE SERVICIOS LOLIFURTHIS
+	Route::get('servicioalsocio/index','ServicioalsocioController@index');
+	Route::post('servicioalsocio/index','ServicioalsocioController@filtroServicio');
+	Route::get('servicioalsocio/{id}/confirm','ServicioalsocioController@confirmareleccion');
+
+	Route::post('servicioalsocio/{id}/confirm/save','ServicioalsocioController@confirmareleccionsave');
+	Route::get('servicios/mis-inscripciones','ServicioalsocioController@misinscripciones');
+	Route::get('servicios/mis-inscripciones/{id}/calificar','ServicioalsocioController@calificar');
+	Route::post('calificar/store','ServicioalsocioController@storeCalificacion');
+	Route::get('servicios/mis-inscripciones/{id}/delete','ServicioalsocioController@delete');
+
+	//Route::post('servicios/mis-inscripciones','ServicioalsocioController@filtromisinscripciones');
+
+	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
+
 
 	//Inscribirse en Sorteo
 	Route::get('sorteo/inscripcion/socio','SorteoController@indexInscripcion');
@@ -55,7 +70,9 @@ Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
 	//Socio.talleres  : INSCRIPCION DE TALLERES
 	Route::get('talleres/index','InscriptionTallerController@index');
 	Route::post('talleres/index','InscriptionTallerController@filterTalleres');
+
 	Route::get('talleres/{id}/show','InscriptionTallerController@show');
+	Route::get('talleres-familiar/{id}/show','InscriptionTallerController@showFamiliar');
 
 	//Pide confirmación de password
 	Route::get('talleres/{id}/confirm','InscriptionTallerController@confirmInscription');
@@ -293,16 +310,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::resource('admin-general','AdminGeneralController');
 /*	Route::get('postulante-al-admin','AdminGeneralController@postulante');*/
 
-	//INGRESO DE SOCIO A LA RESERVA
-	Route::get('ingresoReserva/index','IngresoSocioController@index');
-	Route::post('ingresoReserva/reserva','IngresoSocioController@reservaSocio');
-	Route::post('ingresoReserva/update','IngresoSocioController@cambiarEstado');
 
-	//DECLARAR EN MANTENIMIENTO BUNGALOWS
-		//PREVENTIVO
-		Route::get('mantBungalowPrev/index','MantenimientoController@indexPrev');
-		Route::post('mantBungalowPrev/busqueda','MantenimientoController@bungalowsDisponibles');
-		Route::get('mantBungalowCorre','MantenimientoController@indexCorre');
 
 	//MANTENIMIENTO DE MULTAS
 	Route::get('multa/','MultaController@index');
@@ -376,6 +384,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('sorteo/new/sorteo/bungalows/{id}/store','SorteoController@storeBungalows');
 		//Modificar Sorteo
 		Route::get('sorteo/edit/remove/sorteo/bungalows/{id}','SorteoController@removebungalows');
+		Route::get('sorteo/cambio/{id}','SorteoController@correccionUnica');
 		Route::post('sorteo/new/sorteo/bungalows/{id}/remove','SorteoController@removeCheckedBungalows');
 		//Agregar Sorteo
 
@@ -572,6 +581,19 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::resource('admin-reserva','AdminReservaController');
 
+		//INGRESO DE SOCIO A LA RESERVA
+	Route::get('ingresoReserva/index','IngresoSocioController@index');
+	Route::post('ingresoReserva/reserva','IngresoSocioController@reservaSocio');
+	Route::post('ingresoReserva/update','IngresoSocioController@cambiarEstado');
+
+		//DECLARAR EN MANTENIMIENTO BUNGALOWS
+		//PREVENTIVO
+		Route::get('mantBungalowPrev/index','MantenimientoController@indexPrev');		
+		Route::post('mantBungalowPrev/deshabilitar','MantenimientoController@deshabilitarBungalows');
+
+		Route::get('mantBungalowPrev/indexHabilitar','MantenimientoController@indexPrevHabilitar');
+		Route::post('mantBungalowPrev/habilitar','MantenimientoController@habilitarBungalows');
+		//Route::get('mantBungalowCorre','MantenimientoController@indexCorre');
 
 	//RESERVA DE AMBIENTES
 	Route::get('reservar-ambiente/reservar-bungalow-adminR', 'ReservarAmbienteController@reservarBungalowAdminR'); // REservar Bungalows

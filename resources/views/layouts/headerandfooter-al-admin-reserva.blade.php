@@ -9,7 +9,7 @@
 
         <form action="#" id="search-box" method="get">
           <!-- <label class="hidden" for="inputbusqueda">Buscar</label> -->
-            <input type="text" placeholder="Ingresa tu búsqueda" id="inputbusqueda" name="conte" style="max-width:145px;">
+            <input type="text" placeholder="Ingresa tu búsqueda" id="inputbusqueda" name="conte" style="max-width:155px;">
             <!-- <span class="glyphicon glyphicon-search" href="#"></span> -->
             <button style="background-color:transparent;border:none;"><span class="glyphicon glyphicon-search" href="#"></span></button>
         </form>
@@ -53,6 +53,29 @@
               <!-- <li><a href="#" title="Consultar ambientes" target="_self">Consultar</a></li> -->
                 <li><a href="{!!URL::to('/reservar-ambiente/reservar-otros-ambientes-adminR')!!}" title="Reservas de ambientes realizados" target="_self">Reservar</a></li>
                 <li><a href="{!!URL::to('/reservar-ambiente/consultar-otros-ambientes-adminR')!!}" title="Reservas de ambientes realizados" target="_self">Consultar</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Mantenimiento <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- <li><a href="#" title="Consultar ambientes" target="_self">Consultar</a></li> -->
+              <li><a href="{!!URL::to('/mantBungalowPrev/indexHabilitar')!!}" title="Reservas de ambientes realizados" target="_self">Habilitar Bungalows</a></li>
+                <li><a href="{!!URL::to('/mantBungalowPrev/index')!!}" title="Reservas de ambientes realizados" target="_self">Deshabilitar Bungalows</a></li>                
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Ingreso a Reserva <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- <li><a href="#" title="Consultar ambientes" target="_self">Consultar</a></li> -->
+              <li><a href="{!!URL::to('/ingresoReserva/index')!!}" title="Reservas de ambientes realizados" target="_self">Registrar Ingreso</a></li>            
             </ul>
           </li>
         </ul>

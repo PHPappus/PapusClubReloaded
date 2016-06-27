@@ -1,3 +1,11 @@
+<style>
+  @media (min-width: 1405px){
+            #navbar1 {
+                width: 1403px;
+            }
+        }
+</style>
+
 <script>
 		function inputLimiter(e,allow) {
 		    var AllowableCharacters = '';
@@ -21,6 +29,7 @@
 		    }
 		}
 </script>
+
 
 
 <!--Cabecera- Se separará espacio para el input de busqueda antes de la cabecera de menu-->
