@@ -57,7 +57,7 @@
 		    	</div>
 		  	</div>
 			<div class="form-group">
-		    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE:</label>
+		    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE DE LA ACTIVIDAD:</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="nombreInput" name="nombre" value="{{$actividad->nombre}}" readonly>
 		    	</div>
@@ -65,7 +65,7 @@
 		  	<div class="form-group">
 		    	<label for="descripcionInput" class="col-sm-4 control-label">DESCRIPCIÓN:</label>
 		    	<div class="col-sm-5">
-		      		<textarea type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder ="{{$actividad->descripcion}}" readonly></textarea>
+		      		<textarea type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder ="{{$actividad->descripcion}}" readonly style="max-width:456px"></textarea>
 		    	</div> 
 		  	</div>
 		  	<div class="form-group">
@@ -115,9 +115,9 @@
 			    </div>
 			</div>	
 			<br/><br/>
-			<div class="form-group">
+			<div class="form-group required">
 	 			<div class="col-sm-12">
-			    	<label for="password" class="col-sm-5 control-label">Ingrese su contraseña:</label>
+			    	<label for="password" class="col-sm-5 control-label">Ingrese su contraseña</label>
 		    		<div class="col-sm-7 text-center">
 		    			<input type="password" name="password" class="form-control" id="contraseña" style="max-width: 220px">
 		    			

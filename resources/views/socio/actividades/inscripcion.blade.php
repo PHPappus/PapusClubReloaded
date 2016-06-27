@@ -126,7 +126,7 @@
 								<th><DIV ALIGN=center>SEDE</th>
 								<th style="max-width:70px;"><DIV ALIGN=center>AMBIENTE</th>
 								<th style="max-width:90px;"><DIV ALIGN=center>NOMBRE DE LA ACTIVIDAD</th>
-								<th><DIV ALIGN=center>FECHA</th>
+								<th><DIV ALIGN=center>FECHA&nbsp;&nbsp;</th>
 								<th><DIV ALIGN=center>HORA DE INICIO</th>
 								<th><DIV ALIGN=center>PRECIO</th>
 								<th style="max-width:85px;"><DIV ALIGN=center>CUPOS DISPONIBLES</th>
@@ -154,12 +154,12 @@
 		 						@if((count($actividades_persona->where('id',$actividad->id))!=0))
 		 						<td style="background:#d5efd5;">Inscrito</td>
 								<td>
-						        	<a class="btn btn-info" title="Inscripcion" disabled><i class="glyphicon glyphicon-pencil"></i></a>
+						        	<a class="btn btn-info" title="Ya se encuentra inscrito" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
 						        </td>	
 						        @elseif($actividad->cupos_disponibles<=0)
 						        <td>No Inscrito</td>	
 						        <td>
-						        	<a class="btn btn-info" title="Inscripcion" disabled><i class="glyphicon glyphicon-pencil"></i></a>
+						        	<a class="btn btn-info" title="No hay más cupos disponibles" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
 						        </td>
 						        @else
 						        <td>No Inscrito</td>
@@ -167,8 +167,13 @@
 						        	<a class="btn btn-info" href="{{url('/inscripcion-actividad/'.$actividad->id.'/confirmacion-inscripcion-actividades')}}" title="Inscripcion" ><i class="glyphicon glyphicon-pencil"></i></a>
 						        </td>
 						        @endif
+
 						        <td>
-						        	<a class="btn btn-info" href="{{url('/inscripcion-actividad/'.$actividad->id.'/confirmacion-inscripcion-actividades-to-familiar')}}" title="Inscribir a un familiar" ><i class="glyphicon glyphicon-pencil"></i></a>
+							        @if($actividad->cupos_disponibles<=0)
+							        	<a class="btn btn-info" title="No hay más cupos disponibles" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
+							        @else
+						        	    <a class="btn btn-info" href="{{url('/inscripcion-actividad/'.$actividad->id.'/confirmacion-inscripcion-actividades-to-familiar')}}" title="Inscribir a un familiar" ><i class="glyphicon glyphicon-pencil"></i></a>
+							        @endif
 						        </td>	
 							</tr>
 						@endforeach
