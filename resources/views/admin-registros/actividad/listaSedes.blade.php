@@ -25,7 +25,7 @@
 			</div>
 			
 		</div>
-		<h4>1. Selecciones la reserva del ambiente para la actividad.</h4>
+		<h4>1. Selecciones la sede para el evento.</h4>
 
 		</br>
 		</br>
