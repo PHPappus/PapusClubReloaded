@@ -21,8 +21,8 @@
 <main class="main">
 	<div class="content" style="max-width: 100%;">
 		<div class="container">
-			<div class="row" style="max-width: 920px">
-				<div class="col-sm-4">
+			<div class="row" style="max-width: 1020px">
+				<div class="col-sm-5">
 					<ol class="breadcrumb" style="background:none">
 						<li><a href="/socio"><span class="glyphicon glyphicon-home"></span></a></li>
 						<li><a href="/inscripcion-actividad/inscripcion-actividades">Consultar Actividades</a></li>

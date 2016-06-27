@@ -42,49 +42,96 @@
 		<div class="container">
 			@include('alerts.success')
 		</div>
-			<div class="table-responsive">
-				<div class="container">
-					<table id="talleresTable" class="table table-bordered table-hover text-center display">
-						<thead class="active">
-							<tr class="active">
-								<th><div align=center>NOMBRE</div></th>	
-								<th><div align=center>PROFESOR</div></th>				
-								<th><div align=center>FECHA DE INICIO</div></th>
-								<th><div align=center>FECHA DE FIN</div></th>
-								<th><div align=center>ESTADO</div></th>
-								<th><div align=center>DETALLE</div></th>
-								<th><div align=center>ELIMINAR</div></th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach($talleresxpersona as $taller)
-							<tr>
-								<td>{{$taller->nombre}}</td>
-								<td>{{$taller->profesor}}</td>
-								<td>{{date("d-m-Y",strtotime($taller->inicio))}}</td>
-								<td>{{date("d-m-Y",strtotime($taller->fecha_fin))}}</td>
-								<td>{{($taller->vacantes == 0) ? 'No hay vacantes': 'Disponible'}}</td>
-								
-								<td>
-									<a class="btn btn-info" href="{{url('/talleres/'.$taller->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-								</td>
-								<td>
-									<a class="btn btn-info" data-href="{{url('/talleres/'.$taller->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
-								</td>
-							</tr>
-							@endforeach
-						</tbody>
-					</table>
-				</div>	
-			</div>
-
+		<div class="table-responsive">
 			<div class="container">
-				<div class="row">
-					<div class="col-sm-12 text-center">
-						<a href="{{url('/talleres/index')}}" class="btn btn-lg btn-primary">Regresar</a>		
-					</div>
-				</div>
+				<table id="talleresTable" class="table table-bordered table-hover text-center display">
+					<thead class="active">
+						<tr class="active">
+							<th><div align=center>NOMBRE</div></th>	
+							<th><div align=center>PROFESOR</div></th>				
+							<th><div align=center>FECHA DE INICIO</div></th>
+							<th><div align=center>FECHA DE FIN</div></th>
+							<th><div align=center>ESTADO</div></th>
+							<th><div align=center>DETALLE</div></th>
+							<th><div align=center>Anular</div></th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($talleresxpersona as $taller)
+						<tr>
+							<td>{{$taller->nombre}}</td>
+							<td>{{$taller->profesor}}</td>
+							<td>{{date("d-m-Y",strtotime($taller->fecha_inicio))}}</td>
+							<td>{{date("d-m-Y",strtotime($taller->fecha_fin))}}</td>
+							<td>{{($taller->vacantes == 0) ? 'No hay vacantes': 'Disponible'}}</td>
+							
+							<td>
+								<a class="btn btn-info" href="{{url('/talleres/'.$taller->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+							</td>
+							<td>
+								<a class="btn btn-info" data-href="{{url('/talleres/'.$taller->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+							</td>
+						</tr>
+						@endforeach
+					</tbody>
+				</table>
 			</div>	
+		</div>
+		<br/><br/><br/>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 text-center">
+					<p class="lead"><strong>I N S C R I P C I O N E S &nbsp;&nbsp; D E &nbsp;&nbsp; M I S &nbsp;&nbsp; F A M I L I A R E S</strong></p>
+				</div>
+			</div>
+		</div>
+		<br/>
+		<div class="table-responsive">
+			<div class="container">
+				<table id="talleresTable" class="table table-bordered table-hover text-center display">
+					<thead class="active">
+						<tr class="active">
+							<th><div align=center>Nombre del Familiar</div></th>
+							<th><div align=center>Nombre del taller/curso</div></th>	
+							<th><div align=center>Profesor</div></th>				
+							<th><div align=center>Fecha de inicio</div></th>
+							<th><div align=center>Fecha de fin</div></th>
+							<th><div align=center>Estado</div></th>
+							<th><div align=center>Detalle</div></th>
+							<th><div align=center>Anular</div></th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($familiares as $familiar)
+							@foreach($familiar->talleres as $taller_familiar)
+								<tr>
+									<td>{{$familiar->nombre}}</td>
+									<td>{{$taller_familiar->nombre}}</td>
+									<td>{{$taller_familiar->profesor}}</td>
+									<td>{{date("d-m-Y",strtotime($taller_familiar->fecha_inicio))}}</td>
+									<td>{{date("d-m-Y",strtotime($taller_familiar->fecha_fin))}}</td>
+									<td>{{($taller_familiar->vacantes == 0) ? 'No hay vacantes': 'Disponible'}}</td>
+									
+									<td>
+										<a class="btn btn-info" href="{{url('/talleres/'.$taller_familiar->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+									</td>
+									<td>
+										<a class="btn btn-info" data-href="{{url('/talleres/'.$taller_familiar->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+									</td>
+								</tr>
+							@endforeach
+						@endforeach
+					</tbody>
+				</table>
+			</div>	
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 text-center">
+					<a href="{{url('/talleres/index')}}" class="btn btn-lg btn-primary">Regresar</a>		
+				</div>
+			</div>
+		</div>	
 	</div>
 @stop
 <!-- JQuery -->

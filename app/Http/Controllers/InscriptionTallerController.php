@@ -310,8 +310,20 @@ class InscriptionTallerController extends Controller
     public function misinscripciones()
     {
         
+        /*Datos de inscripciones del usuario Socio*/
+        $usuario  = Auth::user();
+        /*Datos de inscripciones de los familiares del usuario Socio*/
+        $persona=$usuario->persona;
+        $postulante=Postulante::find($persona->id); 
+        $familiares=$postulante->familiarxpostulante;
+
+        /*array_push(*/
+        $fecha_validable=Carbon::now('America/Lima')->addDays(2)->format('Y-m-d');
+
+        $tipo_persona = $persona->tipopersona->id;
+
         $talleresxpersona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->talleres;
-        return view('socio.talleres.inscripciones', compact('talleresxpersona'));
+        return view('socio.talleres.inscripciones', compact('talleresxpersona','familiares','fecha_validable','tipo_persona'));
     }
    
     
