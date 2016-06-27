@@ -49,10 +49,10 @@
 			</div>
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active" data-sortable="true">
-						<th><div align=center>PROVEEDOR</div> </th>
-						<th><div align=center>RUC</div></th>
-						<th><div align=center>DIRECCION</div></th>
-						<th><div align=center>TELÉFONO</div></th>
+						<th><div align=center>CONCESIONARIA</div> </th>
+						<th><div align=center>SEDE</div></th>
+						<th><div align=center>INICIO CONCESIÓN</div></th>
+						<th><div align=center>FIN CONCESIÓN</div></th>
 						<th><div align=center>DETALLE</div></th>
 						<th><div align=center>EDITAR</div></th>
 						<th><div align=center>ELIMINAR</div></th>
@@ -63,9 +63,9 @@
 						@foreach($concesionarias as $concesionaria)			
 						<tr>
 							<td>{{ $concesionaria->nombre }}</td>
-							<td>{{ $concesionaria->ruc }}</td>
- 							<td>{{ $concesionaria->direccion }}</td>
-							<td>{{ $concesionaria->telefono }}</td>
+							<td>{{ $concesionaria->sede->first()['nombre'] }}</td> 							
+							<td>{{ date("d-m-Y",strtotime($concesionaria->fecha_inicio_concesion)) }}</td>
+							<td>{{ date("d-m-Y",strtotime($concesionaria->fecha_fin_concesion)) }}</td>
 							<td>
 				              	<a class="btn btn-info" href="{{url('/concesionaria/'.$concesionaria->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 				            </td>

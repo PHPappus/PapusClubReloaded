@@ -24,6 +24,6 @@ class Concesionaria extends Model
      protected $dates = ['deleted_at'];
     
     public function sede(){
-        return $this->belongsTo('papusclub\Models\Sede');
+        return $this->belongsTo('papusclub\Models\Sede', 'sede_id');
     }
 }

@@ -208,7 +208,7 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::get('ingreso-producto/{id}/back', 'IngresoProductoController@back');
 	Route::get('ingreso-producto/{id}/cancel', 'IngresoProductoController@cancel');
 	//CONCESIONARIAS
-	Route::get('concesionaria/index/', 'ConcesionariaController@index');
+	Route::get('concesionaria/index', 'ConcesionariaController@index');
 	Route::get('concesionaria/new', 'ConcesionariaController@create');
 	Route::post('concesionaria/new/concesionaria', 'ConcesionariaController@store');
 	Route::get('concesionaria/{id}', 'ConcesionariaController@edit');

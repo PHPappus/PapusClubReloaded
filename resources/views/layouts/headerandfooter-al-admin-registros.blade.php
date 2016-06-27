@@ -123,8 +123,8 @@
               Concesionarias <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">    
-                <li><a href="{!!URL::to('/concesionarias/index')!!}">Consultar</a></li>
-                <li><a href="{!!URL::to('/concesionarias/new')!!}">Registrar</a></li>                
+                <li><a href="{!!URL::to('/concesionaria/index')!!}">Consultar</a></li>
+                <li><a href="{!!URL::to('/concesionaria/new')!!}">Registrar</a></li>                
             </ul>
           </li>
         </ul>
