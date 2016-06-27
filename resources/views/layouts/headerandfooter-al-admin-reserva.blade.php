@@ -40,6 +40,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><a href="{!!URL::to('/actividad-admin-reserva/inscripcion')!!}" title="Inscribir Socio" target="_self">Inscribir Socio</a></li>
+              <li><a href="{!!URL::to('/actividad-admin-reserva/inscripciones')!!}" title="Inscribir Socio" target="_self">Inscripciones</a></li>
             </ul>
           </li>
         </ul>
