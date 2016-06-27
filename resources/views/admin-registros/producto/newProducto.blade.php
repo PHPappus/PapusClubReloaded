@@ -59,7 +59,7 @@
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombre" name="nombre" placeholder="Nombre del Producto" value="{{old('nombre')}}">
+			      		<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del Producto" value="{{old('nombre')}}">
 			    	</div>
 			  	</div>			  	
 
@@ -102,7 +102,7 @@
 			  	<div class="form-group required">
 			    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="precio" name="precio" placeholder="Precio"  value="{{old('precio')}}">
+			      		<input type="text" class="form-control" onkeypress="return inputLimiter(event,'DoubleFormat')"  id="precio" name="precio" placeholder="Precio"  value="{{old('precio')}}">
 			    	</div>
 			  	</div>	  
 

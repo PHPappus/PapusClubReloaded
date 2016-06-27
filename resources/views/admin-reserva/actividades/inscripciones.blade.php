@@ -16,7 +16,7 @@
 </head>
 
 <body>
-@extends('layouts.headerandfooter-al-admin-resera')
+@extends('layouts.headerandfooter-al-admin-reserva')
 @section('content')
 	
 	<div class="content" style="max-width: 100%;">
@@ -28,7 +28,7 @@
 			<div class="row" style="max-width: 920px">
 				<div class="col-sm-3">
 					<ol class="breadcrumb" style="background:none">
-						<li><a href="/socio"><span class="glyphicon glyphicon-home"></span></a></li>
+						<li><a href="/admin-reserva"><span class="glyphicon glyphicon-home"></span></a></li>
 						<li class="active">Mis inscripciones</li>
 					</ol>
 				</div>				
@@ -38,7 +38,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-center">
-					<p class="lead"><strong>M I S &nbsp;&nbsp; I N S C R I P C I O N E S</strong></p>
+					<p class="lead"><strong>I N S C R I P C I O N E S</strong></p>
 				</div>
 			</div>
 		</div>
@@ -51,7 +51,6 @@
 							<th><DIV ALIGN=center>Sede</th>
 							<th><DIV ALIGN=center>Lugar</th>
 							<th><DIV ALIGN=center>Nombre de actividad</th>
-							<th><DIV ALIGN=center>Precio</th>
 							<th><DIV ALIGN=center>Fecha de inicio</th>
 							<!-- <th><DIV ALIGN=center>Fecha y hora de inscripción</th> -->
 							<th><DIV ALIGN=center>Anular</th>
@@ -63,7 +62,6 @@
 							<td>{{ $actividad->ambiente->sede->nombre }}</td>
 				    		<td>{{ $actividad->ambiente->nombre }}</td>
 							<td>{{ $actividad->nombre }}</td>
-	 						<td>S/.{{ $actividad->precio($tipo_persona, $actividad->tarifas) }}</td>
 	 						<td>{{ $actividad->a_realizarse_en}}</td>
 	 						<!-- <td>{{ $actividad->created_at}}</td> -->
 	 						
@@ -81,51 +79,7 @@
 				</table>
 			</div>	
 		</div>
-		<br/><br/><br/>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12 text-center">
-					<p class="lead"><strong>I N S C R I P C I O N E S &nbsp;&nbsp; D E &nbsp;&nbsp; M I S &nbsp;&nbsp; F A M I L I A R E S</strong></p>
-				</div>
-			</div>
-		</div>
-		<br/>
-		<div class="table-responsive">
-			<div class="container">
-				<table id="talleresTable2" class="table table-bordered table-hover text-center display">
-					<thead class="active">
-						<tr class="active">
-							<th><DIV ALIGN=center>Nombre de familiar</th>
-							<th><DIV ALIGN=center>Sede</th>
-							<th><DIV ALIGN=center>Lugar</th>
-							<th><DIV ALIGN=center>Nombre de actividad</th>
-							<th><DIV ALIGN=center>Precio</th>
-							<th><DIV ALIGN=center>Fecha de inicio</th>
-							<!-- <th><DIV ALIGN=center>Fecha y hora de inscripción</th> -->
-							<th><DIV ALIGN=center>Anular</th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach($familiares as $familiar)
-							@foreach($familiar->actividades as $actividad_familiar)
-							<tr>
-								<td>{{ $familiar->nombre }}</td>
-								<td>{{ $actividad_familiar->ambiente->sede->nombre }}</td>
-					    		<td>{{ $actividad_familiar->ambiente->nombre }}</td>
-								<td>{{ $actividad_familiar->nombre }}</td>
-		 						<td>S/.{{ $actividad_familiar->precio($familiar->tipopersona->id, $actividad_familiar->tarifas) }}</td>
-		 						<td>{{ $actividad_familiar->a_realizarse_en}}</td>
-		 						<!-- <td>{{ $actividad_familiar->created_at}}</td> -->
-								<td>
-									<a class="btn btn-danger" data-href="{{url('/inscripcion-actividad-familiar/'.$actividad_familiar->id.'/'.$familiar->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
-								</td>
-							</tr>
-							@endforeach
-						@endforeach
-					</tbody>
-				</table>
-			</div>	
-		</div>
+		
 
 
 		<div class="container">
@@ -151,13 +105,6 @@
 	<script>
 		$(document).ready(function() {
 		   $('#talleresTable').DataTable( {
-		       "language": {
-		           "url": "{!!URL::to('/locales/Spanish.json')!!}"
-		       }
-		  	});
-  		});
-  		$(document).ready(function() {
-		   $('#talleresTable2').DataTable( {
 		       "language": {
 		           "url": "{!!URL::to('/locales/Spanish.json')!!}"
 		       }

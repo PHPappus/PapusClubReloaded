@@ -60,7 +60,7 @@
 				<div class="form-group">
 			    	<label for="sede_nombre" class="col-sm-4 control-label">Sede</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="sede_nombre" name="sede_nombre" placeholder="Nombre de la Sede" value="{{$concesionaria->sede->nombre}}" readonly>
+			      		<input type="text" class="form-control" id="sede_nombre" name="sede_nombre" placeholder="Nombre de la Sede" value="{{$concesionaria->sede->nombre}}" readonly>
 			    	</div>
 			  	</div>						
 
@@ -80,7 +80,7 @@
 			  	<div class="form-group">
 			    	<label for="rucInput" class="col-sm-4 control-label">RUC</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="rucInput" name="ruc" value="{{$concesionaria->ruc}}" readonly>
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="rucInput" name="ruc" value="{{$concesionaria->ruc}}" readonly>
 			    	</div>
 			  	</div>
 
@@ -93,7 +93,7 @@
 			  	<div class="form-group">
 			    	<label for="telefonoInput" class="col-sm-4 control-label">Teléfono</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="telefonoInput" name="telefono" value="{{$concesionaria->telefono}}" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="telefonoInput" name="telefono" value="{{$concesionaria->telefono}}" >
 			    	</div>
 			  	</div>
 			  	<div class="form-group">
@@ -106,7 +106,7 @@
 			  	<div class="form-group">
 			    	<label for="nombre_responsableInput" class="col-sm-4 control-label">Nombre del Responsable</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="nombre_responsableInput" name="nombre_responsable" value="{{$concesionaria->nombre_responsable}}" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombre_responsableInput" name="nombre_responsable" value="{{$concesionaria->nombre_responsable}}" >
 			    	</div>
 			  	</div>			  
 			  	<div class="form-group">

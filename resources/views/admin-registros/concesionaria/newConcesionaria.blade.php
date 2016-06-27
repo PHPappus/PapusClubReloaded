@@ -67,10 +67,17 @@
 			    	<a class="btn btn-info" name="buscarsede" href="#"  title="Buscar Sede" data-toggle="modal" data-target="#modalBuscar"><i name="buscarSede" class="glyphicon glyphicon-search"></i></a>
 			  	</div>		
 
+			  	<div class="form-group required">
+			    	<label for="nombreSede" class="col-sm-4 control-label">Nombre de Sede</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" class="form-control" id="nombreSede" name="nombreSede" placeholder="Nombre de la Sede" value="{{old('nombreSede')}}" readonly>
+			    	</div>
+			  	</div>		
+
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombre" name="nombre" placeholder="Nombre de la Concesionaria" value="{{old('nombre')}}">
+			      		<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre de la Concesionaria" value="{{old('nombre')}}">
 			    	</div>
 			  	</div>
 
@@ -217,8 +224,11 @@
 		  	});
 		});		
   		
-		function getsede(){								
-			document.getElementById('sede_id').value =  $('#example input:radio:checked').val();
+		function getsede(){											
+			$sedeAux = $('#example input:radio:checked').val();
+			$sedeVal = $sedeAux.split("|");
+			document.getElementById('sede_id').value = $sedeVal[0];
+			document.getElementById('nombreSede').value = $sedeVal[1];
 		}
 	</script>	
 
@@ -271,7 +281,7 @@
 											<td>{{$sede->departamento}}</td>											
 											<td>
 												<div class="radio">
-  													<label><input type="radio" name="optradio" value="{{$sede->id}}"></label>
+  													<label><input type="radio" name="optradio" value="{{$sede->id}}|{{$sede->nombre}}"></label>
 												</div>
 											</td>
 							            </tr>				            		

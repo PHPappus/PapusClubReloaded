@@ -5,6 +5,7 @@ namespace papusclub\Http\Controllers;
 use Illuminate\Http\Request;
 
 use papusclub\Http\Requests;
+use papusclub\Http\Controllers\Controller;
 use papusclub\Http\Requests\MakeInscriptionToPersonaRequest;
 
 use Auth;
@@ -78,7 +79,8 @@ class InscriptionActividadController extends Controller
         return view('socio.actividades.confirmacion-inscripcion-familiar',compact('actividad', 'tipo_comprobantes','familiares'));
     }
 
-    public function filterActividades(Request $request){
+    public function filterActividades(Request $request)
+    {
         $input= $request->all();
         $sedes= Sede::all();     
         /*Se envia las actividades a las cuales se encuentra inscrita la persona*/
@@ -117,7 +119,7 @@ class InscriptionActividadController extends Controller
 
         if($fecha_fin<$fecha_inicio){
             Session::flash('message-error','Usted ha ingresado un rango invalido de fechas, por favor ingrese uno valido (fecha de inicio debe ser menor a la fecha fin)');
-            return Redirect("/inscripcion-actividad/inscripcion-actividades");
+            return Redirect("/inscripcion-actividad/inscripcion-actividades/filter");
         }
         else{
             $actividades=Actividad::where('estado','=',1)

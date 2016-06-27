@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>MODIFICAR PROVEEDOR</title>
+	<title>MODIFICAR SOLICITUD</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,14 +27,14 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>EDITAR PROVEEDOR</strong>
+					<strong>EDITAR SOLICITUD</strong>
 			</div>		
 		</div>
 		<div class="container">
 			<!--@include('errors.503')-->		
-			<form method="POST" action="/proveedor/{{ $proveedor->id }}/edit" class="form-horizontal form-border">
+			<form method="POST" action="/ingreso-servicio/new/{{ $producto->id }}/editProducto" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
-					
+				
 				<!-- Mensajes de error de validación del Request -->
 				<div class="col-sm-4"></div>
 				<div class="">
@@ -50,62 +50,45 @@
 			  		
 				</div>
 
-				<br/><br/>
+				<br/>
+				<br/>
+				<div class="form-group">
+			  		<div class="text-center">
+			  			<font color="red"> 
+			  				(*) Dato Obligatorio
+			  			</font>
+			  			
+			  		</div>
+			  	</div>
+			  	</br>
+			  	</br>	
 
 				<!-- INICIO INCIIO -->				                       
-				<div class="form-group">
-		    		<label for="nombre_proveedorInput" class="col-sm-4 control-label">Nombre</label>
+				<div class="form-group required">
+		    		<label for="producto_idInput" class="col-sm-4 control-label">ID Producto</label>
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="nombre_proveedorInput" name="nombre_proveedor" value="{{$proveedor->nombre_proveedor}}" onkeypress="return inputLimiter(event,'Letters')">
+		      			<input type="text" class="form-control" id="producto_idInput" name="producto_id" placeholder="ID del producto" onkeypress="return inputLimiter(event,'Numbers')" value="{{$producto->producto_id}}" readonly>
 		    		</div>
 		  		</div>
-			  	<div class="form-group">
-			    	<label for="rucInput" class="col-sm-4 control-label">RUC</label>
+			  
+			  	<div class="form-group required">
+		    		<label for="ingresoproducto_idInput" class="col-sm-4 control-label">N° de Solicitud</label>
+		    		<div class="col-sm-5">
+		      			<input type="text" class="form-control" id="ingresoproducto_idInput" name="ingresoproducto_id" value="{{$producto->ingresoproducto_id}}" readonly>
+		    		</div>
+		  		</div>				  				 
+			  	
+			  	<div class="form-group required">
+			    	<label for="cantidadInput" class="col-sm-4 control-label" >Cantidad</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="rucInput" name="ruc" value="{{$proveedor->ruc}}" onkeypress="return inputLimiter(event,'Numbers')" readonly>
-			    	</div>
-			  	</div>
+			      		<input type="text" class="form-control" id="cantidadInput" name="cantidad" placeholder="Cantidad del producto comprado" onkeypress="return inputLimiter(event,'Numbers')"  value="{{$producto->cantidad}}" onkeypress="myFunction()">
+			    	</div>			      					      		
+			  	</div>	
 
-			  	<div class="form-group">
-			    	<label for="direccionInput" class="col-sm-4 control-label">Dirección</label>
-			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="direccionInput" name="direccion" value="{{$proveedor->direccion}}" >
-			    	</div>
-			  	</div>	  	
-			  	<div class="form-group">
-			    	<label for="telefonoInput" class="col-sm-4 control-label">Teléfono</label>
-			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="telefonoInput" name="telefono" value="{{$proveedor->telefono}}" onkeypress="return inputLimiter(event,'Numbers')">
-			    	</div>
-			  	</div>
-			  	<div class="form-group">
-			    	<label for="correoInput" class="col-sm-4 control-label">Correo</label>
-			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="correoInput" name="correo" value="{{$proveedor->correo}}">
-			    	</div>
-			  	</div>
 			  	
-			  	<div class="form-group">
-			    	<label for="nombre_responsableInput" class="col-sm-4 control-label">Nombre del Responsable</label>
-			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="nombre_responsableInput" name="nombre_responsable" value="{{$proveedor->nombre_responsable}}" onkeypress="return inputLimiter(event,'Letters')">
-			    	</div>
-			  	</div>			  
-			  	<div class="form-group">
-			    	<label for="estadoInput" class="col-sm-4 control-label ">Estado</label>
-			    	<div class="col-sm-3">			      					      	
-			      		
-			      		<select class="form-control" id="estado" name="estado" >
-						<!-- Las opciones se deberían extraer de la tabla configuracion-->
-						<option value="1" @if($proveedor['estado'] == true) selected @endif >Activo</option>
-						<option value="0" @if($proveedor['estado'] == false) selected @endif>Inactivo</option>				
-						
-						</select>							
-			    	</div>	    	
-			  	</div>
-			  	
-					<!-- FIN FIN FIN  -->
+				<br/><br/>
 				
+					<!-- FIN FIN FIN  -->				
 			
 				</br>
 			  	</br>
@@ -116,7 +99,7 @@
 						<input class="btn btn-primary" data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Aceptar">
 					</div>
 					<div class="btn-group">
-						<a href="/proveedor/index" class="btn btn-info">Cancelar</a>
+						<a href="{{url('/ingreso-servicio/'.$producto->ingresoproducto_id.'/back')}}" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>
@@ -129,7 +112,7 @@
 							<!-- Header de la ventana -->
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" onclick="cerrarventana()">&times;</span></button>
-								<h4 class="modal-title">EDITAR PROVEEDOR</h4>
+								<h4 class="modal-title">EDITAR PRODUCTO</h4>
 							</div>
 							<!-- Contenido de la ventana -->
 							<div class="modal-body">
@@ -142,7 +125,7 @@
 						</div>
 					</div>
 				</div>
-
+				
 			</form>
 		</div>
 	</div>		
