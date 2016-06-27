@@ -10,10 +10,12 @@ class Facturacion extends Model
     protected $table = 'facturacion';
     protected $fillable = 
     ['persona_id',
+     'numero_comprobante',
      'total',
      'tipo_pago',
      'tipo_comprobante',
      'servicio_id',
+     'descripcion',
      'estado'];
      protected $dates = ['deleted_at'];
 

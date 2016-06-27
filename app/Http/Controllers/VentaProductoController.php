@@ -20,7 +20,7 @@ class VentaProductoController extends Controller
 {
     //Muestra la lista de productos que se encuentran en BD, estas se pueden modificar, cambiar el estado, ver mas detalle o registrar un nuevo producto
     public function index() {
-		$facturas = Facturacion::all();        
+		$facturas = Facturacion::where('descripcion','=','Venta de Productos')->get();        
         return view('admin-registros.venta-producto.index', compact('facturas'));
 	}	
 
@@ -42,9 +42,13 @@ class VentaProductoController extends Controller
 		$factura->tipo_pago = $input['tipo_pago'];
         $factura->tipo_comprobante = $input['tipo_comprobante'];
 		$factura->estado = $input['estado'];		
-    	
+    	$factura->descripcion = 'Venta de Productos';
+
+        $numero_comprobante = Facturacion::where('tipo_comprobante','=',$input['tipo_comprobante'])
+                                            ->max('numero_comprobante');
+        $factura->numero_comprobante = $numero_comprobante + 1;
         $factura->save();	    
-        
+            
         return view('admin-registros.venta-producto.addVentaProducto', compact('factura'));
     }	   
 
