@@ -30,7 +30,7 @@ class EditTrabajadorRequest extends Request
             'fecha_nacimiento' => 'string',
             'doc_identidad'=> 'required_if:nacionalidad,ṕeruano',
             'carnet_extranjeria'=> 'required_if:nacionalidad,extranjero',
-            'correo'=>'required|string',
+            'correo'=>'email|unique:persona',
             'puestoSelect' => 'required|exists:configuracion,id'
         ];
     }
