@@ -15,7 +15,8 @@ class Proveedor extends Model
      'telefono', 
      'correo',
      'nombre_responsable',
-     'estado'];
+     'estado',
+     'tipo_proveedor'];
      protected $dates = ['deleted_at'];
 
 

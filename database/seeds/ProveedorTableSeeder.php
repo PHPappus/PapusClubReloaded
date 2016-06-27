@@ -20,7 +20,7 @@ class ProveedorTableSeeder extends Seeder
         	'direccion' => 'Jr. Ugarte y Moscoso Nº 991 - Magdalena del Mar', 
         	'nombre_responsable' => 'Oscar del Portal', 
         	'estado' => '1', 
-        	'id_tipo_proveedor' => '13', 
+        	'tipo_proveedor' => 'Servicios', 
         	]);
 		
 		Proveedor::insert([            
@@ -31,7 +31,7 @@ class ProveedorTableSeeder extends Seeder
         	'direccion' => 'Cal. los Negocios Nro. 467', 
         	'nombre_responsable' => 'Silvia Saravia', 
         	'estado' => '1', 
-        	'id_tipo_proveedor' => '10', 
+        	'tipo_proveedor' => 'Servicios', 
         	]);
 		
 		Proveedor::insert([            
@@ -42,7 +42,7 @@ class ProveedorTableSeeder extends Seeder
         	'direccion' => 'Calle Las Begonias 345 - San Isidro', 
         	'nombre_responsable' => 'Rodrigo Fernandez', 
         	'estado' => '1', 
-        	'id_tipo_proveedor' => '5', 
+        	'tipo_proveedor' => 'Productos', 
         	]);
 		 	 	 	 	
 		Proveedor::insert([            
@@ -53,7 +53,7 @@ class ProveedorTableSeeder extends Seeder
         	'direccion' => 'Av. Manuel Olguin Torre a Nro. 745 Dpto. 2501 - Surco', 
         	'nombre_responsable' => 'Gardenio Flores', 
         	'estado' => '1', 
-        	'id_tipo_proveedor' => '6', 
+        	'tipo_proveedor' => 'Servicios', 
         	]);
 			 	 	 	 	 	
 		Proveedor::insert([            
@@ -64,7 +64,18 @@ class ProveedorTableSeeder extends Seeder
         	'direccion' => "Av. República de Panamá 4298 - Surquillo", 
         	'nombre_responsable' => 'Marina Ríos', 
         	'estado' => '1', 
-        	'id_tipo_proveedor' => '4', 
+        	'tipo_proveedor' => 'Servicios', 
         	]);
+
+        Proveedor::insert([            
+            'nombre_proveedor' => 'Textil Alvazani S.A.C.', 
+            'ruc' => '20534642325', 
+            'telefono' => '45623486', 
+            'correo' => 'alvazani@gmal.com', 
+            'direccion' => "Av. Javier Prado 2298 - San Isidro", 
+            'nombre_responsable' => 'Elsin ombre', 
+            'estado' => '1', 
+            'tipo_proveedor' => 'Productos', 
+            ]);
     }
 }

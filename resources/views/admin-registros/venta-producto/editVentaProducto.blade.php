@@ -92,12 +92,12 @@
 			      		<select class="form-control" id="estado" name="estado" >
 						<!-- Las opciones se deberían extraer de la tabla configuracion-->
 						<option value="" >Seleccionar tipo...</option>
-						@foreach($estados as $estado)
+						@foreach($estados as $estado)							
 							<option value="{{$estado->valor}}" 
 							@if (strcmp($estado->valor, $factura->estado)==0)		
 									selected
 							@endif
-							>{{$estado->valor}}</option>
+							>{{$estado->valor}}</option>						
 						@endforeach						
 						</select>													
 						
