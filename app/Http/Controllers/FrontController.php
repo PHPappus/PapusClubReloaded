@@ -12,7 +12,7 @@ class FrontController extends Controller
 		return view('inicio');
 	}
     public function futbol() {
-    	return view('futbol');
+        return view('publico.futbol');
     }
     public function historia_papusclub() {
     	return view('historia-papusclub');
@@ -52,6 +52,51 @@ class FrontController extends Controller
     }
     public function prueba(){
         return view('prueba');
+    }
+     public function mesa_directiva(){
+        return view('publico.mesa-directiva');
+    }
+     public function reglamento_club(){
+        return view('publico.reglamento-club');
+    }
+    public function historia_sede_surquillo() {
+        return view('publico.historia-sede-surquillo');
+    }
+    public function historia_sede_barranco() {
+        return view('publico.historia-sede-barranco');
+    }
+    public function natacion() {
+        return view('publico.natacion');
+    }
+    public function karate() {
+        return view('publico.karate');
+    }
+    public function convenios() {
+        return view('publico.convenios');
+    }
+    public function concesiones() {
+        return view('publico.concesiones');
+    }
+    public function galeria() {
+        return view('publico.galeria');
+    }
+    public function informes() {
+        return view('publico.informes');
+    }
+    public function calendario() {
+        return view('publico.calendario');
+    }
+    public function servicios() {
+        return view('publico.servicios');
+    }
+    public function yoga() {
+        return view('publico.yoga');
+    }
+    public function padre() {
+        return view('publico.padre');
+    }
+    public function amigos() {
+        return view('publico.amigos');
     }
     
 }
