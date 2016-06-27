@@ -43,8 +43,8 @@
 			</div>		
 		</div>
 		<div class="container">
-			<!--@include('errors.503')-->	
-		<form method="POST" action="/taller/{{ $taller->id }}/confirm/save" class="form-horizontal form-border">    <!-- accion que regresa a la incial de inscripciones -->
+			<!--@include('errors.503')-->
+		<form method="POST" action="/talleres-familiar/{{ $taller->id }}/confirm/save" class="form-horizontal form-border">    <!-- accion que regresa a la incial de inscripciones -->
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<br/><br/>
 			<div class="form-group">

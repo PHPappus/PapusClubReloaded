@@ -72,7 +72,94 @@ class InscriptionTallerController extends Controller
         return back();
     
     }*/
+    public function makeInscriptionFamiliarToUser(MakeInscriptionToUserRequest $request, $id)
+    {
+        if($request['tipo_comprobante']==-1){
+            Session::flash('message-error','Por favor, elija el tipo de comprobante');
+            return Redirect("/talleres-familiar/".$id."/confirm");
+        }
+        else{
+            if(Hash::check($request['password'],Auth::user()->password)){
+                $persona     = Persona::find($request['persona_id']);
 
+                $taller   = Taller::find($id);
+                $flag=true;
+
+                foreach ($persona->talleres as $tallerxpersona) {
+                    if($tallerxpersona->id==$id){
+                        $flag=false;
+                    }
+                }
+                if(!$flag){
+                    Session::flash('message-error',"El familiar $persona->nombre ya se encuentra inscrito en este taller");
+                    return Redirect('/talleres/mis-inscripciones');
+                }
+                else{
+                    DB::beginTransaction();
+                    try{
+                        if($taller->vacantes<=0){
+                            //throw new Exception("No hay vacantes disponibles");
+                            Session::flash('message-error','Lo sentimos, ya no hay vacantes disponibles');
+                            return Redirect("/talleres-familiar/".$id."/confirm");
+                        }
+                        else{
+                            $taller->vacantes=$taller->vacantes-1;
+                            $taller->save();
+                            
+                            $tipo_persona = $persona->tipopersona;
+                            $tarifas = $taller->tarifas;
+
+                            $precioTarifa=0;
+                            foreach ($tarifas as $tarifa) {
+                                if($tarifa->tipo_persona == $tipo_persona){
+                                    $persona->talleres()->attach($id,['precio'=> $tarifa->precio,'created_at'=>Carbon::now('America/Lima')]);
+                                    $precioTarifa = $tarifa->precio;
+                                    break;
+                                }
+                            }
+
+                            $promos = Promocion::where('tipo','=','Taller')->where('estado','=',TRUE)->get();
+                            if ($promos != NULL){
+                                foreach ($promos as $promo) {
+                                    $precioTarifa = $precioTarifa - ($precioTarifa*$promo->porcentajeDescuento)/100;
+                                }
+                            }
+
+                            
+                            $facturacion = new Facturacion();
+                            $facturacion->persona_id = $persona->id;
+                            $facturacion->taller_id = $taller->id;
+                            $facturacion->tipo_comprobante = $request['tipo_comprobante'];
+                            $nombreTaller = $taller->nombre;
+                            $facturacion->descripcion = "Inscripción de $nombreTaller";
+                            $facturacion->total = $precioTarifa;
+                            $facturacion->tipo_pago = "No se ha cancelado";
+                            $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
+                            $facturacion->estado = $estado->valor;
+
+                            $facturacion->save();
+
+                            Session::flash('message','La Inscripción fue realizada Correctamente');
+                        }        
+                    }
+                    catch(ValidationException $e){
+                        DB::rollback();
+                        var_dump($e->getErrors());
+                    }
+                    
+                    DB::commit();
+                    /*$usuario->talleres()->attach($id,['precio'=> $taller->precio_base]);*/
+
+                    
+                    return Redirect('/talleres/mis-inscripciones');
+                }
+            }
+            else{
+                Session::flash('message-error','Contraseña incorrecta');
+                return Redirect("/talleres-familiar/".$id."/confirm");
+            }        
+        }
+    }
     public function makeInscriptionToUser(MakeInscriptionToUserRequest $request, $id)
     {
         if($request['tipo_comprobante']==-1){
