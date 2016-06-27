@@ -15,7 +15,7 @@ use papusclub\User;
 use Session;
 use Redirect;
 use View;
-
+use papusclub\Http\Requests\StorePagoRequest;
 use papusclub\Http\Requests\BuscarPersonaRequest;
 use papusclub\Http\Requests\RegistrarPagoIngresoRequest;
 use papusclub\Http\Requests\RegistrarPagoMembresiaRequest;
@@ -51,7 +51,7 @@ class PagosController extends Controller
         return view('admin-pagos.pagos.registrar-pago', compact('facturacion','tipo_pagos','tipo_comprobantes'));
     }
 
-    public function storePago(Request $request, $id) /// registro que el socio ya realizo el pago de x producto
+    public function storePago(StorePagoRequest $request, $id) /// registro que el socio ya realizo el pago de x producto
     {   //Deberia buscar el ID de la factura , de donde se sacara el socio y de que fue la deuda
         $input = $request->all();
         $facturacion = Facturacion::find($id);
