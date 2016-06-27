@@ -243,6 +243,7 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::post('concesionaria/{id}/edit', 'ConcesionariaController@update');
 	Route::get('concesionaria/{id}/delete', 'ConcesionariaController@destroy');
 	Route::get('concesionaria/{id}/show', 'ConcesionariaController@show');
+	Route::post('concesionaria/new/tipoconcesionaria', 'ConcesionariaController@storeTipoConcesionaria');
 });
 
 //Gerente
