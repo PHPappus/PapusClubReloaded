@@ -25,6 +25,13 @@ class AddFkToFacturacionTable extends Migration
             $table->foreign('taller_id')
                   ->references('id')
                   ->on('taller')->onDelete('cascade');                  
+            $table->foreign('multa_id')
+                  ->references('id')
+                  ->on('multa')->onDelete('cascade');                  
+            $table->foreign('traspaso_id')
+                  ->references('id')
+                  ->on('traspaso')->onDelete('cascade');                  
+
         });
     }
 
@@ -46,6 +53,12 @@ class AddFkToFacturacionTable extends Migration
         });
         Schema::table('facturacion', function (Blueprint $table) {
             $table->dropForeign('facturacion_taller_id_foreign');
+        });
+        Schema::table('facturacion', function (Blueprint $table) {
+            $table->dropForeign('facturacion_multa_id_foreign');
+        });
+        Schema::table('facturacion', function (Blueprint $table) {
+            $table->dropForeign('facturacion_traspaso_id_foreign');
         });
     }
 }
