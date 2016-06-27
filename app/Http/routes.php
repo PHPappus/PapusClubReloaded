@@ -581,6 +581,10 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::resource('admin-reserva','AdminReservaController');
 
+	//Inscripción de socios a Actividades en el club
+	Route::get('actividad-admin-reserva/inscripcion', 'InscriptionActividadAdminReservaController@inscriptionActividadAdminReserva');
+	Route::post('actividad-admin-reserva/inscripcion','InscriptionActividadAdminReservaController@filterActividades');
+
 		//INGRESO DE SOCIO A LA RESERVA
 	Route::get('ingresoReserva/index','IngresoSocioController@index');
 	Route::post('ingresoReserva/reserva','IngresoSocioController@reservaSocio');
@@ -618,6 +622,9 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::get('reservar-ambiente/consultar-bungalow-adminR', 'ReservarAmbienteController@consultarReservaBungalowAdminR'); 
 	Route::get('reservar-ambiente/{id}/deleteBungalowAdminR','ReservarAmbienteController@eliminarReservaBungalowAdminR');
 	Route::get('reservar-ambiente/{id}/deleteOtrosAdminR','ReservarAmbienteController@eliminarReservaOtrosAdminR');
+
+
+
 
 });
 //Control de ingresos
