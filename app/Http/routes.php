@@ -127,6 +127,7 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	//MANTENIMIENTO DE PROMOCIONES
 	Route::get('promociones/index', 'PromocionesController@index');
 	Route::get('promociones/new', 'PromocionesController@create');
+
 	Route::post('promociones/new/promocion', 'PromocionesController@store');
 	Route::get('promociones/{id}', 'PromocionesController@edit');
 	Route::post('promociones/{id}/edit', 'PromocionesController@update');
@@ -160,10 +161,12 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::get('taller/{taller}/delete', 'TallerController@destroy');
 
 
-	///MANTENIMIENTO DE ACTIVIDADES
+	///MANTENIMIENTO DE ACTIVIDADES Y EVENTOS
 	Route::get('actividad/index', 'ActividadController@index');
 	Route::get('actividad/new', 'ActividadController@create');
+	Route::get('actividad/newEvento', 'ActividadController@createEvento');
 	Route::post('actividad/new/actividad', 'ActividadController@store');
+	Route::post('actividad/new/evento', 'ActividadController@storeEvento');
 	Route::get('actividad/{id}', 'ActividadController@edit');
 	Route::post('actividad/{id}/edit', 'ActividadController@update');
 	Route::get('actividad/{id}/delete', 'ActividadController@destroy');
@@ -171,7 +174,7 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::post('actividad/new/{id}/tipoactividad', 'ActividadController@storeTipoActividad');
 	Route::get('actividad/searchReservas', 'ActividadController@searchReservas');/*lista todas las reservas*/	
 	Route::get('actividad/{id}/select', 'ActividadController@select');/*lleva a la pantalla principal de registrar*/
-
+	Route::get('actividad/{id}/selectSede', 'ActividadController@selectSede');/*lleva a la pantalla principal de registrar Evento*/
 	//MANTENIMIENTO DE AMBIENTES
 	Route::get('ambiente/index', 'AmbienteController@index');
 	Route::get('ambiente/search', 'AmbienteController@search');/*PAra buscar el ambiente y seleccionarlo para ACtividad*/	

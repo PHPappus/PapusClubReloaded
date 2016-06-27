@@ -27,6 +27,7 @@ class ConfiguracionTableSeeder extends Seeder
         Configuracion::insert([ 'valor' => 'Fiesta' , 'grupo' => '3', 'descripcion'=>'Tipos de Actividades']);
         Configuracion::insert([ 'valor' => 'Deportiva' , 'grupo' => '3', 'descripcion'=>'Tipos de Actividades']);
         Configuracion::insert([ 'valor' => 'Reunion' , 'grupo' => '3', 'descripcion'=>'Tipos de Actividades']);
+        Configuracion::insert([ 'valor' => 'Evento' , 'grupo' => '3', 'descripcion'=>'Tipos de Actividades']);
 
         Configuracion::insert([ 'valor' => 'Deportivo' , 'grupo' => '4', 'descripcion'=>'tipo de servicio']);
         Configuracion::insert([ 'valor' => 'Ocio' , 'grupo' => '4', 'descripcion'=>'tipo de servicio']);
