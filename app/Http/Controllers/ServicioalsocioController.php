@@ -4,6 +4,7 @@ namespace papusclub\Http\Controllers;
 
 use Illuminate\Http\Request;
 use papusclub\Http\Requests;
+use papusclub\Http\Requests\StoreCalificacionRequest;
 use papusclub\Models\Servicio;
 use papusclub\Models\Sede;
 use papusclub\Models\Socio;
@@ -414,9 +415,25 @@ class ServicioalsocioController extends Controller
                 $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
                 return view('socio.servicios.indexdetalle',compact('servicios','sedes','tarifarioservicios','tiposServicio','sedexservicio','id','servicindentificado','tip_s','precio','estados','tipo_pagos','tipo_comprobantes'));
             }
-        
+    }
 
+    public function calificar($id)
+    {
+        $puntajes = Configuracion::where('grupo','=',17)->get();
+        return view('socio.servicios.calificarServicio',compact('puntajes','id'));
+    }
 
+    public function storeCalificacion(StoreCalificacionRequest $request)
+    {
+        $input = $request->all();
+        $servicio = ServicioxSedexPersona::find($input['id']);
+
+        $servicio->calificacion = intval($input['puntaje']);
+        if ($input['descripcion'] != NULL) $servicio->descripcion = $input['descripcion'];
+
+        $servicio->save();
+
+        return redirect('servicios/mis-inscripciones')->with('stored', 'Se registró el puntaje correctamente.');
     }
 
 }

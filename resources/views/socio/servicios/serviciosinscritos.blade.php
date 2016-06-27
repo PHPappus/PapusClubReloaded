@@ -77,7 +77,8 @@
 							
 							<th><div align=center>SEDE</div></th>			
 							<th><div align=center>DETALLE</div></th>					
-							<th><div align=center>ESTADO SOLICITUD</div></th>					
+							<th><div align=center>ESTADO SOLICITUD</div></th>
+							<th><div align=center>CALIFICAR SERVICIO</div></th>					
 							<th><div align=center>ELIMINAR SOLICITUD</div></th>					
 							
 						</tr>
@@ -98,12 +99,20 @@
 					 	 <td>
 						
 					 	 	@if($tabla[$i][8])
-					 		<a class="btn btn-info" data-href="{!!URL::to('/servicios/mis-inscripciones/'.$indice.'/delete')!!}" title="Anular Solicitud" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove" ></i>
-					 		</a>
+						 		<a class="btn btn-info" data-href="{!!URL::to('/servicios/mis-inscripciones/'.$indice.'/delete')!!}" title="Anular Solicitud" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove" ></i>
+						 		</a>
 					 		@else
 					 		<a class="btn btn-info"  title="Anular Solicitud" disabled ><i class="glyphicon glyphicon-remove" ></i>
 					 		</a>
-					 		@endif
+							@endif
+						</td>
+	
+					 	 <td>
+							<a class="btn btn-info" href="{!!URL::to('/servicios/mis-inscripciones/'.$indice.'/calificar')!!}" title="Calificar" ><i class="glyphicon glyphicon-list-alt"></i></a>
+						</td>
+					 	 <td>
+					 		<a class="btn btn-info" data-href="{!!URL::to('/servicios/mis-inscripciones/'.$indice.'/delete')!!}" title="Anular Solicitud" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i>
+					 		</a>
 					 	</td>
                         <?php 
 					 }
