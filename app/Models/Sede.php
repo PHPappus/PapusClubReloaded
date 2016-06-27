@@ -37,4 +37,8 @@ class Sede extends Model
     public function ingresos(){
         return $this->hasMany('papusclub\Models\HistoricoIngreso','id');
     }
+
+    public function concesionaria(){
+        return $this->hasMany('papusclub\Models\Concesionaria','id');
+    }
 }

@@ -21,7 +21,7 @@ class SorteoTableSeeder extends Seeder
                     'numero_bungalows' => 1,
                     'fecha_abierto' => Carbon::create(2001, 5, 21, 12),
                     'fecha_cerrado' => Carbon::create(2001, 5, 21, 12),                    
-                    'estado'=>1]);
+                    ]);
         Sorteo::insert([
                     'id'=>2,                    
                     'nombre_sorteo' => 'Dia de chaba chaba',
@@ -30,7 +30,7 @@ class SorteoTableSeeder extends Seeder
                     'numero_bungalows' => 1,
                     'fecha_abierto' => Carbon::create(2016, 5, 21, 12),
                     'fecha_cerrado' => Carbon::create(2070, 5, 21, 12),                    
-                    'estado'=>1]);
+                    ]);
         Sorteo::insert([
                     'id'=>3,                    
                     'nombre_sorteo' => 'Dia del programador',
@@ -39,6 +39,6 @@ class SorteoTableSeeder extends Seeder
                     'numero_bungalows' => 0,
                     'fecha_abierto' => Carbon::create(2001, 5, 21, 12),
                     'fecha_cerrado' => Carbon::create(2001, 5, 21, 12),                    
-                    'estado'=>1]);
+                    ]);
     }
 }

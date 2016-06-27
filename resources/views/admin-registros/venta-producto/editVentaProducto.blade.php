@@ -77,6 +77,15 @@
 			    	</div>			      					      		
 			  	</div>	
 						
+				@if (strcmp($factura->estado, 'Anulado')==0)		
+					<div class="form-group">
+				    	<label for="estadoInput" class="col-sm-4 control-label" >Estado</label>
+				    	<div class="col-sm-5">
+				      		<input type="text" class="form-control" id="estado" name="estado" 
+				    		value="{{$factura->estado}}" readonly>
+				    	</div>			      					      		
+			  		</div>			
+				@else
 			  	<div class="form-group">
 			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
 			    	<div class="col-sm-5">			    	
@@ -94,6 +103,8 @@
 						
 			    	</div>
 			  	</div>		
+			  	@endif
+
 				<br/><br/>
 				
 
@@ -111,7 +122,7 @@
 						@foreach($factura->productoxfacturacion as $producto)
 							<tr>
 								<td>{{ $producto->producto->nombre}}</td>
-								<td>{{ $producto->producto->precioproducto->first()['precio']}}</td>
+								<td>{{ $producto->precio}}</td>
 								<td>{{ $producto->cantidad}}</td>			
 								<td>{{ $producto->subtotal }}</td>								
 				            </tr>

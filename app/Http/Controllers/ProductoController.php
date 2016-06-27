@@ -17,15 +17,16 @@ class ProductoController extends Controller
 {
     //Muestra la lista de productos que se encuentran en BD, estas se pueden modificar, cambiar el estado, ver mas detalle o registrar un nuevo producto
     public function index() {
-		$productos = Producto::where('tipo_producto','<>','Servicio')->get();
-        return view('admin-general.producto.index', compact('productos'));
+		$productos = Producto::where('tipo_producto','<>','Servicio')
+                                ->where('estado','=','1')->get();
+        return view('admin-registros.producto.index', compact('productos'));
 	}	
 
 	public function create()
     {
         $tipo_productos = Configuracion::where('grupo','=','6')
                                         ->where('valor','<>','Servicio')->get();
-    	return view('admin-general.producto.newProducto', compact('tipo_productos'));
+    	return view('admin-registros.producto.newProducto', compact('tipo_productos'));
     }
     
     public function store(StoreProductoRequest $request)
@@ -67,7 +68,7 @@ class ProductoController extends Controller
         $tipo_productos = Configuracion::where('grupo','=','6')
                                         ->where('valor','<>','Servicio')->get();
 
-        return view('admin-general.producto.editProducto', compact('producto','tipo_productos'));
+        return view('admin-registros.producto.editProducto', compact('producto','tipo_productos'));
     }
 
     //Se guarda la informacion modificada del producto en la BD
@@ -104,8 +105,11 @@ class ProductoController extends Controller
         $producto = Producto::find($id);
         
         $producto->precioproducto->first()->estado = 0;
+        $producto->precioproducto->first()->save();
         $producto->precioproducto->first()->delete();
-        $producto->delete();
+        //$producto->delete();
+        $producto->estado = 0;
+        $producto->save();
         return back();
     }
 
@@ -113,7 +117,7 @@ class ProductoController extends Controller
     public function show($id)
     {
         $producto = Producto::find($id);        
-        return view('admin-general.producto.detailProducto', compact('producto'));
+        return view('admin-registros.producto.detailProducto', compact('producto'));
     }
 
     public function storeTipoProducto(StoreConfiguracionRequest $request)
