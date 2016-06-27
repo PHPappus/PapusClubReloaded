@@ -124,7 +124,7 @@
 								</td>
 
 								<td> 
-									<a class="btn btn-info" href="{{url('/talleres/'.$taller->id.'/show')}}"  title="Detalle"><i class="glyphicon glyphicon-list-alt"></i></a>
+									<a class="btn btn-info" href="{{url('/taller-admin-reserva/'.$taller->id.'/show')}}"  title="Detalle"><i class="glyphicon glyphicon-list-alt"></i></a>
 
 								</td>
 								<td>

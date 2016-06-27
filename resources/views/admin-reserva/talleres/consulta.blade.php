@@ -101,18 +101,10 @@
 				
 				<div class="form-group">
 					<div class="col-sm-12">
-						@if((count($talleresxpersona->where('id',$taller->id))<=0) and ($taller->vacantes>0))
-						<div class="col-sm-6 text-right">
-							<a href="{{url('/talleres/'.$taller->id.'/confirm')}}" class="btn btn-primary" >Inscribirse</a>		
-						</div>		
-						<div class="col-sm-6 text-left">
+						<div class="col-sm-12 text-center">
 							<a href="{{URL::previous()}}" class="btn btn-primary" >Regresar</a>		
 						</div>
-						@else
-							<div class="col-sm-12 text-center">
-							<a href="{{URL::previous()}}" class="btn btn-primary" >Regresar</a>		
-						</div>
-						@endif
+					
 					</div>			
 				</div>		
 			</form>

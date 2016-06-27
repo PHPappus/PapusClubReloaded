@@ -54,7 +54,7 @@
 							<th><div align=center>Fecha de inicio</div></th>
 							<th><div align=center>Fecha de fin</div></th>
 							<!-- <th><div align=center>Precio</div></th> -->
-							<!-- <th><div align=center>Detalle</div></th> -->
+							<th><div align=center>Detalle</div></th>
 							<th><div align=center>Anular</div></th>
 						</tr>
 					</thead>
@@ -69,7 +69,9 @@
 
 	 						<td>{{ date("d-m-Y",strtotime($taller->fecha_inicio)) }}</td>
 	 						<td>{{ date("d-m-Y",strtotime($taller->fecha_fin))}}</td>
-
+							<td>
+								     <a class="btn btn-info" href="{{url('/taller-admin-reserva/'.$taller->id.'/show')}}"  title="Detalle"><i class="glyphicon glyphicon-list-alt"></i></a>
+							</td>
 							<td>
 								@if($taller->fecha_inicio >= $fecha_validable)
 								     <a class="btn btn-danger" data-href="{{url('/taller-admin-reserva/inscripcion/'.$taller->id.'/'.$persona->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
