@@ -16,7 +16,7 @@
 </head>
 
 <body>
-@extends('layouts.headerandfooter-al-socio')
+@extends('layouts.headerandfooter-al-admin-resera')
 @section('content')
 	
 	<div class="content" style="max-width: 100%;">

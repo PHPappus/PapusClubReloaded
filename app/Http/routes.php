@@ -71,7 +71,9 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	//Socio.talleres  : INSCRIPCION DE TALLERES
 	Route::get('talleres/index','InscriptionTallerController@index');
 	Route::post('talleres/index','InscriptionTallerController@filterTalleres');
+
 	Route::get('talleres/{id}/show','InscriptionTallerController@show');
+	Route::get('talleres-familiar/{id}/show','InscriptionTallerController@showFamiliar');
 
 	//Pide confirmación de password
 	Route::get('talleres/{id}/confirm','InscriptionTallerController@confirmInscription');
@@ -557,6 +559,7 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::resource('admin-reserva','AdminReservaController');
 
+
 	//MANTENIMIENTO DE SORTEO
 	Route::get('sorteo/index/{id}/ejecutar','SorteoController@loscohibaspapa');
 	Route::get('sorteo/index','SorteoController@index');
@@ -579,6 +582,11 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 		Route::get('sorteo/cambio/{id}','SorteoController@correccionUnica');
 		Route::post('sorteo/new/sorteo/bungalows/{id}/remove','SorteoController@removeCheckedBungalows');
 
+
+
+	//Inscripción de socios a Actividades en el club
+	Route::get('actividad-admin-reserva/inscripcion', 'InscriptionActividadAdminReservaController@inscriptionActividadAdminReserva');
+	Route::post('actividad-admin-reserva/inscripcion','InscriptionActividadAdminReservaController@filterActividades');
 
 
 		//INGRESO DE SOCIO A LA RESERVA
@@ -618,6 +626,9 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::get('reservar-ambiente/consultar-bungalow-adminR', 'ReservarAmbienteController@consultarReservaBungalowAdminR'); 
 	Route::get('reservar-ambiente/{id}/deleteBungalowAdminR','ReservarAmbienteController@eliminarReservaBungalowAdminR');
 	Route::get('reservar-ambiente/{id}/deleteOtrosAdminR','ReservarAmbienteController@eliminarReservaOtrosAdminR');
+
+
+
 
 });
 //Control de ingresos
