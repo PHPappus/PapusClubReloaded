@@ -37,8 +37,10 @@
 	</div>
 	<br/>
 	<br/>
-	@include('alerts.errors')
-	@include('alerts.success')
+	<div class="container">
+		@include('alerts.errors')
+		@include('alerts.success')
+	</div>
 	<div class="container">
 		<div class="col-sm-12 text-left lead">
 			<strong>INSCRIPCIÓN DE ACTIVIDADES</strong>
@@ -184,10 +186,10 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-6 text-right">
-					<a href="{!!URL::to('/inscripcion-actividad/mis-inscripciones')!!}" title="Ver mis inscripciones" class="btn btn-lg btn-primary">Mis Inscripciones</a>		
+					<a href="{!!URL::to('/inscripcion-actividad/mis-inscripciones')!!}" title="Ver mis inscripciones" class="btn btn-md btn-primary">Mis Inscripciones</a>		
 				</div>
 			<div class="col-sm-6 text-left">
-				<a href="{{url('/socio')}}" class="btn btn-lg btn-primary" title="Regresar a página de inicio">Regresar</a>			
+				<a href="{{url('/socio')}}" class="btn btn-md btn-primary" title="Regresar a página de inicio">Regresar</a>			
 			</div>
 		</div>
 	</div>
