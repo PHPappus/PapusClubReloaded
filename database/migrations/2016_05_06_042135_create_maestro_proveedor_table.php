@@ -23,7 +23,7 @@ class CreateMaestroProveedorTable extends Migration
             $table->text('direccion');
 			$table->string('nombre_responsable');
             $table->integer('estado');            
-            $table->integer('id_tipo_proveedor');//Esta dentro de la tabla de configuracion
+            $table->string('tipo_proveedor');//Esta dentro de la tabla de configuracion
             $table->timestamps();
             $table->softDeletes();
         });
