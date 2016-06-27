@@ -41,7 +41,7 @@
               Ingresos al Club
             </a>
           </li>          
-        </ul>        
+        </ul>                
 
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">

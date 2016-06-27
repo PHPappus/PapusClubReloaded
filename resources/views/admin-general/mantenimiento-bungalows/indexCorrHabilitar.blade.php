@@ -60,9 +60,8 @@
 											<td>{{$ambiente->capacidad_actual}}</td>
 											<td>{{$ambiente->descripcion}}</td>
 											@foreach($sedes as $sede)
-												@if($sede->id==$ambiente->sede_id){
+												@if($sede->id==$ambiente->sede_id)
 													<td>{{$sede->nombre}}</td>
-												}
 												@endif
 											@endforeach
 											<td>{{$ambiente->estado}}</td>

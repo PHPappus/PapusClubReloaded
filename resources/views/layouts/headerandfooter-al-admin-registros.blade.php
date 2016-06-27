@@ -69,6 +69,7 @@
             <ul class="dropdown-menu">
                 <li><a href="{!!URL::to('/servicios/index')!!}" title="Consultar servicio" target="_self">Consultar</a></li>
                 <li><a href="{!!URL::to('/servicios/new')!!}" title="Registrar nuevo servicio" target="_self">Registrar</a></li>
+                <li><a href="{!!URL::to('/select/sede')!!}" title="Agregar Servicio a Sede" target="_self">Agregar Servicios a Sede</a></li>
             </ul>
           </li>
         </ul>

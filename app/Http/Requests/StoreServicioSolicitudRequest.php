@@ -4,7 +4,7 @@ namespace papusclub\Http\Requests;
 
 use papusclub\Http\Requests\Request;
 
-class StoreServicioRequest extends Request
+class StoreServicioSolicitudRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +26,10 @@ class StoreServicioRequest extends Request
          
 
         return [
-            'nombre'       =>  'required|max:100|string',
-            'descripcion'  =>  'string|max:400|string',
-            'tipo_servicio'=>  'required|max:50|integer',         
+            'tipo_pago'  =>  'required|max:400|string',
+            'tipo_comprobante'  =>  'required|max:400|string',
+            'estadofactura'  =>  'required|max:400|string',
+            'password'  =>  'required|max:400|string',
         ];
     }
 }
