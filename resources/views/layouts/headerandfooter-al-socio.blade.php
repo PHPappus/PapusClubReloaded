@@ -95,7 +95,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg">Sorteos <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="{!!URL::to('/sorteo/inscripcion/socio')!!}" title="Consultar Sorteos" target="_self">Consultar</a></li>
+              <li><a href="{!!URL::to('sorteo/inscripcion/')!!}" title="Consultar Sorteos" target="_self">Consultar</a></li>
             </ul>
           </li>
         </ul>
