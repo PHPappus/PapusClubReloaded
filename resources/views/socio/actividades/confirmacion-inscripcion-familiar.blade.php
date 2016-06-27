@@ -19,6 +19,16 @@
 <!---Cuerpo -->
 <main class="main">
 	<div class="content" style="max-width: 100%;">
+		<div class="container">
+			<div class="row" style="max-width: 920px">
+				<div class="col-sm-4">
+					<ol class="breadcrumb" style="background:none">
+						<li><a href="/socio"><span class="glyphicon glyphicon-home"></span></a></li>
+						<li class="active">Confirmación de inscripción</li>
+					</ol>
+				</div>				
+			</div>
+		</div>
 		<!-- Utilizando Bootstrap -->
 		<div class="container">
 			@include('alerts.errors')
