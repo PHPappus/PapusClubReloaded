@@ -12,62 +12,62 @@ class TarifaTallerTableSeeder extends Seeder
      */
     public function run()
     {
-        TarifaActividad::create([
+        TarifaTaller::create([
         	'taller_id'=>1,
         	'tipo_persona_id'=>1,
         	'precio'=>15,
         	]);
-        TarifaActividad::create([
+        TarifaTaller::create([
             'taller_id'=>1,
             'tipo_persona_id'=>2,
             'precio'=>20,
             ]);
-        TarifaActividad::create([
+        TarifaTaller::create([
             'taller_id'=>1,
             'tipo_persona_id'=>3,
             'precio'=>25,
             ]);
-        TarifaActividad::create([
+        TarifaTaller::create([
         	'taller_id'=>2,
         	'tipo_persona_id'=>1,
         	'precio'=>15,
         	]);
-        TarifaActividad::create([
+        TarifaTaller::create([
             'taller_id'=>2,
             'tipo_persona_id'=>2,
             'precio'=>20,
             ]);
-        TarifaActividad::create([
+        TarifaTaller::create([
             'taller_id'=>2,
             'tipo_persona_id'=>3,
             'precio'=>25,
             ]);
-        TarifaActividad::create([
+        TarifaTaller::create([
         	'taller_id'=>3,
         	'tipo_persona_id'=>1,
         	'precio'=>15,
         	]);
-        TarifaActividad::create([
+        TarifaTaller::create([
             'taller_id'=>3,
             'tipo_persona_id'=>2,
             'precio'=>20,
             ]);
-        TarifaActividad::create([
+        TarifaTaller::create([
             'taller_id'=>3,
             'tipo_persona_id'=>3,
             'precio'=>25,
             ]);
-        TarifaActividad::create([
+        TarifaTaller::create([
         	'taller_id'=>4,
         	'tipo_persona_id'=>1,
         	'precio'=>15,
         	]);
-        TarifaActividad::create([
+        TarifaTaller::create([
             'taller_id'=>4,
             'tipo_persona_id'=>2,
             'precio'=>20,
             ]);
-        TarifaActividad::create([
+        TarifaTaller::create([
             'taller_id'=>4,
             'tipo_persona_id'=>3,
             'precio'=>25,

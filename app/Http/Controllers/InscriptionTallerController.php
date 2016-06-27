@@ -310,8 +310,20 @@ class InscriptionTallerController extends Controller
     public function misinscripciones()
     {
         
+        /*Datos de inscripciones del usuario Socio*/
+        $usuario  = Auth::user();
+        /*Datos de inscripciones de los familiares del usuario Socio*/
+        $persona=$usuario->persona;
+        $postulante=Postulante::find($persona->id); 
+        $familiares=$postulante->familiarxpostulante;
+
+        /*array_push(*/
+        $fecha_validable=Carbon::now('America/Lima')->addDays(2)->format('Y-m-d');
+
+        $tipo_persona = $persona->tipopersona->id;
+
         $talleresxpersona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->talleres;
-        return view('socio.talleres.inscripciones', compact('talleresxpersona'));
+        return view('socio.talleres.inscripciones', compact('talleresxpersona','familiares','fecha_validable','tipo_persona'));
     }
    
     
@@ -375,21 +387,52 @@ class InscriptionTallerController extends Controller
      */
     public function removeInscriptionToUser($id)
     {
-        $usuario  = Auth::user();
-        $persona  = $usuario->persona;
-        $taller   = Taller::find($id);
+        DB::beginTransaction();
+        try{
+            $usuario  = Auth::user();
+            $persona  = $usuario->persona;
+            $taller   = Taller::find($id);
 
-        $facturacion = Facturacion::where('taller_id', '=', $taller->id)->where('persona_id', '=', $persona->id)->get()->first();
+            $facturacion = Facturacion::where('taller_id', '=', $taller->id)->where('persona_id', '=', $persona->id)->get()->first();
 
-        if($facturacion)
-            $facturacion->delete();
+            if($facturacion)
+                $facturacion->delete();
 
-        $taller->vacantes=$taller->vacantes+1;
-        $taller->save();
+            $taller->vacantes=$taller->vacantes+1;
+            $taller->save();
 
-        $persona=Persona::where('id_usuario','=',Auth::user()->id)->first();
-        $persona->talleres()->detach([$id]);
+            $persona=Persona::where('id_usuario','=',Auth::user()->id)->first();
+            $persona->talleres()->detach([$id]);
+        }
+        catch(ValidationException $e){
+            DB::rollback();
+            var_dump($e->getErrors());
+        }
+        DB::commit();
+        return back();
+    }
+    public function removeInscriptionToFamiliar($id,$idPersona)
+    {
+        DB::beginTransaction();
+        try{
+            $persona  = Persona::find($idPersona);
+            $taller   = Taller::find($id);
 
+            $facturacion = Facturacion::where('taller_id', '=', $taller->id)->where('persona_id', '=', $persona->id)->get()->first();
+
+            if($facturacion)
+                $facturacion->delete();
+
+            $taller->vacantes=$taller->vacantes+1;
+            $taller->save();
+
+            $persona->talleres()->detach([$id]);
+        }
+        catch(ValidationException $e){
+            DB::rollback();
+            var_dump($e->getErrors());
+        }
+        DB::commit();
         return back();
     }
 }

@@ -42,7 +42,7 @@ class SedeTableSeeder extends Seeder
             'departamento' => 'Piura', 
             'provincia' => 'Piura', 
             'distrito' => 'Castilla', 
-            'direccion' => 'Av. Grau 457', 
+            'direccion' => 'Av. La Molina 457', 
             'referencia' => 'Alt. Comisaria La Rica Piura', 
             'nombre_contacto' => 'Willian Chiroque', 
             'capacidad_maxima' => 10000,

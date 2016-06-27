@@ -65,6 +65,9 @@ Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
 	Route::post('talleres-familiar/{id}/confirm/save','InscriptionTallerController@makeInscriptionFamiliarToUser');
 
 	Route::get('talleres/{id}/delete', 'InscriptionTallerController@removeInscriptionToUser');
+	Route::get('talleres-familiar/{id}/{idPersona}/delete', 'InscriptionTallerController@removeInscriptionToFamiliar');
+	
+
 	Route::get('talleres/mis-inscripciones','InscriptionTallerController@misinscripciones');
 		//Socio.bungalows
 	Route::get('bungalows-s','SocioController@bungalow');
@@ -274,6 +277,13 @@ Route::group(['middleware' => ['auth', 'adminpagos']], function () {
     Route::post('pagos/registrar-pago/update/{id}', 'PagosController@storePago');
     Route::get('pagos/{id}/show', 'PagosController@showSocio'); // Detalle del pago
     /*Route::post('pagos/{id}/createPago', 'PagosController@createPago');*/
+
+    //PAGOS POR INGRESO AL CLUB
+    Route::get('ingreso/busqueda','PagosController@buscarpersona');
+    Route::get('/resultado-busqueda-persona','PagosController@resultadopersona');
+    //Route::get('/resultado-busqueda-persona/','PagosController@resultadomostrar');
+    Route::post('/registrar-pago-ingreso','PagosController@registrarPagoIngreso');
+   
 });
 
 

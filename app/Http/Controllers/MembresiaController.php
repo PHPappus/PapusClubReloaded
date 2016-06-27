@@ -112,7 +112,7 @@ class MembresiaController extends Controller
             {
                 $tarifa = $membresia->tarifa;
                 $membresia->forceDelete();
-                $tarifa->forceDelete();                
+                $tarifa->forceDelete();             
             }
             catch(\Exception $e)
             {
