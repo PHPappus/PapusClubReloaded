@@ -151,4 +151,29 @@ class InscriptionTallerAdminReservaController extends Controller
 
         return view('admin-reserva.talleres.inscripciones', compact('talleres','personas','fecha_validable'));
     }
+
+    public function removeInscriptionToPersona($id,$idPersona)
+    {
+        DB::beginTransaction();
+        try{
+            $persona  = Persona::find($idPersona);
+            $taller   = Taller::find($id);
+
+            $facturacion = Facturacion::where('taller_id', '=', $taller->id)->where('persona_id', '=', $persona->id)->get()->first();
+
+            if($facturacion)
+                $facturacion->delete();
+
+            $taller->vacantes=$taller->vacantes+1;
+            $taller->save();
+
+            $persona->talleres()->detach([$id]);
+        }
+        catch(ValidationException $e){
+            DB::rollback();
+            var_dump($e->getErrors());
+        }
+        DB::commit();
+        return back();
+    }
 }

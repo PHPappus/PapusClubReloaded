@@ -66,12 +66,13 @@
 							<td>{{ $persona->nombre }}</td>
 							<td>{{ $taller->nombre }}</td>
 				    		<td>{{ $taller->profesor }}</td>
-	 						<td>{{ strtotime($taller->fecha_inicio)}}</td>
-	 						<td>{{ strtotime($taller->fecha_fin)}}</td>
+
+	 						<td>{{ date("d-m-Y",strtotime($taller->fecha_inicio)) }}</td>
+	 						<td>{{ date("d-m-Y",strtotime($taller->fecha_fin))}}</td>
 
 							<td>
 								@if($taller->fecha_inicio >= $fecha_validable)
-								     <a class="btn btn-danger" data-href="{{url('/actividad-admin-reserva/inscripcion/'.$taller->id.'/'.$persona->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+								     <a class="btn btn-danger" data-href="{{url('/taller-admin-reserva/inscripcion/'.$taller->id.'/'.$persona->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
 								@else
 									 <a class="btn btn-info"  title="El periodo de anulación ya ha caducado" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
 								@endif
