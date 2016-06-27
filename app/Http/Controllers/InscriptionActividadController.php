@@ -115,13 +115,18 @@ class InscriptionActividadController extends Controller
         }
         /*Se terminó de preparar las horas*/
 
-
-        $actividades=Actividad::where('estado','=',1)
-                               ->where('a_realizarse_en','>=',Carbon::now('America/Lima')->format('Y-m-d'))
-                               ->where('a_realizarse_en','>=',$fecha_inicio)
-                               ->where('a_realizarse_en','<=',$fecha_fin)
-                               ->whereBetween('hora_inicio',[$horaInicio,$horaFin])
-                               ->get();
+        if($fecha_fin<$fecha_inicio){
+            Session::flash('message-error','Usted ha ingresado un rango invalido de fechas, por favor ingrese uno valido (fecha de inicio debe ser menor a la fecha fin)');
+            return Redirect("/inscripcion-actividad/inscripcion-actividades");
+        }
+        else{
+            $actividades=Actividad::where('estado','=',1)
+                                   ->where('a_realizarse_en','>=',Carbon::now('America/Lima')->format('Y-m-d'))
+                                   ->where('a_realizarse_en','>=',$fecha_inicio)
+                                   ->where('a_realizarse_en','<=',$fecha_fin)
+                                   ->whereBetween('hora_inicio',[$horaInicio,$horaFin])
+                                   ->get();
+        }
 
         /*$actividadesxsede=Actividad::all();*/
    
