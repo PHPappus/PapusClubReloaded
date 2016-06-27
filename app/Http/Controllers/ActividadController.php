@@ -11,13 +11,33 @@ use papusclub\Models\Configuracion;
 use papusclub\Models\TipoPersona;
 use papusclub\Models\TarifaActividad;
 use papusclub\Models\Reserva;
+use papusclub\Models\Sede;
 use papusclub\Models\PersonaxActividad;
 use papusclub\Http\Requests\StoreActividadRequest;
+use papusclub\Http\Requests\StoreEventoRequest;
 use papusclub\Http\Requests\StoreConfiguracionRequest;
 use papusclub\Http\Requests\EditActividadRequest;
 use Carbon\Carbon;
 class ActividadController extends Controller
 {
+
+     public function select($id)//cuando se selecciona la reserva
+    {
+        $reserva = Reserva::find($id);
+        $values=Configuracion::where('grupo','=','3')->get();
+        $tipoPersonas = TipoPersona::all();
+        
+        return view('admin-registros.actividad.newActividad', compact('reserva','values','tipoPersonas'));
+    }
+    public function selectSede($id)//cuando se selecciona la sede(ambiente) del evento
+    {
+        $sede = Sede::find($id);
+        $ambiente=$sede->ambientes()->first();
+        $values=Configuracion::where('grupo','=','3')->where('valor','=','Evento')->get();
+        $tipoPersonas = TipoPersona::all();
+        
+        return view('admin-registros.actividad.newEvento', compact('sede','values','tipoPersonas','ambiente'));
+    }
     //Muestra la lista de sedes que se encuentran en BD, estas se pueden modificar, cambiar el estado, ver mas detalle o registrar una nueva sede
     public function index()
     {
@@ -26,14 +46,24 @@ class ActividadController extends Controller
     }
     public function create()
     {
-    	/*PAra crear la ACtividad , primero se debe buscar el Ambiente*/
-    	$reservas = Reserva::where('actividad_id','=',null)->get(); 
+        /*PAra crear la ACtividad , primero se debe buscar el Ambiente*/
+        $reservas = Reserva::where('actividad_id','=',null)->get(); 
         $tipoPersonas = TipoPersona::all();
         $values=Configuracion::where('grupo','=','3')->get();
 
         //debe mostrar todas las reservas realizadas
         return view('admin-registros.actividad.listaReservas', compact('reservas', 'values', 'tipoPersonas'));
-    	
+        
+    }
+    public function createEvento()
+    {
+        /*PAra crear la ACtividad , primero se debe buscar el Ambiente*/
+        $tipoPersonas = TipoPersona::all();
+        $values=Configuracion::where('grupo','=','3')->where('valor','=','Evento')->get();
+        $sedes=Sede::all();
+        //debe mostrar todas las reservas realizadas
+        return view('admin-registros.actividad.listaSedes', compact('sedes', 'values', 'tipoPersonas'));
+        
     }
     public function store(StoreActividadRequest $request)
     {
@@ -81,7 +111,47 @@ class ActividadController extends Controller
 
         return redirect('actividad/index')->with('stored', 'Se registró la actividad correctamente.');
     }
+    public function storeEvento(StoreEventoRequest $request)
+    {
+        $input = $request->all();
+        $ambiente=Ambiente::find($input['ambiente']);
+        $actividad = new Actividad();
+        $carbon=new Carbon(); 
+        $actividad->nombre= $input['nombre'];
+        //para agregar la actividades al ambiente
+            $actividad->reserva_id=null;
+            $actividad->ambiente_id = $ambiente->id;
+        //
+        $actividad->capacidad_maxima= $input['capacidad_maxima'];
+        $tipoActividad = Configuracion::find($input['tipo_actividad']);
+        $actividad->tipo_actividad= $tipoActividad->valor;
+        $actividad->descripcion= $input['descripcion'];
+       // $actividad->cant_ambientes=$input['cant_ambientes'];
+        
+        if (empty($input['a_realizarse_en'])) {
+                    $actividad->a_realizarse_en="";
+        }else{
+               $a_realizarse_en = str_replace('/', '-', $input['a_realizarse_en']);      
+               $actividad->a_realizarse_en=$carbon->createFromFormat('d-m-Y', $a_realizarse_en)->toDateString();
+             $actividad->hora_inicio=$carbon->createFromFormat('H:i:s', $input['hora'])->toTimeString();
+        }
 
+        $actividad->estado=false; 
+        $actividad->save();
+
+        $tipoPersonas = TipoPersona::all();
+        $actividad_id = $actividad->id;
+
+        foreach ($tipoPersonas as $tipoPersona) {
+            $tarifa = new TarifaActividad();
+            $tarifa->actividad_id = $actividad_id;
+            $tarifa->tipo_persona_id = $tipoPersona->id;
+            $tarifa->precio = $input[$tipoPersona->descripcion];
+            $tarifa->save();
+        }
+
+        return redirect('actividad/index')->with('stored', 'Se registró la actividad correctamente.');
+    }
     public function storeTipoActividad(StoreConfiguracionRequest $request, $id)
     {       
         $input = $request->all();
@@ -163,14 +233,6 @@ class ActividadController extends Controller
 
     }
    
-     public function select($id)//cuando se selecciona la reserva
-    {
-        $reserva = Reserva::find($id);
-        $values=Configuracion::where('grupo','=','3')->get();
-        $tipoPersonas = TipoPersona::all();
-        
-        return view('admin-registros.actividad.newActividad', compact('reserva','values','tipoPersonas'));
-    }
      public function searchReservas()
     {
         $ambientes = Ambiente::all();

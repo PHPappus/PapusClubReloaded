@@ -86,6 +86,7 @@
             <ul class="dropdown-menu">
                 <li><a href="{!!URL::to('/actividad/index')!!}" title="Consultar actividades" target="_self">Consultar</a></li>
                 <li><a href="{!!URL::to('/actividad/new')!!}" title="Consultar ambiente" target="_self">Registrar</a></li>
+                <li><a href="{!!URL::to('/actividad/newEvento')!!}" title="Consultar ambiente" target="_self">Registrar Evento</a></li>
             </ul>
           </li>
         </ul>
@@ -112,6 +113,19 @@
             <ul class="dropdown-menu">    
                 <li><a href="{!!URL::to('/proveedor/index')!!}">Consultar</a></li>
                 <li><a href="{!!URL::to('/proveedor/new')!!}">Registrar</a></li>                
+            </ul>
+          </li>
+        </ul>
+
+        <!-- Concesionarias -->
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Concesionarias <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">    
+                <li><a href="{!!URL::to('/concesionaria/index')!!}">Consultar</a></li>
+                <li><a href="{!!URL::to('/concesionaria/new')!!}">Registrar</a></li>                
             </ul>
           </li>
         </ul>

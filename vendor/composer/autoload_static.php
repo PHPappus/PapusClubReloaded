@@ -96,9 +96,9 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
     public static $prefixDirsPsr4 = array (
         'phpDocumentor\\Reflection\\' => 
         array (
-            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'papusclub\\' => 
         array (
@@ -286,6 +286,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'AddFkToAmbientesorteoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_12_215558_add_fk_to_ambientesorteo_table.php',
         'AddFkToCarnet' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_163738_add_fk_to_carnet.php',
         'AddFkToCarnetxsocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_031359_add_fk_to_carnetxsocio_table.php',
+        'AddFkToConcesionariaTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_26_203827_add_fk_to_concesionaria_table.php',
         'AddFkToFacturacionTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_235523_add_fk_to_facturacion_table.php',
         'AddFkToFacturasTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_202818_add_fk_to_facturas_table.php',
         'AddFkToFamiliarxpostulante' => __DIR__ . '/../..' . '/database/migrations/2016_06_12_083057_add_fk_to_familiarxpostulante.php',
@@ -329,6 +330,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'CreateCalificacionesTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_173021_create_calificaciones_table.php',
         'CreateCarnetTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_201000_create_carnet_table.php',
         'CreateCarnetxsocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_031106_create_carnetxsocio_table.php',
+        'CreateConcesionariaTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_26_193838_create_concesionaria_table.php',
         'CreateConfiguracionTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_26_194248_create_configuracion_table.php',
         'CreateDepartamentosTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_07_152144_create_departamentos_table.php',
         'CreateDistritosTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_07_192449_create_distritos_table.php',
