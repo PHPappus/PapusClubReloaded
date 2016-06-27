@@ -82,7 +82,7 @@
 			  	<div class="form-group">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			    		<textarea class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" rows="3" cols="50" value="{{$taller->descripcion}}">{{$taller->descripcion}}</textarea>
+			    		<textarea class="form-control" id="descripcionInput" name="descripcion" maxlength="100" style="resize: none" placeholder="Descripción" rows="3" cols="50" value="{{$taller->descripcion}}">{{$taller->descripcion}}</textarea>
 			    	</div>
 			  	</div>
 
@@ -117,16 +117,17 @@
 				<div class="form-group required">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Inicio Taller</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIni" placeholder="Fecha Inicio Taller" value="{{$taller->fecha_inicio}}">
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIni" placeholder="Fecha Inicio Taller" value="{{$taller->fecha_inicio}}" disabled>
 					</div>	
 				</div>
 
 			  	<div class="form-group required">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Fin Taller</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFin" placeholder="Fecha Fin Taller"  value="{{$taller->fecha_fin}}">
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFin" placeholder="Fecha Fin Taller"  value="{{$taller->fecha_fin}}" disabled>
 					</div>	
 				</div>
+
 
 				<div class="form-group required">
 			    	<label for="cantSesInput" class="col-sm-4 control-label">Cantidad de Sesiones</label>

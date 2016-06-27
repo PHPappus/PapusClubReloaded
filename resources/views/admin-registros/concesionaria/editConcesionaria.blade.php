@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>MODIFICAR PROVEEDOR</title>
+	<title>MODIFICAR CONCESIONARIA</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	{!!Html::style('../css/jquery.bxslider.css')!!}
-	{!!Html::style('../css/font-awesome.css')!!}
-	{!!Html::style('../css/bootstrap.css')!!}
-	{!!Html::style('../css/MisEstilos.css')!!}
+	{!!Html::style('/css/jquery.bxslider.css')!!}
+	{!!Html::style('/css/font-awesome.css')!!}
+	{!!Html::style('/css/bootstrap.css')!!}
+	{!!Html::style('/css/MisEstilos.css')!!}
+	{!!Html::style('css/datepicker.css')!!}
+	{!!Html::style('css/bootstrap-datepicker3.css')!!}
+	{!!Html::style('/css/DataTable.css')!!}	
+
 	<style>
 
 		.modal-backdrop.in{
@@ -27,12 +31,12 @@
 		<br/><br/>
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>EDITAR PROVEEDOR</strong>
+					<strong>EDITAR CONCESIONARIA</strong>
 			</div>		
 		</div>
 		<div class="container">
 			<!--@include('errors.503')-->		
-			<form method="POST" action="/proveedor/{{ $proveedor->id }}/edit" class="form-horizontal form-border">
+			<form method="POST" action="/concesionaria/{{ $concesionaria->id }}/edit" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					
 				<!-- Mensajes de error de validación del Request -->
@@ -52,43 +56,57 @@
 
 				<br/><br/>
 
-				<!-- INICIO INCIIO -->				                       
+				<!-- INICIO INCIIO -->				        
 				<div class="form-group">
-		    		<label for="nombre_proveedorInput" class="col-sm-4 control-label">Nombre</label>
+			    	<label for="sede_nombre" class="col-sm-4 control-label">Sede</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" class="form-control" id="sede_nombre" name="sede_nombre" placeholder="Nombre de la Sede" value="{{$concesionaria->sede->nombre}}" readonly>
+			    	</div>
+			  	</div>						
+
+			  	<div class="form-group" hidden>
+			    	<label for="sede_id" class="col-sm-4 control-label">ID Sede</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="sede_id" name="sede_id" placeholder="ID de la Sede" value="{{$concesionaria->sede_id}}" readonly>
+			    	</div>
+			  	</div>						
+
+				<div class="form-group">
+		    		<label for="nombre_concesionariaInput" class="col-sm-4 control-label">Nombre</label>
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="nombre_proveedorInput" name="nombre_proveedor" value="{{$proveedor->nombre_proveedor}}" >
+		      			<input type="text" class="form-control" id="nombre" name="nombre" value="{{$concesionaria->nombre}}" readonly>
 		    		</div>
 		  		</div>
 			  	<div class="form-group">
 			    	<label for="rucInput" class="col-sm-4 control-label">RUC</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="rucInput" name="ruc" value="{{$proveedor->ruc}}" readonly>
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="rucInput" name="ruc" value="{{$concesionaria->ruc}}" readonly>
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group">
-			    	<label for="direccionInput" class="col-sm-4 control-label">Dirección</label>
+			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="direccionInput" name="direccion" value="{{$proveedor->direccion}}">
+			      		<input type="text" class="form-control" id="descripcionInput" name="descripcion" value="{{$concesionaria->descripcion}}">
 			    	</div>
 			  	</div>	  	
 			  	<div class="form-group">
 			    	<label for="telefonoInput" class="col-sm-4 control-label">Teléfono</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="telefonoInput" name="telefono" value="{{$proveedor->telefono}}" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="telefonoInput" name="telefono" value="{{$concesionaria->telefono}}" >
 			    	</div>
 			  	</div>
 			  	<div class="form-group">
 			    	<label for="correoInput" class="col-sm-4 control-label">Correo</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="correoInput" name="correo" value="{{$proveedor->correo}}">
+			      		<input type="text" class="form-control" id="correoInput" name="correo" value="{{$concesionaria->correo}}">
 			    	</div>
 			  	</div>
 			  	
 			  	<div class="form-group">
 			    	<label for="nombre_responsableInput" class="col-sm-4 control-label">Nombre del Responsable</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="nombre_responsableInput" name="nombre_responsable" value="{{$proveedor->nombre_responsable}}" >
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombre_responsableInput" name="nombre_responsable" value="{{$concesionaria->nombre_responsable}}" >
 			    	</div>
 			  	</div>			  
 			  	<div class="form-group">
@@ -97,13 +115,33 @@
 			      		
 			      		<select class="form-control" id="estado" name="estado" >
 						<!-- Las opciones se deberían extraer de la tabla configuracion-->
-						<option value="1" @if($proveedor['estado'] == true) selected @endif >Activo</option>
-						<option value="0" @if($proveedor['estado'] == false) selected @endif>Inactivo</option>				
+						<option value="1" @if($concesionaria['estado'] == true) selected @endif >Activo</option>
+						<option value="0" @if($concesionaria['estado'] == false) selected @endif>Inactivo</option>				
 						
 						</select>							
 			    	</div>	    	
 			  	</div>
 			  	
+			  	<div class="form-group required">
+			    	<label for="tipoConcesionariaInput" class="col-sm-4 control-label">Tipo de Concesionaria</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" class="form-control" id="tipo_concesionaria" name="tipo_concesionaria" value="{{$concesionaria->tipo_concesionaria}}" readonly>
+			    	</div>	    	
+			  	</div>		
+
+			  	<div class="form-group required">
+					<label  class="control-label col-sm-4">Inicio de Concesión [dd/mm/aaaa]:</label>
+					<div class="col-sm-5">
+						<input class="datepicker" type="text" id="fecha_inicio_concesion" readonly name="fecha_inicio_concesion" value="{{ $concesionaria->fecha_inicio_concesion }}"  >						
+					</div>					
+				</div>
+				
+				<div class="form-group required">
+					<label  class="control-label col-sm-4">Fin de Concesión [dd/mm/aaaa]:</label>
+					<div class="col-sm-5">
+						<input class="datepicker" type="text" id="fecha_fin_concesion" readonly name="fecha_fin_concesion"  value="{{ $concesionaria->fecha_fin_concesion }}" >						
+					</div>
+				</div>
 					<!-- FIN FIN FIN  -->
 				
 			
@@ -116,7 +154,7 @@
 						<input class="btn btn-primary" data-toggle="modal" data-target="#confirmation" onclick="ventana()" value="Aceptar">
 					</div>
 					<div class="btn-group">
-						<a href="/proveedor/index" class="btn btn-info">Cancelar</a>
+						<a href="/concesionaria/index" class="btn btn-info">Cancelar</a>
 					</div>
 				</div>
 				</br>
@@ -129,7 +167,7 @@
 							<!-- Header de la ventana -->
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" onclick="cerrarventana()">&times;</span></button>
-								<h4 class="modal-title">EDITAR PRODUCTO</h4>
+								<h4 class="modal-title">EDITAR CONCESIONARIA</h4>
 							</div>
 							<!-- Contenido de la ventana -->
 							<div class="modal-body">
@@ -148,10 +186,13 @@
 	</div>		
 @stop
 	<!-- JQuery -->
-	{!!Html::script('../js/jquery-1.11.3.min.js')!!}
-	{!!Html::script('../js/bootstrap.js')!!}
-	{!!Html::script('../js/jquery.bxslider.min.js')!!}
-	{!!Html::script('../js/MisScripts.js')!!}
+	{!!Html::script('js/jquery-1.11.3.min.js')!!}
+	{!!Html::script('js/bootstrap.js')!!}
+	{!!Html::script('/js/jquery.bxslider.min.js')!!}	
+	{!!Html::script('js/MisScripts.js')!!}
+	{!!Html::script('js/jquery-1.12.4.min.js')!!}	
+	{!!Html::script('js/bootstrap-datepicker-sirve.js')!!}		  
+	
 	<!-- Javascript -->
 	<script>
 		function ventana(){
@@ -161,5 +202,50 @@
 			document.getElementsByTagName('header')[0].style.zIndex = 3;
 		}
   	</script>
+  	<script>
+		$(document).ready(function(){						 		
+			var nowTemp = new Date();		
+			var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+			var checkin = $('#fecha_inicio_concesion').datepicker({					
+	  			onRender: function(date) {
+
+	    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
+	  			}
+			}).on('changeDate', function(ev) {
+	  			if (ev.date.valueOf() > checkout.date.valueOf()) {
+	    			var newDate = new Date(ev.date)
+	    			newDate.setDate(newDate.getDate() + 1);
+	    			checkout.setValue(newDate);
+	  			}
+	 			checkin.hide();
+	  			$('#fecha_fin_concesion')[0].focus();
+			}).data('datepicker');
+
+			var checkout = $('#fecha_fin_concesion').datepicker({
+				language: "es",
+	  			onRender: function(date) {
+	    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+	  			}
+			}).on('changeDate', function(ev) {
+	  			checkout.hide();
+			}).data('datepicker');	
+			$(function(){
+
+			$('#fecha_inicio_concesion').datepicker('update', now);
+			});
+
+			$(function(){
+				$('.datepicker').datepicker({
+					format: "dd/mm/yyyy",				        
+			        autoclose: true,
+			        startDate: today,						
+			        setDate: now
+				});
+			});
+
+		});		
+
+	</script>	
 </body>
 </html>

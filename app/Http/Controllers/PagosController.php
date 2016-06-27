@@ -60,8 +60,12 @@ class PagosController extends Controller
         $facturacion->tipo_pago = $input['tipo_pago'];
         $facturacion->estado = $estado_facturacion->valor;
         $facturacion->update();
-        $facturacion->reserva->estadoReserva = "Activo";
-        $facturacion->reserva->update();
+        if ($facturacion->reserva_id) 
+        {
+            $facturacion->reserva->estadoReserva = "Activo";
+            $facturacion->reserva->update();         
+        }        
+
 
         return redirect('pagos/pago-seleccionar-socio')->with('stored', 'Se registró la facturacion correctamente.');
     }
@@ -217,74 +221,21 @@ class PagosController extends Controller
         }
     }
 
-    public function deudasMembresia()
+
+    public function registrarDeudasMembresia()
     {
         $socios = Socio::all();
-
-
-        return view('admin-pagos.membresia.index',compact('socios'));
-    }
-
-    public function deudaMembresiaSocio($id)
-    {
-        $socio = Socio::find($id);
-        $tipopagos = Configuracion::where('grupo','=','8')->get();
-        $comprobantes = Configuracion::where('grupo','=','10')->get();
-
-        return view('admin-pagos.membresia.deudaMembresia',compact('socio','tipopagos','comprobantes'));
-    }
-
-    public function registrarPagoMembresia(RegistrarPagoMembresiaRequest $request)
-    {
-        $input = $request->all();
-
-        $persona = null;
-        if(isset($input['dni']))
+        foreach ($socios as $socio) 
         {
-            $numerodoc=$input['dni'];
-            $match = ['doc_identidad'=>$numerodoc];
-            $persona = Persona::where($match)->first();
-        }
-        else
-        {
-            $numerodoc=$input['carnet'];
-            $match = ['carnet_extranjeria'=>$numerodoc];
-            $persona = Persona::where($match)->first();
-        }
-
-        if($persona!=null)
-        {
-            $monto = $input['monto'];
-            $tipo_pago_id = $input['tipo_pago_id'];
-            $comprobante=$input['comprobante'];
-            $numero = $input['numero'];
-            $descripcion = $input['descripcion'];
-
-            /*Buscando en la tabla configuraciones*/
-            $tipopago = Configuracion::find($tipo_pago_id);
-            $tipo=$tipopago->valor;
-
-            $comprobanteObject = Configuracion::find($comprobante);
-            $comprobante=$comprobanteObject->valor;
-
-            $estado = 'Pagado';
-
-            /*Registrando la factura*/
             $facturacion = new Facturacion();
-            $facturacion->persona_id=$persona->id;
-            $facturacion->total=$monto;
-            $facturacion->tipo_pago=$tipo;
-            $facturacion->tipo_comprobante=$comprobante;
-            $facturacion->numero_pago=$numero;
-            $facturacion->descripcion=$descripcion;
-            $facturacion->estado=$estado;
+            $facturacion->persona_id = $socio->postulante->persona->id;
+            $facturacion->total=$socio->membresia->tarifa->monto;
+            $facturacion->descripcion='Cuota Membresía.';
+            $facturacion->estado ='Emitido';
+            $facturacion->tipo_comprobante='Boleta';
             $facturacion->save();
+        }
 
-            return redirect('membresia/deudas')->with('stored', 'Se registró el pago de manera exitosa.');
-        }
-        else
-        {
-            return redirect('membresia/deudas')->with('stored', 'No se pudo registrar el pago debido a un error inesperado, vuelva a intentar nuevamente.');
-        }
+        return redirect('pagos/pago-seleccionar-socio/');
     }
 }

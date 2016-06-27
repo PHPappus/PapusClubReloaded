@@ -67,10 +67,17 @@
 			    	<a class="btn btn-info" name="buscarsede" href="#"  title="Buscar Sede" data-toggle="modal" data-target="#modalBuscar"><i name="buscarSede" class="glyphicon glyphicon-search"></i></a>
 			  	</div>		
 
+			  	<div class="form-group required">
+			    	<label for="nombreSede" class="col-sm-4 control-label">Nombre de Sede</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" class="form-control" id="nombreSede" name="nombreSede" placeholder="Nombre de la Sede" value="{{old('nombreSede')}}" readonly>
+			    	</div>
+			  	</div>		
+
 				<div class="form-group required">
 			    	<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombre" name="nombre" placeholder="Nombre de la Concesionaria" value="{{old('nombre')}}">
+			      		<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre de la Concesionaria" value="{{old('nombre')}}">
 			    	</div>
 			  	</div>
 
@@ -82,9 +89,9 @@
 			  	</div>
 
 			  	<div class="form-group required">
-			    	<label for="direccionInput" class="col-sm-4 control-label">Dirección</label>
+			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección" value="{{old('direccion')}}">
+			      		<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" value="{{old('descripcion')}}">
 			    	</div>
 			  	</div>	  	
 
@@ -109,30 +116,20 @@
 			    	</div>
 			  	</div>			  	
 
-			  	<div hidden class="form-group required">
-			    	<label for="estadoInput" class="col-sm-4 control-label">Estado</label>
+			  	<div class="form-group required">
+			    	<label for="tipoConcesionariaInput" class="col-sm-4 control-label">Tipo de Concesionaria</label>
 			    	<div class="col-sm-5">
 			    	
-			      		<select class="form-control" id="estado" name="estado" >
-						<!-- Las opciones se deberían extraer de la tabla configuracion-->
-						<option value="1" selected>Activo</option>
-						<option value="0" >Inactivo</option>				
-						
-						</select>						
-			    	</div>
-			  	</div>		
+			      		<select class="form-control" id="tipo_concesionaria" name="tipo_concesionaria">
 
-			  	<div hidden class="form-group required">
-			    	<label for="tipoInput" class="col-sm-4 control-label">Tipo de Concesionaria</label>
-			    	<div class="col-sm-5">
-			    	
-			      		<select class="form-control" id="tipo_concesionaria" name="tipo_concesionaria" >
-						<!-- Las opciones se deberían extraer de la tabla configuracion-->
-						<option value="1" selected>Activo</option>
-						<option value="0" >Inactivo</option>				
-						
+						<option value="" selected >Seleccionar tipo...</option>
+						@foreach($tipo_concesionarias as $tipo_concesionaria)
+							<option value="{{$tipo_concesionaria->valor}}" >{{$tipo_concesionaria->valor}}</option>
+						@endforeach						
 						</select>						
+						
 			    	</div>
+			    	<a class="btn btn-info" name="agregarTipoConcesionaria" href="#"  title="Agregar Tipo de Concesionaria" data-toggle="modal" data-target="#modalAgregar"><i name="agregarTipoConcesionaria" class="glyphicon glyphicon-plus"></i></a>
 			  	</div>		
 
 				<div class="form-group required">
@@ -227,8 +224,11 @@
 		  	});
 		});		
   		
-		function getsede(){								
-			document.getElementById('sede_id').value =  $('#example input:radio:checked').val();
+		function getsede(){											
+			$sedeAux = $('#example input:radio:checked').val();
+			$sedeVal = $sedeAux.split("|");
+			document.getElementById('sede_id').value = $sedeVal[0];
+			document.getElementById('nombreSede').value = $sedeVal[1];
 		}
 	</script>	
 
@@ -281,7 +281,7 @@
 											<td>{{$sede->departamento}}</td>											
 											<td>
 												<div class="radio">
-  													<label><input type="radio" name="optradio" value="{{$sede->id}}"></label>
+  													<label><input type="radio" name="optradio" value="{{$sede->id}}|{{$sede->nombre}}"></label>
 												</div>
 											</td>
 							            </tr>				            		
@@ -318,6 +318,47 @@
 	    }        
     }
 	</style>	
+	<!-- Modal -->
+	<div id="modalAgregar" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
 
+	    <!-- Modal content-->	    
+	    <div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Confirmar</h4>
+		</div>
+		<div class="container">
+			<form method="POST" action="/concesionaria/new/tipoconcesionaria" class="form-horizontal form-border">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+			<br>
+				<div class="form-group required">
+			    	<label for="valorInput" class="col-sm-1 control-label">Nombre</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="valor" name="valor" placeholder="Nombre del Tipo de Concesionaria" value="{{old('valor')}}">
+			    	</div>					    	
+				</div>									 
+
+				<div class="btn-inline">
+					<div class="btn-group col-sm-4"></div>
+					
+					<div class="btn-group ">
+						<input class="btn btn-primary" type="submit" value="Confirmar">
+					</div>
+					<div class="btn-group">
+						<a  data-dismiss="modal" class="btn btn-info">Cancelar</a>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	    <div class="modal-body">	      
+	    </div>
+		<div class="modal-footer">	                    
+		</div>
+	    </div>
+
+	  </div>
+	</div>
 </body>	
 </html>

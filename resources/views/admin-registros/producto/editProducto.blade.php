@@ -113,7 +113,7 @@
 			  	<div class="form-group required">
 			    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="precio" name="precio" placeholder="Precio"  value="{{$producto->precioproducto->first()['precio']}}">
+			      		<input type="text" class="form-control" onkeypress="return inputLimiter(event,'DoubleFormat')" id="precio" name="precio" placeholder="Precio"  value="{{$producto->precioproducto->first()['precio']}}">
 			    	</div>
 			  	</div>	  
 					<!-- FIN FIN FIN  -->

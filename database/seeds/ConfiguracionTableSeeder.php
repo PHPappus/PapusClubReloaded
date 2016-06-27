@@ -78,11 +78,16 @@ class ConfiguracionTableSeeder extends Seeder
         Configuracion::insert(['valor'=>'Taller','grupo'=>'15','descripcion'=>'tipo promocion']);
         Configuracion::insert(['valor'=>'Ambiente','grupo'=>'15','descripcion'=>'tipo promocion']);
 
+        Configuracion::insert(['valor'=>'Alimentos y Bebidas','grupo'=>'16','descripcion'=>'tipo concesionaria']);
+        Configuracion::insert(['valor'=>'Deportes','grupo'=>'16','descripcion'=>'tipo concesionaria']);
+        Configuracion::insert(['valor'=>'Peluqueria y Spa','grupo'=>'16','descripcion'=>'tipo concesionaria']);
 
         Configuracion::insert(['valor'=>'1','grupo'=>'17','descripcion'=>'tipo puntaje']);
         Configuracion::insert(['valor'=>'2','grupo'=>'17','descripcion'=>'tipo puntaje']);
         Configuracion::insert(['valor'=>'3','grupo'=>'17','descripcion'=>'tipo puntaje']);
         Configuracion::insert(['valor'=>'4','grupo'=>'17','descripcion'=>'tipo puntaje']);
         Configuracion::insert(['valor'=>'5','grupo'=>'17','descripcion'=>'tipo puntaje']);
+
+        Configuracion::insert(['valor'=>'50','grupo'=>'18','descripcion'=>'monto traspaso']);
     }
 }

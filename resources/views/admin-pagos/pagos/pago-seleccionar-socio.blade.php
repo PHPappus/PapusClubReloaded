@@ -64,7 +64,13 @@
 							@endforeach
 						</tbody>
 				</table>
-				</br></br></br>										
+				</br></br></br>
+				<div class="btn-inline col-sm-12">	
+						<div class="btn-group col-sm-11"></div>					
+						<div class="btn-group col-sm-1">
+							<a href="/registrar-deuda-membresia" class="btn btn-info">Cambio de Mes</a>
+						</div>
+				</div>														
 			</div>		
 		</div>
 </br></br></br></br>

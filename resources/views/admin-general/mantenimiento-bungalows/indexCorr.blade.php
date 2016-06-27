@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>AGREGAR SORTEO</title>
+	<title>DESHABILITAR BUNGALOWS</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,7 +14,7 @@
 	
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-reserva')
 @section('content')
 <!---Cuerpo -->
 <main class="main">
@@ -24,12 +24,12 @@
 		
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>AGREGAR BUNGALOWS</strong>
+					<strong>DESHABILITAR BUNGALOWS</strong>
 			</div>		
 			<div></div>
 		</div>
 		
-			<form method="POST" action="/sorteo/new/sorteo/bungalows/{{ $sorteo->id }}/store" class="form-horizontal form-border">
+			<form method="POST" action="/mantBungalowPrev/deshabilitar" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 
@@ -48,6 +48,8 @@
 								<th><div align=center>NOMBRE</div></th>	
 								<th><div align=center>CAPACIDAD</div></th>	
 								<th><div align=center>UBICACION</div></th>	
+								<th><div align=center>SEDE</div></th>	
+								<th><div align=center>ESTADO</div></th>	
 								<th><div align=center>SELECCIONAR</div></th>
 							</thead>	
 							<tbody>													
@@ -56,7 +58,14 @@
 										<tr>																				
 											<td>{{$ambiente->nombre}}</td>
 											<td>{{$ambiente->capacidad_actual}}</td>
-											<td>{{$ambiente->ubicacion}}</td>
+											<td>{{$ambiente->descripcion}}</td>
+											@foreach($sedes as $sede)
+												@if($sede->id==$ambiente->sede_id)
+													<td>{{$sede->nombre}}</td>
+												
+												@endif
+											@endforeach
+											<td>{{$ambiente->estado}}</td>
 											<td>{{ Form::checkbox('ch[]', $ambiente->id, false) }}</td>
 														
 										</tr>
@@ -72,13 +81,7 @@
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
-						<input class="btn btn-primary" type="submit" value="Continuar">
-					</div>
-					<div class="btn-group">
-						 <a class="btn btn-info"  title="Atras" href="{{url('/sorteo/'.$sorteo->id.'/atras')}}">Atras</a>   
-					</div>
-					<div class="btn-group">
-						 <a class="btn btn-info"  title="Cancelar" data-href="{{url('/sorteo/'.$sorteo->id.'/nuke')}}" data-toggle="modal" data-target="#modalEliminar">Cancelar</a>   
+						<input class="btn btn-primary" type="submit" value="Deshabilitar">
 					</div>
 				</div>
 				<br><br>

@@ -24,7 +24,7 @@ class IngresoProductoController extends Controller
 {
     //Muestra la lista de productos que se encuentran en BD, estas se pueden modificar, cambiar el estado, ver mas detalle o registrar un nuevo producto
     public function index() {
-        $ingresoproductos = IngresoProducto::all();        
+        $ingresoproductos = IngresoProducto::where('tipo_solicitud','=','Productos')->get();        
         return view('admin-registros.ingreso-producto.index', compact('ingresoproductos'));
     }   
 
@@ -35,7 +35,7 @@ class IngresoProductoController extends Controller
         
         $tipo_solicitudes = Configuracion::where('grupo','=','14')->get();
         
-        $proveedores = Proveedor::all();
+        $proveedores = Proveedor::where('tipo_proveedor','=','Productos')->get();
 
         return view('admin-registros.ingreso-producto.newIngresoProducto', compact('estados','proveedores','tipo_solicitudes'));
     }
@@ -64,14 +64,10 @@ class IngresoProductoController extends Controller
     {       
         $ingresoproducto = IngresoProducto::find($id);
 
-        if (strcmp($ingresoproducto->tipo_solicitud, 'Producto') == 0){
-            $productos = Producto::where('tipo_producto','<>','Servicio')->get();
-            return view('admin-registros.ingreso-producto.add', compact('ingresoproducto','productos'));
-        }
-        else{
-            $productos = Producto::where('tipo_producto','=','Servicio')->get();
-            return view('admin-registros.ingreso-producto.addServicio', compact('ingresoproducto','productos'));
-        }        
+        
+        $productos = Producto::where('tipo_producto','<>','Servicio')->get();
+        return view('admin-registros.ingreso-producto.add', compact('ingresoproducto','productos'));
+        
     }      
 
     public function storeIngresoProducto(StoreProductoxIngresoProductoRequest $request)
@@ -106,7 +102,8 @@ class IngresoProductoController extends Controller
     public function edit($id)
     {
         $ingresoproducto = IngresoProducto::find($id);
-        $estados = Configuracion::where('grupo','=','13')->get();
+        $estados = Configuracion::where('grupo','=','13')
+                                ->where('valor','<>','Servicio Realizado')->get();
         return view('admin-registros.ingreso-producto.editIngresoProducto', compact('ingresoproducto','estados'));
     }
 
