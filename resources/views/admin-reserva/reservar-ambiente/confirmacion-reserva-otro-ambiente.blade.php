@@ -91,7 +91,7 @@
 			    	<div class="col-sm-5">			      		
 			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="persona_id" name="id_persona" placeholder="ID de la Persona" value="{{$socio->id}}" readonly>
 			    	</div>
-			    	<a class="btn btn-info" name="buscarReserva" href="{{url('/reservar-ambiente/'.$ambiente->id.'/searchSocio-otros-ambientes-adminR/')}}" title="Buscar" ><i name="buscarReserva" class="glyphicon glyphicon-search"></i></a>
+			    	
 
 			</div>	
 			<div class="form-group ">
