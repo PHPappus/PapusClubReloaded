@@ -128,7 +128,7 @@
 						    		@if(count($talleresxpersona->where('id',$taller->id))!=0)
 						    			<td style="background:#bcd8bc;">Inscrito</td>
 						    		@else
-						    			<td style="background:#e2bfbf;">No inscrito</td>
+						    			<td style="background:#f7e5e5;">No inscrito</td>
 						    		@endif
 								<td> 
 									<a class="btn btn-info" href="{{url('/talleres/'.$taller->id.'/show')}}"  title="Detalle"><i class="glyphicon glyphicon-list-alt"></i></a>

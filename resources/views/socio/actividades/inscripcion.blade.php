@@ -144,9 +144,8 @@
 					    		<td>{{ $actividad->ambiente->nombre }}</td>
 								<td>{{ $actividad->nombre }}</td>
 								
-		 						
-		 						<td>{{ $actividad->a_realizarse_en}}</td>
-		 						<td>{{ $actividad->hora_inicio}}</td>		 						
+		 						<td>{{ date("d-m-Y",strtotime($actividad->a_realizarse_en))}}</td>
+		 						<td>{{  $actividad->hora_inicio}}</td>		 						
 		 						<td>S/.{{ $actividad->precio($tipo_persona, $actividad->tarifas) }}</td>
 		 						@if($actividad->cupos_disponibles<=0)
 									<td>No hay cupos disponibles</td>
@@ -159,12 +158,12 @@
 						        	<a class="btn btn-info" title="Ya se encuentra inscrito" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
 						        </td>	
 						        @elseif($actividad->cupos_disponibles<=0)
-						        <td>No Inscrito</td>	
+						        <td style="background:#f7e5e5;">No Inscrito</td>	
 						        <td>
 						        	<a class="btn btn-info" title="No hay más cupos disponibles" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
 						        </td>
 						        @else
-						        <td>No Inscrito</td>
+						        <td style="background:#f7e5e5;">No Inscrito</td>
 						        <td>
 						        	<a class="btn btn-info" href="{{url('/inscripcion-actividad/'.$actividad->id.'/confirmacion-inscripcion-actividades')}}" title="Inscripcion" ><i class="glyphicon glyphicon-pencil"></i></a>
 						        </td>
