@@ -62,7 +62,7 @@
 					<tbody>
 					@foreach($facturas as $factura)
 						<tr>
-							<td>{{ str_pad($factura->id, 10, "0", STR_PAD_LEFT)}}</td>
+							<td>{{ $factura->id }}</td>
 							<td>{{ $factura->estado}}</td>
 							<td>{{ $factura->total }}</td>			
 							<td>{{ $factura->tipo_pago }}</td>
