@@ -62,6 +62,13 @@
 			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="persona_id" name="persona_id" placeholder="ID de la Persona" value="{{old('persona_id')}}">
 			    	</div>
 			    	<a class="btn btn-info" name="buscarPersona" href="#"  title="Buscar Persona" data-toggle="modal" data-target="#modalBuscar"><i name="buscarPersona" class="glyphicon glyphicon-search"></i></a>
+			  	</div>
+
+			  	<div class="form-group required">
+			    	<label for="nombrePersona" class="col-sm-4 control-label">Nombre de Persona</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" class="form-control" id="nombrePersona" name="nombrePersona" placeholder="Nombre de la Persona" value="{{old('nombrePersona')}}" readonly="">
+			    	</div>			    	
 			  	</div>			  	
 
 			  	<div class="form-group required">
@@ -146,7 +153,10 @@
   		});		
   		
 		function getPersona(){								
-			document.getElementById('persona_id').value =  $('#example input:radio:checked').val();
+			$personaAux = $('#example input:radio:checked').val();
+			$personaVal = $personaAux.split("|");
+			document.getElementById('persona_id').value =  $personaVal[0];
+			document.getElementById('nombrePersona').value =  $personaVal[1];
 		}
 	</script>
 
@@ -196,7 +206,7 @@
 											<td>{{$persona->ap_materno}}</td>
 											<td>
 												<div class="radio">
-  													<label><input type="radio" name="optradio" value="{{$persona->id}}"></label>
+  													<label><input type="radio" name="optradio" value="{{$persona->id}}|{{$persona->nombre}} {{$persona->ap_paterno}} {{$persona->ap_materno}}"></label>
 												</div>
 											</td>
 							            </tr>				            		

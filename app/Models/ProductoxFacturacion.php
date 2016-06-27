@@ -11,6 +11,7 @@ class ProductoxFacturacion extends Model
     protected $fillable = 
     ['producto_id',
      'facturacion_id',
+     'precio',
      'cantidad',
      'subtotal'];
     protected $dates = ['deleted_at'];

@@ -13,6 +13,7 @@ use papusclub\Models\Postulante;
 use papusclub\Models\Carnet;
 use papusclub\Models\Multa;
 use papusclub\Models\Configuracion;
+use papusclub\Models\Facturacion;
 use papusclub\Http\Requests\EditSocioBasicoRequest;
 use papusclub\Http\Requests\EditSocioEstudioRequest;
 use papusclub\Http\Requests\EditSocioViviendaRequest;
@@ -436,6 +437,19 @@ class SocioAdminController extends Controller
             $fecha = new DateTime('today');
             $fecha=$fecha->format('Y-m-d');
             $socio->multaxpersona()->save($multa,['multa_modificada' => $multa->montoPenalidad, 'descripcion_detallada' => $input['descripcion'],'fecha_registro' => $fecha]);
+
+            $facturacion = new Facturacion();
+            $facturacion->persona_id = $socio->postulante->persona->id;
+            $facturacion->multa_id = $multa->id;
+            $facturacion->tipo_comprobante = "Boleta";
+            $nombreMulta = $multa->nombre;
+            $facturacion->descripcion = "Penalidad por $nombreMulta";
+            $facturacion->total = $multa->montoPenalidad;
+            $facturacion->tipo_pago = "No se ha cancelado";
+            $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
+            $facturacion->estado = $estado->valor;
+
+            $facturacion->save();
         }
         return redirect('multas-s')->with('stored', 'Se registró la multa correctamente.');
     }
@@ -684,9 +698,13 @@ class SocioAdminController extends Controller
     public function validarTraspaso(SaveSocioRequest $request)
     {
         $input = $request->all();
-       // var_dump($input);
-       // die();
-        
+
+        $monto = Configuracion::where('grupo','=', 18)->first();
+
+        $newmonto = intval($monto->valor);
+
+
+
         $persona=Persona::where('doc_identidad','=',$input['dniP'])->orwhere('carnet_extranjeria','=',$input['dniP'])->first();
         $oldpersona = Persona::where('doc_identidad','=',$input['dni'])->orwhere('carnet_extranjeria','=',$input['dni'])->first();
         $traspaso = Traspaso::where('dni','=',$input['dniP'])->first();
@@ -712,6 +730,21 @@ class SocioAdminController extends Controller
         $socio->save();
         $postulante->socio()->save($socio);
         $carnet = create_carnet($socio);
+
+
+
+        $facturacion = new Facturacion();
+        $facturacion->persona_id = $persona->id;
+        $facturacion->traspaso_id = $traspaso->id;
+        $facturacion->tipo_comprobante = "Boleta";
+        $facturacion->descripcion = "Traspaso de membresia";
+        $facturacion->total = $newmonto;
+        $facturacion->tipo_pago = "No se ha cancelado";
+        $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
+        $facturacion->estado = $estado->valor;
+
+        $facturacion->save();
+
 
         return redirect('traspasos-p')->with('stored','Se aprobó el traspaso');
 

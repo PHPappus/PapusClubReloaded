@@ -51,13 +51,16 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('servicioalsocio/{id}/confirm','ServicioalsocioController@confirmareleccion');
 
 	Route::post('servicioalsocio/{id}/confirm/save','ServicioalsocioController@confirmareleccionsave');
+
+	Route::post('servicioalsocio/{id}/confirmb/save','ServicioalsocioController@confirmareleccionsave_b');
+
 	Route::get('servicios/mis-inscripciones','ServicioalsocioController@misinscripciones');
 	Route::get('servicios/mis-inscripciones/{id}/calificar','ServicioalsocioController@calificar');
 	Route::post('calificar/store','ServicioalsocioController@storeCalificacion');
+
 	Route::get('servicios/mis-inscripciones/{id}/delete','ServicioalsocioController@delete');
 
 	//Route::post('servicios/mis-inscripciones','ServicioalsocioController@filtromisinscripciones');
-
 	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
 
 
@@ -136,14 +139,34 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('pagos/facturacion-socio/','PagosController@listarFacturacionSocio');//se lista a los socios
 	Route::get('pagos-del-socio/{id}/show', 'PagosController@showAlSocio'); // Detalle del pago
 		
-	
+
+
+
+	//Familiares
+	Route::get('socio/{id}/familiar/new','SocioController@createFamiliar');
+	Route::post('socio/{id}/familiar/save','SocioController@storeFamiliar');
+	Route::get('socio/{id}/{id_postulante}/familiar/delete','SocioController@deleteFamiliar');
+	Route::get('socio/familiar/{id}/{id_postulante}','SocioController@detailFamiliar');
+
+
+	/*invitado*/
+	Route::get('socio/{id}/invitado/new','SocioController@createInvitado');
+	Route::post('socio/{id}/invitado/save','SocioController@storeInvitado');
+	Route::get('socio/{id}/invitado/delete','SocioController@deleteInvitado');
+	Route::get('socio/invitado/{id}/','SocioController@detailInvitado');		
+
 });
 
 
 
 //Administrados de registros
 Route::group(['middleware' => ['auth', 'adminregistros']], function () {
-	
+		// Agregar Servicios a las sedes2
+	 Route::get('select/sede', 'SedesController@indexselecttoservicio');
+	  Route::get('sedes/{id}/agregarservicios', 'SedesController@agregarservicios');
+	  Route::post('sedes/{id}/agregarservicios/store','SedesController@storeservicios');
+	  Route::get('sedes/{id}/verservicios', 'SedesController@indexserviciosdesede');
+
 	Route::resource('admin-registros','AdminRegistrosController');
 	Route::get('ambientes-ar','AdminRegistrosController@ambientes');
 	Route::get('registrar-ambiente','AdminRegistrosController@registrar');
@@ -254,6 +277,21 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::get('ingreso-producto/{id}/deleteProducto', 'IngresoProductoController@destroyProducto');
 	Route::get('ingreso-producto/{id}/back', 'IngresoProductoController@back');
 	Route::get('ingreso-producto/{id}/cancel', 'IngresoProductoController@cancel');
+	//INGRESO DE SERVICIOS
+	Route::get('ingreso-servicio/index', 'IngresoServicioController@index');
+	Route::get('ingreso-servicio/new', 'IngresoServicioController@create');
+	Route::post('ingreso-servicio/new/ingreso-servicio', 'IngresoServicioController@store');
+	Route::get('ingreso-servicio/{id}', 'IngresoServicioController@edit');
+	Route::post('ingreso-servicio/{id}/edit', 'IngresoServicioController@update');
+	Route::get('ingreso-servicio/{id}/delete', 'IngresoServicioController@destroy');
+	Route::get('ingreso-servicio/{id}/show', 'IngresoServicioController@show');
+	Route::get('ingreso-servicio/new/ingreso-servicio/{id}', 'IngresoServicioController@createIngresoServicio');
+	Route::post('ingreso-servicio/new/ingreso-servicio/add', 'IngresoServicioController@storeIngresoServicio');
+	Route::get('ingreso-servicio/new/{id}', 'IngresoServicioController@editServicio');
+	Route::post('ingreso-servicio/new/{id}/editServicio', 'IngresoServicioController@updateServicio');
+	Route::get('ingreso-servicio/{id}/deleteServicio', 'IngresoServicioController@destroyServicio');
+	Route::get('ingreso-servicio/{id}/back', 'IngresoServicioController@back');
+	Route::get('ingreso-servicio/{id}/cancel', 'IngresoServicioController@cancel');
 
 	//MANTENIMIENTO DE CONCESIONARIAS
 	Route::get('concesionaria/index/', 'ConcesionariaController@index');
@@ -298,9 +336,12 @@ Route::group(['middleware' => ['auth', 'adminpagos']], function () {
     //PAGOS POR INGRESO AL CLUB
     Route::get('ingreso/busqueda','PagosController@buscarpersona');
     Route::get('/resultado-busqueda-persona','PagosController@resultadopersona');
-    //Route::get('/resultado-busqueda-persona/','PagosController@resultadomostrar');
     Route::post('/registrar-pago-ingreso','PagosController@registrarPagoIngreso');
-   
+
+    //PAGOS POR MEMBRESÍA
+    Route::get('/registrar-deuda-membresia','PagosController@registrarDeudasMembresia');
+ 
+
 });
 
 
@@ -309,6 +350,9 @@ Route::group(['middleware' => ['auth', 'adminpagos']], function () {
 Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::resource('admin-general','AdminGeneralController');
 /*	Route::get('postulante-al-admin','AdminGeneralController@postulante');*/
+	
+	//CONFIGURACION
+	Route::get('configuracion/index','ConfiguracionController@index');
 
 
 
@@ -350,11 +394,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 
 	
 
-	// Agregar Servicios a las sedes2
-	 Route::get('select/sede', 'SedesController@indexselecttoservicio');
-	  Route::get('sedes/{id}/agregarservicios', 'SedesController@agregarservicios');
-	  Route::post('sedes/{id}/agregarservicios/store','SedesController@storeservicios');
-	  Route::get('sedes/{id}/verservicios', 'SedesController@indexserviciosdesede');
+
 		
 	/*//Inscribirse en Sorteo
 	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
@@ -631,6 +671,15 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::get('reservar-ambiente/consultar-bungalow-adminR', 'ReservarAmbienteController@consultarReservaBungalowAdminR'); 
 	Route::get('reservar-ambiente/{id}/deleteBungalowAdminR','ReservarAmbienteController@eliminarReservaBungalowAdminR');
 	Route::get('reservar-ambiente/{id}/deleteOtrosAdminR','ReservarAmbienteController@eliminarReservaOtrosAdminR');
+	Route::get('reservar-ambiente/{id}/verServicios','ReservarAmbienteController@verServices');
+	Route::get('reservar-ambiente/{id}/agregarServicios','ReservarAmbienteController@agregarServices');
+
+	Route::post('reservar-ambiente/{id}/agregarServicios/store','ReservarAmbienteController@storeServices');
+
+
+
+	
+	
 
 
 

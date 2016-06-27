@@ -24,8 +24,7 @@ class StoreIngresoProductoRequest extends Request
     public function rules()
     {
         return [            
-            'proveedor_id'   =>  'required|integer|exists:proveedor,id',
-            'tipo_solicitud'   =>  'required|string|max:255',
+            'proveedor_id'   =>  'required|integer|exists:proveedor,id',            
             'descripcion'   =>  'required|string|max:255',
             'estado'        =>  'required|string|max:255'            
         ];

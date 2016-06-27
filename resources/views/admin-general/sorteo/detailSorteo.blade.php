@@ -13,7 +13,7 @@
 </head>
 
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-reserva')
 @section('content')
 <!---Cuerpo -->
 <main class="main">

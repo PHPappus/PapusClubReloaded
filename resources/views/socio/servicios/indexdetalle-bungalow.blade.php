@@ -72,7 +72,7 @@
 		</div>
 		<div class="container">		
 
-			<form method="POST" action="/servicioalsocio/{{$id}}/confirm/save" class="form-horizontal form-border">
+			<form method="POST" action="/servicioalsocio/{{$id}}/confirmb/save" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<br/><br/>
 				<div class="form-group">
@@ -92,7 +92,7 @@
 				    	<label for="profesorInput" class="col-sm-5 control-label">Tipo Servicio</label>
 			    		<div class="col-sm-7 text-center">
 
-			    			<input type="text" class="form-control" id="profesor" placeholder="{{$tip_s}}" 
+			    			<input type="text" class="form-control" id="profesor" value="{{$tip_s}}" 
 							style="max-width: 220px" readonly="true"> 			
 			    		</div>		  				
 		 			</div>
@@ -101,7 +101,7 @@
 		  			<div class="col-sm-6">
 				    	<label for="nombreInput" class="col-sm-5 control-label">Estado</label>
 			    		<div class="col-sm-7">
-			      			<input type="text" class="form-control" id="fecha_inicio" placeholder='ACTIVO' style="max-width: 220px" readonly="true">
+			      			<input type="text" class="form-control" id="fecha_inicio" value='ACTIVO' style="max-width: 220px" readonly="true">
 
 			    		</div>			
 		  			</div>
@@ -113,7 +113,7 @@
 				    	<label for="precio" class="col-sm-5 control-label">Precio:</label>
 			    		<div class="col-sm-7 text-center">
 			    			<input type="text" class="form-control" name="precio" id="precio" 
-							  placeholder="{{$precio}}"
+							  value="{{$precio}}"
 			    			 style="max-width: 220px" readonly="true">
 			    		</div>		  				
 		 			</div>
@@ -124,7 +124,7 @@
 				    	<label for="sede" class="col-sm-5 control-label">Sede:</label>
 			    		<div class="col-sm-7 text-center">
 			    			<input type="text" class="form-control" name="sede" id="sede" 
-							  placeholder="{{$sedeindentificado->nombre}}"
+							  value="{{$sedeindentificado->nombre}}"
 			    			 style="max-width: 220px" readonly="true">
 			    		</div>		  				
 		 			</div>
@@ -133,9 +133,9 @@
 				
 				<div class="form-group required">
 		 			<div class="col-sm-6">
-				    	<label for="codreserva" class="col-sm-5 control-label">Código de Reserva:</label>
+				    	<label for="reserva" class="col-sm-5 control-label">Código de Reserva:</label>
 			    		<div class="col-sm-6 text-center">
-			    			<input type="numeric" class="form-control" name="codreserva" id="codreserva" 
+			    			<input type="numeric" class="form-control" name="reserva" id="reserva" 
 							  placeholder="N Reserva"
 			    			 style="max-width: 220px" readonly="true">
 			    		</div>
@@ -191,7 +191,7 @@
   		});		
   		
 		function getPersona(){								
-								document.getElementById('codreserva').value =  $('#example input:radio:checked').val();
+								document.getElementById('reserva').value =  $('#example input:radio:checked').val();
 			}
 	</script>
 

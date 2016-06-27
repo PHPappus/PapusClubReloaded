@@ -36,9 +36,6 @@
 			</div>		
 		</div>
 		<div class="container">
-			<form method="POST" action="/taller/new/save" class="form-horizontal form-border">
-			<input type="hidden" name="_token" value="{{ csrf_token() }}">
-			
 				<div class="col-sm-4"></div>
 				<div class=""> 
 					@if ($errors->any())
@@ -72,7 +69,7 @@
 			  	<div class="form-group">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			    		<textarea class="form-control" id="descripcionInput" name="descripcion" rows="3" cols="50" value = "{{$taller->descripcion}}" readonly>{{$taller->descripcion}}</textarea>
+			    		<textarea class="form-control" id="descripcionInput" name="descripcion" maxlength="100" style="resize: none" rows="3" cols="50" value = "{{$taller->descripcion}}" readonly>{{$taller->descripcion}}</textarea>
 			    	</div>
 			  	</div>
 
@@ -171,7 +168,7 @@
 					<div class="btn-group col-sm-7"></div>
 				
 					<div class="btn-group">
-						<a href="/taller/" class="btn btn-info">Regresar</a>
+						<a href="/taller/index" class="btn btn-info">Regresar</a>
 					</div>
 				</div>
 				</br>
