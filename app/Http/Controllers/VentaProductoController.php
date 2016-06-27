@@ -51,7 +51,7 @@ class VentaProductoController extends Controller
     public function createVentaProducto($id)
     {       
         $factura = Facturacion::find($id);
-        $productos = Producto::all();
+        $productos = Producto::where('tipo_producto','<>','Servicio')->get();
 
         return view('admin-registros.venta-producto.add', compact('factura','productos'));
     }      
@@ -82,7 +82,7 @@ class VentaProductoController extends Controller
         }
         $productoxfacturacion->producto_id = $input['producto_id'];
         $productoxfacturacion->facturacion_id = $input['facturacion_id'];
-        $productoxfacturacion->precio = $producto->precioproducto->precio->first()['precio'];
+        $productoxfacturacion->precio = $producto->precioproducto->first()['precio'];
         $productoxfacturacion->cantidad = $input['cantidad'] + $cantidad;  
         $productoxfacturacion->subtotal = $productoxfacturacion->producto->precioproducto->first()['precio'] * $input['cantidad'] + $subtotal;
         $productoxfacturacion->save();
@@ -98,7 +98,12 @@ class VentaProductoController extends Controller
     public function edit($id)
     {
         $factura = Facturacion::find($id);
-        $estados = Configuracion::where('grupo','=','7')->get();
+        if (strcmp($factura->estado, 'Pagado')==0){
+            $estados = Configuracion::where('grupo','=','7')
+                                    ->where('valor','<>','Emitido')->get();
+        }
+        else
+            $estados = Configuracion::where('grupo','=','7')->get();
         return view('admin-registros.venta-producto.editVentaProducto', compact('factura','estados'));
     }
 
