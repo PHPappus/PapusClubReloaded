@@ -4,6 +4,7 @@
 	<title>POSTULANTE</title>
 	<meta charset="UTF-8">
 
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	{!!Html::style('css/jquery.bxslider.css')!!}
 	{!!Html::style('css/font-awesome.css')!!}
@@ -34,7 +35,7 @@
 		</div>
 
 		<div class="container">
-			<form method="POST" action="/multa/new/save" class="form-horizontal form-border">
+			<form method="POST" action="configuracion/index" class="form-horizontal form-border">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			
 				<div class="col-sm-4"></div>
@@ -56,7 +57,7 @@
 							<table   style="margin-left:200px;">
 								<tr>
 									<td style=" width:300px;">
-										<table class="table table-striped text-center display" id="">
+										<table class="table table-striped text-center display" id="grupo1">
 											<thead class="active" data-sortable="true">
 												<th><div align=center>VALOR</div> </th>
 											</thead>
@@ -68,8 +69,8 @@
 										</table>
 									</td>
 									<td style="padding:0 20px 0 100px;" >
-										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="puestos" name="puestos" placeholder="Nuevo Puesto" ><br>
-										<button type="submit" name="edit" class="btn btn-primary pull-right">Agregar</button>
+										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="puesto" name="puesto" placeholder="Nuevo Puesto" ><br>
+										<a href="" id="bsave1" data-link="{{ url('/configuracion/test') }}" class="btn btn-primary pull-right">Agregar</a>
 									</td>
 								</tr>
 							</table>
@@ -78,7 +79,7 @@
 							<table   style="margin-left:200px;">
 								<tr>
 									<td style=" width:300px;">
-										<table class="table table-striped text-center display" id="">
+										<table class="table table-striped text-center display" id="grupo2">
 											<thead class="active" data-sortable="true">
 												<th><div align=center>VALOR</div> </th>
 											</thead>
@@ -90,8 +91,8 @@
 										</table>
 									</td>
 									<td style="padding:0 20px 0 100px;" >
-										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="puestos" name="puestos" placeholder="Nuevo Puesto" ><br>
-										<button type="submit" name="edit" class="btn btn-primary pull-right">Agregar</button>
+										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="ambiente" name="ambiente" placeholder="Nuevo Tipo Ambiente" ><br>
+										<a href="" id="bsave2" data-link="{{ url('/configuracion/test2') }}" class="btn btn-primary pull-right">Agregar</a>
 									</td>
 								</tr>
 							</table>
@@ -100,7 +101,7 @@
 							<table   style="margin-left:200px;">
 								<tr>
 									<td style=" width:300px;">
-										<table class="table table-striped text-center display" id="">
+										<table class="table table-striped text-center display" id="grupo3">
 											<thead class="active" data-sortable="true">
 												<th><div align=center>VALOR</div> </th>
 											</thead>
@@ -112,8 +113,8 @@
 										</table>
 									</td>
 									<td style="padding:0 20px 0 100px;" >
-										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="puestos" name="puestos" placeholder="Nuevo Puesto" ><br>
-										<button type="submit" name="edit" class="btn btn-primary pull-right">Agregar</button>
+										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="actividad" name="actividad" placeholder="Nuevo Tipo Actividad" ><br>
+										<a href="" id="bsave3" data-link="{{ url('/configuracion/test3') }}" class="btn btn-primary pull-right">Agregar</a>
 									</td>
 								</tr>
 							</table>
@@ -122,7 +123,7 @@
 							<table   style="margin-left:200px;">
 								<tr>
 									<td style=" width:300px;">
-										<table class="table table-striped text-center display" id="">
+										<table class="table table-striped text-center display" id="grupo4">
 											<thead class="active" data-sortable="true">
 												<th><div align=center>VALOR</div> </th>
 											</thead>
@@ -134,8 +135,8 @@
 										</table>
 									</td>
 									<td style="padding:0 20px 0 100px;" >
-										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="puestos" name="puestos" placeholder="Nuevo Puesto" ><br>
-										<button type="submit" name="edit" class="btn btn-primary pull-right">Agregar</button>
+										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="servicio" name="servicio" placeholder="Nuevo Tipo Servicio" ><br>
+										<a href="" id="bsave4" data-link="{{ url('/configuracion/test4') }}" class="btn btn-primary pull-right">Agregar</a>
 									</td>
 								</tr>
 							</table>
@@ -144,7 +145,7 @@
 							<table   style="margin-left:200px;">
 								<tr>
 									<td style=" width:300px;">
-										<table class="table table-striped text-center display" id="">
+										<table class="table table-striped text-center display" id="grupo5">
 											<thead class="active" data-sortable="true">
 												<th><div align=center>VALOR</div> </th>
 											</thead>
@@ -156,52 +157,8 @@
 										</table>
 									</td>
 									<td style="padding:0 20px 0 100px;" >
-										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="puestos" name="puestos" placeholder="Nuevo Puesto" ><br>
-										<button type="submit" name="edit" class="btn btn-primary pull-right">Cambiar</button>
-									</td>
-								</tr>
-							</table>
-						<hr style="width: 80%; color: black; height: 1px; background-color:black;" />
-						<p class="lead"><strong>TIPOS DE PRODUCTOS</strong></p>
-							<table   style="margin-left:200px;">
-								<tr>
-									<td style=" width:300px;">
-										<table class="table table-striped text-center display" id="">
-											<thead class="active" data-sortable="true">
-												<th><div align=center>VALOR</div> </th>
-											</thead>
-											@foreach($variables->where('grupo', 6) as $grupo1)
-												<tr>
-													<td>{{ $grupo1->valor }}</td>
-												</tr>
-											@endforeach
-										</table>
-									</td>
-									<td style="padding:0 20px 0 100px;" >
-										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="puestos" name="puestos" placeholder="Nuevo Puesto" ><br>
-										<button type="submit" name="edit" class="btn btn-primary pull-right">Agregar</button>
-									</td>
-								</tr>
-							</table>
-						<hr style="width: 80%; color: black; height: 1px; background-color:black;" />
-						<p class="lead"><strong>TIPOS RELACION FAMILIAR</strong></p>
-							<table   style="margin-left:200px;">
-								<tr>
-									<td style=" width:300px;">
-										<table class="table table-striped text-center display" id="">
-											<thead class="active" data-sortable="true">
-												<th><div align=center>VALOR</div> </th>
-											</thead>
-											@foreach($variables->where('grupo', 9) as $grupo1)
-												<tr>
-													<td>{{ $grupo1->valor }}</td>
-												</tr>
-											@endforeach
-										</table>
-									</td>
-									<td style="padding:0 20px 0 100px;" >
-										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="puestos" name="puestos" placeholder="Nuevo Puesto" ><br>
-										<button type="submit" name="edit" class="btn btn-primary pull-right">Agregar</button>
+										<input type="text" onkeypress="return inputLimiter(event,'DoubleFormat')"  class="form-control" id="duracion" name="duracion" placeholder="Duracion de carnet" ><br>
+										<a href="" id="bsave5" data-link="{{ url('/configuracion/test5') }}" class="btn btn-primary pull-right">Agregar</a>
 									</td>
 								</tr>
 							</table>
@@ -210,7 +167,7 @@
 							<table   style="margin-left:200px;">
 								<tr>
 									<td style=" width:300px;">
-										<table class="table table-striped text-center display" id="">
+										<table class="table table-striped text-center display" id="grupo12">
 											<thead class="active" data-sortable="true">
 												<th><div align=center>VALOR</div> </th>
 											</thead>
@@ -222,31 +179,8 @@
 										</table>
 									</td>
 									<td style="padding:0 20px 0 100px;" >
-										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="puestos" name="puestos" placeholder="Nuevo Puesto" ><br>
-										<button type="submit" name="edit" class="btn btn-primary pull-right">Cambiar</button>
-									</td>
-								</tr>
-							</table>
-						<hr style="width: 80%; color: black; height: 1px; background-color:black;" />
-						<p class="lead"><strong>TIPOS DE PUNTAJE</strong></p>
-							<table   style="margin-left:200px;">
-								<tr>
-									<td style=" width:300px;">
-										<table class="table table-striped text-center display" id="">
-											<thead class="active" data-sortable="true">
-												<th><div align=center>VALOR</div> </th>
-											</thead>
-											@foreach($variables->where('grupo', 17) as $grupo1)
-												<tr>
-													<td>{{ $grupo1->valor }}</td>
-												</tr>
-											@endforeach
-										</table>
-									</td>
-									<td style="padding:0 20px 0 100px;" >
-										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="puestos" name="puestos" placeholder="Nuevo Puesto" >
-										<br>
-										<button type="submit" name="edit" class="btn btn-primary pull-right">Agregar</button>
+										<input type="text" onkeypress="return inputLimiter(event,'DoubleFormat')"  class="form-control" id="precio" name="precio" placeholder="Precio entradas" ><br>
+										<a href="" id="bsave6" data-link="{{ url('/configuracion/test6') }}" class="btn btn-primary pull-right">Agregar</a>
 									</td>
 								</tr>
 							</table>
@@ -269,7 +203,7 @@
 	{!!Html::script('js/jquery.bxslider.min.js')!!}
 	<!-- Mis Scripts -->
 	{!!Html::script('js/MisScripts.js')!!}
-
+	<script>$.ajaxSetup({ headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')} })</script>
 	{!!Html::script('js/bootstrap-datepicker.js')!!}
 
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
@@ -280,8 +214,178 @@
 		           "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
 		       }
 		  	});
+		   /*=============GRUPO 1=========================*/
+		   $("#bsave1").click(function(){
+			    var url = $(this).attr("data-link");
+				$valor = $("#puesto").val();
+				$grupo = "1";
+/*			    alert($valor);
+			    alert($grupo);*/
+			    $.ajax({
+			        url: "test",
+			        type:"POST",
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { valor : $valor},
+			        success:function(data){
+/*			            alert($valor);*/
+			            var trHTML='<td>'+$valor+'</td>';
+
+			        	$("#grupo1").html(trHTML);
+			        },error:function(){ 
+			            alert("error!!!!");
+			        }
+			    }); //end of ajax
+			});
+		   	/*=============GRUPO 2=========================*/
+		   $("#bsave2").click(function(){
+			    var url = $(this).attr("data-link");
+				$valor = $("#ambiente").val();
+				$grupo = "2";
+/*			    alert($valor);
+			    alert($grupo);*/
+			    $.ajax({
+			        url: "test2",
+			        type:"POST",
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { valor : $valor},
+			        success:function(data){
+/*			            alert($valor);*/
+			            var trHTML='<td>'+$valor+'</td>';
+
+			        	$("#grupo2").html(trHTML);
+			        },error:function(){ 
+			            alert("error!!!!");
+			        }
+			    }); //end of ajax
+			});
+		   /*=============GRUPO 3=========================*/
+		   $("#bsave3").click(function(){
+			    var url = $(this).attr("data-link");
+				$valor = $("#actividad").val();
+				$grupo = "3";
+/*			    alert($valor);
+			    alert($grupo);*/
+			    $.ajax({
+			        url: "test3",
+			        type:"POST",
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { valor : $valor},
+			        success:function(data){
+/*			            alert($valor);*/
+			            var trHTML='<td>'+$valor+'</td>';
+
+			        	$("#grupo3").html(trHTML);
+			        },error:function(){ 
+			            alert("error!!!!");
+			        }
+			    }); //end of ajax
+			});
+		   /*=============GRUPO 1=========================*/
+		   $("#bsave4").click(function(){
+			    var url = $(this).attr("data-link");
+				$valor = $("#servicio").val();
+				$grupo = "4";
+/*			    alert($valor);
+			    alert($grupo);*/
+			    $.ajax({
+			        url: "test4",
+			        type:"POST",
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { valor : $valor},
+			        success:function(data){
+/*			            alert($valor);*/
+			            var trHTML='<td>'+$valor+'</td>';
+
+			        	$("#grupo4").html(trHTML);
+			        },error:function(){ 
+			            alert("error!!!!");
+			        }
+			    }); //end of ajax
+			});
+		    /*=============GRUPO 5=========================*/
+		   $("#bsave5").click(function(){
+			    var url = $(this).attr("data-link");
+				$valor = $("#duracion").val();
+				$grupo = "5";
+/*			    alert($valor);
+			    alert($grupo);*/
+			    $.ajax({
+			        url: "test5",
+			        type:"POST",
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { valor : $valor},
+			        success:function(data){
+			            /*alert($valor);
+			            var trHTML='<td>'+$valor+'</td>';
+
+			        	$("#grupo4").html(trHTML);*/
+			        },error:function(){ 
+			            alert("error!!!!");
+			        }
+			    }); //end of ajax
+			});
+		   /*=============GRUPO 5=========================*/
+		   $("#bsave6").click(function(){
+			    var url = $(this).attr("data-link");
+				$valor = $("#precio").val();
+				$grupo = "12";
+/*			    alert($valor);
+			    alert($grupo);*/
+			    $.ajax({
+			        url: "test6",
+			        type:"POST",
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { valor : $valor},
+			        success:function(data){
+			            /*alert($valor);
+			            var trHTML='<td>'+$valor+'</td>';
+
+			        	$("#grupo4").html(trHTML);*/
+			        },error:function(){ 
+			            alert("error!!!!");
+			        }
+			    }); //end of ajax
+			});
+
   		});
 	</script>
+
 </body>
 
 	<!-- Modal -->
