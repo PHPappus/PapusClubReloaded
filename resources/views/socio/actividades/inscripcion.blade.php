@@ -74,9 +74,9 @@
 			 	<label for="fechaInput" class="col-sm-4 control-label">FECHA (dd/mm/aaaa) </label>
 			    <div class="col-sm-5">
 				  	<div class="input-group">
-			   		<input class="datepicker form-control"  type="text"  id="fecha_inicio" name="fecha_inicio" placeholder="Fecha Inicio" value="{{old('fecha_inicio')}}" style="max-width: 250px" >
+			   		<input class="datepicker form-control"  type="text"  id="fecha_inicio" name="fecha_inicio" placeholder="Fecha Inicio" value="{{$fecha_inicio}}" style="max-width: 250px" >
 			   		<span class="input-group-addon">-</span>
-			   		<input class="datepicker form-control" type="text" id="fecha_fin" name="fecha_fin" placeholder="Fecha Fin" value="{{old('fecha_fin')}}" style="max-width: 250px">
+			   		<input class="datepicker form-control" type="text" id="fecha_fin" name="fecha_fin" placeholder="Fecha Fin" value="{{$fecha_fin}}" style="max-width: 250px">
 
 			   	 	</div>
 		    	</div>	
@@ -124,12 +124,12 @@
 					<thead class="active">
 						<tr>
 								<th><DIV ALIGN=center>SEDE</th>
-								<th><DIV ALIGN=center>AMBIENTE</th>
+								<th style="max-width:70px;"><DIV ALIGN=center>AMBIENTE</th>
 								<th style="max-width:90px;"><DIV ALIGN=center>NOMBRE DE LA ACTIVIDAD</th>
-								<th style="max-width:90px;"><DIV ALIGN=center>CUPOS DISPONIBLES</th>
-								<th><DIV ALIGN=center>FECHA</th>
+								<th><DIV ALIGN=center>FECHA&nbsp;&nbsp;</th>
 								<th><DIV ALIGN=center>HORA DE INICIO</th>
 								<th><DIV ALIGN=center>PRECIO</th>
+								<th style="max-width:85px;"><DIV ALIGN=center>CUPOS DISPONIBLES</th>
 								<th><DIV ALIGN=center>ESTADO</th>
 								<th><DIV ALIGN=center>INSCRIBIRSE</th>
 								<th><DIV ALIGN=center>INSCRIBIR A UN FAMILIAR</th>
@@ -141,19 +141,25 @@
 					    		<td>{{ $actividad->ambiente->sede->nombre }}</td>
 					    		<td>{{ $actividad->ambiente->nombre }}</td>
 								<td>{{ $actividad->nombre }}</td>
-		 						<td>{{ $actividad->cupos_disponibles }}</td>
+								
+		 						
 		 						<td>{{ $actividad->a_realizarse_en}}</td>
 		 						<td>{{ $actividad->hora_inicio}}</td>		 						
-		 						<td>{{ $actividad->precio($tipo_persona, $actividad->tarifas) }}</td>		 						
+		 						<td>S/.{{ $actividad->precio($tipo_persona, $actividad->tarifas) }}</td>
+		 						@if($actividad->cupos_disponibles<=0)
+									<td>No hay cupos disponibles</td>
+								@else
+									<td>{{ $actividad->cupos_disponibles }}</td>
+								@endif		 						
 		 						@if((count($actividades_persona->where('id',$actividad->id))!=0))
-		 						<td>Inscrito</td>
+		 						<td style="background:#d5efd5;">Inscrito</td>
 								<td>
-						        	<a class="btn btn-info" title="Inscripcion" disabled><i class="glyphicon glyphicon-pencil"></i></a>
+						        	<a class="btn btn-info" title="Ya se encuentra inscrito" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
 						        </td>	
 						        @elseif($actividad->cupos_disponibles<=0)
-						        <td>No hay cupos disponibles</td>	
+						        <td>No Inscrito</td>	
 						        <td>
-						        	<a class="btn btn-info" title="Inscripcion" disabled><i class="glyphicon glyphicon-pencil"></i></a>
+						        	<a class="btn btn-info" title="No hay más cupos disponibles" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
 						        </td>
 						        @else
 						        <td>No Inscrito</td>
@@ -161,8 +167,13 @@
 						        	<a class="btn btn-info" href="{{url('/inscripcion-actividad/'.$actividad->id.'/confirmacion-inscripcion-actividades')}}" title="Inscripcion" ><i class="glyphicon glyphicon-pencil"></i></a>
 						        </td>
 						        @endif
+
 						        <td>
-						        	<a class="btn btn-info" href="#" title="Inscribir a un familiar" ><i class="glyphicon glyphicon-pencil"></i></a>
+							        @if($actividad->cupos_disponibles<=0)
+							        	<a class="btn btn-info" title="No hay más cupos disponibles" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
+							        @else
+						        	    <a class="btn btn-info" href="{{url('/inscripcion-actividad/'.$actividad->id.'/confirmacion-inscripcion-actividades-to-familiar')}}" title="Inscribir a un familiar" ><i class="glyphicon glyphicon-pencil"></i></a>
+							        @endif
 						        </td>	
 							</tr>
 						@endforeach

@@ -18,15 +18,16 @@
 @extends('layouts.headerandfooter-al-socio')
 
 @section('content')
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12 text-center">
-				<br/><br/>
-				<p class="lead"><strong>Reservas Realizadas</strong></p>
-				<br/>
-			</div>
-			
+	<main class="main">
+	<div class="content" style="max-width: 100%;">
+		<!-- Utilizando Bootstrap -->
+		<br/><br/>
+		<div class="container">
+			<div class="col-sm-12 text-left lead">
+					<strong>RESERVAS</strong>
+			</div>		
 		</div>
+	</div>
 
 		</br>
 		</br>
@@ -73,8 +74,8 @@
 			</table>		
 			
 		</div>
-	</div>
-</br></br></br></br></br>
+	
+</br></br></br></br>
 		
 
 

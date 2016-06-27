@@ -147,7 +147,7 @@
 			    	</div>
 			  	</div>
 
-			  	</br>
+		
 			  	
 			  	</br></br>
 			  	<div class="btn-inline">
@@ -166,7 +166,15 @@
 
 			</form>
 		</div>
-	</div>		
+	</div>	
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+		
 @stop
 <!-- JQuery -->
 	<script src="../js/jquery-3.0.0.js"></script> 

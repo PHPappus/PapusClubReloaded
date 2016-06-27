@@ -30,45 +30,24 @@
 		<br/>
 		<br/>
 		<form class="form-horizontal" id="formulario">
-			<div class="form-group">
-				 	<label for="" class="col-sm-3 control-label">Responsable</label>
-				    <div class="col-sm-5">
-				    @foreach($responsable as $resp)
-					   	<div class="input-group">
-					   		<label for="" class="col-sm-4 control-label">{{$resp->name}}</label>			       		
-				   	   	</div>
-				   	@endforeach
-			    	</div>	
-			</div>
-			<div class="form-group">
-				 	<label for="" class="col-sm-3 control-label">Sede</label>
-				    <div class="col-sm-5">
-					   	<div class="input-group">
-					   		<label for="" class="col-sm-4 control-label">{{$sedes->nombre}}</label>			       		
-				   	   	</div>
-				       	
-			    	</div>	
-			</div>
-			<div class="form-group ">
-			 	<label for="" class="col-sm-3 control-label ">Fecha Consultada</label>
-			    <div class="col-sm-5">				  	
-			   	 	<div class="input-group">
-			   		<label for="fechaInput" class="col-sm-4 control-label"> {{ $fechaIni->toDateString() }}</label>
-			   		<label for="fechaInput" class="col-sm-4 control-label"> -  </label>
-			   		<label for="fechaInput" class="col-sm-4 control-label"> {{ $fechaFin->toDateString() }}</label>
-					</div>			   		
-		    	</div>	
-			</div>
-			<div class="form-group">
-				 	<label for="" class="col-sm-3 control-label">Fecha actual</label>
-				    <div class="col-sm-5">
-					   	<div class="input-group">
-					   		<label for="" class="col-sm-4 control-label">{{ $fechaAct->toDateString() }}</label>			       		
-				   	   	</div>
-				       	
-			    	</div>	
-			</div>
-			
+			<p> <b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Responsable &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        
+			@foreach($responsable as $resp)
+				{{$resp->name}}	   					       		
+			@endforeach
+			</b> </p>	
+			<br/>
+
+			<p> <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sede &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        
+			{{$sedes->nombre}}
+			</b> </p>
+			<br/>
+
+			<p> <b>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fecha Consultada &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $fechaIni->toDateString() }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ $fechaFin->toDateString() }}
+			</b> </p>
+			<br/>
+
+			<p> <b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fecha Actual&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $fechaAct->toDateString() }}
+			</b> </p>			
 			
 		</form>
 		

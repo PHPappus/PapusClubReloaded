@@ -15,6 +15,7 @@ use Session;
 use Redirect;
 use Illuminate\Routing\Route;
 use Hash;
+use DB;
 
 class UsuarioController extends Controller
 {

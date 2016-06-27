@@ -59,6 +59,7 @@
 					<th><div align=center>FECHA INICIO DE RESERVA</div></th>
 					<th><div align=center>FECHA FIN DE RESERVA</div></th>
 					<th><div align=center>DESCRIPCION</div></th>
+					<th><div align=center>COSTO DE INSCRIPCION</div></th>
 					<th><div align=center>EJECUTAR</div></th>
 					<th><div align=center>DETALLE</div></th>
 					<th><div align=center>MODIFICAR</div></th>
@@ -73,6 +74,7 @@
 							<td>{{$sorteo->fecha_abierto}}</td>
 							<td>{{$sorteo->fecha_cerrado}}</td>	
 							<td>{{$sorteo->descripcion}}</td>
+							<td>{{$sorteo->costo_inscripcion}}</td>
 							<td><a class="btn btn-info" href="{{url('/sorteo/index/'.$sorteo->id.'/ejecutar')}}"  ><i class="glyphicon glyphicon-flash"></i></a>
 							        </td></td>
 							<td>

@@ -28,7 +28,8 @@ class StoreSorteoRequest extends Request
             'descripcion'       =>  array('required','Regex:/[A-Za-z .-]/'),            
             'fecha_abierto'      =>  'required|date_format:d/m/Y|after:today',            
             'fecha_cerrado'      =>  'required|date_format:d/m/Y|after:fecha_abierto',
-            'sedeSelec'      =>  'required'
+            'sedeSelec'      =>  'required',
+            'precio'=>'required|numeric'
         ];
     }
 }

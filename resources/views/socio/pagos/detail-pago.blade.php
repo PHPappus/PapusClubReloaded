@@ -97,6 +97,8 @@
 					<div class="col-sm-8"> </div>
 					<a href="{{url('/pagos/facturacion-socio/')}}/" class="btn btn-info">Regresar</a>				
 				</div>
+				<br/>
+				<br/>
 
 			</form>
 		</div>

@@ -133,6 +133,12 @@
 							<input type="text" id="sede" readonly disabled  name="sede" value="{{ $sede->nombre }}">						
 						</div>
 				</div>
+				<div class="form-group">
+					<label for="" class="control-label col-sm-5">COSTO DE INSCRIPCION:</label>
+					<div class="col-sm-7">
+						<input type="text" class="form-control" readonly disabled id="nombre_sorteo" name="nombre_sorteo"   style="max-width: 250px" value="{{$sorteo->costo_inscripcion}}">
+					</div>
+				</div>
 				<br><br>
 					<div class="btn-inline">
 						<div class="btn-group col-sm-7"></div>

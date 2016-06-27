@@ -49,6 +49,7 @@ class AmbienteController extends Controller
         $tipoAmbiente = Configuracion::find($input['tipo_ambiente']);
         $ambiente->tipo_ambiente= $tipoAmbiente->valor;
         $ambiente->descripcion= $input['descripcion'];
+        $ambiente->estado = "Activo";
 
         $ambiente->save();
 
@@ -59,7 +60,10 @@ class AmbienteController extends Controller
             $tarifa = new TarifaAmbientexTipoPersona();
             $tarifa->ambiente_id = $ambiente_id;
             $tarifa->tipo_persona_id = $tipoPersona->id;
-            $tarifa->precio = $input[$tipoPersona->descripcion];
+            if($tipoPersona->descripcion == "vip" || $tipoPersona->descripcion == "Vip")
+                $tarifa->precio = 0;
+            else    
+                $tarifa->precio = $input[$tipoPersona->descripcion];
             $tarifa->save();
         }
 
@@ -109,7 +113,7 @@ class AmbienteController extends Controller
 
 
         $tipoPersonas = TipoPersona::all();
-        foreach ($tipoPersonas as $tipoPersona) {
+        foreach ($tipoPersonas as $tipoPersona) {                
                 $tarifa = new TarifaAmbientexTipoPersona();
                 $tarifa->ambiente_id = $id;
                 $tarifa->tipo_persona_id = $tipoPersona->id;
@@ -130,8 +134,10 @@ class AmbienteController extends Controller
         if($ambiente->actividades->count()){
             return redirect('ambiente/index')->with('delete', 'No se puede eliminar este ambiente, posee dependencias.');
         }
-        else
+        else{
+            $ambiente->estado = "Desactivado";
             $ambiente->delete();
+        }
         
         return back();
     }

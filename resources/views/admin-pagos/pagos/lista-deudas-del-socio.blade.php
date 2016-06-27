@@ -20,14 +20,14 @@
 @section('content')
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-12 text-center">
+			<div class="col-sm-12 text-left">
 				<br/><br/>
-				<p class="lead"><strong>Deudas del Socio</strong></p>
+				<p class="lead"><strong>DEUDAS DEL SOCIO</strong></p>
 				<br/>
 			</div>
 			
 		</div>
-		<h4>1. Lista de deudas del socio.</h4>
+	</div>
 
 
 		</br>
@@ -74,11 +74,11 @@
 					<div class="btn-group">
 						<a href="/pagos/pago-seleccionar-socio" class="btn btn-info">Regresar</a>
 					</div>
-				</div>		
+			</div>		
 			
 		</div>
-	</div>
-</br></br></br></br></br>
+	
+</br></br></br></br>
 		
 
 
