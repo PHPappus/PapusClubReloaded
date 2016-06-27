@@ -70,7 +70,7 @@
               Configuraciones <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#" title="Consultar configuraciones" target="_self">Consultar</a></li>
+              <li><a href="{!!URL::to('/configuracion/index')!!}" title="Consultar configuraciones" target="_self">Consultar</a></li>
               <li><a href="#" title="Registrar configuración" target="_self">Registrar</a></li>
             </ul>
           </li>
@@ -127,7 +127,7 @@
 				<li><a href="{!!URL::to('/select/sede')!!}" title="Agregar Servicios" target="_self">Agregar servicios</a></li>
             </ul>
           </li>
-        </ul>   
+        </ul>
 		
 
         <ul class="nav navbar-nav navbar-right">

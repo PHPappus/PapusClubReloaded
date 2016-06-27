@@ -62,7 +62,7 @@
 				<div class="form-group ">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">
-			    		<textarea class="form-control" id="descripcionInput" name="descripcion" placeholder="Descripción" rows="3" cols="50" value="{{old('descripcion')}}"></textarea>
+			    		<textarea class="form-control" id="descripcionInput" maxlength="100" style="resize: none" name="descripcion" placeholder="Descripción" rows="3" cols="50" value="{{old('descripcion')}}"></textarea>
 			    	</div>
 			  	</div>	
 

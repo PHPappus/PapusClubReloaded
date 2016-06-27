@@ -16,7 +16,7 @@
 </head>
 
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-reserva')
 @section('content')	
 	<div class="container" id="ruta-navegacion">	
 		<!-- Utilizando Bootstrap -->
@@ -76,7 +76,7 @@
 							<td>{{$sorteo->descripcion}}</td>
 							<td>{{$sorteo->costo_inscripcion}}</td>
 							<td>{{$sorteo->estado}}</td>
-							@if($sorteo->estado == 'Ejecutado'){
+							@if($sorteo->estado == 'Ejecutado')
 								<td><a class="btn btn-info" disabled  ><i class="glyphicon glyphicon-flash"></i></a>
 							        </td>
 							        <td>
@@ -88,8 +88,8 @@
 			              	<td>
 					            <a class="btn btn-info"  title="Eliminar" disabled ><i class="glyphicon glyphicon-remove"></i></a>    
 					        </td>
-							}
-							@else{
+							
+							@else
 								<td><a class="btn btn-info" href="{{url('/sorteo/index/'.$sorteo->id.'/ejecutar')}}"  ><i class="glyphicon glyphicon-flash"></i></a>
 							        </td>
 							        <td>
@@ -101,7 +101,7 @@
 				              	<td>
 						            <a class="btn btn-info"  title="Eliminar" data-href="{{url('/sorteo/'.$sorteo->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
 						        </td>
-							}
+							
 							@endif							
 							
 						</tr>

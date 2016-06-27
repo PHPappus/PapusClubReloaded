@@ -38,16 +38,16 @@
 				
 							
 				<div class="table-responsive">
-					@if ($errors->any())
+					
+					<div class="container">
+						@if ($errors->any())
 			  				<ul class="alert alert-danger fade in">
 			  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 			  					@foreach ($errors->all() as $error)
 			  						<li>{{$error}}</li>
 			  					@endforeach
 			  				</ul>
-			  		@endif
-					<div class="container">
-						
+			  			@endif
 						@if($servicios)
 						<h4> <strong> SERVICIOS DISPONIBLES</strong></h4>		
 						@endif	
@@ -92,7 +92,7 @@
 						<input class="btn btn-primary" type="submit" value="Confirmar">
 					</div>
 					<div class="btn-group">
-						 <a  class="btn btn-info"  title="Cancelar" data-href="" data-toggle="modal" data-target="#modalEliminar">Cancelar</a>   
+						 <a  class="btn btn-info"  title="Cancelar" href="{{url('/select/sede')}}" data-toggle="" data-target="">Cancelar</a>   
 					</div>
 				</div>
 				<br><br>

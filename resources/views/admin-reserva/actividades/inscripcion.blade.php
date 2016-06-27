@@ -152,7 +152,9 @@
 								@endif		 						
 		 						
 						        <td>
-						        	<a class="btn btn-info" href="#" title="Inscripcion" ><i class="glyphicon glyphicon-pencil"></i></a>
+						        	<a class="btn btn-info" href="{{url('/actividad-admin-reserva/inscripcion/'.$actividad->id.'/confirmacion')}}" title="Inscripcion" ><i class="glyphicon glyphicon-pencil"></i></a>
+
+
 						        </td>
 						   
 							</tr>

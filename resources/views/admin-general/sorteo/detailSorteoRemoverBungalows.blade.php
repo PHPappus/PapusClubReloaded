@@ -14,7 +14,7 @@
 	
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-reserva')
 @section('content')
 <!---Cuerpo -->
 <main class="main">
@@ -87,7 +87,7 @@
 					
 					<div class="btn-group ">
 						<!--<button id="continuar"> Continuar </button>-->
-						<input class="btn btn-primary" type="submit" value="Continuar" data-toggle="modal" data-target="#modalContinuar">
+						<input class="btn btn-primary" type="submit" value="Continuar" >
 					</div>
 					<div class="btn-group">
 						 <a class="btn btn-info"  title="Atras" href="{{url('/sorteo/'.$id)}}">Atras</a>   

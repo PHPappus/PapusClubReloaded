@@ -43,4 +43,14 @@ class InscriptionActividadAdminReservaController extends Controller
 
         return view('admin-reserva.actividades.inscripcion', compact('sedes','actividades','fecha_inicio','fecha_fin'));
     }
+
+    public function storeInscriptionActividadAdminReserva($id)
+    {
+        $actividad=Actividad::find($id);
+        $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
+        $personas = Persona::where('id_usuario','!=',null)->where('id_tipo_persona','=',2)//Socios
+                             ->get();
+
+        return view('admin-reserva.actividades.confirmacion-inscripcion',compact('actividad', 'tipo_comprobantes','personas'));
+    }
 }

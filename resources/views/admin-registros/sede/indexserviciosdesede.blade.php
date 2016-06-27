@@ -90,8 +90,12 @@
 				<div class="btn-inline">
 					<div class="btn-group col-sm-9"></div>							
 					<div class="btn-group">
-						 <a class="btn btn-info"  href="{{url('/sedes/'.$sede->id.'/agregarservicios')}}" 
+						 <a class="btn btn-primary"  href="{{url('/sedes/'.$sede->id.'/agregarservicios')}}" 
 						 title="Agregar Servicios" data-href="" data-toggle="" >Agregar Servicios</a>   
+					</div>
+					<div class="btn-group">
+						 <a class="btn btn-info"  href="{{url('/select/sede')}}" 
+						 title="Cancelar" data-href="" data-toggle="" >Cancelar</a>   
 					</div>
 					<br/>
 					<br/>

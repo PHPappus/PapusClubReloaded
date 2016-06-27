@@ -131,7 +131,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg">Servicios <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#" title="Consultar Servicios" target="_self">Consultar</a></li>
+              <li><a href="{!!URL::to('/servicioalsocio/index')!!}" title="Consultar Servicios" target="_self">Consultar</a></li>
             </ul>
           </li>
         </ul>
