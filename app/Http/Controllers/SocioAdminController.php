@@ -437,6 +437,19 @@ class SocioAdminController extends Controller
             $fecha = new DateTime('today');
             $fecha=$fecha->format('Y-m-d');
             $socio->multaxpersona()->save($multa,['multa_modificada' => $multa->montoPenalidad, 'descripcion_detallada' => $input['descripcion'],'fecha_registro' => $fecha]);
+
+            $facturacion = new Facturacion();
+            $facturacion->persona_id = $socio->postulante->persona->id;
+            $facturacion->multa_id = $multa->id;
+            $facturacion->tipo_comprobante = "Boleta";
+            $nombreMulta = $multa->nombre;
+            $facturacion->descripcion = "Penalidad por $nombreMulta";
+            $facturacion->total = $multa->montoPenalidad;
+            $facturacion->tipo_pago = "No se ha cancelado";
+            $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
+            $facturacion->estado = $estado->valor;
+
+            $facturacion->save();
         }
         return redirect('multas-s')->with('stored', 'Se registró la multa correctamente.');
     }
@@ -686,7 +699,12 @@ class SocioAdminController extends Controller
     {
         $input = $request->all();
 
-        
+        $monto = Configuracion::where('grupo','=', 18)->first();
+
+        $newmonto = intval($monto->valor);
+
+
+
         $persona=Persona::where('doc_identidad','=',$input['dniP'])->orwhere('carnet_extranjeria','=',$input['dniP'])->first();
         $oldpersona = Persona::where('doc_identidad','=',$input['dni'])->orwhere('carnet_extranjeria','=',$input['dni'])->first();
         $traspaso = Traspaso::where('dni','=',$input['dniP'])->first();
@@ -713,18 +731,20 @@ class SocioAdminController extends Controller
         $postulante->socio()->save($socio);
         $carnet = create_carnet($socio);
 
-        $monto = Configuracion::where('grupo', '=', 18)->first();
+
 
         $facturacion = new Facturacion();
         $facturacion->persona_id = $persona->id;
-        $facturacion->actividad_id = $actividad->id;
-        $facturacion->tipo_comprobante = $request['tipo_comprobante'];
-        $nombreActividad = $actividad->nombre;
-        $facturacion->descripcion = "Inscripción de $nombreActividad";
-        $facturacion->total = $precioTarifa;
+        $facturacion->traspaso_id = $traspaso->id;
+        $facturacion->tipo_comprobante = "Boleta";
+        $facturacion->descripcion = "Traspaso de membresia";
+        $facturacion->total = $newmonto;
         $facturacion->tipo_pago = "No se ha cancelado";
         $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
         $facturacion->estado = $estado->valor;
+
+        $facturacion->save();
+
 
         return redirect('traspasos-p')->with('stored','Se aprobó el traspaso');
 

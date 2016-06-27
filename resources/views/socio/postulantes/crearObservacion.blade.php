@@ -69,7 +69,7 @@
 				<div class="form-group ">
 			    	<label for="obsInput" class="col-sm-4 control-label">Observación</label>
 			    	<div class="col-sm-5">
-			    		<textarea class="form-control" id="obsInput" name="obs" placeholder="Observación" rows="3" cols="50" value="{{old('obs')}}"></textarea>
+			    		<textarea class="form-control" id="obsInput" name="obs" maxlength="100" style="resize: none" placeholder="Observación" rows="3" cols="50" value="{{old('obs')}}"></textarea>
 			    	</div>
 			  	</div>	
 
