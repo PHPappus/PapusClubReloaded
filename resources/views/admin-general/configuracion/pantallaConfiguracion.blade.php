@@ -60,7 +60,7 @@
 											<thead class="active" data-sortable="true">
 												<th><div align=center>VALOR</div> </th>
 											</thead>
-											@foreach($variables->where('grupo', 1) as $grupo1)
+											@foreach($variables->where('grupo', '1') as $grupo1)
 												<tr>
 													<td>{{ $grupo1->valor }}</td>
 												</tr>
