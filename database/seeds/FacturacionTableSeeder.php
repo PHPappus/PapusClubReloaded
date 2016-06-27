@@ -14,15 +14,17 @@ class FacturacionTableSeeder extends Seeder
     {
         Facturacion::insert([            
         	'persona_id' => '2', 
+            'numero_comprobante' => '1',
         	'total' => '70.5',         	
         	'tipo_pago' => 'Efectivo', 
             'tipo_comprobante' => 'Boleta',
         	'estado' => 'Pagado',
-            'descripcion' => 'Venta de Productos'   
+            'descripcion' => 'Venta de Productos'               
         	]);
 
         Facturacion::insert([            
         	'persona_id' => '2', 
+            'numero_comprobante' => '1',
         	'total' => '300',         	
         	'tipo_pago' => 'Efectivo', 
             'tipo_comprobante' => 'Factura',
@@ -32,6 +34,7 @@ class FacturacionTableSeeder extends Seeder
 
         Facturacion::insert([            
         	'persona_id' => '3', 
+            'numero_comprobante' => '2',
         	'total' => '85',         	
         	'tipo_pago' => 'Credito', 
             'tipo_comprobante' => 'Boleta',
@@ -41,6 +44,7 @@ class FacturacionTableSeeder extends Seeder
 
         Facturacion::insert([            
             'persona_id' => '3', 
+            'numero_comprobante' => '3',
             'total' => '50',
             'tipo_pago' => 'Credito', 
             'tipo_comprobante' => 'Boleta',

@@ -49,7 +49,8 @@
 			</div>
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active" data-sortable="true">
-						<th><div align=center>N° DE FACTURA</div></th>
+						<th><div align=center>N° DE COMPROBANTE</div></th>
+						<th><div align=center>TIPO DE COMPROBANTE</div></th>
 						<th><div align=center>ESTADO</div></th>
 						<th><div align=center>TOTAL</div></th>
 						<th><div align=center>TIPO PAGO</div></th>							
@@ -62,7 +63,8 @@
 					<tbody>
 					@foreach($facturas as $factura)
 						<tr>
-							<td>{{ $factura->id }}</td>
+							<td>{{ $factura->numero_comprobante }}</td>
+							<td>{{ $factura->tipo_comprobante }}</td>
 							<td>{{ $factura->estado}}</td>
 							<td>{{ $factura->total }}</td>			
 							<td>{{ $factura->tipo_pago }}</td>

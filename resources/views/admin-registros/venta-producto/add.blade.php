@@ -80,7 +80,7 @@
 		    		</div>		    		
 		  		</div>			  	
 
-			  	<div class="form-group required">
+			  	<div class="form-group required" hidden>
 		    		<label for="facturacion_idInput" class="col-sm-4 control-label">N° de Factura</label>
 		    		<div class="col-sm-5">
 		      			<input type="text" class="form-control" id="facturacion_idInput" name="facturacion_id" value="{{$factura->id}}" readonly>

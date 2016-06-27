@@ -43,6 +43,10 @@ class VentaProductoController extends Controller
         $factura->tipo_comprobante = $input['tipo_comprobante'];
 		$factura->estado = $input['estado'];		
     	$factura->descripcion = 'Venta de Productos';
+
+        $numero_comprobante = Facturacion::where('tipo_comprobante','=',$input['tipo_comprobante'])
+                                            ->max('numero_comprobante');
+        $factura->numero_comprobante = $numero_comprobante + 1;
         $factura->save();	    
         
         return view('admin-registros.venta-producto.addVentaProducto', compact('factura'));

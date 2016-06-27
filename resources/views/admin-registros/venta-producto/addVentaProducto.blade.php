@@ -61,7 +61,7 @@
 		    		<label for="idInput" class="col-sm-4 control-label">N° de Boleta</label>
 		    		@endif
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="idInput" name="id" value="{{$factura->id}}" readonly>
+		      			<input type="text" class="form-control" id="idInput" name="id" value="{{$factura->numero_comprobante}}" readonly>
 		    		</div>
 		  		</div>
 			  
