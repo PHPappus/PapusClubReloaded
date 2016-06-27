@@ -22,6 +22,7 @@ class CreateServicioxSedexPersonaTable extends Migration
             $table->string('estado');            
             $table->date('fecha_registro');
             $table->integer('calificacion');
+            $table->string('descripcion')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
