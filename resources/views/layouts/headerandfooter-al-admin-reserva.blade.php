@@ -71,11 +71,21 @@
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Ingreso a Reserva <span class="caret"></span>
+              Ingreso a Reserva<span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
               <!-- <li><a href="#" title="Consultar ambientes" target="_self">Consultar</a></li> -->
               <li><a href="{!!URL::to('/ingresoReserva/index')!!}" title="Reservas de ambientes realizados" target="_self">Registrar Ingreso</a></li>            
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Sorteos <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">    
+                <li><a href="{!!URL::to('/sorteo/index')!!}" title="Mantenimiento Sorteo" target="_self"> Consultar</a></li>
             </ul>
           </li>
         </ul>
