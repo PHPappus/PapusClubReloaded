@@ -18,7 +18,7 @@ class FacturacionTableSeeder extends Seeder
         	'tipo_pago' => 'Efectivo', 
             'tipo_comprobante' => 'Boleta',
         	'estado' => 'Pagado',
-            'reserva_id'=>1
+            'descripcion' => 'Venta de Productos'   
         	]);
 
         Facturacion::insert([            
@@ -27,7 +27,7 @@ class FacturacionTableSeeder extends Seeder
         	'tipo_pago' => 'Efectivo', 
             'tipo_comprobante' => 'Factura',
         	'estado' => 'Pagado',
-            'reserva_id'=>2
+            'descripcion' => 'Venta de Productos'   
         	]);
 
         Facturacion::insert([            
@@ -36,16 +36,16 @@ class FacturacionTableSeeder extends Seeder
         	'tipo_pago' => 'Credito', 
             'tipo_comprobante' => 'Boleta',
         	'estado' => 'Emitido',
-            'reserva_id'=>3
+            'descripcion' => 'Venta de Productos'   
         	]);
 
         Facturacion::insert([            
             'persona_id' => '3', 
-            'total' => '20',
+            'total' => '50',
             'tipo_pago' => 'Credito', 
             'tipo_comprobante' => 'Boleta',
             'estado' => 'Emitido',
-            'reserva_id'=>4
+            'descripcion' => 'Venta de Productos'   
             ]);
         Facturacion::insert([            
             'persona_id' => '4', 
@@ -53,7 +53,7 @@ class FacturacionTableSeeder extends Seeder
             'tipo_pago' => 'Credito', 
             'tipo_comprobante' => 'Boleta',
             'estado' => 'Emitido',
-            'reserva_id'=>5
+            'reserva_id'=>1
             ]);
         Facturacion::insert([            
             'persona_id' => '5', 
@@ -61,7 +61,7 @@ class FacturacionTableSeeder extends Seeder
             'tipo_pago' => 'Credito', 
             'tipo_comprobante' => 'Boleta',
             'estado' => 'Emitido',
-            'reserva_id'=>6
+            'reserva_id'=>2
             ]);
     }
 }
