@@ -47,12 +47,12 @@
 				<table id="talleresTable" class="table table-bordered table-hover text-center display">
 					<thead class="active">
 						<tr class="active">
-							<th><div align=center>NOMBRE</div></th>	
-							<th><div align=center>PROFESOR</div></th>				
-							<th><div align=center>FECHA DE INICIO</div></th>
-							<th><div align=center>FECHA DE FIN</div></th>
-							<th><div align=center>ESTADO</div></th>
-							<th><div align=center>DETALLE</div></th>
+							<th><div align=center>Nombre</div></th>	
+							<th><div align=center>Profesor</div></th>				
+							<th><div align=center>Fecha de inicio</div></th>
+							<th><div align=center>Fecha de fin</div></th>
+							<th><div align=center>Precio</div></th>
+							<th><div align=center>Detalle</div></th>
 							<th><div align=center>Anular</div></th>
 						</tr>
 					</thead>
@@ -63,7 +63,7 @@
 							<td>{{$taller->profesor}}</td>
 							<td>{{date("d-m-Y",strtotime($taller->fecha_inicio))}}</td>
 							<td>{{date("d-m-Y",strtotime($taller->fecha_fin))}}</td>
-							<td>{{($taller->vacantes == 0) ? 'No hay vacantes': 'Disponible'}}</td>
+							<td>S/.{{ $taller->precio($tipo_persona, $taller->tarifas) }}</td>
 							
 							<td>
 								<a class="btn btn-info" href="{{url('/talleres/'.$taller->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
@@ -100,7 +100,7 @@
 							<th><div align=center>Profesor</div></th>				
 							<th><div align=center>Fecha de inicio</div></th>
 							<th><div align=center>Fecha de fin</div></th>
-							<th><div align=center>Estado</div></th>
+							<th><div align=center>Precio</div></th>
 							<th><div align=center>Detalle</div></th>
 							<th><div align=center>Anular</div></th>
 						</tr>
@@ -114,7 +114,7 @@
 									<td>{{$taller_familiar->profesor}}</td>
 									<td>{{date("d-m-Y",strtotime($taller_familiar->fecha_inicio))}}</td>
 									<td>{{date("d-m-Y",strtotime($taller_familiar->fecha_fin))}}</td>
-									<td>{{($taller_familiar->vacantes == 0) ? 'No hay vacantes': 'Disponible'}}</td>
+									<td>S/.{{ $taller_familiar->precio($tipo_persona, $taller_familiar->tarifas) }}</td>
 									
 									<td>
 										<a class="btn btn-info" href="{{url('/talleres-familiar/'.$taller_familiar->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
