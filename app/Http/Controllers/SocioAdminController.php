@@ -13,6 +13,7 @@ use papusclub\Models\Postulante;
 use papusclub\Models\Carnet;
 use papusclub\Models\Multa;
 use papusclub\Models\Configuracion;
+use papusclub\Models\Facturacion;
 use papusclub\Http\Requests\EditSocioBasicoRequest;
 use papusclub\Http\Requests\EditSocioEstudioRequest;
 use papusclub\Http\Requests\EditSocioViviendaRequest;
@@ -684,8 +685,7 @@ class SocioAdminController extends Controller
     public function validarTraspaso(SaveSocioRequest $request)
     {
         $input = $request->all();
-       // var_dump($input);
-       // die();
+
         
         $persona=Persona::where('doc_identidad','=',$input['dniP'])->orwhere('carnet_extranjeria','=',$input['dniP'])->first();
         $oldpersona = Persona::where('doc_identidad','=',$input['dni'])->orwhere('carnet_extranjeria','=',$input['dni'])->first();
@@ -712,6 +712,19 @@ class SocioAdminController extends Controller
         $socio->save();
         $postulante->socio()->save($socio);
         $carnet = create_carnet($socio);
+
+        $monto = Configuracion::where('grupo', '=', 18)->first();
+
+        $facturacion = new Facturacion();
+        $facturacion->persona_id = $persona->id;
+        $facturacion->actividad_id = $actividad->id;
+        $facturacion->tipo_comprobante = $request['tipo_comprobante'];
+        $nombreActividad = $actividad->nombre;
+        $facturacion->descripcion = "Inscripción de $nombreActividad";
+        $facturacion->total = $precioTarifa;
+        $facturacion->tipo_pago = "No se ha cancelado";
+        $estado = Configuracion::where('grupo', '=', 7)->where('valor', '=', 'Emitido')->first();
+        $facturacion->estado = $estado->valor;
 
         return redirect('traspasos-p')->with('stored','Se aprobó el traspaso');
 
