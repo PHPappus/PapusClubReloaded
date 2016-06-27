@@ -100,7 +100,10 @@ class ReservarAmbienteController extends Controller
      $reserva = Reserva::find($id);
      $idsede = $reserva->ambiente->sede_id;
      $personaid = $reserva->persona->id;
-
+    // Factura 
+     $fact_id = $reserva->facturacion->id;
+     $fact = Facturacion::find($fact_id);
+     $totalnuevo = 0 ; 
      foreach ($serv_ids as $s) {
             $tarifario = TarifarioServicio::where('idservicio','=',$s)->where('idtipopersona','=',1)->first(); // Socio
             $sxsxp = new ServicioxSedexPersona();
@@ -112,9 +115,12 @@ class ReservarAmbienteController extends Controller
             $sxsxp->precio = $tarifario->precio;
             $sxsxp->calificacion = -1;   
             $sxsxp->save();
+            $totalnuevo = $totalnuevo+$tarifario->precio  ;          
     }   
+    $fact->total = $fact->total + $totalnuevo;
+    $fact->save();
 
-     $sedexservicioxpersona =  ServicioxSedexPersona::where('id_persona','=',$personaid)->where('codreserva', '>', 0)->get();
+    $sedexservicioxpersona =  ServicioxSedexPersona::where('id_persona','=',$personaid)->where('codreserva', '>', 0)->get();
 
         $expfila = count($sedexservicioxpersona);
         $expcolu = 8 ; 
@@ -1041,6 +1047,7 @@ class ReservarAmbienteController extends Controller
     {
         $reservas = Reserva::all();
         $socios = Socio::all();
+        
         
 
         return view('admin-reserva.reservar-ambiente.consultar-reserva-otros-ambientes',compact('reservas', 'socios'));

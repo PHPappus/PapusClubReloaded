@@ -98,7 +98,7 @@
 										<td align="center">%</td>
 										<td align="center"> 
 										<div align="center">
-								      		<input style="text-align:center;" type="text"  class="form-control" name="descuentos[{{$tipofamilia->id}}]" value="{{old('descuentos.'.$tipofamilia->id)}}">
+								      		<input style="text-align:center;" type="text"  onkeypress="return inputLimiter(event,'DoubleFormat')" class="form-control" name="descuentos[{{$tipofamilia->id}}]" value="{{old('descuentos.'.$tipofamilia->id)}}">
 								    	</div>
 									</td>							        
 									</tr>

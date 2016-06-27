@@ -9,7 +9,7 @@
 
         <form action="#" id="search-box" method="get">
           <!-- <label class="hidden" for="inputbusqueda">Buscar</label> -->
-            <input type="text" placeholder="Ingresa tu búsqueda" id="inputbusqueda" name="conte" style="max-width:145px;">
+            <input type="text" placeholder="Ingresa tu búsqueda" id="inputbusqueda" name="conte" style="max-width:155px;">
             <!-- <span class="glyphicon glyphicon-search" href="#"></span> -->
             <button style="background-color:transparent;border:none;"><span class="glyphicon glyphicon-search" href="#"></span></button>
         </form>
@@ -29,9 +29,31 @@
         </button>
         <a href="{!!URL::to('/admin-reserva')!!}" class="navbar-brand"><img alt="Brand" class="img-responsive" src="{!!URL::to('/images/logo.png')!!}" ></a>
       </div>
+      
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="navbar1">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Actividades <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{!!URL::to('/actividad-admin-reserva/inscripcion')!!}" title="Inscribir Socio" target="_self">Inscribir Socio</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Talleres <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{!!URL::to('/talleres/inscripcion')!!}" title="Inscribir Socio" target="_self">Inscribir Socio</a></li>
+            </ul>
+          </li>
+        </ul>
+
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
@@ -56,10 +78,43 @@
             </ul>
           </li>
         </ul>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Mantenimiento <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- <li><a href="#" title="Consultar ambientes" target="_self">Consultar</a></li> -->
+              <li><a href="{!!URL::to('/mantBungalowPrev/indexHabilitar')!!}" title="Reservas de ambientes realizados" target="_self">Habilitar Bungalows</a></li>
+                <li><a href="{!!URL::to('/mantBungalowPrev/index')!!}" title="Reservas de ambientes realizados" target="_self">Deshabilitar Bungalows</a></li>                
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Ingreso a Reserva<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- <li><a href="#" title="Consultar ambientes" target="_self">Consultar</a></li> -->
+              <li><a href="{!!URL::to('/ingresoReserva/index')!!}" title="Reservas de ambientes realizados" target="_self">Registrar Ingreso</a></li>            
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Sorteos <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">    
+                <li><a href="{!!URL::to('/sorteo/index')!!}" title="Mantenimiento Sorteo" target="_self"> Consultar</a></li>
+            </ul>
+          </li>
+        </ul>
 
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
             {!!Auth::user()->name!!} <span class="glyphicon glyphicon-user"><span class="caret"></span>
             </a>
             <ul class="dropdown-menu">

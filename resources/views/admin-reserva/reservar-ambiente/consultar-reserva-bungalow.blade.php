@@ -73,6 +73,7 @@
 							<th><DIV ALIGN=center>AGREGAR SERVICIOS</th>
 
 							<th><DIV ALIGN=center>CANCELAR</th>
+
 							
 						</tr>
 					</thead>
@@ -85,7 +86,7 @@
 										<td>{{ $reserva->ambiente->nombre }}</td>
 										<td>{{ $reserva->fecha_inicio_reserva }}</td>
 				 						<td>{{ $reserva->fecha_fin_reserva }}</td>
-				 						<td>{{ $reserva->precio }}</td>
+				 						<td>{{ $reserva->facturacion->total}}</td>
 				 						<td>{{ $reserva->estadoReserva }}</td>
 				 						
 							

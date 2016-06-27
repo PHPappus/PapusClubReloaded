@@ -77,7 +77,8 @@
 							
 							<th><div align=center>SEDE</div></th>			
 							<th><div align=center>DETALLE</div></th>					
-							<th><div align=center>ESTADO SOLICITUD</div></th>					
+							<th><div align=center>ESTADO SOLICITUD</div></th>
+							<th><div align=center>CALIFICAR SERVICIO</div></th>					
 							<th><div align=center>ELIMINAR SOLICITUD</div></th>					
 							
 						</tr>
@@ -95,12 +96,24 @@
 					 	
 					 		$indice = $tabla[$i][7];
 					 	 ?>
-					 	 <td>
-					
 
-					 		<a class="btn btn-info" data-href="{!!URL::to('/servicios/mis-inscripciones/'.$indice.'/delete')!!}" title="Anular Solicitud" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i>
+					 	  <td>
+							<a class="btn btn-info" href="{!!URL::to('/servicios/mis-inscripciones/'.$indice.'/calificar')!!}" title="Calificar" ><i class="glyphicon glyphicon-list-alt"></i></a>
+						</td>
+						
+					 	 <td>
+						
+					 	 	@if($tabla[$i][8])
+						 		<a class="btn btn-info" data-href="{!!URL::to('/servicios/mis-inscripciones/'.$indice.'/delete')!!}" title="Anular Solicitud" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove" ></i>
+						 		</a>
+					 		@else
+					 		<a class="btn btn-info"  title="Anular Solicitud" disabled ><i class="glyphicon glyphicon-remove" ></i>
 					 		</a>
-					 	</td>
+							@endif
+						</td>
+	
+					 	
+					 	
                         <?php 
 					 }
 					 ?>
@@ -119,7 +132,7 @@
 					</div>
 				<div class="col-sm-6 text-left">
 					
-					<a href="{{url('/socio')}}" class="btn btn-lg btn-primary" title="Regresar a página de inicio">Regresar</a>			
+					<a href="{{url('/servicioalsocio/index')}}" class="btn btn-lg btn-primary" title="Regresar a página de inicio">Regresar</a>			
 				</div>
 			</div>
 		</div>	

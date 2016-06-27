@@ -18,6 +18,7 @@ use View;
 
 use papusclub\Http\Requests\BuscarPersonaRequest;
 use papusclub\Http\Requests\RegistrarPagoIngresoRequest;
+use papusclub\Http\Requests\RegistrarPagoMembresiaRequest;
 
 class PagosController extends Controller
 {
@@ -59,8 +60,12 @@ class PagosController extends Controller
         $facturacion->tipo_pago = $input['tipo_pago'];
         $facturacion->estado = $estado_facturacion->valor;
         $facturacion->update();
-        $facturacion->reserva->estadoReserva = "Activo";
-        $facturacion->reserva->update();
+        if ($facturacion->reserva_id) 
+        {
+            $facturacion->reserva->estadoReserva = "Activo";
+            $facturacion->reserva->update();         
+        }        
+
 
         return redirect('pagos/pago-seleccionar-socio')->with('stored', 'Se registró la facturacion correctamente.');
     }
@@ -214,5 +219,23 @@ class PagosController extends Controller
         {
             return redirect('/ingreso/busqueda')->with('stored', 'No se pudo registrar el pago debido a un error inesperado, vuelva a intentar nuevamente.');
         }
+    }
+
+
+    public function registrarDeudasMembresia()
+    {
+        $socios = Socio::all();
+        foreach ($socios as $socio) 
+        {
+            $facturacion = new Facturacion();
+            $facturacion->persona_id = $socio->postulante->persona->id;
+            $facturacion->total=$socio->membresia->tarifa->monto;
+            $facturacion->descripcion='Cuota Membresía.';
+            $facturacion->estado ='Emitido';
+            $facturacion->tipo_comprobante='Boleta';
+            $facturacion->save();
+        }
+
+        return redirect('pagos/pago-seleccionar-socio/');
     }
 }

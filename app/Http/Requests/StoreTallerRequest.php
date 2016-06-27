@@ -30,7 +30,7 @@ class StoreTallerRequest extends Request
         $rules = [
 
             'nombre' => 'required|max:60|string',
-            'descripcion' =>'|max:200|string',
+            'descripcion' =>'max:100|string',
             'profe' => 'required|max:60|string',
             'vacantes' =>'min:0',
             'fecIniIns' => 'required',

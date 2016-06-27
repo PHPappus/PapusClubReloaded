@@ -21,10 +21,10 @@ class CreateConcesionariaTable extends Migration
             $table->biginteger('ruc');
             $table->integer('telefono');
             $table->string('correo');
-            $table->text('direccion');
+            $table->string('descripcion');
             $table->string('nombre_responsable');
             $table->integer('estado');            
-            $table->integer('tipo_concesionaria');
+            $table->string('tipo_concesionaria');
             $table->date('fecha_inicio_concesion');
             $table->date('fecha_fin_concesion');
             $table->timestamps();
