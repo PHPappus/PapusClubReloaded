@@ -13,7 +13,7 @@
 	
 </head>
 <body>
-@extends('layouts.headerandfooter-al-socio')
+@extends('layouts.headerandfooter-al-admin-reserva')
 @section('content')
 
 <!---Cuerpo -->
@@ -32,8 +32,8 @@
 			</div>		
 		</div>
 		<div class="container">
-			<!--@include('errors.503')-->		
-			<form method="POST" action="/inscripcion-actividad/{{ $actividad->id }}/confirmacion-inscripcion-actividades/confirm" class="form-horizontal form-border"><!-- accion que regresa a la incial de inscripciones -->
+			<!--@include('errors.503')-->	
+			<form method="POST" action="/actividad-admin-reserva/inscripcion/{{ $actividad->id }}/confirmacion/confirm" class="form-horizontal form-border"><!-- accion que regresa a la incial de inscripciones -->
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<br/><br/>
 
