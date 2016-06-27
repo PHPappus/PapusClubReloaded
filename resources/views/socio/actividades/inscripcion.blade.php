@@ -124,12 +124,12 @@
 					<thead class="active">
 						<tr>
 								<th><DIV ALIGN=center>SEDE</th>
-								<th><DIV ALIGN=center>AMBIENTE</th>
+								<th style="max-width:70px;"><DIV ALIGN=center>AMBIENTE</th>
 								<th style="max-width:90px;"><DIV ALIGN=center>NOMBRE DE LA ACTIVIDAD</th>
-								<th style="max-width:90px;"><DIV ALIGN=center>CUPOS DISPONIBLES</th>
 								<th><DIV ALIGN=center>FECHA</th>
 								<th><DIV ALIGN=center>HORA DE INICIO</th>
 								<th><DIV ALIGN=center>PRECIO</th>
+								<th style="max-width:85px;"><DIV ALIGN=center>CUPOS DISPONIBLES</th>
 								<th><DIV ALIGN=center>ESTADO</th>
 								<th><DIV ALIGN=center>INSCRIBIRSE</th>
 								<th><DIV ALIGN=center>INSCRIBIR A UN FAMILIAR</th>
@@ -141,17 +141,23 @@
 					    		<td>{{ $actividad->ambiente->sede->nombre }}</td>
 					    		<td>{{ $actividad->ambiente->nombre }}</td>
 								<td>{{ $actividad->nombre }}</td>
-		 						<td>{{ $actividad->cupos_disponibles }}</td>
+								
+		 						
 		 						<td>{{ $actividad->a_realizarse_en}}</td>
 		 						<td>{{ $actividad->hora_inicio}}</td>		 						
-		 						<td>S/.{{ $actividad->precio($tipo_persona, $actividad->tarifas) }}</td>		 						
+		 						<td>S/.{{ $actividad->precio($tipo_persona, $actividad->tarifas) }}</td>
+		 						@if($actividad->cupos_disponibles<=0)
+									<td>No hay cupos disponibles</td>
+								@else
+									<td>{{ $actividad->cupos_disponibles }}</td>
+								@endif		 						
 		 						@if((count($actividades_persona->where('id',$actividad->id))!=0))
-		 						<td>Inscrito</td>
+		 						<td style="background:#d5efd5;">Inscrito</td>
 								<td>
 						        	<a class="btn btn-info" title="Inscripcion" disabled><i class="glyphicon glyphicon-pencil"></i></a>
 						        </td>	
 						        @elseif($actividad->cupos_disponibles<=0)
-						        <td>No hay cupos disponibles</td>	
+						        <td>No Inscrito</td>	
 						        <td>
 						        	<a class="btn btn-info" title="Inscripcion" disabled><i class="glyphicon glyphicon-pencil"></i></a>
 						        </td>

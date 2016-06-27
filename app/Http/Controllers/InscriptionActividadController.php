@@ -159,7 +159,9 @@ class InscriptionActividadController extends Controller
         /*array_push(*/
         $fecha_hoy=Carbon::now('America/Lima')->format('Y-m-d');
 
-        return view('socio.actividades.inscripciones', compact('actividades','familiares','fecha_hoy'));
+        $tipo_persona = $persona->tipopersona->id;
+
+        return view('socio.actividades.inscripciones', compact('actividades','familiares','fecha_hoy','tipo_persona'));
     }
 
     public function makeInscriptionFamiliarToPersona(MakeInscriptionToPersonaRequest $request, $id)
@@ -282,7 +284,7 @@ class InscriptionActividadController extends Controller
 
                             $tipo_persona = $persona->tipopersona;
                             $tarifas = $actividad->tarifas;
-                            $precioTarifa;
+                            $precioTarifa=0;
                             foreach ($tarifas as $tarifa) {
                                 if($tarifa->tipo_persona == $tipo_persona){
                                     $persona->actividades()->attach($id,['precio'=> $tarifa->precio,'created_at'=>Carbon::now('America/Lima')]);
