@@ -48,7 +48,7 @@ class VentaProductoController extends Controller
                                             ->max('numero_comprobante');
         $factura->numero_comprobante = $numero_comprobante + 1;
         $factura->save();	    
-        
+            
         return view('admin-registros.venta-producto.addVentaProducto', compact('factura'));
     }	   
 

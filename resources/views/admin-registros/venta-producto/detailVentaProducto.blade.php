@@ -62,6 +62,13 @@
 			    	</div>			      					      		
 			  	</div>				  
 
+			  	<div class="form-group required">
+					<label  class="control-label col-sm-4">Fecha [aaaa/mm/dd hh:mm:ss]:</label>
+					<div class="col-sm-5">
+						<input type="text" class="form-control" id="fecha_inicio_concesion" readonly name="fecha_inicio_concesion" value="{{ $factura->created_at }}"  >						
+					</div>					
+				</div>				
+
 				<br/><br/>
 				
 

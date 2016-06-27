@@ -12,7 +12,7 @@ class FacturacionTableSeeder extends Seeder
      */
     public function run()
     {
-        Facturacion::insert([            
+        Facturacion::create([            
         	'persona_id' => '2', 
             'numero_comprobante' => '1',
         	'total' => '70.5',         	
@@ -22,7 +22,7 @@ class FacturacionTableSeeder extends Seeder
             'descripcion' => 'Venta de Productos'               
         	]);
 
-        Facturacion::insert([            
+        Facturacion::create([            
         	'persona_id' => '2', 
             'numero_comprobante' => '1',
         	'total' => '300',         	
@@ -32,7 +32,7 @@ class FacturacionTableSeeder extends Seeder
             'descripcion' => 'Venta de Productos'   
         	]);
 
-        Facturacion::insert([            
+        Facturacion::create([            
         	'persona_id' => '3', 
             'numero_comprobante' => '2',
         	'total' => '85',         	
@@ -42,7 +42,7 @@ class FacturacionTableSeeder extends Seeder
             'descripcion' => 'Venta de Productos'   
         	]);
 
-        Facturacion::insert([            
+        Facturacion::create([            
             'persona_id' => '3', 
             'numero_comprobante' => '3',
             'total' => '50',
@@ -51,7 +51,7 @@ class FacturacionTableSeeder extends Seeder
             'estado' => 'Emitido',
             'descripcion' => 'Venta de Productos'   
             ]);
-        Facturacion::insert([            
+        Facturacion::create([            
             'persona_id' => '4', 
             'total' => '30',
             'tipo_pago' => 'Credito', 
@@ -59,7 +59,7 @@ class FacturacionTableSeeder extends Seeder
             'estado' => 'Emitido',
             'reserva_id'=>1
             ]);
-        Facturacion::insert([            
+        Facturacion::create([            
             'persona_id' => '5', 
             'total' => '40',
             'tipo_pago' => 'Credito', 
