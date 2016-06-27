@@ -56,26 +56,26 @@
 				<div class="form-group">
 		    		<label for="nombre_proveedorInput" class="col-sm-4 control-label">Nombre</label>
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="nombre_proveedorInput" name="nombre_proveedor" value="{{$proveedor->nombre_proveedor}}" >
+		      			<input type="text" class="form-control" id="nombre_proveedorInput" name="nombre_proveedor" value="{{$proveedor->nombre_proveedor}}" onkeypress="return inputLimiter(event,'Letters')">
 		    		</div>
 		  		</div>
 			  	<div class="form-group">
 			    	<label for="rucInput" class="col-sm-4 control-label">RUC</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="rucInput" name="ruc" value="{{$proveedor->ruc}}" readonly>
+			      		<input type="text" class="form-control" id="rucInput" name="ruc" value="{{$proveedor->ruc}}" onkeypress="return inputLimiter(event,'Numbers')" readonly>
 			    	</div>
 			  	</div>
 
 			  	<div class="form-group">
 			    	<label for="direccionInput" class="col-sm-4 control-label">Dirección</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="direccionInput" name="direccion" value="{{$proveedor->direccion}}">
+			      		<input type="text" class="form-control" id="direccionInput" name="direccion" value="{{$proveedor->direccion}}" >
 			    	</div>
 			  	</div>	  	
 			  	<div class="form-group">
 			    	<label for="telefonoInput" class="col-sm-4 control-label">Teléfono</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="telefonoInput" name="telefono" value="{{$proveedor->telefono}}" >
+			      		<input type="text" class="form-control" id="telefonoInput" name="telefono" value="{{$proveedor->telefono}}" onkeypress="return inputLimiter(event,'Numbers')">
 			    	</div>
 			  	</div>
 			  	<div class="form-group">
@@ -88,7 +88,7 @@
 			  	<div class="form-group">
 			    	<label for="nombre_responsableInput" class="col-sm-4 control-label">Nombre del Responsable</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="nombre_responsableInput" name="nombre_responsable" value="{{$proveedor->nombre_responsable}}" >
+			      		<input type="text" class="form-control" id="nombre_responsableInput" name="nombre_responsable" value="{{$proveedor->nombre_responsable}}" onkeypress="return inputLimiter(event,'Letters')">
 			    	</div>
 			  	</div>			  
 			  	<div class="form-group">
