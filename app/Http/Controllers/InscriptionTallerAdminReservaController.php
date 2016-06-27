@@ -37,4 +37,17 @@ class InscriptionTallerAdminReservaController extends Controller
 
         return view('admin-reserva.talleres.index',compact('sedes','talleres','fecha_inicio'));
     }
+
+    public function confirmInscription($id)
+    {
+        
+        $taller   = Taller::find($id);
+        $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
+
+        $personas = Persona::where('id_usuario','!=',null)->where('id_tipo_persona','=',2)//Socios
+                             ->get();
+
+        return view('admin-reserva.talleres.confirmacion-inscripcion', compact('taller', 'tipo_comprobantes','personas'));
+
+    }
 }

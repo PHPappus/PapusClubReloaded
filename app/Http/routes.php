@@ -675,13 +675,20 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::get('actividad-admin-reserva/inscripcion/{id}/{idPersona}/delete', 'InscriptionActividadAdminReservaController@removeInscriptionToPersona');
 	//Inscripción de socios a TAlleres en el club
 	Route::get('taller-admin-reserva/index', 'InscriptionTallerAdminReservaController@index');
+	Route::post('taller-admin-reserva/index','InscriptionTallerAdminReservaController@filterActividadesAdminReserva');
 
+	Route::get('taller-admin-reserva/inscripcion/{id}/confirmacion', 'InscriptionTallerAdminReservaController@confirmInscription');
+	Route::post('taller-admin-reserva/inscripcion/{id}/confirmacion/confirm','InscriptionTallerAdminReservaController@makeInscriptionToPersona');
+
+	Route::get('taller-admin-reserva/inscripciones','InscriptionTallerAdminReservaController@inscripciones');
+	Route::get('taller-admin-reserva/inscripcion/{id}/{idPersona}/delete', 'InscriptionTallerAdminReservaController@removeInscriptionToPersona');
 
 
 		//INGRESO DE SOCIO A LA RESERVA
 	Route::get('ingresoReserva/index','IngresoSocioController@index');
 	Route::post('ingresoReserva/reserva','IngresoSocioController@reservaSocio');
 	Route::post('ingresoReserva/update','IngresoSocioController@cambiarEstado');
+
 
 		//DECLARAR EN MANTENIMIENTO BUNGALOWS
 		//PREVENTIVO
