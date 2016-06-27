@@ -63,7 +63,7 @@
 						@foreach($concesionarias as $concesionaria)			
 						<tr>
 							<td>{{ $concesionaria->nombre }}</td>
-							<td>{{ $concesionaria->sede->first()['nombre'] }}</td> 							
+							<td>{{ $concesionaria->sede->nombre }}</td> 							
 							<td>{{ date("d-m-Y",strtotime($concesionaria->fecha_inicio_concesion)) }}</td>
 							<td>{{ date("d-m-Y",strtotime($concesionaria->fecha_fin_concesion)) }}</td>
 							<td>

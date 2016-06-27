@@ -79,6 +79,6 @@ class ConfiguracionTableSeeder extends Seeder
 
         Configuracion::insert(['valor'=>'Alimentos y Bebidas','grupo'=>'16','descripcion'=>'tipo concesionaria']);
         Configuracion::insert(['valor'=>'Deportes','grupo'=>'16','descripcion'=>'tipo concesionaria']);
-        Configuracion::insert(['valor'=>'Peluquería y Spa','grupo'=>'16','descripcion'=>'tipo concesionaria']);
+        Configuracion::insert(['valor'=>'Peluqueria y Spa','grupo'=>'16','descripcion'=>'tipo concesionaria']);
     }
 }
