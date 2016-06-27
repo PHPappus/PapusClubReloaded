@@ -93,7 +93,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-center">
-					<a href="{{url('/inscripcion-actividad/inscripcion-actividades')}}" class="btn btn-lg btn-primary" >Regresar</a>		
+					<a href="{{url('/taller-admin-reserva/index')}}" class="btn btn-lg btn-primary" >Regresar</a>		
 				</div>
 			</div>
 		</div>	
