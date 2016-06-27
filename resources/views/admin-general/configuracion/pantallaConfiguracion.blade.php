@@ -16,7 +16,7 @@
 	
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin-persona')
+@extends('layouts.headerandfooter-al-admin')
 
 @section('content')
 	
@@ -28,47 +28,233 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-left">
-					<p class="lead"><strong>TRABAJADOR</strong></p>
+					<p class="lead"><strong>CONFIGURACION</strong></p>
 				</div>
 			</div>	
 		</div>
 
-			<!-- Mensaje de éxito luego de registrar -->
-		@if (session('stored'))
-			<script>$("#modalSuccess").modal("show");</script>
+		<div class="container">
+			<form method="POST" action="/multa/new/save" class="form-horizontal form-border">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			
-			<div class="alert alert-success fade in">
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-					<strong>¡Éxito!</strong> {{session('stored')}}
-			</div>
-		@endif
-
-			<div class="container">
-					
-			</br>
-				</br>
-				</br>
-				</br>
-				
-				<div class="btn-inline">
-					<!-- <form method="POST" action="/sedes/new/sede" >
-					<input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
-
-					<div class="btn-group col-sm-10"></div>
-					
-					<div class="btn-group ">
-						<a href="{{url('/trabajador/new')}}" class="btn btn-info" type="submit">Registrar Trabajador</a>
-
-					</div>
-					
+				<div class="col-sm-4"></div>
+				<div class=""> 
+					@if ($errors->any())
+		  				<ul class="alert alert-danger fade in">
+		  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  					@foreach ($errors->all() as $error)
+		  						<li>{{$error}}</li>
+		  					@endforeach
+		  				</ul>
+		  			@endif
 				</div>
 
 
+				<div class="panel panel-primary">
+					<div class="panel-body" style="width: 1140px; height: 500px; overflow: scroll;">
+						<p class="lead"><strong>TIPOS DE PUESTOS</strong></p>
+							<table   style="margin-left:200px;">
+								<tr>
+									<td style=" width:300px;">
+										<table class="table table-striped text-center display" id="">
+											<thead class="active" data-sortable="true">
+												<th><div align=center>VALOR</div> </th>
+											</thead>
+											@foreach($variables->where('grupo', 1) as $grupo1)
+												<tr>
+													<td>{{ $grupo1->valor }}</td>
+												</tr>
+											@endforeach
+										</table>
+									</td>
+									<td style="padding:0 20px 0 100px;" >
+										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="puestos" name="puestos" placeholder="Nuevo Puesto" ><br>
+										<button type="submit" name="edit" class="btn btn-primary pull-right">Agregar</button>
+									</td>
+								</tr>
+							</table>
+						<hr style="width: 80%; color: black; height: 1px; background-color:black;" />
+						<p class="lead"><strong>TIPOS DE AMBIENTES</strong></p>
+							<table   style="margin-left:200px;">
+								<tr>
+									<td style=" width:300px;">
+										<table class="table table-striped text-center display" id="">
+											<thead class="active" data-sortable="true">
+												<th><div align=center>VALOR</div> </th>
+											</thead>
+											@foreach($variables->where('grupo', 2) as $grupo1)
+												<tr>
+													<td>{{ $grupo1->valor }}</td>
+												</tr>
+											@endforeach
+										</table>
+									</td>
+									<td style="padding:0 20px 0 100px;" >
+										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="puestos" name="puestos" placeholder="Nuevo Puesto" ><br>
+										<button type="submit" name="edit" class="btn btn-primary pull-right">Agregar</button>
+									</td>
+								</tr>
+							</table>
+						<hr style="width: 80%; color: black; height: 1px; background-color:black;" />
+						<p class="lead"><strong>TIPOS DE ACTIVIDADES</strong></p>
+							<table   style="margin-left:200px;">
+								<tr>
+									<td style=" width:300px;">
+										<table class="table table-striped text-center display" id="">
+											<thead class="active" data-sortable="true">
+												<th><div align=center>VALOR</div> </th>
+											</thead>
+											@foreach($variables->where('grupo', 3) as $grupo1)
+												<tr>
+													<td>{{ $grupo1->valor }}</td>
+												</tr>
+											@endforeach
+										</table>
+									</td>
+									<td style="padding:0 20px 0 100px;" >
+										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="puestos" name="puestos" placeholder="Nuevo Puesto" ><br>
+										<button type="submit" name="edit" class="btn btn-primary pull-right">Agregar</button>
+									</td>
+								</tr>
+							</table>
+						<hr style="width: 80%; color: black; height: 1px; background-color:black;" />
+						<p class="lead"><strong>TIPOS DE SERVICIOS</strong></p>
+							<table   style="margin-left:200px;">
+								<tr>
+									<td style=" width:300px;">
+										<table class="table table-striped text-center display" id="">
+											<thead class="active" data-sortable="true">
+												<th><div align=center>VALOR</div> </th>
+											</thead>
+											@foreach($variables->where('grupo', 4) as $grupo1)
+												<tr>
+													<td>{{ $grupo1->valor }}</td>
+												</tr>
+											@endforeach
+										</table>
+									</td>
+									<td style="padding:0 20px 0 100px;" >
+										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="puestos" name="puestos" placeholder="Nuevo Puesto" ><br>
+										<button type="submit" name="edit" class="btn btn-primary pull-right">Agregar</button>
+									</td>
+								</tr>
+							</table>
+						<hr style="width: 80%; color: black; height: 1px; background-color:black;" />
+						<p class="lead"><strong>DURACION DE CARNET</strong></p>
+							<table   style="margin-left:200px;">
+								<tr>
+									<td style=" width:300px;">
+										<table class="table table-striped text-center display" id="">
+											<thead class="active" data-sortable="true">
+												<th><div align=center>VALOR</div> </th>
+											</thead>
+											@foreach($variables->where('grupo', 5) as $grupo1)
+												<tr>
+													<td>{{ $grupo1->valor }}</td>
+												</tr>
+											@endforeach
+										</table>
+									</td>
+									<td style="padding:0 20px 0 100px;" >
+										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="puestos" name="puestos" placeholder="Nuevo Puesto" ><br>
+										<button type="submit" name="edit" class="btn btn-primary pull-right">Cambiar</button>
+									</td>
+								</tr>
+							</table>
+						<hr style="width: 80%; color: black; height: 1px; background-color:black;" />
+						<p class="lead"><strong>TIPOS DE PRODUCTOS</strong></p>
+							<table   style="margin-left:200px;">
+								<tr>
+									<td style=" width:300px;">
+										<table class="table table-striped text-center display" id="">
+											<thead class="active" data-sortable="true">
+												<th><div align=center>VALOR</div> </th>
+											</thead>
+											@foreach($variables->where('grupo', 6) as $grupo1)
+												<tr>
+													<td>{{ $grupo1->valor }}</td>
+												</tr>
+											@endforeach
+										</table>
+									</td>
+									<td style="padding:0 20px 0 100px;" >
+										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="puestos" name="puestos" placeholder="Nuevo Puesto" ><br>
+										<button type="submit" name="edit" class="btn btn-primary pull-right">Agregar</button>
+									</td>
+								</tr>
+							</table>
+						<hr style="width: 80%; color: black; height: 1px; background-color:black;" />
+						<p class="lead"><strong>TIPOS RELACION FAMILIAR</strong></p>
+							<table   style="margin-left:200px;">
+								<tr>
+									<td style=" width:300px;">
+										<table class="table table-striped text-center display" id="">
+											<thead class="active" data-sortable="true">
+												<th><div align=center>VALOR</div> </th>
+											</thead>
+											@foreach($variables->where('grupo', 9) as $grupo1)
+												<tr>
+													<td>{{ $grupo1->valor }}</td>
+												</tr>
+											@endforeach
+										</table>
+									</td>
+									<td style="padding:0 20px 0 100px;" >
+										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="puestos" name="puestos" placeholder="Nuevo Puesto" ><br>
+										<button type="submit" name="edit" class="btn btn-primary pull-right">Agregar</button>
+									</td>
+								</tr>
+							</table>
+						<hr style="width: 80%; color: black; height: 1px; background-color:black;" />
+						<p class="lead"><strong>PRECIO ENTRADAS A SEDES (S/.)</strong></p>
+							<table   style="margin-left:200px;">
+								<tr>
+									<td style=" width:300px;">
+										<table class="table table-striped text-center display" id="">
+											<thead class="active" data-sortable="true">
+												<th><div align=center>VALOR</div> </th>
+											</thead>
+											@foreach($variables->where('grupo', 12) as $grupo1)
+												<tr>
+													<td>{{ $grupo1->valor }}</td>
+												</tr>
+											@endforeach
+										</table>
+									</td>
+									<td style="padding:0 20px 0 100px;" >
+										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="puestos" name="puestos" placeholder="Nuevo Puesto" ><br>
+										<button type="submit" name="edit" class="btn btn-primary pull-right">Cambiar</button>
+									</td>
+								</tr>
+							</table>
+						<hr style="width: 80%; color: black; height: 1px; background-color:black;" />
+						<p class="lead"><strong>TIPOS DE PUNTAJE</strong></p>
+							<table   style="margin-left:200px;">
+								<tr>
+									<td style=" width:300px;">
+										<table class="table table-striped text-center display" id="">
+											<thead class="active" data-sortable="true">
+												<th><div align=center>VALOR</div> </th>
+											</thead>
+											@foreach($variables->where('grupo', 17) as $grupo1)
+												<tr>
+													<td>{{ $grupo1->valor }}</td>
+												</tr>
+											@endforeach
+										</table>
+									</td>
+									<td style="padding:0 20px 0 100px;" >
+										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="puestos" name="puestos" placeholder="Nuevo Puesto" >
+										<br>
+										<button type="submit" name="edit" class="btn btn-primary pull-right">Agregar</button>
+									</td>
+								</tr>
+							</table>
+					</div>
+				</div>
 
 
-
-			<!-- <div><a class="btn btn-primary" href="{{url('/trabajador/search')}}">Consultar</a> <a class="btn btn-primary" href="{{url('/trabajador/new')}}">Registrar</a></div>
-			@yield('content-opcion') -->
+			</form>
 		</div>
 	</div>
 
