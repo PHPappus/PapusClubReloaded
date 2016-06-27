@@ -239,8 +239,37 @@ class SorteoController extends Controller
                     }
             }
         }
-        return redirect()->action('SorteoController@bungalows',['id'=>$sorteo->id]);
+        return redirect()->action('SorteoController@correccionUnica',['id'=>$sorteo->id]);
         //return view('admin-general.sorteo.prueba',['nombres'=>$bungalows]);
+    }
+
+    public function correccionUnica($id){
+        $sorteo = Sorteo::find($id);
+        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('sede_id','=',$sorteo->id_sede)->where('estado','!=','Deshabilitado')->get();
+
+        //las reservas inician en el rango del sorteo
+        $reservas_caso_1=Reserva::whereBetween('fecha_inicio_reserva', [$sorteo->fecha_abierto, $sorteo->fecha_cerrado])->get();
+        //las reservas terminan en el rango del sorteo
+        $reservas_caso_2=Reserva::whereBetween('fecha_fin_reserva', [$sorteo->fecha_abierto, $sorteo->fecha_cerrado])->get();
+        //$reservas_caso_2=Reserva::where('fecha_fin_reserva','>=',$sorteo->fecha_abierto)->where('fecha_fin_reserva','<=',$sorteo->fecha_cerrado)->get();
+        //El rango del sorteo encierra una reserva
+        $reservas_caso_3=Reserva::where('fecha_inicio_reserva','<=',$sorteo->fecha_abierto)->where('fecha_fin_reserva','>=',$sorteo->fecha_cerrado)->get();
+        foreach ($ambientes as $ambiente) {
+            foreach ($reservas_caso_1 as $reserva) {
+                if($reserva->ambiente_id==$ambiente->id) $ambiente->nombre='nada';
+            }
+        }
+        foreach ($ambientes as $ambiente) {
+            foreach ($reservas_caso_2 as $reserva) {
+                if($reserva->ambiente_id==$ambiente->id) $ambiente->nombre='nada';
+            }
+        }
+        foreach ($ambientes as $ambiente) {
+            foreach ($reservas_caso_3 as $reserva) {
+                if($reserva->ambiente_id==$ambiente->id) $ambiente->nombre='nada';
+            }
+        }
+        return view('admin-general.sorteo.modifySorteoBungalows',['sorteo'=>$sorteo],['ambientes'=>$ambientes]);
     }
 
     public function show($id)
@@ -342,7 +371,7 @@ class SorteoController extends Controller
 
     public function bungalows($id){
         $sorteo = Sorteo::find($id);
-        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('sede_id','=',$sorteo->id_sede)->get();
+        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('sede_id','=',$sorteo->id_sede)->where('estado','!=','Deshabilitado')->get();
 
         //las reservas inician en el rango del sorteo
         $reservas_caso_1=Reserva::whereBetween('fecha_inicio_reserva', [$sorteo->fecha_abierto, $sorteo->fecha_cerrado])->get();
