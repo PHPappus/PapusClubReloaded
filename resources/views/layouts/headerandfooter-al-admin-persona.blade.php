@@ -84,19 +84,6 @@
           </li>
         </ul>
         
-        <!-- Proveedor -->
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Proveedor <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-                <li><a href="#" title="Consultar Proveedores" target="_self">Consultar</a></li>
-                <li><a href="#" title="Registrar nuevo proveedor" target="_self">Registrar</a></li>
-            </ul>
-          </li>
-        </ul>
-        
         <!-- Usuario -->
         <ul class="nav navbar-nav">
           <li class="dropdown">

@@ -121,7 +121,7 @@ class ProductoTableSeeder extends Seeder
             'descripcion' => 'Mantenimiento de piscina',             
             'estado' => '1', 
            'tipo_producto' => 'Servicio',
-            'stock' => ''
+            'stock' => 1
             ]);
 
         Producto::insert([            
@@ -129,7 +129,7 @@ class ProductoTableSeeder extends Seeder
             'descripcion' => 'Limpieza de ambiente',             
             'estado' => '1', 
            'tipo_producto' => 'Servicio',
-            'stock' => ''
+            'stock' => 1
             ]);
 
         Producto::insert([            
@@ -137,7 +137,7 @@ class ProductoTableSeeder extends Seeder
             'descripcion' => 'Decoracion de ambiente para fiestas y eventos',             
             'estado' => '1', 
            'tipo_producto' => 'Servicio',
-            'stock' => ''
+            'stock' => 1
             ]);
 
         Producto::insert([            
@@ -145,7 +145,15 @@ class ProductoTableSeeder extends Seeder
             'descripcion' => 'Animación de fiestas o eventos',             
             'estado' => '1', 
            'tipo_producto' => 'Servicio',
-            'stock' => ''
+            'stock' => 1
+            ]);
+
+        Producto::insert([            
+            'nombre' => 'Mantenimiento de áreas verdes', 
+            'descripcion' => 'Mantenimiento de jardines, campos de fútbol y áreas verdes en general',             
+            'estado' => '1', 
+           'tipo_producto' => 'Servicio',
+            'stock' => 1
             ]);
     }
 }
