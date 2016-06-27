@@ -51,13 +51,16 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('servicioalsocio/{id}/confirm','ServicioalsocioController@confirmareleccion');
 
 	Route::post('servicioalsocio/{id}/confirm/save','ServicioalsocioController@confirmareleccionsave');
+
+	Route::post('servicioalsocio/{id}/confirmb/save','ServicioalsocioController@confirmareleccionsave_b');
+
 	Route::get('servicios/mis-inscripciones','ServicioalsocioController@misinscripciones');
 	Route::get('servicios/mis-inscripciones/{id}/calificar','ServicioalsocioController@calificar');
 	Route::post('calificar/store','ServicioalsocioController@storeCalificacion');
+
 	Route::get('servicios/mis-inscripciones/{id}/delete','ServicioalsocioController@delete');
 
 	//Route::post('servicios/mis-inscripciones','ServicioalsocioController@filtromisinscripciones');
-
 	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
 
 
@@ -70,7 +73,9 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	//Socio.talleres  : INSCRIPCION DE TALLERES
 	Route::get('talleres/index','InscriptionTallerController@index');
 	Route::post('talleres/index','InscriptionTallerController@filterTalleres');
+
 	Route::get('talleres/{id}/show','InscriptionTallerController@show');
+	Route::get('talleres-familiar/{id}/show','InscriptionTallerController@showFamiliar');
 
 	//Pide confirmación de password
 	Route::get('talleres/{id}/confirm','InscriptionTallerController@confirmInscription');
@@ -80,6 +85,9 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::post('talleres-familiar/{id}/confirm/save','InscriptionTallerController@makeInscriptionFamiliarToUser');
 
 	Route::get('talleres/{id}/delete', 'InscriptionTallerController@removeInscriptionToUser');
+	Route::get('talleres-familiar/{id}/{idPersona}/delete', 'InscriptionTallerController@removeInscriptionToFamiliar');
+	
+
 	Route::get('talleres/mis-inscripciones','InscriptionTallerController@misinscripciones');
 		//Socio.bungalows
 	Route::get('bungalows-s','SocioController@bungalow');
@@ -258,6 +266,7 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::post('concesionaria/{id}/edit', 'ConcesionariaController@update');
 	Route::get('concesionaria/{id}/delete', 'ConcesionariaController@destroy');
 	Route::get('concesionaria/{id}/show', 'ConcesionariaController@show');
+	Route::post('concesionaria/new/tipoconcesionaria', 'ConcesionariaController@storeTipoConcesionaria');
 });
 
 //Gerente
@@ -312,16 +321,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	//CONFIGURACION
 	Route::get('configuracion/index','ConfiguracionController@index');
 
-	//INGRESO DE SOCIO A LA RESERVA
-	Route::get('ingresoReserva/index','IngresoSocioController@index');
-	Route::post('ingresoReserva/reserva','IngresoSocioController@reservaSocio');
-	Route::post('ingresoReserva/update','IngresoSocioController@cambiarEstado');
 
-	//DECLARAR EN MANTENIMIENTO BUNGALOWS
-		//PREVENTIVO
-		Route::get('mantBungalowPrev/index','MantenimientoController@indexPrev');
-		Route::post('mantBungalowPrev/busqueda','MantenimientoController@bungalowsDisponibles');
-		Route::get('mantBungalowCorre','MantenimientoController@indexCorre');
 
 	//MANTENIMIENTO DE MULTAS
 	Route::get('multa/','MultaController@index');
@@ -395,6 +395,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('sorteo/new/sorteo/bungalows/{id}/store','SorteoController@storeBungalows');
 		//Modificar Sorteo
 		Route::get('sorteo/edit/remove/sorteo/bungalows/{id}','SorteoController@removebungalows');
+		Route::get('sorteo/cambio/{id}','SorteoController@correccionUnica');
 		Route::post('sorteo/new/sorteo/bungalows/{id}/remove','SorteoController@removeCheckedBungalows');
 		//Agregar Sorteo
 
@@ -591,6 +592,19 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::resource('admin-reserva','AdminReservaController');
 
+		//INGRESO DE SOCIO A LA RESERVA
+	Route::get('ingresoReserva/index','IngresoSocioController@index');
+	Route::post('ingresoReserva/reserva','IngresoSocioController@reservaSocio');
+	Route::post('ingresoReserva/update','IngresoSocioController@cambiarEstado');
+
+		//DECLARAR EN MANTENIMIENTO BUNGALOWS
+		//PREVENTIVO
+		Route::get('mantBungalowPrev/index','MantenimientoController@indexPrev');		
+		Route::post('mantBungalowPrev/deshabilitar','MantenimientoController@deshabilitarBungalows');
+
+		Route::get('mantBungalowPrev/indexHabilitar','MantenimientoController@indexPrevHabilitar');
+		Route::post('mantBungalowPrev/habilitar','MantenimientoController@habilitarBungalows');
+		//Route::get('mantBungalowCorre','MantenimientoController@indexCorre');
 
 	//RESERVA DE AMBIENTES
 	Route::get('reservar-ambiente/reservar-bungalow-adminR', 'ReservarAmbienteController@reservarBungalowAdminR'); // REservar Bungalows

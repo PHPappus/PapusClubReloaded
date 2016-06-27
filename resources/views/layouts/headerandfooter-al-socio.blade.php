@@ -24,7 +24,7 @@
 
         <form action="#" id="search-box" method="get">
           <!-- <label class="hidden" for="inputbusqueda">Buscar</label> -->
-                <input type="text" placeholder="Ingresa tu búsqueda" id="inputbusqueda" name="conte" style="max-width:145px;">
+                <input type="text" placeholder="Ingresa tu búsqueda" id="inputbusqueda" name="conte" style="max-width:150px;">
                 <!-- <span class="glyphicon glyphicon-search" href="#"></span> -->
                 <button style="background-color:transparent;border:none;"><span class="glyphicon glyphicon-search" href="#"></span></button>
         </form>
@@ -131,7 +131,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg">Servicios <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="#" title="Consultar Servicios" target="_self">Consultar</a></li>
+              <li><a href="{!!URL::to('/servicioalsocio/index')!!}" title="Consultar Servicios" target="_self">Consultar</a></li>
             </ul>
           </li>
         </ul>
