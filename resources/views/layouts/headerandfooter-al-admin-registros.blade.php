@@ -1,3 +1,4 @@
+<link href='https://fonts.googleapis.com/css?family=Lato:700' rel='stylesheet' type='text/css'>
 <style>
   @media (min-width: 1405px){
             #navbar1 {
