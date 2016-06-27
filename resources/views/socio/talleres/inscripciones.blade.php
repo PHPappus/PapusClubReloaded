@@ -20,9 +20,9 @@
 
 	<div class="content" style="max-width: 100%;">
 		<div class="container">
-			<div class="row" style="max-width: 920px">
+			<div class="row" style="max-width: 920px;">
 				<div class="col-sm-3">
-					<ol class="breadcrumb">
+					<ol class="breadcrumb" style="background:none;">
 						<li><a href="/socio"><span class="glyphicon glyphicon-home"></span></a></li>
 						<li class="active">Mis inscripciones</li>
 					</ol>
@@ -69,7 +69,11 @@
 								<a class="btn btn-info" href="{{url('/talleres/'.$taller->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 							</td>
 							<td>
-								<a class="btn btn-info" data-href="{{url('/talleres/'.$taller->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+								@if($taller->fecha_inicio >= $fecha_validable)
+								   <a class="btn btn-danger" data-href="{{url('/talleres/'.$taller->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+								@else
+									<a class="btn btn-info"  title="El periodo de anulación ya ha caducado" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
+								@endif
 							</td>
 						</tr>
 						@endforeach
@@ -88,7 +92,7 @@
 		<br/>
 		<div class="table-responsive">
 			<div class="container">
-				<table id="talleresTable" class="table table-bordered table-hover text-center display">
+				<table id="talleresTable2" class="table table-bordered table-hover text-center display">
 					<thead class="active">
 						<tr class="active">
 							<th><div align=center>Nombre del Familiar</div></th>
@@ -116,7 +120,11 @@
 										<a class="btn btn-info" href="{{url('/talleres-familiar/'.$taller->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 									</td>
 									<td>
-										<a class="btn btn-info" data-href="{{url('/talleres-familiar/'.$taller_familiar->id.'/'.$familiar->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+										@if($taller_familiar->fecha_inicio >= $fecha_validable)
+										    <a class="btn btn-danger" data-href="{{url('/talleres-familiar/'.$taller_familiar->id.'/'.$familiar->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+										@else
+											<a class="btn btn-info"  title="El periodo de anulación ya ha caducado" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
+										@endif
 									</td>
 								</tr>
 							@endforeach
@@ -148,6 +156,16 @@
 	<script>
 		$(document).ready(function() {
 		   $('#talleresTable').DataTable( {
+		       "language": {
+		           "url": "{!!URL::to('/locales/Spanish.json')!!}"
+		       }
+		  	});
+  		});
+		
+	</script>
+	<script>
+		$(document).ready(function() {
+		   $('#talleresTable2').DataTable( {
 		       "language": {
 		           "url": "{!!URL::to('/locales/Spanish.json')!!}"
 		       }
