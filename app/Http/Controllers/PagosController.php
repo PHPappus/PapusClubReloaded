@@ -18,6 +18,7 @@ use View;
 
 use papusclub\Http\Requests\BuscarPersonaRequest;
 use papusclub\Http\Requests\RegistrarPagoIngresoRequest;
+use papusclub\Http\Requests\RegistrarPagoMembresiaRequest;
 
 class PagosController extends Controller
 {
@@ -213,6 +214,77 @@ class PagosController extends Controller
         else
         {
             return redirect('/ingreso/busqueda')->with('stored', 'No se pudo registrar el pago debido a un error inesperado, vuelva a intentar nuevamente.');
+        }
+    }
+
+    public function deudasMembresia()
+    {
+        $socios = Socio::all();
+
+
+        return view('admin-pagos.membresia.index',compact('socios'));
+    }
+
+    public function deudaMembresiaSocio($id)
+    {
+        $socio = Socio::find($id);
+        $tipopagos = Configuracion::where('grupo','=','8')->get();
+        $comprobantes = Configuracion::where('grupo','=','10')->get();
+
+        return view('admin-pagos.membresia.deudaMembresia',compact('socio','tipopagos','comprobantes'));
+    }
+
+    public function registrarPagoMembresia(RegistrarPagoMembresiaRequest $request)
+    {
+        $input = $request->all();
+
+        $persona = null;
+        if(isset($input['dni']))
+        {
+            $numerodoc=$input['dni'];
+            $match = ['doc_identidad'=>$numerodoc];
+            $persona = Persona::where($match)->first();
+        }
+        else
+        {
+            $numerodoc=$input['carnet'];
+            $match = ['carnet_extranjeria'=>$numerodoc];
+            $persona = Persona::where($match)->first();
+        }
+
+        if($persona!=null)
+        {
+            $monto = $input['monto'];
+            $tipo_pago_id = $input['tipo_pago_id'];
+            $comprobante=$input['comprobante'];
+            $numero = $input['numero'];
+            $descripcion = $input['descripcion'];
+
+            /*Buscando en la tabla configuraciones*/
+            $tipopago = Configuracion::find($tipo_pago_id);
+            $tipo=$tipopago->valor;
+
+            $comprobanteObject = Configuracion::find($comprobante);
+            $comprobante=$comprobanteObject->valor;
+
+            $estado = 'Pagado';
+
+            /*Registrando la factura*/
+            $facturacion = new Facturacion();
+            $facturacion->persona_id=$persona->id;
+            $facturacion->total=$monto;
+            $facturacion->tipo_pago=$tipo;
+            $facturacion->tipo_comprobante=$comprobante;
+            $facturacion->numero_pago=$numero;
+            $facturacion->descripcion=$descripcion;
+            $facturacion->estado=$estado;
+            $facturacion->save();
+
+            return redirect('membresia/deudas')->with('stored', 'Se registró el pago de manera exitosa.');
+        }
+        else
+        {
+            return redirect('membresia/deudas')->with('stored', 'No se pudo registrar el pago debido a un error inesperado, vuelva a intentar nuevamente.');
         }
     }
 }

@@ -77,5 +77,12 @@ class ConfiguracionTableSeeder extends Seeder
         Configuracion::insert(['valor'=>'Actividad','grupo'=>'15','descripcion'=>'tipo promocion']);
         Configuracion::insert(['valor'=>'Taller','grupo'=>'15','descripcion'=>'tipo promocion']);
         Configuracion::insert(['valor'=>'Ambiente','grupo'=>'15','descripcion'=>'tipo promocion']);
+
+
+        Configuracion::insert(['valor'=>'1','grupo'=>'17','descripcion'=>'tipo puntaje']);
+        Configuracion::insert(['valor'=>'2','grupo'=>'17','descripcion'=>'tipo puntaje']);
+        Configuracion::insert(['valor'=>'3','grupo'=>'17','descripcion'=>'tipo puntaje']);
+        Configuracion::insert(['valor'=>'4','grupo'=>'17','descripcion'=>'tipo puntaje']);
+        Configuracion::insert(['valor'=>'5','grupo'=>'17','descripcion'=>'tipo puntaje']);
     }
 }

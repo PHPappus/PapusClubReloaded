@@ -171,7 +171,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 text-right">					
-						<a href="{!!URL::to('/servicios/mis-inscripciones')!!}" title="Ver mis inscripciones" class="btn btn-lg btn-primary">Mis Solicitudes</a>		
+						<a href="{{url('/servicios/mis-inscripciones')}}" title="Ver mis inscripciones" class="btn btn-lg btn-primary">Mis Solicitudes</a>		
 					</div>
 				<div class="col-sm-6 text-left">
 					
