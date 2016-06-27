@@ -53,6 +53,51 @@
 
 				<div class="panel panel-primary">
 					<div class="panel-body" style="width: 1140px; height: 500px; overflow: scroll;">
+						<p class="lead"><strong>DURACION DE CARNET</strong></p>
+							<table   style="margin-left:200px;">
+								<tr>
+									<td style=" width:300px;">
+										<table class="table table-striped text-center display" id="grupo5">
+											<thead class="active" data-sortable="true">
+												<th><div align=center>VALOR</div> </th>
+											</thead>
+											@foreach($variables->where('grupo', '5') as $grupo1)
+												<tr>
+													<td>{{ $grupo1->valor }}</td>
+												</tr>
+											@endforeach
+										</table>
+									</td>
+									<td style="padding:0 20px 0 100px;" >
+										<input type="text" onkeypress="return inputLimiter(event,'DoubleFormat')"  class="form-control" id="duracion" name="duracion" placeholder="Duracion de carnet" ><br>
+										<a href="" id="bsave5" data-link="{{ url('/configuracion/test5') }}" class="btn btn-primary pull-right">Modificar</a>
+									</td>
+								</tr>
+							</table>
+						<hr style="width: 80%; color: black; height: 1px; background-color:black;" />
+						<p class="lead"><strong>PRECIO ENTRADAS A SEDES (S/.)</strong></p>
+							<table   style="margin-left:200px;">
+								<tr>
+									<td style=" width:300px;">
+										<table class="table table-striped text-center display" id="grupo12">
+											<thead class="active" data-sortable="true">
+												<th><div align=center>VALOR</div> </th>
+											</thead>
+											@foreach($variables->where('grupo', '12') as $grupo1)
+												<tr>
+													<td>{{ $grupo1->valor }}</td>
+												</tr>
+											@endforeach
+										</table>
+									</td>
+									<td style="padding:0 20px 0 100px;" >
+										<input type="text" onkeypress="return inputLimiter(event,'DoubleFormat')"  class="form-control" id="precio" name="precio" placeholder="Precio entradas" ><br>
+										<a href="" id="bsave6" data-link="{{ url('/configuracion/test6') }}" class="btn btn-primary pull-right">Modificar</a>
+									</td>
+								</tr>
+							</table>
+
+						<hr style="width: 80%; color: black; height: 1px; background-color:black;" />
 						<p class="lead"><strong>TIPOS DE PUESTOS</strong></p>
 							<table   style="margin-left:200px;">
 								<tr>
@@ -61,7 +106,7 @@
 											<thead class="active" data-sortable="true">
 												<th><div align=center>VALOR</div> </th>
 											</thead>
-											@foreach($variables->where('grupo', 1) as $grupo1)
+											@foreach($variables->where('grupo', '1') as $grupo1)
 												<tr>
 													<td>{{ $grupo1->valor }}</td>
 												</tr>
@@ -83,7 +128,7 @@
 											<thead class="active" data-sortable="true">
 												<th><div align=center>VALOR</div> </th>
 											</thead>
-											@foreach($variables->where('grupo', 2) as $grupo1)
+											@foreach($variables->where('grupo', '2') as $grupo1)
 												<tr>
 													<td>{{ $grupo1->valor }}</td>
 												</tr>
@@ -105,7 +150,7 @@
 											<thead class="active" data-sortable="true">
 												<th><div align=center>VALOR</div> </th>
 											</thead>
-											@foreach($variables->where('grupo', 3) as $grupo1)
+											@foreach($variables->where('grupo', '3') as $grupo1)
 												<tr>
 													<td>{{ $grupo1->valor }}</td>
 												</tr>
@@ -127,7 +172,7 @@
 											<thead class="active" data-sortable="true">
 												<th><div align=center>VALOR</div> </th>
 											</thead>
-											@foreach($variables->where('grupo', 4) as $grupo1)
+											@foreach($variables->where('grupo', '4') as $grupo1)
 												<tr>
 													<td>{{ $grupo1->valor }}</td>
 												</tr>
@@ -137,50 +182,6 @@
 									<td style="padding:0 20px 0 100px;" >
 										<input type="text" onkeypress="return inputLimiter(event,'Letters')"  class="form-control" id="servicio" name="servicio" placeholder="Nuevo Tipo Servicio" ><br>
 										<a href="" id="bsave4" data-link="{{ url('/configuracion/test4') }}" class="btn btn-primary pull-right">Agregar</a>
-									</td>
-								</tr>
-							</table>
-						<hr style="width: 80%; color: black; height: 1px; background-color:black;" />
-						<p class="lead"><strong>DURACION DE CARNET</strong></p>
-							<table   style="margin-left:200px;">
-								<tr>
-									<td style=" width:300px;">
-										<table class="table table-striped text-center display" id="grupo5">
-											<thead class="active" data-sortable="true">
-												<th><div align=center>VALOR</div> </th>
-											</thead>
-											@foreach($variables->where('grupo', 5) as $grupo1)
-												<tr>
-													<td>{{ $grupo1->valor }}</td>
-												</tr>
-											@endforeach
-										</table>
-									</td>
-									<td style="padding:0 20px 0 100px;" >
-										<input type="text" onkeypress="return inputLimiter(event,'DoubleFormat')"  class="form-control" id="duracion" name="duracion" placeholder="Duracion de carnet" ><br>
-										<a href="" id="bsave5" data-link="{{ url('/configuracion/test5') }}" class="btn btn-primary pull-right">Agregar</a>
-									</td>
-								</tr>
-							</table>
-						<hr style="width: 80%; color: black; height: 1px; background-color:black;" />
-						<p class="lead"><strong>PRECIO ENTRADAS A SEDES (S/.)</strong></p>
-							<table   style="margin-left:200px;">
-								<tr>
-									<td style=" width:300px;">
-										<table class="table table-striped text-center display" id="grupo12">
-											<thead class="active" data-sortable="true">
-												<th><div align=center>VALOR</div> </th>
-											</thead>
-											@foreach($variables->where('grupo', 12) as $grupo1)
-												<tr>
-													<td>{{ $grupo1->valor }}</td>
-												</tr>
-											@endforeach
-										</table>
-									</td>
-									<td style="padding:0 20px 0 100px;" >
-										<input type="text" onkeypress="return inputLimiter(event,'DoubleFormat')"  class="form-control" id="precio" name="precio" placeholder="Precio entradas" ><br>
-										<a href="" id="bsave6" data-link="{{ url('/configuracion/test6') }}" class="btn btn-primary pull-right">Agregar</a>
 									</td>
 								</tr>
 							</table>
