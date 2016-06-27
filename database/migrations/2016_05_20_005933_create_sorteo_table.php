@@ -23,7 +23,7 @@ class CreateSorteoTable extends Migration
             $table->date('fecha_fin_sorteo');
             $table->date('fecha_abierto');
             $table->date('fecha_cerrado');            
-            $table->Boolean('estado');
+            $table->string('estado')->default('Activo');
             $table->softDeletes();
             $table->timestamps();
         });

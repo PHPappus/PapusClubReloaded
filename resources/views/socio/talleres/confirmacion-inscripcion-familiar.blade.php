@@ -20,8 +20,8 @@
 <main class="main">
 	<div class="content" style="max-width: 100%;">
 		<div class="container">
-			<div class="row" style="max-width: 920px">
-				<div class="col-sm-4">
+			<div class="row" style="max-width: 1020px">
+				<div class="col-sm-5">
 					<ol class="breadcrumb" style="background:none">
 						<li><a href="/socio"><span class="glyphicon glyphicon-home"></span></a></li>
 						<li><a href="/talleres/index">Consultar Talleres</a></li>
@@ -43,8 +43,8 @@
 			</div>		
 		</div>
 		<div class="container">
-			<!--@include('errors.503')-->	
-		<form method="POST" action="/inscripcion-actividad/{{ $actividad->id }}/confirmacion-inscripcion-actividades-to-familiar/confirm" class="form-horizontal form-border">    <!-- accion que regresa a la incial de inscripciones -->
+			<!--@include('errors.503')-->
+		<form method="POST" action="/talleres-familiar/{{ $taller->id }}/confirm/save" class="form-horizontal form-border">    <!-- accion que regresa a la incial de inscripciones -->
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<br/><br/>
 			<div class="form-group">
@@ -136,7 +136,7 @@
 						<button type="submit" class="btn btn-primary">Confirmar</button>
 					</div>
 					<div class="col-sm-6 text-left">
-						<a href="/inscripcion-actividad/inscripcion-actividades" class="btn btn-info">Cancelar</a> <!-- Regresa a la pantalla de consulta de actividades -->
+						<a href="/taller/index" class="btn btn-info">Cancelar</a> <!-- Regresa a la pantalla de consulta de actividades -->
 					</div>			
 				</div>
 			</div>

@@ -56,19 +56,32 @@ Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
 	Route::get('talleres/index','InscriptionTallerController@index');
 	Route::post('talleres/index','InscriptionTallerController@filterTalleres');
 	Route::get('talleres/{id}/show','InscriptionTallerController@show');
+
+	//Pide confirmación de password
 	Route::get('talleres/{id}/confirm','InscriptionTallerController@confirmInscription');
+	Route::get('talleres-familiar/{id}/confirm','InscriptionTallerController@confirmInscriptionFamiliar');
+
 	Route::post('talleres/{id}/confirm/save','InscriptionTallerController@makeInscriptionToUser');
+	Route::post('talleres-familiar/{id}/confirm/save','InscriptionTallerController@makeInscriptionFamiliarToUser');
+
 	Route::get('talleres/{id}/delete', 'InscriptionTallerController@removeInscriptionToUser');
 	Route::get('talleres/mis-inscripciones','InscriptionTallerController@misinscripciones');
 		//Socio.bungalows
 	Route::get('bungalows-s','SocioController@bungalow');
 	Route::get('reserva-bungalows-s','SocioController@bungalowReserva');
 	Route::get('reserva-bungalows-b-s','SocioController@bungalowReservaB');
+
 	//Socio.atividades : INSCRIPCION DE ACTIVIDADES
 	Route::get('inscripcion-actividad/inscripcion-actividades', 'InscriptionActividadController@inscriptionActividad'); // REservar
+	
 	Route::get('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades', 'InscriptionActividadController@storeInscriptionActividad');
-	Route::post('inscripcion-actividad/inscripcion-actividades','InscriptionActividadController@filterActividades');
+	Route::get('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades-to-familiar', 'InscriptionActividadController@storeInscriptionActividadtoFamiliar');
+
+	Route::post('inscripcion-actividad/inscripcion-actividades','
+		InscriptionActividadController@filterActividades');
+
 	Route::post('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades/confirm','InscriptionActividadController@makeInscriptionToPersona');
+	Route::post('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades-to-familiar/confirm','InscriptionActividadController@makeInscriptionFamiliarToPersona');
 
 	Route::get('inscripcion-actividad/mis-inscripciones','InscriptionActividadController@misinscripciones');
 	
@@ -120,6 +133,7 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	//MANTENIMIENTO DE PROMOCIONES
 	Route::get('promociones/index', 'PromocionesController@index');
 	Route::get('promociones/new', 'PromocionesController@create');
+
 	Route::post('promociones/new/promocion', 'PromocionesController@store');
 	Route::get('promociones/{id}', 'PromocionesController@edit');
 	Route::post('promociones/{id}/edit', 'PromocionesController@update');
@@ -147,10 +161,12 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::get('taller/{taller}/delete', 'TallerController@destroy');
 
 
-	///MANTENIMIENTO DE ACTIVIDADES
+	///MANTENIMIENTO DE ACTIVIDADES Y EVENTOS
 	Route::get('actividad/index', 'ActividadController@index');
 	Route::get('actividad/new', 'ActividadController@create');
+	Route::get('actividad/newEvento', 'ActividadController@createEvento');
 	Route::post('actividad/new/actividad', 'ActividadController@store');
+	Route::post('actividad/new/evento', 'ActividadController@storeEvento');
 	Route::get('actividad/{id}', 'ActividadController@edit');
 	Route::post('actividad/{id}/edit', 'ActividadController@update');
 	Route::get('actividad/{id}/delete', 'ActividadController@destroy');
@@ -158,7 +174,7 @@ Route::group(['middleware' => ['auth', 'adminregistros']], function () {
 	Route::post('actividad/new/{id}/tipoactividad', 'ActividadController@storeTipoActividad');
 	Route::get('actividad/searchReservas', 'ActividadController@searchReservas');/*lista todas las reservas*/	
 	Route::get('actividad/{id}/select', 'ActividadController@select');/*lleva a la pantalla principal de registrar*/
-
+	Route::get('actividad/{id}/selectSede', 'ActividadController@selectSede');/*lleva a la pantalla principal de registrar Evento*/
 	//MANTENIMIENTO DE AMBIENTES
 	Route::get('ambiente/index', 'AmbienteController@index');
 	Route::get('ambiente/search', 'AmbienteController@search');/*PAra buscar el ambiente y seleccionarlo para ACtividad*/	
@@ -600,12 +616,10 @@ Route::get('newsede-a','SedesController@create');
 Route::get('editsede-a','SedesController@edit');
 */
 
-
 Route::get('futbol', 'FrontController@futbol');
 Route::get('historia-papusclub', 'FrontController@historia_papusclub');
 Route::get('historia-papusclub-ver-mas', 'FrontController@historia_papusclub_ver_mas');
 Route::get('historia-sede-callao', 'FrontController@historia_sede_callao');
-Route::get('historia-sede-callao-ver-mas', 'FrontController@historia_sede_callao_ver_mas');
 Route::get('reserva-bungalow', 'FrontController@reserva_bungalow');
 Route::get('reserva-bungalow-busqueda', 'FrontController@reserva_bungalow_busqueda');
 Route::get('registrar-concesionaria-al','FrontController@registrar_concesionaria_al');
@@ -614,8 +628,21 @@ Route::get('registrar-nuevo-producto-al','FrontController@registrar_nuevo_produc
 Route::get('registrar-precio-especial-membresia-al','FrontController@registrar_precio_especial_membresia_al');
 Route::get('registrar-precio-pref-bungalows-1-al','FrontController@registrar_precio_pref_bungalows_1_al');
 Route::get('registrar-precio-especial-membresia-1-al','FrontController@registrar_precio_especial_membresia_1_al');
-
-
+Route::get('mesa-directiva', 'FrontController@mesa_directiva');
+Route::get('reglamento-club', 'FrontController@reglamento_club');
+Route::get('historia-sede-surquillo', 'FrontController@historia_sede_surquillo');
+Route::get('historia-sede-barranco', 'FrontController@historia_sede_barranco');
+Route::get('natacion', 'FrontController@natacion');
+Route::get('karate', 'FrontController@karate');
+Route::get('convenios', 'FrontController@convenios');
+Route::get('concesiones', 'FrontController@concesiones');
+Route::get('galeria', 'FrontController@galeria');
+Route::get('informes', 'FrontController@informes');
+Route::get('calendario', 'FrontController@calendario');
+Route::get('servicios', 'FrontController@servicios');
+Route::get('yoga', 'FrontController@yoga');
+Route::get('padre', 'FrontController@padre');
+Route::get('amigos', 'FrontController@amigos');
 
 
 

@@ -45,7 +45,7 @@
 		</div>
 		<div class="container">
 			<!--@include('errors.503')-->	
-			<form method="POST" action="/inscripcion-actividad/{{ $actividad->id }}/confirmacion-inscripcion-actividades-to-familiar/confirm	" class="form-horizontal form-border"><!-- accion que regresa a la incial de inscripciones -->
+			<form method="POST" action="/inscripcion-actividad/{{ $actividad->id }}/confirmacion-inscripcion-actividades-to-familiar/confirm" class="form-horizontal form-border"><!-- accion que regresa a la incial de inscripciones -->
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<br/><br/>
 

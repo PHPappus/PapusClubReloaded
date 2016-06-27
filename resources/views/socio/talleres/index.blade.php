@@ -140,7 +140,7 @@
 						    		@endif					
 								</td>
 								<td>
-									<a class="btn btn-info" title="Inscribir a un familiar" href="#"><i class="glyphicon glyphicon-pencil"></i></a>
+									<a class="btn btn-info" title="Inscribir a un familiar" href="{{url('/talleres-familiar/'.$taller->id.'/confirm')}}"><i class="glyphicon glyphicon-pencil"></i></a>
 								</td>
 							</tr>
 						@endforeach
