@@ -21,54 +21,10 @@ use Auth;
 use Hash;
 use Carbon\Carbon;
 use papusclub\Models\Facturacion;
-
-
+use papusclub\Http\Requests\StoreServicioSolicitudRequest;
+use papusclub\Http\Requests\StoreServicioBuganlowSolicitudRequest;
 class ServicioalsocioController extends Controller
 {
-    /*public function filtromisinscripciones(Request $request){
-        $user_id = Auth::user()->id;
-        $usuario = User::find($user_id);
-        $persona_id = $usuario->persona->id;
-
-        // Se extrae lo mismo del index
-        $sedes = Sede::all();   
-        $servicios = Servicio::all();
-        $estadosregistros = array();
-        $tarifarioservicios = TarifarioServicio::where('idtipopersona','=','1')->get();  // socio
-        $tiposServicio=Configuracion::where('grupo','=','4')->get();
-        $sedexservicioall = Sedexservicio::all();    
-        $mensaje = Null ; 
-        
-        // Pero solo se extrae la informacion concerniente  a la persona 
-        $sedexservicioxpersona = ServicioxSedexPersona::where('id_persona','=',$persona_id)->get();
-
-        $sedexservicio = array();
-        foreach ($sedexservicioall as $sxsall){
-                foreach ($sedexservicioxpersona as $sxsxper){
-                        if($sxsall->idsede == $sxsxper->id_sede 
-                            & $sxsall->idservicio== $sxsxper->id_servicio){
-                            array_push($sedexservicio, $sxsall);
-                        }
-                }
-        }
-        $input= $request->all(); // 941802191
-        
-            // Fitrado pes LOL 
-        $sedexservicioaux = array();
-        if ($input['sedeSelec']==-1) {
-            $sedexservicioaux = $sedexservicio;
-        }else{                
-            foreach ($sedexservicio as $sst) {                        
-              if ($sst->idsede == $input['sedeSelec'] ){
-                        array_push($sedexservicioaux,$sst);
-                    }            
-                }       
-         }
-         $sedexservicio = $sedexservicioaux;
-        //return view('socio.servicios.prueba2',compact('sedexservicioxpersona'));
-            return view('socio.servicios.serviciosinscritos',compact('servicios','sedes','tarifarioservicios','tiposServicio','sedexservicio','mensaje'));    
-
-    }*/
    
    public function delete($id){
       $sxsxp = ServicioxSedexPersona::findOrFail($id);        
@@ -185,10 +141,13 @@ class ServicioalsocioController extends Controller
 
             if ($nro_detalle != -1){
                 $detalle = "Solicitud por Bungalow";
-            }else
-                $detalle = "Solicitud Generica";
+                $tabla[$fil][8]= true; 
+            }else{
+                $detalle = "Generica";
+                $tabla[$fil][8]= false; 
+            }
             $precio = $sxsxp->precio ; 
-            $estsolic = $sxsxp->estado;
+            $estsolic = $sxsxp->estado; 
 
             $tabla[$fil][0]=$serv->nombre;
             $tabla[$fil][1]=$serv->descripcion;
@@ -199,6 +158,7 @@ class ServicioalsocioController extends Controller
             $tabla[$fil][5]=$detalle;
             $tabla[$fil][6]=$estsolic;
             $tabla[$fil][7]= $sxsxp->id;
+
 
 
             $fil++;          
@@ -249,7 +209,7 @@ class ServicioalsocioController extends Controller
         return view('socio.servicios.index',compact('servicios','sedes','tarifarioservicios','tiposServicio','sedexservicio','mensaje','sedexservicioxpersona'));
     }
 
-    public function confirmareleccionsave(Request $request, $id){
+    public function confirmareleccionsave(StoreServicioSolicitudRequest $request, $id){
 
     $sedes = Sede::all();   
     $servicios = Servicio::all();
@@ -262,10 +222,11 @@ class ServicioalsocioController extends Controller
     $input= $request->all(); 
 
     $mensaje = "Se registró esta solicitud de servicio !" ; 
-    if (array_key_exists('codreserva', $input))
-         $codreservatosave = $input['codreserva'] ;
+    if (array_key_exists('reserva', $input))
+         $codreservatosave = $input['reserva'] ;
     else
          $codreservatosave = -1 ; 
+
 
 
     // identificacion uaurio
@@ -294,6 +255,90 @@ class ServicioalsocioController extends Controller
         $fact->total = $fact->total + $tarifserv->precio;
         $fact->save();
     }
+
+    if ($codreservatosave==-1){
+        $newfact = new Facturacion();
+        $newfact->persona_id=$persona_id;
+        $newfact->total=$tarifserv->precio;
+        $newfact->tipo_pago = "Efectivo";
+        $newfact->tipo_comprobante = "Boleta";
+        $newfact->servicio_id = $sedxser->idservicio;
+        $newfact->estado = "Emitido";
+        $newfact->save();
+     }
+
+
+    //$factura = new Facturacion();
+    //$factura->persona_id = $persona_id;
+    // $factura->tipo_pago = $input['tipo_pago'];
+    // $factura->tipo_comprobante = $input['tipo_comprobante'];
+    // $factura->estado = $input['estado'];        
+        
+    //$factura->save();       
+
+    /*return view('socio.servicios.prueba',compact('sedexservicio','tarifserv'));
+    */
+        $sedexservicioxpersona = ServicioxSedexPersona::all();
+    return view('socio.servicios.index',compact('servicios','sedes','tarifarioservicios','tiposServicio','sedexservicio','sedexservicioxpersona','mensaje'));
+    }
+    public function confirmareleccionsave_b(StoreServicioBuganlowSolicitudRequest $request, $id){
+
+    $sedes = Sede::all();   
+    $servicios = Servicio::all();
+    $estadosregistros = array();
+    $tarifarioservicios = TarifarioServicio::all(); 
+    $tiposServicio=Configuracion::where('grupo','=','4')->get();
+    $sedexservicio = Sedexservicio::all();
+    $sedexservicioxpersona = ServicioxSedexPersona::all();
+
+    $input= $request->all(); 
+
+    $mensaje = "Se registró esta solicitud de servicio !" ; 
+    if (array_key_exists('reserva', $input))
+         $codreservatosave = $input['reserva'] ;
+    else
+         $codreservatosave = -1 ; 
+
+
+
+    // identificacion uaurio
+    $user_id = Auth::user()->id;
+    $usuario = User::findOrFail($user_id);
+    $persona_id = $usuario->persona->id;
+
+    // Crea sevicio x sede x persona 
+    $newsxsxp = new ServicioxSedexPersona();    
+    $sedxser = Sedexservicio::where('id','=',$id)->first();     
+    $tarifserv = TarifarioServicio::where('idservicio','=',$sedxser->idservicio)->first();
+
+    $newsxsxp->id_servicio  = $sedxser->idservicio;
+    $newsxsxp->id_sede  = $sedxser->idsede;
+    $newsxsxp->calificacion = -1 ; 
+    $newsxsxp->codreserva= $codreservatosave ;
+    $newsxsxp->estado= "Solicitado";
+    $newsxsxp->id_persona = $persona_id;
+    $newsxsxp->precio = $tarifserv->precio;
+    $newsxsxp->save();
+
+    if ($codreservatosave!=-1 & $codreservatosave!=0){
+        $reservas = Reserva::find($codreservatosave);
+        $fact_id = $reservas->facturacion->id;
+        $fact = Facturacion::find($fact_id);
+        $fact->total = $fact->total + $tarifserv->precio;
+        $fact->save();
+    }
+
+    if ($codreservatosave==-1){
+        $newfact = new Facturacion();
+        $newfact->persona_id=$persona_id;
+        $newfact->total=$tarifserv->precio;
+        $newfact->tipo_pago = "Efectivo";
+        $newfact->tipo_comprobante = "Boleta";
+        $newfact->servicio_id = $sedxser->idservicio;
+        $newfact->estado = "Emitido";
+        $newfact->save();
+     }
+
 
     //$factura = new Facturacion();
     //$factura->persona_id = $persona_id;
@@ -361,9 +406,13 @@ class ServicioalsocioController extends Controller
                 $persona = $usuario->persona;  
                 $reservas=Reserva::where('id_persona','=',$persona->id)->get();
                 $valtipAmbiente=Configuracion::where('grupo','=','2')->where('valor','=','Bungalow')->first();
+
                 return view('socio.servicios.indexdetalle-bungalow',compact('servicios','sedes','tarifarioservicios','tiposServicio','sedexservicio','id','servicindentificado','tip_s','precio','reservas','sedeindentificado','valtipAmbiente')); 
             }else{
-                return view('socio.servicios.indexdetalle',compact('servicios','sedes','tarifarioservicios','tiposServicio','sedexservicio','id','servicindentificado','tip_s','precio'));
+                $estados = Configuracion::where('grupo','=','7')->get();
+                $tipo_pagos = Configuracion::where('grupo','=','8')->get();
+                $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
+                return view('socio.servicios.indexdetalle',compact('servicios','sedes','tarifarioservicios','tiposServicio','sedexservicio','id','servicindentificado','tip_s','precio','estados','tipo_pagos','tipo_comprobantes'));
             }
         
 

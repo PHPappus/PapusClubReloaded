@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('servicioalsocio/{id}/confirm','ServicioalsocioController@confirmareleccion');
 
 	Route::post('servicioalsocio/{id}/confirm/save','ServicioalsocioController@confirmareleccionsave');
+	Route::post('servicioalsocio/{id}/confirmb/save','ServicioalsocioController@confirmareleccionsave_b');
 	Route::get('servicios/mis-inscripciones','ServicioalsocioController@misinscripciones');
 	Route::get('servicios/mis-inscripciones/{id}/delete','ServicioalsocioController@delete');
 
