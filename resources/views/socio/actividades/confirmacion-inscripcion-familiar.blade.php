@@ -9,6 +9,7 @@
 	{!!Html::style('../css/font-awesome.css')!!}
 	{!!Html::style('../css/bootstrap.css')!!}
 	{!!Html::style('../css/MisEstilos.css')!!}
+	{!!Html::style('css/datepicker.css')!!}
 	
 	
 </head>
