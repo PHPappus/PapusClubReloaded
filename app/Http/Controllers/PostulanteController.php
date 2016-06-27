@@ -657,8 +657,14 @@ class PostulanteController extends Controller
         $password= "papusclub";
         $user->password = $password;
         $user->perfil_id =$perfil_socio->id;
-        $user->save();
 
+        try{
+            $user->save();
+        }
+        catch(\Exception $ex)
+        {
+
+        }
 
         $title = '¡Bienvenido a PapusClub!';
         $content = 'Señor(a): '.$nombre.' '.$apellido.' Su solicitud como postulante acaba de ser aceptada.';
