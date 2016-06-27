@@ -135,7 +135,7 @@ class InscriptionTallerAdminReservaController extends Controller
             }
             else{
                 Session::flash('message-error','Contraseña incorrecta');
-                return Redirect("/talleres-familiar/".$id."/confirm");
+                return Redirect("/taller-admin-reserva/inscripcion/".$id."/confirmacion");
             }        
         }
     }
@@ -149,6 +149,6 @@ class InscriptionTallerAdminReservaController extends Controller
         $talleres=Taller::wherein('id',$id_talleres)->get();    
         $fecha_validable=Carbon::now('America/Lima')->addDays(2)->format('Y-m-d');
 
-        return view('admin-reserva.actividades.inscripciones', compact('talleres','personas','fecha_validable'));
+        return view('admin-reserva.talleres.inscripciones', compact('talleres','personas','fecha_validable'));
     }
 }
