@@ -57,7 +57,7 @@
 				<div class="form-group">
 		    		<label for="idInput" class="col-sm-4 control-label">N° de Factura</label>
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="idInput" name="id" value="{{str_pad($factura->id, 10, "0", STR_PAD_LEFT)}}" readonly>
+		      			<input type="text" class="form-control" id="idInput" name="id" value="{{$factura->id}}" readonly>
 		    		</div>
 		  		</div>
 			  

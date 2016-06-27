@@ -44,9 +44,68 @@ class InscriptionActividadAdminReservaController extends Controller
 
         return view('admin-reserva.actividades.inscripcion', compact('sedes','actividades','fecha_inicio','fecha_fin'));
     }
-    public function filterActividadesAdminReserva()
+    public function filterActividadesAdminReserva(Request $request)
     {
+        $input= $request->all();
+        $sedes= Sede::all();     
+        /*Se envia las actividades a las cuales se encuentra inscrita la persona*/
+        
 
+
+        $fecha_inicio   = new Carbon('America/Lima');
+        $fecha_fin   = new Carbon('America/Lima'); 
+        
+        $fecha_inicio=$fecha_inicio->toDateString();
+        $fecha_fin = Carbon::now('America/Lima')->addMonths(4)->toDateString();
+
+        
+        if(!empty($input['fecha_inicio'])){
+            $date=str_replace('/', '-', $input['fecha_inicio']);
+            $fecha_inicio=date("Y-m-d",strtotime($date));
+        }
+        
+        if(!empty($input['fecha_fin'])){
+            $date=str_replace('/', '-', $input['fecha_fin']);
+            $fecha_fin=date("Y-m-d",strtotime($date));
+        }
+        /*Se terminó de preparar las fechas*/
+
+        /*Se prepara las horas para ser comparadas*/
+        $horaInicio=$input['horaInicio'];
+        $horaFin=$input['horaFin'];
+
+        if(empty($input['horaInicio'])){
+            $horaInicio="00:00";
+        }
+        if(empty($input['horaFin'])){
+            $horaFin="23:59" ;
+        }
+        /*Se terminó de preparar las horas*/
+
+        if($fecha_fin<$fecha_inicio){
+            Session::flash('message-error','Usted ha ingresado un rango invalido de fechas, por favor ingrese uno valido (fecha de inicio debe ser menor a la fecha fin)');
+            return Redirect("/actividad-admin-reserva/inscripcion");
+        }
+        else{
+            $actividades=Actividad::where('estado','=',1)
+                                   ->where('a_realizarse_en','>=',Carbon::now('America/Lima')->format('Y-m-d'))
+                                   ->where('a_realizarse_en','>=',$fecha_inicio)
+                                   ->where('a_realizarse_en','<=',$fecha_fin)
+                                   ->whereBetween('hora_inicio',[$horaInicio,$horaFin])
+                                   ->get();
+        }
+
+        /*$actividadesxsede=Actividad::all();*/
+   
+        if($input['sedeSelec']!=-1){ //No son todas las sedes
+            foreach ($actividades as $i => $actividad) {             
+                    if($actividad->ambiente->sede->id!=$input['sedeSelec'])  unset($actividades[$i]);
+            }
+        }               
+
+        $fecha_inicio=$input['fecha_inicio'];
+        $fecha_fin=$input['fecha_fin'];
+        return view('admin-reserva.actividades.inscripcion', compact('sedes','actividades','fecha_inicio','fecha_fin'));
     }
     public function storeInscriptionActividadAdminReserva($id)
     {
@@ -141,12 +200,36 @@ class InscriptionActividadAdminReservaController extends Controller
     {
         $id_actividades = DB::table('actividad_persona')->lists('actividad_id');
 
-        
+        $id_personas = DB::table('actividad_persona')->lists('persona_id');
         /*Datos de inscripciones de los familiares del usuario Socio*/
-        $actividades=DB::table('actividad')
-                    ->whereIn('id', $id_actividades)->get();
+        $personas=Persona::wherein('id',$id_personas)->get();
+        $actividades=Actividad::wherein('id',$id_actividades)->get();    
         $fecha_validable=Carbon::now('America/Lima')->addDays(2)->format('Y-m-d');
 
-        return view('admin-reserva.actividades.inscripciones', compact('actividades','fecha_validable'));
+        return view('admin-reserva.actividades.inscripciones', compact('actividades','personas','fecha_validable'));
+    }
+
+    public function removeInscriptionToPersona($id,$idPersona)
+    {
+        DB::beginTransaction();
+        try{
+            $persona  = Persona::find($idPersona);
+            $actividad   = Actividad::find($id);
+
+            $facturacion = Facturacion::where('actividad_id', '=', $actividad->id)->where('persona_id', '=', $persona->id)->get()->first();
+            
+            if($facturacion)
+                $facturacion->delete();
+
+            $actividad->cupos_disponibles=$actividad->cupos_disponibles+1;
+            $actividad->save();
+            $persona->actividades()->detach([$id]);
+        }
+        catch(ValidationException $e){
+            DB::rollback();
+            var_dump($e->getErrors());
+        }
+        DB::commit();
+        return back();
     }
 }

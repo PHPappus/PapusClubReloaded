@@ -48,6 +48,7 @@
 				<table id="talleresTable" class="table table-bordered table-hover text-center display">
 					<thead class="active">
 						<tr class="active">
+							<th><DIV ALIGN=center>Nombre del socio</th>
 							<th><DIV ALIGN=center>Sede</th>
 							<th><DIV ALIGN=center>Lugar</th>
 							<th><DIV ALIGN=center>Nombre de actividad</th>
@@ -57,17 +58,19 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($actividades as $actividad)
+
+					@foreach ($personas as $persona)
+						@foreach ($persona->actividades as $actividad)
 						<tr>
+							<td>{{ $persona->nombre }}</td>
 							<td>{{ $actividad->ambiente->sede->nombre }}</td>
 				    		<td>{{ $actividad->ambiente->nombre }}</td>
 							<td>{{ $actividad->nombre }}</td>
 	 						<td>{{ $actividad->a_realizarse_en}}</td>
-	 						<!-- <td>{{ $actividad->created_at}}</td> -->
 	 						
 							<td>
 								@if($actividad->a_realizarse_en >= $fecha_validable)
-								     <a class="btn btn-danger" data-href="{{url('/inscripcion-actividad/'.$actividad->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+								     <a class="btn btn-danger" data-href="{{url('/actividad-admin-reserva/inscripcion/'.$actividad->id.'/'.$persona->id.'/delete')}}" title="Anular Inscripción" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
 								@else
 									 <a class="btn btn-info"  title="El periodo de anulación ya ha caducado" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
 								@endif
@@ -75,6 +78,7 @@
 							
 						</tr>
 						@endforeach
+					@endforeach
 					</tbody>
 				</table>
 			</div>	

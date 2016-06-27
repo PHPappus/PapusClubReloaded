@@ -62,7 +62,7 @@
 					<tbody>
 					@foreach($ingresoproductos as $ingresoproducto)
 						<tr>
-							<td>{{ str_pad($ingresoproducto->id, 10, "0", STR_PAD_LEFT)}}</td>
+							<td>{{ $ingresoproducto->id }}</td>
 							<td>{{ $ingresoproducto->proveedor->nombre_proveedor}}</td>
 							<td>{{ $ingresoproducto->descripcion }}</td>			
 							<td>{{ $ingresoproducto->estado }}</td>
