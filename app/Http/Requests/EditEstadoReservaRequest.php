@@ -23,8 +23,6 @@ class EditEstadoReservaRequest extends Request
      */
     public function rules()
     {
-        return [
-            'ch'=>'required'
-        ];
+        return ['ch'    =>  'required' ];
     }
 }
