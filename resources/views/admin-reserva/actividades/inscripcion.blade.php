@@ -49,7 +49,7 @@
 	<br/>
 
 	<div class="container">
-		<form method="POST" action="actividad-admin-reserva/inscripcion" class="form-horizontal form-border"> 
+		<form method="POST" action="/actividad-admin-reserva/inscripcion" class="form-horizontal form-border"> 
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 			<br/>
