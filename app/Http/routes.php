@@ -304,10 +304,8 @@ Route::group(['middleware' => ['auth', 'adminpagos']], function () {
     Route::post('/registrar-pago-ingreso','PagosController@registrarPagoIngreso');
 
     //PAGOS POR MEMBRESÍA
-    route::get('membresia/deudas','PagosController@deudasMembresia');
-    Route::get('membresia/{id}/deuda','PagosController@deudaMembresiaSocio');
-    Route::post('/registrar-pago-membresia','PagosController@registrarPagoMembresia');   
-
+    Route::get('/registrar-deuda-membresia','PagosController@registrarDeudasMembresia');
+ 
 
 });
 
