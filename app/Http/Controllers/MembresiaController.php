@@ -114,7 +114,7 @@ class MembresiaController extends Controller
                 $membresia->forceDelete();
                 $tarifa->forceDelete();                
             }
-            catch(/Exception $e)
+            catch(\Exception $e)
             {
                 /*Si alguien elimina al mismo tiempo que yo, entra al catch.*/
             }
