@@ -3,10 +3,10 @@
 namespace papusclub\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DateTime;
 use papusclub\Http\Requests;
 use Illuminate\Routing\Route;
-
+use Carbon\Carbon;
 use Auth;
 use Session;
 use Redirect;
@@ -14,10 +14,16 @@ use papusclub\Http\Controllers\Controller;
 use papusclub\User;
 use papusclub\Models\Socio;
 use papusclub\Models\Persona;
+use papusclub\Models\TipoFamilia;
 use papusclub\Models\Traspaso;
 use papusclub\Models\Postulante;
+use papusclub\Models\Invitados;
 use papusclub\Http\Requests\StoreTraspasoRequest;
 use papusclub\Http\Requests\StoreObservacionRequest;
+use papusclub\Http\Requests\StoreFamiliarSocioRequest;
+use papusclub\Http\Requests\StoreInvitadoRequest;
+
+use DB;
 
 class SocioController extends Controller
 {
@@ -231,5 +237,220 @@ class SocioController extends Controller
         $post->observacion()->save($socio,['observacion' => $input['obs']]);
 
         return redirect('ver-postulantes')->with('stored','Se registró la observación correctamene');
+    }
+
+
+
+
+
+
+
+    /***/
+    /*FAMILIAR*/
+
+    public function createFamiliar($id)
+    {
+        $socio = Socio::withTrashed()->find($id);
+        $tipo_relacion= TipoFamilia::all();
+        return view('socio.familiar.newFamiliar',compact('socio','tipo_relacion'));               
+    }
+
+    public function storeFamiliar(StoreFamiliarSocioRequest $request, $id)
+    {
+        $socio = Socio::withTrashed()->find($id);
+        $input =$request->all();
+
+        $nacionalidad=$input['nacionalidad'];
+
+
+        $persona = new Persona();
+        $relacion=$input['tipo_relacion'];
+        if($nacionalidad=='peruano')
+        {
+            $doc_identidad = $input['doc_identidad'];
+            $persona = Persona::where(['doc_identidad'=>$doc_identidad])->get()->first();
+        }
+        else
+        {
+            $carnet_extranjeria = $input['carnet_extranjeria'];
+            $persona=Persona::where(['carnet_extranjeria'=>$carnet_extranjeria])->get()->first();
+        }
+
+        if($persona==null)
+        {
+            $persona = new Persona();
+            $carbon = new Carbon();
+
+
+            $persona->nombre = trim($input['nombre']);
+            $persona->ap_paterno = trim($input['ap_paterno']);
+            $persona->ap_materno = trim($input['ap_materno']);            
+            $persona->sexo=$input['sexo']; 
+            $persona->nacionalidad = $input['nacionalidad'];                       
+            if (empty($input['carnet_extranjeria'])) {
+                $persona->carnet_extranjeria ="";
+            }
+            else
+                $persona->carnet_extranjeria = $input['carnet_extranjeria'];
+
+            
+            if (empty($input['doc_identidad'])) {
+                $persona->doc_identidad ="";
+            }
+            else
+            {
+                $persona->doc_identidad = $input['doc_identidad'];             
+            }
+            if(empty($input['correo']))
+            {
+                $persona->correo='No ha registrado Correo';
+            }
+            else
+            {
+                $persona->correo=$input['correo'];
+            }
+            if (empty($input['fecha_nacimiento'])) {
+                $persona->fecha_nacimiento ="";            
+            }else{
+                $fecha_nac = str_replace('/', '-', $input['fecha_nacimiento']);      
+                $persona->fecha_nacimiento=$carbon->createFromFormat('d-m-Y', $fecha_nac)->toDateString();
+            }
+            $persona->id_tipo_persona = 3;
+            $persona->correo=$input['correo'];
+            
+            $persona->save();    
+        }
+        $existerela = DB::table('familiarxpostulante')->where([['postulante_id','=',$socio->postulante->id_postulante],['persona_id','=',$persona->id]])->get();
+            if($existerela==null){
+                $socio->postulante->addFamiliar($persona,$relacion);
+            }
+            return redirect('/cuenta');    
+    }
+
+    public function deleteFamiliar(Request $request, $id_fam, $id_post)
+    {
+        $match=['postulante_id'=>$id_post,'persona_id'=>$id_fam];
+        DB::table('familiarxpostulante')->where($match)->delete();
+
+        Session::flash('update','familiar');    
+        return back();
+    }
+
+    public function detailfamiliar($id,$id_postulante)
+    {
+        $familiar=Persona::find($id);
+        $postulante=Postulante::find($id_postulante);
+        $socio = $postulante->socio;
+
+        $relacion_id = $familiar->familiarxpostulante()->where('id_postulante','=',$id_postulante)->first()->pivot->tipo_familia_id;
+
+        //echo json_encode($relacion_id);
+        //die();
+        $relacion=TipoFamilia::find($relacion_id)->nombre;
+        return view('socio.familiar.detailFamiliar',compact('familiar','socio','relacion'));        
+    }
+
+
+ /*INVITADOS*/
+
+    public function createInvitado($id)
+    {
+
+        $socio = Socio::withTrashed()->find($id);
+
+        return view('socio.invitado.newInvitado',compact('socio'));
+    }
+
+    public function detailInvitado($id)
+    {   
+        $invitado = Invitados::find($id);
+        $socio = Socio::withTrashed()->find($invitado->persona_id);
+        $persona = Persona::find($invitado->invitado_id);
+        return view('socio.invitado.detailInvitado',compact('persona','socio'));
+    }
+
+    public function storeInvitado(StoreInvitadoRequest $request, $id)
+    {
+        $socio = Socio::withTrashed()->find($id);
+        $input =$request->all();
+
+        $nacionalidad=$input['nacionalidad'];
+
+
+        $persona = new Persona();
+
+        if($nacionalidad=='peruano')
+        {
+            $doc_identidad = $input['doc_identidad'];
+            $persona = Persona::where(['doc_identidad'=>$doc_identidad])->get()->first();
+        }
+        else
+        {
+            $carnet_extranjeria = $input['carnet_extranjeria'];
+            $persona=Persona::where(['carnet_extranjeria'=>$carnet_extranjeria])->get()->first();
+        }
+
+        if($persona==null)
+        {
+            $persona = new Persona();
+            $carbon = new Carbon();
+
+
+            $persona->nombre = trim($input['nombre']);
+            $persona->ap_paterno = trim($input['ap_paterno']);
+            $persona->ap_materno = trim($input['ap_materno']);            
+            $persona->sexo=$input['sexo']; 
+            $persona->nacionalidad = $input['nacionalidad'];                       
+            if (empty($input['carnet_extranjeria'])) {
+                $persona->carnet_extranjeria ="";
+            }
+            else
+                $persona->carnet_extranjeria = $input['carnet_extranjeria'];
+
+            
+            if (empty($input['doc_identidad'])) {
+                $persona->doc_identidad ="";
+            }
+            else
+            {
+                $persona->doc_identidad = $input['doc_identidad'];             
+            }
+            if(empty($input['correo']))
+            {
+                $persona->correo='No ha registrado Correo';
+            }
+            else
+            {
+                $persona->correo=$input['correo'];
+            }
+            if (empty($input['fecha_nacimiento'])) {
+                $persona->fecha_nacimiento ="";            
+            }else{
+                $fecha_nac = str_replace('/', '-', $input['fecha_nacimiento']);      
+                $persona->fecha_nacimiento=$carbon->createFromFormat('d-m-Y', $fecha_nac)->toDateString();
+            }
+            $persona->id_tipo_persona = 3;
+            $persona->save();
+
+            $fecha = new DateTime("now");
+            $fecha=$fecha->format('Y-m-d');
+            $socio->postulante->persona->addInvitado($persona,$fecha);            
+        }
+        else
+        {
+            $fecha = new DateTime("now");
+            $fecha=$fecha->format('Y-m-d');
+            $socio->postulante->persona->addInvitado($persona,$fecha);          
+        }
+            return redirect('/cuenta');           
+    }
+
+    public function deleteInvitado(Request $request,$id)
+    {
+        $invitado = Invitados::find($id);
+        $invitado->delete();
+
+        Session::flash('update','invitado');    
+        return back();
     }
 }

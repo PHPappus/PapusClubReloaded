@@ -127,7 +127,7 @@
 				<li><a href="{!!URL::to('/select/sede')!!}" title="Agregar Servicios" target="_self">Agregar servicios</a></li>
             </ul>
           </li>
-        </ul>   
+        </ul>
 		
 
         <ul class="nav navbar-nav navbar-right">

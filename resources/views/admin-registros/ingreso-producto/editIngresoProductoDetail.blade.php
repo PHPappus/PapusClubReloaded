@@ -67,7 +67,14 @@
 				<div class="form-group required">
 		    		<label for="producto_idInput" class="col-sm-4 control-label">ID Producto</label>
 		    		<div class="col-sm-5">
-		      			<input type="text" class="form-control" id="producto_idInput" name="producto_id" placeholder="ID del producto" onkeypress="return inputLimiter(event,'Numbers')" value="{{$producto->producto_id}}" readonly>
+		      			<input type="text" class="form-control" id="producto_idInput" name="producto_id" placeholder="ID del producto" value="{{$producto->producto_id}}" readonly>
+		    		</div>
+		  		</div>
+
+		  		<div class="form-group">
+		    		<label for="nombreProductoInput" class="col-sm-4 control-label">Nombre del Producto</label>
+		    		<div class="col-sm-5">
+		      			<input type="text" class="form-control" id="nombreProducto" name="nombreProducto" placeholder="Nombre del producto"  value="{{$producto->producto->nombre}}" readonly>
 		    		</div>
 		  		</div>
 			  

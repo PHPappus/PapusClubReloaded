@@ -96,6 +96,11 @@
 					 	
 					 		$indice = $tabla[$i][7];
 					 	 ?>
+
+					 	  <td>
+							<a class="btn btn-info" href="{!!URL::to('/servicios/mis-inscripciones/'.$indice.'/calificar')!!}" title="Calificar" ><i class="glyphicon glyphicon-list-alt"></i></a>
+						</td>
+						
 					 	 <td>
 						
 					 	 	@if($tabla[$i][8])
@@ -107,13 +112,8 @@
 							@endif
 						</td>
 	
-					 	 <td>
-							<a class="btn btn-info" href="{!!URL::to('/servicios/mis-inscripciones/'.$indice.'/calificar')!!}" title="Calificar" ><i class="glyphicon glyphicon-list-alt"></i></a>
-						</td>
-					 	 <td>
-					 		<a class="btn btn-info" data-href="{!!URL::to('/servicios/mis-inscripciones/'.$indice.'/delete')!!}" title="Anular Solicitud" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i>
-					 		</a>
-					 	</td>
+					 	
+					 	
                         <?php 
 					 }
 					 ?>

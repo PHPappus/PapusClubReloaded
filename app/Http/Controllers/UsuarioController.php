@@ -10,6 +10,9 @@ use papusclub\Http\Requests\ChangePasswordRequest;
 use papusclub\User;
 use papusclub\Perfil;
 use papusclub\Models\Persona;
+use papusclub\Models\Postulante;
+use papusclub\Models\Configuracion;
+use Carbon\Carbon;
 use Auth;
 use Session;
 use Redirect;
@@ -54,8 +57,30 @@ class UsuarioController extends Controller
                     $perfil='control-ingresos';
                     break;
         }
+        if($perfil!='socio')
+        {
+            return view('auth.cuenta', compact('perfil'));        
 
-       return view('auth.cuenta', compact('perfil'));
+        }
+        else
+        {
+                $user_id = Auth::user()->id;
+                $usuario = User::find($user_id);
+                $persona_id = $usuario->persona->id;
+                $postulante = Postulante::find($persona_id);
+                $socio = $postulante->socio;
+                $estado_civil=Configuracion::find($socio->postulante->estado_civil);
+                $carbon=new Carbon();
+                $socio->carnet_actual()->fecha_emision=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_emision)->format('d/m/Y');
+                $socio->carnet_actual()->fecha_vencimiento=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_vencimiento)->format('d/m/Y');
+                $socio->postulante->persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d',$socio->postulante->persona->fecha_nacimiento)->format('d/m/Y');                
+
+
+
+
+
+            return view('auth.cuentasocio',compact('socio','estado_civil'));
+        }
     }
 
     public function index()

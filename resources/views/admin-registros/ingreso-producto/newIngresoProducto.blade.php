@@ -65,24 +65,23 @@
 			  	</div>			
 
 			  	<div class="form-group required">
-			    	<label for="tipoSolicitudInput" class="col-sm-4 control-label">Tipo de Solicitud</label>
-			    	<div class="col-sm-5">
-			    	
-			      		<select class="form-control" id="tipo_solicitud" name="tipo_solicitud">
+			    	<label for="nombreProveedor" class="col-sm-4 control-label">Nombre del Proveedor</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" class="form-control" id="nombreProveedor" name="nombreProveedor" placeholder="Nombre del Proveedor" value="{{old('proveedor_id')}}" readonly>
+			    	</div>
+			  	</div>			
 
-						<option value="" selected >Seleccionar tipo...</option>
-						@foreach($tipo_solicitudes as $tipo_solicitud)
-							<option value="{{$tipo_solicitud->valor}}" >{{$tipo_solicitud->valor}}</option>
-						@endforeach						
-						</select>						
-
-			    	</div>			    	
+			  	<div class="form-group required">			    	
+			    	<label for="tipo_solicitud" class="col-sm-4 control-label">Tipo de Solicitud</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" class="form-control" id="tipo_solicitud" name="tipo_solicitud" value="Productos" readonly>
+			    	</div>
 			  	</div>		  	
 
 			  	<div class="form-group required">
-			    	<label for="descripcion" class="col-sm-4 control-label">Descripcion</label>
+			    	<label for="descripcion" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcon de solicitud" value="{{old('descripcion')}}">
+			      		<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción de solicitud" value="{{old('descripcion')}}">
 			    	</div>			    	
 			  	</div>			
 			  						
@@ -130,8 +129,11 @@
 		  	});
   		});		
   		
-		function getPersona(){								
-			document.getElementById('proveedor_id').value =  $('#example input:radio:checked').val();
+		function getPersona(){				
+			$proveedorAux = $('#example input:radio:checked').val();
+			$proveedorVal = $proveedorAux.split("|");				
+			document.getElementById('proveedor_id').value =  $proveedorVal[0];
+			document.getElementById('nombreProveedor').value =  $proveedorVal[1];
 		}
 	</script>
 
@@ -179,7 +181,7 @@
 											<td>{{$proveedor->correo}}</td>
 											<td>
 												<div class="radio">
-  													<label><input type="radio" name="optradio" value="{{$proveedor->id}}"></label>
+  													<label><input type="radio" name="optradio" value="{{$proveedor->id}}|{{$proveedor->nombre_proveedor}}"></label>
 												</div>
 											</td>
 							            </tr>				            		
