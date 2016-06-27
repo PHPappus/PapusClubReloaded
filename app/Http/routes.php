@@ -136,7 +136,22 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('pagos/facturacion-socio/','PagosController@listarFacturacionSocio');//se lista a los socios
 	Route::get('pagos-del-socio/{id}/show', 'PagosController@showAlSocio'); // Detalle del pago
 		
-	
+
+
+
+	//Familiares
+	Route::get('socio/{id}/familiar/new','SocioController@createFamiliar');
+	Route::post('socio/{id}/familiar/save','SocioController@storeFamiliar');
+	Route::get('socio/{id}/{id_postulante}/familiar/delete','SocioController@deleteFamiliar');
+	Route::get('socio/familiar/{id}/{id_postulante}','SocioController@detailFamiliar');
+
+
+	/*invitado*/
+	Route::get('socio/{id}/invitado/new','SocioController@createInvitado');
+	Route::post('socio/{id}/invitado/save','SocioController@storeInvitado');
+	Route::get('socio/{id}/invitado/delete','SocioController@deleteInvitado');
+	Route::get('socio/invitado/{id}/','SocioController@detailInvitado');		
+
 });
 
 
