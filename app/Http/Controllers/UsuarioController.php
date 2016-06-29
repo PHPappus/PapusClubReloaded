@@ -10,6 +10,7 @@ use papusclub\Http\Requests\ChangePasswordRequest;
 use papusclub\User;
 use papusclub\Perfil;
 use papusclub\Models\Persona;
+use papusclub\Models\Socio;
 use papusclub\Models\Postulante;
 use papusclub\Models\Configuracion;
 use Carbon\Carbon;
@@ -66,9 +67,9 @@ class UsuarioController extends Controller
         {
                 $user_id = Auth::user()->id;
                 $usuario = User::find($user_id);
-                $persona_id = $usuario->persona->id;
+                $persona_id = $usuario->persona->id;               
                 $postulante = Postulante::find($persona_id);
-                $socio = $postulante->socio;
+                $socio = Socio::where('postulante_id','=',$postulante->id_postulante)->first();                           
                 $estado_civil=Configuracion::find($socio->postulante->estado_civil);
                 $carbon=new Carbon();
                 $socio->carnet_actual()->fecha_emision=$carbon->createFromFormat('Y-m-d',$socio->carnet_actual()->fecha_emision)->format('d/m/Y');
