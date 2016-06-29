@@ -142,7 +142,7 @@
 								<td>{{ $actividad->nombre }}</td>
 								
 		 						
-		 						<td>{{ $actividad->a_realizarse_en}}</td>
+		 						<td>{{ date("d-m-Y",strtotime($actividad->a_realizarse_en))}}</td>
 		 						<td>{{ $actividad->hora_inicio}}</td>		 						
 		 		
 		 						@if($actividad->cupos_disponibles<=0)
@@ -166,7 +166,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-6 text-right">
-					<a href="{!!URL::to('#')!!}" title="Ver mis inscripciones" class="btn btn-md btn-primary">Mis Inscripciones</a>		
+					<a href="{!!URL::to('/actividad-admin-reserva/inscripciones')!!}" title="Ver mis inscripciones" class="btn btn-md btn-primary">Mis Inscripciones</a>		
 				</div>
 			<div class="col-sm-6 text-left">
 				<a href="{{url('/admin-reserva')}}" class="btn btn-md btn-primary" title="Regresar a página de inicio">Regresar</a>			

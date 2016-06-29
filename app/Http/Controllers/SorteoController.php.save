@@ -80,7 +80,8 @@ class SorteoController extends Controller
                     $pago->save();
                 }
             }
-        //return redirect()->action('SorteoController@indexInscripcion');
+        //return redirect()->action('SorteoController@
+indexInscripcion');
         return redirect('sorteo/inscripcion/mis_sorteos')->with('stored', 'Se eliminaron los sorteos seleccionados.');
     }
 
@@ -88,12 +89,11 @@ class SorteoController extends Controller
     {
         $sorteos=Sorteo::where('fecha_fin_sorteo','>=',new \DateTime('today'))->get();
         $carbon=new Carbon();
-        $user_id = Auth::user()->id;
-	$usuario = User::find($user_id);
-	$persona_id = $usuario->persona->id;
-        $now = Carbon::now();
+        $user = Auth::user();
 
-        $sorteos_inscrito=Sorteoxsocio::where('id_socio','=',$persona_id)->get();
+        $now = Carbon::now(-5);
+
+        $sorteos_inscrito=Sorteoxsocio::where('id_socio','=',$user->id)->get();
 
         foreach ($sorteos as $sorteo) {
             if(!$sorteos_inscrito->isEmpty()){
@@ -118,7 +118,6 @@ class SorteoController extends Controller
             $sorteo->fecha_cerrado=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_cerrado)->format('d/m/Y');        
         }
         return view('admin-general.sorteo.inscribirseSorteo',['sorteos'=>$sorteos]);
-	
     }
 
     public function inscripcionStore(StoreSocioxSorteoRequest $request)

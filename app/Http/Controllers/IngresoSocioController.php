@@ -43,6 +43,7 @@ class ingresoSocioController extends Controller
 
     public function cambiarEstado(EditEstadoReservaRequest $request)
     {
+        $input = $request->all();
     	$reservas = Input::get('ch');
     	foreach ($reservas as $reserva) {
     		$temp=Reserva::find($reserva);

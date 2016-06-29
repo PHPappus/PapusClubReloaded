@@ -128,7 +128,7 @@
 						    		@if(count($talleresxpersona->where('id',$taller->id))!=0)
 						    			<td style="background:#bcd8bc;">Inscrito</td>
 						    		@else
-						    			<td style="background:#e2bfbf;">No inscrito</td>
+						    			<td style="background:#f7e5e5;">No inscrito</td>
 						    		@endif
 								<td> 
 									<a class="btn btn-info" href="{{url('/talleres/'.$taller->id.'/show')}}"  title="Detalle"><i class="glyphicon glyphicon-list-alt"></i></a>
@@ -154,10 +154,10 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 text-right">
-						<a href="{!!URL::to('/talleres/mis-inscripciones')!!}" title="Ver mis inscripciones" class="btn btn-lg btn-primary" >Mis Inscripciones</a>		
+						<a href="{!!URL::to('/talleres/mis-inscripciones')!!}" title="Ver mis inscripciones" class="btn btn-md btn-primary" >Mis Inscripciones</a>		
 					</div>
 				<div class="col-sm-6 text-left">
-					<a href="{{url('/socio')}}" class="btn btn-lg btn-primary" title="Regresar a página de inicio">Regresar</a>			
+					<a href="{{url('/socio')}}" class="btn btn-md btn-primary" title="Regresar a página de inicio">Regresar</a>			
 				</div>
 			</div>
 		</div>	

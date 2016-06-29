@@ -50,8 +50,56 @@ class InscriptionTallerAdminReservaController extends Controller
         return view('admin-reserva.talleres.confirmacion-inscripcion', compact('taller', 'tipo_comprobantes','personas'));
 
     }
+    public function filterTalleresAdminReserva(Request $request)
+    {
+        $input= $request->all();
+        $sedes= Sede::all();     
 
-    public function makeInscriptionFamiliarToUser(MakeInscriptionToUserRequest $request, $id)
+
+        $fecha_inicio   = new Carbon('America/Lima');
+        /*$fecha_fin   = new Carbon('America/Lima'); */
+        
+        $fecha_inicio=$fecha_inicio->toDateString();
+        /*$fecha_fin = Carbon::now('America/Lima')->addYears(1)->toDateString();*/
+        
+        $talleres=array();
+        
+        if(!empty($input['fecha_inicio'])){
+            $date=str_replace('/', '-', $input['fecha_inicio']);
+            $fecha_inicio=date("Y-m-d",strtotime($date));
+            $talleres=Taller::where('fecha_inicio_inscripciones','<=',Carbon::now('America/Lima')->format('Y-m-d')) 
+                            ->where('fecha_fin_inscripciones','>=',Carbon::now('America/Lima')->format('Y-m-d'))
+                            ->where('fecha_inicio','>=',$fecha_inicio)
+                            ->where('fecha_fin','>=',$fecha_inicio)->get();
+                               /*->where('fecha_fin_inscripciones','>=',$fecha_fin)
+                               ->orwhere('fecha_fin_inscripciones','<',$fecha_fin)*/
+                               /*->whereBetween('fecha_inicio_inscripciones',[$fecha_inicio,$fecha_fin])*/
+                               /*->get();*/
+        }
+        else{
+            $talleres=Taller::where('fecha_inicio_inscripciones','<=',Carbon::now('America/Lima')->format('Y-m-d')) ->where('fecha_fin_inscripciones','>=',Carbon::now('America/Lima')->format('Y-m-d'))->get();
+        }
+        /*if(!empty($input['fecha_fin'])){
+            $date=str_replace('/', '-', $input['fecha_fin']);
+            $fecha_fin=date("Y-m-d",strtotime($date));
+        }*/
+        /*Se terminó de preparar las fechas*/
+       /* dd($fecha_fin);*/
+
+        
+
+   
+        if($input['sedeSelec']!=-1){ //No son todas las sedes
+            foreach ($talleres as $i => $taller) {             
+                    if($taller->reserva->ambiente->sede->id!=$input['sedeSelec'])  unset($talleres[$i]);
+            }
+        }        
+        $personas = Persona::where('id_usuario','!=',null)->where('id_tipo_persona','=',2)//Socios
+                             ->get();
+        $fecha_inicio=$input['fecha_inicio'];
+        return view('admin-reserva.talleres.index',compact('sedes','talleres','fecha_inicio'));
+    }
+    public function makeInscriptionToPersona(MakeInscriptionToUserRequest $request, $id)
     {
         if($request['tipo_comprobante']==-1){
             Session::flash('message-error','Por favor, elija el tipo de comprobante');
@@ -71,7 +119,7 @@ class InscriptionTallerAdminReservaController extends Controller
                 }
                 if(!$flag){
                     Session::flash('message-error',"El familiar $persona->nombre ya se encuentra inscrito en este taller");
-                    return Redirect('/talleres/mis-inscripciones');
+                    return Redirect("/taller-admin-reserva/inscripcion/".$id."/confirmacion");
                 }
                 else{
                     DB::beginTransaction();
@@ -79,7 +127,7 @@ class InscriptionTallerAdminReservaController extends Controller
                         if($taller->vacantes<=0){
                             //throw new Exception("No hay vacantes disponibles");
                             Session::flash('message-error','Lo sentimos, ya no hay vacantes disponibles');
-                            return Redirect("/talleres-familiar/".$id."/confirm");
+                            return Redirect("/taller-admin-reserva/inscripcion/".$id."/confirmacion");
                         }
                         else{
                             $taller->vacantes=$taller->vacantes-1;
@@ -130,13 +178,53 @@ class InscriptionTallerAdminReservaController extends Controller
                     /*$usuario->talleres()->attach($id,['precio'=> $taller->precio_base]);*/
 
                     
-                    return Redirect('/talleres/mis-inscripciones');
+                    return Redirect('/taller-admin-reserva/inscripciones');
                 }
             }
             else{
                 Session::flash('message-error','Contraseña incorrecta');
-                return Redirect("/talleres-familiar/".$id."/confirm");
+                return Redirect("/taller-admin-reserva/inscripcion/".$id."/confirmacion");
             }        
         }
+    }
+    public function inscripciones()
+    {
+        $id_talleres = DB::table('personaxtaller')->lists('taller_id');
+
+        $id_personas = DB::table('personaxtaller')->lists('persona_id');
+        /*Datos de inscripciones de los familiares del usuario Socio*/
+        $personas=Persona::wherein('id',$id_personas)->get();
+        $talleres=Taller::wherein('id',$id_talleres)->get();    
+        $fecha_validable=Carbon::now('America/Lima')->addDays(2)->format('Y-m-d');
+
+        return view('admin-reserva.talleres.inscripciones', compact('talleres','personas','fecha_validable'));
+    }
+    public function show($id){
+    	$taller = Taller::find($id); 
+        return view('admin-reserva.talleres.consulta', compact('taller'));
+    }
+    public function removeInscriptionToPersona($id,$idPersona)
+    {
+        DB::beginTransaction();
+        try{
+            $persona  = Persona::find($idPersona);
+            $taller   = Taller::find($id);
+
+            $facturacion = Facturacion::where('taller_id', '=', $taller->id)->where('persona_id', '=', $persona->id)->get()->first();
+
+            if($facturacion)
+                $facturacion->delete();
+
+            $taller->vacantes=$taller->vacantes+1;
+            $taller->save();
+
+            $persona->talleres()->detach([$id]);
+        }
+        catch(ValidationException $e){
+            DB::rollback();
+            var_dump($e->getErrors());
+        }
+        DB::commit();
+        return back();
     }
 }

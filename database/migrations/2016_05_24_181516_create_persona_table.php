@@ -21,7 +21,7 @@ class CreatePersonaTable extends Migration
             $table->string('ap_paterno');
             $table->string('ap_materno');       
             $table->string('sexo'); // hombre ,mujer 
-            $table->string('correo');               
+            $table->string('correo')->unique();               
             $table->date('fecha_nacimiento'); 
             $table->integer('id_tipo_persona')->unsigned()->nullable();
             $table->integer('id_usuario')->unsigned()->nullable();
