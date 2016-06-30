@@ -134,7 +134,7 @@ class AmbienteController extends Controller
         $ambiente = Ambiente::find($id);
         $actividades = $ambiente->actividades;
 
-        if($ambiente->actividades->count()){
+        if($ambiente->actividades->count() || $ambiente->reservas->count()){
             return redirect('ambiente/index')->with('delete', 'No se puede eliminar este ambiente, posee dependencias.');
         }
         else{
