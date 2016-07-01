@@ -15,13 +15,13 @@ class FrontController extends Controller
         return view('publico.futbol');
     }
     public function historia_papusclub() {
-    	return view('historia-papusclub');
+    	return view('publico.historia-papusclub');
     }
     public function historia_papusclub_ver_mas(){
-    	return view('historia-papusclub-ver-mas');
+    	return view('publico.historia-papusclub-ver-mas');
     }
     public function historia_sede_callao() {
-    	return view('historia-sede-callao');
+    	return view('publico.historia-sede-callao');
     }
     public function historia_sede_callao_ver_mas() {
     	return view('historia-sede-callao-ver-mas');
