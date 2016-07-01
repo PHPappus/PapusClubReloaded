@@ -151,6 +151,13 @@ class InscriptionActividadController extends Controller
         return view('socio.actividades.inscripcion', compact('sedes','actividades','actividades_persona','tipo_persona','familiares','fecha_inicio','fecha_fin'));
     }
 
+    public function show($id){
+        $actividad = Actividad::find($id); 
+        $usuario = Auth::user();
+        $persona=$usuario->persona;
+        $tipo_persona = $persona->tipopersona->id;
+        return view('socio.actividades.consulta', compact('actividad','tipo_persona'));
+    }
     public function misinscripciones()
     {
         /* dd($actividades);*/

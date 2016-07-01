@@ -103,6 +103,8 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 
 	Route::post('inscripcion-actividad/inscripcion-actividades','InscriptionActividadController@filterActividades');
 
+	Route::get('actividades/{id}/show','InscriptionActividadController@show');
+
 	Route::post('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades/confirm','InscriptionActividadController@makeInscriptionToPersona');
 	Route::post('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades-to-familiar/confirm','InscriptionActividadController@makeInscriptionFamiliarToPersona');
 

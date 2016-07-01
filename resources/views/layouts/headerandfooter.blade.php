@@ -40,21 +40,20 @@
 									<ul>
 										<li><a href="concesiones" title="Concesiones" target="_self">CONCESIONES</a></li>
 										<li><a href="servicios" title="Servicios" target="_self">SERVICIOS</a></li>
-										<li><a href="reserva-bungalow" title="Bungalows" target="_self">BUNGALOWS</a></li>
 									</ul>
 								</li>
 								<li><a href="historia-sede-surquillo" title="Surquillo" target="_self">SURQUILLO<span class="despliegue">▼</span></a>
 									<ul>
 										<li><a href="concesiones" title="Concesiones" target="_self">CONCESIONES</a></li>
 										<li><a href="servicios" title="Servicios" target="_self">SERVICIOS</a></li>
-										<li><a href="reserva-bungalow" title="Bungalows" target="_self">BUNGALOWS</a></li>
+										
 									</ul>						
 								</li>
 								<li><a href="historia-sede-barranco" title="Barranco" target="_self">BARRANCO<span class="despliegue">▼</span></a>
 									<ul>
 										<li><a href="concesiones" title="Concesiones" target="_self">CONCESIONES</a></li>
 										<li><a href="servicios" title="Servicios" target="_self">SERVICIOS</a></li>
-										<li><a href="reserva-bungalow" title="Bungalows" target="_self">BUNGALOWS</a></li>
+										
 									</ul>						
 								</li>
 							</ul>
