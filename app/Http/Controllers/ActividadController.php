@@ -38,7 +38,7 @@ class ActividadController extends Controller
     {
         try {
             $sede = Sede::find($id);
-            $ambiente=$sede->ambientes()->first();
+            $ambiente=$sede->ambientes()->where('tipo_ambiente','!=','Bungalow')->first();
             $values=Configuracion::where('grupo','=','3')->where('valor','=','Evento')->get();
             $tipoPersonas = TipoPersona::all();
             
@@ -179,7 +179,11 @@ class ActividadController extends Controller
                 $tarifa->precio = $input[$tipoPersona->descripcion];
                 $tarifa->save();
             }
-
+            if (empty($input['precio_especial_bungalow'])) {
+                        $actividad->precio_especial_bungalow=0.0;
+            }else{
+                $actividad->precio_especial_bungalow=$input['precio_especial_bungalow'];
+            }
             return redirect('actividad/index')->with('stored', 'Se registró la actividad correctamente.');
         } catch (\Exception $e) {
             $error = 'storeEvento-ActividadController';

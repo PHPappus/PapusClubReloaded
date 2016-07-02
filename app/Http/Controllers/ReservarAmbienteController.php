@@ -216,8 +216,9 @@ class ReservarAmbienteController extends Controller
             $sedes = Sede::all();
             //$ambientes = Ambiente::all();
             $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('estado', '=', 'Activo')->get();  
+            $rangoDias=Configuracion::where('grupo','=',19)->where('descripcion','=','rango reserva')->first();
             $fechaIniValue=(new Carbon('America/Lima'));  
-            $fechaFinValue=(new Carbon('America/Lima'))->addDays(30);
+            $fechaFinValue=(new Carbon('America/Lima'))->addDays($rangoDias->valor);
 
             $bloqueado = true;
             return view('socio.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue', 'bloqueado'));
@@ -231,10 +232,11 @@ class ReservarAmbienteController extends Controller
             $sedes = Sede::all();
             $input = $request->all();
             $carbon=new Carbon();
+            $rangoDias=Configuracion::where('grupo','=',19)->where('descripcion','=','rango reserva')->first();
             $fechaIni   = new Carbon('America/Lima');
-            $fechaFin   = (new Carbon('America/Lima'))->addDays(25);
+            $fechaFin   = (new Carbon('America/Lima'))->addDays($rangoDias->valor);
             $fechaIniValue   = new Carbon('America/Lima');
-            $fechaFinValue   = (new Carbon('America/Lima'))->addDays(25); 
+            $fechaFinValue   = (new Carbon('America/Lima'))->addDays($rangoDias->valor); 
             $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('estado', '=', 'Activo')->get();
             if(!empty($input['fecha_inicio'])){
                 $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
@@ -290,8 +292,9 @@ class ReservarAmbienteController extends Controller
             $sedes = Sede::all();
             //$ambientes = Ambiente::all(); 
             $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->where('estado', '=', 'Activo')->get();
+            $rangoDias=Configuracion::where('grupo','=',19)->where('descripcion','=','rango reserva')->first();
             $fechaIniValue=(new Carbon('America/Lima'));  
-            $fechaFinValue=(new Carbon('America/Lima'))->addDays(30);
+            $fechaFinValue=(new Carbon('America/Lima'))->addDays($rangoDias->valor);
             $bloqueado = true;
             return view('socio.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue', 'bloqueado'));
         } catch (\Exception $e) {
@@ -305,10 +308,11 @@ class ReservarAmbienteController extends Controller
         try {
             $input = $request->all();
             $carbon=new Carbon();
+            $rangoDias=Configuracion::where('grupo','=',19)->where('descripcion','=','rango reserva')->first();
             $fechaIni   = new Carbon('America/Lima');
-            $fechaFin   = (new Carbon('America/Lima'))->addDays(25);
+            $fechaFin   = (new Carbon('America/Lima'))->addDays($rangoDias->valor);
             $fechaIniValue   = new Carbon('America/Lima');
-            $fechaFinValue   = (new Carbon('America/Lima'))->addDays(25); 
+            $fechaFinValue   = (new Carbon('America/Lima'))->addDays($rangoDias->valor); 
             $sedes = Sede::all();
             
             $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->where('estado', '=', 'Activo')->get();
@@ -454,14 +458,11 @@ class ReservarAmbienteController extends Controller
                     {
                             
                             $eventoUnico=$eventos->first();
-                            $descuentos=TarifaActividad::where('actividad_id','=',$eventoUnico->id)->get();
+                            $descuentos=Actividad::where('actividad_id','=',$eventoUnico->id)->where('precio_especial_bungalow','!=',0.0)->first();
                             
                             if($descuentos!=NULL){
-                                $valor=0;
-                                foreach ($descuentos as $i=> $descuento) {
-                                  if($descuento->tipo_persona->id==$persona->tipopersona->id)  $valor=$descuento->precio;
-                                }
-                                $reserva->precio = $valor*$diff;
+                                
+                                $reserva->precio = $descuentos->precio_especial_bungalow*$diff;
                             }else{ 
                                 foreach ($tarifas as $tarifa) {
                                     if($tarifa->tipo_persona == $tipo_persona)
@@ -694,7 +695,8 @@ class ReservarAmbienteController extends Controller
             $carbon=new Carbon();
             $fechaInicio=$carbon->createFromFormat('Y-m-d', $reserva->fecha_inicio_reserva);
             $diff=$fechaInicio->diffInDays($today);
-            if($diff >= 4){
+            $limiteDias=Configuracion::where('grupo','=',19)->where('descripcion','=','limite dias')->first();
+            if($diff >= $limiteDias->valor){
                 $reserva->delete();
                 if($reserva->facturacion)
                     $reserva->facturacion->delete();
@@ -719,7 +721,8 @@ class ReservarAmbienteController extends Controller
             $carbon=new Carbon();
             $fechaInicio=$carbon->createFromFormat('Y-m-d', $reserva->fecha_inicio_reserva);
             $diff=$fechaInicio->diffInDays($today);
-            if($diff >= 4){
+            $limiteDias=Configuracion::where('grupo','=',19)->where('descripcion','=','limite dias')->first();
+            if($diff >= $limiteDias->valor){
                 $reserva->delete();
                 if($reserva->facturacion)
                     $reserva->facturacion->delete();
@@ -743,7 +746,8 @@ class ReservarAmbienteController extends Controller
             $carbon=new Carbon();
             $fechaInicio=$carbon->createFromFormat('Y-m-d', $reserva->fecha_inicio_reserva);
             $diff=$fechaInicio->diffInDays($today);
-            if($diff >= 4){
+            $limiteDias=Configuracion::where('grupo','=',19)->where('descripcion','=','limite dias')->first();
+            if($diff >= $limiteDias->valor){
                 $reserva->delete();
                 if($reserva->facturacion)
                     $reserva->facturacion->delete();
@@ -772,8 +776,9 @@ class ReservarAmbienteController extends Controller
             $sedes = Sede::all();
             //$ambientes = Ambiente::all();
             $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('estado', '=', 'Activo')->get();  
+            $rangoDias=Configuracion::where('grupo','=',19)->where('descripcion','=','rango reserva')->first();
             $fechaIniValue=(new Carbon('America/Lima'));  
-            $fechaFinValue=(new Carbon('America/Lima'))->addDays(30);
+            $fechaFinValue=(new Carbon('America/Lima'))->addDays($rangoDias->valor);
             $bloqueado = true;
             return view('admin-reserva.reservar-ambiente.reservar-bungalow')->with(compact('sedes','ambientes','fechaIniValue','fechaFinValue','bloqueado'));
         } catch (\Exception $e) {
@@ -813,10 +818,11 @@ class ReservarAmbienteController extends Controller
             $sedes = Sede::all();
             $input = $request->all();
             $carbon=new Carbon();
+            $rangoDias=Configuracion::where('grupo','=',19)->where('descripcion','=','rango reserva')->first();
             $fechaIni   = new Carbon('America/Lima');
-            $fechaFin   = (new Carbon('America/Lima'))->addDays(25);
+            $fechaFin   = (new Carbon('America/Lima'))->addDays($rangoDias->valor);
             $fechaIniValue   = new Carbon('America/Lima');
-            $fechaFinValue   = (new Carbon('America/Lima'))->addDays(25);  
+            $fechaFinValue   = (new Carbon('America/Lima'))->addDays($rangoDias->valor);  
             $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('estado', '=', 'Activo')->get();
             if(!empty($input['fecha_inicio'])){
                 $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
@@ -871,8 +877,9 @@ class ReservarAmbienteController extends Controller
             $sedes = Sede::all();
             //$ambientes = Ambiente::all(); 
             $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->where('estado', '=', 'Activo')->get();
+            $rangoDias=Configuracion::where('grupo','=',19)->where('descripcion','=','rango reserva')->first();
             $fechaIniValue=(new Carbon('America/Lima'));  
-            $fechaFinValue=(new Carbon('America/Lima'))->addDays(30);
+            $fechaFinValue=(new Carbon('America/Lima'))->addDays($rangoDias->valor);
             $bloqueado = true;
             return view('admin-reserva.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue','bloqueado'));
         } catch (\Exception $e) {
@@ -885,10 +892,11 @@ class ReservarAmbienteController extends Controller
         try {
             $input = $request->all();
             $carbon=new Carbon();
+            $rangoDias=Configuracion::where('grupo','=',19)->where('descripcion','=','rango reserva')->first();
             $fechaIni   = new Carbon('America/Lima');
-            $fechaFin   = (new Carbon('America/Lima'))->addDays(25);
+            $fechaFin   = (new Carbon('America/Lima'))->addDays($rangoDias->valor);
             $fechaIniValue   = new Carbon('America/Lima');
-            $fechaFinValue   = (new Carbon('America/Lima'))->addDays(25); 
+            $fechaFinValue   = (new Carbon('America/Lima'))->addDays($rangoDias->valor); 
             $sedes = Sede::all();
             
             $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->where('estado', '=', 'Activo')->get();
@@ -1036,14 +1044,10 @@ class ReservarAmbienteController extends Controller
                 {
                         
                         $eventoUnico=$eventos->first();
-                        $descuentos=TarifaActividad::where('actividad_id','=',$eventoUnico->id)->get();
+                        $descuentos=Actividad::where('actividad_id','=',$eventoUnico->id)->where('precio_especial_bungalow','!=',0.0)->first();
                         
                         if($descuentos!=NULL){
-                            $valor=0;
-                            foreach ($descuentos as $i=> $descuento) {
-                              if($descuento->tipo_persona->id==$persona->tipopersona->id)  $valor=$descuento->precio;
-                            }
-                            $reserva->precio = $valor*$diff;
+                            $reserva->precio = $descuentos->precio_especial_bungalow*$diff;
                         }else{ 
                             foreach ($tarifas as $tarifa) {
                                 if($tarifa->tipo_persona == $tipo_persona)
