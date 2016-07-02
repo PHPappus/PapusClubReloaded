@@ -269,14 +269,16 @@ class ReservarAmbienteController extends Controller
             }
             foreach ($ambientes as $i=> $ambiente) {
                 foreach ($reservas_caso_1 as  $reserva) {
-                    if($reserva->ambiente_id==$ambiente->id)  unset($ambientes[$i]);
-                    
+                    if($reserva->ambiente_id==$ambiente->id) unset($ambientes[$i]);  
                 }
             }
             foreach ($ambientes as $i => $ambiente) {
-                 foreach ($reservas_caso_2 as  $reserva) {
-                    if($reserva->ambiente_id==$ambiente->id) unset($ambientes[$i]);
-                    
+                foreach ($reservas_caso_2 as  $reserva) {
+                    if($reserva->ambiente_id==$ambiente->id){  
+                          if($reserva->fecha_fin_reserva!=$fechaIni){
+                                unset($ambientes[$i]);
+                          }
+                    }
                 }
             }
             $bloqueado = false;
@@ -431,14 +433,14 @@ class ReservarAmbienteController extends Controller
                 if (empty($input['hora_fin_reserva'])) {
                     $reserva->hora_inicio_reserva="";
                 }else{
-                    $reserva->hora_inicio_reserva=Carbon::createFromTime(0, 0, 0);            
+                    $reserva->hora_inicio_reserva=Carbon::createFromTime(15, 0, 0);      //inicia tres de la tarde      
                 }
 
 
                 if (empty($input['hora_fin_reserva'])) {
                     $reserva->hora_fin_reserva="";
                 }else{
-                    $reserva->hora_fin_reserva=Carbon::createFromTime(0, 0, 0);
+                    $reserva->hora_fin_reserva=Carbon::createFromTime(12, 0, 0); //finaliza medio dia 
                 }
                 $fechaIniValue=$carbon->createFromFormat('d-m-Y', $fecha_inicio);
                 $fechaFinValue=$carbon->createFromFormat('d-m-Y', $fecha_fin);
@@ -895,8 +897,11 @@ class ReservarAmbienteController extends Controller
             }
             foreach ($ambientes as $i => $ambiente) {
                  foreach ($reservas_caso_2 as  $reserva) {
-                    if($reserva->ambiente_id==$ambiente->id) unset($ambientes[$i]);
-                    
+                    if($reserva->ambiente_id==$ambiente->id){  
+                          if($reserva->fecha_fin_reserva!=$fechaIni){
+                                unset($ambientes[$i]);
+                          }
+                    }
                 }
             }
             $bloqueado = false;
@@ -1051,14 +1056,14 @@ class ReservarAmbienteController extends Controller
             if (empty($input['hora_fin_reserva'])) {
                 $reserva->hora_inicio_reserva="";
             }else{
-                $reserva->hora_inicio_reserva=Carbon::createFromTime(0, 0, 0);            
+                $reserva->hora_inicio_reserva=Carbon::createFromTime(15, 0, 0);            
             }
 
 
             if (empty($input['hora_fin_reserva'])) {
                 $reserva->hora_fin_reserva="";
             }else{
-                $reserva->hora_fin_reserva=Carbon::createFromTime(0, 0, 0);
+                $reserva->hora_fin_reserva=Carbon::createFromTime(12, 0, 0);
             }
             $fechaIniValue=$carbon->createFromFormat('d-m-Y', $fecha_inicio);
             $fechaFinValue=$carbon->createFromFormat('d-m-Y', $fecha_fin);
