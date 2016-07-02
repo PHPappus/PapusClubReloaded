@@ -583,7 +583,7 @@ class ReservarAmbienteController extends Controller
     public function storeOtroTipoAmbiente($id, StoreReservaOtroAmbienteSocio $request)
     {
         try {
-            DB::beginTransaction();
+            //DB::beginTransaction();
             try{
                 $user_id = Auth::user()->id;
                 $usuario = User::find($user_id);
@@ -618,7 +618,7 @@ class ReservarAmbienteController extends Controller
                     $reserva->hora_fin_reserva=$carbon->createFromFormat('H:i', $input['hora_fin_reserva'])->toTimeString();
                 }
 
-                $reservasTotal = Reserva::all();
+                $reservasTotal = Reserva::all()->where('ambiente_id', '=', $ambiente_id);
                 foreach ($reservasTotal as $reserva) {
                     $reservas_caso_1=Reserva::where('fecha_inicio_reserva','=',$reserva->fecha_inicio_reserva )->whereBetween('hora_inicio_reserva',[$reserva->hora_inicio_reserva,$reserva->hora_fin_reserva])->get();
 
@@ -672,10 +672,10 @@ class ReservarAmbienteController extends Controller
 
             }
                         catch(ValidationException $e){
-                            DB::rollback();
-                            var_dump($e->getErrors());
+                            //DB::rollback();
+                            //var_dump($e->getErrors());
                         }
-                        DB::commit();
+                        //DB::commit();
             return redirect('reservar-ambiente/reservar-otros-ambientes')->with('stored', 'Se registró la reserva del ambiente correctamente.');
         } catch (\Exception $e) {
             $error = 'storeOtroTipoAmbiente-ReservarAmbienteController';

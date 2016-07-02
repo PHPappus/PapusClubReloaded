@@ -39,6 +39,7 @@ class PagosController extends Controller
     }
      public function selectSocio($id) //una vez seleccionado el socio , voy a la sigueiten pantalla que sera las facturas del socio
     {
+        try {
             $socio = Socio::find($id);
             $persona = $socio->postulante->persona;
             $facturaciones = $persona->facturacion;
@@ -105,25 +106,22 @@ class PagosController extends Controller
     /////////////////////////                            SOCIO       //////////////////////////////////////////////////////////////////////////
     public function listarFacturacionSocio() //una vez seleccionado el socio , voy a la sigueiten pantalla que sera las facturas del socio
     {
-        try {
+        
             $user_id = Auth::user()->id;
-            $usuario = User::findOrFail($user_id);
+            $usuario = User::find($user_id);
             $persona = $usuario->persona;  
-            $facturaciones = $persona->facturacion;
-            foreach ($facturaciones as $facturacion) {
-                if($facturacion->total == 0) {
-                    $facturacion->tipo_pago = "Gratuito";
-                    $facturacion->tipo_comprobante = "Gratuito";
-                    $facturacion->estado = "Pagado";
-                    $facturacion->update();
-                }
+            $facturaciones = $persona->facturacion;            
+            // foreach ($facturaciones as $facturacion) {
+            //     if($facturacion->total == 0) {
+            //         $facturacion->tipo_pago = "Gratuito";
+            //         $facturacion->tipo_comprobante = "Gratuito";
+            //         $facturacion->estado = "Pagado";
+            //         $facturacion->update();
+            //     }
 
-            }
+            // }
             return view('socio.pagos.facturacion-socio',compact('facturaciones'));
-        } catch (\Exception $e) {
-            $error = 'listarFacturacionSocio-PagosController';
-            return view('errors.corrigeme', compact('error'));
-        }
+        
             
     }
      public function showAlSocio($id)
