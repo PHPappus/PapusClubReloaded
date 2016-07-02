@@ -90,7 +90,8 @@ class ConfiguracionTableSeeder extends Seeder
 
         Configuracion::insert(['valor'=>'50','grupo'=>'18','descripcion'=>'monto traspaso']); //59
 
-        Configuracion::insert(['valor'=>'4','grupo'=>'19','descripcion'=>'limite dias']); //59
-        Configuracion::insert(['valor'=>'45','grupo'=>'19','descripcion'=>'rango reserva']); //59
+        Configuracion::insert(['valor'=>'4','grupo'=>'19','descripcion'=>'limite dias']); 
+        Configuracion::insert(['valor'=>'45','grupo'=>'19','descripcion'=>'rango reserva']); 
+        Configuracion::insert(['valor'=>'20','grupo'=>'19','descripcion'=>'precio default']); 
     }
 }

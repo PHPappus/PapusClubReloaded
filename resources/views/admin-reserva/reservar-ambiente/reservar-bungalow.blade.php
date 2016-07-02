@@ -45,7 +45,7 @@
 	</div>
 	<br/>
 	<input  type="hidden" type="text" id="fechaIni" name="fechaIni" value="{{ $fechaIniValue->toDateString()}}">
-	<input type="hidden" type="text" id="fechaFin" name="fechaFin" value="{{ $fechaFinValue->toDateString() }}">
+	<input  type="hidden" type="text" id="fechaFin" name="fechaFin" value="{{ $fechaFinValue->toDateString() }}">
 	<div class="container">
 		<form method="POST" class="form-horizontal form-border" action="/reservar-ambiente/reservar-bungalow-adminR/search-adminR"> 
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -197,10 +197,9 @@
 		var nowDate = new Date();
 		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
 		var deadline=new Date(today);
-		deadline.setDate(deadline.getDate() + 25);
+		var dias = "<?php  echo $dias; ?>";
+		deadline.setDate(deadline.getDate() + parseInt(dias));
 	</script>
-
-	<!-- Para Fechas INICIO -->
 	<script>
 		$(function(){
 			$('.datepicker').datepicker({
