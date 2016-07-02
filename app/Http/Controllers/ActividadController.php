@@ -30,7 +30,8 @@ class ActividadController extends Controller
             
             return view('admin-registros.actividad.newActividad', compact('reserva','values','tipoPersonas'));
         } catch (\Exception $e) {
-            return view('errors.404');
+            $error = 'select-ActividadController';
+            return view('errors.corrigeme', compact('error'));
         }
     }
     public function selectSede($id)//cuando se selecciona la sede(ambiente) del evento
@@ -43,7 +44,8 @@ class ActividadController extends Controller
             
             return view('admin-registros.actividad.newEvento', compact('sede','values','tipoPersonas','ambiente'));
         } catch (\Exception $e) {
-            return view('errors.404');
+            $error = 'selectSede-ActividadController';
+            return view('errors.corrigeme', compact('error'));
         }
     }
     //Muestra la lista de sedes que se encuentran en BD, estas se pueden modificar, cambiar el estado, ver mas detalle o registrar una nueva sede
@@ -53,7 +55,8 @@ class ActividadController extends Controller
             $actividades=Actividad::all();
             return view('admin-registros.actividad.index',compact('actividades'));
         } catch (\Exception $e) {
-            return view('errors.404');
+            $error = 'index-ActividadController';
+            return view('errors.corrigeme', compact('error'));
         }
     }
     public function create()
@@ -67,7 +70,8 @@ class ActividadController extends Controller
             //debe mostrar todas las reservas realizadas
             return view('admin-registros.actividad.listaReservas', compact('reservas', 'values', 'tipoPersonas'));
         } catch (\Exception $e) {
-            return view('errors.404');
+            $error = 'create-ActividadController';
+            return view('errors.corrigeme', compact('error'));
         }
         
     }
@@ -81,7 +85,8 @@ class ActividadController extends Controller
             //debe mostrar todas las reservas realizadas
             return view('admin-registros.actividad.listaSedes', compact('sedes', 'values', 'tipoPersonas'));
         } catch (\Exception $e) {
-            return view('errors.404');
+            $error = 'createEvento-ActividadController';
+            return view('errors.corrigeme', compact('error'));
         }
     }
     public function store(StoreActividadRequest $request)
@@ -131,7 +136,8 @@ class ActividadController extends Controller
 
             return redirect('actividad/index')->with('stored', 'Se registró la actividad correctamente.');
         } catch (\Exception $e) {
-            return view('errors.404');
+            $error = 'store-ActividadController';
+            return view('errors.corrigeme', compact('error'));
         }
     }
     public function storeEvento(StoreEventoRequest $request)
@@ -176,7 +182,8 @@ class ActividadController extends Controller
 
             return redirect('actividad/index')->with('stored', 'Se registró la actividad correctamente.');
         } catch (\Exception $e) {
-            return view('errors.404');
+            $error = 'storeEvento-ActividadController';
+            return view('errors.corrigeme', compact('error'));
         }
     }
     public function storeTipoActividad(StoreConfiguracionRequest $request, $id)
@@ -192,7 +199,8 @@ class ActividadController extends Controller
             
             return redirect('actividad/'.$id.'/select');
         } catch (\Exception $e) {
-            return view('errors.404');
+            $error = 'storeTipoActividad-ActividadController';
+            return view('errors.corrigeme', compact('error'));
         }
     }
 
@@ -204,7 +212,8 @@ class ActividadController extends Controller
             $tarifas = $actividad->tarifas;
             return view('admin-registros.actividad.editActividad', compact('actividad','tarifas'));
         } catch (\Exception $e) {
-            return view('errors.404');
+            $error = 'edit-ActividadController';
+            return view('errors.corrigeme', compact('error'));
         }
     }
     //Se guarda la informacion modificada de la actividad en la BD
@@ -250,7 +259,8 @@ class ActividadController extends Controller
 
             return redirect('actividad/index');
         } catch (\Exception $e) {
-            return view('errors.404');
+            $error = 'update-ActividadController';
+            return view('errors.corrigeme', compact('error'));
         }    
 
     }
@@ -262,7 +272,8 @@ class ActividadController extends Controller
             $tarifas = $actividad->tarifas;
             return view('admin-registros.actividad.detailActividad', compact('actividad','tarifas'));
         } catch (\Exception $e) {
-            return view('errors.404');
+            $error = 'show-ActividadController';
+            return view('errors.corrigeme', compact('error'));
         }
     }
     public function destroy($id)
@@ -278,7 +289,8 @@ class ActividadController extends Controller
             
             return back();
         } catch (\Exception $e) {
-            return view('errors.404');
+            $error = 'destroy-ActividadController';
+            return view('errors.corrigeme', compact('error'));
         }
 
     }
@@ -291,7 +303,8 @@ class ActividadController extends Controller
             $tipoPersonas = TipoPersona::all();
             return view('admin-registros.actividad.listaReservas', compact('ambientes','tipoPersonas'));
         } catch (\Exception $e) {
-            return view('errors.404');
+            $error = 'searchReservas-ActividadController';
+            return view('errors.corrigeme', compact('error'));
         }
     }
     
