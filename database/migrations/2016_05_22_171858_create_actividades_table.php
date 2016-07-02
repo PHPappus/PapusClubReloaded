@@ -18,6 +18,7 @@ class CreateActividadesTable extends Migration
             $table->integer('reserva_id')->unsigned()->nullable();
             $table->string('nombre');
             $table->string('tipo_actividad');
+            $table->float('precio_especial_bungalow');
             $table->string('capacidad_maxima');
             $table->string('descripcion');
             $table->integer('cupos_disponibles');

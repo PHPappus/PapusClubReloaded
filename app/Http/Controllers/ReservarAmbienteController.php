@@ -216,11 +216,12 @@ class ReservarAmbienteController extends Controller
             $sedes = Sede::all();
             //$ambientes = Ambiente::all();
             $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('estado', '=', 'Activo')->get();  
+            $rangoDias=Configuracion::where('grupo','=',19)->where('descripcion','=','rango reserva')->first();
             $fechaIniValue=(new Carbon('America/Lima'));  
-            $fechaFinValue=(new Carbon('America/Lima'))->addDays(30);
-
+            $fechaFinValue=(new Carbon('America/Lima'))->addDays($rangoDias->valor);
+            $dias=$rangoDias->valor;
             $bloqueado = true;
-            return view('socio.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue', 'bloqueado'));
+            return view('socio.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue', 'bloqueado','dias'));
         } catch (\Exception $e) {
             $error = 'reservarBungalow-ReservarAmbienteController';
             return view('errors.corrigeme', compact('error'));
@@ -231,10 +232,12 @@ class ReservarAmbienteController extends Controller
             $sedes = Sede::all();
             $input = $request->all();
             $carbon=new Carbon();
+            $rangoDias=Configuracion::where('grupo','=',19)->where('descripcion','=','rango reserva')->first();
             $fechaIni   = new Carbon('America/Lima');
-            $fechaFin   = (new Carbon('America/Lima'))->addDays(25);
+            $fechaFin   = (new Carbon('America/Lima'))->addDays($rangoDias->valor);
             $fechaIniValue   = new Carbon('America/Lima');
-            $fechaFinValue   = (new Carbon('America/Lima'))->addDays(25); 
+            $fechaFinValue   = (new Carbon('America/Lima'))->addDays($rangoDias->valor); 
+            $dias=$rangoDias->valor;
             $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('estado', '=', 'Activo')->get();
             if(!empty($input['fecha_inicio'])){
                 $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
@@ -277,7 +280,7 @@ class ReservarAmbienteController extends Controller
                 }
             }
             $bloqueado = false;
-            return view('socio.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue', 'bloqueado'));
+            return view('socio.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue', 'bloqueado','dias'));
         } catch (\Exception $e) {
             $error = 'reservarBungalowFiltrados-ReservarAmbienteController';
             return view('errors.corrigeme', compact('error'));
@@ -290,10 +293,12 @@ class ReservarAmbienteController extends Controller
             $sedes = Sede::all();
             //$ambientes = Ambiente::all(); 
             $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->where('estado', '=', 'Activo')->get();
+            $rangoDias=Configuracion::where('grupo','=',19)->where('descripcion','=','rango reserva')->first();
             $fechaIniValue=(new Carbon('America/Lima'));  
-            $fechaFinValue=(new Carbon('America/Lima'))->addDays(30);
+            $fechaFinValue=(new Carbon('America/Lima'))->addDays($rangoDias->valor);
             $bloqueado = true;
-            return view('socio.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue', 'bloqueado'));
+            $dias=$rangoDias->valor;
+            return view('socio.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue', 'bloqueado','dias'));
         } catch (\Exception $e) {
             $error = 'reservarOtrosAmbientes-ReservarAmbienteController';
             return view('errors.corrigeme', compact('error'));
@@ -305,12 +310,13 @@ class ReservarAmbienteController extends Controller
         try {
             $input = $request->all();
             $carbon=new Carbon();
+            $rangoDias=Configuracion::where('grupo','=',19)->where('descripcion','=','rango reserva')->first();
             $fechaIni   = new Carbon('America/Lima');
-            $fechaFin   = (new Carbon('America/Lima'))->addDays(25);
+            $fechaFin   = (new Carbon('America/Lima'))->addDays($rangoDias->valor);
             $fechaIniValue   = new Carbon('America/Lima');
-            $fechaFinValue   = (new Carbon('America/Lima'))->addDays(25); 
+            $fechaFinValue   = (new Carbon('America/Lima'))->addDays($rangoDias->valor); 
             $sedes = Sede::all();
-            
+            $dias=$rangoDias->valor;
             $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->where('estado', '=', 'Activo')->get();
             if(!empty($input['fecha_inicio'])){
                 $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
@@ -364,7 +370,7 @@ class ReservarAmbienteController extends Controller
                 }
             }
             $bloqueado = false;
-            return view('socio.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue', 'bloqueado'));
+            return view('socio.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue', 'bloqueado','dias'));
         } catch (\Exception $e) {
             $error = 'reservarOtrosAmbientesFiltrados-ReservarAmbienteController';
             return view('errors.corrigeme', compact('error'));
@@ -441,45 +447,73 @@ class ReservarAmbienteController extends Controller
                 $persona = Persona::find($persona_id);
                 $tipo_persona = $persona->tipopersona;
                 $tarifas = $ambiente->tarifas;
+                $precioDefault=Configuracion::where('grupo','=',19)->where('descripcion','=','precio default')->first();
                 //si hay un evento decide usar la tarifa especiales del evento,caso contrario usa la tarifa normal del ambiente
                 $eventos=Actividad::where('tipo_actividad','=','Evento')->where('a_realizarse_en','=',$fechaIniValue->toDateString())->get();
 
                 if ($eventos != NULL)//no hay ningun evento en esta fecha
                 {
+
                     foreach ($eventos as $i=> $evento) {
                             if($evento->ambiente->sede->id!=$ambiente->sede->id)  unset($eventos[$i]);
                     }
                     
-                    if (count($eventos)!=0)//hay eventos para esta fechan ,pero no en esta sede
+                    if (count($eventos)!=0)//hay eventos para esta fecha ,pero no en esta sede
                     {
                             
                             $eventoUnico=$eventos->first();
-                            $descuentos=TarifaActividad::where('actividad_id','=',$eventoUnico->id)->get();
+                            $descuentos=$eventoUnico->precio_especial_bungalow;
                             
-                            if($descuentos!=NULL){
-                                $valor=0;
-                                foreach ($descuentos as $i=> $descuento) {
-                                  if($descuento->tipo_persona->id==$persona->tipopersona->id)  $valor=$descuento->precio;
-                                }
-                                $reserva->precio = $valor*$diff;
+                            if($descuentos!=0.0 && $tipo_persona->id!=4){//si es vip se sigue usando tarifa 0 en lugar del precio esp
+                                
+                                $reserva->precio = $descuentos*$diff;
+                                
                             }else{ 
-                                foreach ($tarifas as $tarifa) {
-                                    if($tarifa->tipo_persona == $tipo_persona)
-                                        $reserva->precio = $tarifa->precio*$diff;        
+                                if(count($tarifas)==0){
+                                    if($tipo_persona->id!=4){
+                                        $reserva->precio=$precioDefault->valor*$diff;
+                                    }else{
+                                        $reserva->precio=0;
+                                    }
+
+                                }else{
+                                    foreach ($tarifas as $tarifa) {
+                                        if($tarifa->tipo_persona == $tipo_persona)
+                                            $reserva->precio = $tarifa->precio*$diff;        
+                                    }
                                 }
                             }
                     }else{
-                        foreach ($tarifas as $tarifa) {
-                            if($tarifa->tipo_persona == $tipo_persona)
-                                $reserva->precio = $tarifa->precio*$diff;        
+                        if(count($tarifas)==0){
+                                    if($tipo_persona->id!=4){
+                                        $reserva->precio=$precioDefault->valor*$diff;
+                                    }else{
+                                        $reserva->precio=0;
+                                    }
+
+                        }else{
+                                foreach ($tarifas as $tarifa) {
+                                    if($tarifa->tipo_persona == $tipo_persona)
+                                            $reserva->precio = $tarifa->precio*$diff;        
+                                }
                         }
                     }
 
                 }else{
-                        foreach ($tarifas as $tarifa) {
-                            if($tarifa->tipo_persona == $tipo_persona)
-                                $reserva->precio = $tarifa->precio*$diff;        
-                        }
+                        if(count($tarifas)==0){
+                                    if($tipo_persona->id!=4){
+                                        $reserva->precio=$precioDefault->valor*$diff;
+                                    }else{
+                                        $reserva->precio=0;
+                                    }
+
+                        }else{
+                                    foreach ($tarifas as $tarifa) {
+                                        if($tarifa->tipo_persona == $tipo_persona)
+                                            $reserva->precio = $tarifa->precio*$diff;        
+                                    }
+                         }
+                        
                 }
 
                 $promos = Promocion::where('tipo','=','Bungalow')->where('estado','=',TRUE)->get();
@@ -694,7 +728,8 @@ class ReservarAmbienteController extends Controller
             $carbon=new Carbon();
             $fechaInicio=$carbon->createFromFormat('Y-m-d', $reserva->fecha_inicio_reserva);
             $diff=$fechaInicio->diffInDays($today);
-            if($diff >= 4){
+            $limiteDias=Configuracion::where('grupo','=',19)->where('descripcion','=','limite dias')->first();
+            if($diff >= $limiteDias->valor){
                 $reserva->delete();
                 if($reserva->facturacion)
                     $reserva->facturacion->delete();
@@ -719,7 +754,8 @@ class ReservarAmbienteController extends Controller
             $carbon=new Carbon();
             $fechaInicio=$carbon->createFromFormat('Y-m-d', $reserva->fecha_inicio_reserva);
             $diff=$fechaInicio->diffInDays($today);
-            if($diff >= 4){
+            $limiteDias=Configuracion::where('grupo','=',19)->where('descripcion','=','limite dias')->first();
+            if($diff >= $limiteDias->valor){
                 $reserva->delete();
                 if($reserva->facturacion)
                     $reserva->facturacion->delete();
@@ -743,7 +779,8 @@ class ReservarAmbienteController extends Controller
             $carbon=new Carbon();
             $fechaInicio=$carbon->createFromFormat('Y-m-d', $reserva->fecha_inicio_reserva);
             $diff=$fechaInicio->diffInDays($today);
-            if($diff >= 4){
+            $limiteDias=Configuracion::where('grupo','=',19)->where('descripcion','=','limite dias')->first();
+            if($diff >= $limiteDias->valor){
                 $reserva->delete();
                 if($reserva->facturacion)
                     $reserva->facturacion->delete();
@@ -772,10 +809,12 @@ class ReservarAmbienteController extends Controller
             $sedes = Sede::all();
             //$ambientes = Ambiente::all();
             $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('estado', '=', 'Activo')->get();  
+            $rangoDias=Configuracion::where('grupo','=',19)->where('descripcion','=','rango reserva')->first();
             $fechaIniValue=(new Carbon('America/Lima'));  
-            $fechaFinValue=(new Carbon('America/Lima'))->addDays(30);
+            $fechaFinValue=(new Carbon('America/Lima'))->addDays($rangoDias->valor);
+            $dias=$rangoDias->valor;
             $bloqueado = true;
-            return view('admin-reserva.reservar-ambiente.reservar-bungalow')->with(compact('sedes','ambientes','fechaIniValue','fechaFinValue','bloqueado'));
+            return view('admin-reserva.reservar-ambiente.reservar-bungalow')->with(compact('sedes','ambientes','fechaIniValue','fechaFinValue','dias','bloqueado'));
         } catch (\Exception $e) {
             $error = 'reservarBungalowAdminR-ReservarAmbienteController';
             return view('errors.corrigeme', compact('error'));
@@ -813,10 +852,12 @@ class ReservarAmbienteController extends Controller
             $sedes = Sede::all();
             $input = $request->all();
             $carbon=new Carbon();
+            $rangoDias=Configuracion::where('grupo','=',19)->where('descripcion','=','rango reserva')->first();
             $fechaIni   = new Carbon('America/Lima');
-            $fechaFin   = (new Carbon('America/Lima'))->addDays(25);
+            $fechaFin   = (new Carbon('America/Lima'))->addDays($rangoDias->valor);
             $fechaIniValue   = new Carbon('America/Lima');
-            $fechaFinValue   = (new Carbon('America/Lima'))->addDays(25);  
+            $fechaFinValue   = (new Carbon('America/Lima'))->addDays($rangoDias->valor);  
+            $dias=$rangoDias->valor;
             $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('estado', '=', 'Activo')->get();
             if(!empty($input['fecha_inicio'])){
                 $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
@@ -859,7 +900,7 @@ class ReservarAmbienteController extends Controller
                 }
             }
             $bloqueado = false;
-            return view('admin-reserva.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue','bloqueado'));
+            return view('admin-reserva.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue','dias','bloqueado'));
         } catch (\Exception $e) {
             $error = 'reservarBungalowFiltradosAdminR-ReservarAmbienteController';
             return view('errors.corrigeme', compact('error'));
@@ -871,10 +912,12 @@ class ReservarAmbienteController extends Controller
             $sedes = Sede::all();
             //$ambientes = Ambiente::all(); 
             $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->where('estado', '=', 'Activo')->get();
+            $rangoDias=Configuracion::where('grupo','=',19)->where('descripcion','=','rango reserva')->first();
             $fechaIniValue=(new Carbon('America/Lima'));  
-            $fechaFinValue=(new Carbon('America/Lima'))->addDays(30);
+            $fechaFinValue=(new Carbon('America/Lima'))->addDays($rangoDias->valor);
             $bloqueado = true;
-            return view('admin-reserva.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue','bloqueado'));
+            $dias=$rangoDias->valor;
+            return view('admin-reserva.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue','dias','bloqueado'));
         } catch (\Exception $e) {
             $error = 'reservarOtrosAmbientesAdminR-ReservarAmbienteController';
             return view('errors.corrigeme', compact('error'));
@@ -885,10 +928,11 @@ class ReservarAmbienteController extends Controller
         try {
             $input = $request->all();
             $carbon=new Carbon();
+            $rangoDias=Configuracion::where('grupo','=',19)->where('descripcion','=','rango reserva')->first();
             $fechaIni   = new Carbon('America/Lima');
-            $fechaFin   = (new Carbon('America/Lima'))->addDays(25);
+            $fechaFin   = (new Carbon('America/Lima'))->addDays($rangoDias->valor);
             $fechaIniValue   = new Carbon('America/Lima');
-            $fechaFinValue   = (new Carbon('America/Lima'))->addDays(25); 
+            $fechaFinValue   = (new Carbon('America/Lima'))->addDays($rangoDias->valor); 
             $sedes = Sede::all();
             
             $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->where('estado', '=', 'Activo')->get();
@@ -1023,46 +1067,74 @@ class ReservarAmbienteController extends Controller
             $persona = Persona::find($persona_id);
             $tipo_persona = $persona->tipopersona;
             $tarifas = $ambiente->tarifas;
-            //si hay un evento decide usar la tarifa especiales del evento,caso contrario usa la tarifa normal del ambiente
-            $eventos=Actividad::where('tipo_actividad','=','Evento')->where('a_realizarse_en','=',$fechaIniValue->toDateString())->get();
+            $precioDefault=Configuracion::where('grupo','=',19)->where('descripcion','=','precio default')->first();
+                //si hay un evento decide usar la tarifa especiales del evento,caso contrario usa la tarifa normal del ambiente
+                $eventos=Actividad::where('tipo_actividad','=','Evento')->where('a_realizarse_en','=',$fechaIniValue->toDateString())->get();
 
-            if ($eventos != NULL)//no hay ningun evento en esta fecha
-            {
-                foreach ($eventos as $i=> $evento) {
-                        if($evento->ambiente->sede->id!=$ambiente->sede->id)  unset($eventos[$i]);
-                }
-                
-                if (count($eventos)!=0)//hay eventos para esta fechan ,pero no en esta sede
+                if ($eventos != NULL)//no hay ningun evento en esta fecha
                 {
-                        
-                        $eventoUnico=$eventos->first();
-                        $descuentos=TarifaActividad::where('actividad_id','=',$eventoUnico->id)->get();
-                        
-                        if($descuentos!=NULL){
-                            $valor=0;
-                            foreach ($descuentos as $i=> $descuento) {
-                              if($descuento->tipo_persona->id==$persona->tipopersona->id)  $valor=$descuento->precio;
-                            }
-                            $reserva->precio = $valor*$diff;
-                        }else{ 
-                            foreach ($tarifas as $tarifa) {
-                                if($tarifa->tipo_persona == $tipo_persona)
-                                    $reserva->precio = $tarifa->precio*$diff;        
-                            }
-                        }
-                }else{
-                    foreach ($tarifas as $tarifa) {
-                        if($tarifa->tipo_persona == $tipo_persona)
-                            $reserva->precio = $tarifa->precio*$diff;        
-                    }
-                }
 
-            }else{
-                    foreach ($tarifas as $tarifa) {
-                        if($tarifa->tipo_persona == $tipo_persona)
-                            $reserva->precio = $tarifa->precio*$diff;        
+                    foreach ($eventos as $i=> $evento) {
+                            if($evento->ambiente->sede->id!=$ambiente->sede->id)  unset($eventos[$i]);
                     }
-            }
+                    
+                    if (count($eventos)!=0)//hay eventos para esta fecha ,pero no en esta sede
+                    {
+                            
+                            $eventoUnico=$eventos->first();
+                            $descuentos=$eventoUnico->precio_especial_bungalow;
+                            
+                            if($descuentos!=0.0 && $tipo_persona->id!=4){//si es vip se sigue usando tarifa 0 en lugar del precio esp
+                                
+                                $reserva->precio = $descuentos*$diff;
+                                
+                            }else{ 
+                                if(count($tarifas)==0){
+                                    if($tipo_persona->id!=4){
+                                        $reserva->precio=$precioDefault->valor*$diff;
+                                    }else{
+                                        $reserva->precio=0;
+                                    }
+
+                                }else{
+                                    foreach ($tarifas as $tarifa) {
+                                        if($tarifa->tipo_persona == $tipo_persona)
+                                            $reserva->precio = $tarifa->precio*$diff;        
+                                    }
+                                }
+                            }
+                    }else{
+                        if(count($tarifas)==0){
+                                    if($tipo_persona->id!=4){
+                                        $reserva->precio=$precioDefault->valor*$diff;
+                                    }else{
+                                        $reserva->precio=0;
+                                    }
+
+                        }else{
+                                foreach ($tarifas as $tarifa) {
+                                    if($tarifa->tipo_persona == $tipo_persona)
+                                            $reserva->precio = $tarifa->precio*$diff;        
+                                }
+                        }
+                    }
+
+                }else{
+                        if(count($tarifas)==0){
+                                    if($tipo_persona->id!=4){
+                                        $reserva->precio=$precioDefault->valor*$diff;
+                                    }else{
+                                        $reserva->precio=0;
+                                    }
+
+                        }else{
+                                    foreach ($tarifas as $tarifa) {
+                                        if($tarifa->tipo_persona == $tipo_persona)
+                                            $reserva->precio = $tarifa->precio*$diff;        
+                                    }
+                         }
+                        
+                }
 
             //$reserva->precio = 0;
 

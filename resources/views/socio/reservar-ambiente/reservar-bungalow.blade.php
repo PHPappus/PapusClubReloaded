@@ -241,16 +241,9 @@
 		var nowDate = new Date();
 		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
 		var deadline=new Date(today);
-		deadline.setDate(deadline.getDate() + 25);
-		//var js_var = "<?php echo $fechaIniValue; ?>";
-		//var js_var2 = "<?php echo $fechaFinValue; ?>";
-        //alert(js_var);
-        //var other=new Date(js_var);
-        //var other2=new Date(js_var2);
-        //alert(other);
+		var dias = "<?php  echo $dias; ?>";
+		deadline.setDate(deadline.getDate() + parseInt(dias));
 	</script>
-
-	<!-- Para Fechas INICIO -->
 	<script>
 		$(function(){
 			$('.datepicker').datepicker({

@@ -32,16 +32,16 @@ class DatabaseSeeder extends Seeder
         $this->call(CarnetTableSeeder::class);
         //$this->call(ReservasTableSeeder::class);
         //$this->call(TestTallerTableSeeder::class);
-	    //$this->call(PrecioProductoTableSeeder::class);
+        //$this->call(PrecioProductoTableSeeder::class);
         //$this->call(FacturacionTableSeeder::class);
         //$this->call(ProductoxFacturacionTableSeeder::class);
         $this->call(TipoFamiliaTableSeeder::class);
         //$this->call(TarifaAmbientexTipoPersonaTableSeeder::class);
-		$this->call(servicioSeeder::class);
-        $this->call(TarifarioServiciosTableSeeder::class);	    
+        $this->call(servicioSeeder::class);
+        $this->call(TarifarioServiciosTableSeeder::class);      
         $this->call(TarifaFamiliarTableSeeder::class);
         //$this->call(TarifaActividadTableSeeder::class);
-		$this->call(FamiliarxPostulanteTableSeeder::class);
+        $this->call(FamiliarxPostulanteTableSeeder::class);
         $this->call(ConcesionariaTableSeeder::class);
         //$this->call(TarifaTallerTableSeeder::class);
 
