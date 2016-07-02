@@ -190,8 +190,8 @@ class SorteoController extends Controller
     public function create()
     {
         $sedes = Sede::all();
-        
-        return view('admin-general.sorteo.newSorteo',['sedes'=>$sedes]);
+        $configuracion="1";
+        return view('admin-general.sorteo.newSorteo',['sedes'=>$sedes,'configuracion'=>$configuracion]);
     }
 
 

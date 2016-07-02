@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use papusclub\Http\Requests;
 
 use papusclub\Http\Requests\MakeInscriptionToUserRequest;
+use papusclub\Http\Requests\MakeInscriptionFamiliarRequest;
 
 use Session;
 use Redirect;
@@ -72,7 +73,7 @@ class InscriptionTallerController extends Controller
         return back();
     
     }*/
-    public function makeInscriptionFamiliarToUser(MakeInscriptionToUserRequest $request, $id)
+    public function makeInscriptionFamiliarToUser(MakeInscriptionFamiliarRequest $request, $id)
     {
         if($request['tipo_comprobante']==-1){
             Session::flash('message-error','Por favor, elija el tipo de comprobante');
@@ -259,8 +260,12 @@ class InscriptionTallerController extends Controller
     public function show($id)
     {
         $taller = Taller::find($id);
-        $talleresxpersona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->talleres;        
-        return view('socio.talleres.consulta', compact('taller','talleresxpersona'));
+        $talleresxpersona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->talleres; 
+        $usuario = Auth::user();
+        $persona=$usuario->persona;
+        $tipo_persona = $persona->tipopersona->id;
+
+        return view('socio.talleres.consulta', compact('taller','talleresxpersona','tipo_persona'));
     }
     public function showFamiliar($id)
     {

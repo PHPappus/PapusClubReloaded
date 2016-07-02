@@ -124,17 +124,18 @@
 		 </div>
 		<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active">
-						<tr>
-								<th><DIV ALIGN=center>SEDE</th>
-								<th style="max-width:70px;"><DIV ALIGN=center>AMBIENTE</th>
-								<th style="max-width:90px;"><DIV ALIGN=center>NOMBRE DE LA ACTIVIDAD</th>
-								<th><DIV ALIGN=center>FECHA&nbsp;&nbsp;</th>
-								<th><DIV ALIGN=center>HORA DE INICIO</th>
-								<th><DIV ALIGN=center>PRECIO</th>
-								<th style="max-width:85px;"><DIV ALIGN=center>CUPOS DISPONIBLES</th>
-								<th><DIV ALIGN=center>ESTADO</th>
-								<th><DIV ALIGN=center>INSCRIBIRSE</th>
-								<th><DIV ALIGN=center>INSCRIBIR A UN FAMILIAR</th>
+						<tr style="background:#a3decb; font: caption; color:#FFF;">
+								<th><DIV ALIGN=center>Sede</th>
+								<th style="max-width:70px;"><DIV ALIGN=center>Lugar</th>
+								<th style="max-width:90px;"><DIV ALIGN=center>Nombre de la actividad</th>
+								<th><DIV ALIGN=center>Fecha&nbsp;&nbsp;</th>
+								<th><DIV ALIGN=center>Hora de inicio</th>
+								<th><DIV ALIGN=center>Precio</th>
+								<th style="max-width:85px;"><DIV ALIGN=center>Cupos disponibles</th>
+								<th><DIV ALIGN=center>Estado</th>
+								<th><div align=center>Detalle</div></th>
+								<th ><DIV ALIGN=center>Inscribirse</th>
+								<th><DIV ALIGN=center>Inscribir a un familiar</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -154,21 +155,33 @@
 								@endif		 						
 		 						@if((count($actividades_persona->where('id',$actividad->id))!=0))
 		 						<td style="background:#d5efd5;">Inscrito</td>
+		 						<td>  <!-- DETALLE -->
+									<a class="btn btn-info" href="{{url('/actividades/'.$actividad->id.'/show')}}"  title="Detalle"><i class="glyphicon glyphicon-list-alt"></i></a>
+
+								</td>
 								<td>
 						        	<a class="btn btn-info" title="Ya se encuentra inscrito" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
 						        </td>	
 						        @elseif($actividad->cupos_disponibles<=0)
 						        <td style="background:#f7e5e5;">No Inscrito</td>	
+						        <td>  <!-- DETALLE -->
+									<a class="btn btn-info" href="{{url('/actividades/'.$actividad->id.'/show')}}"  title="Detalle"><i class="glyphicon glyphicon-list-alt"></i></a>
+
+								</td>
 						        <td>
 						        	<a class="btn btn-info" title="No hay más cupos disponibles" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
 						        </td>
 						        @else
 						        <td style="background:#f7e5e5;">No Inscrito</td>
+						        <td>  <!-- DETALLE -->
+									<a class="btn btn-info" href="{{url('/actividades/'.$actividad->id.'/show')}}"  title="Detalle"><i class="glyphicon glyphicon-list-alt"></i></a>
+
+								</td>
 						        <td>
 						        	<a class="btn btn-info" href="{{url('/inscripcion-actividad/'.$actividad->id.'/confirmacion-inscripcion-actividades')}}" title="Inscripcion" ><i class="glyphicon glyphicon-pencil"></i></a>
 						        </td>
 						        @endif
-
+								
 						        <td>
 							        @if($actividad->cupos_disponibles<=0)
 							        	<a class="btn btn-info" title="No hay más cupos disponibles" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>

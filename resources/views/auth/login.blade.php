@@ -58,11 +58,11 @@
                                     <div class="col-md-5">
                                         <input type="email" class="form-control" name="email" placeholder="Ingresa tu correo" value="{{ old('email') }}">
 
-                                        @if ($errors->has('email'))
+                                        <!-- @if ($errors->has('email'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('email') }}</strong>
                                             </span>
-                                        @endif
+                                        @endif -->
                                     </div>
                                 </div>
 
@@ -72,11 +72,11 @@
                                     <div class="col-md-5">
                                         <input type="password" class="form-control" name="password" placeholder="Ingrese su contraseña">
 
-                                        @if ($errors->has('password'))
+                                        <!-- @if ($errors->has('password'))
                                             <span class="help-block">
                                                 <strong>{{ $errors->first('password') }}</strong>
                                             </span>
-                                        @endif
+                                        @endif -->
                                     </div>
                                 </div>
 
