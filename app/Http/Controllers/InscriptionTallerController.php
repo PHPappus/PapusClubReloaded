@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use papusclub\Http\Requests;
 
 use papusclub\Http\Requests\MakeInscriptionToUserRequest;
+use papusclub\Http\Requests\MakeInscriptionFamiliarRequest;
 
 use Session;
 use Redirect;
@@ -77,7 +78,7 @@ class InscriptionTallerController extends Controller
         return back();
     
     }*/
-    public function makeInscriptionFamiliarToUser(MakeInscriptionToUserRequest $request, $id)
+    public function makeInscriptionFamiliarToUser(MakeInscriptionFamiliarRequest $request, $id)
     {
         try {
             if($request['tipo_comprobante']==-1){
