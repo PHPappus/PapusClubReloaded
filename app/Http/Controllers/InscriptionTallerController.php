@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use papusclub\Http\Requests;
 
 use papusclub\Http\Requests\MakeInscriptionToUserRequest;
+use papusclub\Http\Requests\MakeInscriptionFamiliarRequest;
 
 use Session;
 use Redirect;
@@ -72,7 +73,7 @@ class InscriptionTallerController extends Controller
         return back();
     
     }*/
-    public function makeInscriptionFamiliarToUser(MakeInscriptionToUserRequest $request, $id)
+    public function makeInscriptionFamiliarToUser(MakeInscriptionFamiliarRequest $request, $id)
     {
         if($request['tipo_comprobante']==-1){
             Session::flash('message-error','Por favor, elija el tipo de comprobante');
