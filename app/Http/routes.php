@@ -430,21 +430,6 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('sedes/{id}/edit', 'SedesController@update');
 	Route::get('sedes/{id}/delete', 'SedesController@destroy');
 	Route::get('sedes/{id}/show', 'SedesController@show');
-	
-
-
-	
-
-
-		
-	/*//Inscribirse en Sorteo
-	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
-
-	//Inscribirse en Sorteo
-	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
-	Route::post('sorteo/inscripcion/store','SorteoController@inscripcionStore');
-	Route::post('sorteo/inscripcion/delete','SorteoController@inscripcionDelete');
-	Route::get('sorteo/inscripcion/mis_sorteos','SorteoController@indexMisInscripciones');*/
 
 	
 	//MANTENIMIENTO DE MEMBRESIA
