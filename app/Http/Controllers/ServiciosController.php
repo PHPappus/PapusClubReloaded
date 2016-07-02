@@ -1,3 +1,4 @@
+
 <?php
 
 namespace papusclub\Http\Controllers;
@@ -91,12 +92,14 @@ class ServiciosController extends Controller
         $servicio = Servicio::find($id);
         $tiposPersonas = TipoPersona::all();
         $TarifarioServicio = TarifarioServicio::where('idservicio','=',$id)->get();
+        $values=Configuracion::where('grupo','=','4')->get();
+        $tipoServicio = Configuracion::where('grupo','=','4')->where('id','=',$servicio->tipo_servicio)->first();
 
         /*foreach ($TarifarioServicio as $s) {
             $s->precio = 1000 ; 
             $s->save();
         }*/
-        return view('admin-registros.servicio.editServicio', compact('servicio','TarifarioServicio','tiposPersonas'));
+        return view('admin-registros.servicio.editServicio', compact('servicio','TarifarioServicio','tiposPersonas','values','tipoServicio'));
     }
 
     public function update(EditServicioRequest $request, $id)
@@ -157,9 +160,11 @@ class ServiciosController extends Controller
         $servicio = Servicio::find($id);
         $tiposPersonas = TipoPersona::all();
         $TarifarioServicio = TarifarioServicio::where('idservicio','=',$id)->get();
-
-        return view('admin-registros.servicio.detailServicio', compact('servicio','TarifarioServicio','tiposPersonas'));
+        $tipoServicios=Configuracion::where('grupo','=','4')->get();
+        $tipoServicio = Configuracion::where('grupo','=','4')->where('id','=',$servicio->tipo_servicio)->first();
+        return view('admin-registros.servicio.detailServicio', compact('servicio','TarifarioServicio','tiposPersonas','tipoServicio'));
     }
 }
+
 
 

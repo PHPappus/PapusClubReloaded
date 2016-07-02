@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +28,14 @@
 			</div>		
 		</div>
 		<div class="container">
+		@if ($errors->any())
+		  				<ul class="alert alert-danger fade in">
+		  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  					@foreach ($errors->all() as $error)
+		  						<li>{{$error}}</li>
+		  					@endforeach
+		  				</ul>
+		  		@endif
 			<!--@include('errors.503')-->		
 			<form method="POST" action="/servicios/{{ $servicio->id }}/edit" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -46,12 +55,20 @@
 			    	</div>
 			  	</div>
 
-			  	<div class="form-group">
+			    
+
+			  	<div class="form-group ">
 			    	<label for="contactoInput" class="col-sm-4 control-label"> Tipo de Servicio</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="contactoInput" name="tipo_servicio" value="{{$servicio->tipo_servicio}}">
-			    	</div>
-			  	</div>	  	
+
+			      			<select class="form-control" name="tipo_servicio" > 
+			      			 <option  value="{{$tipoServicio->id}}"   selected >{{$tipoServicio->valor}}</option>
+			      					@foreach($values as $value)
+				 					<option value="{{$value->id}}"> {{$value->valor}} </option>  
+									@endforeach							    						
+    						</select>					
+			    	</div>			  
+			  	</div>	
 			  	
 			  	<div class="form-group">
 			    	<label for="activoInput" class="col-sm-4 control-label ">Activo</label>

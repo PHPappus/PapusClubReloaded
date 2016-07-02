@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +48,7 @@
 			  	<div class="form-group">
 			    	<label for="contactoInput" class="col-sm-4 control-label">Tipo de Servicio</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="contactoInput" name="tipo_servicio" value="{{$servicio->tipo_servicio}}" readonly>
+			      		<input type="text" class="form-control" id="contactoInput" name="tipo_servicio" value="{{$tipoServicio->valor}}" readonly>
 			    	</div>
 			  	</div>	  	
 
