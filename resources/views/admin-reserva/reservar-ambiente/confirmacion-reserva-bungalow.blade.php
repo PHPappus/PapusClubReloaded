@@ -10,7 +10,7 @@
 	{!!Html::style('css/MisEstilos.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
 	{!!Html::style('css/bootstrap-datepicker3.css')!!}
-	{!!Html::style('/css/DataTable.css')!!}	
+	{!!Html::style('css/jquery.dataTables.css')!!}
 	
 </head>
 <body>
@@ -82,7 +82,7 @@
 			    	<div class="col-sm-5">			      		
 			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="persona_id" name="id_persona" placeholder="ID de la Persona" value="{{$socio->id}}" readonly>
 			    	</div>
-			    	<a class="btn btn-info" name="buscarReserva" href="{{url('/reservar-ambiente/'.$ambiente->id.'/searchSocio-bungalow-adminR/')}}" title="Buscar" ><i name="buscarReserva" class="glyphicon glyphicon-search"></i></a>
+			    	
 			</div>
 
 		  	<div class="form-group ">
@@ -127,10 +127,9 @@
 		</div>
 	</div>		
 @stop
-	{!!Html::script('js/jquery.dataTables.js')!!}
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
- <!-- JQuery -->
+ 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+	<!-- JQuery -->
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	<!-- Bootstrap -->
 	{!!Html::script('js/bootstrap.js')!!}
@@ -138,6 +137,8 @@
 	{!!Html::script('js/bootstrap-datepicker.js')!!}
 	 <!-- Languaje -->
     {!!Html::script('js/bootstrap-datepicker.es.min.js')!!}
+	<!-- {!!Html::script('js/bootstrap-datepicker-sirve.js')!!} -->
+	<!-- {!!Html::script('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.js')!!} -->
 <script>
 		var nowDate = new Date();
 		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);

@@ -66,7 +66,7 @@
 							<td>{{ $actividad->ambiente->sede->nombre }}</td>
 				    		<td>{{ $actividad->ambiente->nombre }}</td>
 							<td>{{ $actividad->nombre }}</td>
-	 						<td>{{ $actividad->a_realizarse_en}}</td>
+	 						<td>{{ date("d-m-Y",strtotime($actividad->a_realizarse_en))}}</td>
 	 						
 							<td>
 								@if($actividad->a_realizarse_en >= $fecha_validable)
@@ -89,7 +89,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-center">
-					<a href="{{url('/inscripcion-actividad/inscripcion-actividades')}}" class="btn btn-lg btn-primary" >Regresar</a>		
+					<a href="{{url('/actividad-admin-reserva/inscripcion')}}" class="btn btn-md btn-primary" >Regresar</a>		
 				</div>
 			</div>
 		</div>	

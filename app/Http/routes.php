@@ -61,11 +61,11 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('servicios/mis-inscripciones/{id}/delete','ServicioalsocioController@delete');
 
 	//Route::post('servicios/mis-inscripciones','ServicioalsocioController@filtromisinscripciones');
-	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
+	Route::get('sorteo/inscripcion/socio','SorteoController@indexInscripcion');
 
 
 	//Inscribirse en Sorteo
-	Route::get('sorteo/inscripcion/socio','SorteoController@indexInscripcion');
+	//Route::get('sorteo/inscripcion/socio','SorteoController@indexInscripcion');
 	Route::post('sorteo/inscripcion/store','SorteoController@inscripcionStore');
 	Route::post('sorteo/inscripcion/delete','SorteoController@inscripcionDelete');
 	Route::get('sorteo/inscripcion/mis_sorteos','SorteoController@indexMisInscripciones');
@@ -102,6 +102,8 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades-to-familiar', 'InscriptionActividadController@storeInscriptionActividadtoFamiliar');
 
 	Route::post('inscripcion-actividad/inscripcion-actividades','InscriptionActividadController@filterActividades');
+
+	Route::get('actividades/{id}/show','InscriptionActividadController@show');
 
 	Route::post('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades/confirm','InscriptionActividadController@makeInscriptionToPersona');
 	Route::post('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades-to-familiar/confirm','InscriptionActividadController@makeInscriptionFamiliarToPersona');
@@ -428,21 +430,6 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('sedes/{id}/edit', 'SedesController@update');
 	Route::get('sedes/{id}/delete', 'SedesController@destroy');
 	Route::get('sedes/{id}/show', 'SedesController@show');
-	
-
-
-	
-
-
-		
-	/*//Inscribirse en Sorteo
-	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
-
-	//Inscribirse en Sorteo
-	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
-	Route::post('sorteo/inscripcion/store','SorteoController@inscripcionStore');
-	Route::post('sorteo/inscripcion/delete','SorteoController@inscripcionDelete');
-	Route::get('sorteo/inscripcion/mis_sorteos','SorteoController@indexMisInscripciones');*/
 
 	
 	//MANTENIMIENTO DE MEMBRESIA
@@ -673,15 +660,24 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 	Route::get('actividad-admin-reserva/inscripciones','InscriptionActividadAdminReservaController@inscripciones');
 
 	Route::get('actividad-admin-reserva/inscripcion/{id}/{idPersona}/delete', 'InscriptionActividadAdminReservaController@removeInscriptionToPersona');
-	//Inscripción de socios a TAlleres en el club
+	//Inscripción de socios a Talleres en el club
 	Route::get('taller-admin-reserva/index', 'InscriptionTallerAdminReservaController@index');
+	Route::post('taller-admin-reserva/index','InscriptionTallerAdminReservaController@filterTalleresAdminReserva');
 
+	Route::get('taller-admin-reserva/inscripcion/{id}/confirmacion', 'InscriptionTallerAdminReservaController@confirmInscription');
+	Route::post('taller-admin-reserva/inscripcion/{id}/confirmacion/confirm','InscriptionTallerAdminReservaController@makeInscriptionToPersona');
+
+	Route::get('taller-admin-reserva/{id}/show','InscriptionTallerAdminReservaController@show');
+
+	Route::get('taller-admin-reserva/inscripciones','InscriptionTallerAdminReservaController@inscripciones');
+	Route::get('taller-admin-reserva/inscripcion/{id}/{idPersona}/delete', 'InscriptionTallerAdminReservaController@removeInscriptionToPersona');
 
 
 		//INGRESO DE SOCIO A LA RESERVA
 	Route::get('ingresoReserva/index','IngresoSocioController@index');
 	Route::post('ingresoReserva/reserva','IngresoSocioController@reservaSocio');
 	Route::post('ingresoReserva/update','IngresoSocioController@cambiarEstado');
+
 
 		//DECLARAR EN MANTENIMIENTO BUNGALOWS
 		//PREVENTIVO

@@ -10,8 +10,13 @@
            
             }
         }
+        @media (min-width: 768px){
+            #menusocio {
+                margin-left: 5%;
+            }
+        }
 </style>
-
+<link href='https://fonts.googleapis.com/css?family=Lato:700' rel='stylesheet' type='text/css'>
 
 <header class="header">
 
@@ -33,7 +38,7 @@
 
   </div>
   <nav class="navbar navbar-default">
-    <div class="container">
+    <div class="container" id="menusocio">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar1" aria-expanded="false">
@@ -95,7 +100,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg">Sorteos <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="{!!URL::to('/sorteo/inscripcion/socio')!!}" title="Consultar Sorteos" target="_self">Consultar</a></li>
+              <li><a href="{!!URL::to('sorteo/inscripcion/socio/')!!}" title="Consultar Sorteos" target="_self">Consultar</a></li>
             </ul>
           </li>
         </ul>

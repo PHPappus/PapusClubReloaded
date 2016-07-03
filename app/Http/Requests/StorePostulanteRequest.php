@@ -63,7 +63,7 @@ class StorePostulanteRequest extends Request
 
             //Contacto
             'telefono_celular'=>'required|string|max:12',
-            'correo'=>'required|email'
+            'correo'=>'email|unique:persona'
 
             
             //'distrito' => 'required | exists:distrito,id',

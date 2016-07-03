@@ -10,7 +10,7 @@
 	{!!Html::style('css/MisEstilos.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
 	{!!Html::style('css/bootstrap-datepicker3.css')!!}
-	{!!Html::style('/css/DataTable.css')!!}	
+	{!!Html::style('css/DataTable.css')!!}	
 	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
 	<!-- PARA DATA TABLE -->
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
@@ -45,7 +45,7 @@
 	</div>
 	<br/>
 	<input  type="hidden" type="text" id="fechaIni" name="fechaIni" value="{{ $fechaIniValue->toDateString()}}">
-	<input type="hidden" type="text" id="fechaFin" name="fechaFin" value="{{ $fechaFinValue->toDateString() }}">
+	<input  type="hidden" type="text" id="fechaFin" name="fechaFin" value="{{ $fechaFinValue->toDateString() }}">
 	<div class="container">
 		<form method="POST" class="form-horizontal form-border" action="/reservar-ambiente/reservar-bungalow-adminR/search-adminR"> 
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -197,16 +197,9 @@
 		var nowDate = new Date();
 		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
 		var deadline=new Date(today);
-		deadline.setDate(deadline.getDate() + 25);
-		//var js_var = "<?php echo $fechaIniValue; ?>";
-		//var js_var2 = "<?php echo $fechaFinValue; ?>";
-        //alert(js_var);
-        //var other=new Date(js_var);
-        //var other2=new Date(js_var2);
-        //alert(other);
+		var dias = "<?php  echo $dias; ?>";
+		deadline.setDate(deadline.getDate() + parseInt(dias));
 	</script>
-
-	<!-- Para Fechas INICIO -->
 	<script>
 		$(function(){
 			$('.datepicker').datepicker({

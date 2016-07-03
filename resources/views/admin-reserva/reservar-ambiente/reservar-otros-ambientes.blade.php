@@ -32,7 +32,9 @@
 			</div>
 		@endif
 
-
+		@if (session('error'))
+			<script>$("#modalError").modal("show");</script>						
+		@endif
 
 
 	
@@ -208,7 +210,8 @@
 		var nowDate = new Date();
 		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
 		var deadline=new Date(today);
-		deadline.setDate(deadline.getDate() + 25);
+		var dias = "<?php  echo $dias; ?>";
+		deadline.setDate(deadline.getDate() + parseInt(dias));
 	</script>
 	<script>
 		$(function(){
@@ -236,6 +239,26 @@
 	      </div>
 	      <div class="modal-body">
 	        <p>{{session('stored')}}</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>           
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+
+	<div id="modalError" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">¡Error!</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>{{session('error')}}</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>           

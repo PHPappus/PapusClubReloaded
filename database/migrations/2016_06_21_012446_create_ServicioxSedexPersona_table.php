@@ -35,6 +35,6 @@ class CreateServicioxSedexPersonaTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ServicioxSedexPersona');
+        Schema::drop('servicioxsedexpersona');
     }
 }

@@ -1,3 +1,4 @@
+<link href='https://fonts.googleapis.com/css?family=Lato:700' rel='stylesheet' type='text/css'>
  <!--Cabecera- Se separará espacio para el input de busqueda antes de la cabecera de menu-->
   	<script>
 		function inputLimiter(e,allow) {
@@ -117,17 +118,6 @@
        
 
         <!-- Productos -->
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Sorteos <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">    
-                <li><a href="{!!URL::to('/sorteo/index')!!}" title="Mantenimiento Sorteo" target="_self"> Consultar</a></li>
-				<li><a href="{!!URL::to('/select/sede')!!}" title="Agregar Servicios" target="_self">Agregar servicios</a></li>
-            </ul>
-          </li>
-        </ul>
 		
 
         <ul class="nav navbar-nav navbar-right">

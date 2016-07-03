@@ -3,7 +3,7 @@
  <!DOCTYPE html>
 <html>
 <head>
-	<title>Pagos</title>
+	<title>PAGOS</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,8 +47,9 @@
 							
 						</tr>
 					</thead>
-					@foreach($facturaciones as $facturacion)
+					
 					<tbody>						
+					@foreach($facturaciones as $facturacion)
 							<td> {{$facturacion->id}}</td>
 							<td> {{$facturacion->descripcion}}</td>							
 							<td> {{$facturacion->total}}</td>							
@@ -57,8 +58,9 @@
 							<td>
 							<a class="btn btn-info" href="{{url('/pagos-del-socio/'.$facturacion->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 							</td>										
+					@endforeach		
 					</tbody>					
-					@endforeach									
+												
 					
 			</table>		
 			

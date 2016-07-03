@@ -124,14 +124,14 @@
 								</td>
 
 								<td> 
-									<a class="btn btn-info" href="{{url('/talleres/'.$taller->id.'/show')}}"  title="Detalle"><i class="glyphicon glyphicon-list-alt"></i></a>
+									<a class="btn btn-info" href="{{url('/taller-admin-reserva/'.$taller->id.'/show')}}"  title="Detalle"><i class="glyphicon glyphicon-list-alt"></i></a>
 
 								</td>
 								<td>
 									@if($taller->vacantes<=0)
 						    			<a class="btn btn-info"  title="Ya no hay vacantes disponibles" disabled><i class="glyphicon glyphicon-ban-circle"></i></a>
 						    		@else
-						    			<a class="btn btn-info" title="Inscribirse" href="{{url('/talleres/'.$taller->id.'/confirm')}}"><i class="glyphicon glyphicon-pencil"></i></a>
+						    			<a class="btn btn-info" title="Inscribirse" href="{{url('/taller-admin-reserva/inscripcion/'.$taller->id.'/confirmacion')}}"><i class="glyphicon glyphicon-pencil"></i></a>
 						    		@endif					
 								</td>
 							</tr>
@@ -144,10 +144,10 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 text-right">
-						<a href="{!!URL::to('/talleres/mis-inscripciones')!!}" title="Ver mis inscripciones" class="btn btn-lg btn-primary" >Mis Inscripciones</a>		
+						<a href="{!!URL::to('/taller-admin-reserva/inscripciones')!!}" title="Ver mis inscripciones" class="btn btn-lg btn-primary" >Mis Inscripciones</a>		
 					</div>
 				<div class="col-sm-6 text-left">
-					<a href="{{url('/socio')}}" class="btn btn-lg btn-primary" title="Regresar a página de inicio">Regresar</a>			
+					<a href="{{url('/admin-reserva')}}" class="btn btn-lg btn-primary" title="Regresar a página de inicio">Regresar</a>			
 				</div>
 			</div>
 		</div>	

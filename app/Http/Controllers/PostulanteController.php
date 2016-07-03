@@ -243,7 +243,7 @@ class PostulanteController extends Controller
         create_carnet($socio);
 
 
-        $this->enviarUsuario($socio->postulante->persona->correo, $socio->postulante->persona->nombre, $socio->postulante->persona->ap_paterno, $socio->carnet_actual()->nro_carnet);
+        $this->enviarUsuario($id,$socio->postulante->persona->correo, $socio->postulante->persona->nombre, $socio->postulante->persona->ap_paterno, $socio->carnet_actual()->nro_carnet);
 
 
         return redirect('Socio/')->with('stored', 'Se registró el Socio correctamente.');        
@@ -628,7 +628,7 @@ class PostulanteController extends Controller
 
 
 
-        $this->enviarUsuario($socio->postulante->persona->correo, $socio->postulante->persona->nombre, $socio->postulante->persona->ap_paterno, $socio->carnet_actual()->nro_carnet);
+        $this->enviarUsuario($socio->postulante->persona->id,$socio->postulante->persona->correo, $socio->postulante->persona->nombre, $socio->postulante->persona->ap_paterno, $socio->carnet_actual()->nro_carnet);
 
 
         return redirect('Socio/')->with('stored', 'Se registró el Socio correctamente.');
@@ -645,8 +645,11 @@ class PostulanteController extends Controller
         return redirect('postulante/index')->with('stored', 'El postulante ha sido rechazado');
     }
 
-    function enviarUsuario($correo,$nombre,$apellido,$carnet)
+    function enviarUsuario($id,$correo,$nombre,$apellido,$carnet)
     {
+        //obtener persona
+        $persona = Persona::find($id);
+
         //pbtener perfil socio
         $perfil_socio = Perfil::first();
 
@@ -657,8 +660,16 @@ class PostulanteController extends Controller
         $password= "papusclub";
         $user->password = $password;
         $user->perfil_id =$perfil_socio->id;
-        $user->save();
 
+        try{
+            $user->save();
+            $persona->id_usuario = $user->id;
+            $persona->save();
+        }
+        catch(\Exception $ex)
+        {
+
+        }
 
         $title = '¡Bienvenido a PapusClub!';
         $content = 'Señor(a): '.$nombre.' '.$apellido.' Su solicitud como postulante acaba de ser aceptada.';
