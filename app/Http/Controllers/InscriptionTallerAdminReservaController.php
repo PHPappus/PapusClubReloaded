@@ -107,10 +107,17 @@ class InscriptionTallerAdminReservaController extends Controller
             $personas = Persona::where('id_usuario','!=',null)->where('id_tipo_persona','=',2)//Socios
                                  ->get();
             $fecha_inicio=$input['fecha_inicio'];
-            return view('admin-reserva.talleres.index',compact('sedes','talleres','fecha_inicio'));
+            return view('admin-reserva.talleres.index',compact('sedes','talleres','fecha_inicio'));            
+        } catch (\Exception $e) {
+            $error = 'filterTalleresAdminReserva-IncriptionTallerAdminReservaController';
+            return view('errors.corrigeme', compact('error'));
         }
+    }
+        
         public function makeInscriptionToPersona(MakeInscriptionToUserRequest $request, $id)
         {
+            try {
+
             if($request['tipo_comprobante']==-1){
                 Session::flash('message-error','Por favor, elija el tipo de comprobante');
                 return Redirect("/taller-admin-reserva/inscripcion/".$id."/confirmacion");
@@ -197,7 +204,7 @@ class InscriptionTallerAdminReservaController extends Controller
                 }        
             }
         } catch (\Exception $e) {
-            $error = 'filterTalleresAdminReserva-IncriptionTallerAdminReservaController';
+            $error = 'makeInscriptionToPersona-IncriptionTallerAdminReservaController';
             return view('errors.corrigeme', compact('error'));
         }
     }
