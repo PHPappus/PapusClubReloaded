@@ -75,7 +75,11 @@
 									<td align="center"> 									 
 									 @foreach ($tiposPersonas as $tipPer)
 									 		@if ($tipPer->id == $tariSer->idtipopersona)
+									 			@if($tipPer->descripcion == 'postulante')
+												socio
+												@else
 												{{ $tipPer->descripcion }}
+												@endif
 									 		@endif
 									 @endforeach
 									 </td>
