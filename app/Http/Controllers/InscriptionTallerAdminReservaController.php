@@ -8,6 +8,7 @@ use papusclub\Http\Requests;
 use papusclub\Http\Controllers\Controller;
 
 use papusclub\Http\Requests\MakeInscriptionToUserRequest;
+use papusclub\Http\Requests\MakeInscriptionFamiliarRequest;
 
 use Session;
 use Redirect;
@@ -109,7 +110,7 @@ class InscriptionTallerAdminReservaController extends Controller
             $fecha_inicio=$input['fecha_inicio'];
             return view('admin-reserva.talleres.index',compact('sedes','talleres','fecha_inicio'));
         }
-        public function makeInscriptionToPersona(MakeInscriptionToUserRequest $request, $id)
+        public function makeInscriptionToPersona(MakeInscriptionFamiliarRequest $request, $id)
         {
             if($request['tipo_comprobante']==-1){
                 Session::flash('message-error','Por favor, elija el tipo de comprobante');
