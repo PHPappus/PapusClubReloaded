@@ -28,6 +28,8 @@
 			</div>
 		</div>
 		
+
+		
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12 text-center">
@@ -39,52 +41,58 @@
 			<form class="form-horizontal form-border">
 				<br/><br/>
 				<div class="form-group">
-					<div class="col-sm-6 text-left">
-							<label for="description" class="col-sm-5 control-label text-left">Descripción:</label>
-							<div class="col-sm-7">
-								<textarea class="form-control" name="descripcion" id="descriptionInput" rows="3" readonly="true">{{$taller->descripcion}}</textarea>
-							</div>				
-					</div>
+					<label for="description" class="col-sm-5 control-label text-left">Sede:</label>
+					<div class="col-sm-7">
+						<input type="text" class="form-control" id="fecha_inicio" placeholder='{{$taller->reserva->ambiente->sede->nombre}}' style="max-width: 220px" readonly="true">
+					</div>				
 				</div>
 				<div class="form-group">
-					<div class="col-sm-6">
+					<label for="description" class="col-sm-5 control-label text-left">Lugar:</label>
+					<div class="col-sm-7">
+						<input type="text" class="form-control" id="fecha_inicio" placeholder='{{$taller->reserva->ambiente->nombre}}' style="max-width: 220px" readonly="true">
+					</div>				
+				</div>
+				<div class="form-group">
+							<label for="description" class="col-sm-5 control-label text-left">Descripción:</label>
+							<div class="col-sm-7">
+								<textarea class="form-control" name="descripcion" id="descriptionInput" rows="3" readonly="true" style="max-width:350px;">{{$taller->descripcion}}</textarea>
+							</div>				
+				</div>
+				<div class="form-group">
 				    	<label for="profesorInput" class="col-sm-5 control-label">Profesor:</label>
 			    		<div class="col-sm-7 text-center">
 			    			<input type="text" class="form-control" id="profesor" placeholder="{{$taller->profesor}}" style="max-width: 220px" readonly="true">
 			    		</div>		  				
-		 			</div>
 				</div>
 		  		<div class="form-group">
-		  			<div class="col-sm-6">
 				    	<label for="nombreInput" class="col-sm-5 control-label">Fecha de inicio:</label>
 			    		<div class="col-sm-7">
 			      			<input type="text" class="form-control" id="fecha_inicio" placeholder='{{date("d-m-Y",strtotime($taller->fecha_inicio))}}' style="max-width: 220px" readonly="true">
 			    		</div>			
-		  			</div>
 		  		</div>
 				<div class="form-group">
-		 			<div class="col-sm-6">
 				    	<label for="nombreInput" class="col-sm-5 control-label">Fecha de fin:</label>
 			    		<div class="col-sm-7 text-center">
 			    			<input type="text" class="form-control" id="fecha_fin" placeholder='{{date("d-m-Y",strtotime($taller->fecha_fin))}}' style="max-width: 220px" readonly="true">
 			    		</div>		  				
-		 			</div>
 				</div>
 				<div class="form-group">
-		 			<div class="col-sm-6">
 				    	<label for="sesiones" class="col-sm-5 control-label">Cantidad de sesiones:</label>
 			    		<div class="col-sm-7 text-center">
 			    			<input type="text" class="form-control" id="sesiones" placeholder='{{$taller->cantidad_sesiones}}' style="max-width: 220px" readonly="true">
 			    		</div>		  				
-		 			</div>
 				</div>
 				<div class="form-group">
-		 			<div class="col-sm-6">
 				    	<label for="vacantes" class="col-sm-5 control-label">Vacantes Disponibles:</label>
 			    		<div class="col-sm-7 text-center">
 			    			<input type="text" class="form-control" id="vacantes" placeholder='{{$taller->vacantes}}' style="max-width: 220px" readonly="true">
 			    		</div>		  				
-		 			</div>
+				</div>
+				<div class="form-group">
+					<label for="sesiones" class="col-sm-5 control-label">Precio:</label>
+		    		<div class="col-sm-7 text-center">
+		    			<input type="text" class="form-control" id="precio" placeholder='S/. {{$taller->precio($tipo_persona, $taller->tarifas)}}' style="max-width: 220px" readonly="true">
+		    		</div>		  				
 				</div>
 				<!-- <div class="form-group">
 		 			<div class="col-sm-6">

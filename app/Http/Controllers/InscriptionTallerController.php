@@ -259,8 +259,12 @@ class InscriptionTallerController extends Controller
     public function show($id)
     {
         $taller = Taller::find($id);
-        $talleresxpersona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->talleres;        
-        return view('socio.talleres.consulta', compact('taller','talleresxpersona'));
+        $talleresxpersona  = Persona::where('id_usuario','=',Auth::user()->id)->first()->talleres; 
+        $usuario = Auth::user();
+        $persona=$usuario->persona;
+        $tipo_persona = $persona->tipopersona->id;
+
+        return view('socio.talleres.consulta', compact('taller','talleresxpersona','tipo_persona'));
     }
     public function showFamiliar($id)
     {

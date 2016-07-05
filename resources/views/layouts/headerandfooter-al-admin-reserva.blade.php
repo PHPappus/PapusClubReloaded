@@ -1,4 +1,23 @@
 <link href='https://fonts.googleapis.com/css?family=Lato:700' rel='stylesheet' type='text/css'>
+
+<style>
+        /*Reparando desajuste*/
+        @media (min-width: 1405px){
+            #navbar1 {
+                width: 1403px;
+            }
+        }
+        @media (min-width: 1350px){
+            .container {
+           
+            }
+        }
+        @media (min-width: 768px){
+            #menuadminreservas {
+                margin-left: 5%;
+            }
+        }
+</style>
 <header class="header">
 
   <div class="content clearfix">
@@ -19,7 +38,7 @@
 
   </div>
   <nav class="navbar navbar-default">
-    <div class="container">
+    <div class="container" id="menuadminreservas">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar1" aria-expanded="false">
