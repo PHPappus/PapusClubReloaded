@@ -21,7 +21,7 @@
 <main class="main">
 	<div class="content" style="max-width: 100%;">
 		<div class="container">
-			<div class="row" style="max-width: 1020px">
+			<div class="row" style="max-width: 1120px">
 				<div class="col-sm-5">
 					<ol class="breadcrumb" style="background:none">
 						<li><a href="/socio"><span class="glyphicon glyphicon-home"></span></a></li>
@@ -33,9 +33,21 @@
 		</div>
 		<!-- Utilizando Bootstrap -->
 		<div class="container">
-			@include('alerts.errors')
-			@include('alerts.success')
-
+			@if (count($errors) > 0)
+				<div class="alert alert-danger" role="alert">
+					@if (count($errors) > 1)
+					<strong>Error(es):</strong>
+					@else
+					<strong>Error:</strong>
+					@endif
+					<ul>
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					@foreach ($errors->all() as $error)
+						<li>{{ $error }}</li>
+					@endforeach  
+					</ul>
+				</div>
+			@endif
 		</div>
 		<br/><br/>
 		<div class="container">
@@ -50,57 +62,57 @@
 				<br/><br/>
 
 		  	<div class="form-group">
-		    	<label for="ambienteInput" class="col-sm-4 control-label">AMBIENTE:</label>
+		    	<label for="ambienteInput" class="col-sm-4 control-label">Ambiente:</label>
 		    	<div class="col-sm-5">
 		    		<input type="text" class="form-control" id="ambienteInput" name="ambiente" value="{{$actividad->ambiente->nombre}}"  required readonly>
 		      	</div>		      	
 		  	</div>
 
 		  	<div class="form-group">
-		    	<label for="tipoambienteInput" class="col-sm-4 control-label">TIPO DE AMBIENTE:</label>
+		    	<label for="tipoambienteInput" class="col-sm-4 control-label">Tipo de ambiente:</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="tipoambienteInput" name="tipoambiente" value="{{$actividad->ambiente->tipo_ambiente}}"  required readonly>
 		    	</div>
 		  	</div>
 		  	<div class="form-group">
-		    	<label for="sedeInput" class="col-sm-4 control-label">SEDE:</label>
+		    	<label for="sedeInput" class="col-sm-4 control-label">Sede:</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="sedeInput" name="sede" value="{{$actividad->ambiente->sede->nombre}}"  required readonly>
 		    	</div>
 		  	</div>
 			<div class="form-group">
-		    	<label for="nombreInput" class="col-sm-4 control-label">NOMBRE DE LA ACTIVIDAD:</label>
+		    	<label for="nombreInput" class="col-sm-4 control-label">Nombre de la actividad:</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="nombreInput" name="nombre" value="{{$actividad->nombre}}" readonly>
 		    	</div>
 		  	</div>
 		  	<div class="form-group">
-		    	<label for="descripcionInput" class="col-sm-4 control-label">DESCRIPCIÓN:</label>
+		    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción:</label>
 		    	<div class="col-sm-5">
 		      		<textarea type="text" class="form-control" id="descripcionInput" name="descripcion" placeholder ="{{$actividad->descripcion}}" readonly style="max-width:456px"></textarea>
 		    	</div> 
 		  	</div>
 		  	<div class="form-group">
-		    	<label for="tipoActividadInput" class="col-sm-4 control-label">TIPO DE ACTIVIDAD:</label>	
+		    	<label for="tipoActividadInput" class="col-sm-4 control-label">Tipo de actividad:</label>	
 		    	<div class="col-sm-5">
 			    	<input type="text" class="form-control" id="tipoActividadInput" name="tipo_actividad" value="{{$actividad->tipo_actividad}}" readonly >
 				</div>
 		  	</div>
 		  	<div class="form-group">
-		    	<label for="capacidadInput" class="col-sm-4 control-label">CAPACIDAD MAXIMA:</label>
+		    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad máxima:</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="capacidadInput" name="capacidad_maxima" value="{{$actividad->capacidad_maxima}}" readonly>
 		    	</div>
 		  	</div>	
 		  	<div class="form-group">
-		    	<label for="vacantesInput" class="col-sm-4 control-label">VACANTES DISPONIBLES:</label>
+		    	<label for="vacantesInput" class="col-sm-4 control-label">Vacantes disponibles:</label>
 		    	<div class="col-sm-5">
 		      		<input type="text" class="form-control" id="vacantesInput" name="vacantes" value="{{$actividad->cupos_disponibles}}" readonly>
 		      		<!-- <label for="vacantesInput" class=" control-label">{{$actividad->cupos_disponibles}}</label> -->
 		    	</div>
 		  	</div>
 		  	<div class="form-group">
-			 	<label for="fechaInput" class="col-sm-4 control-label">FECHA (dd/mm/aaaa): </label>
+			 	<label for="fechaInput" class="col-sm-4 control-label">Fecha (dd/mm/aaaa): </label>
 			    <div class="col-sm-5">
 				  	<div class="input-group">
 			   		<input type="text" class="form-control" id="dpd1" name="fecha_inicio" placeholder="Fecha Inicio" value="{{$actividad->a_realizarse_en}}" style="max-width: 180px" readonly>
@@ -108,7 +120,7 @@
 		    	</div>	
 			</div> 
 			<div class="form-group required">
-				<label for="persona_id" class="control-label col-sm-4"><strong>FAMILIAR:</strong></label>
+				<label for="persona_id" class="control-label col-sm-4"><strong>Familiar:</strong></label>
 				<div class="col-sm-5">	
 						<input type="text" id="name" name="name" class="form-control" placeholder="Nombre del familiar" readonly="true" value="{{old('name')}}">
 				</div>
@@ -116,7 +128,7 @@
 				<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="persona_id" name="persona_id" placeholder="ID de la Persona" value="{{old('persona_id')}}" style="display:none">
 			</div>
 			<div class="form-group required">
-			   	<label for="tipoComprobanteInput" class="col-sm-4 control-label">TIPO DE COMPROBANTE</label>
+			   	<label for="tipoComprobanteInput" class="col-sm-4 control-label">Tipo de comprobante</label>
 			   	<div class="col-sm-5">
 			    	<select class="form-control" id="tipo_comprobante" name="tipo_comprobante">
 						<option value="-1" selected >Seleccionar tipo...</option>
@@ -134,9 +146,9 @@
 		    			<input type="password" name="password" class="form-control" id="contraseña" style="max-width: 220px">
 		    			
 		    		</div>	
-		    		<div class="col-sm-offset-5 col-sm-7">
-		    			<div class="text-danger">{!!$errors->first('password')!!}</div>
-		    		</div>	  				
+		    		<!-- <div class="col-sm-offset-5 col-sm-7">
+		    			  					<div class="text-danger">{!!$errors->first('password')!!}</div>
+		    			  				</div> -->	  				
 	 			</div>
 			</div>
 								
