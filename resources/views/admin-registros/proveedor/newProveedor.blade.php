@@ -112,6 +112,20 @@
 			    	</div>
 			  	</div>		
 
+			  	<div  class="form-group required">
+			    	<label for="tipoProveedorInput" class="col-sm-4 control-label">Tipo de Proveedor</label>
+			    	<div class="col-sm-5">
+			    	
+			      		<select class="form-control" id="tipo_proveedor" name="tipo_proveedor" >
+						<!-- Las opciones se deberían extraer de la tabla configuracion-->
+						<option value="" selected>Seleccionar...</option>
+						<option value="Productos" >Productos</option>
+						<option value="Servicios" >Servicios</option>				
+						
+						</select>						
+			    	</div>
+			  	</div>		
+
 			  	</br>
 			  	</br>
 				<div class="btn-inline">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>DETALLE DE SEDE</title>
+	<title>DETALLE DE PAGO</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
