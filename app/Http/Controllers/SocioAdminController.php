@@ -646,7 +646,7 @@ class SocioAdminController extends Controller
             if($existerela==null){
                 $socio->postulante->addFamiliar($persona,$relacion);
             }
-        return Redirect::action('SocioAdminController@edit',$socio->postulante->persona->id)->with('storedFamiliar', 'Se registró el Familiar correctamente.');        
+        return Redirect::action('SocioAdminController@edit',$socio->id)->with('storedFamiliar', 'Se registró el Familiar correctamente.');        
     }
 
     public function deleteFamiliar(Request $request, $id_fam, $id_post)
