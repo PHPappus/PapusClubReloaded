@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use papusclub\Http\Requests;
 use papusclub\Http\Controllers\Controller;
 use papusclub\Http\Requests\MakeInscriptionToPersonaRequest;
-
+use papusclub\Http\Requests\MakeInscriptionFamiliarRequest;
 use Auth;
 use Session;
 use Hash;
@@ -132,7 +132,7 @@ class InscriptionActividadAdminReservaController extends Controller
         }
     }
 
-    public function makeInscriptionToPersona(MakeInscriptionToPersonaRequest $request, $id)
+    public function makeInscriptionToPersona(MakeInscriptionFamiliarRequest $request, $id)
     {
         try {
             $sedes = Sede::all();

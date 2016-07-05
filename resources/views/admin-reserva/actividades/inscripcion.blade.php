@@ -124,7 +124,7 @@
 		 </div>
 		<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active">
-						<tr>
+						<tr style="background:#a3decb; font: caption; color:#FFF;">
 								<th><DIV ALIGN=center>Sede</th>
 								<th style="max-width:70px;"><DIV ALIGN=center>Ambiente</th>
 								<th style="max-width:90px;"><DIV ALIGN=center>Nombre de la Actividad</th>
