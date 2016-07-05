@@ -21,9 +21,21 @@
 	<div class="content" style="max-width: 100%;">
 		<!-- Utilizando Bootstrap -->
 		<div class="container">
-			@include('alerts.errors')
-			@include('alerts.success')
-
+			@if (count($errors) > 0)
+				<div class="alert alert-danger" role="alert">
+					@if (count($errors) > 1)
+					<strong>Error(es):</strong>
+					@else
+					<strong>Error:</strong>
+					@endif
+					<ul>
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					@foreach ($errors->all() as $error)
+						<li>{{ $error }}</li>
+					@endforeach  
+					</ul>
+				</div>
+			@endif
 		</div>
 		<br/><br/>
 		<div class="container">

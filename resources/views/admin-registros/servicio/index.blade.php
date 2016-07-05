@@ -28,18 +28,20 @@
 	
 
 
-	@if (session('mensaje'))
+	
+
+		<div class="table-responsive">
+	
+
+			<div class="container">
+				@if (session('mensaje'))
 		<script>$("#modalSuccess").modal("show");</script>
 		
 		<div class="alert alert-success fade in">
 				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 				<strong>¡Éxito!</strong> {{session('mensaje')}}
 		</div>
-	@endif
-
-
-		<div class="table-responsive">
-			<div class="container">
+		@endif
 				<table class="table table-bordered table-hover text-center display" id="example">
 						<thead class="active">							
 							<th><div align=center>NOMBRE</div></th>

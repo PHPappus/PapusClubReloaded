@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +28,14 @@
 			</div>		
 		</div>
 		<div class="container">
+		@if ($errors->any())
+		  				<ul class="alert alert-danger fade in">
+		  				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  					@foreach ($errors->all() as $error)
+		  						<li>{{$error}}</li>
+		  					@endforeach
+		  				</ul>
+		  		@endif
 			<!--@include('errors.503')-->		
 			<form method="POST" action="/servicios/{{ $servicio->id }}/edit" class="form-horizontal form-border">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -45,12 +55,20 @@
 			    	</div>
 			  	</div>
 
-			  	<div class="form-group">
+			    
+
+			  	<div class="form-group ">
 			    	<label for="contactoInput" class="col-sm-4 control-label"> Tipo de Servicio</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="contactoInput" name="tipo_servicio" value="{{$servicio->tipo_servicio}}">
-			    	</div>
-			  	</div>	  	
+
+			      			<select class="form-control" name="tipo_servicio" > 
+			      			 <option  value="{{$tipoServicio->id}}"   selected >{{$tipoServicio->valor}}</option>
+			      					@foreach($values as $value)
+				 					<option value="{{$value->id}}"> {{$value->valor}} </option>  
+									@endforeach							    						
+    						</select>					
+			    	</div>			  
+			  	</div>	
 			  	
 			  	<div class="form-group">
 			    	<label for="activoInput" class="col-sm-4 control-label ">Activo</label>
@@ -58,7 +76,41 @@
 			      		<input type="checkbox"  class="checkbox" id="activoInput" name="estado" @if($servicio['estado'] == true) checked @endif>
 			    	</div>	    	
 			  	</div>
-					<!-- FIN FIN FIN  -->
+					<div class="container" style="width: 600px; margin-left: auto; margin-right: auto"  >
+			<table class="table table-bordered" >
+					<thead class="active" >	
+						<tr>							
+							<th class="col-sm-3" ><DIV ALIGN=center>Tipo Persona</th>
+							<th class="col-sm-3" ><DIV ALIGN=center>Moneda</th>
+							<th class="col-sm-3"><DIV ALIGN=center>Monto</th>
+						</tr>
+					</thead>
+					<tbody>
+							@foreach($TarifarioServicio as $tariSer)			
+						    	<tr>
+									<td align="center"> 									 
+									 @foreach ($tiposPersonas as $tipPer)
+									 		@if ($tipPer->id == $tariSer->idtipopersona)
+									 			@if($tipPer->descripcion == 'postulante')
+												socio
+												@else
+												{{ $tipPer->descripcion }}
+												@endif
+									 		@endif
+									 @endforeach
+									 </td>
+
+									<td align="center">  S/.</td>
+									<td align="center"> 
+									<div align="center">
+							      		<input style="text-align:right;" onkeypress="return inputLimiter(event,'DoubleFormat')" type="text" class="form-control" value="{{$tariSer->precio}}" name="{{$tariSer->idtipopersona}}" placeholder="0.00">
+							    	</div>
+								</td>							        
+								</tr>
+							@endforeach
+					</tbody>													
+			</table>
+			</div>
 				
 			
 				</br>

@@ -14,6 +14,7 @@ class Actividad extends Model
     'tipo_actividad', 
     'capacidad_maxima', 
     'descripcion',
+    'precio_especial_bungalow',
     'a_realizarse_en',
     'hora_inicio',
     'estado',

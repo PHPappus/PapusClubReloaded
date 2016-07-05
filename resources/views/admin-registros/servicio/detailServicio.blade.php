@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +48,7 @@
 			  	<div class="form-group">
 			    	<label for="contactoInput" class="col-sm-4 control-label">Tipo de Servicio</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="contactoInput" name="tipo_servicio" value="{{$servicio->tipo_servicio}}" readonly>
+			      		<input type="text" class="form-control" id="contactoInput" name="tipo_servicio" value="{{$tipoServicio->valor}}" readonly>
 			    	</div>
 			  	</div>	  	
 
@@ -58,6 +59,41 @@
 			      		<input type="checkbox"  class="checkbox" id="activoInput" name="estado" @if($servicio['estado'] == true) checked @endif disabled>
 			    	</div>	    	
 			  	</div>
+
+			  	<div class="container" style="width: 600px; margin-left: auto; margin-right: auto"  >
+			<table class="table table-bordered" >
+					<thead class="active" >	
+						<tr>							
+							<th class="col-sm-3" ><DIV ALIGN=center>Tipo Persona</th>
+							<th class="col-sm-3" ><DIV ALIGN=center>Moneda</th>
+							<th class="col-sm-3"><DIV ALIGN=center>Monto</th>
+						</tr>
+					</thead>
+					<tbody>
+							@foreach($TarifarioServicio as $tariSer)			
+						    	<tr>
+									<td align="center"> 									 
+									 @foreach ($tiposPersonas as $tipPer)
+									 		@if ($tipPer->id == $tariSer->idtipopersona)
+									 			@if($tipPer->descripcion == 'postulante')
+												socio
+												@else
+												{{ $tipPer->descripcion }}
+												@endif
+									 		@endif
+									 @endforeach
+									 </td>
+									<td align="center">  S/.</td>
+									<td align="center"> 
+									<div align="center">
+							      		<input style="text-align:right;" onkeypress="return inputLimiter(event,'DoubleFormat')" type="text" class="form-control" value="{{$tariSer->precio}}" name="{{$tariSer->idtipopersona}}" readonly>
+							    	</div>
+								</td>							        
+								</tr>
+							@endforeach
+					</tbody>													
+			</table>
+			</div>
 									
 				<br/><br/>
 				

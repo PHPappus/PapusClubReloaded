@@ -37,28 +37,23 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
-					@include('socio.talleres.alerts.errores')
-					@if (Session::has('success'))
-						
-						<div class="alert alert-success" role="alert">
-							<strong>Success:</strong> {{ Session::get('success') }}
-						</div>
-
-					@endif
-
-					@if (count($errors) > 0)
-
-						<div class="alert alert-danger" role="alert">
-							<strong>Errores:</strong>
-							<ul>
-							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-							@foreach ($errors->all() as $error)
-								<li>{{ $error }}</li>
-							@endforeach  
-							</ul>
-						</div>
-
-					@endif
+					<div class="container">
+						@if (count($errors) > 0)
+							<div class="alert alert-danger" role="alert">
+								@if (count($errors) > 1)
+								<strong>Error(es):</strong>
+								@else
+								<strong>Error:</strong>
+								@endif
+								<ul>
+								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+								@foreach ($errors->all() as $error)
+									<li>{{ $error }}</li>
+								@endforeach  
+								</ul>
+							</div>
+						@endif
+					</div>
 					<!-- @if ($errors->any())
 						<ul class="alert alert-danger fade in">
 						<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
