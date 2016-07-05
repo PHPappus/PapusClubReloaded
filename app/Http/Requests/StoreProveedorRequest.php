@@ -30,7 +30,8 @@ class StoreProveedorRequest extends Request
             'telefono'          =>  'required|numeric|digits_between:7,9',
             'correo'            =>  'required|email|max:255',            
             'nombre_responsable' =>  array('required','Regex:/[A-Za-z .-]/'),
-            'estado'            =>  'required|integer'
+            'estado'            =>  'required|integer',
+            'tipo_proveedor'            =>  'required|string|max:255'
         ];
     }
 }

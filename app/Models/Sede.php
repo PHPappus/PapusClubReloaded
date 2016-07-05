@@ -26,7 +26,19 @@ class Sede extends Model
         return $this->hasMany('papusclub\Models\Ambiente');
     }
 
-    function actividades(){
-        return $this->hasMany('papusclub\Models\Actividad');
+    
+    function invitaciones(){
+        return $this->hasMany(HistoricoInvitacion::class);
+    }
+
+    public function talleres(){
+        return $this->hasMany(Taller::class);
+    }
+    public function ingresos(){
+        return $this->hasMany('papusclub\Models\HistoricoIngreso','id');
+    }
+
+    public function concesionaria(){
+        return $this->hasMany('papusclub\Models\Concesionaria','id');
     }
 }

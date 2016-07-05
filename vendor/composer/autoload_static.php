@@ -7,27 +7,34 @@ namespace Composer\Autoload;
 class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
 {
     public static $files = array (
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
+        'fad373d645dd668e85d44ccf3c38fbd6' => __DIR__ . '/..' . '/guzzlehttp/streams/src/functions.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        '154e0d165f5fe76e8e9695179d0a7345' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions.php',
         'e617b14322a074392076a2f38eaf6115' => __DIR__ . '/../..' . '/app/Helper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'p' => 
         array (
+            'phpDocumentor\\Reflection\\' => 25,
             'papusclub\\' => 10,
         ),
         'X' => 
         array (
             'XdgBaseDir\\' => 11,
+        ),
+        'W' => 
+        array (
+            'Webmozart\\Assert\\' => 17,
         ),
         'S' => 
         array (
@@ -66,6 +73,11 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         array (
             'Illuminate\\' => 11,
         ),
+        'G' => 
+        array (
+            'GuzzleHttp\\Stream\\' => 18,
+            'GuzzleHttp\\' => 11,
+        ),
         'F' => 
         array (
             'Faker\\' => 6,
@@ -84,6 +96,12 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
     );
 
     public static $prefixDirsPsr4 = array (
+        'phpDocumentor\\Reflection\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
         'papusclub\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
@@ -91,6 +109,10 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'XdgBaseDir\\' => 
         array (
             0 => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src',
+        ),
+        'Webmozart\\Assert\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/webmozart/assert/src',
         ),
         'Symfony\\Polyfill\\Util\\' => 
         array (
@@ -180,6 +202,14 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
         ),
+        'GuzzleHttp\\Stream\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/streams/src',
+        ),
+        'GuzzleHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
         'Faker\\' => 
         array (
             0 => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker',
@@ -207,13 +237,6 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
     );
 
     public static $prefixesPsr0 = array (
-        'p' => 
-        array (
-            'phpDocumentor' => 
-            array (
-                0 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            ),
-        ),
         'P' => 
         array (
             'Psr\\Log\\' => 
@@ -223,6 +246,13 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
             'Prophecy\\' => 
             array (
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
+            ),
+        ),
+        'O' => 
+        array (
+            'Orangehill\\Iseed' => 
+            array (
+                0 => __DIR__ . '/..' . '/orangehill/iseed/src',
             ),
         ),
         'M' => 
@@ -263,29 +293,46 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'ActividadTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ActividadTableSeeder.php',
         'AddFkToActividadesTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_22_172234_add_fk_to_actividades_table.php',
         'AddFkToAmbientesTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_20_163117_add_fk_to_ambientes_table.php',
+        'AddFkToAmbientesorteoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_12_215558_add_fk_to_ambientesorteo_table.php',
+        'AddFkToCarnet' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_163738_add_fk_to_carnet.php',
         'AddFkToCarnetxsocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_031359_add_fk_to_carnetxsocio_table.php',
+        'AddFkToConcesionariaTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_26_203827_add_fk_to_concesionaria_table.php',
+        'AddFkToFacturacionTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_235523_add_fk_to_facturacion_table.php',
         'AddFkToFacturasTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_202818_add_fk_to_facturas_table.php',
+        'AddFkToFamiliarxpostulante' => __DIR__ . '/../..' . '/database/migrations/2016_06_12_083057_add_fk_to_familiarxpostulante.php',
         'AddFkToFamiliarxsocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_213338_add_fk_to_familiarxsocio_table.php',
         'AddFkToHistoricoIngresoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_024301_add_fk_to_historico_ingreso_table.php',
-        'AddFkToHistoricoInvitacionTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_023659_add_fk_to_historico_invitacion_table.php',
+        'AddFkToHistoricoInvitacion' => __DIR__ . '/../..' . '/database/migrations/2016_06_09_191230_add_fk_to_historico_invitacion.php',
+        'AddFkToIngresoproductoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_15_205156_add_fk_to_ingresoproducto_table.php',
+        'AddFkToInvitadoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_09_165934_add_fk_to_invitado_table.php',
         'AddFkToMultaxpersonaTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_205656_add_fk_to_multaxpersona_table.php',
+        'AddFkToObservaciones' => __DIR__ . '/../..' . '/database/migrations/2016_06_14_092945_add_fk_to_observaciones.php',
         'AddFkToPersona' => __DIR__ . '/../..' . '/database/migrations/2016_05_24_201138_add_fk_to_persona.php',
         'AddFkToPersonaxactividadTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_203528_add_fk_to_personaxactividad_table.php',
         'AddFkToPersonaxsocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_025155_add_fk_to_personaxsocio_table.php',
         'AddFkToPersonaxtallerTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_025653_add_fk_to_personaxtaller_table.php',
         'AddFkToPostulante' => __DIR__ . '/../..' . '/database/migrations/2016_05_24_200234_add_fk_to_postulante.php',
+        'AddFkToPrecioproductoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_154416_add_fk_to_precioproducto_table.php',
+        'AddFkToProductoxfacturacionTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_235934_add_fk_to_productoxfacturacion_table.php',
+        'AddFkToProductoxingresoproductoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_15_205346_add_fk_to_productoxingresoproducto_table.php',
         'AddFkToPromocionxsocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_202917_add_fk_to_promocionxsocio_table.php',
         'AddFkToReservasTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_02_161139_add_fk_to_reservas_table.php',
         'AddFkToReservaxactividadTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_203308_add_fk_to_reservaxactividad_table.php',
         'AddFkToSocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_29_004547_add_fk_to_socio_table.php',
+        'AddFkToSocioxsorteoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_15_022637_add_fk_to_socioxsorteo_table.php',
+        'AddFkToSorteoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_12_214455_add_fk_to_sorteo_table.php',
         'AddFkToTallerTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_025932_add_fk_to_taller_table.php',
         'AddFkToTallerUserTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_081850_add_fk_to_taller_user_table.php',
         'AddFkToTarifaActividadTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_203241_add_fk_to_tarifa_actividad_table.php',
         'AddFkToTarifaAmbientextipoPersonaTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_203453_add_fk_to_tarifa_ambientextipo_persona_table.php',
+        'AddFkToTarifaFamiliar' => __DIR__ . '/../..' . '/database/migrations/2016_06_12_080311_add_fk_to_tarifa_familiar.php',
         'AddFkToTarifaTallerTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_030720_add_fk_to_tarifa_taller_table.php',
         'AddFkToTipoMembresiaTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_29_004019_add_fk_to_tipo_membresia_table.php',
         'AddFkToTrabajador' => __DIR__ . '/../..' . '/database/migrations/2016_06_02_175130_add_fk_to_trabajador.php',
+        'AddFkToTraspasoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_16_045727_add_fk_to_traspaso_table.php',
         'AmbienteTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AmbienteTableSeeder.php',
+        'CarnetTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CarnetTableSeeder.php',
+        'ConcesionariaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ConcesionariaTableSeeder.php',
         'ConfiguracionTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ConfiguracionTableSeeder.php',
         'CrateServiciosTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_21_023229_crate_servicios_table.php',
         'CreateActividadesTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_22_171858_create_actividades_table.php',
@@ -294,30 +341,49 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'CreateCalificacionesTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_173021_create_calificaciones_table.php',
         'CreateCarnetTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_201000_create_carnet_table.php',
         'CreateCarnetxsocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_031106_create_carnetxsocio_table.php',
+        'CreateConcesionariaTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_26_193838_create_concesionaria_table.php',
         'CreateConfiguracionTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_26_194248_create_configuracion_table.php',
+        'CreateDepartamentosTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_07_152144_create_departamentos_table.php',
+        'CreateDistritosTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_07_192449_create_distritos_table.php',
+        'CreateFacturacionTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_235441_create_facturacion_table.php',
         'CreateFacturasTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_172526_create_facturas_table.php',
+        'CreateFamiliarxpostulanteTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_08_002619_create_familiarxpostulante_table.php',
         'CreateFamiliarxsocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_194431_create_familiarxsocio_table.php',
         'CreateHistoricoIngresoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_200124_create_historico_ingreso_table.php',
         'CreateHistoricoInvitacionTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_200103_create_historico_invitacion_table.php',
+        'CreateIngresoproductoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_15_203419_create_ingresoproducto_table.php',
+        'CreateInvitadosTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_09_155920_create_invitados_table.php',
         'CreateMaestroProductoTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_21_152952_create_maestro_producto_table.php',
         'CreateMaestroProveedorTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_06_042135_create_maestro_proveedor_table.php',
         'CreateMultaTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_24_220332_create_multa_table.php',
         'CreateMultaxpersonaTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_194018_create_multaxpersona_table.php',
+        'CreateObservacionesTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_14_092509_create_observaciones_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreatePerfilsTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_17_022327_create_perfils_table.php',
+        'CreatePerfilxusuarioTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_151138_create_perfilxusuario_table.php',
         'CreatePersonaTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_24_181516_create_persona_table.php',
         'CreatePersonaxactividadTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_173658_create_personaxactividad_table.php',
         'CreatePersonaxsocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_202140_create_personaxsocio_table.php',
         'CreatePersonaxtallerTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_201950_create_personaxtaller_table.php',
         'CreatePostulanteTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_24_182147_create_postulante_table.php',
+        'CreatePrecioproductoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_150646_create_precioproducto_table.php',
+        'CreateProductoxfacturacionTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_235846_create_productoxfacturacion_table.php',
+        'CreateProductoxingresoproductoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_15_205332_create_productoxingresoproducto_table.php',
+        'CreateProductoxproveedorTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_151058_create_productoxproveedor_table.php',
         'CreatePromocionesTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_172914_create_promociones_table.php',
         'CreatePromocionxsocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_173337_create_promocionxsocio_table.php',
+        'CreateProvinciasTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_07_173043_create_provincias_table.php',
         'CreateReservasTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_02_014128_create_reservas_table.php',
         'CreateReservaxactividadTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_173600_create_reservaxactividad_table.php',
         'CreateSedesTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_06_144850_create_sedes_table.php',
-        'CreateServiciosxsedes' => __DIR__ . '/../..' . '/database/migrations/2016_05_28_204302_create_serviciosxsedes.php',
+        'CreateServicioxSedexPersonaTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_21_012446_create_ServicioxSedexPersona_table.php',
         'CreateSocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_29_003232_create_socio_table.php',
+        'CreateSocioxconcursoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_151157_create_socioxconcurso_table.php',
         'CreateSorteoTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_20_005933_create_sorteo_table.php',
+        'CreateTableSedexservicio' => __DIR__ . '/../..' . '/database/migrations/2016_06_14_065412_create_table_sedexservicio.php',
+        'CreateTableSocioxsorteoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_15_021841_create_table_socioxsorteo_table.php',
+        'CreateTableTarifaFamiliar' => __DIR__ . '/../..' . '/database/migrations/2016_06_12_075912_create_table_tarifa_familiar.php',
+        'CreateTableTipoFamilia' => __DIR__ . '/../..' . '/database/migrations/2016_06_12_074933_create_table_tipo_familia.php',
         'CreateTallerTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_23_000724_create_taller_table.php',
         'CreateTallerUserTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_081701_create_taller_user_table.php',
         'CreateTarifaActividadTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_173507_create_tarifa_actividad_table.php',
@@ -325,13 +391,17 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'CreateTarifaMembresiaTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_20_175024_create_tarifa_membresia_table.php',
         'CreateTarifaTallerTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_23_002208_create_tarifa_taller_table.php',
         'CreateTarifarioServicio' => __DIR__ . '/../..' . '/database/migrations/2016_06_01_065631_create_tarifario_servicio.php',
-        'CreateTarifarioTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_20_202043_create_tarifario_table.php',
         'CreateTipoMembresiaTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_20_171328_create_tipo_membresia_table.php',
         'CreateTipoPersonaTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_24_162230_create_tipo_persona_table.php',
         'CreateTipoRelacionTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_195102_create_tipo_relacion_table.php',
         'CreateTrabajadorTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_01_162428_create_trabajador_table.php',
+        'CreateTraspasoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_16_032244_create_traspaso_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
+        'DepartamentoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/DepartamentoTableSeeder.php',
+        'DistritoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/DistritoTableSeeder.php',
+        'FacturacionTableSeeder' => __DIR__ . '/../..' . '/database/seeds/FacturacionTableSeeder.php',
+        'FamiliarxPostulanteTableSeeder' => __DIR__ . '/../..' . '/database/seeds/FamiliarxPostulanteTableSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
@@ -404,6 +474,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
         'IlluminateQueueClosure' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
+        'Orangehill\\Iseed\\TableNotFoundException' => __DIR__ . '/..' . '/orangehill/iseed/src/Orangehill/Iseed/Exceptions.php',
         'PHPUnit_Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit_Extensions_GroupTestSuite' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',
         'PHPUnit_Extensions_PhptTestCase' => __DIR__ . '/..' . '/phpunit/phpunit/src/Extensions/PhptTestCase.php',
@@ -801,8 +872,13 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PerfilTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PerfilTableSeeder.php',
         'PersonaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PersonaTableSeeder.php',
+        'PostulanteTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PostulanteTableSeeder.php',
+        'PrecioProductoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PrecioProductoTableSeeder.php',
         'ProductoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductoTableSeeder.php',
+        'ProductoxFacturacionTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductoxFacturacionTableSeeder.php',
+        'PromocionTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PromocionTableSeeder.php',
         'ProveedorTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProveedorTableSeeder.php',
+        'ProvinciaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProvinciaTableSeeder.php',
         'ReservasTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ReservasTableSeeder.php',
         'SebastianBergmann\\Comparator\\ArrayComparator' => __DIR__ . '/..' . '/sebastian/comparator/src/ArrayComparator.php',
         'SebastianBergmann\\Comparator\\Comparator' => __DIR__ . '/..' . '/sebastian/comparator/src/Comparator.php',
@@ -841,13 +917,23 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => __DIR__ . '/..' . '/sebastian/recursion-context/src/InvalidArgumentException.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
         'SedeTableSeeder' => __DIR__ . '/../..' . '/database/seeds/SedeTableSeeder.php',
+        'SocioTableSeeder' => __DIR__ . '/../..' . '/database/seeds/SocioTableSeeder.php',
         'SorteoTableSeeder' => __DIR__ . '/../..' . '/database/seeds/SorteoTableSeeder.php',
-        'TarifarioTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifarioTableSeeder.php',
+        'TarifaActividadTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifaActividadTableSeeder.php',
+        'TarifaAmbientexTipoPersonaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifaAmbientexTipoPersonaTableSeeder.php',
+        'TarifaFamiliarTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifaFamiliarTableSeeder.php',
+        'TarifaMembresiaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifaMembresiaTableSeeder.php',
+        'TarifaTallerTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifaTallerTableSeeder.php',
+        'TarifarioServiciosTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TarifarioServiciosTableSeeder.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'TestTallerTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TestTallerTableSeeder.php',
         'TestUserTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TestUserTableSeeder.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
+        'TipoFamiliaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TipoFamiliaTableSeeder.php',
+        'TipoMembresiaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TipoMembresiaTableSeeder.php',
         'TipoPersonaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TipoPersonaTableSeeder.php',
+        'TrabajadorTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TrabajadorTableSeeder.php',
+        'servicioSeeder' => __DIR__ . '/../..' . '/database/seeds/servicioSeeder.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -25,8 +25,6 @@
 			
 		</div>
 	</div>
-		</br>
-		</br>
 		@if (session('stored'))
 			<script>$("#modalSuccess").modal("show");</script>
 			
@@ -41,14 +39,7 @@
 					<strong>Aviso</strong> {{session('eliminated')}}
 			</div>
 		@endif
-		<div class="container">
-			<div class="form-group">
-				<div class="col-sm-1 text-right">
-					<a class="btn btn-primary" href="{{url('/membresia/all')}}" title="Mostrar Todos" >Mostrar Todos</a>	
-				</div>
-			</div>
-			<br/>
-		</div>
+
 		</br>
 		</br>
 
@@ -84,7 +75,7 @@
 							@endforeach
 						</tbody>
 				</table>
-				</br></br></br></br>
+				</br></br></br>
 				<div class="btn-inline">
 					<!-- <form method="POST" action="/sedes/new/sede" >
 					<input type="hidden" name="_token" value="{{ csrf_token() }}"> -->

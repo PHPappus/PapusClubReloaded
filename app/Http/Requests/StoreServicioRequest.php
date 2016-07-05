@@ -23,10 +23,12 @@ class StoreServicioRequest extends Request
      */
     public function rules()
     {
+         
+
         return [
             'nombre'       =>  'required|max:100|string',
-            'descripcion'  =>  'required|max:100|string',
-            'tipo_servicio'=>  'required|max:50|string',
+            'descripcion'  =>  'string|max:400|string',
+            'tipo_servicio'=>  'required|max:50|integer',         
         ];
     }
 }

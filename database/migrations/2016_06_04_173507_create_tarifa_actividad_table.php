@@ -13,10 +13,10 @@ class CreateTarifaActividadTable extends Migration
     public function up()
     {
         Schema::create('tarifaactividad', function (Blueprint $table) {
-            $table->integer('actividad_id')->unsigned()->nullable();
-            $table->integer('tipo_persona_id')->unsigned()->nullable();
+            $table->increments('id');
+            $table->integer('actividad_id')->unsigned();
+            $table->integer('tipo_persona_id')->unsigned();
             $table->float('precio');
-            $table->string('estado');
             $table->softDeletes();
             $table->timestamps();
         });

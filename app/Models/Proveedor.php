@@ -3,9 +3,10 @@
 namespace papusclub\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Proveedor extends Model
 {    
+	use SoftDeletes;
 	protected $table = 'proveedor';
     protected $fillable = 
     ['nombre_proveedor',
@@ -14,5 +15,12 @@ class Proveedor extends Model
      'telefono', 
      'correo',
      'nombre_responsable',
-     'estado'];
+     'estado',
+     'tipo_proveedor'];
+     protected $dates = ['deleted_at'];
+
+
+    public function ingresoproducto(){
+        return $this->hasMany('papusclub\Models\IngresoProducto');
+    }
 }

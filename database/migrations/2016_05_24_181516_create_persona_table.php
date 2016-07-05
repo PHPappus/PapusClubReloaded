@@ -16,15 +16,15 @@ class CreatePersonaTable extends Migration
             $table->increments('id');
             $table->string('nacionalidad');//determina si guardo carnet de extranjeria o DNI
             $table->string('doc_identidad'); //si es una empresa la que se registra este campo queda vacio
-            $table->string('carnet_extranjeria');// en caso lo tenga
+            $table->string('carnet_extranjeria')->nullable();// en caso lo tenga
             $table->string('nombre');       
             $table->string('ap_paterno');
             $table->string('ap_materno');       
             $table->string('sexo'); // hombre ,mujer 
-            $table->string('correo');               
+            $table->string('correo')->unique();               
             $table->date('fecha_nacimiento'); 
             $table->integer('id_tipo_persona')->unsigned()->nullable();
-            $table->integer('id_usuario');//->unsigned()->nullable();
+            $table->integer('id_usuario')->unsigned()->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

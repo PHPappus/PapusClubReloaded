@@ -5,14 +5,14 @@ use Illuminate\Database\Migrations\Migration;
 
 class AddFkToPersonaxactividadTable extends Migration
 {
-    /**
+        /**
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::table('personaxactividad', function (Blueprint $table) {
+        Schema::table('actividad_persona', function (Blueprint $table) {
             
             $table->foreign('persona_id')
                   ->references('id')
@@ -31,10 +31,9 @@ class AddFkToPersonaxactividadTable extends Migration
      */
     public function down()
     {
-        Schema::table('personaxactividad', function (Blueprint $table) {
-            
-            $table->dropForeign('personaxactividad_persona_id_foreign');
-            $table->dropForeign('personaxactividad_actividad_id_foreign');
+        Schema::table('actividad_persona', function (Blueprint $table) {    
+            $table->dropForeign('actividad_persona_persona_id_foreign');
+            $table->dropForeign('actividad_persona_actividad_id_foreign');
         });
     }
 }

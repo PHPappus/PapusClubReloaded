@@ -89,6 +89,15 @@ class AuthController extends Controller
             case '5':
             return '/gerente';
             break;
+            case '6':
+            return '/admin-persona';
+            break;
+            case '7':
+            return '/admin-reserva';
+            break;
+            case '8':
+            return '/control-ingresos';
+            break;
         }
     }
 }

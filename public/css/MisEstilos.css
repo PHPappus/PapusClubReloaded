@@ -1,6 +1,8 @@
 body{
-    font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Open Sans', sans-serif; */
+    font-family: 'Lato', sans-serif;
 }
+
 .header{
     position: relative;  
     z-index: 3; 
@@ -150,6 +152,75 @@ body{
     height: 72px;
 }
 
+
+/*ESTILOS PARA NUEVO HEADER AND FOOTER- RESPONSIVE*/
+.menu-nav{
+    background-color:#A3DECB;
+    border: 0 solid #FFF;
+    height: 70px;
+    /* margin-top: -10px; */
+}
+.navbar-brand>img {
+    margin-top: -55px;
+}
+.navbar-nav ul{
+    z-index: 3;
+    display: none;
+    position: absolute;
+    top: 100%;
+    min-width: 165px;
+    background-color: #7EA79A;
+    border: 0 solid #FFF;
+}
+.navbar-nav > li > a{
+    text-align: center;
+    height: 60px;
+}
+.navbar-default .navbar-nav > li > a{
+    display: block;
+    text-decoration: none;
+    color: #FFF;
+}
+.dropdown-menu > li > a{
+    color: #FFF;
+}
+@media (max-width: 767px){
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #FFF;
+    }
+}
+
+.navbar-default{
+    background-color: #A3DECB;
+}
+.clearfix{
+    height: 50px;
+    padding-top: 10px;
+}
+.dropdown-menu > li > a:hover{
+    background-color:#007ABD !important;
+    color: #FFF;
+}
+.navbar-nav:hover{
+    background-color:#007ABD !important;
+    color: #FFF;
+}
+@media screen and (max-width: 740px) {
+    .navbar-brand>img {
+        height: 91px;
+    }
+}
+.dropdown-menu li:hover .sub-menu {
+    visibility: visible;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/*FIN DE ESTILOS PARA NUEVO HEADER AND FOOTER*/
+
+
 /*main*/
 
 .main{
@@ -197,6 +268,12 @@ body{
     margin-right: 0;
     padding-right: 0;
     text-align: left;
+}
+body > footer > div{
+    height: 80px !important;
+}
+body > main > footer > div{
+    height: 80px !important;
 }
 
 

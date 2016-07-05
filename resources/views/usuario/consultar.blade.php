@@ -12,13 +12,13 @@
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css">
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin-registros')
+@extends('layouts.headerandfooter-al-admin-persona')
 @section('content')
-<!---Cuerpo -->
-<main class="main">
+
 	<div class="content" style="max-width: 100%;">
 		<!-- Utilizando Bootstrap -->
 		@include('alerts.success')
+		@include('alerts.errors')
 		<br/><br/>
 		<div class="container">
 			<div class="row">
@@ -35,7 +35,7 @@
 								<tr class="active">
 									<th>Nombre</th>
 									<th>Correo</th>
-									<th>Contraseña</th>
+									<!-- <th>Contraseña</th> -->
 									<th>Perfil</th>
 								</tr>
 							</thead>	
@@ -44,8 +44,9 @@
 								<tr>
 									<td>{{$user->name}}</td>
 									<td>{{$user->email}}</td>
-									<td>{{$user->password}}</td>
-									<td>{{$user->perfil_id}}</td>
+									<!-- <td>{{$user->password}}</td> -->
+									<td>{{$perfiles[$user->perfil_id-1]->description}}</td>
+									<!-- <td>{{$perfiles->where('id','=',$user->perfil_id)}}</td> -->
 								</tr>
 								@endforeach
 							</tbody>
@@ -73,7 +74,7 @@
 	<script src="js/MisScripts.js"></script>
 	<!-- {!!Html::script('js/jquery.dataTables.min.js')!!} -->
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
-	<<!-- script>
+	<!-- <script>
 		function registrarNuevoUsuario(){
 			location.href="usuario/create";
 		}

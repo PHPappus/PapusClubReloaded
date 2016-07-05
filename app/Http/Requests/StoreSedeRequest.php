@@ -24,12 +24,12 @@ class StoreSedeRequest extends Request
     public function rules()
     {
         return [
-            'nombre'          =>  'required|max:100|string|unique:sedes,nombre,NULL',
+            'nombre'          =>  'required|max:100|string|unique:sede,nombre,NULL',
             'telefono'       =>  'required|max:12|string',
-            'departamento'       =>  'required|max:100|string',
-            'provincia'      =>  'required|max:100|string',
-            'distrito'      =>  'required|max:100|string',
-            'direccion'         =>  'required|max:100|string|unique:sedes,direccion,NULL',
+            'departamento'       =>  'max:100|string',
+            'provincia'      =>  'max:100|string',
+            'distrito'      =>  'max:100|string',
+            'direccion'         =>  'required|max:100|string|unique:sede,direccion,NULL',
             'referencia'         =>  'max:100|string',
             'nombre_contacto'         =>  'required|max:100|string',
             'capacidad_maxima'      =>  'integer|min:1',

@@ -14,11 +14,12 @@ class CreateTarifaTallerTable extends Migration
     {
         Schema::create('tarifataller', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('taller_id')->unsigned()->nullable();
-            $table->integer('tipo_persona_id')->unsigned()->nullable();
+            $table->integer('taller_id')->unsigned()->index();
+            $table->integer('tipo_persona_id')->unsigned()->index();
             $table->dateTime('fecha_registro');
             $table->double('precio');
-            $table->string('estado');
+            $table->boolean('estado')->default(TRUE);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

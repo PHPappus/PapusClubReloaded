@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 [2016-06-05 04:53:04] local.ERROR: PDOException: SQLSTATE[HY000]: General error: 1005 Can't create table `papusclub`.`#sql-18b4_5a` (errno: 150 "Foreign key constraint is incorrectly formed") in C:\xampp\htdocs\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php:408
 =======
 [2016-06-05 20:46:26] local.ERROR: PDOException: SQLSTATE[HY000]: General error: 1005 Can't create table `papusclub`.`#sql-3d54_49` (errno: 150 "Foreign key constraint is incorrectly formed") in C:\xampp\htdocs\PapusClubReloaded\vendor\laravel\framework\src\Illuminate\Database\Connection.php:408
@@ -1300,3 +1301,5 @@ Stack trace:
 #80 C:\Users\Sebastián\Desktop\PapusClubReloaded\server.php(21): require_once('C:\\Users\\Sebast...')
 #81 {main}  
 >>>>>>> 5ddbf3f93178c422d489977fddd50e4e77bdb8ce
+=======
+>>>>>>> 460ae1ea37f32543dd391dd47cee4a4c41df9a53

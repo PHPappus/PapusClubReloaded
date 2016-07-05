@@ -52,7 +52,7 @@
 			  	</div>	  	
 
 			  	<div class="form-group">
-			    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad maxima</label>
+			    	<label for="capacidadInput" class="col-sm-4 control-label">Capacidad Máxima</label>
 			    	<div class="col-sm-5">
 			      		<input type="number" class="form-control" id="capacidadInput" name="capacidad_maxima" value="{{$sede->capacidad_maxima}}" readonly>
 			    	</div>
@@ -96,7 +96,7 @@
 			  	<div class="form-group">
 			    	<label for="referenciaInput" class="col-sm-4 control-label">Referencia </label>
 			    	<div class="col-sm-5">
-			      		<textarea type="text" class="form-control" id="referenciaInput" name="referencia" placeholder ="{{$sede->referencia}}" readonly></textarea>
+			      		<textarea type="text" class="form-control" id="referenciaInput" name="referencia" placeholder ="{{$sede->referencia}}" style="resize: none" readonly ></textarea>
 			    	</div>
 			  	</div>
 
@@ -107,10 +107,20 @@
 					<div class="col-sm-8"> </div>
 					<a href="/sedes/index" class="btn btn-info">Regresar</a>				
 				</div>
+				</br>
+				</br>
 
 			</form>
 		</div>
-	</div>		
+	</div>	
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+	</br>
+		
 @stop
 <!-- JQuery -->
 	{!!Html::script('/js/jquery-1.11.3.min.js')!!}

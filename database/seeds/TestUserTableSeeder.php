@@ -12,15 +12,22 @@ class TestUserTableSeeder extends Seeder
      */
     public function run()
     {
-	    User::insert([ 'name' => 'Juan Perez' , 'email' => 'socio@mail.com', 'perfil_id'=>1,
+	    User::insert([ 'name' => 'Julio Pacheco' , 'email' => 'socio@mail.com', 'perfil_id'=>1,
 	    			   'password' => bcrypt('123456')]);//Perfil Socio
-	    User::insert([ 'name' => 'Juan Perez' , 'email' => 'adming@mail.com', 'perfil_id'=>2,
+	    User::insert([ 'name' => 'Luis Flores' , 'email' => 'adming@mail.com', 'perfil_id'=>2,
 	    			   'password' => bcrypt('123456')]);//Perfil Administrador General
-	    User::insert([ 'name' => 'Juan Perez' , 'email' => 'adminp@mail.com', 'perfil_id'=>3,
+	    User::insert([ 'name' => 'Carlos Chavez' , 'email' => 'adminp@mail.com', 'perfil_id'=>3,
 	    			   'password' => bcrypt('123456')]);//Perfil Administrador de Pagos
-	    User::insert([ 'name' => 'Juan Perez' , 'email' => 'adminr@mail.com', 'perfil_id'=>4,
+	    User::insert([ 'name' => 'Elba Lazo' , 'email' => 'adminr@mail.com', 'perfil_id'=>4,
 	    			   'password' => bcrypt('123456')]);//Perfil Administrador de Registros
-	    User::insert([ 'name' => 'Juan Perez' , 'email' => 'gerente@mail.com', 'perfil_id'=>5,
-	    			   'password' => bcrypt('123456')]);//Perfil Gerente   
+	    User::insert([ 'name' => 'Jose Quispe' , 'email' => 'gerente@mail.com', 'perfil_id'=>5,
+	    			   'password' => bcrypt('123456')]);//Perfil Gerente 
+
+	    User::insert([ 'name' => 'Susana Oria' , 'email' => 'adminpersona@mail.com', 'perfil_id'=>6,
+	    			   'password' => bcrypt('123456')]);//Perfil Administrador de Persona 
+	    User::insert([ 'name' => 'Elvis Nieto' , 'email' => 'adminreserva@mail.com', 'perfil_id'=>7,
+	    			   'password' => bcrypt('123456')]);//Perfil Administrador de Reserva 
+	    User::insert([ 'name' => 'Elgar Gajo' , 'email' => 'controlingresos@mail.com', 'perfil_id'=>8,
+	    			   'password' => bcrypt('123456')]);//Perfil Publico   
     }
 }

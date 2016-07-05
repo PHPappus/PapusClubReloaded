@@ -24,7 +24,8 @@ class StoreMultaRequest extends Request
     public function rules()
     {
         return [
-            'descripcion' =>'required|max:60|string',
+            'nombre' => 'required|max:30|string',
+            'descripcion' =>'max:80|string',
             'montoPenalidad' =>'min:0',
         ];
     }

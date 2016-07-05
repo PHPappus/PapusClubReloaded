@@ -15,12 +15,12 @@ class ProveedorController extends Controller
     //Muestra la lista de proveedores que se encuentran en BD, estas se pueden modificar, cambiar el estado, ver mas detalle o registrar un nuevo proveedor
     public function index() {
 		$proveedores = Proveedor::all();
-        return view('admin-general.proveedor.index', compact('proveedores'));
+        return view('admin-registros.proveedor.index', compact('proveedores'));
 	}	
 
 	public function create()
     {
-    	return view('admin-general.proveedor.newProveedor');
+    	return view('admin-registros.proveedor.newProveedor');
     }
     
     public function store(StoreProveedorRequest $request)
@@ -35,6 +35,7 @@ class ProveedorController extends Controller
 		$proveedor->correo = $input['correo'];
 		$proveedor->nombre_responsable = $input['nombre_responsable'];
 		$proveedor->estado = 1;
+        $proveedor->tipo_proveedor = $input['tipo_proveedor'];
     	
         $proveedor->save();	        
         return redirect('proveedor/index')->with('stored', 'Se registró el proveedor correctamente.');
@@ -45,7 +46,7 @@ class ProveedorController extends Controller
     public function edit($id)
     {
         $proveedor = Proveedor::find($id);
-        return view('admin-general.proveedor.editProveedor', compact('proveedor'));
+        return view('admin-registros.proveedor.editProveedor', compact('proveedor'));
     }
 
     //Se guarda la informacion modificada del proveedor en la BD
@@ -72,8 +73,8 @@ class ProveedorController extends Controller
     public function destroy($id)    
     {
         $proveedor = Proveedor::find($id);
-        $proveedor->estado = false;
-        $proveedor->save();
+        //$proveedor->estado = false;
+        $proveedor->delete();
         return back();
     }
 
@@ -81,7 +82,7 @@ class ProveedorController extends Controller
     public function show($id)
     {
         $proveedor = Proveedor::find($id);
-        return view('admin-general.proveedor.detailProveedor', compact('proveedor'));
+        return view('admin-registros.proveedor.detailProveedor', compact('proveedor'));
     }
 
 }

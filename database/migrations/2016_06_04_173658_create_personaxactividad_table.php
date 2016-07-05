@@ -12,12 +12,13 @@ class CreatePersonaxactividadTable extends Migration
      */
     public function up()
     {
-        Schema::create('personaxactividad', function (Blueprint $table) {
+        Schema::create('actividad_persona', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('persona_id')->unsigned()->nullable();
             $table->integer('actividad_id')->unsigned()->nullable();
             $table->integer('calificacion_id')->unsigned()->nullable();
             $table->float('precio');
-            
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreatePersonaxactividadTable extends Migration
      */
     public function down()
     {
-        Schema::drop('personaxactividad');
+        Schema::drop('actividad_persona');
     }
 }

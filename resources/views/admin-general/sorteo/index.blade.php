@@ -16,7 +16,7 @@
 </head>
 
 <body>
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-reserva')
 @section('content')	
 	<div class="container" id="ruta-navegacion">	
 		<!-- Utilizando Bootstrap -->
@@ -42,42 +42,92 @@
 						<strong>¡Éxito!</strong> {{session('stored')}}
 				</div>
 	@endif
-	<div style="text-align:right;padding-right:60px">Filtra por todos los campos</div>
 	<div class="table-responsive">
 		<div class="container">
+			<div class="form-group">
+			  		<div class="text-right">
+			  			<font color="black"> 
+			  				Filtra por todos los campos
+			  			</font>
+			  		</div>
+			</div>
 			<table class="table table-bordered table-hover text-center display" id="example">
 				<thead class="active" data-sortable="true">
 					<th><div align=center>NOMBRE SORTEO</div> </th>
-					<th><div align=center>FECHA INICIO DE SORTEO</div></th>
-					<th><div align=center>FECHA FIN DE SORTEO</div></th>
+					<th><div align=center>FECHA CIERRE DE SORTEO</div></th>
+					<th><div align=center>FECHA INICIO DE RESERVA</div></th>
+					<th><div align=center>FECHA FIN DE RESERVA</div></th>
 					<th><div align=center>DESCRIPCION</div></th>
+					<th><div align=center>COSTO DE INSCRIPCION</div></th>
+					<th><div align=center>ESTADO</div></th>
+					<th><div align=center>EJECUTAR</div></th>
+					<th><div align=center>DETALLE</div></th>
 					<th><div align=center>MODIFICAR</div></th>
 					<th><div align=center>ELIMINAR</div></th>
 				</thead>	
 				<tbody>													
 					@foreach($sorteos as $sorteo)	
 					
-						<tr>									
+						<tr>	
 							<td>{{$sorteo->nombre_sorteo}}</td>
+							<td>{{$sorteo->fecha_fin_sorteo}}</td>
 							<td>{{$sorteo->fecha_abierto}}</td>
 							<td>{{$sorteo->fecha_cerrado}}</td>	
 							<td>{{$sorteo->descripcion}}</td>
-							<td>
-			              		<a class="btn btn-info" href="{{url('/sorteo/'.$sorteo->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+							<td>{{$sorteo->costo_inscripcion}}</td>
+							<td>{{$sorteo->estado}}</td>
+							@if($sorteo->estado == 'Ejecutado')
+								<td><a class="btn btn-info" disabled  ><i class="glyphicon glyphicon-flash"></i></a>
+							        </td>
+							        <td>
+							        <a class="btn btn-info" href="{{url('/sorteo/'.$sorteo->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+							        </td>
+							    <td>
+			              		<a class="btn btn-info" disabled title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
 			              	</td>
 			              	<td>
-					            <a class="btn btn-info"  title="Eliminar" data-href="{{url('/sorteo/'.$sorteo->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
-					        </td>			            	
+					            <a class="btn btn-info"  title="Eliminar" disabled ><i class="glyphicon glyphicon-remove"></i></a>    
+					        </td>
+							
+							@else
+								<td><a class="btn btn-info" href="{{url('/sorteo/index/'.$sorteo->id.'/ejecutar')}}"  ><i class="glyphicon glyphicon-flash"></i></a>
+							        </td>
+							        <td>
+							        <a class="btn btn-info" href="{{url('/sorteo/'.$sorteo->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+							        </td>
+							    <td>
+			              		<a class="btn btn-info" href="{{url('/sorteo/'.$sorteo->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
+				              	</td>
+				              	<td>
+						            <a class="btn btn-info"  title="Eliminar" data-href="{{url('/sorteo/'.$sorteo->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
+						        </td>
+							
+							@endif							
+							
 						</tr>
 					</form>
 					 @endforeach
 				</tbody>			
-			</table>						
+			</table>
+			<br><br>
+			<div class="btn-inline">
+					<!-- <form method="POST" action="/sedes/new/sede" >
+					<input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
+
+					<div class="btn-group col-sm-10"></div>
+					
+					<div class="btn-group ">
+						<a class="btn btn-info" href="{{url('/sorteo/new')}}" >	Registrar Sorteo</a>	
+
+					</div>
+					
+			</div>						
+			</div>
+			</div>
+				
 		</div>	
 	</div>
-	<div align="center" style="padding:20px">
-		<a class="btn btn-info" href="{{url('/sorteo/new')}}" > Agregar Sorteo</a>	
-	</div>				
+		
 @stop
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	{!!Html::script('js/bootstrap.js')!!}
@@ -106,7 +156,7 @@
 	        <h4 class="modal-title">Confirmar</h4>
 	      </div>
 	      <div class="modal-body">
-	        <p>¿Está seguro que desea eliminar el producto?</p>
+	        <p>¿Está seguro que desea eliminar el sorteo?</p>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

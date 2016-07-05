@@ -10,11 +10,17 @@ class Multa extends Model
 	use SoftDeletes;
     protected $table = 'multa';
 
-    //use SoftDeletes;
 
     protected $fillable=
-    ['descripcion',
+    ['nombre',
+     'descripcion',
      'montoPenalidad',
      'estado'
     ];
+
+    public function multaxpersona()
+    {
+    	return $this->belongsToMany(Socio::class,'multaxpersona','multa_id','socio_id')->withPivot('multa_modificada','descripcion_detallada','fecha_registro');
+    }
+    
 }

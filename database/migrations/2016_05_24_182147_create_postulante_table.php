@@ -14,46 +14,51 @@ class CreatePostulanteTable extends Migration
     {
         Schema::create('postulante', function (Blueprint $table) {
             //DATOS PERSONALES
-            $table->integer('id_postulante')->unsigned()->nullable();;
+            
+            $table->integer('id_postulante')->unsigned()->unique();
+
+
             $table->bigInteger('ruc'); //en caso lo tenga, no es necesario si no tiene
             //en la vista se tiene un checkbox de nacionalidad
-            //1:Peruano   2:Extranjero
+            //1:peruano   2:Extranjero
             
             //DATOS DE NACIMIENTO
             //en caso sea peruano
-            //$table->string('departamento');
-            //$table->string('provincia');
-            //$table->string('distrito');
-            $table->string('direccion');
+            $table->integer('departamento');
+            $table->integer('provincia');
+            $table->integer('distrito');
+            $table->string('direccion_nacimiento');
 
             //en caso sea extranjero
-            $table->string('pais_nacimiento'); //Esto deermina el pais Peru
-            $table->string('lugar_nacimiento'); //esto es una cadena Av. SiempreViva 123 
+            $table->string('pais_nacimiento'); //Esto deermina el pais Peru si es peruano y otro si es extranjero
+            $table->string('lugar_nacimiento'); //esto es la ciudad
             
             //DATOS DE ESTUDIOS
             $table->string('colegio_primario');
             $table->string('colegio_secundario');
-            $table->string('univeridad');
+            $table->string('universidad');
             $table->string('profesion');
 
             //DATOS DE EMPLEO
             $table->string('centro_trabajo');
-            $table->string('cargo_centro_trabajo');
-            $table->string('direccionLaboral');
+            $table->string('cargo_trabajo');
+            $table->string('direccion_laboral');
 
             //DATOS FAMILIARES
-            $table->string('estado_civil');
+            $table->integer('estado_civil');
             $table->integer('nro_hijos');
 
             //DATOS DE VIVIENDA
-            //$table->string('departamento');
-            //$table->string('provincia');
-            //$table->string('distrito');
+            $table->integer('departamento_vivienda');
+            $table->integer('provincia_vivienda');
+            $table->integer('distrito_vivienda');
             $table->string('domicilio');
+            $table->string('referencia_vivienda');
 
-            //CONTACTOS
+            //CONTACTO
             $table->integer('telefono_domicilio');
             $table->integer('telefono_celular');
+            $table->string('correo');
 
             //ESTADO DE LA POSTULACION
             $table->string('estado');
@@ -72,3 +77,4 @@ class CreatePostulanteTable extends Migration
         Schema::drop('postulante');
     }
 }
+ 
