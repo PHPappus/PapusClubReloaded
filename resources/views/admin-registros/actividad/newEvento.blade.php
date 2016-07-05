@@ -95,7 +95,7 @@
 				</div>
 
 			  	<div class="form-group required">
-			    	<label for="horaInicioInput" class="col-sm-4 control-label">Hora Inicio(HH:mm:ss)</label>
+			    	<label for="horaInicioInput" class="col-sm-4 control-label">Hora Inicio(HH:mm)</label>
 			    	<div class="col-sm-5">
 			      		<input type="time" class="form-control" id="horaInicioInput"  name="hora" placeholder="Fecha Inicio">
 			    	</div>
@@ -115,7 +115,12 @@
 			    	</div>
 			  	</div>	  	
 			  	
-			  	
+			  	<div class="form-group required">
+			    	<label for="precio_especial_bungalowInput" class="col-sm-4 control-label">Precio especial de bungalow(0=sin precio especial)</label>
+			    	<div class="col-sm-5">
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="precio_especial_bungalowInput" name="precio_especial_bungalow" placeholder="Precio especial" value="{{old('precio_especial_bungalow')}}" >
+			    	</div>
+			  	</div>	
 			  	<!-- EL ESTADO SIEMPRE VA EN TRUE PARA EL REGISTRAR -->
 			  	
 

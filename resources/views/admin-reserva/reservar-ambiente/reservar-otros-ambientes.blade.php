@@ -210,7 +210,8 @@
 		var nowDate = new Date();
 		var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
 		var deadline=new Date(today);
-		deadline.setDate(deadline.getDate() + 25);
+		var dias = "<?php  echo $dias; ?>";
+		deadline.setDate(deadline.getDate() + parseInt(dias));
 	</script>
 	<script>
 		$(function(){

@@ -27,6 +27,7 @@
 						<strong>REGISTRAR SORTEO</strong>
 				</div>		
 			</div>
+			<input  type="hidden" type="text" id="configuracion" name="configuracion" value="{{ $configuracion}}">
 			<div class="container">
 				<form method="POST" action="/sorteo/new/sorteo" class="form-horizontal form-border">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -69,13 +70,6 @@
 						</div>
 					</div>
 
-					<!--<div class="form-group required">
-						<label  class="control-label col-sm-5">FECHA CIERRE SORTEO [dd/mm/aaaa]:</label>
-						<div class="col-sm-7">
-							<input class="datepicker" type="text" id="fecha_cierre_sorteo" readonly name="fecha_cierre_sorteo" value="{{ old('fecha_cierre_sorteo') }}"  >						
-						</div>					
-					</div>-->
-					
 					<div class="form-group required">
 						<label  class="control-label col-sm-5">FECHA INICIO RESERVA [dd/mm/aaaa]:</label>
 						<div class="col-sm-7">
@@ -131,10 +125,21 @@
 
 		
 		
-		<script>
+		<script>			
 			$(document).ready(function(){
+
+					var js_var = "<?php echo $configuracion; ?>";
+
 					var nowTemp = new Date();		
-					var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth()+1, nowTemp.getDate(), 0, 0, 0, 0);
+
+					var now;
+
+					if(js_var == 1){
+						now = new Date(nowTemp.getFullYear(), nowTemp.getMonth() +1, nowTemp.getDate(), 0, 0, 0, 0);
+					}
+					else{
+						now = new Date(nowTemp.getFullYear(), nowTemp.getMonth() , nowTemp.getDate(), 0, 0, 0, 0);
+					}
 			 
 					var checkin = $('#fecha_abierto').datepicker({
 			  			onRender: function(date) {
