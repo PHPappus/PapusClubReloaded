@@ -58,6 +58,37 @@
 			      		<input type="checkbox"  class="checkbox" id="activoInput" name="estado" @if($servicio['estado'] == true) checked @endif disabled>
 			    	</div>	    	
 			  	</div>
+
+			  	<div class="container" style="width: 600px; margin-left: auto; margin-right: auto"  >
+			<table class="table table-bordered" >
+					<thead class="active" >	
+						<tr>							
+							<th class="col-sm-3" ><DIV ALIGN=center>Tipo Persona</th>
+							<th class="col-sm-3" ><DIV ALIGN=center>Moneda</th>
+							<th class="col-sm-3"><DIV ALIGN=center>Monto</th>
+						</tr>
+					</thead>
+					<tbody>
+							@foreach($TarifarioServicio as $tariSer)			
+						    	<tr>
+									<td align="center"> 									 
+									 @foreach ($tiposPersonas as $tipPer)
+									 		@if ($tipPer->id == $tariSer->idtipopersona)
+												{{ $tipPer->descripcion }}
+									 		@endif
+									 @endforeach
+									 </td>
+									<td align="center">  S/.</td>
+									<td align="center"> 
+									<div align="center">
+							      		<input style="text-align:right;" onkeypress="return inputLimiter(event,'DoubleFormat')" type="text" class="form-control" value="{{$tariSer->precio}}" name="{{$tariSer->idtipopersona}}" readonly>
+							    	</div>
+								</td>							        
+								</tr>
+							@endforeach
+					</tbody>													
+			</table>
+			</div>
 									
 				<br/><br/>
 				

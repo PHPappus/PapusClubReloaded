@@ -4,7 +4,7 @@ namespace papusclub\Http\Requests;
 
 use papusclub\Http\Requests\Request;
 
-class StoreAmbienteRequest extends Request
+class MakeInscriptionFamiliarRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,15 @@ class StoreAmbienteRequest extends Request
     public function rules()
     {
         return [
-            'sedeSelec'         =>  'required',
-            'nombre'            =>  'required|max:100|string',
-            'tipo_ambiente'     =>  'required',
-            'capacidad_actual'  =>  'required|integer|min:0',
-            'descripcion'         =>  'required|max:100|string',          
+            'password'      => 'required',
+            'name'    => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'password.required' => 'La contraseña es requerida',
+            'name.required' => 'Seleccionar al familiar es obligatorio',
         ];
     }
 }
