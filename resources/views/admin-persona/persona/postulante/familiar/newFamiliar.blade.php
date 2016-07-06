@@ -22,7 +22,7 @@
 </head>
 <body>
 
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-persona')
 @section('content')
 
 	<br>
@@ -175,7 +175,7 @@
 									</div>
 								</div>
 
-								<div class="form-group">
+								<div class="form-group required">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
 											<label for="" class="control-label">Correo:</label>

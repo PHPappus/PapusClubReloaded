@@ -23,18 +23,15 @@ class StorePostulanteRequest extends Request
      */
     public function rules()
     {
-/*        var_dump($this->all());
-        die();*/
         return [
             //datos basicos
             'nombre' =>  'required|max:100|string',
             'ap_paterno' => 'required|max:100|string',
             'ap_materno' => 'required|max:100|string',
-            'doc_identidad'=> 'required_if:nacionalidad,peruano', //| unique:persona,doc_identidad,NULL',
-            'carnet_extranjeria'=> 'required_if:nacionalidad,extranjero',//  | unique:persona,carnet_extranjeria,NULL',
+            'doc_identidad'=> 'required_if:nacionalidad,peruano|unique:persona', 
+            'carnet_extranjeria'=> 'required_if:nacionalidad,extranjero|unique:persona',
             'estado_civil'=>'required|exists:configuracion,id',
-            //'correo'=>'required|string',
-            //'puestoSelect' => 'required|exists:configuracion,id'
+
 
             //Nacimiento
             'fecha_nacimiento' => 'required | string',
@@ -46,7 +43,7 @@ class StorePostulanteRequest extends Request
             'pais_nacimiento'=>'required_if:nacionalidad,extranjero',
             'lugar_nacimiento'=>'required_if:nacionalidad,extranjero',
 
-            //Vivienda            'puestoSelect' => 'required|exists:configuracion,id'
+            //Vivienda            
             'departamento_vivienda' => 'required|exists:departamento,id',
             'provincia_vivienda' => 'required|exists:provincia,id',
             'distrito_vivienda' => 'required|exists:distrito,id',
@@ -63,11 +60,7 @@ class StorePostulanteRequest extends Request
 
             //Contacto
             'telefono_celular'=>'required|string|max:12',
-            'correo'=>'email|unique:persona'
-
-            
-            //'distrito' => 'required | exists:distrito,id',
-            //solo pedira que se ingrese si es peruano ya en el store se registrara si el ingresado existe
+            'correo'=>'required|email|unique:persona'
 
         ];
     }
