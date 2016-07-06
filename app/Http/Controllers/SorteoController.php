@@ -159,6 +159,7 @@ class SorteoController extends Controller
                 echo "paso 2";
                 foreach ($bungalows as $bungalow) {
                     $sorteo=Sorteo::find($bungalow);
+                    echo $sorteo->id;
                     echo "paso 3";
                     $sorteoxsocio=new Sorteoxsocio();
                     $sorteoxsocio->id=$bungalow;
