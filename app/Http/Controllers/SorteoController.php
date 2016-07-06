@@ -162,8 +162,11 @@ class SorteoController extends Controller
                     echo $sorteo->id;
                     echo "paso 3";
                     $sorteoxsocio=new Sorteoxsocio();
+                    echo "aqui1";
                     $sorteoxsocio->id=$bungalow;
+                    echo "aqui2";
                     $sorteoxsocio->id_socio=$persona_id;
+                    echo "aqui3";
                     $sorteoxsocio->save();
                     echo "paso 4";
                     $pago=new Facturacion();
