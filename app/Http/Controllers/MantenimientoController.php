@@ -34,17 +34,16 @@ class MantenimientoController extends Controller
                 {
                     echo "segunda";
                     $bungalowsIna=Mantenimiento::where('id_bungalow','=',$ambiente->id)->get();
-                    if($bungalowsIna)
-                        if(!$bungalowIna->isEmpty())
-                            echo "tercera";
-                            foreach ($bungalowsIna as $bungalowIna) {
-                                echo "cuarta";
-                                if($bungalowIna->fecha_inicio<=$mytime && $bungalowIna->fecha_fin>=$mytime)
-                                {
-                                    echo "quinta";
-                                    $ambientes->pull($ambientes->search(Ambiente::find($bungalowIna->id_bungalow)));
-                                }
-                            }
+                        
+                    echo "tercera";
+                    foreach ($bungalowsIna as $bungalowIna) {
+                        echo "cuarta";
+                        if($bungalowIna->fecha_inicio<=$mytime && $bungalowIna->fecha_fin>=$mytime)
+                        {
+                            echo "quinta";
+                            $ambientes->pull($ambientes->search(Ambiente::find($bungalowIna->id_bungalow)));
+                        }
+                    }
                 }
                 return view('admin-general.mantenimiento-bungalows.indexCorr',['ambientes'=>$ambientes,'sedes'=>$sedes]);
             }
