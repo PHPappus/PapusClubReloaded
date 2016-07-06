@@ -27,17 +27,24 @@ class MantenimientoController extends Controller
             $mytime = Carbon::now();
             echo $mytime;
             $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();
-            foreach($ambientes as $ambiente)
+            if(!$ambientes->isEmpty())
             {
-                $bungalowsIna=Mantenimiento::where('id_bungalow','=',$ambiente->id)->get();
-                foreach ($bungalowsIna as $bungalowIna) {
-                    if($bungalowIna->fecha_inicio<=$mytime && $bungalowIna->fecha_fin>=$mytime)
-                    {
-                        $ambientes->pull($ambientes->search(Ambiente::find($bungalowIna->id_bungalow)));
-                    }
+                echo "primera";
+                foreach($ambientes as $ambiente)
+                {
+                    echo "segunda";
+                    $bungalowsIna=Mantenimiento::where('id_bungalow','=',$ambiente->id)->get();
+                    if(!$bungalowIna->isEmpty())
+                        foreach ($bungalowsIna as $bungalowIna) {
+                            if($bungalowIna->fecha_inicio<=$mytime && $bungalowIna->fecha_fin>=$mytime)
+                            {
+                                $ambientes->pull($ambientes->search(Ambiente::find($bungalowIna->id_bungalow)));
+                            }
+                        }
                 }
+                return view('admin-general.mantenimiento-bungalows.indexCorr',['ambientes'=>$ambientes,'sedes'=>$sedes]);
             }
-            return view('admin-general.mantenimiento-bungalows.indexCorr',['ambientes'=>$ambientes,'sedes'=>$sedes]);
+                
         }
         catch (\Exception $e)
         {
