@@ -8,6 +8,7 @@ use papusclub\Models\Persona;
 use papusclub\Http\Requests;
 use Carbon\Carbon;
 use papusclub\Http\Requests\StoreTerceroRequest;
+use papusclub\Http\Requests\EditTerceroRequest;
 
 class TerceroController extends Controller
 {
@@ -104,24 +105,10 @@ class TerceroController extends Controller
         return view('admin-persona.persona.tercero.editTercero',compact('persona'));
     }
 
-    public function update(StoreTerceroRequest $request,$id ){
+    public function update(EditTerceroRequest $request,$id ){
         $carbon=new Carbon(); 
         $input = $request->all();
         $persona = Persona::find($id);
-        $persona->nacionalidad = $input['nacionalidad'];
-
-        if (empty($input['carnet_extranjeria'])) {
-            $persona->carnet_extranjeria ="";
-        }
-        else
-            $persona->carnet_extranjeria = $input['carnet_extranjeria'];
-
-        
-        if (empty($input['doc_identidad'])) {
-            $persona->doc_identidad ="";
-        }
-        else
-            $persona->doc_identidad = $input['doc_identidad'];
         
         $persona->nombre = trim($input['nombre']);
         $persona->ap_paterno = trim($input['ap_paterno']);
@@ -137,7 +124,6 @@ class TerceroController extends Controller
 
         $persona->id_tipo_persona = 3;
         $persona->sexo=$input['sexo'];
-        $persona->correo=trim($input['correo']);
         $persona->save();
             
         return redirect('tercero/index')->with('stored', 'Se modificó la persona correctamente.');

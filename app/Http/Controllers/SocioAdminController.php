@@ -272,7 +272,6 @@ class SocioAdminController extends Controller
 
         $telefono = trim($input['telefono_domicilio']);
         $celular = trim($input['telefono_celular']);
-        $correo = trim($input['correo']);
 
         $socio->postulante->telefono_domicilio=$telefono;
         $socio->postulante->telefono_celular=$celular;

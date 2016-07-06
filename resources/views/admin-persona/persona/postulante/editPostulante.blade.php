@@ -210,9 +210,9 @@
 												</div>
 												<div class="col-sm-6 text-left" >
 													
-													<input onchange="es_peruano()" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : ''}} {{($postulante->persona->nacionalidad == "peruano") ? 'checked="true"':''}}/>peruano&nbsp&nbsp&nbsp
+													<input onchange="es_peruano()" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : ''}} {{($postulante->persona->nacionalidad == "peruano") ? 'checked="true"':''}} disabled />peruano&nbsp&nbsp&nbsp
 													
-													<input onchange="es_extranjero()" type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "extranjero") ? 'checked="true"' : ''  }} {{($postulante->persona->nacionalidad == "extranjero") ? 'checked="true"':''}}/>Extranjero
+													<input onchange="es_extranjero()" type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "extranjero") ? 'checked="true"' : ''  }} {{($postulante->persona->nacionalidad == "extranjero") ? 'checked="true"':''}} disabled />Extranjero
 
 												</div>	
 											</div>
@@ -225,7 +225,7 @@
 												</div>
 												<div class="col-sm-6">
 												<!--Se hace validacion para que acepte solo numeros pero que sea un texto-->
-														<input  type="text" onkeypress="return inputLimiter(event,'Numbers')"fape  @if ($postulante->persona->nacionalidad!="peruano") disabled  @endif  class="form-control" id="doc_identidad" name="doc_identidad" placeholder="DNI" maxlength="8" style="max-width: 250px" value="{{$postulante->persona->doc_identidad}}" value="{{old('doc_identidad')}}"  >
+														<input  type="text" onkeypress="return inputLimiter(event,'Numbers')"fape  @if ($postulante->persona->nacionalidad!="peruano") disabled  @endif  class="form-control" id="doc_identidad" name="doc_identidad" placeholder="DNI" maxlength="8" style="max-width: 250px" value="{{$postulante->persona->doc_identidad}}" value="{{old('doc_identidad')}}"  readonly>
 												</div>	
 											</div>
 									</div>
@@ -236,7 +236,7 @@
 													<label for="" class="control-label">Carnet de extranjeria:</label>
 												</div>
 												<div class="col-sm-6">
-													<input type="text" onkeypress="return inputLimiter(event,'Numbers')" @if ($postulante->persona->nacionalidad!="extranjero") disabled  @endif class="form-control" id="carnet_extranjeria" name="carnet_extranjeria" placeholder="Carnet de Extranjeria" maxlength="12" style="max-width: 250px" value="{{$postulante->persona->carnet_extranjeria}}" value="{{old('carnet_extranjeria')}}" >
+													<input type="text" onkeypress="return inputLimiter(event,'Numbers')" @if ($postulante->persona->nacionalidad!="extranjero") disabled  @endif class="form-control" id="carnet_extranjeria" name="carnet_extranjeria" placeholder="Carnet de Extranjeria" maxlength="12" style="max-width: 250px" value="{{$postulante->persona->carnet_extranjeria}}" value="{{old('carnet_extranjeria')}}" readonly>
 												</div>	
 											</div>
 									</div>
@@ -1026,7 +1026,7 @@
 												<label for="" class="control-label">Correo:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" value="{{$postulante->persona->correo}}" >
+												<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" value="{{$postulante->persona->correo}}" readonly>
 											</div>	
 										</div>
 									</div>

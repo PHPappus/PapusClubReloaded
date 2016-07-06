@@ -979,7 +979,7 @@
 											<label for="" class="control-label">Correo:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" value="{{$socio->postulante->persona->correo}}" >
+											<input type="text" class="form-control" id="correo" name="correo" placeholder="Correo" value="{{$socio->postulante->persona->correo}}" readonly>
 										</div>	
 									</div>
 								</div>

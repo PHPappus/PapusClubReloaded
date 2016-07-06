@@ -20,90 +20,130 @@ use Session;
 use DateTime;
 use DB;
 
+use Log;
+
 class ControlIngresosController extends Controller
 {
     public function index()
     {
-        return view('control-ingresos.inicio-al-control-ingresos');
+        try
+        {
+            return view('control-ingresos.inicio-al-control-ingresos');         
+        }
+        catch(\Exception $e)
+        {
+            Log::error($e);
+            $error = 'ControlIngresosController-index';
+            return view('errors.corrigeme', compact('error'));            
+        }        
+
     }
 
     public function indexpersonal()
     {
-    	$sedes=Sede::all();
-    	return view('control-ingresos.personal.index',compact('sedes'));
+        try
+        {
+            $sedes=Sede::all();
+            return view('control-ingresos.personal.index',compact('sedes'));         
+        }
+        catch(\Exception $e)
+        {
+            Log::error($e);
+            $error = 'ControlIngresosController-indexpersonal';
+            return view('errors.corrigeme', compact('error'));            
+        }        
+
     }
 
     public function buscarpersonal(BuscarPersonalRequest $request)
     {
-    	$input = $request->all();
+        try
+        {
+            $input = $request->all();
 
-    	$sede_id = $input['sede'];
-    	$documento = $input['documento'];
-    	$numerodoc=$input['numerodoc'];
-    	$sedes=Sede::all();
+            $sede_id = $input['sede'];
+            $documento = $input['documento'];
+            $numerodoc=$input['numerodoc'];
+            $sedes=Sede::all();
 
-    	$persona=null;
-    	if($documento == 'DNI')
-    	{
-    		$match = ['id_tipo_persona'=>1,'doc_identidad'=>$numerodoc];
-    		$persona = Persona::where($match)->first(); 
-    	}
-    	else
-    	{
-    		$match = ['id_tipo_persona'=>1,'carnet_extranjeria'=>$numerodoc];
-    		$persona = Persona::where($match)->first();
-    	}
+            $persona=null;
+            if($documento == 'DNI')
+            {
+                $match = ['id_tipo_persona'=>1,'doc_identidad'=>$numerodoc];
+                $persona = Persona::where($match)->first(); 
+            }
+            else
+            {
+                $match = ['id_tipo_persona'=>1,'carnet_extranjeria'=>$numerodoc];
+                $persona = Persona::where($match)->first();
+            }
 
-    	if($persona!=null)
-    	{
-    		$puesto_id = $persona->trabajador->puesto;
-    		$puesto = Configuracion::find($puesto_id);
-    		$persona->trabajador->puesto=$puesto->valor;
-    		Session::flash('resultado','encontrado');
-    	}
-    	else
-    	{
-    		Session::flash('resultado','noencontrado');
-    	}
-    	return view('control-ingresos.personal.marcaringreso',compact('sedes','sede_id','persona'));
+            if($persona!=null)
+            {
+                $puesto_id = $persona->trabajador->puesto;
+                $puesto = Configuracion::find($puesto_id);
+                $persona->trabajador->puesto=$puesto->valor;
+                Session::flash('resultado','encontrado');
+            }
+            else
+            {
+                Session::flash('resultado','noencontrado');
+            }
+            return view('control-ingresos.personal.marcaringreso',compact('sedes','sede_id','persona'));      
+        }
+        catch(\Exception $e)
+        {
+            Log::error($e);
+            $error = 'ControlIngresosController-buscarpersonal';
+            return view('errors.corrigeme', compact('error'));            
+        }         
+
     }
 
     public function ingresopersonal(Request $request)
     {
-    	$input = $request->all();
-    	$persona_id = $input['persona_id'];
-    	$sede_id = $input['sede_id'];
+        try
+        {
+            $input = $request->all();
+            $persona_id = $input['persona_id'];
+            $sede_id = $input['sede_id'];
 
 
-		DB::beginTransaction();
+            DB::beginTransaction();
 
-		//DB::table('users')->where('votes', '>', 100)->lockForUpdate()->get();
-		$sede = Sede::find($sede_id)->lockForUpdate()->first();
-		if($sede->maximo_actual>0)
-		{
-			$sede->maximo_actual--;
-			$sede->save();
-	    	$historicoingreso = new HistoricoIngreso();
-	    	$historicoingreso->persona_id = $persona_id;
-	    	$historicoingreso->sede_id = $sede_id;
+            //DB::table('users')->where('votes', '>', 100)->lockForUpdate()->get();
+            $sede = Sede::find($sede_id)->lockForUpdate()->first();
+            if($sede->maximo_actual>0)
+            {
+                $sede->maximo_actual--;
+                $sede->save();
+                $historicoingreso = new HistoricoIngreso();
+                $historicoingreso->persona_id = $persona_id;
+                $historicoingreso->sede_id = $sede_id;
 
-	    	$fecha = new DateTime("now");
-	        $fecha=$fecha->format('Y-m-d');
-	        $historicoingreso->fecha = $fecha;
+                $fecha = new DateTime("now");
+                $fecha=$fecha->format('Y-m-d');
+                $historicoingreso->fecha = $fecha;
 
-	        $historicoingreso->save();			
-		}
-		else
-		{
-			Session::flash('resultado','abortar');
-        	return view('control-ingresos.personal.respuesta');			
-		}
+                $historicoingreso->save();          
+            }
+            else
+            {
+                Session::flash('resultado','abortar');
+                return view('control-ingresos.personal.respuesta');         
+            }
 
-		DB::commit();
+            DB::commit();
 
-		Session::flash('resultado','aceptar');
-        return view('control-ingresos.personal.respuesta');
-
+            Session::flash('resultado','aceptar');
+            return view('control-ingresos.personal.respuesta');      
+        }
+        catch(\Exception $e)
+        {
+            Log::error($e);
+            $error = 'ControlIngresosController-ingresopersonal';
+            return view('errors.corrigeme', compact('error'));            
+        }
 
     }
 
@@ -111,240 +151,300 @@ class ControlIngresosController extends Controller
 
     public function indextercero()
     {
-        $sedes=Sede::all();
-        return view('control-ingresos.terceros.index',compact('sedes'));       
+        try
+        {
+            $sedes=Sede::all();
+            return view('control-ingresos.terceros.index',compact('sedes'));       
+        }
+        catch(\Exception $e)
+        {
+            Log::error($e);
+            $error = 'ControlIngresosController-indextercero';
+            return view('errors.corrigeme', compact('error'));            
+        }        
+     
     }
 
     public function buscartercero(BuscarTerceroRequest $request)
     {
-        $input = $request->all();
-
-        $sede_id = $input['sede'];
-        $documento = $input['documento'];
-        $numerodoc=$input['numerodoc'];
-        $sedes=Sede::all();
-
-
-
-        $persona=null;
-        if($documento == 'DNI')
+        try
         {
-            $match = ['id_tipo_persona'=>3,'doc_identidad'=>$numerodoc];
-            $persona = Persona::where($match)->first();
-        }
-        else
-        {
-            $match = ['id_tipo_persona'=>3,'carnet_extranjeria'=>$numerodoc];
-            $persona = Persona::where($match)->first();
-        }
+            $input = $request->all();
 
-        if($persona==null)
-        {
-            Session::flash('resultado','noencontrado');
-        }
-        else
-        {
-            Session::flash('resultado','encontrado');
-        }
+            $sede_id = $input['sede'];
+            $documento = $input['documento'];
+            $numerodoc=$input['numerodoc'];
+            $sedes=Sede::all();
 
-        return view('control-ingresos.terceros.marcaringreso',compact('sedes','sede_id','persona'));       
+
+
+            $persona=null;
+            if($documento == 'DNI')
+            {
+                $match = ['id_tipo_persona'=>3,'doc_identidad'=>$numerodoc];
+                $persona = Persona::where($match)->first();
+            }
+            else
+            {
+                $match = ['id_tipo_persona'=>3,'carnet_extranjeria'=>$numerodoc];
+                $persona = Persona::where($match)->first();
+            }
+
+            if($persona==null)
+            {
+                Session::flash('resultado','noencontrado');
+            }
+            else
+            {
+                Session::flash('resultado','encontrado');
+            }
+
+            return view('control-ingresos.terceros.marcaringreso',compact('sedes','sede_id','persona'));       
+        }
+        catch(\Exception $e)
+        {
+            Log::error($e);
+            $error = 'ControlIngresosController-buscartercero';
+            return view('errors.corrigeme', compact('error'));            
+        }         
+               
     }
 
     public function ingresotercero(Request $request)
     {
-        $input = $request->all();
-        $persona_id = $input['persona_id'];
-        $sede_id = $input['sede_id'];
-        $config = Configuracion::where('grupo','=',12)->first();
-        $precio_entrada =$config->valor;
-        $fecha = new DateTime("now");
-        $fecha_2 = $fecha->format('d-m-Y H:i:s');
-        $fecha=$fecha->format('Y-m-d H:i:s');
-
-        DB::beginTransaction();
-
-        //DB::table('users')->where('votes', '>', 100)->lockForUpdate()->get();
-        $sede = Sede::find($sede_id)->lockForUpdate()->first();
-        if($sede->maximo_actual>0)
+        try
         {
-            $sede->maximo_actual--;
-            $sede->save();
-            $historicoingreso = new HistoricoIngreso();
-            $historicoingreso->persona_id = $persona_id;
-            $historicoingreso->sede_id = $sede_id;
+            $input = $request->all();
+            $persona_id = $input['persona_id'];
+            $sede_id = $input['sede_id'];
+            $config = Configuracion::where('grupo','=',12)->first();
+            $precio_entrada =$config->valor;
+            $fecha = new DateTime("now");
+            $fecha_2 = $fecha->format('d-m-Y H:i:s');
+            $fecha=$fecha->format('Y-m-d H:i:s');
+
+            DB::beginTransaction();
+
+            //DB::table('users')->where('votes', '>', 100)->lockForUpdate()->get();
+            $sede = Sede::find($sede_id)->lockForUpdate()->first();
+            if($sede->maximo_actual>0)
+            {
+                $sede->maximo_actual--;
+                $sede->save();
+                $historicoingreso = new HistoricoIngreso();
+                $historicoingreso->persona_id = $persona_id;
+                $historicoingreso->sede_id = $sede_id;
 
 
-            $historicoingreso->fecha = $fecha;
+                $historicoingreso->fecha = $fecha;
 
-            $historicoingreso->save();          
+                $historicoingreso->save();          
+            }
+            else
+            {
+                Session::flash('resultado','abortar');
+                return view('control-ingresos.terceros.respuesta');         
+            }
+
+            DB::commit();
+
+            Session::flash('resultado','aceptar');
+            $persona = Persona::find($persona_id);
+            $sede = Sede::find($sede_id);
+            return view('control-ingresos.terceros.respuesta',compact('persona','sede','precio_entrada','fecha_2'));       
         }
-        else
+        catch(\Exception $e)
         {
-            Session::flash('resultado','abortar');
-            return view('control-ingresos.terceros.respuesta');         
-        }
-
-        DB::commit();
-
-        Session::flash('resultado','aceptar');
-        $persona = Persona::find($persona_id);
-        $sede = Sede::find($sede_id);
-        return view('control-ingresos.terceros.respuesta',compact('persona','sede','precio_entrada','fecha_2'));        
+            Log::error($e);
+            $error = 'ControlIngresosController-ingresotercero';
+            return view('errors.corrigeme', compact('error'));            
+        }         
+                
     }
 
     public function indexsocio()
     {
-        $sedes=Sede::all();
-        return view('control-ingresos.socio.index',compact('sedes'));       
+        try
+        {
+            $sedes=Sede::all();
+            return view('control-ingresos.socio.index',compact('sedes'));                   
+        }
+        catch(\Exception $e)
+        {
+            Log::error($e);
+            $error = 'ControlIngresosController-indexsocio';
+            return view('errors.corrigeme', compact('error'));            
+        }        
+       
     }
 
     public function buscarsocio(BuscarSocioRequest $request)
     {
-        $input = $request->all();
-
-        $sede_id = $input['sede'];
-        $nro_carnet = $input['numero_carnet'];
-        $sedes=Sede::all();
-
-        $fecha = new DateTime("now");
-        $dia = $fecha->format('d');
-
-        $carnet = Carnet::where('nro_carnet','=',$nro_carnet)->get()->first();
-
-        $config = Configuracion::where('grupo','=',12)->first();
-        $precio_entrada =$config->valor;
-
-        $historicoinvitaciones = HistoricoInvitacion::where('sede_id','=',$sede_id)->whereDay('fecha_invitacion','=',date($dia))->get(); //obtener todas las invitaciones del día
-
-
-        if($carnet!=null)
+        try
         {
-            Session::flash('resultado','encontrado');
-            $socio = $carnet->socio;
+            $input = $request->all();
 
-            //obtener lista de invitados del socio para ese día
-            $invitados = array();
-            foreach ($historicoinvitaciones as $historicoinvitacion ) {
-                if($historicoinvitacion->invitado->persona_id == $socio->postulante->persona->id)
-                {
-                    $persona = Persona::find($historicoinvitacion->invitado->invitado_id); //obtengo un invitado de ese socio
-                    array_push($invitados,$persona);
+            $sede_id = $input['sede'];
+            $nro_carnet = $input['numero_carnet'];
+            $sedes=Sede::all();
+
+            $fecha = new DateTime("now");
+            $dia = $fecha->format('d');
+
+            $carnet = Carnet::where('nro_carnet','=',$nro_carnet)->get()->first();
+
+            $config = Configuracion::where('grupo','=',12)->first();
+            $precio_entrada =$config->valor;
+
+            $historicoinvitaciones = HistoricoInvitacion::where('sede_id','=',$sede_id)->whereDay('fecha_invitacion','=',date($dia))->get(); //obtener todas las invitaciones del día
+
+
+            if($carnet!=null)
+            {
+                Session::flash('resultado','encontrado');
+                $socio = $carnet->socio;
+
+                //obtener lista de invitados del socio para ese día
+                $invitados = array();
+                foreach ($historicoinvitaciones as $historicoinvitacion ) {
+                    if($historicoinvitacion->invitado->persona_id == $socio->postulante->persona->id)
+                    {
+                        $persona = Persona::find($historicoinvitacion->invitado->invitado_id); //obtengo un invitado de ese socio
+                        array_push($invitados,$persona);
+                    }
                 }
+
+                
+
+                return view('control-ingresos.socio.marcaringreso',compact('sede_id','socio','invitados','precio_entrada')); 
             }
-
-            
-
-            return view('control-ingresos.socio.marcaringreso',compact('sede_id','socio','invitados','precio_entrada')); 
+            else
+            {
+                Session::flash('resultado','noencontrado');
+                return view('control-ingresos.socio.marcaringreso');
+            }                   
         }
-        else
+        catch(\Exception $e)
         {
-            Session::flash('resultado','noencontrado');
-            return view('control-ingresos.socio.marcaringreso');
-        }      
+            Log::error($e);
+            $error = 'ControlIngresosController-buscarsocio';
+            return view('errors.corrigeme', compact('error'));            
+        }         
+             
     }
 
     public function ingresosocio(Request $request)
     {
-        $input = $request->all();
-
-        //obtener socio
-        $nro_carnet = $input['carnet'];
-        $carnet = Carnet::where('nro_carnet','=',$nro_carnet)->get()->first();
-        $socio = $carnet->socio;
-
-        //obtener sede
-        $sede_id = $input['sede_id'];
-        //$sede = Sede::find($sede_id);                
-
-        //obtener familiares
-        $fam_ids=array();
-        if(isset($input['fam']))
+        try
         {
-            $fam_ids = $input['fam'];
-        }
+            $input = $request->all();
 
-        //obtener invitados
-        $inv_ids=array();
-        if(isset($input['inv']))
-        {
-            $inv_ids=$input['inv'];
-        }
+            //obtener socio
+            $nro_carnet = $input['carnet'];
+            $carnet = Carnet::where('nro_carnet','=',$nro_carnet)->get()->first();
+            $socio = $carnet->socio;
 
-        //fecha ingreso
-        $fecha = new DateTime("now");
-        $fecha_2 = $fecha->format('d-m-Y H:i:s');
-        $fecha=$fecha->format('Y-m-d H:i:s');
+            //obtener sede
+            $sede_id = $input['sede_id'];
+            //$sede = Sede::find($sede_id);                
 
-        //precio entrada
-        $config = Configuracion::where('grupo','=',12)->first();
-        $precio_entrada =$config->valor;  
-
-
-        //numero de ingresantes = socio+familiares+invitados
-        $tot=1+count($fam_ids)+count($inv_ids);
-
-        //transaccional
-        DB::beginTransaction();
-        $sede = Sede::find($sede_id)->lockForUpdate()->first();
-        if($sede->maximo_actual>$tot)
-        {
-            $sede->maximo_actual=$sede->maximo_actual-$tot;
-            $sede->save();
-
-            //guardar socio
-            $historico = new HistoricoIngreso();
-            $historico->persona_id = $socio->postulante->persona->id;
-            $historico->sede_id = $sede_id;
-            $historico->fecha=$fecha;
-            $historico->save();
-
-            //guardar familiares
-            foreach ($fam_ids as $persona_id) {
-                $historicoingreso = new HistoricoIngreso();
-                $historicoingreso->persona_id = $persona_id;
-                $historicoingreso->sede_id = $sede_id;
-                $historico->fecha=$fecha;
-                $historico->save();                
+            //obtener familiares
+            $fam_ids=array();
+            if(isset($input['fam']))
+            {
+                $fam_ids = $input['fam'];
             }
 
-            //guardar invitados
-            foreach ($inv_ids as $persona_id) {
-                $historicoingreso = new HistoricoIngreso();
-                $historicoingreso->persona_id = $persona_id;
-                $historicoingreso->sede_id = $sede_id;
-                $historico->fecha=$fecha;
-                $historico->save();  
+            //obtener invitados
+            $inv_ids=array();
+            if(isset($input['inv']))
+            {
+                $inv_ids=$input['inv'];
             }
+
+            //fecha ingreso
+            $fecha = new DateTime("now");
+            $fecha_2 = $fecha->format('d-m-Y H:i:s');
+            $fecha=$fecha->format('Y-m-d H:i:s');
+
+            //precio entrada
+            $config = Configuracion::where('grupo','=',12)->first();
+            $precio_entrada =$config->valor;  
+
+
+            //numero de ingresantes = socio+familiares+invitados
+            $tot=1+count($fam_ids)+count($inv_ids);
+
+            //transaccional
+            DB::beginTransaction();
+            $sede = Sede::find($sede_id)->lockForUpdate()->first();
+            if($sede->maximo_actual>$tot)
+            {
+                $sede->maximo_actual=$sede->maximo_actual-$tot;
+                $sede->save();
+
+                //guardar socio
+                $historico = new HistoricoIngreso();
+                $historico->persona_id = $socio->postulante->persona->id;
+                $historico->sede_id = $sede_id;
+                $historico->fecha=$fecha;
+                $historico->save();
+
+                //guardar familiares
+                foreach ($fam_ids as $persona_id) {
+                    $historicoingreso = new HistoricoIngreso();
+                    $historicoingreso->persona_id = $persona_id;
+                    $historicoingreso->sede_id = $sede_id;
+                    $historico->fecha=$fecha;
+                    $historico->save();                
+                }
+
+                //guardar invitados
+                foreach ($inv_ids as $persona_id) {
+                    $historicoingreso = new HistoricoIngreso();
+                    $historicoingreso->persona_id = $persona_id;
+                    $historicoingreso->sede_id = $sede_id;
+                    $historico->fecha=$fecha;
+                    $historico->save();  
+                }
+            }
+            else
+            {
+                Session::flash('resultado','abortar');
+                return view('control-ingresos.socio.respuesta');               
+            }        
+
+            DB::commit();
+
+            Session::flash('resultado','aceptar');
+            $sede = Sede::find($sede_id);
+            $numFam = count($fam_ids);
+            $numInv = count($inv_ids);
+
+            $precio_tot=0;
+            if($socio->numInvitadosMes==$socio->membresia->numMaxInvitados)
+            {   
+                $precio_tot=$precio_entrada*$numInv;
+            }
+            elseif ($socio->numInvitadosMes+$tot>=$socio->membresia->numMaxInvitados) {
+                $dif = $socio->numInvitadosMes+$numInv -$socio->membresia->numMaxInvitados;
+                $precio_tot=$precio_entrada*$dif;
+                $socio->numInvitadosMes=$socio->membresia->numMaxInvitados;
+                $socio->save();
+            }
+            else
+            {
+                $socio->numInvitadosMes=$socio->numInvitadosMes+$numInv;
+                $socio->save();
+            }
+            return view('control-ingresos.socio.respuesta',compact('socio','sede','numFam','numInv','precio_tot','fecha_2'));                   
         }
-        else
+        catch(\Exception $e)
         {
-            Session::flash('resultado','abortar');
-            return view('control-ingresos.socio.respuesta');               
-        }        
-
-        DB::commit();
-
-        Session::flash('resultado','aceptar');
-        $sede = Sede::find($sede_id);
-        $numFam = count($fam_ids);
-        $numInv = count($inv_ids);
-
-        $precio_tot=0;
-        if($socio->numInvitadosMes==$socio->membresia->numMaxInvitados)
-        {   
-            $precio_tot=$precio_entrada*$tot;
-        }
-        elseif ($socio->numInvitadosMes+$tot>=$socio->membresia->numMaxInvitados) {
-            $dif = $socio->numInvitadosMes+$tot -$socio->membresia->numMaxInvitados;
-            $precio_tot=$precio_entrada*$dif;
-            $socio->numInvitadosMes=$socio->membresia->numMaxInvitados;
-            $socio->save();
-        }
-        else
-        {
-            $socio->numInvitadosMes=$socio->numInvitadosMes+$tot;
-            $socio->save();
-        }
-        return view('control-ingresos.socio.respuesta',compact('socio','sede','numFam','numInv','precio_tot','fecha_2'));                   
+            Log::error($e);
+            $error = 'ControlIngresosController-ingresosocio';
+            return view('errors.corrigeme', compact('error'));            
+        }            
+                           
     }
 }

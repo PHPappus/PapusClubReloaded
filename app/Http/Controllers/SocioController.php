@@ -13,15 +13,19 @@ use Redirect;
 use papusclub\Http\Controllers\Controller;
 use papusclub\User;
 use papusclub\Models\Socio;
+use papusclub\Models\Sede;
 use papusclub\Models\Persona;
 use papusclub\Models\TipoFamilia;
 use papusclub\Models\Traspaso;
 use papusclub\Models\Postulante;
 use papusclub\Models\Invitados;
+use papusclub\Models\Configuracion;
+use papusclub\Models\HistoricoInvitacion;
 use papusclub\Http\Requests\StoreTraspasoRequest;
 use papusclub\Http\Requests\StoreObservacionRequest;
 use papusclub\Http\Requests\StoreFamiliarSocioRequest;
 use papusclub\Http\Requests\StoreInvitadoRequest;
+use papusclub\Http\Requests\StoreInvitacionRequest;
 
 use DB;
 
@@ -237,6 +241,55 @@ class SocioController extends Controller
         $post->observacion()->save($socio,['observacion' => $input['obs']]);
 
         return redirect('ver-postulantes')->with('stored','Se registró la observación correctamene');
+    }
+
+    /*Solicitar ingreso con invitados*/
+    public function solicitarIngreso()
+    {
+
+        /*Obtenemos al socio*/
+        $user_id = Auth::user()->id;
+
+        $usuario = User::find($user_id);
+        $persona_id = $usuario->persona->id;
+
+        $postulante = Postulante::find($persona_id);
+        $socio = $postulante->socio;
+
+        /*Retornamos sus invitados*/
+        $invitados = $socio->postulante->persona->invitados;
+
+        $sedes = Sede::all();
+
+        $entrada = Configuracion::where('grupo','=','12')->first();
+        $precio = $entrada->valor;
+        $precio = 'S/. '.$precio;
+
+        return view('socio.tramites.ingreso',compact('sedes','precio','invitados','socio'));
+
+    }
+
+
+    public function storeInvitacion(StoreInvitacionRequest $request)
+    {
+        $input = $request->all();
+
+        $sede_id = $input['sede'];
+        $fecha_str=str_replace('/', '-', $input['fecha_invitacion']);
+        $inv_ids = $input['inv'];
+
+
+        $fecha_invitacion=date("Y-m-d",strtotime($fecha_str)); 
+
+        foreach ($inv_ids as $invitado_id) {
+            $historicoinvitacion = new HistoricoInvitacion();
+            $historicoinvitacion->invitado_id=$invitado_id;
+            $historicoinvitacion->sede_id=$sede_id;
+            $historicoinvitacion->fecha_invitacion=$fecha_invitacion;
+            $historicoinvitacion->save();
+        }
+
+        return redirect('/solicitud-ingreso-invitados')->with('stored','Solicitud de Ingreso creada con éxito.');       
     }
 
 
