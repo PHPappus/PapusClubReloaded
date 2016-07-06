@@ -26,7 +26,7 @@ class MantenimientoController extends Controller
             $sedes = Sede::all();
             $mytime = Carbon::now();
             echo $mytime;
-            $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')/*->where('estado','!=','Deshabilitado')*/->get();
+            $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();
             foreach($ambientes as $ambiente)
             {
                 $bungalowsIna=Mantenimiento::where('id_bungalow','=',$ambiente->id)->get();
