@@ -585,7 +585,7 @@ class ReservarAmbienteController extends Controller
     public function storeOtroTipoAmbiente($id, StoreReservaOtroAmbienteSocio $request)
     {
         try {
-            //DB::beginTransaction();
+            DB::beginTransaction();
             try{
                 $user_id = Auth::user()->id;
                 $usuario = User::find($user_id);
@@ -674,10 +674,10 @@ class ReservarAmbienteController extends Controller
 
             }
                         catch(ValidationException $e){
-                            //DB::rollback();
-                            //var_dump($e->getErrors());
+                            DB::rollback();
+                            var_dump($e->getErrors());
                         }
-                        //DB::commit();
+                        DB::commit();
             return redirect('reservar-ambiente/reservar-otros-ambientes')->with('stored', 'Se registró la reserva del ambiente correctamente.');
         } catch (\Exception $e) {
             $error = 'storeOtroTipoAmbiente-ReservarAmbienteController';
