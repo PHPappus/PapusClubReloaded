@@ -32,7 +32,6 @@ class UsuarioController extends Controller
 
     public function cuenta()
     {
-
         try
         {
             $perfil = 'socio';
@@ -61,6 +60,9 @@ class UsuarioController extends Controller
                     case '8':
                         $perfil='control-ingresos';
                         break;
+                    case '9':
+                        $perfil='socio-suspendido';
+                        break;                        
             }
             if($perfil!='socio')
             {
@@ -192,6 +194,7 @@ class UsuarioController extends Controller
 
         
     }
+
     public function changepassword()
     {
 
@@ -224,9 +227,13 @@ class UsuarioController extends Controller
                     case '8':
                         $perfil='control-ingresos';
                         break;
+                    case '9':
+                        $perfil='socio-suspendido';
+                        break;                        
             }
 
            return view('auth.changepassword', compact('perfil'));          
+
         }
         catch(\Exception $e)
         {
@@ -242,6 +249,7 @@ class UsuarioController extends Controller
 
         try
         {
+
             /*if(Auth::attempt(['password'=>$request['password_current']]))*/
             if(Hash::check($request['password_current'],Auth::user()->password))
             {
@@ -274,9 +282,13 @@ class UsuarioController extends Controller
                     case '8':
                         $perfil='/control-ingresos';
                         break;
+                    case '9':
+                        $perfil='socio-suspendido';
+                        break;                        
                 }
                 Session::flash('message','Su contraseña ha sido cambiada con éxito');
                 return Redirect::to($perfil)->with('message','Su contraseña ha sido cambiada con éxito');
+
             }
             else{
                 Session::flash('message-error','Contraseña incorrecta');

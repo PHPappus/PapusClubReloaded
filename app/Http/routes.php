@@ -777,8 +777,12 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 
 
 //Publico
-	Route::group(['middleware' => ['auth', 'publico']], function () {
+Route::group(['middleware' => ['auth', 'publico']], function () {
 	Route::resource('public','PublicoController');
+});
+
+Route::group(['middleware' => ['auth', 'sociosuspendido']], function () {
+	Route::resource('socio-suspendido','SocioSuspendidoController');
 });
 
 /*Route::get('sede-a','SedesController@index');
