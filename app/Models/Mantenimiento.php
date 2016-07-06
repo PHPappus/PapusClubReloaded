@@ -9,7 +9,7 @@ class Mantenimiento extends Model
 {
 	use SoftDeletes;
 
-    protected $table='mantenimientobungalow';
+    protected $table='mantenimientoBungalow';
     protected $dates = ['deleted_at'];
  	
  	/*public function sede()
