@@ -1162,9 +1162,9 @@
 						                        <div class="input-group-btn">
 						                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Estado <span class="caret"></span></button>
 						                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
-						                                <li><a href="#" onclick="vigente()">{{$socio->vigente()}}</a></li>
-						                                <li><a href="#" onclick="inhabilitado()">{{$socio->inhabilitado()}}</a></li>
-						                                <li><a href="#" onclick="carnet_inhabilitado()">{{$socio->carnet_inhabilitado()}}</a></li>
+						                                <li><a style="color:black" href="#" onclick="vigente()">{{$socio->vigente()}}</a></li>
+						                                <li><a style="color:black" href="#" onclick="inhabilitado()">{{$socio->inhabilitado()}}</a></li>
+						                                <li><a style="color:black" href="#" onclick="carnet_inhabilitado()">{{$socio->carnet_inhabilitado()}}</a></li>
 						                            </ul>
 						                        </div><!-- /btn-group -->
 						                    </div><!-- /input-group -->
