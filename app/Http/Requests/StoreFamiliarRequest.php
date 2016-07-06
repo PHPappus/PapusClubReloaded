@@ -32,7 +32,7 @@ class StoreFamiliarRequest extends Request
             'ap_materno' => 'required|max:100|alpha',
             'doc_identidad'=> 'required_if:nacionalidad,peruano', //| unique:persona,doc_identidad,NULL',
             'carnet_extranjeria'=> 'required_if:nacionalidad,extranjero',//  | unique:persona,carnet_extranjeria,NULL',
-            'correo'=>'email',
+            'correo'=>'required|email|unique:persona',
             'tipo_relacion'=> 'required|exists:configuracion,id',
 
             'fecha_nacimiento'=>'required|string',

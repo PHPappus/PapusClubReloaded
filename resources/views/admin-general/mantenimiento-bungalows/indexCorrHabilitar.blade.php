@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>DESHABILITAR BUNGALOWS</title>
+	<title>MANTENIMIENTO DE BUNGALOWS</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,7 @@
 		
 		<div class="container">
 			<div class="col-sm-12 text-left lead">
-					<strong>DESHABILITAR BUNGALOWS</strong>
+					<strong>MANTENIMIENTO DE BUNGALOWS</strong>
 			</div>		
 			<div></div>
 		</div>
@@ -46,29 +46,32 @@
 						<table class="table table-bordered table-hover text-center display" id="example">
 							<thead class="active" data-sortable="true">								
 								<th><div align=center>NOMBRE</div></th>	
-								<th><div align=center>CAPACIDAD</div></th>	
-								<th><div align=center>UBICACION</div></th>	
-								<th><div align=center>SEDE</div></th>	
+								<th><div align=center>SEDE</div></th>
+								<th><div align=center>FECHA INICIO</div></th>	
+								<th><div align=center>FECHA FIN</div></th>										
 								<th><div align=center>ESTADO</div></th>	
-								<th><div align=center>SELECCIONAR</div></th>
-							</thead>	
+								<th><div align=center>ELIMINAR</div></th>
+							</thead>
 							<tbody>													
-								@foreach($ambientes as $ambiente)	
-									@if($ambiente->nombre!='nada')
+								@foreach($mantenimientos as $mantenimiento)	
 										<tr>																				
-											<td>{{$ambiente->nombre}}</td>
-											<td>{{$ambiente->capacidad_actual}}</td>
-											<td>{{$ambiente->descripcion}}</td>
-											@foreach($sedes as $sede)
-												@if($sede->id==$ambiente->sede_id)
-													<td>{{$sede->nombre}}</td>
+											@foreach($ambientes as $ambiente)
+												@if($ambiente->id == $mantenimiento->id_bungalow)
+													<td>{{$ambiente->nombre}}</td>
+													@foreach($sedes as $sede)
+														@if($sede->id == $ambiente->sede_id)
+															<td>{{$sede->nombre}}</td>
+														@endif
+													@endforeach
 												@endif
 											@endforeach
-											<td>{{$ambiente->estado}}</td>
-											<td>{{ Form::checkbox('ch[]', $ambiente->id, false) }}</td>
-														
-										</tr>
-									@endif								
+											<td>{{$mantenimiento->fecha_inicio}}</td>
+											<td>{{$mantenimiento->fecha_fin}}</td>
+											<td>{{$mantenimiento->estado}}</td>
+											<td>
+									            <a class="btn btn-info"  title="Eliminar" data-href="{{url('/sorteo/'.$mantenimiento->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
+									        </td>	
+										</tr>						
 								 @endforeach
 								
 							</tbody>			
@@ -76,13 +79,7 @@
 					</div>	
 				</div>
 				<br><br>
-				<div class="btn-inline">
-					<div class="btn-group col-sm-7"></div>
-					
-					<div class="btn-group ">
-						<input class="btn btn-primary" type="submit" value="Habilitar">
-					</div>
-				</div>
+
 				<br><br>
 
 				

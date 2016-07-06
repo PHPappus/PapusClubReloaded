@@ -2,7 +2,7 @@
         /*Reparando desajuste*/
         @media (min-width: 1405px){
             #navbar1 {
-                width: 1403px;
+                width: 1460px;
             }
         }
         @media (min-width: 1350px){
@@ -55,7 +55,7 @@
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Actividades <span class="caret"></span>
+              Eventos/Actividades <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
               <li><a href="{!!URL::to('/inscripcion-actividad/inscripcion-actividades')!!}" title="Consultar Actividades" target="_self">Consultar</a></li>
@@ -66,7 +66,7 @@
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
-              Talleres <span class="caret"></span>
+              Talleres/Cursos <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
               <li><a href="{!!URL::to('/talleres/index')!!}" title="Consultar talleres" target="_self">Consultar</a></li>
@@ -128,6 +128,7 @@
               <li><a href="{!!URL::to('/traspaso')!!}" title="solicitar traspasos" target="_self">Traspasos</a></li>
               <li><a href="{!!URL::to('/mis-multas')!!}" title="ver multas" target="_self">Mis Multas</a></li>
               <li><a href="{!!URL::to('/ver-postulantes')!!}" title="calificar postulantes" target="_self">Obs. Postulantes</a></li>
+              <li><a href="{!!URL::to('/solicitud-ingreso-invitados')!!}" title="solicitar ingreso con invitados" target="_self">Solicitud Ingreso</a></li>
             </ul>
           </li>
         </ul>

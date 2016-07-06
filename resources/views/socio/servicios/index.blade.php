@@ -91,7 +91,7 @@
 			<div class="container">
 				<table id="talleresTable" class="table table-bordered table-hover text-center display">
 					<thead class="active">
-						<tr class="active">
+						<tr style="background:#a3decb; font: caption; color:#FFF;">
 							<th><div align=center>NOMBRE</div></th>	
 							<th><div align=center>DESCRIPCIÓN</div></th>				
 							<th style="max-width:100px;"><div align=center>TIPO DE SERVICIO</div></th>

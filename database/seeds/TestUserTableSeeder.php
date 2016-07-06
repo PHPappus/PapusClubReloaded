@@ -28,6 +28,8 @@ class TestUserTableSeeder extends Seeder
 	    User::insert([ 'name' => 'Elvis Nieto' , 'email' => 'adminreserva@mail.com', 'perfil_id'=>7,
 	    			   'password' => bcrypt('123456')]);//Perfil Administrador de Reserva 
 	    User::insert([ 'name' => 'Elgar Gajo' , 'email' => 'controlingresos@mail.com', 'perfil_id'=>8,
-	    			   'password' => bcrypt('123456')]);//Perfil Publico   
+	    			   'password' => bcrypt('123456')]);//Perfil Control de ingresos }
+	   	User::insert([ 'name' => 'Jhony Savia' , 'email' => 'sociosuspendido@mail.com', 'perfil_id'=>9,
+	    			   'password' => bcrypt('123456')]);//Perfil Socio Suspendido  
     }
 }
