@@ -10,6 +10,7 @@ use papusclub\Models\Sorteo;
 use papusclub\Models\Ambiente;
 use papusclub\Models\Reserva;
 use papusclub\Models\Sede;
+use papusclub\Models\Mantenimiento;
 use papusclub\Models\Sorteoxsocio;
 use Auth;
 use papusclub\User;
@@ -249,8 +250,17 @@ class SorteoController extends Controller
 
     public function correccionUnica($id){
         $sorteo = Sorteo::find($id);
-        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('sede_id','=',$sorteo->id_sede)->where('estado','!=','Deshabilitado')->get();
 
+
+        $mytime = Carbon::now(-5);
+        echo $mytime;
+
+        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('sede_id','=',$sorteo->id_sede)->where('estado','!=','Deshabilitado')->get();
+        $ambientesInas=Mantenimiento::where('fecha_inicio','<=',$mytime)->where('fecha_fin','>=',$mytime)->get();
+
+        foreach ($ambientesInas as $ambienteIna) {
+            $ambientes->pull($ambientes->search(Ambiente::find($ambienteIna->id_bungalow)));
+        }
         //las reservas inician en el rango del sorteo
         $reservas_caso_1=Reserva::whereBetween('fecha_inicio_reserva', [$sorteo->fecha_abierto, $sorteo->fecha_cerrado])->get();
         //las reservas terminan en el rango del sorteo
@@ -374,8 +384,18 @@ class SorteoController extends Controller
     }
 
     public function bungalows($id){
+        
         $sorteo = Sorteo::find($id);
+
+        $mytime = Carbon::now(-5);
+        echo $mytime;
+
         $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('sede_id','=',$sorteo->id_sede)->where('estado','!=','Deshabilitado')->get();
+        $ambientesInas=Mantenimiento::where('fecha_inicio','<=',$mytime)->where('fecha_fin','>=',$mytime)->get();
+
+        foreach ($ambientesInas as $ambienteIna) {
+            $ambientes->pull($ambientes->search(Ambiente::find($ambienteIna->id_bungalow)));
+        }
 
         //las reservas inician en el rango del sorteo
         $reservas_caso_1=Reserva::whereBetween('fecha_inicio_reserva', [$sorteo->fecha_abierto, $sorteo->fecha_cerrado])->get();
