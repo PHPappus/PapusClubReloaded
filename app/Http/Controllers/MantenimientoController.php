@@ -131,4 +131,20 @@ class MantenimientoController extends Controller
             return view('errors.corrigeme', compact('error'));
         }
     }
+
+    public function destroy($id)
+    {
+        try
+        {
+            $mantenimiento=Mantenimiento::find($id);
+            //Reviso si hay bungalows asociados
+            $mantenimiento->delete();
+            return redirect('mantBungalowPrev/indexHabilitar');    
+        }
+        catch (\Exception $e)
+        {
+            $error = 'destroy-SorteoController';
+            return view('errors.corrigeme', compact('error'));
+        }
+    }
 }
