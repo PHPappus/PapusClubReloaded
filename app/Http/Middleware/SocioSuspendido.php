@@ -4,7 +4,7 @@ namespace papusclub\Http\Middleware;
 
 use Closure;
 
-class AdminRegistros
+class SocioSuspendido
 {
     /**
      * Handle an incoming request.
@@ -14,8 +14,8 @@ class AdminRegistros
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {   
-        if (\Auth::user()->perfil_id != '4') {
+    {
+        if (\Auth::user()->perfil_id != '9') {
             $request->session()->flash('message-error', 'Usted no esta autorizado!.');
             $request->session()->flash('alert-class', 'alert-danger');
             switch (\Auth::user()->perfil_id) {
@@ -28,9 +28,9 @@ class AdminRegistros
                 case '3':
                     return redirect('/admin-pagos');
                     break;
-                /*case '4':
+                case '4':
                     return redirect('/admin-registros');
-                    break;*/
+                    break;
                 case '5':
                     return redirect('/gerente');
                     break;
@@ -43,9 +43,9 @@ class AdminRegistros
                 case '8':
                     return redirect('/control-ingresos');
                     break;
-                case '9':
+                /*case '9':
                     return redirect('/socio-suspendido');
-                    break;
+                    break;*/
                 default:
                     return redirect('/');
                     break;

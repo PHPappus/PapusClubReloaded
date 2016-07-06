@@ -57,6 +57,9 @@ class UsuarioController extends Controller
                 case '8':
                     $perfil='control-ingresos';
                     break;
+                case '9':
+                    $perfil='socio-suspendido';
+                    break;
         }
         if($perfil!='socio')
         {
@@ -174,6 +177,9 @@ class UsuarioController extends Controller
                 case '8':
                     $perfil='control-ingresos';
                     break;
+                case '9':
+                    $perfil='socio-suspendido';
+                    break;
         }
 
        return view('auth.changepassword', compact('perfil'));
@@ -213,6 +219,9 @@ class UsuarioController extends Controller
                     break;
                 case '8':
                     $perfil='/control-ingresos';
+                    break;
+                case '9':
+                    $perfil='socio-suspendido';
                     break;
             }
             Session::flash('message','Su contraseña ha sido cambiada con éxito');
