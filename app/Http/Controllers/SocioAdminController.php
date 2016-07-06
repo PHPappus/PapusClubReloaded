@@ -418,144 +418,155 @@ class SocioAdminController extends Controller
 
     public function updateMembresia(Request $request,$id)
     {
-        $socio = Socio::withTrashed()->find($id);
-        $input=$request->all();
 
-        
-        /*Modificar tipo de membresia*/
-        $id_membresia = $input['estado'];
-
-        if($id_membresia!=$socio->membresia->id)
+        try
         {
-            /*Actualizar foreign key*/
-            $tipo_membresia= TipoMembresia::withTrashed()->find($id_membresia);
-            $socio->membresia()->associate($tipo_membresia);
-            $socio->save();
-        }
-        /*Modificar estado de carnet o socio*/
+            $socio = Socio::withTrashed()->find($id);
+            $input=$request->all();
 
-        if(!empty($input['estadoInv']))
-        {
-            $estado=$input['estadoInv'];
+            
+            /*Modificar tipo de membresia*/
+            $id_membresia = $input['estado'];
 
-            if($estado==$socio->vigente())
+            if($id_membresia!=$socio->membresia->id)
             {
-                $socio->restore();
-                if($socio->estado==$socio->carnet_inhabilitado())
-                {
-                    /*Registro de un nuevo carnet*/
-                    $anio = Configuracion::where('grupo',5)->first();
-                    $tempcarnet = $socio->carnet_actual();
-                    $carnet = new Carnet();
-                    $carnet->nro_carnet = $tempcarnet->nro_carnet;
-                    /*Fecha de emision*/
-                    $fecha_emision = new DateTime("now");
-                    $fecha_vencimiento = $fecha_emision;
-                    $fecha_emision=$fecha_emision->format('Y-m-d');
-                    $carnet->fecha_emision = $fecha_emision;
-                    /*Fecha de vencimiento*/
-                    $intervalo = new DateInterval('P'.$anio->valor.'Y');
-                    $fecha_vencimiento->add($intervalo);
-                    $fecha_vencimiento=$fecha_vencimiento->format('Y-m-d');
-                    $carnet->fecha_vencimiento = $fecha_vencimiento;
-                    if($input['descripcion']!="")
-                    {
-                        $carnet->descripcion=$input['descripcion'];
-                    }
-                    $socio->addCarnet($carnet);                   
-                }
-                $socio->update(['estado'=>true]);
-                /*Le cambiamos el perfil a socio (habilitado)*/
-                $id=$socio->postulante->persona->id_usuario;
-                if($id!=null){
-                    $usuario=\papusclub\User::find($id);
-                    $usuario->update(['perfil_id'=>1]);
-                } 
-            }    
-        }
-        else if(!empty($input['estado-r']))
-        {
-                    /*Registro de un nuevo carnet*/
-                    $anio = Configuracion::where('grupo',5)->first();
-                    $tempcarnet = $socio->carnet_actual();
-                    $carnet = new Carnet();
-                    $carnet->nro_carnet = $tempcarnet->nro_carnet;
-                    /*Fecha de emision*/
-                    $fecha_emision = new DateTime("now");
-                    $fecha_vencimiento = $fecha_emision;
-                    $fecha_emision=$fecha_emision->format('Y-m-d');
-                    $carnet->fecha_emision = $fecha_emision;
-                    /*Fecha de vencimiento*/
-                    $intervalo = new DateInterval('P'.$anio->valor.'Y');
-                    $fecha_vencimiento->add($intervalo);
-                    $fecha_vencimiento=$fecha_vencimiento->format('Y-m-d');
-                    $carnet->fecha_vencimiento = $fecha_vencimiento;
-                    if(!empty($input['descripcion']))
-                    {
-                        $carnet->descripcion = $input['descripcion'];
-                    }
+                /*Actualizar foreign key*/
+                $tipo_membresia= TipoMembresia::withTrashed()->find($id_membresia);
+                $socio->membresia()->associate($tipo_membresia);
+                $socio->save();
+            }
+            /*Modificar estado de carnet o socio*/
 
-
-                    $carnet_temp = $socio->carnet_actual();
-                    $carnet_temp->update(['estado'=>false]);
-                    $carnet_temp->delete();
-
-                    $socio->addCarnet($carnet);            
-        }
-        else if(!empty($input['estadoVig']))
-        {
-            $estado = $input['estadoVig'];
-            if($estado!=$socio->estado())
+            if(!empty($input['estadoInv']))
             {
-                if($estado==$socio->inhabilitado())
-                {
-                    if(($input['descripcion']!=""))
-                    {
-                        $descripcion=$input['descripcion'];
-                    }
-                    else
-                    {
-                        $descripcion='El socio ha sido inhabilitado pero no se ha especificado el motivo.';
-                    }
-                    $carnet= $socio->carnet_actual();
-                    $carnet->estado=false;
-                    $carnet->descripcion=$descripcion;
-                    $carnet->save();
-                    $carnet->delete();
+                $estado=$input['estadoInv'];
 
-                    $socio->update(['estado'=>false]);
-                    //$socio->delete();
-                    /*Le cambiamos el perfil a socio suspendido*/
+                if($estado==$socio->vigente())
+                {
+                    $socio->restore();
+                    if($socio->estado==$socio->carnet_inhabilitado())
+                    {
+                        /*Registro de un nuevo carnet*/
+                        $anio = Configuracion::where('grupo',5)->first();
+                        $tempcarnet = $socio->carnet_actual();
+                        $carnet = new Carnet();
+                        $carnet->nro_carnet = $tempcarnet->nro_carnet;
+                        /*Fecha de emision*/
+                        $fecha_emision = new DateTime("now");
+                        $fecha_vencimiento = $fecha_emision;
+                        $fecha_emision=$fecha_emision->format('Y-m-d');
+                        $carnet->fecha_emision = $fecha_emision;
+                        /*Fecha de vencimiento*/
+                        $intervalo = new DateInterval('P'.$anio->valor.'Y');
+                        $fecha_vencimiento->add($intervalo);
+                        $fecha_vencimiento=$fecha_vencimiento->format('Y-m-d');
+                        $carnet->fecha_vencimiento = $fecha_vencimiento;
+                        if($input['descripcion']!="")
+                        {
+                            $carnet->descripcion=$input['descripcion'];
+                        }
+                        $socio->addCarnet($carnet);                   
+                    }
+                    $socio->update(['estado'=>true]);
+                    /*Le cambiamos el perfil a socio (habilitado)*/
                     $id=$socio->postulante->persona->id_usuario;
                     if($id!=null){
                         $usuario=\papusclub\User::find($id);
-                        $usuario->update(['perfil_id'=>9]);
-                    }
-                    
-                }
-                else if($estado==$socio->carnet_inhabilitado())
-                {
-                    if(!empty($input['descripcion']!=""))
-                    {
-                        $descripcion=$input['descripcion'];
-                    }
-                    else
-                    {
-                        $descripcion='El carnet ha sido inhabilitado pero no se ha especificado el motivo.';
-                    }
-                    $carnet = $socio->carnet_actual();
-                    $carnet->estado=false;
-                    $carnet->descripcion=$descripcion;
-                    $carnet->save();
-                    $carnet->delete();
+                        $usuario->update(['perfil_id'=>1]);
+                    } 
+                }    
+            }
+            else if(!empty($input['estado-r']))
+            {
+                        /*Registro de un nuevo carnet*/
+                        $anio = Configuracion::where('grupo',5)->first();
+                        $tempcarnet = $socio->carnet_actual();
+                        $carnet = new Carnet();
+                        $carnet->nro_carnet = $tempcarnet->nro_carnet;
+                        /*Fecha de emision*/
+                        $fecha_emision = new DateTime("now");
+                        $fecha_vencimiento = $fecha_emision;
+                        $fecha_emision=$fecha_emision->format('Y-m-d');
+                        $carnet->fecha_emision = $fecha_emision;
+                        /*Fecha de vencimiento*/
+                        $intervalo = new DateInterval('P'.$anio->valor.'Y');
+                        $fecha_vencimiento->add($intervalo);
+                        $fecha_vencimiento=$fecha_vencimiento->format('Y-m-d');
+                        $carnet->fecha_vencimiento = $fecha_vencimiento;
+                        if(!empty($input['descripcion']))
+                        {
+                            $carnet->descripcion = $input['descripcion'];
+                        }
 
-                    $socio->update(['estado'=>false]);
-                    //$socio->delete();
+
+                        $carnet_temp = $socio->carnet_actual();
+                        $carnet_temp->update(['estado'=>false]);
+                        $carnet_temp->delete();
+
+                        $socio->addCarnet($carnet);            
+            }
+            else if(!empty($input['estadoVig']))
+            {
+                $estado = $input['estadoVig'];
+                if($estado!=$socio->estado())
+                {
+                    if($estado==$socio->inhabilitado())
+                    {
+                        if(($input['descripcion']!=""))
+                        {
+                            $descripcion=$input['descripcion'];
+                        }
+                        else
+                        {
+                            $descripcion='El socio ha sido inhabilitado pero no se ha especificado el motivo.';
+                        }
+                        $carnet= $socio->carnet_actual();
+                        $carnet->estado=false;
+                        $carnet->descripcion=$descripcion;
+                        $carnet->save();
+                        $carnet->delete();
+
+                        $socio->update(['estado'=>false]);
+                        //$socio->delete();
+                        /*Le cambiamos el perfil a socio suspendido*/
+                        $id=$socio->postulante->persona->id_usuario;
+                        if($id!=null){
+                            $usuario=\papusclub\User::find($id);
+                            $usuario->update(['perfil_id'=>9]);
+                        }
+                        
+                    }
+                    else if($estado==$socio->carnet_inhabilitado())
+                    {
+                        if(!empty($input['descripcion']!=""))
+                        {
+                            $descripcion=$input['descripcion'];
+                        }
+                        else
+                        {
+                            $descripcion='El carnet ha sido inhabilitado pero no se ha especificado el motivo.';
+                        }
+                        $carnet = $socio->carnet_actual();
+                        $carnet->estado=false;
+                        $carnet->descripcion=$descripcion;
+                        $carnet->save();
+                        $carnet->delete();
+
+                        $socio->update(['estado'=>false]);
+                        //$socio->delete();
+                    }
                 }
             }
+            Session::flash('update','membresia');
+            return Redirect::action('SocioAdminController@edit',$socio->id)->with('cambios-mem','Cambios realizados con éxito');        
         }
-        Session::flash('update','membresia');
-        return Redirect::action('SocioAdminController@edit',$socio->id)->with('cambios-mem','Cambios realizados con éxito');         
+        catch(\Exception $e)
+        {
+            Log::error($e);
+            $error = 'SocioAdminController-updateMembresia';
+            return view('errors.corrigeme', compact('error'));            
+        }         
+         
     }
 
 
