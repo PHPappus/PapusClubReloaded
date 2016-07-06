@@ -57,7 +57,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg">Mis pagos <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="{!!URL::to('pagos/facturacion-socio/')!!}" title="Consultar pagos y cuotas pendientes" target="_self">Consultar</a></li>
+              <li><a href="{!!URL::to('pagos-suspendido/facturacion-socio-suspendido/')!!}" title="Consultar pagos y cuotas pendientes" target="_self">Consultar</a></li>
             </ul>
           </li>
         </ul>

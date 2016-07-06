@@ -783,6 +783,9 @@ Route::group(['middleware' => ['auth', 'publico']], function () {
 
 Route::group(['middleware' => ['auth', 'sociosuspendido']], function () {
 	Route::resource('socio-suspendido','SocioSuspendidoController');
+	//PAGOS (deudas del socio)
+	Route::get('pagos-suspendido/facturacion-socio-suspendido/','PagosSocioSuspendidoController@listarFacturacionSocio');//se lista a los socios
+	Route::get('pagos-del-socio-suspendido/{id}/show', 'PagosSocioSuspendidoController@showAlSocio'); // Detalle del pago
 });
 
 /*Route::get('sede-a','SedesController@index');
