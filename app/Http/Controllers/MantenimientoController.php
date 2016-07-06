@@ -22,7 +22,7 @@ class MantenimientoController extends Controller
     public function indexPrev()
     {
         $sedes = Sede::all();
-        $mytime = Carbon::now(-5);
+        $mytime = Carbon::now();
         echo $mytime;
         $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')/*->where('estado','!=','Deshabilitado')*/->get();
         foreach($ambientes as $ambiente)
