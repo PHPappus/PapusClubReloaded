@@ -10,6 +10,7 @@ use papusclub\Models\Ambiente;
 use papusclub\Models\Reserva;
 use papusclub\Models\Sede;
 use papusclub\Models\Sorteo;
+use papusclub\Models\Mantenimiento;
 use papusclub\Models\AmbientexSorteo;
 use papusclub\Http\Requests\DeshabilitarBungalowsRequest;
 use papusclub\Http\Requests\HabilitarBungalowsRequest;
@@ -21,47 +22,47 @@ class MantenimientoController extends Controller
     public function indexPrev()
     {
         $sedes = Sede::all();
-        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('estado','!=','Deshabilitado')->get();
+        $mytime = Carbon::now(-5);
+        echo $mytime;
+        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')/*->where('estado','!=','Deshabilitado')*/->get();
+        foreach($ambientes as $ambiente)
+        {
+            $bungalowsIna=Mantenimiento::where('id_bungalow','=',$ambiente->id)->get();
+            foreach ($bungalowsIna as $bungalowIna) {
+                if($bungalowIna->fecha_inicio<=$mytime && $bungalowIna->fecha_fin>=$mytime)
+                {
+                    $ambientes->pull($ambientes->search(Ambiente::find($bungalowIna->id_bungalow)));
+                }
+            }
+        }
         return view('admin-general.mantenimiento-bungalows.indexCorr',['ambientes'=>$ambientes,'sedes'=>$sedes]);
     }
 
-    public function deshabilitarBungalows(DeshabilitarBungalowsRequest $request)
+    public function deshabilitarBungalows(DeshabilitarBungalowsRequest $request,$id)
     {
-        $bungalows = Input::get('ch');
-        $mytime = Carbon::now();
-        if($bungalows!=NULL)            
-            foreach ($bungalows as $bungalow) {
-                $temp=Ambiente::find($bungalow);
-                $temp->estado='Deshabilitado';
+        $carbon= new Carbon();
+        
+        
 
-                $reservas=Reserva::where('ambiente_id','=',$bungalow)->where('fecha_fin_reserva','>=',$mytime)->get();
-                foreach ($reservas as $reserva) {
-                    if($reserva->estado=='Ejecutado'){
-                        /*$reserva->estado='Cancelado';
-
-                        $pagos=Facturacion::where('persona_id','=',$persona_id)->where('sorteo_id','=',$bungalow)->get();
-                        foreach($pagos as $pago){
-                            $pago->estado='Anulado';
-                            $pago->save();
-                        }
-
-                        $*/
-                    }
-                    $reserva->delete();
-                }
-
-                $sorteos=Sorteo::where('estado','=','Activo');
-                foreach ($sorteos as $sorteo) {
-                    $lista_bungalows=AmbientexSorteo::where('id_ambiente','=',$bungalow)->where('id','=',$sorteo->id)->get();
-                    foreach ($lista_bungalows as $temp) {
-                        $temp->delete();
-                    }
-                }
-
-                $temp->save();
-            }
+        $input = $request->all();
+        $nuevo = new Mantenimiento();
+        $nuevo->id_bungalow=$id;
+        $date = str_replace('/', '-', $input['fecha_cerrado']);      
+        $nuevo->fecha_fin=$carbon->createFromFormat('d-m-Y', $date)->toDateString();
+        $date = str_replace('/', '-', $input['fecha_abierto']);
+        $nuevo->fecha_inicio=$carbon->createFromFormat('d-m-Y', $date)->toDateString();;        
+        $nuevo->descripcion="generico";
+        $nuevo->estado="Activo";
+        $nuevo->save();
         return redirect('mantBungalowPrev/index');
     }
+
+    public function deshabilitarDetalle($id)
+    {
+        $configuracion="0";
+        return view('admin-general.mantenimiento-bungalows.deshabilitarDetalle',['id'=>$id,'configuracion'=>$configuracion]);
+    }
+
     public function indexPrevHabilitar()
     {
         $sedes = Sede::all();
