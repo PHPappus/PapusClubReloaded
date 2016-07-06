@@ -333,11 +333,16 @@ class SocioAdminController extends Controller
                     $socio->addCarnet($carnet);                   
                 }
                 $socio->update(['estado'=>true]);
-            }     
+                /*Le cambiamos el perfil a socio (habilitado)*/
+                $id=$socio->postulante->persona->id_usuario;
+                if($id!=null){
+                    $usuario=\papusclub\User::find($id);
+                    $usuario->update(['perfil_id'=>1]);
+                } 
+            }    
         }
         else if(!empty($input['estado-r']))
         {
-
                     /*Registro de un nuevo carnet*/
                     $anio = Configuracion::where('grupo',5)->first();
                     $tempcarnet = $socio->carnet_actual();
@@ -388,6 +393,13 @@ class SocioAdminController extends Controller
 
                     $socio->update(['estado'=>false]);
                     //$socio->delete();
+                    /*Le cambiamos el perfil a socio suspendido*/
+                    $id=$socio->postulante->persona->id_usuario;
+                    if($id!=null){
+                        $usuario=\papusclub\User::find($id);
+                        $usuario->update(['perfil_id'=>9]);
+                    }
+                    
                 }
                 else if($estado==$socio->carnet_inhabilitado())
                 {
