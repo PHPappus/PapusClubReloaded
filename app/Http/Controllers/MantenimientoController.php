@@ -101,8 +101,9 @@ class MantenimientoController extends Controller
         try
         {
             $sedes = Sede::all();
-            $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('estado','=','Deshabilitado')->get();
-            return view('admin-general.mantenimiento-bungalows.indexCorrHabilitar',['ambientes'=>$ambientes,'sedes'=>$sedes]);
+            $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();
+            $mantenimientos=Mantenimiento::all();
+            return view('admin-general.mantenimiento-bungalows.indexCorrHabilitar',['ambientes'=>$ambientes,'sedes'=>$sedes,'mantenimientos'=>$mantenimientos]);
         }
         catch (\Exception $e)
         {

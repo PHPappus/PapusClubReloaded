@@ -104,7 +104,7 @@
 										<tr>																			
 											<td>{{$ambiente->nombre}}</td>
 											<td>{{$ambiente->capacidad_actual}}</td>
-											<td>{{$ambiente->ubicacion}}</td>
+											<td>{{$ambiente->descripcion}}</td>
 										</tr>
 										@endif
 									@endforeach
