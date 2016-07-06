@@ -128,6 +128,7 @@
               <li><a href="{!!URL::to('/traspaso')!!}" title="solicitar traspasos" target="_self">Traspasos</a></li>
               <li><a href="{!!URL::to('/mis-multas')!!}" title="ver multas" target="_self">Mis Multas</a></li>
               <li><a href="{!!URL::to('/ver-postulantes')!!}" title="calificar postulantes" target="_self">Obs. Postulantes</a></li>
+              <li><a href="{!!URL::to('/solicitud-ingreso-invitados')!!}" title="solicitar ingreso con invitados" target="_self">Solicitud Ingreso</a></li>
             </ul>
           </li>
         </ul>

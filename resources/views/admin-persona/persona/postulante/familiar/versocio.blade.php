@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>INVITADO</title>
+	<title>SOCIO</title>
 	<meta charset="UTF-8">
 
 	<meta name="csrf-token" content="{{ csrf_token() }}">
@@ -30,7 +30,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 text-left">
-				<p class="lead"><strong>DETALLE DE FAMILIAR</strong></p>
+				<p class="lead"><strong>DETALLE DE SOCIO RELACIONADO AL FAMILIAR</strong></p>
 			</div>
 		</div>	
 	</div>
@@ -54,23 +54,25 @@
 							<form action="" class="form-horizontal form-border">
 	
 								<br><br><br>
+
 								<div class="form-group ">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
-											<label for="" class="control-label">Relacion:</label>
+											<label for="" class="control-label">Nro Socio:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" style="max-width: 250px" value="{{$relacion}}" readonly="true">
+											<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" style="max-width: 250px" value="{{$socio->carnet_actual()->nro_carnet}}" readonly="true">
 										</div>	
 									</div>
 								</div>
+
 								<div class="form-group ">
 									<div class="col-sm-6">
 										<div class="col-sm-6 text-left">
 											<label for="" class="control-label">Nombre:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" style="max-width: 250px" value="{{$familiar->nombre}}" readonly="true">
+											<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" style="max-width: 250px" value="{{$socio->postulante->persona->nombre}}" readonly="true">
 										</div>	
 									</div>
 								</div>
@@ -81,7 +83,7 @@
 											<label for="" class="control-label">Apellido Paterno:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="ap_paterno" name="ap_paterno" placeholder="Apellido Paterno" style="max-width: 250px" value="{{$familiar->ap_paterno}}" readonly="true">
+											<input type="text" class="form-control" id="ap_paterno" name="ap_paterno" placeholder="Apellido Paterno" style="max-width: 250px" value="{{$socio->postulante->persona->ap_paterno}}" readonly="true">
 										</div>	
 									</div>
 								</div>
@@ -92,7 +94,7 @@
 											<label for="" class="control-label">Apellido Materno:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" class="form-control" id="ap_materno" name="ap_materno" placeholder="Apellido Materno" style="max-width: 250px" value="{{$familiar->ap_materno}}" readonly="true">
+											<input type="text" class="form-control" id="ap_materno" name="ap_materno" placeholder="Apellido Materno" style="max-width: 250px" value="{{$socio->postulante->persona->ap_materno}}" readonly="true">
 										</div>	
 									</div>
 								</div>
@@ -104,7 +106,7 @@
 										</div>
 										<div class="col-sm-6 text-left" style="float: right">	
 
-											@if($familiar->sexo=='masculino')
+											@if($socio->postulante->persona->sexo=='masculino')
 												<div>
 													<input type="radio" name="genero" value="Masculino" disabled checked> Masculino
 												</div>
@@ -129,11 +131,11 @@
 											<label for="" class="control-label">Fecha de Nacimiento(dd/mm/aaaa):</label>
 										</div>
 										<div class="col-sm-6">
-											<input style="width: 250px" class="datepicker" type="text" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha Nacimiento" readonly="true" value="{{$familiar->fecha_nacimiento}}" disabled="true">
+											<input style="width: 250px" class="datepicker" type="text" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha Nacimiento" readonly="true" value="{{$socio->postulante->persona->fecha_nacimiento}}" disabled="true">
 										</div>	
 									</div>
 								</div>								
-								@if($familiar->nacionalidad=='peruano')
+								@if($socio->postulante->persona->nacionalidad=='peruano')
 									<div class="form-group required">
 										<div class="col-sm-6">
 											<div class="col-sm-6 text-left">
@@ -152,7 +154,7 @@
 												<label for="" class="control-label">DNI:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control inputmodify" id="docidentity" placeholder="#######" style="max-width: 250px" value="{{$familiar->doc_identidad}}"disabled>
+												<input type="text" class="form-control inputmodify" id="docidentity" placeholder="#######" style="max-width: 250px" value="{{$socio->postulante->persona->doc_identidad}}"disabled>
 											</div>	
 										</div>
 									</div>
@@ -175,7 +177,7 @@
 												<label for="" class="control-label">Carnet de Extranjería:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control inputmodify" id="docidentity" placeholder="#######" style="max-width: 250px" value="{{$familiar->carnet_extranjeria}}"disabled>
+												<input type="text" class="form-control inputmodify" id="docidentity" placeholder="#######" style="max-width: 250px" value="{{$socio->postulante->persona->carnet_extranjeria}}"disabled>
 											</div>	
 										</div>
 									</div>
@@ -186,7 +188,7 @@
 											<label for="" class="control-label">Correo:</label>
 										</div>
 										<div class="col-sm-6">
-											<input type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" class="form-control" id="correo" name="correo" placeholder="Correo Electrónico" style="max-width: 250px" value="{{$familiar->correo}}" readonly="true" >
+											<input type="text" onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" class="form-control" id="correo" name="correo" placeholder="Correo Electrónico" style="max-width: 250px" value="{{$socio->postulante->persona->correo}}" readonly="true" >
 										</div>	
 									</div>
 								</div>
@@ -195,7 +197,7 @@
 										<div class="btn-group col-sm-5" ></div>
 										
 										<div class="btn-group">
-											<a href="{{url('/postulante/'.$postulante->id.'/show')}}" class="btn btn-info">Regresar</a>
+											<a href="{{url('/familiares-habilitados')}}" class="btn btn-info">Regresar</a>
 										</div>
 								</div>																
 							</form>

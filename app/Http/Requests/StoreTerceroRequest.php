@@ -28,9 +28,9 @@ class StoreTerceroRequest extends Request
             'ap_paterno' => 'required|max:100|string',
             'ap_materno' => 'required|max:100|string',
             'fecha_nacimiento' => 'required | string',
-            'doc_identidad'=> 'required_if:nacionalidad,peruano', //| unique:persona,doc_identidad,NULL',
-            'carnet_extranjeria'=> 'required_if:nacionalidad,extranjero',//  | unique:persona,carnet_extranjeria,NULL',
-            'correo'=>'required|string'
+            'doc_identidad'=> 'required_if:nacionalidad,peruano|unique:persona', //| unique:persona,doc_identidad,NULL',
+            'carnet_extranjeria'=> 'required_if:nacionalidad,extranjero|unique:persona',//  | unique:persona,carnet_extranjeria,NULL',
+            'correo'=>'required|email|unique:persona'
         ];
     }
 }

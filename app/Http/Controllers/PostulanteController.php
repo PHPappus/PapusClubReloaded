@@ -5,6 +5,7 @@ namespace papusclub\Http\Controllers;
 use Illuminate\Http\Request;
 use papusclub\Models\Persona;
 use papusclub\Models\Departamento;
+use papusclub\Models\Facturacion;
 use papusclub\Models\Provincia;
 use papusclub\Models\Distrito;
 use papusclub\Models\Postulante;
@@ -17,6 +18,7 @@ use papusclub\Perfil;
 use papusclub\User;
 
 use papusclub\Http\Requests\StorePostulanteRequest;
+use papusclub\Http\Requests\StorePostulanteFamiliarRequest;
 use papusclub\Http\Requests\EditPostulanteBasicoRequest;
 use papusclub\Http\Requests\EditPostulanteNacimientoRequest;
 use papusclub\Http\Requests\EditPostulanteViviendaRequest;
@@ -213,6 +215,8 @@ class PostulanteController extends Controller
             }
             else
             {
+
+
                 return redirect('postulante/index')->with('stored', 'Se registró el postulante correctamente.');
             }
 
@@ -322,21 +326,6 @@ class PostulanteController extends Controller
         $postulante->persona->ap_materno=trim($input['apellidoMat']);
         $postulante->persona->sexo=$input['sexo'];
 
-        $postulante->persona->nacionalidad = $input['nacionalidad'];
-
-        if (empty($input['carnet_extranjeria'])) {
-            $postulante->persona->carnet_extranjeria ="";
-        }
-        else
-            $postulante->persona->carnet_extranjeria = $input['carnet_extranjeria'];
-
-        
-        if (empty($input['doc_identidad'])) {
-            $postulante->persona->doc_identidad ="";
-        }
-        else
-            $postulante->persona->doc_identidad = $input['doc_identidad'];
-
         $postulante->estado_civil=$input['estado_civil'];
 /*                var_dump($postulante);
         die();*/
@@ -437,7 +426,6 @@ class PostulanteController extends Controller
         $input=$request->all();
         $postulante->telefono_domicilio=trim($input['telefono_domicilio']);
         $postulante->telefono_celular=trim($input['telefono_celular']);
-        $postulante->persona->correo=trim($input['correo']);
 
         $postulante->persona->save();
         $postulante->save();
@@ -533,7 +521,7 @@ class PostulanteController extends Controller
 
             //$match=['postulante_id'=>$id,'persona_id'=>$persona->id];
             
-                $persona->save();    
+            $persona->save();    
             
             
 /*            var_dump($persona);
@@ -625,7 +613,28 @@ class PostulanteController extends Controller
         /*Asignar carnet*/
         create_carnet($socio);
 
+        /*Registrar cuota de ingreso*/
+        if(count($socio->postulante->persona->familiarxpostulante)>0)
+        {
+            $conf = Configuracion::where('grupo','=',21)->first(); //si se registró como postulante teniendo familiar
+            $descripcion = 'Cuota de Ingreso como Familiar de Socio. ';
+            $monto = $conf->valor;              
+        }
+        else
+        {
+            $conf = Configuracion::where('grupo','=',20)->first(); //si se registró como nuevo socio
+            $descripcion = 'Cutoa de Ingreso como nuevo Socio.';
+            $monto = $conf->valor;            
+        }
 
+
+        $facturacion = new Facturacion();
+        $facturacion->persona_id = $socio->postulante->persona->id;
+        $facturacion->total=$monto;
+        $facturacion->descripcion=$descripcion;
+        $facturacion->estado ='Emitido';
+        $facturacion->tipo_comprobante='Boleta';
+        $facturacion->save();        
 
 
         $this->enviarUsuario($socio->postulante->persona->id,$socio->postulante->persona->correo, $socio->postulante->persona->nombre, $socio->postulante->persona->ap_paterno, $socio->carnet_actual()->nro_carnet);
@@ -707,6 +716,124 @@ class PostulanteController extends Controller
 
         }
 
+    }
+
+    /*Registro de familiar como postulante*/
+
+    public function familiares()
+    {
+        $familiares = FamiliarxPostulante::HabilitadosPostulacion();
+        return view('admin-persona.persona.postulante.familiar.habilitados',compact('familiares'));
+    }
+
+    public function versocio($id)
+    {
+        $persona = Persona::find($id);
+        $familiar = $persona->familiarxpostulante()->first();
+
+        $socio = Socio::where('postulante_id','=',$familiar->id_postulante)->first();
+
+        $carbon=new Carbon();
+        if((strtotime($socio->postulante->persona->fecha_nacimiento) < 0))
+            $socio->postulante->persona->fecha_nacimiento=NULL;
+        else
+            $socio->postulante->persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d', $socio->postulante->persona->fecha_nacimiento)->format('d/m/Y');
+
+
+        return view('admin-persona.persona.postulante.familiar.versocio',compact('socio'));
+    }
+
+    public function registrarpostulacionfamiliar($id)
+    {
+        $persona = Persona::find($id);
+        $departamentos=Departamento::select('id','nombre')->get();
+        $estadocivil= Configuracion::where('grupo','=','11')->get();
+
+        $carbon=new Carbon();
+        if((strtotime($persona->fecha_nacimiento) < 0))
+            $persona->fecha_nacimiento=NULL;
+        else
+            $persona->fecha_nacimiento=$carbon->createFromFormat('Y-m-d', $persona->fecha_nacimiento)->format('d/m/Y');
+
+        return view('admin-persona.persona.postulante.familiar.registrarpostulacion',compact('persona','departamentos','estadocivil'));        
+    }
+
+    public function guardarpostulacionfamiliar(StorePostulanteFamiliarRequest $request, $id)
+    {
+        $persona = Persona::find($id);
+        $persona->id_tipo_persona=2;
+        $persona->save();
+
+        /*Datos nuevos*/
+        $input = $request->all();
+
+        $postulante = new Postulante();
+        //si es peruano 
+        $postulante->id_postulante=$persona->id;
+
+        if($persona->nacionalidad =="peruano"){
+            if(isset($input['departamento']))
+                $postulante->departamento=$input['departamento'];
+            if(isset($input['provincia']))
+                $postulante->provincia=$input['provincia'];
+            if(isset($input['distrito']))
+                $postulante->distrito=$input['distrito']; 
+            $postulante->direccion_nacimiento=$input['direccion_nacimiento'];
+        }
+        else{
+            $postulante->pais_nacimiento=$input['pais_nacimiento'];
+            $postulante->lugar_nacimiento=$input['lugar_nacimiento'];
+
+        }
+
+        /*Datos de provincia*/
+            if(isset($input['departamento_vivienda']))
+                $postulante->departamento_vivienda=$input['departamento_vivienda'];
+            if(isset($input['provincia_vivienda']))
+                $postulante->provincia_vivienda=$input['provincia_vivienda'];
+            if(isset($input['distrito_vivienda']))
+                $postulante->distrito_vivienda=$input['distrito_vivienda']; 
+            $postulante->domicilio=$input['domicilio'];
+            $postulante->referencia_vivienda=$input['referencia_vivienda'];
+
+        /*=======*/
+        $postulante->colegio_primario=$input['colegio_primario'];
+        $postulante->colegio_secundario=$input['colegio_secundario'];
+        
+        if (empty($input['universidad'])) {
+            $postulante->universidad ="";            
+        }else{
+            $postulante->universidad=$input['universidad'];
+        }
+
+        if (empty($input['profesion'])) {
+            $postulante->profesion= "";            
+        }else{
+            $postulante->profesion=$input['profesion'];
+        }
+        
+        $postulante->centro_trabajo=$input['centro_trabajo'];
+        
+        if (empty($input['cargo_trabajo'])) {
+            $postulante->cargo_trabajo="";            
+        }else{
+            $postulante->cargo_trabajo=$input['cargo_trabajo'];
+        }
+
+        $postulante->direccion_laboral=$input['direccion_laboral'];
+        
+        if (empty($input['telefono_domicilio'])) {
+           $postulante->telefono_domicilio="";            
+        }else{
+           $postulante->telefono_domicilio=$input['telefono_domicilio'];
+        }
+        
+        $postulante->telefono_celular=$input['telefono_celular'];
+        $postulante->estado_civil=$input['estado_civil'];
+
+        $postulante->save();
+        
+        return redirect('postulante/index')->with('stored', 'Se registró el postulante correctamente.');        
     }
 }
     

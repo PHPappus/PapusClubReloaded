@@ -153,25 +153,11 @@ class TrabajadorController extends Controller
         return view('admin-persona.persona.trabajador.editTrabajador',compact('persona', 'trabajador','puesto','puestoslaborales'));
     }
 
-    public function update(StoreTrabajadorRequest $request,$id ){
+    public function update(EditTrabajadorRequest $request,$id ){
         $carbon=new Carbon(); 
         $input = $request->all();
         $persona = Persona::find($id);
-        $persona->nacionalidad = $input['nacionalidad'];
 
-        if (empty($input['carnet_extranjeria'])) {
-            $persona->carnet_extranjeria ="";
-        }
-        else
-            $persona->carnet_extranjeria = $input['carnet_extranjeria'];
-
-        
-        if (empty($input['doc_identidad'])) {
-            $persona->doc_identidad ="";
-        }
-        else
-            $persona->doc_identidad = $input['doc_identidad'];
-        
         $persona->nombre = trim($input['nombre']);
         $persona->ap_paterno = trim($input['ap_paterno']);
         $persona->ap_materno = trim($input['ap_materno']);
@@ -186,7 +172,6 @@ class TrabajadorController extends Controller
 
         $persona->id_tipo_persona = 1;
         $persona->sexo=$input['sexo'];
-        $persona->correo=trim($input['correo']);
         $persona->save();
 
         $trabajador=Trabajador::find($persona->id);

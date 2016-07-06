@@ -4,7 +4,7 @@ namespace papusclub\Http\Requests;
 
 use papusclub\Http\Requests\Request;
 
-class StorePostulanteRequest extends Request
+class StorePostulanteFamiliarRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,13 +28,13 @@ class StorePostulanteRequest extends Request
             'nombre' =>  'required|max:100|string',
             'ap_paterno' => 'required|max:100|string',
             'ap_materno' => 'required|max:100|string',
-            'doc_identidad'=> 'required_if:nacionalidad,peruano|unique:persona', 
-            'carnet_extranjeria'=> 'required_if:nacionalidad,extranjero|unique:persona',
+            'doc_identidad'=> 'required_if:nacionalidad,peruano', 
+            'carnet_extranjeria'=> 'required_if:nacionalidad,extranjero',
             'estado_civil'=>'required|exists:configuracion,id',
 
 
             //Nacimiento
-            'fecha_nacimiento' => 'required | string',
+            'fecha_nacimiento' => 'string',
             'departamento' => 'required_if:nacionalidad,peruano',
             'provincia' => 'required_if:nacionalidad,peruano',
             'distrito' => 'required_if:nacionalidad,peruano',
@@ -60,11 +60,10 @@ class StorePostulanteRequest extends Request
 
             //Contacto
             'telefono_celular'=>'required|string|max:12',
-            'correo'=>'required|email|unique:persona'
+            'correo'=>'required|email'
 
         ];
     }
-
 
     public function messages()
     {
@@ -82,6 +81,5 @@ class StorePostulanteRequest extends Request
             'correo.required' => 'El campo correo es obligatorio',
             'correo.email'=>'El campo correo debe tener formato válido',
         ];
-    }
-
+    }    
 }
