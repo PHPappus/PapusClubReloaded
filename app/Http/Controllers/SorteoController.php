@@ -504,11 +504,11 @@ class SorteoController extends Controller
 
             $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('sede_id','=',$sorteo->id_sede)->where('estado','!=','Deshabilitado')->get();
 
-            $ambientesInas=Mantenimiento::where('fecha_inicio','<=',$mytime)->where('fecha_fin','>=',$mytime)->get();
+            /*$ambientesInas=Mantenimiento::where('fecha_inicio','<=',$mytime)->where('fecha_fin','>=',$mytime)->get();
 
             foreach ($ambientesInas as $ambienteIna) {
                 $ambientes->pull($ambientes->search(Ambiente::find($ambienteIna->id_bungalow)));
-            }
+            }*/
 
             //LOCURA DE MANTENIMIENTO INICIO
             $mantenimientos_caso_1=Mantenimiento::whereBetween('fecha_inicio', [$sorteo->fecha_abierto, $sorteo->fecha_cerrado])->get();
