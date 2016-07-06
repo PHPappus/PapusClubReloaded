@@ -32,9 +32,25 @@
 		</div>
 		<!-- Utilizando Bootstrap -->
 		<div class="container">
-			@include('alerts.errors')
 			@include('alerts.success')
-
+			@include('alerts.errors')
+		</div>
+		<div class="container">
+			@if (count($errors) > 0)
+				<div class="alert alert-danger" role="alert">
+					@if (count($errors) > 1)
+					<strong>Error(es):</strong>
+					@else
+					<strong>Error:</strong>
+					@endif
+					<ul>
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					@foreach ($errors->all() as $error)
+						<li>{{ $error }}</li>
+					@endforeach  
+					</ul>
+				</div>
+			@endif
 		</div>
 		<br/><br/>
 		<div class="container">
@@ -48,7 +64,7 @@
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<br/><br/>
 			<div class="form-group">
-		    	<label for="ambienteInput" class="col-sm-4 control-label">AMBIENTE:</label>
+		    	<label for="ambienteInput" class="col-sm-4 control-label">Ambiente:</label>
 		    	<div class="col-sm-5">
 		    		<input type="text" class="form-control" id="ambienteInput" name="ambiente" value="{{$taller->reserva->ambiente->nombre}}"  required readonly>
 		      	</div>		      	
@@ -97,7 +113,7 @@
 	    		</div>
 			</div>
 			<div class="form-group required">
-				<label for="persona_id" class="control-label col-sm-4"><strong>FAMILIAR:</strong></label>
+				<label for="persona_id" class="control-label col-sm-4"><strong>Familiar:</strong></label>
 				<div class="col-sm-5">	
 						<input type="text" id="name" name="name" class="form-control" placeholder="Nombre del familiar" readonly="true" value="{{old('name')}}">
 				</div>
@@ -123,9 +139,9 @@
 		    			<input type="password" name="password" class="form-control" id="contraseña" style="max-width: 220px">
 		    			
 		    		</div>	
-		    		<div class="col-sm-offset-5 col-sm-7">
-		    			<div class="text-danger">{!!$errors->first('password')!!}</div>
-		    		</div>	  				
+		    		<!-- <div class="col-sm-offset-5 col-sm-7">
+		    			  					<div class="text-danger">{!!$errors->first('password')!!}</div>
+		    			  				</div> -->	  				
 	 			</div>
 			</div>
 								

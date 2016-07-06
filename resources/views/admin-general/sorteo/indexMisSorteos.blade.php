@@ -56,7 +56,7 @@
 		<div class="container">
 			<div class="form-group">
 				<div class="col-sm-1 text-right">
-					<a class="btn btn-info" href="{{url('/sorteo/inscripcion')}}" > Sorteos Disponibles </a>	
+					<a class="btn btn-info" href="{{url('/sorteo/inscripcion/socio')}}" > Sorteos Disponibles </a>	
 				</div>
 			</div>
 			<br/>

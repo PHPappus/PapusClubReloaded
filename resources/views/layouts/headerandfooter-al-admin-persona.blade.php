@@ -65,7 +65,7 @@
             <ul class="dropdown-menu">
                 <li><a href="{!!URL::to('/postulante/index')!!}" title="Consultar postulantes" target="_self">Consultar</a></li>
                 <li><a href="{!!URL::to('/postulante/new')!!}" title="Registrar nuevo postulante" target="_self">Registrar</a></li>
-                <li><a href="#" title="Aprobar/Desaprobar postulante" target="_self">Aprobar/Desaprobar</a></li>
+                <li><a href="{{url('/familiares-habilitados')}}" title="Registar Postulación de Familiar" target="_self">Registar Postulación de Familiar</a></li>
             </ul>
           </li>
         </ul>

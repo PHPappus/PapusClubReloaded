@@ -22,7 +22,7 @@
 </head>
 <body>
 
-@extends('layouts.headerandfooter-al-admin')
+@extends('layouts.headerandfooter-al-admin-persona')
 @section('content')
 
 	<br>

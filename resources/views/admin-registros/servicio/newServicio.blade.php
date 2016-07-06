@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,7 +94,13 @@
 					<tbody>
 							@foreach($tiposPersonas as $tipoPersona)			
 						    	<tr>
-									<td align="center">  {{ $tipoPersona->descripcion }}</td>
+									<td align="center"> 
+									@if($tipoPersona->descripcion == 'postulante')
+										socio
+									@else
+									 	{{ $tipoPersona->descripcion }}
+									@endif
+									 </td>
 									<td align="center">  S/.</td>
 									<td align="center"> 
 									<div align="center">

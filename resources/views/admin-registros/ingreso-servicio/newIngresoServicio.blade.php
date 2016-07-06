@@ -81,7 +81,7 @@
 			  	<div class="form-group required">
 			    	<label for="descripcion" class="col-sm-4 control-label">Descripcion</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcon de solicitud" value="{{old('descripcion')}}">
+			      		<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción de solicitud" value="{{old('descripcion')}}">
 			    	</div>			    	
 			  	</div>			
 			  						
