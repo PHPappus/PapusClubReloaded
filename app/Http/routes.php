@@ -714,7 +714,8 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 		//DECLARAR EN MANTENIMIENTO BUNGALOWS
 		//PREVENTIVO
 		Route::get('mantBungalowPrev/index','MantenimientoController@indexPrev');		
-		Route::post('mantBungalowPrev/deshabilitar','MantenimientoController@deshabilitarBungalows');
+		Route::get('mantBungalowPrev/deshabilitar/{id}','MantenimientoController@deshabilitarDetalle');
+		Route::post('mantBungalowPrev/deshabilitar/{id}/confirmacion','MantenimientoController@deshabilitarBungalows');
 
 		Route::get('mantBungalowPrev/indexHabilitar','MantenimientoController@indexPrevHabilitar');
 		Route::post('mantBungalowPrev/habilitar','MantenimientoController@habilitarBungalows');
