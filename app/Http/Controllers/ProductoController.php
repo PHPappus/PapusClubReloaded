@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use papusclub\Http\Requests;
 use papusclub\Models\Producto;
+use papusclub\Models\Proveedor;
 use papusclub\Models\PrecioProducto;
 use papusclub\Models\Configuracion;
 use papusclub\Http\Requests\StoreProductoRequest;
@@ -26,14 +27,16 @@ class ProductoController extends Controller
     {
         $tipo_productos = Configuracion::where('grupo','=','6')
                                         ->where('valor','<>','Servicio')->get();
-    	return view('admin-registros.producto.newProducto', compact('tipo_productos'));
+        $proveedores = Proveedor::where('tipo_proveedor','=','Productos')->get();                                    
+    	return view('admin-registros.producto.newProducto', compact('tipo_productos','proveedores'));
     }
     
     public function store(StoreProductoRequest $request)
     {    	
     	$input = $request->all();
         $producto = new Producto();
-    	$producto->nombre = $input['nombre'];
+    	$producto->proveedor_id = $input['proveedor_id'];
+        $producto->nombre = $input['nombre'];
 		$producto->descripcion = $input['descripcion'];
 		$producto->estado = 1;
 		$producto->tipo_producto = $input['tipo_producto'];		
@@ -44,6 +47,7 @@ class ProductoController extends Controller
         $precio = new PrecioProducto();
         $precio->producto_id = $producto->id;
         $precio->precio = $input['precio'];
+        $precio->costo = $input['costo'];
         $precio->estado = 1;
         $precio->save();
         return redirect('producto/index')->with('stored', 'Se registró el producto correctamente.');
@@ -61,6 +65,7 @@ class ProductoController extends Controller
             $precio = new PrecioProducto();
             $precio->producto_id = $producto->id;
             $precio->precio = 0;
+            $precio->costo = 0;
             $precio->estado = 1;
             $precio->save();
         }
@@ -92,6 +97,7 @@ class ProductoController extends Controller
         $precioNuevo = new PrecioProducto();
         $precioNuevo->producto_id = $producto->id;
         $precioNuevo->precio = $input['precio'];
+        $precioNuevo->costo = $input['costo'];
         $precioNuevo->estado = 1;
         $precioNuevo->save();
         

@@ -16,6 +16,7 @@ class CreatePrecioproductoTable extends Migration
             $table->increments('id')->unsigned();
             $table->integer('producto_id')->unsigned()->index('precioproducto_producto_id_foreign');
             $table->double('precio');            
+            $table->double('costo');
             $table->boolean('estado');
             $table->softDeletes();
             $table->timestamps();

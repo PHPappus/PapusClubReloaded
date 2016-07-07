@@ -51,6 +51,7 @@
 					<thead class="active" data-sortable="true">
 						<th><div align=center>SERVICIO</div></th>
 						<th><div align=center>DESCRIPCIÓN</div></th>						
+						<th><div align=center>PROVEEDOR</div></th>
 						<th><div align=center>DETALLE</div></th>
 						<th><div align=center>EDITAR</div></th>
 						<th><div align=center>ELIMINAR</div></th>
@@ -62,6 +63,7 @@
 						<tr>
 							<td>{{ $producto->nombre }}</td>
 							<td>{{ $producto->descripcion }}</td>										
+							<td>{{ $producto->proveedor->nombre_proveedor }}</td>										
 							<td>
 				              <a class="btn btn-info" href="{{url('/servicioProveedor/'.$producto->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 				            </td>
