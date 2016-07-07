@@ -120,7 +120,7 @@ class ActividadController extends Controller
                     }
            
 
-            $actividad->estado=false; 
+            $actividad->estado=true; 
             $actividad->save();
 
             $tipoPersonas = TipoPersona::all();
@@ -171,7 +171,7 @@ class ActividadController extends Controller
             }else{
                 $actividad->precio_especial_bungalow=$input['precio_especial_bungalow'];
             }
-            $actividad->estado=false; 
+            $actividad->estado=true; 
             $actividad->save();
 
             $tipoPersonas = TipoPersona::all();
