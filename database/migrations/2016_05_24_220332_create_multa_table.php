@@ -15,6 +15,7 @@ class CreateMultaTable extends Migration
         Schema::create('multa', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
+            $table->string('tipo');
             $table->string('descripcion');
             $table->double('montoPenalidad');
             $table->boolean('estado')->default(TRUE);

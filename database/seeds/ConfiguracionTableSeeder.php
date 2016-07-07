@@ -98,5 +98,9 @@ class ConfiguracionTableSeeder extends Seeder
         Configuracion::insert(['valor'=>'20000','grupo'=>'20','descripcion'=>'Cuota de ingreso Nuevo Socio']);
 
         Configuracion::insert(['valor'=>'8000','grupo'=>'21','descripcion'=>'Cuota de ingreso siendo Familiar de Socio']); //65
+
+        Configuracion::insert(['valor'=>'Leve','grupo'=>'22','descripcion'=>'Tipo multa']);
+        Configuracion::insert(['valor'=>'Media','grupo'=>'22','descripcion'=>'Tipo multa']);
+        Configuracion::insert(['valor'=>'Grave','grupo'=>'22','descripcion'=>'Tipo multa']);
     }
 }

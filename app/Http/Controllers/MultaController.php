@@ -8,6 +8,7 @@ use papusclub\Models\Multa;
 use papusclub\Http\Requests;
 use papusclub\Http\Requests\StoreMultaRequest;
 use papusclub\Http\Requests\EditMultaRequest;
+use papusclub\Models\Configuracion;
 use papusclub\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 
@@ -28,7 +29,8 @@ class MultaController extends Controller
 
     public function create()
     {
-    	return view('admin-general.multa.newMulta');
+        $tipos = Configuracion::where('grupo','=',22)->get();
+    	return view('admin-general.multa.newMulta',compact('tipos'));
     }
 
     public function show($id)
@@ -51,6 +53,7 @@ class MultaController extends Controller
 
         $multa = new Multa();
         $multa->nombre = $input['nombre'];
+        $multa->tipo = $input['tipo'];
         $multa->descripcion = $input['descripcion'];
         $multa->montoPenalidad = $input['montoPenalidad'];
         $multa->estado = TRUE;
