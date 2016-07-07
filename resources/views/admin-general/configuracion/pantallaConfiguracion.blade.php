@@ -152,7 +152,7 @@
 											<thead class="active" data-sortable="true">
 												<th><div align=center>VALOR</div> </th>
 											</thead>
-											@foreach($variables->where('grupo', '22') as $grupo1)
+											@foreach($variables->where('grupo', '24') as $grupo1)
 												<tr>
 													<td>{{ $grupo1->valor }}</td>
 												</tr>
@@ -512,7 +512,7 @@
 		   	$("#bsave9").click(function(){
 			    var url = $(this).attr("data-link");
 				$valor = $("#precioPernoctar").val();
-				$grupo = "22";
+				$grupo = "24";
 /*			    alert($valor);
 			    alert($grupo);*/
 			    $.ajax({

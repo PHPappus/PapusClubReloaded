@@ -411,7 +411,7 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('configuracion/test9', function()
 	{
 		$valor=Input::get('valor');
-		papusclub\Models\Configuracion::where('grupo', '=', 22)->update(array('valor' => $valor));
+		papusclub\Models\Configuracion::where('grupo', '=', 24)->update(array('valor' => $valor));
 	});
 
 	//CONFIGURACION
