@@ -12,7 +12,13 @@ class ConfiguracionController extends Controller
 {
     public function index()
     {
-    	$variables=Configuracion::all();
-        return view('admin-general.configuracion.pantallaConfiguracion',compact('variables'));
+    	try{
+	    	$variables=Configuracion::all();
+	        return view('admin-general.configuracion.pantallaConfiguracion',compact('variables'));
+	    }catch (\Exception $e)
+        {
+            $error = 'ConfiguracionController';
+            return view('errors.corrigeme', compact('error'));
+        }
     }
 }
