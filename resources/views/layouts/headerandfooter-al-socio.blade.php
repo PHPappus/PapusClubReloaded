@@ -2,7 +2,7 @@
         /*Reparando desajuste*/
         @media (min-width: 1405px){
             #navbar1 {
-                width: 1460px;
+                width: 1500px;
             }
         }
         @media (min-width: 1350px){
