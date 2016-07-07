@@ -401,7 +401,7 @@ class ReservarAmbienteController extends Controller
     //Se muestra el Bungalow a reservar y espera su confirmacion para la reserva
     public function storeBungalow($id, StoreReservaBungalowSocio $request)
     {
-            try{
+            
                 DB::beginTransaction();
                 try{
                         $user_id = Auth::user()->id;
@@ -565,11 +565,11 @@ class ReservarAmbienteController extends Controller
                 DB::commit();           
 
                 return redirect('reservar-ambiente/reservar-bungalow')->with('stored', 'Se registró la reserva del bungalow correctamente.');
-            } 
-            catch (\Exception $e) {
-                $error = 'storeBungalow-ReservarAmbienteController';
-                return view('errors.corrigeme', compact('error'));
-            }
+            // } 
+            // catch (\Exception $e) {
+            //     $error = 'storeBungalow-ReservarAmbienteController';
+            //     return view('errors.corrigeme', compact('error'));
+            // }
 
     }
      //Se muestra el ambiente  a reservar y espera su confirmacion para la reserva
