@@ -19,6 +19,7 @@ use papusclub\Models\Trabajador;
 use papusclub\Models\Configuracion;
 
 use papusclub\Http\Requests\StoreServicioxSedeRequest;
+use Log;
 
 class SedesController extends Controller
 {

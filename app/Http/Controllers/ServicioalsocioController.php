@@ -24,6 +24,8 @@ use Carbon\Carbon;
 use papusclub\Models\Facturacion;
 use papusclub\Http\Requests\StoreServicioSolicitudRequest;
 use papusclub\Http\Requests\StoreServicioBuganlowSolicitudRequest;
+use Log;
+
 class ServicioalsocioController extends Controller
 {
    

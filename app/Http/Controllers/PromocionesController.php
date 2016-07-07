@@ -9,7 +9,7 @@ use papusclub\Models\Promocion;
 use papusclub\Models\Configuracion;
 use papusclub\Http\Requests\StorePromocionRequest;
 use papusclub\Http\Requests\EditPromocionRequest;
-
+use Log;
 use Carbon\Carbon;
 class PromocionesController extends Controller
 {

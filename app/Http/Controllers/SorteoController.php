@@ -22,7 +22,7 @@ use papusclub\Http\Requests\StoreAmbientexSorteoRequest;
 use papusclub\Http\Requests\StoreSocioxSorteoRequest;
 use papusclub\Http\Requests\DeleteSorteoSocioRequest;
 use papusclub\Models\Facturacion;
-
+use Log;
 
 use Carbon\Carbon;
 

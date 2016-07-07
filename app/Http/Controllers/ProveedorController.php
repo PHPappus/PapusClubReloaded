@@ -8,7 +8,7 @@ use papusclub\Http\Requests;
 use papusclub\Models\Proveedor;
 use papusclub\Http\Requests\StoreProveedorRequest;
 use papusclub\Http\Requests\EditProveedorRequest;
-
+use Log;
 
 class ProveedorController extends Controller
 {

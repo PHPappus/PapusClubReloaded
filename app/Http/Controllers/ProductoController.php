@@ -12,7 +12,7 @@ use papusclub\Models\Configuracion;
 use papusclub\Http\Requests\StoreProductoRequest;
 use papusclub\Http\Requests\EditProductoRequest;
 use papusclub\Http\Requests\StoreConfiguracionRequest;
-
+use Log;
 
 class ProductoController extends Controller
 {

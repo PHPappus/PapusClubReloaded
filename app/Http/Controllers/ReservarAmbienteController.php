@@ -30,6 +30,8 @@ use papusclub\Models\Sedexservicio;
 use papusclub\Models\ServicioxSedexPersona;
 use papusclub\Models\TarifarioServicio;
 use Illuminate\Support\Facades\Input;
+use Log;
+
 class ReservarAmbienteController extends Controller
 {   
     public function verServices($id){
