@@ -199,7 +199,9 @@ class InscriptionActividadAdminReservaController extends Controller
                         }
                         catch(ValidationException $e){
                             DB::rollback();
-                            var_dump($e->getErrors());
+                            /*var_dump($e->getErrors());*/
+                            $error = 'makeInscriptionToPersona-InscriptionActividadAdminReservaController';
+                            return view('errors.corrigeme', compact('error'));
                         }
                         DB::commit();
                         
@@ -253,7 +255,9 @@ class InscriptionActividadAdminReservaController extends Controller
             }
             catch(ValidationException $e){
                 DB::rollback();
-                var_dump($e->getErrors());
+                /*var_dump($e->getErrors());*/
+                $error = 'removeInscriptionToPersona-InscriptionActividadAdminReservaController';
+                return view('errors.corrigeme', compact('error'));
             }
             DB::commit();
             return back();

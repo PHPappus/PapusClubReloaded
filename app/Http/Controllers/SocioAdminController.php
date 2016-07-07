@@ -11,6 +11,8 @@ use papusclub\Models\Persona;
 use papusclub\Models\Socio;
 use papusclub\Models\Postulante;
 use papusclub\Models\Carnet;
+use papusclub\User;
+use papusclub\Perfil;
 use papusclub\Models\Multa;
 use papusclub\Models\Configuracion;
 use papusclub\Models\Facturacion;
@@ -35,6 +37,7 @@ use papusclub\Models\Traspaso;
 use Session;
 use DB;
 
+use Mail;
 use Log; 
 
 class SocioAdminController extends Controller
@@ -608,6 +611,28 @@ class SocioAdminController extends Controller
                 $fecha=$fecha->format('Y-m-d');
                 $socio->multaxpersona()->save($multa,['multa_modificada' => $multa->montoPenalidad, 'descripcion_detallada' => $input['descripcion'],'fecha_registro' => $fecha]);
 
+
+                
+
+                if ($multa->tipo == "Grave"){
+
+                    $descripcion='El socio ha sido inhabilitado pero no se ha especificado el motivo.';
+                
+                    $carnet= $socio->carnet_actual();
+                    $carnet->estado=false;
+                    $carnet->descripcion=$descripcion;
+                    $carnet->save();
+                    $carnet->delete();
+
+                    $socio->update(['estado'=>false]);
+                    
+                    $id=$socio->postulante->persona->id_usuario;
+                    if($id!=null){
+                        $usuario=\papusclub\User::find($id);
+                        $usuario->update(['perfil_id'=>9]);
+                    }
+                }
+
                 $facturacion = new Facturacion();
                 $facturacion->persona_id = $socio->postulante->persona->id;
                 $facturacion->multa_id = $multa->id;
@@ -1010,13 +1035,15 @@ class SocioAdminController extends Controller
 
             $persona=Persona::where('doc_identidad','=',$input['dniP'])->orwhere('carnet_extranjeria','=',$input['dniP'])->first();
             $oldpersona = Persona::where('doc_identidad','=',$input['dni'])->orwhere('carnet_extranjeria','=',$input['dni'])->first();
-            $traspaso = Traspaso::where('dni','=',$input['dniP'])->first();
+            $traspaso = Traspaso::where('dni','=',$input['dniP'])->where('estado','=',TRUE)->first();
             if ($persona == NULL){
                 $traspaso->update(['estado'=>FALSE]);
                 return redirect('traspasos-p')->with('failed','No se encontró al postulante');
             }
          //   if ($postulante->dni == 0)
            //     return redirect('traspasos-p')->with('No se encontró al postulante');
+
+            
             $postulante = Postulante::where('id_postulante','=',$persona->id)->first();
             $oldpostulante = Postulante::where('id_postulante','=',$oldpersona->id)->first();
             $traspaso->socio->update(['estado' => FALSE]);
@@ -1034,7 +1061,14 @@ class SocioAdminController extends Controller
             $postulante->socio()->save($socio);
             $carnet = create_carnet($socio);
 
+            $id=$oldpostulante->persona->id_usuario;
+            if($id!=null){
+                $usuario=\papusclub\User::find($id);
+                $usuario->update(['perfil_id'=>9]);
+            }
 
+
+            $this->enviarUsuario($socio->postulante->persona->id,$socio->postulante->persona->correo, $socio->postulante->persona->nombre, $socio->postulante->persona->ap_paterno, $socio->carnet_actual()->nro_carnet);
 
             $facturacion = new Facturacion();
             $facturacion->persona_id = $persona->id;
@@ -1049,6 +1083,8 @@ class SocioAdminController extends Controller
             $facturacion->save();
 
 
+
+
             return redirect('traspasos-p')->with('stored','Se aprobó el traspaso');  
         }
         catch(\Exception $e)
@@ -1058,6 +1094,73 @@ class SocioAdminController extends Controller
             return view('errors.corrigeme', compact('error'));            
         }         
 
+
+    }
+
+    public function enviarUsuario($id,$correo,$nombre,$apellido,$carnet)
+    {
+
+        try
+        {
+            //obtener persona
+            $persona = Persona::find($id);
+
+            //pbtener perfil socio
+            $perfil_socio = Perfil::first();
+
+            //creando usuario
+            $user = new User();
+            $user->name = $nombre;
+            $user->email=$correo;
+            $password= "papusclub";
+            $user->password = $password;
+            $user->perfil_id =$perfil_socio->id;
+
+            try{
+                $user->save();
+                $persona->id_usuario = $user->id;
+                $persona->save();
+            }
+            catch(\Exception $ex)
+            {
+
+            }
+
+            $title = '¡Bienvenido a PapusClub!';
+            $content = 'Señor(a): '.$nombre.' '.$apellido.' Su solicitud como postulante acaba de ser aceptada.';
+            $nro_carnet = 'Acerquese a recoger su carnet con número: '.$carnet;
+            $usuario ='Desde este momento ya puede acceder a nuestra página autentificandose con su correo: '.$correo;
+            $password ='Y utilizando la contraseña momentánea: <papuscub> la cual sugerimos cambiar lo antes posible';
+
+            $subject ='Registro de usuario';
+            $to =$correo;
+
+
+            /*Este try catch lo uso por si alguien hace pruebas con correos que no estén registrados en mailgun y por tanto hace que mailgun inautorice el envío del correo cayendose entonces el programa*/
+            try{
+                Mail::send('emails.send', ['title' => $title, 'content' => $content, 'nro_carnet'=>$nro_carnet, 'usuario'=>$usuario,'password'=>$password], function ($message) use($subject,$to)
+                {
+
+                    $message->from('registros@papusclub.com', 'Juan Ignacio Ferraro');
+                    $message->to($to);
+                    $message->subject($subject);
+       
+
+                });
+            }
+            /*Nótese el \ es propio del laravel*/
+            catch(\Exception $ex)
+            {
+
+            }      
+        }
+        catch(\Exception $e)
+        {
+            Log::error($e);
+            $error = 'PostulanteController-enviarUsuario';
+            return view('errors.corrigeme', compact('error'));            
+        }          
+       
 
     }
 
@@ -1095,4 +1198,7 @@ class SocioAdminController extends Controller
         }        
 
     }
+
+
+    
 }

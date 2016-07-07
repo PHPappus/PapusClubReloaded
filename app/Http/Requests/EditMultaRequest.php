@@ -28,6 +28,7 @@ class EditMultaRequest extends Request
        //    die();       
         return [
             'nombre' => 'required|max:30|string',
+            'tipo' => 'required|string',
             'descripcion' =>'max:100|string',
             'montoPenalidad' =>'min:0',
         ];

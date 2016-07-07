@@ -45,6 +45,13 @@
 			  	</div>
 
 			  	<div class="form-group required">
+			    	<label for="tipoInput" class="col-sm-4 control-label">Tipo</label>
+			    	<div class="col-sm-5">
+			      		<input type="text" class="form-control" id="tipoInput" name="tipo" placeholder="Tipo" value="{{$multa->tipo}}"  readonly>
+			    	</div>
+			  	</div>
+
+			  	<div class="form-group required">
 			    	<label for="montoPenalidadInput" class="col-sm-4 control-label">Monto de la Penalidad (S/.)</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" onkeypress="return inputLimiter(event,'DoubleFormat')" min ="0" step = "any" class="form-control" id="montoPenalidadInput" name="montoPenalidad" placeholder="Monto de la Penalidad" value="{{$multa->montoPenalidad}}" readonly required>
