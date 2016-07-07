@@ -96,10 +96,12 @@
 							<th><div align=center>DESCRIPCIÓN</div></th>				
 							<th style="max-width:100px;"><div align=center>TIPO DE SERVICIO</div></th>
 							<th style="max-width:100px;"><div align=center>ESTADO SERVICIO</div></th>
-							<th style="max-width:100px;"><div align=center>PRECIO SOCIO S/</div></th>
+							<th style="max-width:100px;"><div align=center>PRECIO TRABAJADOR S/</div></th>
 							
-							<th><div align=center>PRECIO TRABAJADOR S/</div></th>
-							<th style="max-width:180px;"><div align=center>PRECIO INVITADOS/</div></th>							
+							<th><div align=center>PRECIO SOCIO S/</div></th>
+							<th style="max-width:180px;"><div align=center>PRECIO INVITADO S/</div></th>							
+							<th style="max-width:180px;"><div align=center>PRECIO VIP S/</div></th>
+
 							<th><div align=center>SEDE</div></th>				
 							
 							
