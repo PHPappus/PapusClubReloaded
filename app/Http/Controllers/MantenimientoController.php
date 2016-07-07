@@ -25,22 +25,22 @@ class MantenimientoController extends Controller
         {
             $sedes = Sede::all();
             $mytime = Carbon::now();
-            echo $mytime;
+            
             $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();
             if(!$ambientes->isEmpty())
             {
-                echo "primera";
+                
                 foreach($ambientes as $ambiente)
                 {
-                    echo "segunda";
+                    
                     $bungalowsIna=Mantenimiento::where('id_bungalow','=',$ambiente->id)->get();
                         
-                    echo "tercera";
+                    
                     foreach ($bungalowsIna as $bungalowIna) {
-                        echo "cuarta";
+                        
                         if($bungalowIna->fecha_inicio<=$mytime && $bungalowIna->fecha_fin>=$mytime)
                         {
-                            echo "quinta";
+                            
                             $ambientes->pull($ambientes->search(Ambiente::find($bungalowIna->id_bungalow)));
                         }
                     }
