@@ -23,6 +23,7 @@ class CreateFacturacionTable extends Migration
             $table->integer('traspaso_id')->unsigned()->nullable();
             $table->integer('multa_id')->unsigned()->nullable();
             $table->integer('cuota_id')->unsigned()->nullable();
+            $table->integer('sede_id')->unsigned()->nullable();
             $table->integer('numero_comprobante')->unsigned()->nullable();
             $table->double('total'); 
             $table->string('tipo_pago');                     

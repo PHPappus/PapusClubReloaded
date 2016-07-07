@@ -24,7 +24,7 @@ class EditMembresiaRequest extends Request
     public function rules()
     {
         $rules= [
-            'nombre' =>'required|max:30|alpha',
+            'nombre' =>'required|max:30|alpha_spaces',
             'numMax' =>'required|integer|min:0|max:100',
             'tarifa' =>'required|min:0|float',
         ];
@@ -41,6 +41,7 @@ class EditMembresiaRequest extends Request
     public function messages()
     {
         $messages = [
+            'nombre.alpha_spaces'=>'El campo nombre solo puede contener caracteres.',
             'tarifa.float' => 'El campo tarifa debe ser un valor entero positivo',
             'numMax.integer' => 'El campo número de invitados debe ser un valor entero',
             'numMax.max'=>'El campo número de invitados no puede ser mayor a 100',

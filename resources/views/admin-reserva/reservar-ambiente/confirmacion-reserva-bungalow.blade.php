@@ -80,7 +80,7 @@
 			<div class="form-group required">
 			    	<label for="persona_id" class="col-sm-4 control-label">Socio</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="persona_id" name="id_persona" placeholder="ID de la Persona" value="{{$socio->id}}" readonly>
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="persona_id" name="id_persona" placeholder="ID de la Persona" value="{{$socio->postulante->persona->id}}" readonly>
 			    	</div>
 			    	
 			</div>
