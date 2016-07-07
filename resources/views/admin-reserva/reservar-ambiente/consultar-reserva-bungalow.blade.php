@@ -62,7 +62,7 @@
 							
 							
 
-							<th><DIV ALIGN=center>ID</th>
+							<th><DIV ALIGN=center>CARNET</th>
 							<th><DIV ALIGN=center>SOCIO</th>
 							<th><DIV ALIGN=center>AMBIENTE</th>
 							<th><DIV ALIGN=center>FECHA INICIO</th>
@@ -81,7 +81,7 @@
 							@foreach($reservas as $reserva)						
 						    	@if($reserva->ambiente->tipo_ambiente == 'Bungalow')						
 							    	<tr>
-							    		<td>{{ $reserva->persona->id }}</td>
+							    		<td>{{ $reserva->persona->socio($socios)->carnet_actual()->nro_carnet }}</td>
 										<td>{{ $reserva->persona->nombre . " " . $reserva->persona->ap_paterno . " " . $reserva->persona->ap_materno }}</td>
 										<td>{{ $reserva->ambiente->nombre }}</td>
 										<td>{{ $reserva->fecha_inicio_reserva }}</td>
