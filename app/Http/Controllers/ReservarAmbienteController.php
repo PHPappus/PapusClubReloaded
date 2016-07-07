@@ -445,6 +445,20 @@ class ReservarAmbienteController extends Controller
                 $fechaIniValue=$carbon->createFromFormat('d-m-Y', $fecha_inicio);
                 $fechaFinValue=$carbon->createFromFormat('d-m-Y', $fecha_fin);
                 $diff=$fechaFinValue->diffInDays($fechaIniValue);
+
+                $reservasTotal = Reserva::where('ambiente_id', '=', $ambiente_id)->get();
+                foreach ($reservasTotal as $reserva) {
+                    $reservas_caso_1 = Reserva::whereBetween('fechaIniValue',[$reserva->fecha_inicio_reserva,$reserva->fecha_fin_reserva])->get();
+
+                    $reservas_caso_2 = Reserva::whereBetween('fechaFinValue',[$reserva->fecha_inicio_reserva,$reserva->fecha_fin_reserva])->get();
+
+                   
+                    if($reservas_caso_1 || $reservas_caso_2)
+                        return redirect('reservar-ambiente/reservar-otros-ambientes')->with('error', 'No se pudo registrar la reserva del bungalow, ya ha sido reservado.');
+
+                    
+                }
+
                 $ambiente = Ambiente::find($ambiente_id);
                 $persona = Persona::find($persona_id);
                 $tipo_persona = $persona->tipopersona;
@@ -620,12 +634,13 @@ class ReservarAmbienteController extends Controller
                     $reserva->hora_fin_reserva=$carbon->createFromFormat('H:i', $input['hora_fin_reserva'])->toTimeString();
                 }
 
-                $reservasTotal = Reserva::all()->where('ambiente_id', '=', $ambiente_id);
+                $reservasTotal = Reserva::where('ambiente_id', '=', $ambiente_id)->get();
                 foreach ($reservasTotal as $reserva) {
                     $reservas_caso_1=Reserva::where('fecha_inicio_reserva','=',$reserva->fecha_inicio_reserva )->whereBetween('hora_inicio_reserva',[$reserva->hora_inicio_reserva,$reserva->hora_fin_reserva])->get();
 
                     $reservas_caso_2=Reserva::where('fecha_fin_reserva','=', $reserva->fecha_fin_reserva)->whereBetween('hora_fin_reserva',[$reserva->hora_inicio_reserva,$reserva->hora_fin_reserva])->get();
 
+                   
                     if($reservas_caso_1 || $reservas_caso_2)
                         return redirect('reservar-ambiente/reservar-otros-ambientes')->with('error', 'No se pudo registrar la reserva del ambiente, ya ha sido reservado.');
 
@@ -1065,9 +1080,24 @@ class ReservarAmbienteController extends Controller
             }else{
                 $reserva->hora_fin_reserva=Carbon::createFromTime(12, 0, 0);
             }
+
+            $reservasTotal = Reserva::where('ambiente_id', '=', $ambiente_id)->get();
+                foreach ($reservasTotal as $reserva) {
+                    $reservas_caso_1 = Reserva::whereBetween('fechaIniValue',[$reserva->fecha_inicio_reserva,$reserva->fecha_fin_reserva])->get();
+
+                    $reservas_caso_2 = Reserva::whereBetween('fechaFinValue',[$reserva->fecha_inicio_reserva,$reserva->fecha_fin_reserva])->get();
+
+                   
+                    if($reservas_caso_1 || $reservas_caso_2)
+                        return redirect('reservar-ambiente/reservar-otros-ambientes')->with('error', 'No se pudo registrar la reserva del bungalow, ya ha sido reservado.');
+
+                    
+                }
+                
             $fechaIniValue=$carbon->createFromFormat('d-m-Y', $fecha_inicio);
             $fechaFinValue=$carbon->createFromFormat('d-m-Y', $fecha_fin);
             $diff=$fechaFinValue->diffInDays($fechaIniValue);
+            
             $ambiente = Ambiente::find($ambiente_id);
             $persona = Persona::find($persona_id);
             $tipo_persona = $persona->tipopersona;
@@ -1224,21 +1254,35 @@ class ReservarAmbienteController extends Controller
                 $reserva->hora_fin_reserva=$carbon->createFromFormat('H:i', $input['hora_fin_reserva'])->toTimeString();
             }
 
-            $reservasTotal = Reserva::all();
-            foreach ($reservasTotal as $reserva) {
-                $reservas_caso_1=Reserva::where('fecha_inicio_reserva','=',$reserva->fecha_inicio_reserva )->whereBetween('hora_inicio_reserva',[$reserva->hora_inicio_reserva,$reserva->hora_fin_reserva])->get();
+            $reservasTotal = Reserva::where('ambiente_id', '=', $ambiente_id)->get();
+                foreach ($reservasTotal as $reserva) {
+                    $reservas_caso_1=Reserva::where('fecha_inicio_reserva','=',$reserva->fecha_inicio_reserva )->whereBetween('hora_inicio_reserva',[$reserva->hora_inicio_reserva,$reserva->hora_fin_reserva])->get();
 
-                $reservas_caso_2=Reserva::where('fecha_fin_reserva','=', $reserva->fecha_fin_reserva)->whereBetween('hora_fin_reserva',[$reserva->hora_inicio_reserva,$reserva->hora_fin_reserva])->get();
+                    $reservas_caso_2=Reserva::where('fecha_fin_reserva','=', $reserva->fecha_fin_reserva)->whereBetween('hora_fin_reserva',[$reserva->hora_inicio_reserva,$reserva->hora_fin_reserva])->get();
 
-                if($reservas_caso_1 || $reservas_caso_2)
-                    return redirect('reservar-ambiente/reservar-otros-ambientes-adminR')->with('error', 'No se pudo registrar la reserva del ambiente, ya ha sido reservado.');
+                   
+                    if($reservas_caso_1 || $reservas_caso_2)
+                        return redirect('reservar-ambiente/reservar-otros-ambientes')->with('error', 'No se pudo registrar la reserva del ambiente, ya ha sido reservado.');
 
                     
-            }
+                }
 
             $horaIniValue=$carbon->createFromFormat('H:i', $input['hora_inicio_reserva']);
             $horaFinValue=$carbon->createFromFormat('H:i', $input['hora_fin_reserva']);
             $diff=$horaFinValue->diffInHours($horaIniValue);
+
+            $reservasTotal = Reserva::where('ambiente_id', '=', $ambiente_id)->get();
+                foreach ($reservasTotal as $reserva) {
+                    $reservas_caso_1=Reserva::where('fecha_inicio_reserva','=',$reserva->fecha_inicio_reserva )->whereBetween('hora_inicio_reserva',[$reserva->hora_inicio_reserva,$reserva->hora_fin_reserva])->get();
+
+                    $reservas_caso_2=Reserva::where('fecha_fin_reserva','=', $reserva->fecha_fin_reserva)->whereBetween('hora_fin_reserva',[$reserva->hora_inicio_reserva,$reserva->hora_fin_reserva])->get();
+
+                   
+                    if($reservas_caso_1 || $reservas_caso_2)
+                        return redirect('reservar-ambiente/reservar-otros-ambientes')->with('error', 'No se pudo registrar la reserva del ambiente, ya ha sido reservado.');
+
+                    
+                }
             
             $ambiente = Ambiente::find($ambiente_id);
             $persona = Persona::find($persona_id);
