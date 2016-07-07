@@ -10,6 +10,7 @@ use papusclub\Models\Sorteo;
 use papusclub\Models\Ambiente;
 use papusclub\Models\Reserva;
 use papusclub\Models\Sede;
+use papusclub\Models\Persona;
 use papusclub\Models\Mantenimiento;
 use papusclub\Models\Sorteoxsocio;
 use Auth;
@@ -55,7 +56,7 @@ class SorteoController extends Controller
                     }
                     else
                     {
-                        $reserva->delete();
+                        $reserva->forceDelete();
                     }
                 }
                 
@@ -378,9 +379,7 @@ class SorteoController extends Controller
         {
             $sorteo=Sorteo::where('id',$id)->first();
             $carbon=new Carbon();
-            $sorteo->fecha_fin_sorteo=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_fin_sorteo)->format('d/m/Y');
-            $sorteo->fecha_abierto=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_abierto)->format('d/m/Y');
-            $sorteo->fecha_cerrado=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_cerrado)->format('d/m/Y');
+
 
             $lista_bungalows=AmbientexSorteo::where('id','=',$id)->get();        
 
@@ -398,14 +397,52 @@ class SorteoController extends Controller
                     $ambiente=Ambiente::where('id','=',$bungalow_spec->id_ambiente)->get();
                     $collection->push($ambiente);
                 }
+            }
+            $collectionTemp2=collect([]);
+            $collectionTemp=collect([]);
+            if($sorteo->estado=='Ejecutado')
+            {
                 
+                $lista_bungalows1=AmbientexSorteo::where('id','=',$id)->get();
+                $flag=true;
+                foreach ($lista_bungalows1 as $bungalow) {
+                    echo $bungalow->id_ambiente;
+                    $reserva=Reserva::where('fecha_inicio_reserva','=',$sorteo->fecha_abierto)->where('fecha_fin_reserva','=',$sorteo->fecha_cerrado)->where('ambiente_id','=',$bungalow->id_ambiente)->get();
+                    if(!$reserva->isEmpty())
+                        if($flag){
+                            echo 'si';
+                            $collectionTemp=collect([$reserva]);
+                            echo $reserva[0]->id_persona;
+                            $superTemp=Persona::where('id','=',$reserva[0]->id_persona)->get();
+                            echo 'hola';
+                            $collectionTemp2=collect([$superTemp]);
+                            $flag=false;
+                        }
+                        else 
+                        {
+                            echo 'no';
+                            $collectionTemp->push($reserva); 
+                            $superTemp=Persona::where('id','=',$reserva[0]->id_persona)->get();               
+                            $collectionTemp2->push($superTemp);
+                        }
+
+                }
+
+
+
             }
 
+            $sorteo->fecha_fin_sorteo=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_fin_sorteo)->format('d/m/Y');
+            $sorteo->fecha_abierto=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_abierto)->format('d/m/Y');
+            $sorteo->fecha_cerrado=$carbon->createFromFormat('Y-m-d', $sorteo->fecha_cerrado)->format('d/m/Y');
+
+            $ganadores=$collectionTemp->all();     
+            $personas=$collectionTemp2->all();       
             $sede=Sede::find($sorteo->id_sede)->first();
-
-
             $ambientes=$collection->all();
-            return view('admin-general.sorteo.detailSorteo',['sorteo'=>$sorteo,'ambientes'=>$ambientes,'sede'=>$sede]);
+
+            //echo var_dump($ganadores);
+            return view('admin-general.sorteo.detailSorteo',['sorteo'=>$sorteo,'ambientes'=>$ambientes,'sede'=>$sede,'ganadores'=>$ganadores,'personas'=>$personas]);
         }
         catch (\Exception $e)
         {
