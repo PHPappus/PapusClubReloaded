@@ -115,8 +115,8 @@ class InscriptionTallerAdminReservaController extends Controller
                 return view('errors.corrigeme', compact('error'));
             }
         }
-        public function makeInscriptionToPersona(MakeInscriptionFamiliarRequest $request, $id)
-        {
+    public function makeInscriptionToPersona(MakeInscriptionFamiliarRequest $request, $id)
+    {
             try{
                 if($request['tipo_comprobante']==-1){
                     Session::flash('message-error','Por favor, elija el tipo de comprobante');
@@ -188,7 +188,9 @@ class InscriptionTallerAdminReservaController extends Controller
                             }
                             catch(ValidationException $e){
                                 DB::rollback();
-                                var_dump($e->getErrors());
+                               /* var_dump($e->getErrors());*/
+                                $error = 'filterTalleresAdminReserva-IncriptionTallerAdminReservaController';
+                                return view('errors.corrigeme', compact('error'));
                             }
                             
                             DB::commit();
@@ -204,16 +206,9 @@ class InscriptionTallerAdminReservaController extends Controller
                     }        
                 }
             } catch (\Exception $e) {
-                $error = 'filterTalleresAdminReserva-IncriptionTallerAdminReservaController';
+                $error = 'makeInscriptionToPersona-IncriptionTallerAdminReservaController';
                 return view('errors.corrigeme', compact('error'));
             }
-<<<<<<< HEAD
-        } catch (\Exception $e) {
-            $error = 'makeInscriptionToPersona-IncriptionTallerAdminReservaController';
-            return view('errors.corrigeme', compact('error'));
-        }
-=======
->>>>>>> ebd1490630d56a74cec4b81fe11662dfcc432a18
     }
     public function inscripciones()
     {
