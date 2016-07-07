@@ -59,6 +59,17 @@
 			    	</div>
 			  	</div>
 
+			  	<div class="form-group">
+			    	<label for="tipoInput" class="col-sm-4 control-label">Tipo Multa</label>	
+			    	<div class="col-sm-5">
+				    	<select class="form-control" id="tipoSelect" name="tipo" style="max-width: 150px " >
+							    @foreach ($tipos as $tipo)      
+							        <option value="{{$tipo->valor}}">{{$tipo->valor}}</option>
+							    @endforeach
+						</select>
+					</div>
+			  	</div>
+
 				<div class="form-group ">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">

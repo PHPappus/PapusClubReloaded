@@ -151,7 +151,9 @@ class InscriptionTallerController extends Controller
                         }
                         catch(ValidationException $e){
                             DB::rollback();
-                            var_dump($e->getErrors());
+                            /*var_dump($e->getErrors());*/
+                            $error = 'makeInscriptionFamiliarToUser-InscriptionTallerController';
+                            return view('errors.corrigeme', compact('error'));
                         }
                         
                         DB::commit();
@@ -245,7 +247,9 @@ class InscriptionTallerController extends Controller
                         }
                         catch(ValidationException $e){
                             DB::rollback();
-                            var_dump($e->getErrors());
+                            /*var_dump($e->getErrors());*/
+                            $error = 'makeInscriptionToUser-InscriptionTallerController';
+                            return view('errors.corrigeme', compact('error'));
                         }
                         
                         DB::commit();
@@ -493,7 +497,9 @@ class InscriptionTallerController extends Controller
             }
             catch(ValidationException $e){
                 DB::rollback();
-                var_dump($e->getErrors());
+                /*var_dump($e->getErrors());*/
+                $error = 'removeInscriptionToFamiliar-InscriptionTallerController';
+                return view('errors.corrigeme', compact('error'));
             }
             DB::commit();
             return back();

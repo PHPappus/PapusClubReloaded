@@ -12,6 +12,7 @@ use papusclub\Models\Facturacion;
 use papusclub\Models\ProductoxFacturacion;
 use papusclub\Models\Persona;
 use papusclub\Models\Socio;
+use papusclub\Models\Sede;
 use papusclub\Http\Requests\StoreFacturacionRequest;
 use papusclub\Http\Requests\EditFacturacionRequest;
 use papusclub\Http\Requests\StoreProductoxFacturacionRequest;
@@ -37,7 +38,8 @@ class VentaProductoController extends Controller
             $tipo_pagos = Configuracion::where('grupo','=','8')->get();
             $tipo_comprobantes = Configuracion::where('grupo','=','10')->get();
             $personas = Persona::all();
-        	return view('admin-registros.venta-producto.newVentaProducto', compact('tipo_pagos','tipo_comprobantes','estados','personas'));
+            $sedes = Sede::all();
+        	return view('admin-registros.venta-producto.newVentaProducto', compact('tipo_pagos','tipo_comprobantes','estados','personas','sedes'));
         } 
         catch (\Exception $e) {
             $error = 'index-AmbienteController';
@@ -51,12 +53,13 @@ class VentaProductoController extends Controller
         	$input = $request->all();
           
             $factura = new Facturacion();
-        	$factura->persona_id = $input['persona_id'];
+        	$factura->sede_id = $input['sede_id'];
+            $factura->persona_id = $input['persona_id'];
     		$factura->tipo_pago = $input['tipo_pago'];
             $factura->tipo_comprobante = $input['tipo_comprobante'];
-    		$factura->estado = $input['estado'];		
-        	$factura->descripcion = 'Venta de Productos';
-
+    		$factura->estado = $input['estado'];		        	
+            $factura->descripcion = 'Venta de Productos';
+            
             $numero_comprobante = Facturacion::where('tipo_comprobante','=',$input['tipo_comprobante'])
                                                 ->max('numero_comprobante');
             $factura->numero_comprobante = $numero_comprobante + 1;

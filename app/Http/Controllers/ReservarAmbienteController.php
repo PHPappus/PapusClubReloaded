@@ -1058,7 +1058,6 @@ class ReservarAmbienteController extends Controller
 
                 $reserva = new Reserva();
                 $reserva->ambiente_id = $ambiente_id;
-                $persona_id = $input['id_persona'];
                 $reserva->id_persona = $persona_id;
                 
 
@@ -1249,7 +1248,6 @@ class ReservarAmbienteController extends Controller
 
                 $reserva = new Reserva();
                 $reserva->ambiente_id = $ambiente_id;
-                $persona_id = $input['id_persona'];
                 $reserva->id_persona = $persona_id;
                 
 
