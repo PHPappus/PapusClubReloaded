@@ -24,11 +24,13 @@ class StoreProductoRequest extends Request
     public function rules()
     {
          return [            
+            'proveedor_id'   =>  'required|integer|exists:proveedor,id',            
             'nombre'   =>  array('required','Regex:/[A-Za-z .-]/'),
             'descripcion'   =>  'required|string|max:255',            
             'estado'        =>  'required|integer',
             'tipo_producto'    =>  'required|string',
-            'precio'           => 'required|numeric'
+            'precio'           => 'required|numeric',
+            'costo'           => 'required|numeric'
         ];
     }
 }

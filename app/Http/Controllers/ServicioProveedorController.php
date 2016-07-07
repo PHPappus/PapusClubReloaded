@@ -41,6 +41,7 @@ class ServicioProveedorController extends Controller
     {    	
     	$input = $request->all();
         $producto = new Producto();
+        $producto->proveedor_id = $input['proveedor_id'];
     	$producto->nombre = $input['nombre'];
 		$producto->descripcion = $input['descripcion'];
 		$producto->estado = 1;

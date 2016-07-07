@@ -103,6 +103,14 @@
 						</select>							
 			    	</div>	    	
 			  	</div>
+
+			  	<div  class="form-group">
+			    	<label for="tipoProveedorInput" class="col-sm-4 control-label">Tipo de Proveedor</label>
+			    	<div class="col-sm-5">
+			    		<input type="text" class="form-control" id="tipo_proveedor" name="tipo_proveedor" value="{{$proveedor->tipo_proveedor}}" readonly>
+			    	</div>
+			  	</div>		
+
 			  	
 					<!-- FIN FIN FIN  -->
 				

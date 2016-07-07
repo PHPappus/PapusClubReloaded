@@ -64,8 +64,9 @@ class IngresoServicioController extends Controller
         $ingresoproducto = IngresoProducto::find($id);
 
         
-        $productos = Producto::where('estado','=',1)->
-                                where('tipo_producto','=','Servicio')->get();
+        $productos = Producto::where('estado','=',1)
+                                ->where('tipo_producto','=','Servicio')
+                                ->where('proveedor_id','=',$ingresoproducto->proveedor_id)->get();
         return view('admin-registros.ingreso-servicio.add', compact('ingresoproducto','productos'));        
     }      
 

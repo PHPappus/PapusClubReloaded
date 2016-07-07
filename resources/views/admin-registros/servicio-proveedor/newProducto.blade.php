@@ -113,6 +113,13 @@
 			    	</div>
 			  	</div>	  
 
+			  	<div class="form-group required" hidden>
+			    	<label for="costoInput" class="col-sm-4 control-label">Costo</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" class="form-control" onkeypress="return inputLimiter(event,'DoubleFormat')"  id="costo" name="costo" placeholder="Costo"  value="0">
+			    	</div>
+			  	</div>	  
+
 			  	</br>
 			  	</br>
 				<div class="btn-inline">
