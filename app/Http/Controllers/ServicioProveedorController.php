@@ -8,6 +8,7 @@ use papusclub\Http\Requests;
 use papusclub\Models\Producto;
 use papusclub\Models\PrecioProducto;
 use papusclub\Models\Configuracion;
+use papusclub\Models\Proveedor;
 use papusclub\Http\Requests\StoreProductoRequest;
 use papusclub\Http\Requests\EditProductoRequest;
 use papusclub\Http\Requests\StoreConfiguracionRequest;
@@ -23,9 +24,17 @@ class ServicioProveedorController extends Controller
 
 	public function create()
     {
-        $tipo_productos = Configuracion::where('grupo','=','6')
+        try{
+            $tipo_productos = Configuracion::where('grupo','=','6')
                                         ->where('valor','<>','Servicio')->get();
-    	return view('admin-registros.servicio-proveedor.newProducto', compact('tipo_productos'));
+        
+            $proveedores = Proveedor::where('tipo_proveedor','=','Servicios')->get();
+
+            return view('admin-registros.servicio-proveedor.newProducto', compact('tipo_productos','proveedores'));    
+        }catch (\Exception $e) {
+            return view('errors.404'); //ME RETORNA EL LINCE :v
+        }
+        
     }
     
     public function store(StoreProductoRequest $request)

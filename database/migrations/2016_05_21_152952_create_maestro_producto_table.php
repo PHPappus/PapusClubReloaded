@@ -14,8 +14,9 @@ class CreateMaestroProductoTable extends Migration
     {
         //
         Schema::create('producto',function (Blueprint $table){
-            //Estos son los atributos que estaban en el caso de uso
+            //Estos son los atributos que estaban en el caso de uso            
             $table->increments('id');
+            $table->integer('proveedor_id')->unsigned()->index('producto_proveedor_id_foreign');
             $table->string('nombre');
             $table->string('descripcion');
             $table->integer('estado');

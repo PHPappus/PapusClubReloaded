@@ -23,4 +23,8 @@ class Proveedor extends Model
     public function ingresoproducto(){
         return $this->hasMany('papusclub\Models\IngresoProducto');
     }
+
+    public function producto(){
+        return $this->hasMany('papusclub\Models\Producto');
+    }
 }
