@@ -106,6 +106,7 @@ class ActividadController extends Controller
             }
             //
             $actividad->capacidad_maxima= $input['capacidad_maxima'];
+            $actividad->cupos_disponibles= $input['cupos_disponibles'];
             $tipoActividad = Configuracion::find($input['tipo_actividad']);
             $actividad->tipo_actividad= $tipoActividad->valor;
             $actividad->descripcion= $input['descripcion'];
@@ -120,7 +121,7 @@ class ActividadController extends Controller
                     }
            
 
-            $actividad->estado=false; 
+            $actividad->estado=true; 
             $actividad->save();
 
             $tipoPersonas = TipoPersona::all();
@@ -171,7 +172,7 @@ class ActividadController extends Controller
             }else{
                 $actividad->precio_especial_bungalow=$input['precio_especial_bungalow'];
             }
-            $actividad->estado=false; 
+            $actividad->estado=true; 
             $actividad->save();
 
             $tipoPersonas = TipoPersona::all();

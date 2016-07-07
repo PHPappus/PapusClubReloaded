@@ -207,6 +207,13 @@ class InscriptionTallerAdminReservaController extends Controller
                 $error = 'filterTalleresAdminReserva-IncriptionTallerAdminReservaController';
                 return view('errors.corrigeme', compact('error'));
             }
+<<<<<<< HEAD
+        } catch (\Exception $e) {
+            $error = 'makeInscriptionToPersona-IncriptionTallerAdminReservaController';
+            return view('errors.corrigeme', compact('error'));
+        }
+=======
+>>>>>>> ebd1490630d56a74cec4b81fe11662dfcc432a18
     }
     public function inscripciones()
     {

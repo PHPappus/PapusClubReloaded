@@ -64,6 +64,21 @@
 			  	</br>
 
 				<!-- INICIO INCIIO -->				                       
+
+				<div class="form-group required">
+			    	<label for="proveedor_id" class="col-sm-4 control-label">ID Proveedor</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" class="form-control" id="proveedor_id" name="proveedor_id" placeholder="ID del Proveedor" value="{{$producto->proveedor_id}}" readonly="">
+			    	</div>			    	
+			  	</div>
+
+			  	<div class="form-group required">
+			    	<label for="nombreProveedor" class="col-sm-4 control-label">Nombre del Proveedor</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" class="form-control" id="nombreProveedor" name="nombreProveedor" placeholder="Nombre de la Persona" value="{{$producto->proveedor->nombre_proveedor}}" readonly="">
+			    	</div>			    	
+			  	</div>		
+			  	
 				<div class="form-group required">
 		    		<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
 		    		<div class="col-sm-5">
@@ -114,6 +129,13 @@
 			    	<label for="precioInput" class="col-sm-4 control-label">Precio</label>
 			    	<div class="col-sm-5">			      		
 			      		<input type="text" class="form-control" onkeypress="return inputLimiter(event,'DoubleFormat')" id="precio" name="precio" placeholder="Precio"  value="{{$producto->precioproducto->first()['precio']}}">
+			    	</div>
+			  	</div>	  
+
+			  	<div class="form-group required">
+			    	<label for="costoInput" class="col-sm-4 control-label">Costo</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" class="form-control" onkeypress="return inputLimiter(event,'DoubleFormat')"  id="costo" name="costo" placeholder="Costo"  value="{{$producto->precioproducto->first()['costo']}}">
 			    	</div>
 			  	</div>	  
 					<!-- FIN FIN FIN  -->

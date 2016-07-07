@@ -15,7 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
 </head>
 <body>
-@extends('layouts.headerandfooter-al-socio')
+@extends('layouts.headerandfooter-al-socio-suspendido')
 
 @section('content')
 	<div class="container">
@@ -37,7 +37,7 @@
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active">
 
-						<tr style="background:#a3decb; font: caption; color:#FFF;">
+						<tr>
 							<th><DIV ALIGN=center>ID</th>
 							<th><DIV ALIGN=center>Descripción</th>							
 							<th><DIV ALIGN=center>MONTO (S/.)</th>
@@ -57,9 +57,9 @@
 							<td> {{$facturacion->estado}} </td>
 							<td> {{$facturacion->tipo_pago}}</td>
 							<td>
-							<a class="btn btn-info" href="{{url('/pagos-del-socio/'.$facturacion->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-							</td>		
-						<tr>								
+							<a class="btn btn-info" href="{{url('/pagos-del-socio-suspendido/'.$facturacion->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+							</td>				
+						<tr>						
 					@endforeach		
 					</tbody>					
 												

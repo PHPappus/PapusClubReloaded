@@ -174,7 +174,7 @@
 									<th><div align=center>NOMBRE</div> </th>
 									<th><div align=center>DESCRIPCION</div></th>
 									<th><div align=center>TIPO PRODUCTO</div></th>
-									<th><div align=center>PRECIO</div></th>
+									<th><div align=center>COSTO</div></th>
 									<th><div align=center>STOCK</div></th>
 									<th><div align=center>SELECCIONAR</div></th>
 								</thead>
@@ -184,8 +184,8 @@
 										<tr>											
 											<td>{{$producto->nombre}}</td>
 											<td>{{$producto->descripcion}}</td>		
-											<td>{{$producto->tipo_producto}}</td>
-											<td>{{$producto->precioproducto->first()['precio']}}</td>
+											<td>{{$producto->tipo_producto}}</td>											
+											<td>{{$producto->precioproducto->first()['costo']}}</td>
 											<td>{{$producto->stock}}</td>
 											<td>
 												<div class="radio">

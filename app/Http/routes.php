@@ -354,6 +354,11 @@ Route::group(['middleware' => ['auth', 'adminpagos']], function () {
     //PAGOS POR MEMBRESÍA
     Route::get('/registrar-deuda-membresia','PagosController@registrarDeudasMembresia');
  
+ 	//CUOTA EXTRAORDINARIA
+ 	Route::get('/cuota-extra','CuotaController@index');
+ 	Route::get('/cuota-extra/new','CuotaController@create');
+ 	Route::post('/cuota-extra/new/save','CuotaController@store');
+ 	Route::get('/cuota/{id}','CuotaController@show');
 
 });
 
@@ -719,6 +724,8 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 
 		Route::get('mantBungalowPrev/indexHabilitar','MantenimientoController@indexPrevHabilitar');
 		Route::post('mantBungalowPrev/habilitar','MantenimientoController@habilitarBungalows');
+
+		Route::get('mantBungalowPrev/eliminar/{id}','MantenimientoController@destroy');
 		//Route::get('mantBungalowCorre','MantenimientoController@indexCorre');
 
 	//RESERVA DE AMBIENTES
@@ -783,6 +790,9 @@ Route::group(['middleware' => ['auth', 'publico']], function () {
 
 Route::group(['middleware' => ['auth', 'sociosuspendido']], function () {
 	Route::resource('socio-suspendido','SocioSuspendidoController');
+	//PAGOS (deudas del socio)
+	Route::get('pagos-suspendido/facturacion-socio-suspendido/','PagosSocioSuspendidoController@listarFacturacionSocio');//se lista a los socios
+	Route::get('pagos-del-socio-suspendido/{id}/show', 'PagosSocioSuspendidoController@showAlSocio'); // Detalle del pago
 });
 
 /*Route::get('sede-a','SedesController@index');

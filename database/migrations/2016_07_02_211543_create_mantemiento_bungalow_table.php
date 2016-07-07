@@ -12,10 +12,10 @@ class CreateMantemientoBungalowTable extends Migration
      */
     public function up()
     {
-        Schema::create('mantenimientoBungalow',function (Blueprint $table){
-            //Estos son los atributos que estaban en el caso de uso
+        Schema::create('mantenimientobungalow',function (Blueprint $table){
+
             $table->increments('id');
-            $table->string('id_bungalow');
+            $table->integer('id_bungalow');
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->string('descripcion');
@@ -33,6 +33,6 @@ class CreateMantemientoBungalowTable extends Migration
      */
     public function down()
     {
-        Schema::drop('mantenimientoBungalow');
+        Schema::drop('mantenimientobungalow');
     }
 }
