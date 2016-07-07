@@ -11,14 +11,27 @@ use papusclub\Http\Requests\EditMultaRequest;
 use papusclub\Models\Configuracion;
 use papusclub\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
+use Log;
 
 
 class MultaController extends Controller
 {
     public function index()
     {
-        $multas = Multa::all();
-        return view('admin-general.multa.index',compact('multas'));
+
+        try
+        {
+            $multas = Multa::all();
+            return view('admin-general.multa.index',compact('multas'));
+        }
+        catch(\Exception $e)
+        {
+            Log::error($e);
+            $error = 'SocioAdminController-index';
+            return view('errors.corrigeme', compact('error'));  
+        }
+
+        
     }
 
     public function indexAll()
@@ -29,74 +42,148 @@ class MultaController extends Controller
 
     public function create()
     {
-        $tipos = Configuracion::where('grupo','=',22)->get();
-    	return view('admin-general.multa.newMulta',compact('tipos'));
+
+        try
+        {
+            $tipos = Configuracion::where('grupo','=',22)->get();
+            return view('admin-general.multa.newMulta',compact('tipos'));
+        }
+        catch(\Exception $e)
+        {
+            Log::error($e);
+            $error = 'SocioAdminController-index';
+            return view('errors.corrigeme', compact('error'));  
+        }
+
+        
     }
 
     public function show($id)
     {
 
-        $multa = Multa::withTrashed()->find($id);
-        $originalDate = $multa->fecha_registro;
-        $newDate = date("d-m-Y", strtotime($originalDate));
-        $multa->fecha_registro = $newDate;
-        $multa = Multa::withTrashed()->find($id);
-        return view('admin-general.multa.showMulta',compact('multa'));
+        try
+        {
+            $multa = Multa::withTrashed()->find($id);
+            $originalDate = $multa->fecha_registro;
+            $newDate = date("d-m-Y", strtotime($originalDate));
+            $multa->fecha_registro = $newDate;
+            $multa = Multa::withTrashed()->find($id);
+            return view('admin-general.multa.showMulta',compact('multa'));
+        }
+        catch(\Exception $e)
+        {
+            Log::error($e);
+            $error = 'SocioAdminController-index';
+            return view('errors.corrigeme', compact('error'));  
+        }
+
+        
     }
 
     public function store(StoreMultaRequest $request)
     {
-        $input = $request->all();
 
-        $fecha = new DateTime("now");
-        $fecha=$fecha->format('Y-m-d');
+        try
+        {
+            $input = $request->all();
 
-        $multa = new Multa();
-        $multa->nombre = $input['nombre'];
-        $multa->tipo = $input['tipo'];
-        $multa->descripcion = $input['descripcion'];
-        $multa->montoPenalidad = $input['montoPenalidad'];
-        $multa->estado = TRUE;
-        $multa->fecha_registro = $fecha;
-        $multa->save();
+            $fecha = new DateTime("now");
+            $fecha=$fecha->format('Y-m-d');
 
-        return redirect('multa')->with('stored', 'Se registró la multa correctamente.');
+            $multa = new Multa();
+            $multa->nombre = $input['nombre'];
+            $multa->tipo = $input['tipo'];
+            $multa->descripcion = $input['descripcion'];
+            $multa->montoPenalidad = $input['montoPenalidad'];
+            $multa->estado = TRUE;
+            $multa->fecha_registro = $fecha;
+            $multa->save();
+
+            return redirect('multa')->with('stored', 'Se registró la multa correctamente.');
+        }
+        catch(\Exception $e)
+        {
+            Log::error($e);
+            $error = 'SocioAdminController-index';
+            return view('errors.corrigeme', compact('error'));  
+        }
+
+
+        
         //return back();
     }
 
     public function edit ($id)
     {
-        $multa = Multa::withTrashed()->find($id);
-        $tipos = Configuracion::where('grupo','=',22)->get();
-        return view('admin-general.multa.editMulta',compact('multa','tipos'));
+
+
+        try
+        {
+            $multa = Multa::withTrashed()->find($id);
+            $tipos = Configuracion::where('grupo','=',22)->get();
+            return view('admin-general.multa.editMulta',compact('multa','tipos'));
+        }
+        catch(\Exception $e)
+        {
+            Log::error($e);
+            $error = 'SocioAdminController-index';
+            return view('errors.corrigeme', compact('error'));  
+        }
+
+        
     }
 
     public function update(EditMultaRequest $request, $id)
     {
 
-        $multa = Multa::withTrashed()->find($id);
-        $input = $request->all();
-        
 
-        $multa->update(['nombre'=>$input['nombre'],'descripcion'=>$input['descripcion'],
-                        'montoPenalidad'=>$input['montoPenalidad']]);
-        if (isset($input['estado']))
+        try
         {
-            $multa->estado = TRUE;
+            $multa = Multa::withTrashed()->find($id);
+            $input = $request->all();
+            
+
+            $multa->update(['nombre'=>$input['nombre'],'descripcion'=>$input['descripcion'],
+                            'montoPenalidad'=>$input['montoPenalidad']]);
+            if (isset($input['estado']))
+            {
+                $multa->estado = TRUE;
+            }
+            else
+            {
+                $multa->estado = FALSE;
+            }
+
+            $multa->tipo = $input['tipo'];
+
+            $multa->save();
+            return Redirect::action('MultaController@index');
         }
-        else
+        catch(\Exception $e)
         {
-            $multa->estado = FALSE;
+            Log::error($e);
+            $error = 'SocioAdminController-index';
+            return view('errors.corrigeme', compact('error'));  
         }
 
-        $multa->tipo = $input['tipo'];
-
-        $multa->save();
-        return Redirect::action('MultaController@index');
         
     }
 
-    public function destroy(Multa $multa){
+    public function destroy(Multa $multa)
+    {
+
+        try
+        {
+            $multa = Multa::withTrashed()->find($id);
+            $multa->restore();
+            return back();
+        }
+        catch(\Exception $e)
+        {
+            Log::error($e);
+            $error = 'SocioAdminController-index';
+            return view('errors.corrigeme', compact('error'));  
+        }
 
             $multa->forceDelete();
             return back();
@@ -104,8 +191,19 @@ class MultaController extends Controller
 
     public function activate($id)
     {
-        $multa = Multa::withTrashed()->find($id);
+
+        try
+        {
+            $multa = Multa::withTrashed()->find($id);
         $multa->restore();
-        return back();
+        return back();;
+        }
+        catch(\Exception $e)
+        {
+            Log::error($e);
+            $error = 'SocioAdminController-index';
+            return view('errors.corrigeme', compact('error'));  
+        }
+
     }
 }
