@@ -35,8 +35,6 @@ class StoreTallerRequest extends Request
             'vacantes' =>'min:0',
             'fecIniIns' => 'required',
             'fecFinIns' => 'required',
-            'fecIni' => 'required',
-            'fecFin' => 'required',
             'cantidad_sesiones' => 'min:0',
         ];
 
