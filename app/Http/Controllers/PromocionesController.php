@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 namespace papusclub\Http\Controllers;
 
@@ -36,7 +36,7 @@ class PromocionesController extends Controller
     {
         try
         {
-            $socios = Socio::all();
+            
             $tipos = Configuracion::where('grupo','=',15)->get();
            return view('admin-registros.promocion.newPromocion',compact('tipos'));          
         }
