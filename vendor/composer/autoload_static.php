@@ -355,6 +355,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'CreateInvitadosTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_09_155920_create_invitados_table.php',
         'CreateMaestroProductoTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_21_152952_create_maestro_producto_table.php',
         'CreateMaestroProveedorTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_06_042135_create_maestro_proveedor_table.php',
+        'CreateMantemientoBungalowTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_02_211543_create_mantemiento_bungalow_table.php',
         'CreateMultaTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_24_220332_create_multa_table.php',
         'CreateMultaxpersonaTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_194018_create_multaxpersona_table.php',
         'CreateObservacionesTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_14_092509_create_observaciones_table.php',

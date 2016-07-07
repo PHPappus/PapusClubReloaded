@@ -39,7 +39,7 @@
 		<div class="container">
 			<table class="table table-bordered table-hover text-center display" id="example">
 					<thead class="active">
-						<tr>
+						<tr style="background:#a3decb; font: caption; color:#FFF;">
 							<th><DIV ALIGN=center>ID</th>
 							<th><DIV ALIGN=center>Tipo Reserva</th>
 							<th><DIV ALIGN=center>Monto</th>

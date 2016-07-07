@@ -67,7 +67,7 @@ class Postulante extends Model
 
     public function socio()
     {
-        return $this->hasOne(Socio::class,'id');
+        return $this->hasOne(Socio::class,'postulante_id');
     }
 
     public function es_socio()

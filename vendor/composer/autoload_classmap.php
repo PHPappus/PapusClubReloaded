@@ -71,6 +71,7 @@ return array(
     'CreateInvitadosTable' => $baseDir . '/database/migrations/2016_06_09_155920_create_invitados_table.php',
     'CreateMaestroProductoTable' => $baseDir . '/database/migrations/2016_05_21_152952_create_maestro_producto_table.php',
     'CreateMaestroProveedorTable' => $baseDir . '/database/migrations/2016_05_06_042135_create_maestro_proveedor_table.php',
+    'CreateMantemientoBungalowTable' => $baseDir . '/database/migrations/2016_07_02_211543_create_mantemiento_bungalow_table.php',
     'CreateMultaTable' => $baseDir . '/database/migrations/2016_05_24_220332_create_multa_table.php',
     'CreateMultaxpersonaTable' => $baseDir . '/database/migrations/2016_06_04_194018_create_multaxpersona_table.php',
     'CreateObservacionesTable' => $baseDir . '/database/migrations/2016_06_14_092509_create_observaciones_table.php',

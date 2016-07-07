@@ -121,6 +121,8 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('ver-postulantes/','SocioController@verPostulantes');
 	Route::get('socio-postulante/{id}/obs','SocioController@agregarObs');
 	Route::post('observacion/new/save','SocioController@storeObservacion');
+	Route::get('solicitud-ingreso-invitados/','SocioController@solicitarIngreso');
+	Route::post('solicitud-ingreso-invitados/guardar-invitacion/','SocioController@storeInvitacion');
 
 
 	//RESERVA DE AMBIENTES
@@ -477,6 +479,34 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::get('postulante/{id}/delete', 'PostulanteController@destroy');
 	Route::get('postulante/{id}/show', 'PostulanteController@show');//
 
+	/*Registro de familiar como postulante*/
+	Route::get('familiares-habilitados/','PostulanteController@familiares');
+	Route::get('familiares-habilitados/{id}/socio','PostulanteController@versocio');
+	Route::get('/familiares-habilitados/{id}/new','PostulanteController@registrarpostulacionfamiliar');
+	Route::post('/familiares-habilitados/{id}/store','PostulanteController@guardarpostulacionfamiliar');
+
+	/*Ajax para el registro de nacimiento en registrar postulante*/
+	Route::post('/familiares-habilitados/{id}/provincias', function(){
+		$dep_id=Input::get('id');
+    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
+	});
+	Route::post('/familiares-habilitados/{id}/distritos', function(){
+		$prov_id=Input::get('id');
+    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
+	});
+
+	/*Ajax para el registro de vivienda en registrar postulante*/
+	Route::post('/familiares-habilitados/{id}/provincias_vivienda', function(){
+		$dep_id=Input::get('id');
+    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
+	});
+	Route::post('/familiares-habilitados/{id}/distritos_vivienda', function(){
+		$prov_id=Input::get('id');
+    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
+	});
+
+
+
 	/*editar*/
 	Route::patch('postulante/{id}/editBasico','PostulanteController@updateBasico');
 	Route::patch('postulante/{id}/editNacimiento','PostulanteController@updateNacimiento');
@@ -497,7 +527,9 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	/*Aceptar postulación | rechazar postulacion*/
 	Route::get('postulante/{id}/newSocio','PostulanteController@registaSocio');
 	Route::get('postulante/{id}/aceptar','PostulanteController@aceptarPostulante');
-	Route::get('postulante/{id}/rechazar','PostulanteController@rechazarPostulante');	
+	Route::get('postulante/{id}/rechazar','PostulanteController@rechazarPostulante');
+
+		
 
 
 /*	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');*/
@@ -687,6 +719,8 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 
 		Route::get('mantBungalowPrev/indexHabilitar','MantenimientoController@indexPrevHabilitar');
 		Route::post('mantBungalowPrev/habilitar','MantenimientoController@habilitarBungalows');
+
+		Route::get('mantBungalowPrev/eliminar/{id}','MantenimientoController@destroy');
 		//Route::get('mantBungalowCorre','MantenimientoController@indexCorre');
 
 	//RESERVA DE AMBIENTES
@@ -745,8 +779,15 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 
 
 //Publico
-	Route::group(['middleware' => ['auth', 'publico']], function () {
+Route::group(['middleware' => ['auth', 'publico']], function () {
 	Route::resource('public','PublicoController');
+});
+
+Route::group(['middleware' => ['auth', 'sociosuspendido']], function () {
+	Route::resource('socio-suspendido','SocioSuspendidoController');
+	//PAGOS (deudas del socio)
+	Route::get('pagos-suspendido/facturacion-socio-suspendido/','PagosSocioSuspendidoController@listarFacturacionSocio');//se lista a los socios
+	Route::get('pagos-del-socio-suspendido/{id}/show', 'PagosSocioSuspendidoController@showAlSocio'); // Detalle del pago
 });
 
 /*Route::get('sede-a','SedesController@index');

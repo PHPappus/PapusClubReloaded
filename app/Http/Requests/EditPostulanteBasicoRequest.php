@@ -33,9 +33,6 @@ class EditPostulanteBasicoRequest extends Request
             'nombre' =>'required|alpha_spaces|max:100',
             'apellidoPat' =>'required|alpha_spaces|max:100',
             'apellidoMat' =>'required|alpha_spaces|max:100',
-            //'fecha_nacimiento' =>'required|string',
-            'doc_identidad'=> 'required_if:nacionalidad,peruano', //| unique:persona,doc_identidad,NULL',
-            'carnet_extranjeria'=> 'required_if:nacionalidad,extranjero',//  | unique:persona,carnet_extranjeria,NULL',
             'estado_civil'=>'required|exists:configuracion,id',
         ];
     }

@@ -98,6 +98,9 @@ class AuthController extends Controller
             case '8':
             return '/control-ingresos';
             break;
+            case '9':
+            return '/socio-suspendido';
+            break;
         }
     }
 }

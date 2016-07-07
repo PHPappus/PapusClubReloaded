@@ -21,64 +21,130 @@ class MantenimientoController extends Controller
 {
     public function indexPrev()
     {
-        $sedes = Sede::all();
-        $mytime = Carbon::now(-5);
-        echo $mytime;
-        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')/*->where('estado','!=','Deshabilitado')*/->get();
-        foreach($ambientes as $ambiente)
+        try
         {
-            $bungalowsIna=Mantenimiento::where('id_bungalow','=',$ambiente->id)->get();
-            foreach ($bungalowsIna as $bungalowIna) {
-                if($bungalowIna->fecha_inicio<=$mytime && $bungalowIna->fecha_fin>=$mytime)
+            $sedes = Sede::all();
+            $mytime = Carbon::now();
+            echo $mytime;
+            $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();
+            if(!$ambientes->isEmpty())
+            {
+                echo "primera";
+                foreach($ambientes as $ambiente)
                 {
-                    $ambientes->pull($ambientes->search(Ambiente::find($bungalowIna->id_bungalow)));
+                    echo "segunda";
+                    $bungalowsIna=Mantenimiento::where('id_bungalow','=',$ambiente->id)->get();
+                        
+                    echo "tercera";
+                    foreach ($bungalowsIna as $bungalowIna) {
+                        echo "cuarta";
+                        if($bungalowIna->fecha_inicio<=$mytime && $bungalowIna->fecha_fin>=$mytime)
+                        {
+                            echo "quinta";
+                            $ambientes->pull($ambientes->search(Ambiente::find($bungalowIna->id_bungalow)));
+                        }
+                    }
                 }
+                return view('admin-general.mantenimiento-bungalows.indexCorr',['ambientes'=>$ambientes,'sedes'=>$sedes]);
             }
+                
         }
-        return view('admin-general.mantenimiento-bungalows.indexCorr',['ambientes'=>$ambientes,'sedes'=>$sedes]);
+        catch (\Exception $e)
+        {
+            $error = 'indexPrev-MatenimientoController';
+            return view('errors.corrigeme', compact('error'));
+        }
     }
 
     public function deshabilitarBungalows(DeshabilitarBungalowsRequest $request,$id)
     {
-        $carbon= new Carbon();
-        
-        
+        try
+        {
+            $carbon= new Carbon();
 
-        $input = $request->all();
-        $nuevo = new Mantenimiento();
-        $nuevo->id_bungalow=$id;
-        $date = str_replace('/', '-', $input['fecha_cerrado']);      
-        $nuevo->fecha_fin=$carbon->createFromFormat('d-m-Y', $date)->toDateString();
-        $date = str_replace('/', '-', $input['fecha_abierto']);
-        $nuevo->fecha_inicio=$carbon->createFromFormat('d-m-Y', $date)->toDateString();;        
-        $nuevo->descripcion="generico";
-        $nuevo->estado="Activo";
-        $nuevo->save();
-        return redirect('mantBungalowPrev/index');
+            $input = $request->all();
+            $nuevo = new Mantenimiento();
+            $nuevo->id_bungalow=$id;
+            $date = str_replace('/', '-', $input['fecha_cerrado']);      
+            $nuevo->fecha_fin=$carbon->createFromFormat('d-m-Y', $date)->toDateString();
+            $date = str_replace('/', '-', $input['fecha_abierto']);
+            $nuevo->fecha_inicio=$carbon->createFromFormat('d-m-Y', $date)->toDateString();;        
+            $nuevo->descripcion="generico";
+            $nuevo->estado="Activo";
+            $nuevo->save();
+            return redirect('mantBungalowPrev/index');            
+        }
+        catch (\Exception $e)
+        {
+            $error = 'deshabilitarBungalows-MatenimientoController';
+            return view('errors.corrigeme', compact('error'));
+        }
+
     }
 
     public function deshabilitarDetalle($id)
     {
-        $configuracion="0";
-        return view('admin-general.mantenimiento-bungalows.deshabilitarDetalle',['id'=>$id,'configuracion'=>$configuracion]);
+        try
+        {
+            $configuracion="0";
+            return view('admin-general.mantenimiento-bungalows.deshabilitarDetalle',['id'=>$id,'configuracion'=>$configuracion]);
+        }
+        catch (\Exception $e)
+        {
+            $error = 'deshabilitarDetalle-MatenimientoController';
+            return view('errors.corrigeme', compact('error'));
+        }
     }
 
     public function indexPrevHabilitar()
     {
-        $sedes = Sede::all();
-        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('estado','=','Deshabilitado')->get();
-        return view('admin-general.mantenimiento-bungalows.indexCorrHabilitar',['ambientes'=>$ambientes,'sedes'=>$sedes]);
+        try
+        {
+            $sedes = Sede::all();
+            $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->get();
+            $mantenimientos=Mantenimiento::all();
+            return view('admin-general.mantenimiento-bungalows.indexCorrHabilitar',['ambientes'=>$ambientes,'sedes'=>$sedes,'mantenimientos'=>$mantenimientos]);
+        }
+        catch (\Exception $e)
+        {
+            $error = 'indexPrevHabilitar-MatenimientoController';
+            return view('errors.corrigeme', compact('error'));
+        }
     }
 
     public function habilitarBungalows(HabilitarBungalowsRequest $request)
     {
-        $bungalows = Input::get('ch');
-        if($bungalows!=NULL)            
-            foreach ($bungalows as $bungalow) {
-                $temp=Ambiente::find($bungalow);
-                $temp->estado='Activo';
-                $temp->save();
-            }
-        return redirect('mantBungalowPrev/indexHabilitar');
+        try
+        {
+            $bungalows = Input::get('ch');
+            if($bungalows!=NULL)            
+                foreach ($bungalows as $bungalow) {
+                    $temp=Ambiente::find($bungalow);
+                    $temp->estado='Activo';
+                    $temp->save();
+                }
+            return redirect('mantBungalowPrev/indexHabilitar');
+        }
+        catch (\Exception $e)
+        {
+            $error = 'habilitarBungalows-MatenimientoController';
+            return view('errors.corrigeme', compact('error'));
+        }
+    }
+
+    public function destroy($id)
+    {
+        try
+        {
+            $mantenimiento=Mantenimiento::find($id);
+            //Reviso si hay bungalows asociados
+            $mantenimiento->delete();
+            return redirect('mantBungalowPrev/indexHabilitar');    
+        }
+        catch (\Exception $e)
+        {
+            $error = 'destroy-SorteoController';
+            return view('errors.corrigeme', compact('error'));
+        }
     }
 }
