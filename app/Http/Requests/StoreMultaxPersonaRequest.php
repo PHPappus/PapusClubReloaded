@@ -29,6 +29,7 @@ class StoreMultaxPersonaRequest extends Request
 
         return [
             'montoMultaSelect' => 'float|min:0',
+            'descripcion'  =>'required|max:100|string',
             'ch' => 'required',
         ];
     }
