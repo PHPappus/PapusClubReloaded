@@ -42,7 +42,20 @@
               Ingresos al Club
             </a>
           </li>          
-        </ul>                
+        </ul>
+
+        <!-- Cuotas Extraordinarias -->
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn-lg" data-toggle="dropdown" role="button">
+              Cuotas Extraordinarias <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">    
+                <li><a href="{!!URL::to('/cuota-extra')!!}" title="Consultar cuotas" target="_self">Consultar</a></li>
+                <li><a href="{!!URL::to('/cuota-extra/new')!!}" title="Registrar cuota" target="_self">Registrar</a></li>
+            </ul>
+          </li>
+        </ul>              
 
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">

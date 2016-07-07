@@ -50,9 +50,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
             'Symfony\\Component\\HttpFoundation\\' => 33,
             'Symfony\\Component\\Finder\\' => 25,
             'Symfony\\Component\\EventDispatcher\\' => 34,
-            'Symfony\\Component\\DomCrawler\\' => 29,
             'Symfony\\Component\\Debug\\' => 24,
-            'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
             'SuperClosure\\' => 13,
         ),
@@ -162,17 +160,9 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
         ),
-        'Symfony\\Component\\DomCrawler\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/dom-crawler',
-        ),
         'Symfony\\Component\\Debug\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/debug',
-        ),
-        'Symfony\\Component\\CssSelector\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/css-selector',
         ),
         'Symfony\\Component\\Console\\' => 
         array (
@@ -305,6 +295,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'AddFkToHistoricoInvitacion' => __DIR__ . '/../..' . '/database/migrations/2016_06_09_191230_add_fk_to_historico_invitacion.php',
         'AddFkToIngresoproductoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_15_205156_add_fk_to_ingresoproducto_table.php',
         'AddFkToInvitadoTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_09_165934_add_fk_to_invitado_table.php',
+        'AddFkToMantemientoBungalowTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_02_214108_add_fk_to_mantemiento_bungalow_table.php',
         'AddFkToMultaxpersonaTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_04_205656_add_fk_to_multaxpersona_table.php',
         'AddFkToObservaciones' => __DIR__ . '/../..' . '/database/migrations/2016_06_14_092945_add_fk_to_observaciones.php',
         'AddFkToPersona' => __DIR__ . '/../..' . '/database/migrations/2016_05_24_201138_add_fk_to_persona.php',
@@ -343,6 +334,7 @@ class ComposerStaticInitbd1a3dbc1fc853714d36f37edc3d3b79
         'CreateCarnetxsocioTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_05_031106_create_carnetxsocio_table.php',
         'CreateConcesionariaTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_26_193838_create_concesionaria_table.php',
         'CreateConfiguracionTable' => __DIR__ . '/../..' . '/database/migrations/2016_05_26_194248_create_configuracion_table.php',
+        'CreateCuotaTable' => __DIR__ . '/../..' . '/database/migrations/2016_07_05_050328_create_cuota_table.php',
         'CreateDepartamentosTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_07_152144_create_departamentos_table.php',
         'CreateDistritosTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_07_192449_create_distritos_table.php',
         'CreateFacturacionTable' => __DIR__ . '/../..' . '/database/migrations/2016_06_06_235441_create_facturacion_table.php',
