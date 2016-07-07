@@ -11,6 +11,7 @@ class PrecioProducto extends Model
     protected $fillable = 
     ['producto_id',
      'precio',
+     'costo',
      'estado'];
     protected $dates = ['deleted_at'];
 

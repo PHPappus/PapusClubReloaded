@@ -52,7 +52,7 @@
 						<th><div align=center>PROVEEDOR</div> </th>
 						<th><div align=center>RUC</div></th>
 						<th><div align=center>DIRECCION</div></th>
-						<th><div align=center>TELÉFONO</div></th>
+						<th><div align=center>TIPO DE PROVEEDOR</div></th>
 						<th><div align=center>DETALLE</div></th>
 						<th><div align=center>EDITAR</div></th>
 						<th><div align=center>ELIMINAR</div></th>
@@ -65,7 +65,7 @@
 							<td>{{ $proveedor->nombre_proveedor }}</td>
 							<td>{{ $proveedor->ruc }}</td>
  							<td>{{ $proveedor->direccion }}</td>
-							<td>{{ $proveedor->telefono }}</td>
+							<td>{{ $proveedor->tipo_proveedor }}</td>
 							<td>
 				              	<a class="btn btn-info" href="{{url('/proveedor/'.$proveedor->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 				            </td>

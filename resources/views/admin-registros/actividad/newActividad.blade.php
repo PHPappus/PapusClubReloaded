@@ -135,7 +135,13 @@
 			    	<div class="col-sm-5">
 			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="capacidadInput" name="capacidad_maxima" placeholder="Capacidad Maxima" value="{{old('capacidad_maxima')}}" >
 			    	</div>
-			  	</div>	  	
+			  	</div>	 
+			  	<div class="form-group required">
+			    	<label for="cuposInput" class="col-sm-4 control-label">Cupos disponibles</label>
+			    	<div class="col-sm-5">
+			      		<input type="text"  onkeypress="return inputLimiter(event,'Numbers')"  class="form-control" id="cuposInput" name="cupos_disponibles" placeholder="Cupos disponibles" value="{{old('cupos_disponibles')}}" >
+			    	</div>
+			  	</div> 	
 			  	
 			  	
 			  	<!-- EL ESTADO SIEMPRE VA EN TRUE PARA EL REGISTRAR -->

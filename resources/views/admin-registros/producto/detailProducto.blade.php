@@ -29,6 +29,20 @@
 		<div class="container">
 			<form class="form-horizontal form-border">
 				<br/><br/>
+				
+				<div class="form-group">
+			    	<label for="proveedor_id" class="col-sm-4 control-label">ID Proveedor</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" class="form-control" id="proveedor_id" name="proveedor_id" placeholder="ID del Proveedor" value="{{$producto->proveedor_id}}" readonly="">
+			    	</div>			    	
+			  	</div>
+
+			  	<div class="form-group">
+			    	<label for="nombreProveedor" class="col-sm-4 control-label">Nombre del Proveedor</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" class="form-control" id="nombreProveedor" name="nombreProveedor" placeholder="Nombre de la Persona" value="{{$producto->proveedor->nombre_proveedor}}" readonly="">
+			    	</div>			    	
+			  	</div>		
 
 				<div class="form-group">
 		    		<label for="nombreInput" class="col-sm-4 control-label">Nombre</label>
@@ -69,10 +83,16 @@
 			    	<label for="precioInput" class="col-sm-4 control-label" >Precio</label>
 			    	<div class="col-sm-5">
 			      		<input type="text" class="form-control" id="precioInput" name="precio" 
-			    		value="{{$producto->precioproducto->first()['precio']}}"
-			      		readonly>
+			    		value="{{$producto->precioproducto->first()['precio']}}" readonly>
 			    	</div>			      					      		
 			  	</div>	
+
+			  	<div class="form-group">
+			    	<label for="costoInput" class="col-sm-4 control-label">Costo</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" class="form-control" id="costo" name="costo" placeholder="Costo"  value="{{$producto->precioproducto->first()['costo']}}" readonly="">
+			    	</div>
+			  	</div>	  
 
 				<br/><br/>
 				
