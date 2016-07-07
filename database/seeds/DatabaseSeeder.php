@@ -37,8 +37,8 @@ class DatabaseSeeder extends Seeder
         //$this->call(ProductoxFacturacionTableSeeder::class);
         $this->call(TipoFamiliaTableSeeder::class);
         //$this->call(TarifaAmbientexTipoPersonaTableSeeder::class);
-        $this->call(servicioSeeder::class);
-        $this->call(TarifarioServiciosTableSeeder::class);      
+        //$this->call(servicioSeeder::class);
+        //$this->call(TarifarioServiciosTableSeeder::class);      
         $this->call(TarifaFamiliarTableSeeder::class);
         //$this->call(TarifaActividadTableSeeder::class);
         $this->call(FamiliarxPostulanteTableSeeder::class);

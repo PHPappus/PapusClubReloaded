@@ -259,7 +259,8 @@ class ServicioalsocioController extends Controller
             // Crea sevicio x sede x persona 
             $newsxsxp = new ServicioxSedexPersona();    
             $sedxser = Sedexservicio::where('id','=',$id)->first();     
-            $tarifserv = TarifarioServicio::where('idservicio','=',$sedxser->idservicio)->first();
+            $tarifserv = TarifarioServicio::where('idservicio','=',$sedxser->idservicio)->where('idtipopersona','=',2)->first(); // socio postulante
+            
 
             $newsxsxp->id_servicio  = $sedxser->idservicio;
             $newsxsxp->id_sede  = $sedxser->idsede;
@@ -277,11 +278,21 @@ class ServicioalsocioController extends Controller
                 $fact->total = $fact->total + $tarifserv->precio;
                 $fact->save();
             }
+            
+            $ser = Servicio::where('id','=',$sedxser->idservicio)->first();        
+            $tiposServicio=Configuracion::where('grupo','=','4')->get();
+            foreach($tiposServicio as $tp){
+                    if ($ser->tipo_servicio == $tp->id ){
+                            $tip_s = $tp->valor;
+                            break;
+                    }
+            }
 
             if ($codreservatosave==-1){
                 $newfact = new Facturacion();
                 $newfact->persona_id=$persona_id;
                 $newfact->total=$tarifserv->precio;
+                $newfact->descripcion = "Servicio Adicional " . $ser->nombre ." ". $tip_s;
                 $newfact->tipo_pago = "Efectivo";
                 $newfact->tipo_comprobante = "Boleta";
                 $newfact->servicio_id = $sedxser->idservicio;
@@ -336,7 +347,7 @@ class ServicioalsocioController extends Controller
             // Crea sevicio x sede x persona 
             $newsxsxp = new ServicioxSedexPersona();    
             $sedxser = Sedexservicio::where('id','=',$id)->first();     
-            $tarifserv = TarifarioServicio::where('idservicio','=',$sedxser->idservicio)->first();
+            $tarifserv = TarifarioServicio::where('idservicio','=',$sedxser->idservicio)->where('idtipopersona','=',2)->first();
 
             $newsxsxp->id_servicio  = $sedxser->idservicio;
             $newsxsxp->id_sede  = $sedxser->idsede;
@@ -401,7 +412,7 @@ class ServicioalsocioController extends Controller
             
             $sedeindentificado = Sede::where('id','=',$sedexservicio->idsede)->first();        
 
-                $servxsedexpersonatodos = ServicioxSedexPersona::all();
+            $servxsedexpersonatodos = ServicioxSedexPersona::all();
             $foo = false ; 
             $mensaje  = null;
 
@@ -426,7 +437,8 @@ class ServicioalsocioController extends Controller
                 }
                 $precio = null ; 
                 foreach ($tarifarioservicios as $ts){
-                    if ($ts->idservicio == $ser->id && $ts->idtipopersona == 1 ){
+                    if ($ts->idservicio == $ser->id && $ts->idtipopersona == 2 ){ 
+                        // El numero 2 indica que es socio 
                             $precio = $ts->precio ; 
                     }
 
