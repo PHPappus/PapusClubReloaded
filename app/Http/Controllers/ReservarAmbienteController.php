@@ -95,7 +95,7 @@ class ReservarAmbienteController extends Controller
             $error = 'verServices-ReservarAmbienteController';
             return view('errors.corrigeme', compact('error'));
         }
-   }
+    }
     public function  storeServices(StoreAgregarServiciosRequest $rquest, $id){
              
         try {
@@ -377,7 +377,6 @@ class ReservarAmbienteController extends Controller
             $error = 'reservarOtrosAmbientesFiltrados-ReservarAmbienteController';
             return view('errors.corrigeme', compact('error'));
         }
-        
     }
 
     public function createBungalow($id,$fechaIniValue,$fechaFinValue)
@@ -469,7 +468,6 @@ class ReservarAmbienteController extends Controller
 
                         if ($eventos != NULL)//no hay ningun evento en esta fecha
                         {
-
                             foreach ($eventos as $i=> $evento) {
                                     if($evento->ambiente->sede->id!=$ambiente->sede->id)  unset($eventos[$i]);
                             }
@@ -1254,19 +1252,6 @@ class ReservarAmbienteController extends Controller
             }else{
                 $reserva->hora_fin_reserva=$carbon->createFromFormat('H:i', $input['hora_fin_reserva'])->toTimeString();
             }
-
-            $reservasTotal = Reserva::where('ambiente_id', '=', $ambiente_id)->get();
-                foreach ($reservasTotal as $reserva) {
-                    $reservas_caso_1=Reserva::where('fecha_inicio_reserva','=',$reserva->fecha_inicio_reserva )->whereBetween('hora_inicio_reserva',[$reserva->hora_inicio_reserva,$reserva->hora_fin_reserva])->get();
-
-                    $reservas_caso_2=Reserva::where('fecha_fin_reserva','=', $reserva->fecha_fin_reserva)->whereBetween('hora_fin_reserva',[$reserva->hora_inicio_reserva,$reserva->hora_fin_reserva])->get();
-
-                   
-                    if($reservas_caso_1 || $reservas_caso_2)
-                        return redirect('reservar-ambiente/reservar-otros-ambientes')->with('error', 'No se pudo registrar la reserva del ambiente, ya ha sido reservado.');
-
-                    
-                }
 
             $horaIniValue=$carbon->createFromFormat('H:i', $input['hora_inicio_reserva']);
             $horaFinValue=$carbon->createFromFormat('H:i', $input['hora_fin_reserva']);
