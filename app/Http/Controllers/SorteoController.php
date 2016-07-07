@@ -107,7 +107,7 @@ class SorteoController extends Controller
     {
         try
         {
-            $sorteos=Sorteo::where('fecha_fin_sorteo','>',new \DateTime('today'))->get();
+            $sorteos=Sorteo::where('fecha_fin_sorteo','>=',new \DateTime('today'))->get();
             $carbon=new Carbon();
             $user_id = Auth::user()->id;
             $usuario = User::find($user_id);
