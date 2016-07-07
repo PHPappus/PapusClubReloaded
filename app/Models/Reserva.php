@@ -37,7 +37,7 @@ class Reserva extends Model
 
     public function facturacion()
     {
-        return $this->hasOne('papusclub\Models\Facturacion');
+        return $this->hasOne('papusclub\Models\Facturacion','id');
     }
 
     public function taller(){
