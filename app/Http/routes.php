@@ -103,6 +103,8 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 
 	Route::post('inscripcion-actividad/inscripcion-actividades','InscriptionActividadController@filterActividades');
 
+	Route::get('actividades/{id}/show','InscriptionActividadController@show');
+
 	Route::post('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades/confirm','InscriptionActividadController@makeInscriptionToPersona');
 	Route::post('inscripcion-actividad/{id}/confirmacion-inscripcion-actividades-to-familiar/confirm','InscriptionActividadController@makeInscriptionFamiliarToPersona');
 
@@ -119,6 +121,8 @@ Route::group(['middleware' => ['auth', 'socio']], function () {
 	Route::get('ver-postulantes/','SocioController@verPostulantes');
 	Route::get('socio-postulante/{id}/obs','SocioController@agregarObs');
 	Route::post('observacion/new/save','SocioController@storeObservacion');
+	Route::get('solicitud-ingreso-invitados/','SocioController@solicitarIngreso');
+	Route::post('solicitud-ingreso-invitados/guardar-invitacion/','SocioController@storeInvitacion');
 
 
 	//RESERVA DE AMBIENTES
@@ -428,21 +432,6 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 	Route::post('sedes/{id}/edit', 'SedesController@update');
 	Route::get('sedes/{id}/delete', 'SedesController@destroy');
 	Route::get('sedes/{id}/show', 'SedesController@show');
-	
-
-
-	
-
-
-		
-	/*//Inscribirse en Sorteo
-	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
-
-	//Inscribirse en Sorteo
-	Route::get('sorteo/inscripcion','SorteoController@indexInscripcion');
-	Route::post('sorteo/inscripcion/store','SorteoController@inscripcionStore');
-	Route::post('sorteo/inscripcion/delete','SorteoController@inscripcionDelete');
-	Route::get('sorteo/inscripcion/mis_sorteos','SorteoController@indexMisInscripciones');*/
 
 	
 	//MANTENIMIENTO DE MEMBRESIA
@@ -490,6 +479,34 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	Route::get('postulante/{id}/delete', 'PostulanteController@destroy');
 	Route::get('postulante/{id}/show', 'PostulanteController@show');//
 
+	/*Registro de familiar como postulante*/
+	Route::get('familiares-habilitados/','PostulanteController@familiares');
+	Route::get('familiares-habilitados/{id}/socio','PostulanteController@versocio');
+	Route::get('/familiares-habilitados/{id}/new','PostulanteController@registrarpostulacionfamiliar');
+	Route::post('/familiares-habilitados/{id}/store','PostulanteController@guardarpostulacionfamiliar');
+
+	/*Ajax para el registro de nacimiento en registrar postulante*/
+	Route::post('/familiares-habilitados/{id}/provincias', function(){
+		$dep_id=Input::get('id');
+    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
+	});
+	Route::post('/familiares-habilitados/{id}/distritos', function(){
+		$prov_id=Input::get('id');
+    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
+	});
+
+	/*Ajax para el registro de vivienda en registrar postulante*/
+	Route::post('/familiares-habilitados/{id}/provincias_vivienda', function(){
+		$dep_id=Input::get('id');
+    	return papusclub\Models\Provincia::where('departamento_id','=', $dep_id)->get();
+	});
+	Route::post('/familiares-habilitados/{id}/distritos_vivienda', function(){
+		$prov_id=Input::get('id');
+    	return papusclub\Models\Distrito::where('provincia_id','=', $prov_id)->get();
+	});
+
+
+
 	/*editar*/
 	Route::patch('postulante/{id}/editBasico','PostulanteController@updateBasico');
 	Route::patch('postulante/{id}/editNacimiento','PostulanteController@updateNacimiento');
@@ -510,7 +527,9 @@ Route::group(['middleware' => ['auth', 'adminpersona']], function () {
 	/*Aceptar postulación | rechazar postulacion*/
 	Route::get('postulante/{id}/newSocio','PostulanteController@registaSocio');
 	Route::get('postulante/{id}/aceptar','PostulanteController@aceptarPostulante');
-	Route::get('postulante/{id}/rechazar','PostulanteController@rechazarPostulante');	
+	Route::get('postulante/{id}/rechazar','PostulanteController@rechazarPostulante');
+
+		
 
 
 /*	Route::patch('Socio/{id}/editMembresia','SocioAdminController@updateMembresia');*/
@@ -695,7 +714,8 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 		//DECLARAR EN MANTENIMIENTO BUNGALOWS
 		//PREVENTIVO
 		Route::get('mantBungalowPrev/index','MantenimientoController@indexPrev');		
-		Route::post('mantBungalowPrev/deshabilitar','MantenimientoController@deshabilitarBungalows');
+		Route::get('mantBungalowPrev/deshabilitar/{id}','MantenimientoController@deshabilitarDetalle');
+		Route::post('mantBungalowPrev/deshabilitar/{id}/confirmacion','MantenimientoController@deshabilitarBungalows');
 
 		Route::get('mantBungalowPrev/indexHabilitar','MantenimientoController@indexPrevHabilitar');
 		Route::post('mantBungalowPrev/habilitar','MantenimientoController@habilitarBungalows');
@@ -757,8 +777,12 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 
 
 //Publico
-	Route::group(['middleware' => ['auth', 'publico']], function () {
+Route::group(['middleware' => ['auth', 'publico']], function () {
 	Route::resource('public','PublicoController');
+});
+
+Route::group(['middleware' => ['auth', 'sociosuspendido']], function () {
+	Route::resource('socio-suspendido','SocioSuspendidoController');
 });
 
 /*Route::get('sede-a','SedesController@index');

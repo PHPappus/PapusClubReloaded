@@ -71,44 +71,7 @@
 			      		<input type="text"  onkeypress="return inputLimiter(event,'DoubleFormat')" class="form-control" id="tarifaInput" name="tarifa" placeholder="Tarifa" value="{{old('tarifa')}}" >
 			    	</div>
 			  	</div>
-			  	<br>
-			  	<div class="form-group">
-			    	<label for="capacidadSocioInput" class="col-sm-7 control-label">DESCUENTOS ESPECIALES POR FAMILIAR</label>
-			  	</div>	
-			  	<br>		  	
-
-					<style>  				
-	  				#myTable {
-	    					    margin: 0 auto;  
-	    			}			
-				</style>
-				<div class="container" style="width: 600px; margin-left: auto; margin-right: auto"  >
-				<table class="table table-bordered" >
-						<thead class="active" >	
-							<tr>							
-								<th class="col-sm-3" ><DIV ALIGN=center>Tipo Persona</th>
-								<th class="col-sm-3" ><DIV ALIGN=center>%</th>
-								<th class="col-sm-3"><DIV ALIGN=center>Descuento</th>
-							</tr>
-						</thead>
-						<tbody>
-								@foreach ($tipofamilias as $tipofamilia)		
-							    	<tr>
-										<td align="center">  {{ $tipofamilia->nombre }}</td>
-										<td align="center">%</td>
-										<td align="center"> 
-										<div align="center">
-								      		<input style="text-align:center;" type="text"  onkeypress="return inputLimiter(event,'DoubleFormat')" class="form-control" name="descuentos[{{$tipofamilia->id}}]" value="{{old('descuentos.'.$tipofamilia->id)}}">
-								    	</div>
-									</td>							        
-									</tr>
-								@endforeach
-						</tbody>													
-				</table>
-				</div>
-
-			  	</br>
-			  	</br>
+			  	<br><br>
 				<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
 					

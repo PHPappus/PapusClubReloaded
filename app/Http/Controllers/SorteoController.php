@@ -10,6 +10,7 @@ use papusclub\Models\Sorteo;
 use papusclub\Models\Ambiente;
 use papusclub\Models\Reserva;
 use papusclub\Models\Sede;
+use papusclub\Models\Mantenimiento;
 use papusclub\Models\Sorteoxsocio;
 use Auth;
 use papusclub\User;
@@ -89,8 +90,8 @@ class SorteoController extends Controller
         $sorteos=Sorteo::where('fecha_fin_sorteo','>=',new \DateTime('today'))->get();
         $carbon=new Carbon();
         $user_id = Auth::user()->id;
-	$usuario = User::find($user_id);
-	$persona_id = $usuario->persona->id;
+	    $usuario = User::find($user_id);
+	    $persona_id = $usuario->persona->id;
         $now = Carbon::now();
 
         $sorteos_inscrito=Sorteoxsocio::where('id_socio','=',$persona_id)->get();
@@ -147,15 +148,17 @@ class SorteoController extends Controller
                 $pago->save();
             }
         //return redirect()->action('SorteoController@indexInscripcion');
-        return redirect('sorteo/inscripcion')->with('stored', 'Se realizó el registro de los sorteos seleccionados.');
+        return redirect('sorteo/inscripcion/mis_sorteos')->with('stored', 'Se realizó el registro de los sorteos seleccionados.');
     }
 
     public function indexMisInscripciones()
     {
         $carbon=new Carbon();
-        $user = Auth::user();
+        $user_id = Auth::user()->id;
+        $usuario = User::find($user_id);
+        $persona_id = $usuario->persona->id;
 
-        $sorteos_inscrito=Sorteoxsocio::where('id_socio','=',$user->id)->get();
+        $sorteos_inscrito=Sorteoxsocio::where('id_socio','=',$persona_id)->get();
 
         $collection=collect([]);
 
@@ -190,8 +193,8 @@ class SorteoController extends Controller
     public function create()
     {
         $sedes = Sede::all();
-        
-        return view('admin-general.sorteo.newSorteo',['sedes'=>$sedes]);
+        $configuracion="1";
+        return view('admin-general.sorteo.newSorteo',['sedes'=>$sedes,'configuracion'=>$configuracion]);
     }
 
 
@@ -247,8 +250,17 @@ class SorteoController extends Controller
 
     public function correccionUnica($id){
         $sorteo = Sorteo::find($id);
-        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('sede_id','=',$sorteo->id_sede)->where('estado','!=','Deshabilitado')->get();
 
+
+        $mytime = Carbon::now(-5);
+        echo $mytime;
+
+        $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('sede_id','=',$sorteo->id_sede)->where('estado','!=','Deshabilitado')->get();
+        $ambientesInas=Mantenimiento::where('fecha_inicio','<=',$mytime)->where('fecha_fin','>=',$mytime)->get();
+
+        foreach ($ambientesInas as $ambienteIna) {
+            $ambientes->pull($ambientes->search(Ambiente::find($ambienteIna->id_bungalow)));
+        }
         //las reservas inician en el rango del sorteo
         $reservas_caso_1=Reserva::whereBetween('fecha_inicio_reserva', [$sorteo->fecha_abierto, $sorteo->fecha_cerrado])->get();
         //las reservas terminan en el rango del sorteo
@@ -372,8 +384,18 @@ class SorteoController extends Controller
     }
 
     public function bungalows($id){
+        
         $sorteo = Sorteo::find($id);
+
+        $mytime = Carbon::now(-5);
+        echo $mytime;
+
         $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('sede_id','=',$sorteo->id_sede)->where('estado','!=','Deshabilitado')->get();
+        $ambientesInas=Mantenimiento::where('fecha_inicio','<=',$mytime)->where('fecha_fin','>=',$mytime)->get();
+
+        foreach ($ambientesInas as $ambienteIna) {
+            $ambientes->pull($ambientes->search(Ambiente::find($ambienteIna->id_bungalow)));
+        }
 
         //las reservas inician en el rango del sorteo
         $reservas_caso_1=Reserva::whereBetween('fecha_inicio_reserva', [$sorteo->fecha_abierto, $sorteo->fecha_cerrado])->get();

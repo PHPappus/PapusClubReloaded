@@ -30,7 +30,24 @@
 		    }
 		}
 </script>
-
+<style>
+        /*Reparando desajuste*/
+        @media (min-width: 1405px){
+            #navbar1 {
+                width: 1403px;
+            }
+        }
+        @media (min-width: 1350px){
+            .container {
+           
+            }
+        }
+        @media (min-width: 768px){
+            #menuadminregistros {
+                margin-left: 5%;
+            }
+        }
+</style>
 
 
 <!--Cabecera- Se separará espacio para el input de busqueda antes de la cabecera de menu-->
@@ -48,7 +65,7 @@
 		</nav>
 	</div>
 	<nav class="navbar navbar-default">
-    <div class="container">
+    <div class="container" id="menuadminregistros">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar1" aria-expanded="false">

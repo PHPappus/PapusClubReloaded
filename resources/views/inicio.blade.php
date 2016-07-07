@@ -56,18 +56,15 @@
 		<div class="container">
 			<div class="content">
 				<div class="row">
-							<a class="convenios col-sm-2 text-center" href="convenios" title="Convenios">
+							<a class="convenios col-sm-3 text-center" href="convenios" title="Convenios">
 								<img alt="convenio" src="images/conection.png">CONVENIOS
 							</a>					
 				
-							<a class="calendario col-sm-2 text-center" href="calendario" title="calendario">
-								<img alt="calendario" src="images/calendar.png">CALENDARIO
-							</a>
 							<a class="concesiones col-sm-3 text-center" href="concesiones" title="concesiones">
 								<img alt="concesiones" src="images/restaurante.png">CONCESIONES
 							</a>
 					
-							<a class="galeria col-sm-2 text-center" href="galeria" title="galeria">
+							<a class="galeria col-sm-3 text-center" href="galeria" title="galeria">
 								<img alt="galeria" src="images/image.png">GALERÍA
 							</a>
 							<a class="informes col-sm-3 text-center" href="informes" title="informes">

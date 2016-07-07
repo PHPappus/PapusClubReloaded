@@ -43,6 +43,9 @@ class ControlIngresos
                 /*case '8':
                     return redirect('/control-ingresos');
                     break;*/
+                case '9':
+                    return redirect('/socio-suspendido');
+                    break;
                 default:
                     return redirect('/');
                     break;

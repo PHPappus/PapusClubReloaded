@@ -45,8 +45,18 @@ class ServiciosController extends Controller
         $servicio->estado = true;           
         $servicio->save();
 
+        $tiposPersonas = TipoPersona::all();
+        foreach ($tiposPersonas as $tipPer) {
+            $TarifarioServicio = new TarifarioServicio ();
+            $TarifarioServicio->idservicio = $servicio->id ;
+            $TarifarioServicio->idtipopersona =  $tipPer->id;
+            $TarifarioServicio->descripcionparafecha = "Fecha Creada";
+            $TarifarioServicio->precio = $input[$tipPer->descripcion];
+            $TarifarioServicio->estado = true; 
+            $TarifarioServicio->save();            
+        }
 
-        $TarifarioServicio = new TarifarioServicio ();
+     /*   $TarifarioServicio = new TarifarioServicio ();
         $TarifarioServicio->idservicio = $servicio->id ;
         $TarifarioServicio->idtipopersona = "1" ;
         $TarifarioServicio->descripcionparafecha = "12";
@@ -70,9 +80,7 @@ class ServiciosController extends Controller
         $TarifarioServicio->estado = true; 
         $TarifarioServicio->save();
 
-        $servicio->postulante = $input['trabajador']; 
-        $servicio->postulante = $input['postulante'];
-        $servicio->tercero = $input['tercero'];        
+   */
                 
         return redirect('servicios/index')->with('mensaje', 'Se registró el servicio correctamente.');
 
@@ -81,7 +89,16 @@ class ServiciosController extends Controller
     public function edit($id)
     {
         $servicio = Servicio::find($id);
-        return view('admin-registros.servicio.editServicio', compact('servicio'));
+        $tiposPersonas = TipoPersona::all();
+        $TarifarioServicio = TarifarioServicio::where('idservicio','=',$id)->get();
+        $values=Configuracion::where('grupo','=','4')->get();
+        $tipoServicio = Configuracion::where('grupo','=','4')->where('id','=',$servicio->tipo_servicio)->first();
+
+        /*foreach ($TarifarioServicio as $s) {
+            $s->precio = 1000 ; 
+            $s->save();
+        }*/
+        return view('admin-registros.servicio.editServicio', compact('servicio','TarifarioServicio','tiposPersonas','values','tipoServicio'));
     }
 
     public function update(EditServicioRequest $request, $id)
@@ -103,8 +120,23 @@ class ServiciosController extends Controller
         $servicio->save();
         // return back();cambio 
         $servicios = Servicio::all();
+
+
+        $TarifarioServicio = TarifarioServicio::where('idservicio','=',$id)->get();
+        $tiposPersonas = TipoPersona::all();
+        
+        foreach ($TarifarioServicio as $s) {
+            $tippersona = TipoPersona::where('id','=',$s->idtipopersona)->first();
+            $s->precio = $input[$tippersona->id];                              
+            $s->save();
+        }
+
+        
+     
         
         return redirect('servicios/index')->with('mensaje', 'Se actualizó el servicio correctamente.');
+        //return view('admin-registros.servicio.prueba',compact('TarifarioServicio','tiposPersonas'));
+
                   
     }
 
@@ -125,8 +157,13 @@ class ServiciosController extends Controller
     public function show($id)
     {
         $servicio = Servicio::find($id);
-        return view('admin-registros.servicio.detailServicio', compact('servicio'));
+        $tiposPersonas = TipoPersona::all();
+        $TarifarioServicio = TarifarioServicio::where('idservicio','=',$id)->get();
+        $tipoServicios=Configuracion::where('grupo','=','4')->get();
+        $tipoServicio = Configuracion::where('grupo','=','4')->where('id','=',$servicio->tipo_servicio)->first();
+        return view('admin-registros.servicio.detailServicio', compact('servicio','TarifarioServicio','tiposPersonas','tipoServicio'));
     }
 }
+
 
 

@@ -13,8 +13,8 @@ class AddFkToPersonaxsocioTable extends Migration
     public function up()
     {
         Schema::table('personaxsocio', function (Blueprint $table) {
-            $table->foreign('persona_id')->references('id')->on('socio')->onDelete('cascade');
-            $table->foreign('socio_id')->references('id')->on('persona')->onDelete('cascade');
+            $table->foreign('persona_id')->references('id')->on('persona')->onDelete('cascade');
+            $table->foreign('socio_id')->references('id')->on('socio')->onDelete('cascade');
         });
     }
 

@@ -29,10 +29,10 @@ class EditMembresiaRequest extends Request
             'tarifa' =>'required|min:0|float',
         ];
 
-        foreach($this->get('descuentos') as $key =>$val)
+        /*foreach($this->get('descuentos') as $key =>$val)
         {
             $rules['descuentos.'.$key]='required|min:0|float';
-        }
+        }*/
 
 
         return $rules;
@@ -48,14 +48,14 @@ class EditMembresiaRequest extends Request
 
         ];
 
-        foreach($this->request->get('descuentos') as $key => $val)
+        /*foreach($this->request->get('descuentos') as $key => $val)
         {
             $messages['descuentos.'.$key.'.required'] = 'El campo descuento  especial por familiar '.$key.' es obligatorio.';
 
              $messages['descuentos.'.$key.'.min'] = 'El campo descuento  especial  por familiar '.$key.' no puede ser menor a cero.';
 
             $messages['descuentos.'.$key.'.float'] = 'El campo descuento  especial  por familiar '.$key.' debe ser un valor númerico positivo.';
-        }
+        }*/
         return $messages;
     }
 

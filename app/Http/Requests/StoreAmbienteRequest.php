@@ -25,7 +25,7 @@ class StoreAmbienteRequest extends Request
     {
         return [
             'sedeSelec'         =>  'required',
-            'nombre'            =>  'required|max:100|string|unique:ambiente,nombre,NULL',
+            'nombre'            =>  'required|max:100|string',
             'tipo_ambiente'     =>  'required',
             'capacidad_actual'  =>  'required|integer|min:0',
             'descripcion'         =>  'required|max:100|string',          

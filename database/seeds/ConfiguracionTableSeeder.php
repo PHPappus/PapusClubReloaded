@@ -64,6 +64,7 @@ class ConfiguracionTableSeeder extends Seeder
         Configuracion::insert(['valor'=>'Divorciado(a)','grupo'=>'11','descripcion'=>'estado civil']);
 
         Configuracion::insert(['valor'=>'15.50','grupo'=>'12','descripcion'=>'Precio, en soles, de la entrada en las sedes']); //40
+        Configuracion::insert(['valor'=>'25','grupo'=>'12','descripcion'=>'Precio por pecnotar en el club']);
 
         Configuracion::insert(['valor'=>'Solicitud Pendiente','grupo'=>'13','descripcion'=>'estado solicitud']);
         Configuracion::insert(['valor'=>'Producto Recibido','grupo'=>'13','descripcion'=>'estado solicitud']);
@@ -75,8 +76,8 @@ class ConfiguracionTableSeeder extends Seeder
 
         Configuracion::insert(['valor'=>'Bungalow','grupo'=>'15','descripcion'=>'tipo promocion']);
         Configuracion::insert(['valor'=>'Actividad','grupo'=>'15','descripcion'=>'tipo promocion']);
-        Configuracion::insert(['valor'=>'Taller','grupo'=>'15','descripcion'=>'tipo promocion']);
-        Configuracion::insert(['valor'=>'Ambiente','grupo'=>'15','descripcion'=>'tipo promocion']); //50
+        Configuracion::insert(['valor'=>'Taller','grupo'=>'15','descripcion'=>'tipo promocion']); //50
+        Configuracion::insert(['valor'=>'Ambiente','grupo'=>'15','descripcion'=>'tipo promocion']); 
 
         Configuracion::insert(['valor'=>'Alimentos y Bebidas','grupo'=>'16','descripcion'=>'tipo concesionaria']);
         Configuracion::insert(['valor'=>'Deportes','grupo'=>'16','descripcion'=>'tipo concesionaria']);
@@ -88,6 +89,14 @@ class ConfiguracionTableSeeder extends Seeder
         Configuracion::insert(['valor'=>'4','grupo'=>'17','descripcion'=>'tipo puntaje']);
         Configuracion::insert(['valor'=>'5','grupo'=>'17','descripcion'=>'tipo puntaje']);
 
-        Configuracion::insert(['valor'=>'50','grupo'=>'18','descripcion'=>'monto traspaso']); //59
+        Configuracion::insert(['valor'=>'50','grupo'=>'18','descripcion'=>'monto traspaso']); //60
+
+        Configuracion::insert(['valor'=>'4','grupo'=>'19','descripcion'=>'limite dias']); 
+        Configuracion::insert(['valor'=>'45','grupo'=>'19','descripcion'=>'rango reserva']); 
+        Configuracion::insert(['valor'=>'20','grupo'=>'19','descripcion'=>'precio default']);
+
+        Configuracion::insert(['valor'=>'20000','grupo'=>'20','descripcion'=>'Cuota de ingreso Nuevo Socio']);
+
+        Configuracion::insert(['valor'=>'8000','grupo'=>'21','descripcion'=>'Cuota de ingreso siendo Familiar de Socio']); //65
     }
 }

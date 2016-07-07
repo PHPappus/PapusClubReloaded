@@ -61,7 +61,6 @@
 						<div role="tabpanel">
 							<ul class="nav nav-pills nav-tabs" role="tablist">
 								<li role="presentation" class="active"><a href="#seccion1" aria-controls="seccion1" data-toggle="tab" role="tab">Paso 1: Datos Básicos</a></li>
-								<li role="presentation"><a href="#seccion2" aria-controls="seccion2" data-toggle="tab" role="tab">Paso 2: Contrato</a></li>
 							</ul>
 						</div>
 
@@ -141,9 +140,9 @@
 											<div class="col-sm-6 text-left" >
 													<div class="col-sm-10 text-left" >
 												
-														<input onchange="es_peruano()" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : ''}} {{($persona->nacionalidad == "peruano") ? 'checked="true"':''}}/>peruano&nbsp&nbsp&nbsp
+														<input onchange="es_peruano()" type="radio" name="nacionalidad" value="peruano" {{ (old('nacionalidad') == "peruano") ? 'checked="true"' : ''}} {{($persona->nacionalidad == "peruano") ? 'checked="true"':''}} disabled />peruano&nbsp&nbsp&nbsp
 														
-														<input onchange="es_extranjero()" type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "extranjero") ? 'checked="true"' : ''  }} {{($persona->nacionalidad == "extranjero") ? 'checked="true"':''}}/>extranjero
+														<input onchange="es_extranjero()" type="radio" name="nacionalidad" value="extranjero" {{ (old('nacionalidad') == "extranjero") ? 'checked="true"' : ''  }} {{($persona->nacionalidad == "extranjero") ? 'checked="true"':''}} disabled />extranjero
 
 													</div>	
 											</div>	
@@ -157,7 +156,7 @@
 											</div>
 											<div class="col-sm-6">
 											<!--Se hace validacion para que acepte solo numeros pero que sea un texto-->
-												<input  type="text" onkeypress="return inputLimiter(event,'Numbers')"  @if ($persona->nacionalidad!="peruano") disabled  @endif  class="form-control" id="doc_identidad" name="doc_identidad" placeholder="DNI" maxlength="8" style="width: 250px" value="{{$persona->doc_identidad}}" value="{{old('doc_identidad')}}"  >
+												<input  type="text" onkeypress="return inputLimiter(event,'Numbers')"  @if ($persona->nacionalidad!="peruano") disabled  @endif  class="form-control" id="doc_identidad" name="doc_identidad" placeholder="DNI" maxlength="8" style="width: 250px" value="{{$persona->doc_identidad}}" value="{{old('doc_identidad')}}"  readonly>
 											</div>	
 										</div>
 									</div>
@@ -168,7 +167,7 @@
 												<label for="" class="control-label">Carnet de extranjeria:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" onkeypress="return inputLimiter(event,'Numbers')" @if ($persona->nacionalidad!="extranjero") disabled  @endif class="form-control" id="carnet_extranjeria" name="carnet_extranjeria" placeholder="Carnet de Extranjeria" maxlength="12" style="width: 250px" value="{{$persona->carnet_extranjeria}}" value="{{old('carnet_extranjeria')}}" >
+												<input type="text" onkeypress="return inputLimiter(event,'Numbers')" @if ($persona->nacionalidad!="extranjero") disabled  @endif class="form-control" id="carnet_extranjeria" name="carnet_extranjeria" placeholder="Carnet de Extranjeria" maxlength="12" style="width: 250px" value="{{$persona->carnet_extranjeria}}" value="{{old('carnet_extranjeria')}}" readonly>
 											</div>	
 										</div>
 									</div>
@@ -180,7 +179,7 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="correo"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" name="correo" placeholder="correo" style="max-width: 250pc; margin-top:0px;" value="{{$persona->correo}}" value="{{old('correo')}}">
+												<input type="text" class="form-control" id="correo"  onkeypress="return inputLimiter(event,'NameCharactersAndNumbers')" name="correo" placeholder="correo" style="max-width: 250pc; margin-top:0px;" value="{{$persona->correo}}" value="{{old('correo')}}" readonly>
 											</div>
 										</div>
 									</div>

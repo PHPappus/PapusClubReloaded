@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
         $this->call(TestUserTableSeeder::class);
         $this->call(PerfilTableSeeder::class);
         $this->call(SedeTableSeeder::class);
-    	$this->call(ProductoTableSeeder::class);
-    	$this->call(ProveedorTableSeeder::class);
-    	$this->call(SorteoTableSeeder::class);
+        $this->call(ProductoTableSeeder::class);
+        $this->call(ProveedorTableSeeder::class);
+        //$this->call(SorteoTableSeeder::class);
         $this->call(AmbienteTableSeeder::class);
         $this->call(ActividadTableSeeder::class);
         $this->call(TipoPersonaTableSeeder::class);
@@ -30,22 +30,27 @@ class DatabaseSeeder extends Seeder
         $this->call(PostulanteTableSeeder::class);
         $this->call(SocioTableSeeder::class);
         $this->call(CarnetTableSeeder::class);
-        $this->call(ReservasTableSeeder::class);
-        $this->call(TestTallerTableSeeder::class);
-	    $this->call(PrecioProductoTableSeeder::class);
-        $this->call(FacturacionTableSeeder::class);
-        $this->call(ProductoxFacturacionTableSeeder::class);
+        //$this->call(ReservasTableSeeder::class);
+        //$this->call(TestTallerTableSeeder::class);
+        //$this->call(PrecioProductoTableSeeder::class);
+        //$this->call(FacturacionTableSeeder::class);
+        //$this->call(ProductoxFacturacionTableSeeder::class);
         $this->call(TipoFamiliaTableSeeder::class);
-        $this->call(TarifaAmbientexTipoPersonaTableSeeder::class);
-		$this->call(servicioSeeder::class);
-        $this->call(TarifarioServiciosTableSeeder::class);	    
+        //$this->call(TarifaAmbientexTipoPersonaTableSeeder::class);
+        $this->call(servicioSeeder::class);
+        $this->call(TarifarioServiciosTableSeeder::class);      
         $this->call(TarifaFamiliarTableSeeder::class);
-        $this->call(TarifaActividadTableSeeder::class);
-		$this->call(FamiliarxPostulanteTableSeeder::class);
+        //$this->call(TarifaActividadTableSeeder::class);
+        $this->call(FamiliarxPostulanteTableSeeder::class);
         $this->call(ConcesionariaTableSeeder::class);
+<<<<<<< HEAD
         $this->call(TarifaTallerTableSeeder::class);
         $this->call(TrabajadorTableSeeder::class);
 
+=======
+        //$this->call(TarifaTallerTableSeeder::class);
+        $this->call(TrabajadorTableSeeder::class);
+>>>>>>> 58337cd602d63f723dccefb0be2c5b5b046e9745
 
         Model::reguard();
     }

@@ -117,7 +117,7 @@
 				</div>
 
 			  	<div class="form-group required">
-			    	<label for="horaInicioInput" class="col-sm-4 control-label">Hora Inicio(HH:mm:ss)</label>
+			    	<label for="horaInicioInput" class="col-sm-4 control-label">Hora Inicio(HH:mm)</label>
 			    	<div class="col-sm-5">
 			      		<input type="time" class="form-control" id="horaInicioInput" value="{{$reserva->hora_inicio_reserva}}" name="hora">
 			    	</div>

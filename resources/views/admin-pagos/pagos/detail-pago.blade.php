@@ -84,7 +84,7 @@
 				
 				<div class="form-group">
 					<div class="col-sm-8"> </div>
-					<a href="{{url('/pagos/'.$facturacion->persona_id.'/selectSocio')}}/" class="btn btn-info">Regresar</a>				
+						<a href="{{url('/pagos/'.$facturacion->persona->postulante->socio->id.'/selectSocio')}}"  class="btn btn-info">Regresar</a>			
 				</div>
 
 			</form>
