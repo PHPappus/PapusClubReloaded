@@ -232,9 +232,9 @@
 <!-- 	<script src="../js/jquery-1.12.4.min.js"></script> -->
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	<!-- Bootstrap -->
-	<script type="text/javascript" src="../js/bootstrap.js"></script>
-
- 	{!!Html::script('js/bootstrap.js')!!}
+	{!!Html::script('js/bootstrap.js')!!}
+	{!!Html::script('js/jquery.bxslider.min.js')!!}
+	{!!Html::script('js/MisScripts.js')!!}
 	<!-- BXSlider -->
 
 	<!-- Mis Scripts -->
@@ -245,36 +245,34 @@
 	
 	<script>
 		$(document).ready(function(){
-				var nowTemp = new Date();		
-				var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-		 
-				var checkin = $('#fecha_abierto').datepicker({
-		  			onRender: function(date) {
-		    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
-		  			}
-				}).on('changeDate', function(ev) {
-		  			if (ev.date.valueOf() > checkout.date.valueOf()) {
-		    			var newDate = new Date(ev.date)
-		    			newDate.setDate(newDate.getDate() + 1);
-		    			checkout.setValue(newDate);
-		  			}
-		 			checkin.hide();
-		  			$('#fecha_cerrado')[0].focus();
-				}).data('datepicker');
-
-				var checkout = $('#fecha_cerrado').datepicker({
-		  			onRender: function(date) {
-		    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-		  			}
+			$(function(){
+				$('.datepicker').datepicker({
+					format: "dd/mm/yyyy",
+			        language: "es",
+			        autoclose: true,
+    				
+			        //beforeShowDay:function (date){return false}
 				});
+
+			});
+
+		});
+		$('.datepicker').on('changeDate', function(ev){
+			    $(this).datepicker('hide');
 		});
 			
 	</script>	
 	<script>
+
+		var nowDate = new Date();
+		var maxDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+
 		$(function(){
-			$('.datepicker').datepicker({
+			$('#fecha_nacimiento').datepicker({
 				format: "dd/mm/yyyy",
 		        language: 'es',
+			    autoclose: true,
+			    endDate:maxDate
 		        	//autoclose: true
 		        //beforeShowDay:function (date){return false}
 			});
@@ -282,6 +280,9 @@
 			//    $(this).datepicker('hide');
 			//});
 		});
+
+
+		
 	</script>
 
 </body>

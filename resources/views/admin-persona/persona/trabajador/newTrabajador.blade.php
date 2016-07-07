@@ -10,7 +10,6 @@
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
-	{!!Html::style('css/jquery.bxslider.css')!!}
 	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
 	<!-- PARA DATA TABLE -->
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
@@ -92,7 +91,7 @@
 												<label for="" class="control-label">Nombre:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="nombre" name="nombre" placeholder="Nombre" style="max-width: 250px" value="{{old('nombre')}}"  >
+												<input type="text" onkeypress="return inputLimiter(event,'NameCharacters')" class="form-control" id="nombre" name="nombre" placeholder="Nombre" style="max-width: 250px" value="{{old('nombre')}}"  >
 											</div>	
 										</div>
 									</div>
@@ -103,7 +102,7 @@
 												<label for="" class="control-label">Apellido Paterno:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="ap_paterno" name="ap_paterno" placeholder="Apellido Paterno" style="max-width: 250px" value="{{old('ap_paterno')}}">
+												<input type="text" onkeypress="return inputLimiter(event,'NameCharacters')" class="form-control" id="ap_paterno" name="ap_paterno" placeholder="Apellido Paterno" style="max-width: 250px" value="{{old('ap_paterno')}}">
 											</div>	
 										</div>
 									</div>
@@ -114,7 +113,7 @@
 												<label for="" class="control-label">Apellido Materno:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" onkeypress="return inputLimiter(event,'Letters')" class="form-control" id="ap_materno" name="ap_materno" placeholder="Apellido Materno" style="max-width: 250px" value="{{old('ap_materno')}}">
+												<input type="text" onkeypress="return inputLimiter(event,'NameCharacters')" class="form-control" id="ap_materno" name="ap_materno" placeholder="Apellido Materno" style="max-width: 250px" value="{{old('ap_materno')}}">
 											</div>	
 										</div>
 									</div>
@@ -142,7 +141,7 @@
 												<label for="" class="control-label">Fecha de Nacimiento:</label>
 											</div>
 											<div class="col-sm-1">
-												<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha Nacimiento" style="width: 250px" value="{{old('fecha_nacimiento')}}">
+												<input class="datepicker" type="text"  id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha Nacimiento" style="width: 250px" value="{{old('fecha_nacimiento')}}">
 
 											</div>	
 										</div>
@@ -297,41 +296,31 @@
 <!-- 	<script src="../js/jquery-1.12.4.min.js"></script> -->
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	<!-- Bootstrap -->
-	<script type="text/javascript" src="../js/bootstrap.js"></script>
 
  	{!!Html::script('js/bootstrap.js')!!}
-	<!-- BXSlider -->
+	{!!Html::script('js/jquery.bxslider.min.js')!!}
 
-	<!-- Mis Scripts -->
-
+	{!!Html::script('js/MisScripts.js')!!}
+ 	{!!Html::script('js/bootstrap.js')!!}
 	{!!Html::script('js/bootstrap-datepicker.js')!!}
 
 	
-	
 	<script>
 		$(document).ready(function(){
-				var nowTemp = new Date();		
-				var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-		 
-				var checkin = $('#fecha_abierto').datepicker({
-		  			onRender: function(date) {
-		    			return date.valueOf() < now.valueOf() ? 'disabled' : '';
-		  			}
-				}).on('changeDate', function(ev) {
-		  			if (ev.date.valueOf() > checkout.date.valueOf()) {
-		    			var newDate = new Date(ev.date)
-		    			newDate.setDate(newDate.getDate() + 1);
-		    			checkout.setValue(newDate);
-		  			}
-		 			checkin.hide();
-		  			$('#fecha_cerrado')[0].focus();
-				}).data('datepicker');
-
-				var checkout = $('#fecha_cerrado').datepicker({
-		  			onRender: function(date) {
-		    			return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
-		  			}
+			$(function(){
+				$('.datepicker').datepicker({
+					format: "dd/mm/yyyy",
+			        language: "es",
+			        autoclose: true,
+    				
+			        //beforeShowDay:function (date){return false}
 				});
+
+			});
+
+		});
+		$('.datepicker').on('changeDate', function(ev){
+			    $(this).datepicker('hide');
 		});
 			
 	</script>	
@@ -368,18 +357,7 @@
 			//});
 		});
 
-		$(function(){
-			$('.datepicker').datepicker({
-				format: "dd/mm/yyyy",
-		        language: 'es',
-			    autoclose: true
-		        	//autoclose: true
-		        //beforeShowDay:function (date){return false}
-			});
-			//$('.datepicker').on('changeDate', function(ev){
-			//    $(this).datepicker('hide');
-			//});
-		});
+		
 	</script>
 
 	

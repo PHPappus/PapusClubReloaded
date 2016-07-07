@@ -9,7 +9,6 @@
 	{!!Html::style('css/bootstrap.css')!!}
 	{!!Html::style('css/datepicker.css')!!}
 	{!!Html::style('css/MisEstilos.css')!!}
-	{!!Html::style('css/jquery.bxslider.css')!!}
 	<!-- <link rel="stylesheet" type="text/css" href="css/estilos.css"> -->
 	<!-- PARA DATA TABLE -->
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
@@ -127,7 +126,7 @@
 												<label for="" class="control-label">Fecha de Nacimiento:</label>
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" style="width: 250px" value="{{$persona->fecha_nacimiento}}" value="{{old('fecha_nacimiento')}}">
+												<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha Nacimiento" style="width: 250px" value="{{$persona->fecha_nacimiento}}" value="{{old('fecha_nacimiento')}}">
 
 											</div>	
 										</div>
@@ -222,7 +221,7 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_ini_contrato" placeholder="Fecha de inicio" style="width: 250px" 
+												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="fecha_ini_contrato" name="fecha_ini_contrato" placeholder="Fecha de inicio" style="width: 250px" 
 													@if (!empty($trabajador->fecha_ini_contrato))
 														value="{{$trabajador->fecha_ini_contrato}}";
 													@else
@@ -241,7 +240,7 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_fin_contrato" placeholder="Fecha de fin" style="width: 250px"
+												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="fecha_fin_contrato" name="fecha_fin_contrato" placeholder="Fecha de fin" style="width: 250px"
 													@if (!empty($trabajador->fecha_fin_contrato))
 														value="{{$trabajador->fecha_fin_contrato}}";
 													@else
@@ -311,24 +310,67 @@
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
 	{!!Html::script('js/bootstrap.js')!!}
 	{!!Html::script('js/jquery.bxslider.min.js')!!}
-	{!!Html::script('js/bootstrap-datepicker.js')!!}
 	{!!Html::script('js/MisScripts.js')!!}
+ 	{!!Html::script('js/bootstrap.js')!!}
+	{!!Html::script('js/bootstrap-datepicker.js')!!}
 
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
 
 	<script>
+		$(document).ready(function(){
+			$(function(){
+				$('.datepicker').datepicker({
+					format: "dd/mm/yyyy",
+			        language: "es",
+			        autoclose: true,
+    				
+			        //beforeShowDay:function (date){return false}
+				});
+
+			});
+
+		});
+		$('.datepicker').on('changeDate', function(ev){
+			    $(this).datepicker('hide');
+		});
+			
+	</script>	
+	<script>
+
+		var nowDate = new Date();
+		var maxDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+
 		$(function(){
-			$('.datepicker').datepicker({
+			$('#fecha_nacimiento').datepicker({
 				format: "dd/mm/yyyy",
 		        language: 'es',
-		        autoclose: true
+			    autoclose: true,
+			    endDate:maxDate
+		        	//autoclose: true
 		        //beforeShowDay:function (date){return false}
 			});
-			$('.datepicker').on('changeDate', function(ev){
-			    $(this).datepicker('hide');
-			});
+			//$('.datepicker').on('changeDate', function(ev){
+			//    $(this).datepicker('hide');
+			//});
 		});
+
+		$(function(){
+			$('#fecha_fin_contrato').datepicker({
+				format: "dd/mm/yyyy",
+		        language: 'es',
+			    autoclose: true,
+			    startDate:maxDate
+		        	//autoclose: true
+		        //beforeShowDay:function (date){return false}
+			});
+			//$('.datepicker').on('changeDate', function(ev){
+			//    $(this).datepicker('hide');
+			//});
+		});
+
+		
 	</script>
+
 
 
 	<!-- Ventana modal de Confirmación -->			  	
