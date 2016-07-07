@@ -14,6 +14,7 @@ use papusclub\Http\Requests\StoreServicioRequest;
 use papusclub\Http\Requests\EditServicioRequest;
 use Log;
 
+
 class ServiciosController extends Controller
 {
     public function index()
