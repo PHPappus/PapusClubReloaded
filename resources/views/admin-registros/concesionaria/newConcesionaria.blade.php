@@ -91,7 +91,7 @@
 			  	<div class="form-group required">
 			    	<label for="descripcionInput" class="col-sm-4 control-label">Descripción</label>
 			    	<div class="col-sm-5">			      		
-			      		<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" value="{{old('descripcion')}}">
+			      		<input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Espacio a cargo de la concesionaria" value="{{old('descripcion')}}">
 			    	</div>
 			  	</div>	  	
 

@@ -56,6 +56,21 @@
 			  	</br>
 			  	</br>								
 
+			  	<div class="form-group required">
+			    	<label for="sede_id" class="col-sm-4 control-label">ID Sede</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="sede_id" name="sede_id" placeholder="ID de la Sede" value="{{old('sede_id')}}">
+			    	</div>
+			    	<a class="btn btn-info" name="buscarsede" href="#"  title="Buscar Sede" data-toggle="modal" data-target="#modalBuscarSede"><i name="buscarSede" class="glyphicon glyphicon-search"></i></a>
+			  	</div>		
+
+			  	<div class="form-group required">
+			    	<label for="nombreSede" class="col-sm-4 control-label">Nombre de Sede</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" class="form-control" id="nombreSede" name="nombreSede" placeholder="Nombre de la Sede" value="{{old('nombreSede')}}" readonly>
+			    	</div>
+			  	</div>				  
+
 				<div class="form-group required">
 			    	<label for="persona_id" class="col-sm-4 control-label">ID Persona</label>
 			    	<div class="col-sm-5">			      		
@@ -150,6 +165,14 @@
 		       "dom": '<"pull-left"f><"pull-right"l>tip',
 		       "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Todos"]]
 		  	});
+
+		   $('#exampleSede').DataTable( {
+		       "language": {
+		           "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+		       },		       
+		       "dom": '<"pull-left"f><"pull-right"l>tip',
+		       "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Todos"]]
+		  	});
   		});		
   		
 		function getPersona(){								
@@ -157,6 +180,13 @@
 			$personaVal = $personaAux.split("|");
 			document.getElementById('persona_id').value =  $personaVal[0];
 			document.getElementById('nombrePersona').value =  $personaVal[1];
+		}
+		
+		function getsede(){											
+			$sedeAux = $('#exampleSede input:radio:checked').val();
+			$sedeVal = $sedeAux.split("|");
+			document.getElementById('sede_id').value = $sedeVal[0];
+			document.getElementById('nombreSede').value = $sedeVal[1];
 		}
 	</script>
 
@@ -243,6 +273,93 @@
 	    }        
     }
 	</style>
+
+	<div id="modalBuscarSede" class="modal fade" role="dialog">
+	  <div class="modal-dialog modal-lg">
+
+	    <!-- Modal content-->	    
+	    <div class="modal-content">
+			
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">BUSCAR SEDE</h4>
+			</div>
+
+			<div class="modal-body">	      	  
+				<div class="container">					
+					<div class="table-responsive">
+						<div class="container" id="TableContainer">
+							<div class="text-left">
+					  			<font color="black"> 
+					  				Ingresar alguno de los siguientes campos:
+					  				<ul>
+					  				<li>Nombre de Sede</li>
+					  				<li>Dirección</li>
+					  				<li>Distrito</li>
+					  				<li>Provincia</li>
+					  				<li>Departamento</li>
+					  				</ul>
+					  			</font>					  			
+					  		</div>
+					  		<br>
+							<table class="table table-bordered table-hover text-center display" id="exampleSede" width="100%">
+								<thead class="active" data-sortable="true">									
+									<th><div align=center>NOMBRE</div> </th>
+									<th><div align=center>DIRECCIÓN</div></th>
+									<th><div align=center>DISTRITO</div></th>
+									<th><div align=center>PROVINCIA</div></th>
+									<th><div align=center>DEPARTAMENTO</div></th>
+									<th><div align=center>SELECCIONAR</div></th>
+								</thead>
+								<tbody>
+									
+									@foreach($sedes as $sede)						
+										<tr>																						
+											<td>{{$sede->nombre}}</td>													
+											<td>{{$sede->direccion}}</td>
+											<td>{{$sede->distrito}}</td>
+											<td>{{$sede->provincia}}</td>
+											<td>{{$sede->departamento}}</td>											
+											<td>
+												<div class="radio">
+  													<label><input type="radio" name="optradio" value="{{$sede->id}}|{{$sede->nombre}}"></label>
+												</div>
+											</td>
+							            </tr>				            		
+									@endforeach
+									
+								</tbody>
+							</table>																		
+						</div>								
+					</div>		
+				</div>
+			</div>								
+			<div class="modal-footer">	                    
+				<div class="btn-inline">
+					<div class="btn-group col-sm-4"></div>														
+					<div class="btn-group ">
+						<input class="btn btn-primary" onclick="getsede()" data-dismiss="modal" value="Confirmar">					
+					</div>
+					<div class="btn-group">
+						<a  data-dismiss="modal" class="btn btn-info">Cancelar</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	  </div>
+	</div>
+	<style type="text/css">
+    @media screen and (min-width: 992px) {
+        #modalBuscarSede .modal-lg {
+          width: 90%; /* New width for large modal */         
+        }                       
+
+		#TableContainer.container {
+	        width: 80%;
+	    }        
+    }
+	</style>	
+
 </body>
 <!--
 	<a id="{{$persona->id}}" href="#" class="btn btn-default"><i class="glyphicon glyphicon-unchecked"></i></a>

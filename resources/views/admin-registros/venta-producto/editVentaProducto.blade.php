@@ -60,6 +60,14 @@
 		      			<input type="text" class="form-control" id="idInput" name="id" value="{{$factura->id}}" readonly>
 		    		</div>
 		  		</div>
+
+		  		<div class="form-group">
+			    	<label for="sede_nombre" class="col-sm-4 control-label">Sede</label>
+			    	<div class="col-sm-5">			      		
+			      		<input type="text" onkeypress="return inputLimiter(event,'Numbers')" class="form-control" id="sede_nombre" name="sede_nombre" placeholder="Nombre de la Sede" value="{{$factura->sede->nombre}}" readonly>
+			    	</div>
+			  	</div>	
+
 			  
 			  	<div class="form-group">
 			    	<label for="personaInput" class="col-sm-4 control-label">Persona</label>
