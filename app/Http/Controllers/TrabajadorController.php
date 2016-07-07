@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use papusclub\Http\Requests;
 use papusclub\Models\Persona;
 use papusclub\Models\Trabajador;
+use papusclub\Models\Sede;
 use papusclub\Http\Requests\StoreTrabajadorRequest;
 use papusclub\Http\Requests\EditTrabajadorRequest;
 
@@ -79,7 +80,8 @@ class TrabajadorController extends Controller
         try
         {
             $puestos = Configuracion::where('grupo','=','1')->get();
-            return view('admin-persona.persona.trabajador.newTrabajador',compact('puestos'));           
+            $sedes= Sede::all();
+            return view('admin-persona.persona.trabajador.newTrabajador',compact('puestos','sedes'));           
         }
         catch(\Exception $e)
         {
@@ -137,7 +139,7 @@ class TrabajadorController extends Controller
             $trabajador->id=$idPersona;
             $trabajador->puesto=$input['puestoSelect'];
 
-
+            $trabajador->sede=$input['sedeSelect'];
 
             if (empty($input['fecha_ini_contrato'])) {
                 $trabajador->fecha_ini_contrato="";
@@ -197,9 +199,9 @@ class TrabajadorController extends Controller
                 $trabajador->fecha_fin_contrato=$carbon->createFromFormat('Y-m-d',  $trabajador->fecha_fin_contrato)->format('d/m/Y');
 
             $puesto=Configuracion::find($trabajador->puesto);
+            $sedes= Sede::all();
 
-
-            return view('admin-persona.persona.trabajador.editTrabajador',compact('persona', 'trabajador','puesto','puestoslaborales'));           
+            return view('admin-persona.persona.trabajador.editTrabajador',compact('persona', 'trabajador','puesto','puestoslaborales','sedes'));           
         }
         catch(\Exception $e)
         {
@@ -223,6 +225,7 @@ class TrabajadorController extends Controller
             $persona->nombre = trim($input['nombre']);
             $persona->ap_paterno = trim($input['ap_paterno']);
             $persona->ap_materno = trim($input['ap_materno']);
+            
 
             if (empty($input['fecha_nacimiento'])) {
                 $persona->fecha_nacimiento ="";            
@@ -233,12 +236,17 @@ class TrabajadorController extends Controller
 
 
             $persona->id_tipo_persona = 1;
-            $persona->sexo=$input['sexo'];
+            if (empty($input['sexo'])) {
+                 $persona->sexo="";
+            }else{
+                $persona->sexo=$input['sexo'];
+            }
             $persona->save();
 
             $trabajador=Trabajador::find($persona->id);
             $trabajador->puesto=$input['puestoSelect'];
 
+            $trabajador->sede=$input['sedeSelect'];
 
 
             if (empty($input['fecha_ini_contrato'])) {
