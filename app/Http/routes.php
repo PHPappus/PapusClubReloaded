@@ -352,6 +352,11 @@ Route::group(['middleware' => ['auth', 'adminpagos']], function () {
     //PAGOS POR MEMBRESÍA
     Route::get('/registrar-deuda-membresia','PagosController@registrarDeudasMembresia');
  
+ 	//CUOTA EXTRAORDINARIA
+ 	Route::get('/cuota-extra','CuotaController@index');
+ 	Route::get('/cuota-extra/new','CuotaController@create');
+ 	Route::post('/cuota-extra/new/save','CuotaController@store');
+ 	Route::get('/cuota/{id}','CuotaController@show');
 
 });
 
