@@ -684,13 +684,7 @@ class ReservarAmbienteController extends Controller
 
                 $facturacion->save();
             }
-<<<<<<< HEAD
-                        catch(ValidationException $e){
-                            DB::rollback();
-                            var_dump($e->getErrors());
-                        }
-                        DB::commit();
-=======
+
             catch(ValidationException $e){
                 DB::rollback();
                 /*var_dump($e->getErrors());*/
@@ -699,7 +693,6 @@ class ReservarAmbienteController extends Controller
             }
             DB::commit();
 
->>>>>>> development
             return redirect('reservar-ambiente/reservar-otros-ambientes')->with('stored', 'Se registró la reserva del ambiente correctamente.');
         } catch (\Exception $e) {
             $error = 'storeOtroTipoAmbiente-ReservarAmbienteController';
@@ -1257,42 +1250,7 @@ class ReservarAmbienteController extends Controller
                 }
 
 
-<<<<<<< HEAD
-            if (empty($input['hora_fin_reserva'])) {
-                $reserva->hora_fin_reserva="";
-            }else{
-                $reserva->hora_fin_reserva=$carbon->createFromFormat('H:i', $input['hora_fin_reserva'])->toTimeString();
-            }
-            
-            $horaIniValue=$carbon->createFromFormat('H:i', $input['hora_inicio_reserva']);
-            $horaFinValue=$carbon->createFromFormat('H:i', $input['hora_fin_reserva']);
-            $diff=$horaFinValue->diffInHours($horaIniValue);
 
-            $reservasTotal = Reserva::where('ambiente_id', '=', $ambiente_id)->get();
-                foreach ($reservasTotal as $reserva) {
-                    $reservas_caso_1=Reserva::where('fecha_inicio_reserva','=',$reserva->fecha_inicio_reserva )->whereBetween('hora_inicio_reserva',[$reserva->hora_inicio_reserva,$reserva->hora_fin_reserva])->get();
-
-                    $reservas_caso_2=Reserva::where('fecha_fin_reserva','=', $reserva->fecha_fin_reserva)->whereBetween('hora_fin_reserva',[$reserva->hora_inicio_reserva,$reserva->hora_fin_reserva])->get();
-
-                   
-                    if($reservas_caso_1 || $reservas_caso_2)
-                        return redirect('reservar-ambiente/reservar-otros-ambientes')->with('error', 'No se pudo registrar la reserva del ambiente, ya ha sido reservado.');
-
-                    
-                }
-            
-            $ambiente = Ambiente::find($ambiente_id);
-            $persona = Persona::find($persona_id);
-            $tipo_persona = $persona->tipopersona;
-            $tarifas = $ambiente->tarifas;
-            foreach ($tarifas as $tarifa) {
-                if($tarifa->tipo_persona == $tipo_persona)
-                    $reserva->precio = $tarifa->precio*$diff;        
-            }
-            //$reserva->precio = 0;
-            $reserva->estadoReserva = "En proceso";
-            $reserva->actividad_id = null;
-=======
                 if (empty($input['hora_fin_reserva'])) {
                     $reserva->hora_fin_reserva="";
                 }else{
@@ -1326,7 +1284,6 @@ class ReservarAmbienteController extends Controller
                 $reserva->estadoReserva = "En proceso";
                 $reserva->actividad_id = null;
 
->>>>>>> development
 
                 $reserva->save();
 
