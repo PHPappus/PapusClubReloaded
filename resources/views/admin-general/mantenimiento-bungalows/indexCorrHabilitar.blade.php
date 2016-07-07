@@ -69,7 +69,7 @@
 											<td>{{$mantenimiento->fecha_fin}}</td>
 											<td>{{$mantenimiento->estado}}</td>
 											<td>
-									            <a class="btn btn-info"  title="Eliminar" data-href="{{url('/sorteo/'.$mantenimiento->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
+									            <a class="btn btn-info"  title="Eliminar" data-href="{{url('/mantBungalowPrev/eliminar/'.$mantenimiento->id.'' )}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>    
 									        </td>	
 										</tr>						
 								 @endforeach

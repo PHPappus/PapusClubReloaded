@@ -719,6 +719,8 @@ Route::group(['middleware' => ['auth', 'adminreserva']], function () {
 
 		Route::get('mantBungalowPrev/indexHabilitar','MantenimientoController@indexPrevHabilitar');
 		Route::post('mantBungalowPrev/habilitar','MantenimientoController@habilitarBungalows');
+
+		Route::get('mantBungalowPrev/eliminar/{id}','MantenimientoController@destroy');
 		//Route::get('mantBungalowCorre','MantenimientoController@indexCorre');
 
 	//RESERVA DE AMBIENTES

@@ -105,7 +105,7 @@ class SorteoController extends Controller
     {
         try
         {
-            $sorteos=Sorteo::where('fecha_fin_sorteo','>=',new \DateTime('today'))->get();
+            $sorteos=Sorteo::where('fecha_fin_sorteo','>',new \DateTime('today'))->get();
             $carbon=new Carbon();
             $user_id = Auth::user()->id;
             $usuario = User::find($user_id);
@@ -154,16 +154,21 @@ class SorteoController extends Controller
             $user_id = Auth::user()->id;
             $usuario = User::find($user_id);
             $persona_id = $usuario->persona->id;//CAMBIO
-            
+            echo "paso 1";
             if($bungalows!=NULL)
+                echo "paso 2";
                 foreach ($bungalows as $bungalow) {
                     $sorteo=Sorteo::find($bungalow);
-
+                    echo $sorteo->id;
+                    echo "paso 3";
                     $sorteoxsocio=new Sorteoxsocio();
+                    echo "aqui1";
                     $sorteoxsocio->id=$bungalow;
+                    echo "aqui2";
                     $sorteoxsocio->id_socio=$persona_id;
+                    echo "aqui3";
                     $sorteoxsocio->save();
-
+                    echo "paso 4";
                     $pago=new Facturacion();
                     $pago->persona_id=$persona_id;
                     $pago->sorteo_id=$bungalow;
@@ -172,6 +177,7 @@ class SorteoController extends Controller
                     $pago->tipo_comprobante='Boleta';
                     $pago->estado='Pagado';
                     $pago->save();
+                    echo "paso 5";
                 }
             //return redirect()->action('SorteoController@indexInscripcion');
             return redirect('sorteo/inscripcion/mis_sorteos')->with('stored', 'Se realizó el registro de los sorteos seleccionados.');
