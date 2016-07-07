@@ -611,6 +611,28 @@ class SocioAdminController extends Controller
                 $fecha=$fecha->format('Y-m-d');
                 $socio->multaxpersona()->save($multa,['multa_modificada' => $multa->montoPenalidad, 'descripcion_detallada' => $input['descripcion'],'fecha_registro' => $fecha]);
 
+
+                
+
+                if ($multa->tipo == "Grave"){
+
+                    $descripcion='El socio ha sido inhabilitado pero no se ha especificado el motivo.';
+                
+                    $carnet= $socio->carnet_actual();
+                    $carnet->estado=false;
+                    $carnet->descripcion=$descripcion;
+                    $carnet->save();
+                    $carnet->delete();
+
+                    $socio->update(['estado'=>false]);
+                    
+                    $id=$socio->postulante->persona->id_usuario;
+                    if($id!=null){
+                        $usuario=\papusclub\User::find($id);
+                        $usuario->update(['perfil_id'=>9]);
+                    }
+                }
+
                 $facturacion = new Facturacion();
                 $facturacion->persona_id = $socio->postulante->persona->id;
                 $facturacion->multa_id = $multa->id;
