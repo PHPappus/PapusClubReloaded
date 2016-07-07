@@ -118,19 +118,35 @@
 						<thead class="active" data-sortable="true">
 							<th><div align=center>PRODUCTO</div></th>
 							<th><div align=center>DESCRIPCIÓN</div></th>
-							<th><div align=center>CANTIDAD</div></th>											
+							<th><div align=center>CANTIDAD</div></th>	
+							<th><div align=center>COSTO UNITARIO</div></th>
+							<th><div align=center>SUBTOTAL</div></th>										
 						</thead>
-
-												
+																	
 						<tbody>
-						@foreach($ingresoproducto->productoxingresoproducto as $producto)
+						<?php 
+							$total = 0;
+						?>
+						@foreach($ingresoproducto->productoxingresoproducto as $producto)							
 							<tr>
 								<td>{{ $producto->producto->nombre}}</td>
 								<td>{{ $producto->producto->descripcion}}</td>
-								<td>{{ $producto->cantidad}}</td>									
+								<td>{{ $producto->cantidad}}</td>			
+								<td>{{ $producto->producto->precioproducto->first()['costo'] }}</td>						
+								<td>{{ $producto->cantidad * $producto->producto->precioproducto->first()['costo'] }}</td>
 				            </tr>
-						@endforeach
-						</tbody>													
+				            <?php 
+								$total = $total + $producto->cantidad * $producto->producto->precioproducto->first()['costo'];
+							?>
+						@endforeach						
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>TOTAL</td>
+							<td>{{ $total }}</td>
+				        </tr>
+						</tbody>																		
 					</table>						
 				</div>
 					<!-- FIN FIN FIN  -->				

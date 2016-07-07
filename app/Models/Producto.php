@@ -9,7 +9,8 @@ class Producto extends Model
 	use SoftDeletes;
 	protected $table = 'producto';
     protected $fillable = 
-    ['nombre',
+    ['proveedor_id',
+     'nombre',
      'descripcion',
      'estado',
      'tipo_producto',
@@ -26,5 +27,9 @@ class Producto extends Model
 
     public function precioproducto(){
         return $this->hasMany('papusclub\Models\PrecioProducto');
+    }
+
+    public function proveedor(){
+        return $this->belongsTo('papusclub\Models\Proveedor','proveedor_id');
     }
 }

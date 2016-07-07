@@ -18,6 +18,7 @@ class Actividad extends Model
     'a_realizarse_en',
     'hora_inicio',
     'estado',
+    'cupos_disponibles',
     ];
     protected $dates = ['deleted_at'];
     //funciones para las relaciones entre tablas

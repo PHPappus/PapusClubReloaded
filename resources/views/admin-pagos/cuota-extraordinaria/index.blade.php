@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>PROVEEDOR</title>
+	<title>CUOTAS</title>
 	<meta charset="UTF-8">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,89 +12,88 @@
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css"> 
 </head>
 <body>
-@extends('layouts.headerandfooter-al-admin-registros')
+@extends('layouts.headerandfooter-al-admin-pagos')
 
 @section('content')
-
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-12 text-left">				
-				<p class="lead"><strong>PROVEEDORES</strong></p>
+			<div class="col-sm-12 text-left">
+				<br/><br/>
+				<p class="lead"><strong>CUOTAS</strong></p>
 				<br/>
 			</div>
 			
 		</div>
-	</div>	
-
-	<!-- Mensaje de éxito luego de registrar -->
-	@if (session('stored'))
-		<script>$("#modalSuccess").modal("show");</script>
-		
-		<div class="alert alert-success fade in">
-				<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-				<strong>¡Éxito!</strong> {{session('stored')}}
-		</div>
-	@endif
-
-		
-	<div class="table-responsive">
-		<div class="container">
-			<div class="form-group">
-			  		<div class="text-right">
-			  			<font color="black"> 
-			  				Filtra por todos los campos
-			  			</font>
-			  			
-			  		</div>
-			</div>
-			<table class="table table-bordered table-hover text-center display" id="example">
-					<thead class="active" data-sortable="true">
-						<th><div align=center>PROVEEDOR</div> </th>
-						<th><div align=center>RUC</div></th>
-						<th><div align=center>DIRECCION</div></th>
-						<th><div align=center>TIPO DE PROVEEDOR</div></th>
-						<th><div align=center>DETALLE</div></th>
-						<th><div align=center>EDITAR</div></th>
-						<th><div align=center>ELIMINAR</div></th>
-					</thead>
-
-								
-					<tbody>
-						@foreach($proveedores as $proveedor)			
-						<tr>
-							<td>{{ $proveedor->nombre_proveedor }}</td>
-							<td>{{ $proveedor->ruc }}</td>
- 							<td>{{ $proveedor->direccion }}</td>
-							<td>{{ $proveedor->tipo_proveedor }}</td>
-							<td>
-				              	<a class="btn btn-info" href="{{url('/proveedor/'.$proveedor->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
-				            </td>
-							<td>
-				              	<a class="btn btn-info" href="{{url('/proveedor/'.$proveedor->id.'')}}" title="Editar" ><i class="glyphicon glyphicon-pencil"></i></a>
-				            </td>
-				            <td>
-				              	<a class="btn btn-info"  title="Eliminar" data-href="{{url('/proveedor/'.$proveedor->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>             
-				            </td>
-				        </tr>
-			        	@endforeach    
-					</tbody>						
-					
-			</table>			
-		</div>		
 	</div>
+	</br>
+		</br>
+		@if (session('stored'))
+			<script>$("#modalSuccess").modal("show");</script>
+			
+			<div class="alert alert-success fade in">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>¡Éxito!</strong> {{session('stored')}}
+			</div>
+		@endif
+		@if (session('eliminated'))			
+			<div class="alert alert-warning fade in">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>Aviso</strong> {{session('eliminated')}}
+			</div>
+		@endif
 	
+		</br>
+		</br>
 
-	<br/>
-	<div class="container">		
-		<div class="form-group">
-			<div class="col-sm-16 text-right">
-				<a class="btn btn-info" href="{{url('/proveedor/new')}}" title="Registrar Proveedor" >Registrar Proveedor<i class="glyphicon" ></i> </a>	
-			</div>
+
+		<div class="table-responsive">
+			<div class="container">
+				<table class="table table-bordered table-hover text-center display" id="example">
+						<thead class="active">
+							
+							<th><div align=center>NOMBRE</div> </th>
+							<th><div align=center>MONEDA</div></th>
+							<th><div align=center>MONTO</div></th>
+							<th><div align=center>DETALLE</div></th>
+							<th><div align=center>ELIMINAR</div></th>
+	
+						</thead>
+						<tbody>
+							@foreach($cuotas as $cuota)						
+								<tr>
+									
+									<td>{{$cuota->nombre}}</td>
+									<td>S/.</td>
+									<td>{{$cuota->monto}}</td>
+									<td>
+					              	<a class="btn btn-info" href="{{url('/cuota/'.$cuota->id)}}/"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
+					            	</td>
+					            	<td>
+					              	<a class="btn btn-info" href="#" title="Eliminar" data-href="{{url('/cuota/'.$cuota->id.'/delete')}}" data-toggle="modal" data-target="#modalEliminar"><i class="glyphicon glyphicon-remove"></i></a>
+					            	</td>
+					            </tr>				            
+						
+							@endforeach
+						</tbody>
+				</table>
+
+				</br></br></br>
+				<div class="btn-inline">
+					<!-- <form method="POST" action="/sedes/new/sede" >
+					<input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
+
+					<div class="btn-group col-sm-10"></div>
+					
+					<div class="btn-group ">
+						<a href="{{url('/cuota-extra/new')}}" class="btn btn-info" type="submit">Registrar Cuota</a>
+
+					</div>
+					
+				</div>	
+
+			</div>		
 		</div>
-		<br/>
-	</div>
-		
-
+	
 
 @stop
 	{!!Html::script('js/jquery-1.11.3.min.js')!!}
@@ -112,7 +111,6 @@
 		  	});
   		});
 	</script>
-
 </body>
 
 	<!-- Modal -->
@@ -164,4 +162,5 @@
 
 	  </div>
 	</div>
+
 </html>
