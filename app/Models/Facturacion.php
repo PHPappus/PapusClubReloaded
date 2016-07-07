@@ -30,4 +30,8 @@ class Facturacion extends Model
     public function productoxfacturacion(){
         return $this->hasMany('papusclub\Models\ProductoxFacturacion');
     }
+
+    public function sede(){
+        return $this->belongsTo('papusclub\Models\Sede', 'sede_id');
+    }
 }

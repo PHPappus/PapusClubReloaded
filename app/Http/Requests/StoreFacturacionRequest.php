@@ -24,6 +24,7 @@ class StoreFacturacionRequest extends Request
     public function rules()
     {
          return [            
+            'sede_id'   =>  'required|integer|exists:sede,id',
             'persona_id'   =>  'required|integer|exists:persona,id',
             'tipo_pago'   =>  'required|string|max:255',
             'tipo_comprobante' =>  'required|string|max:255',
