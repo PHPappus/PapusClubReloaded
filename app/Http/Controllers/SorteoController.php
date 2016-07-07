@@ -11,6 +11,7 @@ use papusclub\Models\Ambiente;
 use papusclub\Models\Reserva;
 use papusclub\Models\Sede;
 use papusclub\Models\Persona;
+use papusclub\Models\Configuracion;
 use papusclub\Models\Mantenimiento;
 use papusclub\Models\Sorteoxsocio;
 use Auth;
@@ -22,7 +23,7 @@ use papusclub\Http\Requests\StoreAmbientexSorteoRequest;
 use papusclub\Http\Requests\StoreSocioxSorteoRequest;
 use papusclub\Http\Requests\DeleteSorteoSocioRequest;
 use papusclub\Models\Facturacion;
-use Log;
+
 
 use Carbon\Carbon;
 
@@ -155,21 +156,20 @@ class SorteoController extends Controller
             $user_id = Auth::user()->id;
             $usuario = User::find($user_id);
             $persona_id = $usuario->persona->id;//CAMBIO
-            echo "paso 1";
+            
             if($bungalows!=NULL)
-                echo "paso 2";
+                
                 foreach ($bungalows as $bungalow) {
                     $sorteo=Sorteo::find($bungalow);
-                    echo $sorteo->id;
-                    echo "paso 3";
+                    
                     $sorteoxsocio=new Sorteoxsocio();
-                    echo "aqui1";
+                    
                     $sorteoxsocio->id=$bungalow;
-                    echo "aqui2";
+                    
                     $sorteoxsocio->id_socio=$persona_id;
-                    echo "aqui3";
+                    
                     $sorteoxsocio->save();
-                    echo "paso 4";
+                    
                     $pago=new Facturacion();
                     $pago->persona_id=$persona_id;
                     $pago->sorteo_id=$bungalow;
@@ -178,7 +178,7 @@ class SorteoController extends Controller
                     $pago->tipo_comprobante='Boleta';
                     $pago->estado='Pagado';
                     $pago->save();
-                    echo "paso 5";
+                    
                 }
             //return redirect()->action('SorteoController@indexInscripcion');
             return redirect('sorteo/inscripcion/mis_sorteos')->with('stored', 'Se realizó el registro de los sorteos seleccionados.');
@@ -250,7 +250,9 @@ class SorteoController extends Controller
         try
         {
             $sedes = Sede::all();
-            $configuracion="0";
+            //$configuracion="0";
+            $configuracion=Configuracion::where('grupo','=',23)->where('descripcion','=','Sorteo Activado Fechas')->first();
+            $configuracion=$configuracion->valor;
             return view('admin-general.sorteo.newSorteo',['sedes'=>$sedes,'configuracion'=>$configuracion]);
         }
         catch (\Exception $e)
@@ -334,7 +336,7 @@ class SorteoController extends Controller
 
 
             $mytime = Carbon::now();
-            echo $mytime;
+            
 
             $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('sede_id','=',$sorteo->id_sede)->where('estado','!=','Deshabilitado')->get();
             $ambientesInas=Mantenimiento::where('fecha_inicio','<=',$mytime)->where('fecha_fin','>=',$mytime)->get();
@@ -406,21 +408,21 @@ class SorteoController extends Controller
                 $lista_bungalows1=AmbientexSorteo::where('id','=',$id)->get();
                 $flag=true;
                 foreach ($lista_bungalows1 as $bungalow) {
-                    echo $bungalow->id_ambiente;
+                    
                     $reserva=Reserva::where('fecha_inicio_reserva','=',$sorteo->fecha_abierto)->where('fecha_fin_reserva','=',$sorteo->fecha_cerrado)->where('ambiente_id','=',$bungalow->id_ambiente)->get();
                     if(!$reserva->isEmpty())
                         if($flag){
-                            echo 'si';
+                            
                             $collectionTemp=collect([$reserva]);
-                            echo $reserva[0]->id_persona;
+                            
                             $superTemp=Persona::where('id','=',$reserva[0]->id_persona)->get();
-                            echo 'hola';
+                            
                             $collectionTemp2=collect([$superTemp]);
                             $flag=false;
                         }
                         else 
                         {
-                            echo 'no';
+                            
                             $collectionTemp->push($reserva); 
                             $superTemp=Persona::where('id','=',$reserva[0]->id_persona)->get();               
                             $collectionTemp2->push($superTemp);
@@ -467,7 +469,18 @@ class SorteoController extends Controller
             $date = str_replace('/', '-', $input['fecha_abierto']);
             $temp = $carbon->createFromFormat('d-m-Y', $date)->toDateString();
 
-            $sorteo->fecha_fin_sorteo =$carbon::parse($temp)->addDays(-7);
+            $configuracion=Configuracion::where('grupo','=',23)->where('descripcion','=','Sorteo Activado Fechas')->first();
+            $configuracion=$configuracion->valor;
+
+            if($configuracion=="0"){
+                $sorteo->fecha_fin_sorteo =$carbon::parse($temp)->addDays(0);
+            }
+            else
+            {
+                $sorteo->fecha_fin_sorteo =$carbon::parse($temp)->addDays(-7);
+            }
+
+            
 
             //$date = str_replace('/', '-', $input['fecha_abierto']);      
             $sorteo->fecha_abierto=$carbon->createFromFormat('d-m-Y', $date)->toDateString();
@@ -543,7 +556,7 @@ class SorteoController extends Controller
             $sorteo = Sorteo::find($id);
 
             $mytime = Carbon::now();
-            echo $mytime;
+            
 
             $ambientes=Ambiente::where('tipo_ambiente','=','Bungalow')->where('sede_id','=',$sorteo->id_sede)->where('estado','!=','Deshabilitado')->get();
 
