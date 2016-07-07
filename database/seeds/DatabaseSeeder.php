@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
         //$this->call(ActividadTableSeeder::class);
         $this->call(TipoPersonaTableSeeder::class);
         $this->call(ConfiguracionTableSeeder::class);
-        //$this->call(TarifaMembresiaTableSeeder::class);
-        //$this->call(TipoMembresiaTableSeeder::class);
+        $this->call(TarifaMembresiaTableSeeder::class);
+        $this->call(TipoMembresiaTableSeeder::class);
         $this->call(PersonaTableSeeder::class);
         //$this->call(PostulanteTableSeeder::class);
         //$this->call(SocioTableSeeder::class);
@@ -35,11 +35,11 @@ class DatabaseSeeder extends Seeder
         //$this->call(PrecioProductoTableSeeder::class);
         //$this->call(FacturacionTableSeeder::class);
         //$this->call(ProductoxFacturacionTableSeeder::class);
-        //$this->call(TipoFamiliaTableSeeder::class);
+        $this->call(TipoFamiliaTableSeeder::class);
         //$this->call(TarifaAmbientexTipoPersonaTableSeeder::class);
         //$this->call(servicioSeeder::class);
         //$this->call(TarifarioServiciosTableSeeder::class);      
-        //$this->call(TarifaFamiliarTableSeeder::class);      
+        //$this->call(TarifaFamiliarTableSeeder::class);
         //$this->call(TarifaActividadTableSeeder::class);
         Model::reguard();
     }

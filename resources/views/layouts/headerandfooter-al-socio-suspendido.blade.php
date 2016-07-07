@@ -61,7 +61,7 @@
             </ul>
           </li>
         </ul>
-        <ul class="nav navbar-nav">
+        <!-- <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle btn-lg" title="Realizar tramites" data-toggle="dropdown" role="button">
               Trámites<span class="caret"></span>
@@ -72,7 +72,7 @@
               <li><a href="{!!URL::to('/ver-postulantes')!!}" title="calificar postulantes" target="_self">Obs. Postulantes</a></li>
             </ul>
           </li>
-        </ul>
+        </ul> -->
 
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
