@@ -920,7 +920,7 @@ class ReservarAmbienteController extends Controller
                 }
             }
             $bloqueado = false;
-            return view('admin-reserva.reservar-ambiente.reservar-bungalow', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue','dias','bloqueado'));
+            return view('admin-reserva.reservar-ambiente.reservar-bungalow', compact('sedes','ambientes','fechaIniValue','fechaFinValue','dias','bloqueado'));
         } catch (\Exception $e) {
             $error = 'reservarBungalowFiltradosAdminR-ReservarAmbienteController';
             return view('errors.corrigeme', compact('error'));
@@ -971,18 +971,17 @@ class ReservarAmbienteController extends Controller
              }else
                 $capacidad=0;
              /*Se prepara las horas para ser comparadas*/
-            $horaInicio=$input['horaInicio'];
-            $horaFin=$input['horaFin'];
+            
 
             if(empty($input['horaInicio'])){
                 $horaInicio="00:00";
             }else{
-
+                $horaInicio=$input['horaInicio'];
             }
             if(empty($input['horaFin'])){
                 $horaFin="23:59" ;
             }else{
-                
+                $horaFin=$input['horaFin'];                
             }
             /*Se terminó de preparar las horas*/
                 
@@ -1093,7 +1092,7 @@ class ReservarAmbienteController extends Controller
 
                     
                 }
-                
+
             $fechaIniValue=$carbon->createFromFormat('d-m-Y', $fecha_inicio);
             $fechaFinValue=$carbon->createFromFormat('d-m-Y', $fecha_fin);
             $diff=$fechaFinValue->diffInDays($fechaIniValue);
