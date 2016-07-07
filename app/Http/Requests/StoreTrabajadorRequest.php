@@ -23,6 +23,9 @@ class StoreTrabajadorRequest extends Request
      */
     public function rules()
     {
+/*        var_dump($this->all());
+        die();*/
+
         return [
             'nombre' =>  'required|max:100|string',
             'ap_paterno' => 'required|max:100|string',
@@ -31,7 +34,8 @@ class StoreTrabajadorRequest extends Request
             'doc_identidad'=> 'required_if:nacionalidad,peruano|unique:persona', //| unique:persona,doc_identidad,NULL',
             'carnet_extranjeria'=> 'required_if:nacionalidad,extranjero|unique:persona',//  | unique:persona,carnet_extranjeria,NULL',
             'correo'=>'required|email|unique:persona',
-            'puestoSelect' => 'required|exists:configuracion,id'
+            'puestoSelect' => 'required|exists:configuracion,id',
+            'sedeSelect' => 'required|not_in:-1'
         ];
     }
 }

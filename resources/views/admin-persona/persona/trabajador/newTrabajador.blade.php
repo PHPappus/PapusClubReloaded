@@ -205,6 +205,22 @@
 											</div>
 										</div>
 									</div>
+									<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Sede:</label>
+											</div>
+											<div class="col-sm-6">
+												<select class="form-control" id="sedeSelect" name="sedeSelect" style="width: 250px "   >
+													<option value="-1" default>Seleccione</option>
+														@foreach ($sedes as $sedevalue)      
+										                	<option value="{{$sedevalue->nombre}}" @if (old('sedeSelect') == $sedevalue->nombre) selected="selected" @endif >{{$sedevalue->nombre}}</1option>
+										                @endforeach
+												</select>
+											</div>
+										</div>
+									</div>
+
 
 
 									<div class="form-group">
@@ -214,7 +230,7 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_ini_contrato" placeholder="Fecha de inicio" style="max-width: 250px" value="{{old('fecha_ini_contrato')}}">
+												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="fecha_ini_contrato" name="fecha_ini_contrato" placeholder="Fecha de inicio" style="width: 250px" value="{{old('fecha_ini_contrato')}}">
 											</div>	
 										</div>
 									</div>
@@ -227,7 +243,7 @@
 
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="dpd1" name="fecha_fin_contrato" placeholder="Fecha de fin" style="width: 250px" value="{{old('fecha_fin_contrato')}}">
+												<input class="datepicker" onkeypress="return inputLimiter(event,'Nulo')" type="text" id="fecha_fin_contrato" name="fecha_fin_contrato" placeholder="Fecha de fin" style="width: 250px" value="{{old('fecha_fin_contrato')}}">
 											</div>
 										</div>
 									</div>
@@ -320,10 +336,43 @@
 			
 	</script>	
 	<script>
+
+		var nowDate = new Date();
+		var maxDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+
+		$(function(){
+			$('#fecha_nacimiento').datepicker({
+				format: "dd/mm/yyyy",
+		        language: 'es',
+			    autoclose: true,
+			    endDate:maxDate
+		        	//autoclose: true
+		        //beforeShowDay:function (date){return false}
+			});
+			//$('.datepicker').on('changeDate', function(ev){
+			//    $(this).datepicker('hide');
+			//});
+		});
+
+		$(function(){
+			$('#fecha_fin_contrato').datepicker({
+				format: "dd/mm/yyyy",
+		        language: 'es',
+			    autoclose: true,
+			    startDate:maxDate
+		        	//autoclose: true
+		        //beforeShowDay:function (date){return false}
+			});
+			//$('.datepicker').on('changeDate', function(ev){
+			//    $(this).datepicker('hide');
+			//});
+		});
+
 		$(function(){
 			$('.datepicker').datepicker({
 				format: "dd/mm/yyyy",
 		        language: 'es',
+			    autoclose: true
 		        	//autoclose: true
 		        //beforeShowDay:function (date){return false}
 			});

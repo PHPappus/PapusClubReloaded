@@ -196,6 +196,23 @@
 											</div>
 										</div>
 									</div>
+									<div class="form-group required">
+										<div class="col-sm-6">
+											<div class="col-sm-6 text-left">
+												<label for="" class="control-label">Sede:</label>
+											</div>
+											<div class="col-sm-6">
+												<select class="form-control" id="sedeSelect" name="sedeSelect" style="width: 250px "   >
+													<option value="-1" default>Seleccione</option>
+														@foreach ($sedes as $sedevalue)      
+										                	<option value="{{$sedevalue->nombre}}" @if ($trabajador['sede'] == $sedevalue->nombre) selected="selected" @endif >{{$sedevalue->nombre}}</1option>
+										                @endforeach
+												</select>
+											</div>
+										</div>
+									</div>
+
+									
 
 
 									<div class="form-group">

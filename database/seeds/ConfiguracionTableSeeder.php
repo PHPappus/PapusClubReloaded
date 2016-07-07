@@ -64,7 +64,6 @@ class ConfiguracionTableSeeder extends Seeder
         Configuracion::insert(['valor'=>'Divorciado(a)','grupo'=>'11','descripcion'=>'estado civil']);
 
         Configuracion::insert(['valor'=>'15.50','grupo'=>'12','descripcion'=>'Precio, en soles, de la entrada en las sedes']); //40
-        Configuracion::insert(['valor'=>'25','grupo'=>'12','descripcion'=>'Precio por pecnotar en el club']);
 
         Configuracion::insert(['valor'=>'Solicitud Pendiente','grupo'=>'13','descripcion'=>'estado solicitud']);
         Configuracion::insert(['valor'=>'Producto Recibido','grupo'=>'13','descripcion'=>'estado solicitud']);
@@ -98,5 +97,7 @@ class ConfiguracionTableSeeder extends Seeder
         Configuracion::insert(['valor'=>'20000','grupo'=>'20','descripcion'=>'Cuota de ingreso Nuevo Socio']);
 
         Configuracion::insert(['valor'=>'8000','grupo'=>'21','descripcion'=>'Cuota de ingreso siendo Familiar de Socio']); //65
+        
+        Configuracion::insert(['valor'=>'25','grupo'=>'22','descripcion'=>'Precio por pecnotar en el club']);
     }
 }

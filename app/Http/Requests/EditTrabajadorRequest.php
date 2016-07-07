@@ -31,7 +31,8 @@ class EditTrabajadorRequest extends Request
             'doc_identidad'=> 'required_if:nacionalidad,ṕeruano',
             'carnet_extranjeria'=> 'required_if:nacionalidad,extranjero',
             'correo'=>'required|email',
-            'puestoSelect' => 'required|exists:configuracion,id'
+            'puestoSelect' => 'required|exists:configuracion,id',
+            'sedeSelect' =>'required| not_in:-1'
         ];
     }
 }
