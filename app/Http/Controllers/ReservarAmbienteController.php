@@ -954,7 +954,7 @@ class ReservarAmbienteController extends Controller
             $fechaIniValue   = new Carbon('America/Lima');
             $fechaFinValue   = (new Carbon('America/Lima'))->addDays($rangoDias->valor); 
             $sedes = Sede::all();
-            
+            $dias=$rangoDias->valor;
             $ambientes=Ambiente::where('tipo_ambiente','!=','Bungalow')->where('estado', '=', 'Activo')->get();
             if(!empty($input['fecha_inicio'])){
                 $a_realizarse_en = str_replace('/', '-', $input['fecha_inicio']);
@@ -1011,7 +1011,7 @@ class ReservarAmbienteController extends Controller
                 }
             }
             $bloqueado = false;
-            return view('admin-reserva.reservar-ambiente.reservar-otros-ambientes', compact('sedes'),compact('ambientes','fechaIniValue','fechaFinValue','bloqueado'));
+            return view('admin-reserva.reservar-ambiente.reservar-otros-ambientes', compact('sedes','ambientes','fechaIniValue','fechaFinValue','bloqueado', 'dias'));
         } catch (\Exception $e) {
             $error = 'reservarOtrosAmbientesFiltradosAdminR-ReservarAmbienteController';
             return view('errors.corrigeme', compact('error'));
