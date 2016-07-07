@@ -32,6 +32,10 @@
 		</div>
 		<!-- Utilizando Bootstrap -->
 		<div class="container">
+			@include('alerts.success')
+			@include('alerts.errors')
+		</div>
+		<div class="container">
 			@if (count($errors) > 0)
 				<div class="alert alert-danger" role="alert">
 					@if (count($errors) > 1)

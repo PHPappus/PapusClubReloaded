@@ -12,11 +12,11 @@ class AddFkToSocioxsorteoTable extends Migration
      */
     public function up()
     {
-        Schema::table('socioxsorteo', function (Blueprint $table) {
+        /*Schema::table('socioxsorteo', function (Blueprint $table) {
             $table->foreign('id_socio')->references('id')->on('socio')->onDelete('cascade');
             $table->foreign('id')->references('id')->on('sorteo')->onDelete('cascade');  
             $table->primary(['id', 'id_socio']);
-        });
+        });*/
     }
 
     /**
