@@ -182,12 +182,4 @@
     }
 	</style>
 </body>
-<!--
-	<a id="{{$persona->id}}" href="#" class="btn btn-default"><i class="glyphicon glyphicon-unchecked"></i></a>
-						<script>
-							$('#{{$persona->id}}').click(function(){
-							    $(this).find('i').toggleClass('glyphicon-unchecked').toggleClass('glyphicon-check');
-							});
-						</script>
--->
 </html>
