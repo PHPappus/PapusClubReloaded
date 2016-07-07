@@ -275,7 +275,9 @@ class InscriptionActividadController extends Controller
                         }
                         catch(ValidationException $e){
                             DB::rollback();
-                            var_dump($e->getErrors());
+                            /*var_dump($e->getErrors());*/
+                            $error = 'makeInscriptionFamiliarToPersona-InscriptionActividadController';
+                            return view('errors.corrigeme', compact('error'));
                         }
                         DB::commit();
                         
@@ -362,7 +364,9 @@ class InscriptionActividadController extends Controller
                         }
                         catch(ValidationException $e){
                             DB::rollback();
-                            var_dump($e->getErrors());
+                            /*var_dump($e->getErrors());*/
+                            $error = 'makeInscriptionToPersona-InscriptionActividadController';
+                            return view('errors.corrigeme', compact('error'));
                         }
                         DB::commit();
                         
@@ -399,7 +403,9 @@ class InscriptionActividadController extends Controller
             }
             catch(ValidationException $e){
                 DB::rollback();
-                var_dump($e->getErrors());
+                /*var_dump($e->getErrors());*/
+                $error = 'removeInscriptionToPersona-InscriptionActividadController';
+                return view('errors.corrigeme', compact('error'));
             }
             DB::commit();
             return back();
@@ -427,7 +433,9 @@ class InscriptionActividadController extends Controller
             }
             catch(ValidationException $e){
                 DB::rollback();
-                var_dump($e->getErrors());
+                /*var_dump($e->getErrors());*/
+                $error = 'removeInscriptionToFamiliar-InscriptionActividadController';
+                return view('errors.corrigeme', compact('error'));
             }
             DB::commit();
             return back();
