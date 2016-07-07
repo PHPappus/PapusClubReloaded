@@ -92,7 +92,7 @@
 			    	<div class="col-sm-5">
 				    	<select class="form-control" id="tipoMultaSelect" name="tipoMulta" style="max-width: 150px " onchange="mostrar_precio()" >
 							    @foreach ($multas as $multa)      
-							        <option value="{{$multa->id}}">{{$multa->nombre}}</option>
+							        @if ($multa->estado == TRUE) <option value="{{$multa->id}}">{{$multa->nombre}}</option> @endif
 							    @endforeach
 						</select>
 					</div>
@@ -103,7 +103,7 @@
 			    	<div class="col-sm-5">
 			      		<select class="form-control" id="montoMultaSelect" name="montoMulta" style="max-width: 150px " disabled>
 							@foreach ($multas as $multa)      
-							        <option value="{{$multa->id}}">{{$multa->montoPenalidad}}</option>
+							        @if ($multa->estado == TRUE) <option value="{{$multa->id}}">{{$multa->montoPenalidad}}</option> @endif
 							 @endforeach											
 						</select>	
 			    	</div>

@@ -74,11 +74,16 @@
 			  	</div>
 
 			  	<div class="form-group required">
-			    	<label for="tipoInput" class="col-sm-4 control-label">Tipo</label>
+			    	<label for="tipoSelect" class="col-sm-4 control-label">Tipo</label>
 			    	<div class="col-sm-5">
-			      		<input type="text" class="form-control" id="tipoInput" name="tipo" placeholder="Tipo" value="{{$multa->tipo}}">
+			    		<select class = "form-control" id="tipoSelect" name="tipo" style="max-width: 150px " >
+			    			@foreach ($tipos as $tipo)      
+							        <option value="{{$tipo->valor}}" @if ($tipo->valor == $multa->tipo) selected @endif>{{$tipo->valor}}</option>
+							@endforeach
+			    		</select>
 			    	</div>
 			  	</div>
+
 
 			  	<div class="form-group required">
 			    	<label for="montoPenalidadInput" class="col-sm-4 control-label">Monto de la Penalidad (S/.)</label>

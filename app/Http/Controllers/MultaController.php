@@ -67,7 +67,8 @@ class MultaController extends Controller
     public function edit ($id)
     {
         $multa = Multa::withTrashed()->find($id);
-        return view('admin-general.multa.editMulta',compact('multa'));
+        $tipos = Configuracion::where('grupo','=',22)->get();
+        return view('admin-general.multa.editMulta',compact('multa','tipos'));
     }
 
     public function update(EditMultaRequest $request, $id)
@@ -87,6 +88,8 @@ class MultaController extends Controller
         {
             $multa->estado = FALSE;
         }
+
+        $multa->tipo = $input['tipo'];
 
         $multa->save();
         return Redirect::action('MultaController@index');
