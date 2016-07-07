@@ -51,7 +51,7 @@
 							<th><DIV ALIGN=center>NOMBRE</th>
 							<th><DIV ALIGN=center>APELLIDO PATERNO</th>
 							<th><DIV ALIGN=center>APELLIDO MATERNO</th>
-							<th><DIV ALIGN=center>NACIONALIDAD</th>
+							<th><DIV ALIGN=center>SEDE</th>
 							<th><DIV ALIGN=center>DETALLE</th>
 							<th><DIV ALIGN=center>EDITAR</th>
 							<th><DIV ALIGN=center>ELIMINAR</th>
@@ -70,7 +70,7 @@
 									<td>{{ $persona->nombre }}</td>
 									<td>{{ $persona->ap_paterno }}</td>
 			 						<td>{{ $persona->ap_materno }}</td>
-			 						<td>{{ $persona->nacionalidad }}</td>
+			 						<td>{{ $persona->trabajador->sede }}</td>
 									<td>
 							        <a class="btn btn-info" href="{{url('/trabajador/'.$persona->id.'/show')}}"  title="Detalle" ><i class="glyphicon glyphicon-list-alt"></i></a>
 							        </td>

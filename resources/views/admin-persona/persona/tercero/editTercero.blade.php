@@ -126,7 +126,7 @@
 												<label for="" class="control-label">Fecha de Nacimiento:</label>
 											</div>
 											<div class="col-sm-6">
-												<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecha_nacimiento" placeholder="Fecha Nacimiento" style="width: 250px" value="{{$persona->fecha_nacimiento}}" value="{{old('fecha_nacimiento')}}">
+												<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="fecha_nacimiento" name="fecha_nacimiento" placeholder="Fecha Nacimiento" style="width: 250px" value="{{$persona->fecha_nacimiento}}" value="{{old('fecha_nacimiento')}}">
 
 											</div>	
 										</div>
@@ -237,17 +237,45 @@
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
 
 	<script>
+		$(document).ready(function(){
+			$(function(){
+				$('.datepicker').datepicker({
+					format: "dd/mm/yyyy",
+			        language: "es",
+			        autoclose: true,
+    				
+			        //beforeShowDay:function (date){return false}
+				});
+
+			});
+
+		});
+		$('.datepicker').on('changeDate', function(ev){
+			    $(this).datepicker('hide');
+		});
+			
+	</script>	
+	<script>
+
+		var nowDate = new Date();
+		var maxDate = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+
 		$(function(){
-			$('.datepicker').datepicker({
+			$('#fecha_nacimiento').datepicker({
 				format: "dd/mm/yyyy",
 		        language: 'es',
-		        autoclose: true
+			    autoclose: true,
+			    endDate:maxDate
+		        	//autoclose: true
 		        //beforeShowDay:function (date){return false}
 			});
-			$('.datepicker').on('changeDate', function(ev){
-			    $(this).datepicker('hide');
-			});
+			//$('.datepicker').on('changeDate', function(ev){
+			//    $(this).datepicker('hide');
+			//});
 		});
+
+
+		
 	</script>
 
 

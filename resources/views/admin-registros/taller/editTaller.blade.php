@@ -117,14 +117,14 @@
 				<div class="form-group required">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Inicio Taller</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIni" placeholder="Fecha Inicio Taller" value="{{$taller->fecha_inicio}}" disabled>
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecIni" placeholder="Fecha Inicio Taller" value="{{$taller->fecha_inicio}}" readonly>
 					</div>	
 				</div>
 
 			  	<div class="form-group required">
 					<label for="fecIniInssInput" class="col-sm-4 control-label">Fecha Fin Taller</label>
 					<div class="col-sm-5">
-						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFin" placeholder="Fecha Fin Taller"  value="{{$taller->fecha_fin}}" disabled>
+						<input class="datepicker" type="text" onkeypress="return inputLimiter(event,'Nulo')" id="dpd1" name="fecFin" placeholder="Fecha Fin Taller"  value="{{$taller->fecha_fin}}" readonly>
 					</div>	
 				</div>
 

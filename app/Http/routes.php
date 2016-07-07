@@ -398,6 +398,21 @@ Route::group(['middleware' => ['auth', 'admingeneral']], function () {
 		$valor=Input::get('valor');
 		papusclub\Models\Configuracion::where('grupo', '=', 12)->update(array('valor' => $valor));
 	});
+	Route::post('configuracion/test7', function()
+	{
+		$valor=Input::get('valor');
+		papusclub\Models\Configuracion::where('grupo', '=', 20)->update(array('valor' => $valor));
+	});
+	Route::post('configuracion/test8', function()
+	{
+		$valor=Input::get('valor');
+		papusclub\Models\Configuracion::where('grupo', '=', 21)->update(array('valor' => $valor));
+	});
+	Route::post('configuracion/test9', function()
+	{
+		$valor=Input::get('valor');
+		papusclub\Models\Configuracion::where('grupo', '=', 24)->update(array('valor' => $valor));
+	});
 
 	//CONFIGURACION
 	Route::get('configuracion/index','ConfiguracionController@index');

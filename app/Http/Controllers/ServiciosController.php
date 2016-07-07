@@ -12,6 +12,7 @@ use papusclub\Models\TarifarioServicio;
 use papusclub\Models\Configuracion;
 use papusclub\Http\Requests\StoreServicioRequest;
 use papusclub\Http\Requests\EditServicioRequest;
+use Log;
 
 
 class ServiciosController extends Controller

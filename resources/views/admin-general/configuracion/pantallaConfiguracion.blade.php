@@ -98,6 +98,75 @@
 							</table>
 
 						<hr style="width: 80%; color: black; height: 1px; background-color:black;" />
+						<p class="lead"><strong>CUOTA DE INGRESO NUEVO SOCIO</strong></p>
+							<table   style="margin-left:200px;">
+								<tr>
+									<td style=" width:300px;">
+										<table class="table table-striped text-center display" id="grupo20">
+											<thead class="active" data-sortable="true">
+												<th><div align=center>VALOR</div> </th>
+											</thead>
+											@foreach($variables->where('grupo', '20') as $grupo1)
+												<tr>
+													<td>{{ $grupo1->valor }}</td>
+												</tr>
+											@endforeach
+										</table>
+									</td>
+									<td style="padding:0 20px 0 100px;" >
+										<input type="text" onkeypress="return inputLimiter(event,'DoubleFormat')"  class="form-control" id="precioSocio" name="precioSocio" placeholder="Cuota de ingreso nuevo socio" ><br>
+										<a href="" id="bsave7" data-link="{{ url('/configuracion/test7') }}" class="btn btn-primary pull-right">Modificar</a>
+									</td>
+								</tr>
+							</table>
+						<hr style="width: 80%; color: black; height: 1px; background-color:black;" />
+						
+						<p class="lead"><strong>CUOTA DE INGRESO SIENDO FAMILIAR DE SOCIO</strong></p>
+							<table   style="margin-left:200px;">
+								<tr>
+									<td style=" width:300px;">
+										<table class="table table-striped text-center display" id="grupo21">
+											<thead class="active" data-sortable="true">
+												<th><div align=center>VALOR</div> </th>
+											</thead>
+											@foreach($variables->where('grupo', '21') as $grupo1)
+												<tr>
+													<td>{{ $grupo1->valor }}</td>
+												</tr>
+											@endforeach
+										</table>
+									</td>
+									<td style="padding:0 20px 0 100px;" >
+										<input type="text" onkeypress="return inputLimiter(event,'DoubleFormat')"  class="form-control" id="precioFamiliar" name="precioFamiliar" placeholder="Cuota de ingreso familiar" ><br>
+										<a href="" id="bsave8" data-link="{{ url('/configuracion/test8') }}" class="btn btn-primary pull-right">Modificar</a>
+									</td>
+								</tr>
+							</table>
+						<hr style="width: 80%; color: black; height: 1px; background-color:black;" />
+
+						<p class="lead"><strong>PRECIO POR PERNOCTAR EN EL DIA</strong></p>
+							<table   style="margin-left:200px;">
+								<tr>
+									<td style=" width:300px;">
+										<table class="table table-striped text-center display" id="grupo22">
+											<thead class="active" data-sortable="true">
+												<th><div align=center>VALOR</div> </th>
+											</thead>
+											@foreach($variables->where('grupo', '24') as $grupo1)
+												<tr>
+													<td>{{ $grupo1->valor }}</td>
+												</tr>
+											@endforeach
+										</table>
+									</td>
+									<td style="padding:0 20px 0 100px;" >
+										<input type="text" onkeypress="return inputLimiter(event,'DoubleFormat')"  class="form-control" id="precioPernoctar" name="precioPernoctar" placeholder="Precio por pernoctar en el dia" ><br>
+										<a href="" id="bsave9" data-link="{{ url('/configuracion/test9') }}" class="btn btn-primary pull-right">Modificar</a>
+									</td>
+								</tr>
+							</table>
+						<hr style="width: 80%; color: black; height: 1px; background-color:black;" />
+
 						<p class="lead"><strong>TIPOS DE PUESTOS</strong></p>
 							<table   style="margin-left:200px;">
 								<tr>
@@ -355,7 +424,7 @@
 			        }
 			    }); //end of ajax
 			});
-		   /*=============GRUPO 5=========================*/
+		   /*=============GRUPO 6=========================*/
 		   $("#bsave6").click(function(){
 			    var url = $(this).attr("data-link");
 				$valor = $("#precio").val();
@@ -364,6 +433,90 @@
 			    alert($grupo);*/
 			    $.ajax({
 			        url: "test6",
+			        type:"POST",
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { valor : $valor},
+			        success:function(data){
+			            /*alert($valor);
+			            var trHTML='<td>'+$valor+'</td>';
+
+			        	$("#grupo4").html(trHTML);*/
+			        },error:function(){ 
+			            alert("error!!!!");
+			        }
+			    }); //end of ajax
+			});
+		   	/*=============GRUPO 7=========================*/
+		   	$("#bsave7").click(function(){
+			    var url = $(this).attr("data-link");
+				$valor = $("#precioSocio").val();
+				$grupo = "20";
+/*			    alert($valor);
+			    alert($grupo);*/
+			    $.ajax({
+			        url: "test7",
+			        type:"POST",
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { valor : $valor},
+			        success:function(data){
+			            /*alert($valor);
+			            var trHTML='<td>'+$valor+'</td>';
+
+			        	$("#grupo4").html(trHTML);*/
+			        },error:function(){ 
+			            alert("error!!!!");
+			        }
+			    }); //end of ajax
+			});
+			/*=============GRUPO 8=========================*/
+		   	$("#bsave8").click(function(){
+			    var url = $(this).attr("data-link");
+				$valor = $("#precioFamiliar").val();
+				$grupo = "21";
+/*			    alert($valor);
+			    alert($grupo);*/
+			    $.ajax({
+			        url: "test8",
+			        type:"POST",
+			        beforeSend: function (xhr) {
+			            var token = $('meta[name="csrf_token"]').attr('content');
+
+			            if (token) {
+			                  return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+			            }
+			        },
+			        data: { valor : $valor},
+			        success:function(data){
+			            /*alert($valor);
+			            var trHTML='<td>'+$valor+'</td>';
+
+			        	$("#grupo4").html(trHTML);*/
+			        },error:function(){ 
+			            alert("error!!!!");
+			        }
+			    }); //end of ajax
+			});
+			/*=============GRUPO 9=========================*/
+		   	$("#bsave9").click(function(){
+			    var url = $(this).attr("data-link");
+				$valor = $("#precioPernoctar").val();
+				$grupo = "24";
+/*			    alert($valor);
+			    alert($grupo);*/
+			    $.ajax({
+			        url: "test9",
 			        type:"POST",
 			        beforeSend: function (xhr) {
 			            var token = $('meta[name="csrf_token"]').attr('content');

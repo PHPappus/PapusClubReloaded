@@ -102,5 +102,6 @@ class ConfiguracionTableSeeder extends Seeder
         Configuracion::insert(['valor'=>'Leve','grupo'=>'22','descripcion'=>'Tipo multa']);
         Configuracion::insert(['valor'=>'Media','grupo'=>'22','descripcion'=>'Tipo multa']);
         Configuracion::insert(['valor'=>'Grave','grupo'=>'22','descripcion'=>'Tipo multa']);
+        Configuracion::insert(['valor'=>'0','grupo'=>'23','descripcion'=>'Sorteo Activado Fechas']);
     }
 }

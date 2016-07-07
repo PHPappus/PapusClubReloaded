@@ -15,6 +15,7 @@ class CreateTrabajadorTable extends Migration
         Schema::create('trabajador', function (Blueprint $table) {
             $table->integer('id')->unsigned()->nullable();
             $table->integer('puesto');
+            $table->string('sede');
             $table->date('fecha_ini_contrato');
             $table->date('fecha_fin_contrato');
             $table->softDeletes();
