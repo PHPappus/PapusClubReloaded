@@ -29,7 +29,7 @@ class StoreFamiliarSocioRequest extends Request
             'ap_materno' => 'required|max:100|alpha',
             'doc_identidad'=> 'required_if:nacionalidad,peruano', 
             'carnet_extranjeria'=> 'required_if:nacionalidad,extranjero',
-            'correo'=>'email',
+            'correo'=>'required|email|unique:persona',
             'tipo_relacion'=> 'required|exists:configuracion,id',
             'fecha_nacimiento'=>'required|string',
         ];

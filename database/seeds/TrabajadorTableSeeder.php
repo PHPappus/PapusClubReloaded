@@ -12,6 +12,6 @@ class TrabajadorTableSeeder extends Seeder
      */
     public function run()
     {
-        Trabajador::create(['id'=> 2 , 'puesto'=> 1, 'fecha_ini_contrato' => '2016-06-12' , 'fecha_fin_contrato' => '2016-06-30' ]);
+        Trabajador::create(['id'=> 2 , 'puesto'=> 1, 'fecha_ini_contrato' => '2016-06-12' , 'fecha_fin_contrato' => '2016-06-10' ]);
     }
 }

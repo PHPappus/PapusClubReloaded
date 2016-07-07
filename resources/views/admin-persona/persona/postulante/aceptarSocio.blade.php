@@ -129,7 +129,7 @@
 												<label for="" class="control-label">Carnet de extranjeria:</label>
 											</div>
 											<div class="col-sm-6">
-												<input type="text" class="form-control" id="carnet_extranjeria" name="carnet_extranjeria" value="{{$postulante->persona->carnet_identidad}}" readonly style="max-width: 250px">
+												<input type="text" class="form-control" id="carnet_extranjeria" name="carnet_extranjeria" value="{{$postulante->persona->carnet_extranjeria}}" readonly style="max-width: 250px">
 											</div>	
 										</div>
 									</div>

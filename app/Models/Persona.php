@@ -108,6 +108,11 @@ class Persona extends Model
         }
     }
 
+    public function postulante()
+    {
+        return $this->hasOne(Postulante::class,'id_postulante');
+    }
+
     public function socio($socios)
     {
         

@@ -128,7 +128,8 @@
 					@endif
 					<div class="btn-group">
 						<!-- <a href="/pagos/pago-seleccionar-socio" class="btn btn-info">Cancelar</a> -->
-						<a href="{{url('/pagos/'.$facturacion->persona_id.'/selectSocio')}}/" class="btn btn-info">Cancelar</a>
+						<a href="{{url('/pagos/'.$facturacion->persona->postulante->socio->id.'/selectSocio')}}"  class="btn btn-info">Cancelar</a>
+
 						<!-- DEBERIA REGRESAR A LA LISTA DE LAS FACTURAS DEL SOCIO - FALTA LINQUEAR ESO -->
 					</div>
 				</div>

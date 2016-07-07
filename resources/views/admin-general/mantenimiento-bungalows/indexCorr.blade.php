@@ -66,7 +66,8 @@
 												@endif
 											@endforeach
 											<td>{{$ambiente->estado}}</td>
-											<td>{{ Form::checkbox('ch[]', $ambiente->id, false) }}</td>
+											<td><a class="btn btn-info" href="{{url('mantBungalowPrev/deshabilitar/'.$ambiente->id.'/')}}"  ><i class="glyphicon glyphicon-flash"></i></a>
+							        		</td>
 														
 										</tr>
 									@endif								
@@ -77,14 +78,14 @@
 					</div>	
 				</div>
 				<br><br>
-				<div class="btn-inline">
+				<!--<div class="btn-inline">
 					<div class="btn-group col-sm-7"></div>
 					
 					<div class="btn-group ">
 						<input class="btn btn-primary" type="submit" value="Deshabilitar">
 					</div>
 				</div>
-				<br><br>
+				<br><br>-->
 
 				
 			</form>

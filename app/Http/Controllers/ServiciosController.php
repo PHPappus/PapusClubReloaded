@@ -18,22 +18,36 @@ class ServiciosController extends Controller
 {
     public function index()
     {
+        try{
+
         $tiposServicio=Configuracion::where('grupo','=','4')->get();
         $servicios = Servicio::all();
         $mensaje  = null;
         return view('admin-registros.servicio.index', compact('servicios','tiposServicio'));
+
+        } catch (\Exception $e) {
+          $error = "ServiciosController";
+          return view('errors.corrigeme', compact('error'));
+        }
     }
 
     public function create()
     {
+        try{
         $sedes_todas = Sede::all();
         $values=Configuracion::where('grupo','=','4')->get();
         $tiposPersonas = TipoPersona::all();
         return view('admin-registros.servicio.newServicio',compact('sedes_todas','values','tiposPersonas'));
+        } catch (\Exception $e) {
+          $error = "ServiciosController";
+          return view('errors.corrigeme', compact('error'));
+        }
     }
 
     public function store(StoreServicioRequest $request)
     {
+        try {
+                    
         $tiposServicio=Configuracion::where('grupo','=','4')->get();
         $tipo_persona = "0";
         $mensaje = 'Se registró el producto correctamente.';
@@ -83,24 +97,36 @@ class ServiciosController extends Controller
    */
                 
         return redirect('servicios/index')->with('mensaje', 'Se registró el servicio correctamente.');
+        } catch (\Exception $e) {
+          $error = "ServiciosController";
+          return view('errors.corrigeme', compact('error'));
+        }
 
     }
 
     public function edit($id)
     {
+        try{
         $servicio = Servicio::find($id);
         $tiposPersonas = TipoPersona::all();
         $TarifarioServicio = TarifarioServicio::where('idservicio','=',$id)->get();
+        $values=Configuracion::where('grupo','=','4')->get();
+        $tipoServicio = Configuracion::where('grupo','=','4')->where('id','=',$servicio->tipo_servicio)->first();
 
         /*foreach ($TarifarioServicio as $s) {
             $s->precio = 1000 ; 
             $s->save();
         }*/
-        return view('admin-registros.servicio.editServicio', compact('servicio','TarifarioServicio','tiposPersonas'));
+        return view('admin-registros.servicio.editServicio', compact('servicio','TarifarioServicio','tiposPersonas','values','tipoServicio'));
+        } catch (\Exception $e) {
+          $error = "ServiciosController";
+          return view('errors.corrigeme', compact('error'));
+        }
     }
 
     public function update(EditServicioRequest $request, $id)
     {
+        try{
         $input = $request->all();
         $servicio = Servicio::find($id);
         $servicio->nombre = $input['nombre'];
@@ -135,31 +161,47 @@ class ServiciosController extends Controller
         return redirect('servicios/index')->with('mensaje', 'Se actualizó el servicio correctamente.');
         //return view('admin-registros.servicio.prueba',compact('TarifarioServicio','tiposPersonas'));
 
-                  
+        } catch (\Exception $e) {
+          $error = "ServiciosController";
+          return view('errors.corrigeme', compact('error'));
+        }      
     }
 
 
     public function destroy($id)    
     {
-        $servicio = Servicio::find($id);
-        if ($servicio->estado == false){
-            $servicio->estado = true ;
-        }else{
-            $servicio->estado = false ;
-        }
+        try{
+            $servicio = Servicio::find($id);
+            if ($servicio->estado == false){
+                $servicio->estado = true ;
+            }else{
+                $servicio->estado = false ;
+            }
 
-        $servicio->save();
-        return back();
+            $servicio->save();
+            return back();
+
+        } catch (\Exception $e) {
+          $error = "ServiciosController";
+          return view('errors.corrigeme', compact('error'));
+        }
     }
 
     public function show($id)
     {
-        $servicio = Servicio::find($id);
-        $tiposPersonas = TipoPersona::all();
-        $TarifarioServicio = TarifarioServicio::where('idservicio','=',$id)->get();
-
-        return view('admin-registros.servicio.detailServicio', compact('servicio','TarifarioServicio','tiposPersonas'));
+        try{
+            $servicio = Servicio::find($id);
+            $tiposPersonas = TipoPersona::all();
+            $TarifarioServicio = TarifarioServicio::where('idservicio','=',$id)->get();
+            $tipoServicios=Configuracion::where('grupo','=','4')->get();
+            $tipoServicio = Configuracion::where('grupo','=','4')->where('id','=',$servicio->tipo_servicio)->first();
+            return view('admin-registros.servicio.detailServicio', compact('servicio','TarifarioServicio','tiposPersonas','tipoServicio'));
+        } catch (\Exception $e) {
+          $error = "ServiciosController";
+          return view('errors.corrigeme', compact('error'));
+        }
     }
 }
+
 
 

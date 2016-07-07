@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,6 +76,17 @@
     						</select>					
 			    	</div>			  
 			  	</div>	  
+
+			  	<div class="form-group">
+			    	<label for="servicio_dia" class="col-sm-4 control-label">Durante el</label>
+			    	<div class="col-sm-5">
+			      			<select class="form-control" name="servicio_dia" > 
+			      			 <option  value="dia"   > Día</option>
+			      			 <option  value="noche" > Noche</option>	
+    						</select>					
+			    	</div>			  
+			  	</div>	  
+
 	  	    </br>
 
 			<style>  				
@@ -93,7 +105,13 @@
 					<tbody>
 							@foreach($tiposPersonas as $tipoPersona)			
 						    	<tr>
-									<td align="center">  {{ $tipoPersona->descripcion }}</td>
+									<td align="center"> 
+									@if($tipoPersona->descripcion == 'postulante')
+										socio
+									@else
+									 	{{ $tipoPersona->descripcion }}
+									@endif
+									 </td>
 									<td align="center">  S/.</td>
 									<td align="center"> 
 									<div align="center">

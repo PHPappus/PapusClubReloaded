@@ -25,14 +25,14 @@ class MakeInscriptionFamiliarRequest extends Request
     {
         return [
             'password'      => 'required',
-            'name'    => 'required',
+            'persona_id'    => 'required',
         ];
     }
     public function messages()
     {
         return [
             'password.required' => 'La contraseña es requerida',
-            'name.required' => 'Seleccionar al familiar es obligatorio',
+            'persona_id.required' => 'Seleccionar al familiar es obligatorio',
         ];
     }
 }

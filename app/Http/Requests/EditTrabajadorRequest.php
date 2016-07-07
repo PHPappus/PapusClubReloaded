@@ -13,7 +13,7 @@ class EditTrabajadorRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class EditTrabajadorRequest extends Request
             'fecha_nacimiento' => 'string',
             'doc_identidad'=> 'required_if:nacionalidad,ṕeruano',
             'carnet_extranjeria'=> 'required_if:nacionalidad,extranjero',
-            'correo'=>'email|unique:persona',
+            'correo'=>'required|email',
             'puestoSelect' => 'required|exists:configuracion,id'
         ];
     }

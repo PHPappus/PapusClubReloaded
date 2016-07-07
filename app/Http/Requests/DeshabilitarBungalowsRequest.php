@@ -24,7 +24,9 @@ class DeshabilitarBungalowsRequest extends Request
     public function rules()
     {
         return [
-            'ch'=>'required'
+                        
+            'fecha_abierto'      =>  'required|date_format:d/m/Y',            
+            'fecha_cerrado'      =>  'required|date_format:d/m/Y|after:fecha_abierto',
         ];
     }
 }

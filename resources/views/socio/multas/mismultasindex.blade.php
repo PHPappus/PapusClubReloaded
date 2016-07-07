@@ -48,7 +48,7 @@
 		<div class="table-responsive">
 			<div class="container">
 				<table class="table table-bordered table-hover text-center display" id="example">
-						<thead class="active">
+						<thead style="background:#a3decb; font: caption; color:#FFF;">
 							
 							<th><div align=center>ID</div></th>
 							<th><div align=center>NOMBRE</div> </th>

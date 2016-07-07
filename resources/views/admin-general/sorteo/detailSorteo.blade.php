@@ -88,7 +88,51 @@
 			</form>
 		</div>
 		@if(!empty($ambientes))
-			<div class="table-responsive">
+			@if($sorteo->estado=='Ejecutado')
+				<div class="table-responsive">
+					<div class="container">
+						<table class="table table-bordered table-hover text-center display" id="example">
+							<thead class="active" data-sortable="true">								
+								<th><div align=center>NOMBRE</div></th>	
+								<th><div align=center>CAPACIDAD</div></th>	
+								<th><div align=center>UBICACION</div></th>	
+								<th><div align=center>GANADOR</div></th>	
+							</thead>	
+							<tbody>											
+								@foreach($ambientes as $ambientess)
+									@foreach($ambientess as $ambiente)
+										@if($ambiente)
+										<tr>																			
+											<td>{{$ambiente->nombre}}</td>
+											<td>{{$ambiente->capacidad_actual}}</td>
+											<td>{{$ambiente->descripcion}}</td>
+											@foreach($ganadores as $ganadoress)
+												@foreach($ganadoress as $ganador)
+													@if($ganador)
+														@if($ganador->ambiente_id == $ambiente->id)
+															@foreach($personas as $personass)
+																@foreach($personass as $persona)
+																	@if($persona)
+																		@if($persona->id==$ganador->id_persona)
+																			<td>{{$persona->nombre}} {{$persona->ap_paterno}}</td>
+																		@endif
+																	@endif
+																@endforeach
+															@endforeach															
+														@endif
+													@endif
+												@endforeach
+											@endforeach
+										</tr>
+										@endif
+									@endforeach
+								@endforeach
+							</tbody>			
+						</table>						
+					</div>	
+				</div>
+			@else
+				<div class="table-responsive">
 					<div class="container">
 						<table class="table table-bordered table-hover text-center display" id="example">
 							<thead class="active" data-sortable="true">								
@@ -104,7 +148,7 @@
 										<tr>																			
 											<td>{{$ambiente->nombre}}</td>
 											<td>{{$ambiente->capacidad_actual}}</td>
-											<td>{{$ambiente->ubicacion}}</td>
+											<td>{{$ambiente->descripcion}}</td>
 										</tr>
 										@endif
 									@endforeach
@@ -113,6 +157,7 @@
 						</table>						
 					</div>	
 				</div>
+			@endif
 		@endif
 	</div>		
 @stop
